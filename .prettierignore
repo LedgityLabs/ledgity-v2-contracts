@@ -1,0 +1,5 @@
+/subgraph/subgraph.template.yaml
+node_modules
+artifacts
+cache
+coverage
