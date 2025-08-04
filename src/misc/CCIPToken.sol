@@ -5,10 +5,10 @@ pragma solidity 0.8.18;
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { GlobalOwnableUpgradeable } from "../abstracts/GlobalOwnableUpgradeable.sol";
 // Interfaces
-import { IGetCCIPAdmin } from "@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IGetCCIPAdmin.sol";
-import { IERC677Receiver } from "@chainlink/contracts-ccip/src/v0.8/shared/interfaces/IERC677Receiver.sol";
-import { IERC677 } from "@chainlink/contracts-ccip/src/v0.8/shared/token/ERC677/IERC677.sol";
-import { IBurnMintERC20 } from "@chainlink/contracts-ccip/src/v0.8/shared/token/ERC20/IBurnMintERC20.sol";
+import { IGetCCIPAdmin } from "@chainlink/contracts-ccip/contracts/interfaces/IGetCCIPAdmin.sol";
+import { IERC677Receiver } from "@chainlink/contracts/src/v0.8/shared/interfaces/IERC677Receiver.sol";
+import { IERC677 } from "@chainlink/contracts/src/v0.8/shared/token/ERC677/IERC677.sol";
+import { IBurnMintERC20 } from "@chainlink/contracts/src/v0.8/shared/token/ERC20/IBurnMintERC20.sol";
 
 // ======== ERRORS ======== //
 
