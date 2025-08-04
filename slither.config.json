@@ -1,0 +1,9 @@
+{
+  "filter_paths": "src/dependencies,src/mock",
+  "detectors_to_exclude": [
+    "unused-return"
+  ],
+  "exclude_informational": true,
+  "exclude_optimization": true,
+  "exclude_low": true
+}

@@ -145,6 +145,10 @@ if (!forkTarget || !networkConfigs[forkTarget]) {
 
 function makeForkConfig(chainName: string): HardhatNetworkUserConfig {
   const config = networkConfigs[chainName];
+  const blockNumber =
+    config.forkingBlock === "latest" || !config.forkingBlock
+      ? undefined
+      : Number(config.forkingBlock);
 
   console.log(
     `=> Hardhat forking ${chainName.toUpperCase()}${config.forkingBlock ? ` at block ${config.forkingBlock}` : ""}\n`
@@ -158,10 +162,7 @@ function makeForkConfig(chainName: string): HardhatNetworkUserConfig {
     live: true,
     forking: {
       url: config.rpcUrl,
-      blockNumber:
-        config.forkingBlock === "latest"
-          ? undefined
-          : Number(config.forkingBlock),
+      blockNumber,
     },
     mining: {
       auto: true,
@@ -261,8 +262,8 @@ const config: HardhatUserConfig = {
     sources: "./src",
     cache: "./cache",
     artifacts: "./artifacts",
-    deploy: "./deploy",
-    deployments: "./deployments",
+    deploy: "./deployers/deploy",
+    deployments: "./deployers/deployments",
   },
   namedAccounts: {
     deployer: {
