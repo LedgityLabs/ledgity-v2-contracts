@@ -442,7 +442,6 @@ contract LedgityYield is
    * @param newRate The new base rate in ray (27 decimals)
    */
   function updateBaseRate(uint256 newRate) public onlyOwner {
-    if (newRate < RAY) revert BaseRateCannotBeLessThanOne();
     baseRate = newRate;
   }
 
