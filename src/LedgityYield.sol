@@ -44,7 +44,7 @@ contract LedgityYield is
   // The underlying token that may be deposited
   IERC20 public underlying;
 
-  // The initial exchange rate of the wrapped token in Ray (27 decimals)
+  // The initial exchange rate of the shares token in Ray (27 decimals)
   uint256 public baseRate;
 
   // Checkpoint for rate calculations
@@ -68,9 +68,9 @@ contract LedgityYield is
    * @param globalOwner_ The address of the global owner
    * @param globalPause_ The address of the global pause controller
    * @param globalBlacklist_ The address of the global blacklist controller
-   * @param underlying_ Address of the LToken to wrap
-   * @param name_ Name for the wrapped token
-   * @param symbol_ Symbol for the wrapped token
+   * @param underlying_ Address of the underlying to wrap
+   * @param name_ Name for the shares token
+   * @param symbol_ Symbol for the shares token
    */
   function initialize(
     address globalOwner_,
@@ -94,16 +94,7 @@ contract LedgityYield is
   // ======== VIEW ======== //
 
   /**
-   * @notice Returns the number of decimals used by the wrapped token
-   * @dev This is the same as the LToken decimals
-   * @return decimals_ The number of decimals
-   */
-  function decimals() public view override returns (uint8) {
-    return underlying.decimals();
-  }
-
-  /**
-   * @notice Get the current exchange rate between wrapped tokens and LTokens
+   * @notice Get the current exchange rate between shares tokens and underlying
    * @return compoundedRate The exchange rate in ray (27 decimals)
    */
   function exchangeRate()
@@ -143,35 +134,6 @@ contract LedgityYield is
     return compoundedRate;
   }
 
-  /**
-   * @notice Convert wrapped token amount to LToken amount
-   * @param wrappedAmount The amount of wrapped tokens to convert
-   * @return underlyingAmount_ The amount of LTokens that would be received
-   */
-  function toRebasingAmount(
-    uint256 wrappedAmount
-  ) public view returns (uint256) {
-    return (wrappedAmount * exchangeRate()) / RAY;
-  }
-
-  /**
-   * @notice Convert LToken amount to wrapped token amount
-   * @param underlyingAmount The amount of LTokens to wrap
-   * @return wrappedAmount_ The amount of wrapped tokens that would be received
-   */
-  function toWrappedAmount(
-    uint256 underlyingAmount
-  ) public view returns (uint256) {
-    return (underlyingAmount * RAY) / exchangeRate();
-  }
-
-  /**
-   * @notice Returns the total amount of LTokens held by this contract
-   */
-  function totalLTokenBalance() external view returns (uint256) {
-    return underlying.balanceOf(address(this));
-  }
-
   // ======== HELPERS ======== //
 
   /**
@@ -179,7 +141,7 @@ contract LedgityYield is
    * @dev This should be called whenever the APR changes
    */
   function updateRateCheckpoint() public {
-    uint256 underlyingApr = uint256(underlying.getAPR());
+    uint256 underlyingApr = 0;
 
     // Only update if APR changed
     if (underlyingApr != lastCheckpoint.apr) {
@@ -200,203 +162,69 @@ contract LedgityYield is
   // ======== INTERNAL ======== //
 
   /**
-   * @notice Internal function to handle wrapping LTokens
-   * @param underlyingAmount The amount of LTokens to wrap
-   * @param from The owner of the LTokens
-   * @param to The recipient of the wrapped tokens
-   * @return wrappedAmount_ The amount of wrapped tokens received
+   * @notice Internal function to handle wrapping underlying
+   * @param amount The amount of underlying to wrap
+   * @param from The owner of the underlying
+   * @param to The recipient of the shares tokens
+   * @return sharesAmount_ The amount of shares tokens received
    */
-  function _wrap(
-    uint256 underlyingAmount,
+  function _deposit(
+    uint256 amount,
     address from,
     address to
-  ) internal returns (uint256 wrappedAmount_) {
-    if (underlyingAmount == 0) revert WrapZeroAmount();
-    if (underlying.balanceOf(from) < underlyingAmount) {
-      revert InsufficientBalance(underlyingAmount);
+  ) internal returns (uint256 sharesAmount_) {
+    if (amount == 0) revert WrapZeroAmount();
+    if (underlying.balanceOf(from) < amount) {
+      revert InsufficientBalance(amount);
     }
 
     // Update rate checkpoint before any operation that changes balances
     updateRateCheckpoint();
 
-    // Calculate wrapped amount using updated rate
-    wrappedAmount_ = toWrappedAmount(underlyingAmount);
+    // Calculate shares amount using updated rate
+    sharesAmount_ = convertToShares(amount);
 
     // We do avoid transfer for deposit & wrap functions
     if (from != address(this)) {
-      underlying.transferFrom(from, address(this), underlyingAmount);
+      underlying.transferFrom(from, address(this), amount);
     }
 
-    _mint(to, wrappedAmount_);
+    _mint(to, sharesAmount_);
 
-    emit Deposit(from, to, underlyingAmount, wrappedAmount_);
+    emit Deposit(from, to, amount, sharesAmount_);
   }
 
   /**
    * @notice Internal function to handle unwrapping tokens
-   * @param wrappedAmount The amount of wrapped tokens to unwrap
-   * @param to The recipient of the LTokens
-   * @param from The owner of the wrapped tokens
-   * @return underlyingAmount_ The amount of LTokens received
+   * @param sharesAmount The amount of shares tokens to unwrap
+   * @param to The recipient of the underlying
+   * @param from The owner of the shares tokens
+   * @return amount_ The amount of underlying received
    */
-  function _unwrap(
-    uint256 wrappedAmount,
+  function _withdraw(
+    uint256 sharesAmount,
     address from,
     address to
-  ) internal returns (uint256 underlyingAmount_) {
-    if (wrappedAmount == 0) revert WrapZeroAmount();
-    if (wrappedAmount > balanceOf(from))
-      revert InsufficientBalance(wrappedAmount);
+  ) internal returns (uint256 amount_) {
+    if (sharesAmount == 0) revert WrapZeroAmount();
+    if (sharesAmount > balanceOf(from))
+      revert InsufficientBalance(sharesAmount);
 
     // Spend allowance if sender is not from
     if (msg.sender != from) {
-      _spendAllowance(from, msg.sender, wrappedAmount);
+      _spendAllowance(from, msg.sender, sharesAmount);
     }
 
     // Update rate checkpoint before any operation that changes balances
     updateRateCheckpoint();
 
-    // Calculate LToken amount using updated rate
-    underlyingAmount_ = toRebasingAmount(wrappedAmount);
+    // Calculate underlying amount using updated rate
+    amount_ = convertToAssets(sharesAmount);
 
-    _burn(from, wrappedAmount);
-    underlying.transfer(to, underlyingAmount_);
+    _burn(from, sharesAmount);
+    underlying.transfer(to, amount_);
 
-    emit Withdraw(from, to, from, underlyingAmount_, wrappedAmount);
-  }
-
-  // ======== DEPOSIT AND WRAP ======== //
-
-  /**
-   * @notice Deposits underlying tokens into LToken and wraps the received LTokens
-   * @param underlyingAmount The amount of underlying tokens to deposit
-   */
-  function depositAndWrap(
-    uint256 underlyingAmount
-  ) external whenNotPaused notBlacklisted(_msgSender()) {
-    if (underlyingAmount == 0) revert WrapZeroAmount();
-
-    // Get the underlying token from the LToken contract
-    IERC20 underlying = IERC20(underlying.underlying());
-
-    // Transfer underlying tokens from user to this contract
-    underlying.safeTransferFrom(
-      msg.sender,
-      address(this),
-      underlyingAmount
-    );
-
-    // Approve LToken to spend the underlying tokens
-    underlying.safeApprove(address(underlying), underlyingAmount);
-
-    // Deposit underlying tokens into LToken to get LTokens
-    underlying.deposit(underlyingAmount, "");
-
-    // Now wrap the received LTokens
-    _wrap(underlyingAmount, address(this), msg.sender);
-  }
-
-  /**
-   * @notice Deposits underlying tokens into LToken and wraps the received LTokens, sending them to a specified address
-   * @param underlyingAmount The amount of underlying tokens to deposit
-   * @param to The recipient of the wrapped tokens
-   */
-  function depositAndWrap(
-    uint256 underlyingAmount,
-    address to
-  ) external whenNotPaused notBlacklisted(_msgSender()) {
-    if (underlyingAmount == 0) revert WrapZeroAmount();
-
-    // Get the underlying token from the LToken contract
-    IERC20 underlying = IERC20(underlying.underlying());
-
-    // Transfer underlying tokens from user to this contract
-    underlying.safeTransferFrom(
-      msg.sender,
-      address(this),
-      underlyingAmount
-    );
-
-    // Approve LToken to spend the underlying tokens
-    underlying.safeApprove(address(underlying), underlyingAmount);
-
-    // Deposit underlying tokens into LToken to get LTokens
-    underlying.deposit(underlyingAmount, "");
-
-    // Now wrap the received LTokens and send them to the specified address
-    _wrap(underlyingAmount, address(this), to);
-  }
-
-  // ======== WRAP ======== //
-
-  /**
-   * @notice Wraps LTokens and receives wrapped tokens
-   * @param underlyingAmount The amount of LTokens to wrap
-   * @return wrappedAmount_ The amount of wrapped tokens received
-   */
-  function wrap(
-    uint256 underlyingAmount
-  )
-    external
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 wrappedAmount_)
-  {
-    return _wrap(underlyingAmount, msg.sender, msg.sender);
-  }
-
-  /**
-   * @notice Wraps LTokens and sends wrapped tokens to a specified address
-   * @param underlyingAmount The amount of LTokens to wrap
-   * @param to The recipient of the wrapped tokens
-   * @return wrappedAmount_ The amount of wrapped tokens received
-   */
-  function wrap(
-    uint256 underlyingAmount,
-    address to
-  )
-    external
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 wrappedAmount_)
-  {
-    return _wrap(underlyingAmount, msg.sender, to);
-  }
-
-  // ======== UNWRAP ======== //
-
-  /**
-   * @notice Unwraps tokens back to LTokens
-   * @param wrappedAmount The amount of wrapped tokens to unwrap
-   * @return underlyingAmount_ The amount of LTokens received
-   */
-  function unwrap(
-    uint256 wrappedAmount
-  )
-    external
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 underlyingAmount_)
-  {
-    return _unwrap(wrappedAmount, msg.sender, msg.sender);
-  }
-
-  /**
-   * @notice Unwraps tokens and sends LTokens to a specified address
-   * @param wrappedAmount The amount of wrapped tokens to unwrap
-   * @param to The recipient of the LTokens
-   * @return underlyingAmount_ The amount of LTokens received
-   */
-  function unwrap(
-    uint256 wrappedAmount,
-    address to
-  )
-    external
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 underlyingAmount_)
-  {
-    return _unwrap(wrappedAmount, msg.sender, to);
+    emit Withdraw(from, to, from, amount_, sharesAmount);
   }
 
   // ======== ERC-4626 ======== //
@@ -422,25 +250,25 @@ contract LedgityYield is
   }
 
   /**
-   * @notice Converts an amount of assets (underlying) to shares (wrapped tokens)
+   * @notice Converts an amount of assets (underlying) to shares (shares tokens)
    * @param assets The amount of underlying assets to convert
-   * @return shares The amount of shares (wrapped tokens) equivalent to the given assets
+   * @return shares The amount of shares (shares tokens) equivalent to the given assets
    */
   function convertToShares(
     uint256 assets
   ) public view returns (uint256 shares) {
-    shares = toWrappedAmount(assets);
+    shares = (assets * RAY) / exchangeRate();
   }
 
   /**
-   * @notice Converts an amount of shares (wrapped tokens) to assets (underlying)
-   * @param shares The amount of shares (wrapped tokens) to convert
+   * @notice Converts an amount of shares (shares tokens) to assets (underlying)
+   * @param shares The amount of shares (shares tokens) to convert
    * @return assets The amount of underlying assets equivalent to the given shares
    */
   function convertToAssets(
     uint256 shares
   ) public view returns (uint256 assets) {
-    assets = toRebasingAmount(shares);
+    assets = (shares * exchangeRate()) / RAY;
   }
 
   /**
@@ -530,8 +358,8 @@ contract LedgityYield is
   }
 
   /**
-   * @notice Deposit assets (underlying) and mint shares (wrapped tokens) to receiver
-   * @param assets The amount of LTokens to deposit
+   * @notice Deposit assets (underlying) and mint shares (shares tokens) to receiver
+   * @param assets The amount of underlying to deposit
    * @param receiver The address to receive the minted shares
    * @return shares The number of shares minted
    */
@@ -544,14 +372,14 @@ contract LedgityYield is
     notBlacklisted(_msgSender())
     returns (uint256 shares)
   {
-    shares = _wrap(assets, msg.sender, receiver);
+    shares = _deposit(assets, msg.sender, receiver);
   }
 
   /**
-   * @notice Mint shares (wrapped tokens) to receiver by depositing assets (underlying)
+   * @notice Mint shares (shares tokens) to receiver by depositing assets (underlying)
    * @param shares The number of shares to mint
    * @param receiver The address to receive the minted shares
-   * @return assets The amount of LTokens deposited
+   * @return assets The amount of underlying deposited
    */
   function mint(
     uint256 shares,
@@ -563,13 +391,13 @@ contract LedgityYield is
     returns (uint256 assets)
   {
     assets = convertToAssets(shares);
-    _wrap(assets, msg.sender, receiver);
+    _deposit(assets, msg.sender, receiver);
   }
 
   /**
-   * @notice Withdraw assets (underlying) by burning shares (wrapped tokens)
-   * @param assets The amount of LTokens to withdraw
-   * @param receiver The address to receive the withdrawn LTokens
+   * @notice Withdraw assets (underlying) by burning shares (shares tokens)
+   * @param assets The amount of underlying to withdraw
+   * @param receiver The address to receive the withdrawn underlying
    * @param owner The address of the owner of the shares
    * @return shares The number of shares burned
    */
@@ -584,15 +412,15 @@ contract LedgityYield is
     returns (uint256 shares)
   {
     shares = convertToShares(assets);
-    _unwrap(shares, owner, receiver);
+    _withdraw(shares, owner, receiver);
   }
 
   /**
-   * @notice Redeem shares (wrapped tokens) for assets (underlying)
+   * @notice Redeem shares (shares tokens) for assets (underlying)
    * @param shares The number of shares to redeem
-   * @param receiver The address to receive the LTokens
+   * @param receiver The address to receive the underlying
    * @param owner The address of the owner of the shares
-   * @return assets The amount of LTokens received
+   * @return assets The amount of underlying received
    */
   function redeem(
     uint256 shares,
@@ -604,7 +432,7 @@ contract LedgityYield is
     notBlacklisted(owner)
     returns (uint256 assets)
   {
-    assets = _unwrap(shares, owner, receiver);
+    assets = _withdraw(shares, owner, receiver);
   }
 
   // ======== ADMIN ======== //
