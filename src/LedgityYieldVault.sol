@@ -24,6 +24,7 @@ error BaseRateCannotBeLessThanOne();
 error WrapUnwrapPaused();
 error CannotWithdrawFromAnotherOwner();
 error ZeroBaseRate();
+error OnlyLiquidityManager();
 
 /**
  * @title LedgityYield
@@ -43,18 +44,28 @@ contract LedgityYield is
 
   // The underlying token that may be deposited
   IERC20 public underlying;
+  // The token that represents the stake of a user in the protocol
+  IERC20 public stakeToken;
+  // The L-Token
+  IERC20 public lToken;
 
   // The initial exchange rate of the shares token in Ray (27 decimals)
   uint256 public baseRate;
+  uint256 public liquidityBufferRate;
 
-  // Checkpoint for rate calculations
-  struct LastRateCheckpoint {
-    uint256 timestamp; // When checkpoint was created
-    uint256 apr; // The APR at checkpoint in base 100 RAY (1% = 1 RAY)
+  uint256 public managementFeeRate;
+  uint256 public performanceFeeRate;
+  uint256 public withdrawalFee;
+  uint256 public fastWithdrawMinStake;
+
+  address public liquidityManager;
+
+  struct UserFeeStructure {
+    bool hasFeeStructure;
+    uint256 managementFee;
+    uint256 performanceFee;
+    uint256 withdrawalFee;
   }
-
-  // Last recorded checkpoint
-  LastRateCheckpoint public lastCheckpoint;
 
   // ======== EVENTS ======== //
 
@@ -76,7 +87,10 @@ contract LedgityYield is
     address globalOwner_,
     address globalPause_,
     address globalBlacklist_,
+    address liquidityManager_,
     IERC20 underlying_,
+    IERC20 stakeToken_,
+    IERC20 lToken_,
     string memory name_,
     string memory symbol_
   ) public initializer {
@@ -86,9 +100,18 @@ contract LedgityYield is
     __Base_init(globalOwner_, globalPause_, globalBlacklist_);
 
     underlying = underlying_;
+    stakeToken = stakeToken_;
+    lToken = lToken_;
 
     // Initialize the first checkpoint
-    updateRateCheckpoint();
+    snapshot();
+  }
+
+  // ======== MODIFIERS ======== //
+
+  modifier onlyLiquidityManager() {
+    if (msg.sender != liquidityManager) revert OnlyLiquidityManager();
+    _;
   }
 
   // ======== VIEW ======== //
@@ -105,14 +128,16 @@ contract LedgityYield is
     compoundedRate = baseRate;
 
     // Time elapsed since last checkpoint
-    uint256 timeElapsed = block.timestamp - lastCheckpoint.timestamp;
+    // uint256 timeElapsed = block.timestamp - lastCheckpoint.timestamp;
+    uint256 timeElapsed = 0;
 
     // Calculate number of full days elapsed
     uint256 fullDays = timeElapsed / 1 days;
     uint256 remainingTime = timeElapsed % 1 days;
 
     // We want an APR we can use as a coefficient (100% = 1 RAY)
-    uint256 aprBaseOneRay = lastCheckpoint.apr / 100;
+    // uint256 aprBaseOneRay = lastCheckpoint.apr / 100;
+    uint256 aprBaseOneRay = 0;
     // Daily rate = APR / 365
     uint256 dailyRatio = aprBaseOneRay / 365;
 
@@ -133,101 +158,6 @@ contract LedgityYield is
 
     return compoundedRate;
   }
-
-  // ======== HELPERS ======== //
-
-  /**
-   * @notice Updates the rate checkpoint with current APR and rate
-   * @dev This should be called whenever the APR changes
-   */
-  function updateRateCheckpoint() public {
-    uint256 underlyingApr = 0;
-
-    // Only update if APR changed
-    if (underlyingApr != lastCheckpoint.apr) {
-      // Calculate the new base rate including all accumulated rewards
-      baseRate = exchangeRate();
-
-      uint256 apr = (underlyingApr * RAY) / 1000;
-
-      lastCheckpoint = LastRateCheckpoint({
-        timestamp: block.timestamp,
-        apr: apr
-      });
-
-      emit RateCheckpointUpdated(baseRate, apr);
-    }
-  }
-
-  // ======== INTERNAL ======== //
-
-  /**
-   * @notice Internal function to handle wrapping underlying
-   * @param amount The amount of underlying to wrap
-   * @param from The owner of the underlying
-   * @param to The recipient of the shares tokens
-   * @return sharesAmount_ The amount of shares tokens received
-   */
-  function _deposit(
-    uint256 amount,
-    address from,
-    address to
-  ) internal returns (uint256 sharesAmount_) {
-    if (amount == 0) revert WrapZeroAmount();
-    if (underlying.balanceOf(from) < amount) {
-      revert InsufficientBalance(amount);
-    }
-
-    // Update rate checkpoint before any operation that changes balances
-    updateRateCheckpoint();
-
-    // Calculate shares amount using updated rate
-    sharesAmount_ = convertToShares(amount);
-
-    // We do avoid transfer for deposit & wrap functions
-    if (from != address(this)) {
-      underlying.transferFrom(from, address(this), amount);
-    }
-
-    _mint(to, sharesAmount_);
-
-    emit Deposit(from, to, amount, sharesAmount_);
-  }
-
-  /**
-   * @notice Internal function to handle unwrapping tokens
-   * @param sharesAmount The amount of shares tokens to unwrap
-   * @param to The recipient of the underlying
-   * @param from The owner of the shares tokens
-   * @return amount_ The amount of underlying received
-   */
-  function _withdraw(
-    uint256 sharesAmount,
-    address from,
-    address to
-  ) internal returns (uint256 amount_) {
-    if (sharesAmount == 0) revert WrapZeroAmount();
-    if (sharesAmount > balanceOf(from))
-      revert InsufficientBalance(sharesAmount);
-
-    // Spend allowance if sender is not from
-    if (msg.sender != from) {
-      _spendAllowance(from, msg.sender, sharesAmount);
-    }
-
-    // Update rate checkpoint before any operation that changes balances
-    updateRateCheckpoint();
-
-    // Calculate underlying amount using updated rate
-    amount_ = convertToAssets(sharesAmount);
-
-    _burn(from, sharesAmount);
-    underlying.transfer(to, amount_);
-
-    emit Withdraw(from, to, from, amount_, sharesAmount);
-  }
-
-  // ======== ERC-4626 ======== //
 
   /**
    * @notice Returns the address of the underlying asset (ERC20) for the vault
@@ -357,6 +287,95 @@ contract LedgityYield is
     assets = convertToAssets(shares);
   }
 
+  // ======== INTERNAL HELPERS ======== //
+
+  function _depositBuffer() private {}
+
+  function _withdrawBuffer() private {}
+
+  /**
+   * @notice Internal function to handle wrapping underlying
+   * @param amount The amount of underlying to wrap
+   * @param from The owner of the underlying
+   * @param to The recipient of the shares tokens
+   * @return sharesAmount_ The amount of shares tokens received
+   */
+  function _deposit(
+    uint256 amount,
+    address from,
+    address to
+  ) internal returns (uint256 sharesAmount_) {
+    if (amount == 0) revert WrapZeroAmount();
+    if (underlying.balanceOf(from) < amount) {
+      revert InsufficientBalance(amount);
+    }
+
+    // Update rate checkpoint before any operation that changes balances
+    snapshot();
+
+    // Calculate shares amount using updated rate
+    sharesAmount_ = convertToShares(amount);
+
+    // We do avoid transfer for deposit & wrap functions
+    if (from != address(this)) {
+      underlying.transferFrom(from, address(this), amount);
+    }
+
+    _mint(to, sharesAmount_);
+
+    emit Deposit(from, to, amount, sharesAmount_);
+  }
+
+  /**
+   * @notice Internal function to handle unwrapping tokens
+   * @param sharesAmount The amount of shares tokens to unwrap
+   * @param to The recipient of the underlying
+   * @param from The owner of the shares tokens
+   * @return amount_ The amount of underlying received
+   */
+  function _withdraw(
+    uint256 sharesAmount,
+    address from,
+    address to
+  ) internal returns (uint256 amount_) {
+    if (sharesAmount == 0) revert WrapZeroAmount();
+    if (sharesAmount > balanceOf(from))
+      revert InsufficientBalance(sharesAmount);
+
+    // Spend allowance if sender is not from
+    if (msg.sender != from) {
+      _spendAllowance(from, msg.sender, sharesAmount);
+    }
+
+    // Update rate checkpoint before any operation that changes balances
+    snapshot();
+
+    // Calculate underlying amount using updated rate
+    amount_ = convertToAssets(sharesAmount);
+
+    _burn(from, sharesAmount);
+    underlying.transfer(to, amount_);
+
+    emit Withdraw(from, to, from, amount_, sharesAmount);
+  }
+
+  // ======== WRITE FUNCTIONS ======== //
+
+  /**
+   * @notice Updates the rate checkpoint with current APR and rate
+   * @dev This should be called whenever the APR changes
+   */
+  function snapshot() public {
+    // Calculate the new base rate including all accumulated rewards
+    baseRate = exchangeRate();
+    // @todo @bw compute available fees
+    // @todo @bw include buffer rewards
+  }
+
+  function migrateLToken(uint256 amount) public {}
+
+  function requestWithdrawal(uint256 amount) public {}
+
   /**
    * @notice Deposit assets (underlying) and mint shares (shares tokens) to receiver
    * @param assets The amount of underlying to deposit
@@ -444,6 +463,17 @@ contract LedgityYield is
   function updateBaseRate(uint256 newRate) public onlyOwner {
     baseRate = newRate;
   }
+
+  function depositToBuffer(
+    uint256 amount,
+    bool depositToStrategy
+  ) public onlyLiquidityManager {}
+
+  function skimBuffer() public onlyLiquidityManager {}
+
+  function processRequests(
+    uint256[] calldata requestIds
+  ) public onlyLiquidityManager {}
 
   /**
    * @notice Recovers a specified amount of a given token address.
