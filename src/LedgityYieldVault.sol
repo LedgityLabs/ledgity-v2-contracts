@@ -56,6 +56,7 @@ contract LedgityYield is
 
   // The initial exchange rate of the shares token in Ray (27 decimals)
   uint256 public baseRate;
+  uint256 public lastHighestRate;
   uint256 public liquidityBufferRate;
 
   uint256 public managementFeeRate;
@@ -367,23 +368,23 @@ contract LedgityYield is
     address from,
     address to
   ) internal returns (uint256 sharesAmount_) {
-    if (amount == 0) revert WrapZeroAmount();
-    if (underlying.balanceOf(from) < amount) {
-      revert InsufficientBalance(amount);
-    }
+    if (amount == 0) revert ZeroAmount();
 
     // Update rate checkpoint before any operation that changes balances
     snapshot();
 
     // Calculate shares amount using updated rate
+    // @bw apply management fee on rate
     sharesAmount_ = convertToShares(amount);
 
-    // We do avoid transfer for deposit & wrap functions
-    if (from != address(this)) {
-      underlying.transferFrom(from, address(this), amount);
-    }
-
     _mint(to, sharesAmount_);
+    underlying.transferFrom(from, address(this), amount);
+
+    uint256 bufferAmount = (amount * liquidityBufferRate) / RAY;
+    uint256 vaultAmount = amount - bufferAmount;
+
+    if (aToken != address(0)) _depositBuffer(bufferAmount);
+    underlying.transfer(liquidityManager, vaultAmount);
 
     emit Deposit(from, to, amount, sharesAmount_);
   }
@@ -400,14 +401,7 @@ contract LedgityYield is
     address from,
     address to
   ) internal returns (uint256 amount_) {
-    if (sharesAmount == 0) revert WrapZeroAmount();
-    if (sharesAmount > balanceOf(from))
-      revert InsufficientBalance(sharesAmount);
-
-    // Spend allowance if sender is not from
-    if (msg.sender != from) {
-      _spendAllowance(from, msg.sender, sharesAmount);
-    }
+    if (sharesAmount == 0) revert ZeroAmount();
 
     // Update rate checkpoint before any operation that changes balances
     snapshot();
@@ -416,6 +410,8 @@ contract LedgityYield is
     amount_ = convertToAssets(sharesAmount);
 
     _burn(from, sharesAmount);
+    // @bw apply withdrawal fee on amount
+    // @bw apply performance fee optionnaly
     underlying.transfer(to, amount_);
 
     emit Withdraw(from, to, from, amount_, sharesAmount);
@@ -523,6 +519,8 @@ contract LedgityYield is
    * @param newRate The new base rate in ray (27 decimals)
    */
   function updateBaseRate(uint256 newRate) public onlyOwner {
+    /// @dev Save previous rate in case of debasing in order to suspend performance fees
+    if (newRate < baseRate) lastHighestRate = baseRate;
     baseRate = newRate;
   }
 
