@@ -19,10 +19,10 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
 
 // ======== ERRORS ======== //
-error WrapZeroAmount();
+error ZeroAmount();
 error InsufficientBalance(uint256 amount);
 error BaseRateCannotBeLessThanOne();
-error WrapUnwrapPaused();
+error Paused();
 error CannotWithdrawFromAnotherOwner();
 error ZeroBaseRate();
 error OnlyLiquidityManager();
@@ -75,16 +75,16 @@ contract LedgityYield is
   // ======== EVENTS ======== //
 
   event RateCheckpointUpdated(uint256 newRate, uint256 newAPR);
-  event WrapUnwrapPausedSet(bool isPaused);
+  event PausedSet(bool isPaused);
 
   // ======== INITIALIZE ======== //
 
   /**
-   * @notice Initializes the WrappedLToken contract
+   * @notice Initializes the Vault contract
    * @param globalOwner_ The address of the global owner
    * @param globalPause_ The address of the global pause controller
    * @param globalBlacklist_ The address of the global blacklist controller
-   * @param underlying_ Address of the underlying to wrap
+   * @param underlying_ Address of the underlying
    * @param name_ Name for the shares token
    * @param symbol_ Symbol for the shares token
    */
@@ -356,8 +356,8 @@ contract LedgityYield is
   }
 
   /**
-   * @notice Internal function to handle wrapping underlying
-   * @param amount The amount of underlying to wrap
+   * @notice Internal function to handle depositing underlying
+   * @param amount The amount of underlying to deposit
    * @param from The owner of the underlying
    * @param to The recipient of the shares tokens
    * @return sharesAmount_ The amount of shares tokens received
@@ -389,8 +389,8 @@ contract LedgityYield is
   }
 
   /**
-   * @notice Internal function to handle unwrapping tokens
-   * @param sharesAmount The amount of shares tokens to unwrap
+   * @notice Internal function to handle withdraw tokens
+   * @param sharesAmount The amount of shares tokens to withdraw
    * @param to The recipient of the underlying
    * @param from The owner of the shares tokens
    * @return amount_ The amount of underlying received
