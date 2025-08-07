@@ -16,6 +16,7 @@ import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC2
 // Interfaces
 import { IERC4626 } from "./interfaces/IERC4626.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
 
 // ======== ERRORS ======== //
 error WrapZeroAmount();
@@ -43,11 +44,15 @@ contract LedgityYield is
   uint256 public constant RAY = 1e27;
 
   // The underlying token that may be deposited
-  IERC20 public underlying;
+  IERC20 public immutable underlying;
   // The token that represents the stake of a user in the protocol
   IERC20 public stakeToken;
   // The L-Token
   IERC20 public lToken;
+
+  IAaveLendingPoolV3 public aaveLendingPool;
+  // AAVE IBT or address(0) if there is not AAVE lending pool
+  address public aToken;
 
   // The initial exchange rate of the shares token in Ray (27 decimals)
   uint256 public baseRate;
@@ -88,6 +93,7 @@ contract LedgityYield is
     address globalPause_,
     address globalBlacklist_,
     address liquidityManager_,
+    address aaveLendingPool_,
     IERC20 underlying_,
     IERC20 stakeToken_,
     IERC20 lToken_,
@@ -102,6 +108,18 @@ contract LedgityYield is
     underlying = underlying_;
     stakeToken = stakeToken_;
     lToken = lToken_;
+
+    if (aaveLendingPool_ != address(0)) {
+      aaveLendingPool = IAaveLendingPoolV3(aaveLendingPool_);
+      aToken = aaveLendingPool
+        .getReserveData(address(underlying))
+        .aTokenAddress;
+
+      IERC20(underlying).approve(
+        address(aaveLendingPool),
+        type(uint256).max
+      );
+    }
 
     // Initialize the first checkpoint
     snapshot();
@@ -157,6 +175,30 @@ contract LedgityYield is
     }
 
     return compoundedRate;
+  }
+
+  /**
+   * @notice Returns the current index between aToken and underlying token
+   * @return uint256 The current reward index in rays
+   *
+   * @dev A reward index of 1e27 means 1 aToken = 1 underlying token
+   */
+  function getBufferRewardIndex() public view returns (uint256) {
+    return
+      aaveLendingPool.getReserveNormalizedIncome(address(underlying));
+  }
+
+  /**
+   * @notice Returns the current reward rate for the strategy
+   * @return uint256 The reward rate in RAY
+   *
+   * @dev A reward rate of 1e28 means 100% APR
+   */
+  function getBufferRewardRate() external view returns (uint256) {
+    return
+      aaveLendingPool
+        .getReserveData(address(underlying))
+        .currentLiquidityRate;
   }
 
   /**
@@ -289,9 +331,29 @@ contract LedgityYield is
 
   // ======== INTERNAL HELPERS ======== //
 
-  function _depositBuffer() private {}
+  /**
+   * @notice Deposits the specified amount of underlying assets into the Aave Lending Pool
+   * @param amount The amount of underlying assets to deposit
+   */
+  function _depositBuffer(uint256 amount) private {
+    /// @dev We already approved the contract in the initializer
 
-  function _withdrawBuffer() private {}
+    aaveLendingPool.deposit(
+      address(underlying),
+      amount,
+      address(this),
+      0
+    );
+  }
+
+  /**
+   * @notice Withdraws the specified amount of underlying assets from the Aave Lending Pool
+   * @param amount The amount of underlying assets to withdraw
+   * @param to The address to which the underlying assets will be transferred
+   */
+  function _withdrawBuffer(uint256 amount, address to) private {
+    aaveLendingPool.withdraw(address(underlying), amount, to);
+  }
 
   /**
    * @notice Internal function to handle wrapping underlying
@@ -465,11 +527,18 @@ contract LedgityYield is
   }
 
   function depositToBuffer(
-    uint256 amount,
-    bool depositToStrategy
-  ) public onlyLiquidityManager {}
+    uint256 amount
+  ) public onlyLiquidityManager {
+    // Transfer amount from fund wallet to contract
+    underlying.safeTransferFrom(msg.sender, address(this), amount);
 
-  function skimBuffer() public onlyLiquidityManager {}
+    if (aToken != address(0))
+      _depositBuffer(underlying.balanceOf(address(this)));
+  }
+
+  function skimBuffer(uint256 amount) public onlyLiquidityManager {
+    _withdrawBuffer(amount, msg.sender);
+  }
 
   function processRequests(
     uint256[] calldata requestIds
