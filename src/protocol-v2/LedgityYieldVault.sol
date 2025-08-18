@@ -20,50 +20,78 @@ import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC
 import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
 import { IAaveLendingPoolV3 } from "../interfaces/IAaveLendingPoolV3.sol";
 
-// ======== LIBS ======== //
-using SafeERC20 for IERC20;
-
-// ======== ERRORS ======== //
-error ZeroAmount();
-error InsufficientBalance(uint256 amount);
-error BaseRateCannotBeLessThanOne();
-error Paused();
-error CannotWithdrawFromAnotherOwner();
-error ZeroBaseRate();
-error OnlyLiquidityManager();
-error MissingWithdrawalRequestFee();
-
 /**
  * @title LedgityYieldVault
  * @notice An ERC-4626 vault token
+ *
+ * @author vBlackwhale (https://github.com/vblackwhale)
  */
 contract LedgityYieldVault is
   BaseUpgradeable,
   CCIPToken,
   VaultLiquidityModule
 {
+  // ======== LIBS ======== //
+  using SafeERC20 for IERC20;
+
+  // ======== ERRORS ======== //
+  error ZeroAmount();
+  error InsufficientBalance(uint256 amount);
+  error BaseRateCannotBeLessThanOne();
+  error CannotWithdrawFromAnotherOwner();
+  error ZeroBaseRate();
+  error OnlyLiquidityManager();
+  error MissingWithdrawalRequestFee();
+  error RequestNotFound();
+  error RequestAlreadyProcessed();
+  error InsufficientLiquidity();
+
   // ======== STORAGE ======== //
 
   // The underlying token that may be deposited
   IERC20 public underlying;
-  // The token that represents the stake of an account in the protocol
-  IERC20 public stakeToken;
   // The L-Token
   IERC20 public lToken;
 
   address public liquidityManager;
+  address payable public feeRecipient;
 
-  IAaveLendingPoolV3 public aaveLendingPool;
+  bool public hasBufferStrategy;
   // AAVE IBT or address(0) if there is not AAVE lending pool
   address public aToken;
-  uint256 public lastBufferRewardBalance;
+  IAaveLendingPoolV3 public aaveLendingPool;
 
+  uint256 public lastBufferRewardBalance;
   uint256 public liquidityBufferRate;
-  uint256 public fastWithdrawMinStake;
+
+  // The token that represents the stake of an account in the protocol
+  IERC20 public stakeToken;
+  uint256 public stakingFeeReduction;
+
+  // Withdrawal queue
+  struct WithdrawalRequest {
+    address user;
+    uint256 shares;
+    uint256 timestamp;
+    bool processed;
+  }
+
+  WithdrawalRequest[] public withdrawalRequests;
 
   // ======== EVENTS ======== //
 
   event PausedSet(bool isPaused);
+  event WithdrawalRequested(
+    uint256 indexed requestId,
+    address indexed user,
+    uint256 shares
+  );
+  event WithdrawalProcessed(
+    uint256 indexed requestId,
+    address indexed user,
+    uint256 shares,
+    uint256 assets
+  );
 
   // ======== INITIALIZE ======== //
 
@@ -102,6 +130,7 @@ contract LedgityYieldVault is
     lToken = lToken_;
 
     if (aaveLendingPool_ != address(0)) {
+      hasBufferStrategy = true;
       aaveLendingPool = IAaveLendingPoolV3(aaveLendingPool_);
       aToken = aaveLendingPool
         .getReserveData(address(underlying))
@@ -121,7 +150,7 @@ contract LedgityYieldVault is
     _;
   }
 
-  // ======== VIEW ======== //
+  // ======== OVERRIDES ======== //
 
   function decimals()
     public
@@ -132,81 +161,194 @@ contract LedgityYieldVault is
     return ERC4626Upgradeable.decimals();
   }
 
-  // ======== VIEW ======== //
-
-  /**
-   * @notice Returns the current reward rate for the strategy
-   * @return uint256 The reward rate in RAY
-   *
-   * @dev A reward rate of 1e28 means 100% APR
-   */
-  function getBufferRewardRate() external view returns (uint256) {
-    return
-      aaveLendingPool
-        .getReserveData(address(underlying))
-        .currentLiquidityRate;
-  }
-
   /**
    * @notice Get the total underlying assets of the vault
    * @dev This includes buffer assets (in Aave if applicable) and assets in the liquidity manager
    * @inheritdoc IERC4626
    * @return Total underlying assets of the vault
    */
-  function totalAssets() public view override returns (uint256) {
-    uint256 bufferAssets = 0;
-
-    // Add buffer assets
-    if (aToken != address(0)) {
-      // If using Aave, get the aToken balance
-      bufferAssets = IERC20(aToken).balanceOf(address(this));
-    } else {
-      // Otherwise, just use the underlying balance in this contract
-      bufferAssets = underlying.balanceOf(address(this));
-    }
-
-    // Return total of buffer assets and assets tracked by VaultLiquidityModule
-    return bufferAssets + totalAssets();
+  function totalAssets()
+    public
+    view
+    override(VaultLiquidityModule)
+    returns (uint256)
+  {
+    return VaultLiquidityModule.totalAssets() + _bufferRewards();
   }
 
-  // ======== INTERNAL HELPERS ======== //
+  // ======== VIEW ======== //
 
-  function _registerBufferRewards() private {
-    if (aToken == address(0)) return;
+  /**
+   * @notice Returns the additional APR contribution from the Aave buffer
+   * @return uint256 The buffer APR contribution in RAY (1e27 = 100% APR)
+   *
+   * @dev Calculates (bufferAssets / totalAssets) * aaveAPR
+   * This represents the additional yield from having assets in Aave buffer
+   */
+  function getBufferRewardRate() external view returns (uint256) {
+    uint256 totalVaultAssets = totalAssets();
+
+    // If no assets, return 0
+    if (totalVaultAssets == 0) return 0;
+    if (!hasBufferStrategy) return 0;
+
+    // Get buffer assets and Aave APR
+    uint256 bufferAssets = IERC20(aToken).balanceOf(address(this));
+    uint256 aaveAPR = aaveLendingPool
+      .getReserveData(address(underlying))
+      .currentLiquidityRate;
+
+    return (bufferAssets * aaveAPR) / totalVaultAssets;
+  }
+
+  /**
+   * @notice Get withdrawal requests with optional filtering
+   * @param onlyPending If true, only return non-processed requests
+   * @param maxRequests Maximum number of requests to return (0 = no limit)
+   * @return requests Array of withdrawal requests
+   */
+  function getWithdrawalRequests(
+    bool onlyPending,
+    uint256 maxRequests
+  ) external view returns (WithdrawalRequest[] memory requests) {
+    uint256 totalRequests = withdrawalRequests.length;
+    if (totalRequests == 0) return requests;
+
+    // Count valid requests
+    uint256 validCount;
+    for (uint256 i; i < totalRequests; i++) {
+      if (!onlyPending || !withdrawalRequests[i].processed) {
+        validCount++;
+        if (maxRequests > 0 && validCount >= maxRequests) break;
+      }
+    }
+
+    // Create result array
+    requests = new WithdrawalRequest[](validCount);
+    uint256 resultIndex;
+
+    for (
+      uint256 i;
+      i < totalRequests && resultIndex < validCount;
+      i++
+    ) {
+      if (!onlyPending || !withdrawalRequests[i].processed) {
+        requests[resultIndex] = withdrawalRequests[i];
+        resultIndex++;
+      }
+    }
+  }
+
+  /**
+   * @notice Get withdrawal requests for a specific user
+   * @param user The user address
+   * @param onlyPending If true, only return non-processed requests
+   * @return requestIds Array of request IDs for the user
+   * @return requests Array of withdrawal requests for the user
+   */
+  function getUserWithdrawalRequests(
+    address user,
+    bool onlyPending
+  )
+    external
+    view
+    returns (
+      uint256[] memory requestIds,
+      WithdrawalRequest[] memory requests
+    )
+  {
+    uint256 totalRequests = withdrawalRequests.length;
+
+    // Count user requests
+    uint256 userRequestCount;
+    for (uint256 i; i < totalRequests; i++) {
+      if (withdrawalRequests[i].user == user) {
+        if (!onlyPending || !withdrawalRequests[i].processed) {
+          userRequestCount++;
+        }
+      }
+    }
+
+    // Create result arrays
+    requestIds = new uint256[](userRequestCount);
+    requests = new WithdrawalRequest[](userRequestCount);
+    uint256 resultIndex;
+
+    for (
+      uint256 i;
+      i < totalRequests && resultIndex < userRequestCount;
+      i++
+    ) {
+      if (withdrawalRequests[i].user == user) {
+        if (!onlyPending || !withdrawalRequests[i].processed) {
+          requestIds[resultIndex] = i;
+          requests[resultIndex] = withdrawalRequests[i];
+          resultIndex++;
+        }
+      }
+    }
+  }
+
+  /**
+   * @notice Get total number of withdrawal requests
+   * @return Total number of requests created
+   */
+  function getWithdrawalRequestCount()
+    external
+    view
+    returns (uint256)
+  {
+    return withdrawalRequests.length;
+  }
+
+  // ======== BUFFER INTERNAL HELPERS ======== //
+
+  function _bufferRewards() private returns (uint256) {
+    if (!hasBufferStrategy) return 0;
 
     uint256 bufferAssets = IERC20(aToken).balanceOf(address(this));
+    return bufferAssets - lastBufferRewardBalance;
+  }
 
-    if (bufferAssets == lastBufferRewardBalance) return;
-
-    uint256 reward = bufferAssets - lastBufferRewardBalance;
+  function _registerBufferRewards() private {
+    uint256 reward = _bufferRewards();
+    if (reward == 0) return;
 
     _queueDeposit(reward);
-    lastBufferRewardBalance = bufferAssets;
+    lastBufferRewardBalance += reward;
   }
 
   /**
    * @notice Deposits the specified amount of underlying assets into the Aave Lending Pool
-   * @param amount The amount of underlying assets to deposit
+   * @param amountAssets The amount of underlying assets to deposit
    */
-  function _depositBuffer(uint256 amount) private {
+  function _depositBuffer(uint256 amountAssets) private {
     /// @dev We already approved the contract in the initializer
 
     aaveLendingPool.deposit(
       address(underlying),
-      amount,
+      amountAssets,
       address(this),
       0
     );
+
+    lastBufferRewardBalance += amountAssets;
   }
 
   /**
    * @notice Withdraws the specified amount of underlying assets from the Aave Lending Pool
-   * @param amount The amount of underlying assets to withdraw
+   * @param amountAssets The amount of underlying assets to withdraw
    * @param to The address to which the underlying assets will be transferred
+   *
+   * @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
    */
-  function _withdrawBuffer(uint256 amount, address to) private {
-    aaveLendingPool.withdraw(address(underlying), amount, to);
+  function _withdrawBuffer(uint256 amountAssets, address to) private {
+    aaveLendingPool.withdraw(address(underlying), amountAssets, to);
+
+    lastBufferRewardBalance -= amountAssets;
   }
+
+  // ======== VAULT INTERNAL HELPERS ======== //
 
   /**
    * @notice Internal function to handle depositing underlying
@@ -222,10 +364,8 @@ contract LedgityYieldVault is
   ) internal returns (uint256 sharesAmount_) {
     if (amount == 0) revert ZeroAmount();
 
-    // Add buffer rewards
-    _registerBufferRewards();
-    // Take management and performance fees
-    _takeFees(owner());
+    // Register buffer rewards & take fees before processing
+    harvestFees();
 
     // Calculate shares amount using updated rate
     // Apply management fee on rate
@@ -239,7 +379,7 @@ contract LedgityYieldVault is
     uint256 bufferAmount = (amount * liquidityBufferRate) / RATE_BASE;
     uint256 vaultAmount = amount - bufferAmount;
 
-    if (aToken != address(0)) _depositBuffer(bufferAmount);
+    if (hasBufferStrategy) _depositBuffer(bufferAmount);
     underlying.transfer(liquidityManager, vaultAmount);
 
     emit Deposit(from, to, amount, sharesAmount_);
@@ -259,10 +399,8 @@ contract LedgityYieldVault is
   ) internal returns (uint256 amount_) {
     if (sharesAmount == 0) revert ZeroAmount();
 
-    // Add buffer rewards
-    _registerBufferRewards();
-    // Take management and prformance fees
-    _takeFees(owner());
+    // Register buffer rewards & take fees before processing
+    harvestFees();
 
     // Calculate underlying amount using updated rate
     amount_ = convertToAssets(sharesAmount);
@@ -285,11 +423,34 @@ contract LedgityYieldVault is
 
   // ======== WRITE FUNCTIONS ======== //
 
-  function migrateLToken(uint256 amount) public {}
+  function migrateLToken(
+    uint256 amount
+  )
+    public
+    whenNotPaused
+    notBlacklisted(_msgSender())
+    returns (uint256 shares)
+  {
+    if (amount == 0) revert ZeroAmount();
+    if (lToken.balanceOf(msg.sender) < amount)
+      revert InsufficientBalance(amount);
 
-  function requestWithdrawal(uint256 amount) public {
-    if (msg.value < withdrawalGasFee)
-      revert MissingWithdrawalRequestFee();
+    // Register buffer rewards & take fees before processing
+    harvestFees();
+
+    // Calculate shares amount using updated rate (treat L-Tokens same as underlying)
+    shares = convertToShares(amount);
+
+    // Transfer L-Tokens from user to liquidity manager
+    lToken.safeTransferFrom(msg.sender, liquidityManager, amount);
+
+    // Mint vault shares to user
+    _mint(msg.sender, shares);
+
+    // Queue the deposit for liquidity tracking
+    _queueDeposit(amount);
+
+    emit Deposit(msg.sender, msg.sender, amount, shares);
   }
 
   /**
@@ -374,18 +535,41 @@ contract LedgityYieldVault is
     assets = _withdraw(shares, owner, receiver);
   }
 
-  // ======== ADMIN ======== //
+  function requestWithdrawal(
+    uint256 shares
+  ) public payable whenNotPaused notBlacklisted(_msgSender()) {
+    if (shares == 0) revert ZeroAmount();
+    if (msg.value < withdrawalGasFee)
+      revert MissingWithdrawalRequestFee();
+    if (balanceOf(msg.sender) < shares)
+      revert InsufficientBalance(shares);
 
-  function harvestFees() external {
+    // Create withdrawal request
+    // @bw register amount of assets at time of request since they stop earning yield
+    uint256 requestId = withdrawalRequests.length;
+    withdrawalRequests.push(
+      WithdrawalRequest({
+        user: msg.sender,
+        shares: shares,
+        timestamp: block.timestamp,
+        processed: false
+      })
+    );
+
+    // Burn shares from user
+    _burn(msg.sender, shares);
+
+    emit WithdrawalRequested(requestId, msg.sender, shares);
+  }
+
+  function harvestFees() public {
     // Add buffer rewards
     _registerBufferRewards();
-
     // Take management and performance fees
     _takeFees(owner());
-
-    // Register fund revenue
-    _registerFundRevenue();
   }
+
+  // ======== ADMIN ======== //
 
   function depositToBuffer(
     uint256 amount
@@ -393,7 +577,7 @@ contract LedgityYieldVault is
     // Transfer amount from fund wallet to contract
     underlying.safeTransferFrom(msg.sender, address(this), amount);
 
-    if (aToken != address(0))
+    if (hasBufferStrategy)
       _depositBuffer(underlying.balanceOf(address(this)));
   }
 
@@ -404,7 +588,88 @@ contract LedgityYieldVault is
   function processRequests(
     uint256[] calldata requestIds,
     uint256 addedLiquidity
-  ) public onlyLiquidityManager {}
+  ) public onlyLiquidityManager {
+    if (addedLiquidity > 0) {
+      underlying.safeTransferFrom(
+        msg.sender,
+        address(this),
+        addedLiquidity
+      );
+    }
+
+    // Register buffer rewards & take fees before processing
+    harvestFees();
+
+    // Calculate total assets needed for selected requests
+    uint256 sharesTotal;
+    for (uint256 i; i < requestIds.length; i++) {
+      WithdrawalRequest storage request = withdrawalRequests[
+        requestIds[i]
+      ];
+
+      if (request.processed) revert RequestAlreadyProcessed();
+      if (request.shares == 0) revert ZeroAmount();
+
+      sharesTotal += request.shares;
+    }
+
+    uint256 assetsTotal = convertToAssets(sharesTotal);
+
+    // Check available liquidity (buffer + added liquidity)
+    uint256 bufferBalance = hasBufferStrategy
+      ? IERC20(aToken).balanceOf(address(this))
+      : IERC20(underlying).balanceOf(address(this));
+
+    uint256 availableLiquidity = bufferBalance + addedLiquidity;
+
+    if (availableLiquidity < assetsTotal)
+      revert InsufficientLiquidity();
+
+    // Withdraw required assets from buffer if needed
+    if (hasBufferStrategy) {
+      uint256 needFromBuffer = assetsTotal - availableLiquidity;
+      _withdrawBuffer(needFromBuffer, address(this));
+    }
+
+    // Process each request
+    uint256 feesTotal;
+    for (uint256 i; i < requestIds.length; i++) {
+      uint256 requestId = requestIds[i];
+      WithdrawalRequest storage request = withdrawalRequests[
+        requestId
+      ];
+
+      uint256 assets = convertToAssets(request.shares);
+
+      // Calculate withdrawal fee if applicable
+      uint256 withdrawalFee = _calculateWithdrawalFee(
+        assets,
+        request.user
+      );
+
+      feesTotal += withdrawalFee;
+
+      // Transfer assets to user
+      underlying.transfer(request.user, assets - withdrawalFee);
+      // Mark as processed
+      request.processed = true;
+
+      emit WithdrawalProcessed(
+        requestId,
+        request.user,
+        request.shares,
+        assets
+      );
+    }
+
+    _withdrawAssets(assetsTotal);
+
+    // Update buffer reward tracking if we withdrew from buffer
+    if (0 < feesTotal) {
+      underlying.transfer(feeRecipient, feesTotal);
+      feeRecipient.transfer(address(this).balance);
+    }
+  }
 
   /**
    * @notice Recovers a specified amount of a given token address.
