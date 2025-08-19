@@ -239,12 +239,12 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
 
   /**
    * @dev Calculate withdrawal fee for a given amount
-   * @param assets The amount of assets being withdrawn
+   * @param amount The amount of assets being withdrawn
    * @param account The account to check for custom fee structure
    * @return fee The amount of withdrawal fee to be deducted
    */
   function _computeWithdrawalFee(
-    uint256 assets,
+    uint256 amount,
     address account
   ) internal view returns (uint256 fee) {
     // Get account-specific withdrawal fee or use default
@@ -253,7 +253,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
       : withdrawalFeeRate;
 
     // Calculate fee amount
-    fee = assets.mulDiv(feeRate, RATE_BASE, Math.Rounding.Up);
+    fee = amount.mulDiv(feeRate, RATE_BASE, Math.Rounding.Up);
   }
 
   /**

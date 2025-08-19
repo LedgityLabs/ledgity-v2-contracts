@@ -62,6 +62,7 @@ contract LedgityYieldVault is
   IAaveLendingPoolV3 public aaveLendingPool;
 
   uint256 public lastBufferRewardBalance;
+  /// @dev The amount of assets held in the liquidity buffer expressed in RATE_BASE
   uint256 public liquidityBufferRate;
 
   // The token that represents the stake of an account in the protocol
@@ -71,7 +72,7 @@ contract LedgityYieldVault is
   // Withdrawal queue
   struct WithdrawalRequest {
     address user;
-    uint256 shares;
+    uint256 assets;
     uint256 timestamp;
     bool processed;
   }
@@ -89,7 +90,6 @@ contract LedgityYieldVault is
   event WithdrawalProcessed(
     uint256 indexed requestId,
     address indexed user,
-    uint256 shares,
     uint256 assets
   );
 
@@ -314,7 +314,7 @@ contract LedgityYieldVault is
     uint256 reward = _bufferRewards();
     if (reward == 0) return;
 
-    _queueDeposit(reward);
+    _addAssets(reward);
     lastBufferRewardBalance += reward;
   }
 
@@ -355,70 +355,98 @@ contract LedgityYieldVault is
    * @param amount The amount of underlying to deposit
    * @param from The owner of the underlying
    * @param to The recipient of the shares tokens
-   * @return sharesAmount_ The amount of shares tokens received
+   * @return netShares The amount of shares tokens received
    */
   function _deposit(
     uint256 amount,
     address from,
     address to
-  ) internal returns (uint256 sharesAmount_) {
+  ) internal returns (uint256 netShares) {
     if (amount == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
-    // Calculate shares amount using updated rate
-    // Apply management fee on rate
-    sharesAmount_ = convertToShares(amount);
+    // Apply capital deployment impact to amount of shares
+    uint256 maturityImpact = _computeMaturityImpact(amount);
+    uint256 netDeposit = amount - maturityImpact;
+    netShares = convertToShares(netDeposit);
 
-    _mint(to, sharesAmount_);
-    _queueDeposit(amount);
+    _mint(to, netShares);
+    _addAssets(netDeposit);
+
+    // Calculate expected buffer balance after this deposit
+    uint256 expectedBufferBalance = (totalAssets() *
+      liquidityBufferRate) / RATE_BASE;
+
+    uint256 currentBufferBalance = hasBufferStrategy
+      ? IERC20(aToken).balanceOf(address(this))
+      : IERC20(underlying).balanceOf(address(this));
+
+    uint256 bufferAmount;
+    uint256 vaultAmount;
+
+    if (currentBufferBalance < expectedBufferBalance) {
+      uint256 bufferDeficit = expectedBufferBalance -
+        currentBufferBalance;
+
+      // Use smaller amount between deposit amount and buffer deficit
+      bufferAmount = amount < bufferDeficit ? amount : bufferDeficit;
+      vaultAmount = amount - bufferAmount;
+    } else {
+      // Buffer is at or above target - send all to liquidity manager
+      bufferAmount = 0;
+      vaultAmount = amount;
+    }
 
     underlying.transferFrom(from, address(this), amount);
 
-    uint256 bufferAmount = (amount * liquidityBufferRate) / RATE_BASE;
-    uint256 vaultAmount = amount - bufferAmount;
+    // Execute the allocation
+    if (0 < bufferAmount) {
+      if (hasBufferStrategy) _depositBuffer(bufferAmount);
+      /// @dev If no buffer strategy, assets stay in contract as underlying
+    }
+    if (0 < vaultAmount) {
+      underlying.transfer(liquidityManager, vaultAmount);
+    }
 
-    if (hasBufferStrategy) _depositBuffer(bufferAmount);
-    underlying.transfer(liquidityManager, vaultAmount);
-
-    emit Deposit(from, to, amount, sharesAmount_);
+    emit Deposit(from, to, amount, netShares);
   }
 
   /**
    * @notice Internal function to handle withdraw tokens
-   * @param sharesAmount The amount of shares tokens to withdraw
+   * @param shares The amount of shares tokens to withdraw
    * @param to The recipient of the underlying
    * @param from The owner of the shares tokens
-   * @return amount_ The amount of underlying received
+   * @return netAssets The amount of underlying received
    */
   function _withdraw(
-    uint256 sharesAmount,
+    uint256 shares,
     address from,
     address to
-  ) internal returns (uint256 amount_) {
-    if (sharesAmount == 0) revert ZeroAmount();
+  ) internal returns (uint256 netAssets) {
+    if (shares == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
     // Calculate underlying amount using updated rate
-    amount_ = convertToAssets(sharesAmount);
+    uint256 withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
+    transferFrom(msg.sender, feeRecipient, withdrawalFee);
 
-    _burn(from, sharesAmount);
-    _withdrawAssets(amount_);
+    uint256 netShares = shares - withdrawalFee;
+    netAssets = convertToAssets(netShares);
 
-    // Calculate withdrawal fee if applicable
-    uint256 withdrawalFee = _calculateWithdrawalFee(amount_, from);
-    if (withdrawalFee > 0) {
-      // Transfer withdrawal fee to liquidity manager
-      amount_ = amount_ - withdrawalFee;
-      underlying.transfer(liquidityManager, withdrawalFee);
+    _burn(from, netShares);
+    _withdrawAssets(netAssets);
+
+    if (hasBufferStrategy) {
+      _withdrawBuffer(netAssets, to);
+    } else {
+      underlying.transfer(to, netAssets);
     }
 
-    underlying.transfer(to, amount_);
-
-    emit Withdraw(from, to, from, amount_, sharesAmount);
+    emit Withdraw(from, to, from, netAssets, shares);
   }
 
   // ======== WRITE FUNCTIONS ======== //
@@ -432,23 +460,18 @@ contract LedgityYieldVault is
     returns (uint256 shares)
   {
     if (amount == 0) revert ZeroAmount();
-    if (lToken.balanceOf(msg.sender) < amount)
-      revert InsufficientBalance(amount);
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
-    // Calculate shares amount using updated rate (treat L-Tokens same as underlying)
-    shares = convertToShares(amount);
-
-    // Transfer L-Tokens from user to liquidity manager
     lToken.safeTransferFrom(msg.sender, liquidityManager, amount);
 
-    // Mint vault shares to user
-    _mint(msg.sender, shares);
+    // Calculate shares amount using updated rate (treat L-Tokens same as underlying)
+    /// @dev No maturity impact on migration since the capital stays deployed
+    shares = convertToShares(amount);
 
-    // Queue the deposit for liquidity tracking
-    _queueDeposit(amount);
+    _mint(msg.sender, shares);
+    _addAssets(amount);
 
     emit Deposit(msg.sender, msg.sender, amount, shares);
   }
@@ -541,23 +564,28 @@ contract LedgityYieldVault is
     if (shares == 0) revert ZeroAmount();
     if (msg.value < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();
-    if (balanceOf(msg.sender) < shares)
-      revert InsufficientBalance(shares);
+
+    uint256 withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
+    transferFrom(msg.sender, feeRecipient, withdrawalFee);
+    feeRecipient.transfer(address(this).balance);
+
+    uint256 netShares = shares - withdrawalFee;
+    uint256 netAssets = convertToAssets(netShares);
 
     // Create withdrawal request
-    // @bw register amount of assets at time of request since they stop earning yield
     uint256 requestId = withdrawalRequests.length;
     withdrawalRequests.push(
       WithdrawalRequest({
         user: msg.sender,
-        shares: shares,
+        assets: netAssets,
         timestamp: block.timestamp,
         processed: false
       })
     );
 
     // Burn shares from user
-    _burn(msg.sender, shares);
+    _burn(msg.sender, netShares);
+    _withdrawAssets(netAssets);
 
     emit WithdrawalRequested(requestId, msg.sender, shares);
   }
@@ -589,7 +617,7 @@ contract LedgityYieldVault is
     uint256[] calldata requestIds,
     uint256 addedLiquidity
   ) public onlyLiquidityManager {
-    if (addedLiquidity > 0) {
+    if (0 < addedLiquidity) {
       underlying.safeTransferFrom(
         msg.sender,
         address(this),
@@ -601,19 +629,17 @@ contract LedgityYieldVault is
     harvestFees();
 
     // Calculate total assets needed for selected requests
-    uint256 sharesTotal;
+    uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
       WithdrawalRequest storage request = withdrawalRequests[
         requestIds[i]
       ];
 
       if (request.processed) revert RequestAlreadyProcessed();
-      if (request.shares == 0) revert ZeroAmount();
+      if (request.assets == 0) revert ZeroAmount();
 
-      sharesTotal += request.shares;
+      assetsTotal += request.assets;
     }
-
-    uint256 assetsTotal = convertToAssets(sharesTotal);
 
     // Check available liquidity (buffer + added liquidity)
     uint256 bufferBalance = hasBufferStrategy
@@ -627,47 +653,27 @@ contract LedgityYieldVault is
 
     // Withdraw required assets from buffer if needed
     if (hasBufferStrategy) {
-      uint256 needFromBuffer = assetsTotal - availableLiquidity;
-      _withdrawBuffer(needFromBuffer, address(this));
+      uint256 neededFromBuffer = assetsTotal - availableLiquidity;
+      _withdrawBuffer(neededFromBuffer, address(this));
     }
 
     // Process each request
-    uint256 feesTotal;
     for (uint256 i; i < requestIds.length; i++) {
       uint256 requestId = requestIds[i];
       WithdrawalRequest storage request = withdrawalRequests[
         requestId
       ];
 
-      uint256 assets = convertToAssets(request.shares);
-
-      // Calculate withdrawal fee if applicable
-      uint256 withdrawalFee = _calculateWithdrawalFee(
-        assets,
-        request.user
-      );
-
-      feesTotal += withdrawalFee;
-
       // Transfer assets to user
-      underlying.transfer(request.user, assets - withdrawalFee);
+      underlying.transfer(request.user, request.assets);
       // Mark as processed
       request.processed = true;
 
       emit WithdrawalProcessed(
         requestId,
         request.user,
-        request.shares,
-        assets
+        request.assets
       );
-    }
-
-    _withdrawAssets(assetsTotal);
-
-    // Update buffer reward tracking if we withdrew from buffer
-    if (0 < feesTotal) {
-      underlying.transfer(feeRecipient, feesTotal);
-      feeRecipient.transfer(address(this).balance);
     }
   }
 
