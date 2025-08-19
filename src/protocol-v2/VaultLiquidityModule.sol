@@ -39,8 +39,9 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
 
   /// Total assets under management
   uint256 private _totalAssets;
-  /// Assets pending deployment - added to _totalAssets on next compounding cycle
-  uint256 public pendingDeposits;
+
+  /// Deployment delay period in days for calculating deposit fees
+  uint256 public deploymentDelay;
 
   /// Annual Percentage Rate in RATE_BASE
   uint256 public yieldAPR;
@@ -129,6 +130,8 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     uint256 newTotalAssets
   );
 
+  event DeploymentDelayUpdated(uint256 oldDelay, uint256 newDelay);
+
   /** ======== OVERRIDES ======== */
 
   function _decimalsOffset() internal view override returns (uint8) {
@@ -136,38 +139,14 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
   }
 
   /**
-   * @dev Get total assets including pending deposits for share calculations
-   * @return Total assets available for share price calculations
+   * @dev Get total assets for share calculations
+   * @return currentTotalAssets Total assets available for share price calculations
    */
   function totalAssets()
     public
     view
     override(ERC4626Upgradeable)
-    returns (uint256)
-  {
-    (
-      uint256 currentTotalAssets,
-      bool finalizedDeposits
-    ) = _getActiveLiquidity();
-
-    /// @dev Include pending deposits if we did not yet pass a compounding period
-    return
-      finalizedDeposits
-        ? currentTotalAssets
-        : currentTotalAssets + pendingDeposits;
-  }
-
-  /** ======== PRIVATE HELPERS ======== */
-
-  /**
-   * @notice Returns the total assets
-   * @return currentTotalAssets The total assets
-   * @return finalizedDeposits Whether the deposits have been included in the total assets
-   */
-  function _getActiveLiquidity()
-    private
-    view
-    returns (uint256 currentTotalAssets, bool finalizedDeposits)
+    returns (uint256 currentTotalAssets)
   {
     currentTotalAssets = _totalAssets;
 
@@ -183,23 +162,15 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
       uint256 dailyRatio = aprBaseOneRay / 365;
 
       // Apply daily compounding for full days only
-      for (uint256 i = 0; i < fullDays; i++) {
+      for (uint256 i; i < fullDays; i++) {
         currentTotalAssets =
           (currentTotalAssets * (RAY + dailyRatio)) /
           RAY;
-
-        // Add pending deposits after the first compounding period then reset
-        if (i == 0 && 0 < pendingDeposits) {
-          currentTotalAssets += pendingDeposits;
-          finalizedDeposits = true;
-        }
       }
     }
 
-    return (currentTotalAssets, finalizedDeposits);
+    return currentTotalAssets;
   }
-
-  /** ======== VIEWS FUNCTIONS ======== */
 
   /**
    * @notice Converts an amount of assets (underlying) to shares (shares tokens)
@@ -237,6 +208,54 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     assets = shares.mulDiv(currentAssets, supply);
   }
 
+  /** ======== INTERNAL VIEWS ======== */
+
+  /**
+   * @dev Calculate deposit fee based on deployment delay
+   * Fee represents the yield needed to compound back to original deposit amount
+   * @param assets The amount of assets being deposited
+   * @return fee The amount of yield to be deducted from shares
+   */
+  function _computeMaturityImpact(
+    uint256 assets
+  ) internal view returns (uint256 fee) {
+    if (deploymentDelay == 0) return 0;
+
+    // Calculate compound factor for deployment delay period
+    // Convert APR to daily rate with RAY precision
+    uint256 aprBaseOneRay = yieldAPR * APR_RATE_OFFSET;
+    uint256 dailyRate = aprBaseOneRay / 365;
+
+    // Calculate: (1 + dailyRate)^deploymentDelay
+    uint256 compoundFactor = RAY;
+    for (uint256 i; i < deploymentDelay; i++) {
+      compoundFactor = (compoundFactor * (RAY + dailyRate)) / RAY;
+    }
+
+    // Fee = assets * ((1 + rate)^delay - 1) / (1 + rate)^delay
+    // This ensures: (assets - fee) * (1 + rate)^delay = assets
+    fee = (assets * (compoundFactor - RAY)) / compoundFactor;
+  }
+
+  /**
+   * @dev Calculate withdrawal fee for a given amount
+   * @param assets The amount of assets being withdrawn
+   * @param account The account to check for custom fee structure
+   * @return fee The amount of withdrawal fee to be deducted
+   */
+  function _computeWithdrawalFee(
+    uint256 assets,
+    address account
+  ) internal view returns (uint256 fee) {
+    // Get account-specific withdrawal fee or use default
+    uint256 feeRate = accountWithdrawalFee[account] != 0
+      ? accountWithdrawalFee[account]
+      : withdrawalFeeRate;
+
+    // Calculate fee amount
+    fee = assets.mulDiv(feeRate, RATE_BASE, Math.Rounding.Up);
+  }
+
   /**
    * @dev Calculate and return the manager and protocol shares to be minted as fees
    * Total fees are the sum of the management and performance fees
@@ -246,8 +265,8 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @return totalFeeShares The total fees
    * @return pricePerShare The price per share
    */
-  function computeFeeData()
-    public
+  function _computeFeeData()
+    internal
     view
     returns (uint256 totalFeeShares, uint256 pricePerShare)
   {
@@ -312,91 +331,19 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     return (totalFeeShares, pricePerShare);
   }
 
-  /** ======== WRITE FUNCTIONS ======== */
-
-  function _registerFundRevenue() internal {
-    uint256 timeElapsed = block.timestamp - lastCompoundTime;
-    if (timeElapsed == 0) return;
-
-    (
-      uint256 currentTotalAssets,
-      bool finalizedDeposits
-    ) = _getActiveLiquidity();
-
-    // Update total assets with accumulated rewards
-    _totalAssets = currentTotalAssets;
-
-    // Update compound time to only include full compounding periods
-    uint256 fullDays = timeElapsed / 1 days;
-
-    if (0 < fullDays) {
-      lastCompoundTime += fullDays * 1 days;
-
-      // Reset pending deposits
-      if (finalizedDeposits) pendingDeposits = 0;
-    }
-
-    emit RateCheckpointUpdated(_totalAssets, yieldAPR);
-  }
+  /** ======== INTERNAL HELPERS ======== */
 
   /**
-   * @dev Calculate and take management and performance fees
-   * Fees are taken as vault shares sent to the fee recipients
-   * @param manager The management fee recipient
+   * @dev Add assets directly to earning pool
+   * Deposit fee compensates for any deployment delay
+   * @param assets The amount of assets to add
    */
-  function _takeFees(address manager) internal {
-    uint256 timeElapsed = block.timestamp - lastFeeTime;
-    if (timeElapsed == 0) return;
-
-    (
-      uint256 totalFeeShares,
-      uint256 pricePerShare
-    ) = computeFeeData();
-
-    if (0 < totalFeeShares) {
-      _mint(manager, totalFeeShares);
-      lastFeeTime = block.timestamp;
-    }
-
-    if (highWaterMark < pricePerShare) highWaterMark = pricePerShare;
-
-    /// @dev This call should always return early but we call it for safety
-    _registerFundRevenue();
-  }
-
-  /**
-   * @dev Calculate withdrawal fee for a given amount
-   * @param assets The amount of assets being withdrawn
-   * @param account The account to check for custom fee structure
-   * @return withdrawalFeeAmount The amount of withdrawal fee to be deducted
-   */
-  function _calculateWithdrawalFee(
-    uint256 assets,
-    address account
-  ) internal view returns (uint256 withdrawalFeeAmount) {
-    // Get account-specific withdrawal fee or use default
-    uint256 feeRate = accountWithdrawalFee[account] != 0
-      ? accountWithdrawalFee[account]
-      : withdrawalFeeRate;
-
-    // Calculate fee amount
-    withdrawalFeeAmount = assets.mulDiv(
-      feeRate,
-      RATE_BASE,
-      Math.Rounding.Up
-    );
-  }
-
-  /**
-   * @dev Queue assets for deposit - they will be added to earning assets on next compounding cycle
-   * This reflects the real-world delay in deploying assets to RWA investments
-   * @param assets The amount of assets to queue for deposit
-   */
-  function _queueDeposit(uint256 assets) internal {
+  function _addAssets(uint256 assets) internal {
     // Checkpoint accumulated interest before changing asset balance
     _registerFundRevenue();
 
-    pendingDeposits += assets;
+    // Add assets directly to earning pool
+    _totalAssets += assets;
   }
 
   /**
@@ -413,6 +360,45 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
 
     // Immediately remove assets from earning pool
     _totalAssets -= assets;
+  }
+
+  function _registerFundRevenue() internal {
+    uint256 timeElapsed = block.timestamp - lastCompoundTime;
+    if (timeElapsed == 0) return;
+
+    // Update total assets with accumulated rewards
+    _totalAssets = totalAssets();
+
+    // Update compound time to only include full compounding periods
+    uint256 fullDays = timeElapsed / 1 days;
+    lastCompoundTime += fullDays * 1 days;
+
+    emit RateCheckpointUpdated(_totalAssets, yieldAPR);
+  }
+
+  /**
+   * @dev Calculate and take management and performance fees
+   * Fees are taken as vault shares sent to the fee recipients
+   * @param manager The management fee recipient
+   */
+  function _takeFees(address manager) internal {
+    uint256 timeElapsed = block.timestamp - lastFeeTime;
+    if (timeElapsed == 0) return;
+
+    (
+      uint256 totalFeeShares,
+      uint256 pricePerShare
+    ) = _computeFeeData();
+
+    if (0 < totalFeeShares) {
+      _mint(manager, totalFeeShares);
+      lastFeeTime = block.timestamp;
+    }
+
+    if (highWaterMark < pricePerShare) highWaterMark = pricePerShare;
+
+    /// @dev This call should always return early but we call it for safety
+    _registerFundRevenue();
   }
 
   /** ======== ADMIN ======== */
@@ -481,5 +467,18 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     accountWithdrawalFee[account] = withdrawalFee;
 
     emit CustomWithdrawalFeeSet(account, withdrawalFee);
+  }
+
+  /**
+   * @notice Update the deployment delay period
+   * @param newDeploymentDelay The new deployment delay in days
+   */
+  function _updateDeploymentDelay(
+    uint256 newDeploymentDelay
+  ) internal {
+    uint256 oldDelay = deploymentDelay;
+    deploymentDelay = newDeploymentDelay;
+
+    emit DeploymentDelayUpdated(oldDelay, newDeploymentDelay);
   }
 }
