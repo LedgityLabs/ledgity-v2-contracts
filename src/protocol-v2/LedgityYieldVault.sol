@@ -762,6 +762,66 @@ contract LedgityYieldVault is
   }
 
   /**
+   * @notice Set new total assets to handle capital losses or gains
+   * @param newTotalAssets The new total assets amount
+   * @dev This function should be called when there are capital losses/gains that need to be recorded
+   */
+  function setTotalAssets(uint256 newTotalAssets) external onlyOwner {
+    VaultLiquidityModule._setTotalAssets(newTotalAssets);
+  }
+
+  /**
+   * @notice Updates the APR used for rate calculations
+   * @param newAPR The new APR in RATE_BASE
+   */
+  function updateAPR(uint256 newAPR) external onlyOwner {
+    VaultLiquidityModule._updateAPR(newAPR);
+  }
+
+  /**
+   * @dev Update fee rates for the vault
+   * @param managementRate_ The new management fee rate in RATE_BASE
+   * @param performanceRate_ The new performance fee rate in RATE_BASE
+   * @param withdrawalRate_ The new withdrawal fee rate in RATE_BASE
+   */
+  function updateFeeRates(
+    uint256 managementRate_,
+    uint256 performanceRate_,
+    uint256 withdrawalRate_
+  ) external onlyOwner {
+    VaultLiquidityModule._updateFeeRates(
+      managementRate_,
+      performanceRate_,
+      withdrawalRate_
+    );
+  }
+
+  /**
+   * @dev Set a custom fee structure for a specific account
+   * @param account The account to set the custom fee structure for
+   * @param withdrawalFee The custom withdrawal fee in RATE_BASE
+   */
+  function setCustomWithdrawalFee(
+    address account,
+    uint256 withdrawalFee
+  ) external onlyOwner {
+    VaultLiquidityModule._setCustomWithdrawalFee(
+      account,
+      withdrawalFee
+    );
+  }
+
+  /**
+   * @notice Update the deployment delay period
+   * @param newDeploymentDelay The new deployment delay in days
+   */
+  function updateDeploymentDelay(
+    uint256 newDeploymentDelay
+  ) external onlyOwner {
+    VaultLiquidityModule._updateDeploymentDelay(newDeploymentDelay);
+  }
+
+  /**
    * @notice Recovers a specified amount of a given token address.
    * @dev This override of RecoverableUpgradeable.recoverERC20() prevents the recovered
    * token from being the underlying token.
