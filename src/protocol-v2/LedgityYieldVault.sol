@@ -180,16 +180,19 @@ contract LedgityYieldVault is
     lToken = lToken_;
 
     if (aaveLendingPool_ != address(0)) {
-      hasBufferStrategy = true;
       aaveLendingPool = IAaveLendingPoolV3(aaveLendingPool_);
       aToken = aaveLendingPool
         .getReserveData(address(underlying))
         .aTokenAddress;
 
+      // Validate that aToken was properly retrieved
+      if (aToken != address(0)) {
+        hasBufferStrategy = true;
       IERC20(underlying).approve(
         address(aaveLendingPool),
         type(uint256).max
       );
+      }
     }
   }
 
@@ -217,7 +220,7 @@ contract LedgityYieldVault is
   /**
    * @notice Get the total underlying assets of the vault
    * @dev This includes buffer assets (in Aave if applicable) and assets in the liquidity manager
-   * @inheritdoc IERC4626
+   * @inheritdoc ERC4626Upgradeable
    * @return Total underlying assets of the vault
    */
   function totalAssets()
@@ -358,11 +361,15 @@ contract LedgityYieldVault is
 
   /// @dev Calculate new buffer rewards since last update
   /// @return Amount of new rewards accrued in buffer
-  function _bufferRewards() private returns (uint256) {
+  function _bufferRewards() private view returns (uint256) {
     if (!hasBufferStrategy) return 0;
 
     uint256 bufferAssets = IERC20(aToken).balanceOf(address(this));
-    return bufferAssets - lastBufferRewardBalance;
+    // Protect against underflow in case of Aave losses or slashing
+    return
+      bufferAssets > lastBufferRewardBalance
+        ? bufferAssets - lastBufferRewardBalance
+        : 0;
   }
 
   /// @dev Register and add buffer rewards to total assets
@@ -393,12 +400,12 @@ contract LedgityYieldVault is
 
   /**
    * @notice Withdraws the specified amount of underlying assets from the Aave Lending Pool
-   * @param amountAssets The amount of underlying assets to withdraw
    * @param to The address to which the underlying assets will be transferred
+   * @param amountAssets The amount of underlying assets to withdraw
    *
    * @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
    */
-  function _withdrawBuffer(uint256 amountAssets, address to) private {
+  function _withdrawBuffer(address to, uint256 amountAssets) private {
     aaveLendingPool.withdraw(address(underlying), amountAssets, to);
 
     lastBufferRewardBalance -= amountAssets;
@@ -497,7 +504,7 @@ contract LedgityYieldVault is
     _withdrawAssets(netAssets);
 
     if (hasBufferStrategy) {
-      _withdrawBuffer(netAssets, to);
+      _withdrawBuffer(to, netAssets);
     } else {
       underlying.transfer(to, netAssets);
     }
@@ -671,17 +678,19 @@ contract LedgityYieldVault is
     uint256 amount
   ) public onlyLiquidityManager {
     // Transfer amount from fund wallet to contract
-    underlying.safeTransferFrom(msg.sender, address(this), amount);
-
-    if (hasBufferStrategy)
-      _depositBuffer(underlying.balanceOf(address(this)));
+    underlying.safeTransferFrom(
+      liquidityManager,
+      address(this),
+      amount
+    );
+    if (hasBufferStrategy) _depositBuffer(amount);
   }
 
   /// @notice Remove excess assets from the liquidity buffer
   /// @param amount Amount of assets to withdraw from buffer
   /// @dev Only callable by liquidity manager
   function skimBuffer(uint256 amount) public onlyLiquidityManager {
-    _withdrawBuffer(amount, msg.sender);
+    _withdrawBuffer(liquidityManager, amount);
   }
 
   /// @notice Process queued withdrawal requests by providing liquidity
@@ -694,7 +703,7 @@ contract LedgityYieldVault is
   ) public onlyLiquidityManager {
     if (0 < addedLiquidity) {
       underlying.safeTransferFrom(
-        msg.sender,
+        liquidityManager,
         address(this),
         addedLiquidity
       );
@@ -729,7 +738,7 @@ contract LedgityYieldVault is
     // Withdraw required assets from buffer if needed
     if (hasBufferStrategy) {
       uint256 neededFromBuffer = assetsTotal - availableLiquidity;
-      _withdrawBuffer(neededFromBuffer, address(this));
+      _withdrawBuffer(address(this), neededFromBuffer);
     }
 
     // Process each request

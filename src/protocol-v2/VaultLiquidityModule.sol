@@ -145,6 +145,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
   function totalAssets()
     public
     view
+    virtual
     override(ERC4626Upgradeable)
     returns (uint256 currentTotalAssets)
   {
@@ -290,9 +291,13 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
      * This represents the PPS before performance fee dilution
      * @dev Add 1 to shares to avoid division by zero
      */
+    uint256 sharesDenominator = shares + 10 ** _decimalsOffset();
+    // Additional protection when decimalsOffset is 0 and shares is 0
+    if (sharesDenominator == 0) sharesDenominator = 1;
+
     pricePerShare = (10 ** decimals()).mulDiv(
       (currentAssets + 1) - managementFeeAssets,
-      shares + 10 ** _decimalsOffset(),
+      sharesDenominator,
       Math.Rounding.Up
     );
 
