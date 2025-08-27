@@ -502,8 +502,14 @@ contract LedgityYieldVault is
     harvestFees();
 
     // Calculate underlying amount using updated rate
-    uint256 withdrawalFee = _computeWithdrawalFee(shares, receiver);
-    transferFrom(caller, feeRecipient, withdrawalFee);
+    uint256 withdrawalFee;
+    if (stakeToken != address(0))
+      if (
+        stakeToken.balanceOf(caller) < stakeBalanceForFeeReduction
+      ) {
+        withdrawalFee = _computeWithdrawalFee(shares, caller);
+        transferFrom(caller, feeRecipient, withdrawalFee);
+      }
 
     uint256 netShares = shares - withdrawalFee;
     uint256 netAssets = convertToAssets(netShares);
@@ -652,15 +658,22 @@ contract LedgityYieldVault is
     if (msg.value < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();
 
-    uint256 withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
-    transferFrom(msg.sender, feeRecipient, withdrawalFee);
+    // Calculate underlying amount using updated rate
+    uint256 withdrawalFee;
+    if (stakeToken != address(0))
+      if (
+        stakeToken.balanceOf(msg.sender) < stakeBalanceForFeeReduction
+      ) {
+        withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
+        transferFrom(msg.sender, feeRecipient, withdrawalFee);
+      }
+    // Transfer gas fee to fee recipient
     feeRecipient.transfer(address(this).balance);
 
     uint256 netShares = shares - withdrawalFee;
     uint256 netAssets = convertToAssets(netShares);
 
     // Create withdrawal request
-    uint256 requestId = withdrawalRequests.length;
     withdrawalRequests.push(
       WithdrawalRequest({
         user: msg.sender,
@@ -674,7 +687,11 @@ contract LedgityYieldVault is
     _burn(msg.sender, netShares);
     _withdrawAssets(netAssets);
 
-    emit WithdrawalRequested(requestId, msg.sender, shares);
+    emit WithdrawalRequested(
+      withdrawalRequests.length - 1,
+      msg.sender,
+      shares
+    );
   }
 
   /**
