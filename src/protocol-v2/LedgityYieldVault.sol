@@ -2,14 +2,11 @@
 pragma solidity 0.8.18;
 
 // Contracts
-import { CCIPTokenModule } from "./modules/CCIPTokenModule.sol";
-import { VaultLiquidityModule } from "./modules/VaultLiquidityModule.sol";
+import { CCIPTokenModule } from "src/protocol-v2/modules/CCIPTokenModule.sol";
+import { VaultLiquidityModule } from "src/protocol-v2/modules/VaultLiquidityModule.sol";
 //
-import { GlobalOwnableUpgradeable } from "../protocol-v1/abstracts/GlobalOwnableUpgradeable.sol";
-import { GlobalPausableUpgradeable } from "../protocol-v1/abstracts/GlobalPausableUpgradeable.sol";
-import { GlobalRestrictableUpgradeable } from "../protocol-v1/abstracts/GlobalRestrictableUpgradeable.sol";
-import { RecoverableUpgradeable } from "../protocol-v1/abstracts/RecoverableUpgradeable.sol";
-import { BaseUpgradeable } from "../protocol-v1/abstracts/base/BaseUpgradeable.sol";
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
+import { BaseUpgradeable } from "src/protocol-v1/abstracts/base/BaseUpgradeable.sol";
 //
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -29,7 +26,7 @@ import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
 contract LedgityYieldVault is
-  BaseUpgradeable,
+  AdministeredUpgradable,
   CCIPTokenModule,
   VaultLiquidityModule
 {
@@ -47,6 +44,36 @@ contract LedgityYieldVault is
   error InsufficientLiquidity();
 
   // ======== STRUCTS ======== //
+
+  /**
+   * Structure containing vault-specific initialization parameters
+   * @param name_ Name for the vault shares token
+   * @param symbol_ Symbol for the vault shares token
+   * @param underlying_ Address of the underlying ERC20 token
+   * @param lToken_ Address of the legacy L-Token for migration
+   * @param stakeToken_ Address of the staking token for fee reductions
+   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param globalOwner_ Address of the global owner
+   * @param globalPause_ Address of the global pause controller
+   * @param globalBlacklist_ Address of the global blacklist controller
+   * @param liquidityManager_ Address of the liquidity manager
+   * @param feeRecipient_ Address that receives management and performance fees
+   * @param aaveLendingPool_ Address of the Aave lending pool (zero address to disable buffer strategy)
+   */
+  struct VaultParams {
+    string name_;
+    string symbol_;
+    IERC20 underlying_;
+    IERC20 lToken_;
+    IERC20 stakeToken_;
+    uint256 stakeBalanceForFeeReduction_;
+    address globalOwner_;
+    address globalPause_;
+    address globalBlacklist_;
+    address liquidityManager_;
+    address feeRecipient_;
+    IAaveLendingPoolV3 aaveLendingPool_;
+  }
 
   /**
    * Structure representing a queued withdrawal request
@@ -96,7 +123,7 @@ contract LedgityYieldVault is
   // Aave lending pool contract for buffer strategy operations
   IAaveLendingPoolV3 public aaveLendingPool;
   // Aave interest bearing token address (aToken) or zero address if no Aave integration
-  address public aToken;
+  IERC20 public aToken;
   // Last recorded balance of buffer rewards to track new accruals
   uint256 public lastBufferRewardBalance;
 
@@ -109,12 +136,6 @@ contract LedgityYieldVault is
   WithdrawalRequest[] public withdrawalRequests;
 
   // ======== EVENTS ======== //
-
-  /**
-   * Emitted when the vault's pause state is changed
-   * @param isPaused The new pause state
-   */
-  event PausedSet(bool isPaused);
 
   /**
    * Emitted when a user requests a withdrawal
@@ -144,67 +165,57 @@ contract LedgityYieldVault is
 
   /**
    * @notice Initializes the Vault contract
-   * @param name_ Name for the vault shares token
-   * @param symbol_ Symbol for the vault shares token
-   * @param underlying_ Address of the underlying ERC20 token
-   * @param lToken_ Address of the legacy L-Token for migration
-   * @param stakeToken_ Address of the staking token for fee reductions
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
-   * @param globalOwner_ Address of the global owner
-   * @param globalPause_ Address of the global pause controller
-   * @param globalBlacklist_ Address of the global blacklist controller
-   * @param liquidityManager_ Address of the liquidity manager
-   * @param feeRecipient_ Address that receives management and performance fees
-   * @param aaveLendingPool_ Address of the Aave lending pool (zero address to disable buffer strategy)
+   * @param vaultParams Struct containing vault-specific initialization parameters
    * @param initParams Struct containing initialization parameters for fees, APR, and other settings
    */
   function initialize(
-    string memory name_,
-    string memory symbol_,
-    IERC20 underlying_,
-    IERC20 lToken_,
-    IERC20 stakeToken_,
-    uint256 stakeBalanceForFeeReduction_,
-    address globalOwner_,
-    address globalPause_,
-    address globalBlacklist_,
-    address liquidityManager_,
-    address feeRecipient_,
-    address aaveLendingPool_,
-    VaultInitParams calldata initParams
+    VaultParams calldata vaultParams,
+    VaultLiquidityInitParams calldata initParams
   ) public initializer {
     if (
-      underlying_ == address(0) ||
-      liquidityManager_ == address(0) ||
-      feeRecipient_ == address(0)
+      address(vaultParams.underlying_) == address(0) ||
+      vaultParams.liquidityManager_ == address(0) ||
+      vaultParams.feeRecipient_ == address(0)
     ) revert ZeroAddress();
 
-    __ERC4626_init(IERC20Upgradeable(address(underlying_)));
-    __ERC20_init(name_, symbol_);
-    __Base_init(globalOwner_, globalPause_, globalBlacklist_);
+    __ERC4626_init(
+      IERC20Upgradeable(address(vaultParams.underlying_))
+    );
+    __ERC20_init(vaultParams.name_, vaultParams.symbol_);
+    __AdministeredUpgradable_init(
+      vaultParams.globalOwner_,
+      vaultParams.globalPause_,
+      vaultParams.globalBlacklist_
+    );
 
     // Initialize the liquidity module with APR and fee rates
-    __VaultLiquidityModule_init(initParams, address(underlying_));
+    __VaultLiquidityModule_init(
+      initParams,
+      address(vaultParams.underlying_)
+    );
 
-    liquidityManager = liquidityManager_;
-    feeRecipient = payable(feeRecipient_);
+    liquidityManager = vaultParams.liquidityManager_;
+    feeRecipient = payable(vaultParams.feeRecipient_);
 
-    underlying = underlying_;
-    lToken = lToken_;
+    underlying = vaultParams.underlying_;
+    lToken = vaultParams.lToken_;
 
-    stakeToken = stakeToken_;
-    stakeBalanceForFeeReduction = stakeBalanceForFeeReduction_;
+    stakeToken = vaultParams.stakeToken_;
+    stakeBalanceForFeeReduction = vaultParams
+      .stakeBalanceForFeeReduction_;
 
-    if (aaveLendingPool_ != address(0)) {
-      aaveLendingPool = IAaveLendingPoolV3(aaveLendingPool_);
-      aToken = aaveLendingPool
-        .getReserveData(address(underlying))
-        .aTokenAddress;
+    if (address(vaultParams.aaveLendingPool_) != address(0)) {
+      aaveLendingPool = vaultParams.aaveLendingPool_;
+      aToken = IERC20(
+        aaveLendingPool
+          .getReserveData(address(underlying))
+          .aTokenAddress
+      );
 
       // Validate that aToken was properly retrieved
-      if (aToken != address(0)) {
+      if (address(aToken) != address(0)) {
         hasBufferStrategy = true;
-        IERC20(underlying).approve(
+        underlying.approve(
           address(aaveLendingPool),
           type(uint256).max
         );
@@ -267,7 +278,7 @@ contract LedgityYieldVault is
     if (!hasBufferStrategy) return 0;
 
     // Get buffer assets and Aave APR
-    uint256 bufferAssets = IERC20(aToken).balanceOf(address(this));
+    uint256 bufferAssets = aToken.balanceOf(address(this));
     uint256 aaveAPR = aaveLendingPool
       .getReserveData(address(underlying))
       .currentLiquidityRate;
@@ -337,7 +348,7 @@ contract LedgityYieldVault is
         (!onlyPending || !request.processed)
       ) {
         bool hasFeeReduction = false;
-        if (stakeToken != address(0)) {
+        if (address(stakeToken) != address(0)) {
           hasFeeReduction =
             stakeToken.balanceOf(request.user) >=
             stakeBalanceForFeeReduction;
@@ -407,7 +418,7 @@ contract LedgityYieldVault is
         ];
 
         bool hasFeeReduction = false;
-        if (stakeToken != address(0)) {
+        if (address(stakeToken) != address(0)) {
           hasFeeReduction =
             stakeToken.balanceOf(request.user) >=
             stakeBalanceForFeeReduction;
@@ -447,23 +458,12 @@ contract LedgityYieldVault is
   function _bufferRewards() private view returns (uint256) {
     if (!hasBufferStrategy) return 0;
 
-    uint256 bufferAssets = IERC20(aToken).balanceOf(address(this));
+    uint256 bufferAssets = aToken.balanceOf(address(this));
     // Protect against underflow in case of Aave losses or slashing
     return
       bufferAssets > lastBufferRewardBalance
         ? bufferAssets - lastBufferRewardBalance
         : 0;
-  }
-
-  /**
-   * @notice Register and add buffer rewards to total assets
-   */
-  function _registerBufferRewards() private {
-    uint256 reward = _bufferRewards();
-    if (reward == 0) return;
-
-    _addAssets(reward);
-    lastBufferRewardBalance += reward;
   }
 
   /**
@@ -509,7 +509,12 @@ contract LedgityYieldVault is
     address receiver,
     uint256 assets,
     uint256 /* shares */
-  ) internal override(ERC4626Upgradeable) {
+  )
+    internal
+    override(ERC4626Upgradeable)
+    whenNotPaused
+    notBlacklisted(caller)
+  {
     if (assets == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
@@ -528,8 +533,8 @@ contract LedgityYieldVault is
       liquidityBufferRate) / RATE_BASE;
 
     uint256 currentBufferBalance = hasBufferStrategy
-      ? IERC20(aToken).balanceOf(address(this))
-      : IERC20(underlying).balanceOf(address(this));
+      ? aToken.balanceOf(address(this))
+      : underlying.balanceOf(address(this));
 
     uint256 bufferAmount;
     uint256 vaultAmount;
@@ -574,7 +579,12 @@ contract LedgityYieldVault is
     address owner,
     uint256 /* assets */,
     uint256 shares
-  ) internal override(ERC4626Upgradeable) {
+  )
+    internal
+    override(ERC4626Upgradeable)
+    whenNotPaused
+    notBlacklisted(caller)
+  {
     if (shares == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
@@ -582,7 +592,7 @@ contract LedgityYieldVault is
 
     // Calculate underlying amount using updated rate
     uint256 withdrawalFee;
-    if (stakeToken != address(0))
+    if (address(stakeToken) != address(0))
       if (
         stakeToken.balanceOf(caller) < stakeBalanceForFeeReduction
       ) {
@@ -621,7 +631,7 @@ contract LedgityYieldVault is
     notBlacklisted(_msgSender())
     returns (uint256 shares)
   {
-    if (lToken == address(0)) revert NoLTokenSet();
+    if (address(lToken) == address(0)) revert NoLTokenSet();
     if (amount == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
@@ -648,15 +658,10 @@ contract LedgityYieldVault is
   function deposit(
     uint256 assets,
     address receiver
-  )
-    public
-    override(ERC4626Upgradeable)
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 sharesPreview)
-  {
-    sharesPreview = previewDeposit(assets);
+  ) public override(ERC4626Upgradeable) returns (uint256) {
     _deposit(msg.sender, receiver, assets, 0);
+    /// @dev Return 0 since cannot preview
+    return 0;
   }
 
   /**
@@ -668,16 +673,10 @@ contract LedgityYieldVault is
   function mint(
     uint256 shares,
     address receiver
-  )
-    public
-    override(ERC4626Upgradeable)
-    whenNotPaused
-    notBlacklisted(_msgSender())
-    returns (uint256 assetsPreview)
-  {
-    assetsPreview = previewMint(shares);
-    uint256 assets = convertToAssets(shares);
-    _deposit(msg.sender, receiver, assets, 0);
+  ) public override(ERC4626Upgradeable) returns (uint256) {
+    _deposit(msg.sender, receiver, convertToAssets(shares), 0);
+    /// @dev Return 0 since cannot preview
+    return 0;
   }
 
   /**
@@ -691,16 +690,16 @@ contract LedgityYieldVault is
     uint256 assets,
     address receiver,
     address owner
-  )
-    public
-    override(ERC4626Upgradeable)
-    whenNotPaused
-    notBlacklisted(owner)
-    returns (uint256 sharesPreview)
-  {
-    sharesPreview = previewWithdraw(assets);
-    uint256 shares = convertToShares(assets);
-    _withdraw(msg.sender, receiver, owner, 0, shares);
+  ) public override(ERC4626Upgradeable) returns (uint256) {
+    _withdraw(
+      msg.sender,
+      receiver,
+      owner,
+      0,
+      convertToShares(assets)
+    );
+    /// @dev Return 0 since cannot preview
+    return 0;
   }
 
   /**
@@ -714,15 +713,10 @@ contract LedgityYieldVault is
     uint256 shares,
     address receiver,
     address owner
-  )
-    public
-    override(ERC4626Upgradeable)
-    whenNotPaused
-    notBlacklisted(owner)
-    returns (uint256 assetsPreview)
-  {
-    assetsPreview = previewRedeem(shares);
+  ) public override(ERC4626Upgradeable) returns (uint256) {
     _withdraw(msg.sender, receiver, owner, 0, shares);
+    /// @dev Return 0 since cannot preview
+    return 0;
   }
 
   /**
@@ -739,7 +733,7 @@ contract LedgityYieldVault is
 
     // Calculate underlying amount using updated rate
     uint256 withdrawalFee;
-    if (stakeToken != address(0))
+    if (address(stakeToken) != address(0))
       if (
         stakeToken.balanceOf(msg.sender) < stakeBalanceForFeeReduction
       ) {
@@ -779,9 +773,13 @@ contract LedgityYieldVault is
    */
   function harvestFees() public {
     // Add buffer rewards
-    _registerBufferRewards();
+    uint256 reward = _bufferRewards();
+
+    _addAssets(reward);
+    lastBufferRewardBalance += reward;
+
     // Take management and performance fees
-    _takeFees(owner());
+    _takeFees(feeRecipient);
   }
 
   // ======== ADMIN ======== //
@@ -847,8 +845,8 @@ contract LedgityYieldVault is
 
     // Check available liquidity (buffer + added liquidity)
     uint256 bufferBalance = hasBufferStrategy
-      ? IERC20(aToken).balanceOf(address(this))
-      : IERC20(underlying).balanceOf(address(this));
+      ? aToken.balanceOf(address(this))
+      : underlying.balanceOf(address(this));
 
     uint256 availableLiquidity = bufferBalance + addedLiquidity;
 
@@ -939,22 +937,5 @@ contract LedgityYieldVault is
     uint256 newDeploymentDelay
   ) external onlyOwner {
     VaultLiquidityModule._updateDeploymentDelay(newDeploymentDelay);
-  }
-
-  /**
-   * @notice Recovers a specified amount of a given token address.
-   * @dev This override of RecoverableUpgradeable.recoverERC20() prevents the recovered
-   * token from being the underlying token.
-   * @inheritdoc RecoverableUpgradeable
-   */
-  function recoverERC20(
-    address tokenAddress,
-    uint256 amount
-  ) public override onlyOwner {
-    if (tokenAddress == address(0)) {
-      payable(msg.sender).transfer(amount);
-    } else {
-      super.recoverERC20(tokenAddress, amount);
-    }
   }
 }
