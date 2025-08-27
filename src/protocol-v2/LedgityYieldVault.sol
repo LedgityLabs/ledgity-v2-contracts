@@ -2,14 +2,14 @@
 pragma solidity 0.8.18;
 
 // Contracts
-import { CCIPToken } from "../../protocol-v1/misc/CCIPToken.sol";
-import { GlobalOwnableUpgradeable } from "../../protocol-v1/abstracts/GlobalOwnableUpgradeable.sol";
-import { GlobalPausableUpgradeable } from "../../protocol-v1/abstracts/GlobalPausableUpgradeable.sol";
-import { GlobalRestrictableUpgradeable } from "../../protocol-v1/abstracts/GlobalRestrictableUpgradeable.sol";
-import { RecoverableUpgradeable } from "../../protocol-v1/abstracts/RecoverableUpgradeable.sol";
-import { BaseUpgradeable } from "../../protocol-v1/abstracts/base/BaseUpgradeable.sol";
+import { CCIPTokenModule } from "./modules/CCIPTokenModule.sol";
+import { VaultLiquidityModule } from "./modules/VaultLiquidityModule.sol";
 //
-import { VaultLiquidityModule } from "./VaultLiquidityModule.sol";
+import { GlobalOwnableUpgradeable } from "../protocol-v1/abstracts/GlobalOwnableUpgradeable.sol";
+import { GlobalPausableUpgradeable } from "../protocol-v1/abstracts/GlobalPausableUpgradeable.sol";
+import { GlobalRestrictableUpgradeable } from "../protocol-v1/abstracts/GlobalRestrictableUpgradeable.sol";
+import { RecoverableUpgradeable } from "../protocol-v1/abstracts/RecoverableUpgradeable.sol";
+import { BaseUpgradeable } from "../protocol-v1/abstracts/base/BaseUpgradeable.sol";
 //
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -20,7 +20,7 @@ import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.s
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
-import { IAaveLendingPoolV3 } from "../interfaces/IAaveLendingPoolV3.sol";
+import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
 
 /**
  * @title LedgityYieldVault
@@ -30,7 +30,7 @@ import { IAaveLendingPoolV3 } from "../interfaces/IAaveLendingPoolV3.sol";
  */
 contract LedgityYieldVault is
   BaseUpgradeable,
-  CCIPToken,
+  CCIPTokenModule,
   VaultLiquidityModule
 {
   // ======== LIBS ======== //
