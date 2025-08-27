@@ -2,13 +2,15 @@
 pragma solidity 0.8.18;
 
 // Contracts
-import { CCIPToken } from "../misc/CCIPToken.sol";
-import { GlobalOwnableUpgradeable } from "../abstracts/GlobalOwnableUpgradeable.sol";
-import { GlobalPausableUpgradeable } from "../abstracts/GlobalPausableUpgradeable.sol";
-import { GlobalRestrictableUpgradeable } from "../abstracts/GlobalRestrictableUpgradeable.sol";
-import { RecoverableUpgradeable } from "../abstracts/RecoverableUpgradeable.sol";
-import { BaseUpgradeable } from "../abstracts/base/BaseUpgradeable.sol";
+import { CCIPToken } from "../../protocol-v1/misc/CCIPToken.sol";
+import { GlobalOwnableUpgradeable } from "../../protocol-v1/abstracts/GlobalOwnableUpgradeable.sol";
+import { GlobalPausableUpgradeable } from "../../protocol-v1/abstracts/GlobalPausableUpgradeable.sol";
+import { GlobalRestrictableUpgradeable } from "../../protocol-v1/abstracts/GlobalRestrictableUpgradeable.sol";
+import { RecoverableUpgradeable } from "../../protocol-v1/abstracts/RecoverableUpgradeable.sol";
+import { BaseUpgradeable } from "../../protocol-v1/abstracts/base/BaseUpgradeable.sol";
+//
 import { VaultLiquidityModule } from "./VaultLiquidityModule.sol";
+//
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { ERC4626Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC4626Upgradeable.sol";
@@ -37,6 +39,7 @@ contract LedgityYieldVault is
   // ======== ERRORS ======== //
 
   error ZeroAmount();
+  error ZeroAddress();
   error NoLTokenSet();
   error OnlyLiquidityManager();
   error MissingWithdrawalRequestFee();
@@ -69,8 +72,8 @@ contract LedgityYieldVault is
 
   // Token representing user's stake in the protocol for fee reductions
   IERC20 public stakeToken;
-  // Fee reduction percentage for staking token holders (in RATE_BASE)
-  uint256 public stakingFeeReduction;
+  // The amount of stake token required to receive a fee reduction
+  uint256 public stakeBalanceForFeeReduction;
 
   /**
    * Structure representing a queued withdrawal request
@@ -125,26 +128,41 @@ contract LedgityYieldVault is
 
   /**
    * @notice Initializes the Vault contract
-   * @param globalOwner_ The address of the global owner
-   * @param globalPause_ The address of the global pause controller
-   * @param globalBlacklist_ The address of the global blacklist controller
-   * @param underlying_ Address of the underlying
-   * @param name_ Name for the shares token
-   * @param symbol_ Symbol for the shares token
+   * @param name_ Name for the vault shares token
+   * @param symbol_ Symbol for the vault shares token
+   * @param underlying_ Address of the underlying ERC20 token
+   * @param lToken_ Address of the legacy L-Token for migration
+   * @param stakeToken_ Address of the staking token for fee reductions
+   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param globalOwner_ Address of the global owner
+   * @param globalPause_ Address of the global pause controller
+   * @param globalBlacklist_ Address of the global blacklist controller
+   * @param liquidityManager_ Address of the liquidity manager
+   * @param feeRecipient_ Address that receives management and performance fees
+   * @param aaveLendingPool_ Address of the Aave lending pool (zero address to disable buffer strategy)
+   * @param initParams Struct containing initialization parameters for fees, APR, and other settings
    */
   function initialize(
+    string memory name_,
+    string memory symbol_,
+    IERC20 underlying_,
+    IERC20 lToken_,
+    IERC20 stakeToken_,
+    uint256 stakeBalanceForFeeReduction_,
     address globalOwner_,
     address globalPause_,
     address globalBlacklist_,
     address liquidityManager_,
+    address feeRecipient_,
     address aaveLendingPool_,
-    IERC20 underlying_,
-    IERC20 stakeToken_,
-    IERC20 lToken_,
-    string memory name_,
-    string memory symbol_,
     VaultInitParams calldata initParams
   ) public initializer {
+    if (
+      underlying_ == address(0) ||
+      liquidityManager_ == address(0) ||
+      feeRecipient_ == address(0)
+    ) revert ZeroAddress();
+
     __ERC4626_init(IERC20Upgradeable(address(underlying_)));
     __ERC20_init(name_, symbol_);
     __Base_init(globalOwner_, globalPause_, globalBlacklist_);
@@ -153,9 +171,13 @@ contract LedgityYieldVault is
     __VaultLiquidityModule_init(initParams, address(underlying_));
 
     liquidityManager = liquidityManager_;
+    feeRecipient = payable(feeRecipient_);
+
     underlying = underlying_;
-    stakeToken = stakeToken_;
     lToken = lToken_;
+
+    stakeToken = stakeToken_;
+    stakeBalanceForFeeReduction = stakeBalanceForFeeReduction_;
 
     if (aaveLendingPool_ != address(0)) {
       aaveLendingPool = IAaveLendingPoolV3(aaveLendingPool_);

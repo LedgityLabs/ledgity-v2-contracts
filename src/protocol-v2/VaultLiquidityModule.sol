@@ -23,51 +23,52 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
   /** ======== STRUCTS ======== */
 
   struct VaultInitParams {
+    uint256 highWaterMark;
+    uint256 deploymentDelay;
+    uint256 yieldAPR;
     uint256 managementFeeRate;
     uint256 performanceFeeRate;
     uint256 withdrawalFeeRate;
-    uint256 yieldAPR;
-    uint256 initialHighWaterMark;
+    uint256 withdrawalGasFee;
   }
 
   /** ======== STORAGE ======== */
 
-  /// Base rate constant representing 100%
+  // Base rate constant representing 100%
   uint256 public constant RATE_BASE = 100_000;
   uint256 public constant RAY = 1e27;
   uint256 public constant APR_RATE_OFFSET = RAY / RATE_BASE;
 
-  /// Total assets under management
+  // Total assets under management
   uint256 private _totalAssets;
+  // Offset between vault decimals and underlying asset decimals
+  uint8 private decimalsOffset;
 
-  /// Deployment delay period in days for calculating deposit fees
-  uint256 public deploymentDelay;
-
-  /// Annual Percentage Rate in RATE_BASE
-  uint256 public yieldAPR;
-
-  /// The highest price per share ever reached, performance fees are taken when
-  /// the price per share is above this value
+  // Last timestamp when assets were compounded (only full compounding periods)
+  uint256 public lastCompoundTime;
+  // The timestamp of the last fee calculation, used to compute management fees
+  uint256 public lastFeeTime;
+  // The highest price per share ever reached, performance fees are taken when
+  // the price per share is above this value
   uint256 public highWaterMark;
 
-  /// Last timestamp when assets were compounded (only full compounding periods)
-  uint256 public lastCompoundTime;
-  /// The timestamp of the last fee calculation, used to compute management fees
-  uint256 public lastFeeTime;
+  // Deployment delay period in days for calculating deposit fees
+  uint256 public deploymentDelay;
 
-  /// Management fee in RATE_BASE
+  // Annual Percentage Rate in RATE_BASE
+  uint256 public yieldAPR;
+
+  // Management fee in RATE_BASE
   uint256 public managementFeeRate;
-  /// Performance fee in RATE_BASE
+  // Performance fee in RATE_BASE
   uint256 public performanceFeeRate;
-  /// Withdrawal fee in RATE_BASE
+  // Withdrawal fee in RATE_BASE
   uint256 public withdrawalFeeRate;
-  /// Custom fee structures for specific accounts
-  mapping(address => uint256) public accountWithdrawalFee;
-  /// Required amount of msg.value attached to withdrawal requests
+  // Required amount of msg.value attached to withdrawal requests
   uint256 public withdrawalGasFee;
 
-  /// Offset between vault decimals and underlying asset decimals
-  uint8 private decimalsOffset;
+  // Custom fee structures for specific accounts
+  mapping(address => uint256) public accountWithdrawalFee;
 
   /** ======== INITIALIZER ======== */
 
@@ -79,21 +80,23 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     VaultInitParams memory params,
     address asset
   ) internal {
-    managementFeeRate = params.managementFeeRate;
-    performanceFeeRate = params.performanceFeeRate;
-    withdrawalFeeRate = params.withdrawalFeeRate;
-
-    lastCompoundTime = block.timestamp;
-    lastFeeTime = block.timestamp;
-
     __ERC4626_init(ERC20Upgradeable(asset));
     decimalsOffset = 18 - decimals();
 
     // Initialize high water mark at 1 share = 1 asset if not specified
-    highWaterMark = params.initialHighWaterMark != 0
-      ? params.initialHighWaterMark
+    highWaterMark = params.highWaterMark != 0
+      ? params.highWaterMark
       : 10 ** decimals();
+    deploymentDelay = params.deploymentDelay;
     yieldAPR = params.yieldAPR;
+
+    managementFeeRate = params.managementFeeRate;
+    performanceFeeRate = params.performanceFeeRate;
+    withdrawalFeeRate = params.withdrawalFeeRate;
+    withdrawalGasFee = params.withdrawalGasFee;
+
+    lastCompoundTime = block.timestamp;
+    lastFeeTime = block.timestamp;
 
     emit APRUpdated(params.yieldAPR, 0);
   }
