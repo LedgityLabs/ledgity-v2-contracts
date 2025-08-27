@@ -22,7 +22,7 @@ import { IAaveLendingPoolV3 } from "../interfaces/IAaveLendingPoolV3.sol";
 
 /**
  * @title LedgityYieldVault
- * @notice An ERC-4626 vault token
+ * @notice Ledgity Yield ERC-4626 Vault for RWA assets with on-chain liquidity management and yield generation
  *
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
@@ -36,77 +36,49 @@ contract LedgityYieldVault is
 
   // ======== ERRORS ======== //
 
-  /// @notice Thrown when an operation is attempted with zero amount
   error ZeroAmount();
-
-  /// @notice Thrown when account has insufficient balance for operation
-  /// @param amount The amount that was attempted to be used
-  error InsufficientBalance(uint256 amount);
-
-  /// @notice Thrown when base rate is set below minimum threshold
-  error BaseRateCannotBeLessThanOne();
-
-  /// @notice Thrown when attempting to withdraw from another user's account
-  error CannotWithdrawFromAnotherOwner();
-
-  /// @notice Thrown when base rate is set to zero
-  error ZeroBaseRate();
-
-  /// @notice Thrown when caller is not the authorized liquidity manager
+  error NoLTokenSet();
   error OnlyLiquidityManager();
-
-  /// @notice Thrown when withdrawal request doesn't include required gas fee
   error MissingWithdrawalRequestFee();
-
-  /// @notice Thrown when referencing a non-existent withdrawal request
-  error RequestNotFound();
-
-  /// @notice Thrown when attempting to process an already processed request
   error RequestAlreadyProcessed();
-
-  /// @notice Thrown when insufficient liquidity available for withdrawal processing
   error InsufficientLiquidity();
 
   // ======== STORAGE ======== //
 
-  /// @notice The underlying ERC20 token that can be deposited into the vault
+  // The underlying ERC20 token that can be deposited into the vault
   IERC20 public underlying;
-
-  /// @notice The legacy L-Token that can be migrated to vault shares
+  // The legacy L-Token that can be migrated to vault shares
   IERC20 public lToken;
 
-  /// @notice Address authorized to manage vault liquidity and process withdrawals
+  // Address authorized to manage vault liquidity and process withdrawals
   address public liquidityManager;
-
-  /// @notice Address that receives management and performance fees
+  // Address that receives management and performance fees
   address payable public feeRecipient;
 
-  /// @notice Whether the vault uses Aave as a buffer strategy for idle funds
-  bool public hasBufferStrategy;
-
-  /// @notice Aave interest bearing token address (aToken) or zero address if no Aave integration
-  address public aToken;
-
-  /// @notice Aave lending pool contract for buffer strategy operations
-  IAaveLendingPoolV3 public aaveLendingPool;
-
-  /// @notice Last recorded balance of buffer rewards to track new accruals
-  uint256 public lastBufferRewardBalance;
-
-  /// @notice Target percentage of total assets to maintain in liquidity buffer (in RATE_BASE)
+  // Target percentage of total assets to maintain in liquidity buffer (in RATE_BASE)
   uint256 public liquidityBufferRate;
 
-  /// @notice Token representing user's stake in the protocol for fee reductions
-  IERC20 public stakeToken;
+  // Whether the vault uses Aave as a buffer strategy for idle funds
+  bool public hasBufferStrategy;
+  // Aave lending pool contract for buffer strategy operations
+  IAaveLendingPoolV3 public aaveLendingPool;
+  // Aave interest bearing token address (aToken) or zero address if no Aave integration
+  address public aToken;
+  // Last recorded balance of buffer rewards to track new accruals
+  uint256 public lastBufferRewardBalance;
 
-  /// @notice Fee reduction percentage for staking token holders (in RATE_BASE)
+  // Token representing user's stake in the protocol for fee reductions
+  IERC20 public stakeToken;
+  // Fee reduction percentage for staking token holders (in RATE_BASE)
   uint256 public stakingFeeReduction;
 
-  /// @notice Structure representing a queued withdrawal request
-  /// @param user Address of the user who requested withdrawal
-  /// @param assets Amount of underlying assets to withdraw
-  /// @param timestamp When the withdrawal request was created
-  /// @param processed Whether the request has been fulfilled
+  /**
+   * Structure representing a queued withdrawal request
+   * @param user Address of the user who requested withdrawal
+   * @param assets Amount of underlying assets to withdraw
+   * @param timestamp When the withdrawal request was created
+   * @param processed Whether the request has been fulfilled
+   */
   struct WithdrawalRequest {
     address user;
     uint256 assets;
@@ -114,29 +86,35 @@ contract LedgityYieldVault is
     bool processed;
   }
 
-  /// @notice Array storing all withdrawal requests in chronological order
+  // Array storing all withdrawal requests in chronological order
   WithdrawalRequest[] public withdrawalRequests;
 
   // ======== EVENTS ======== //
 
-  /// @notice Emitted when the vault's pause state is changed
-  /// @param isPaused The new pause state
+  /**
+   * Emitted when the vault's pause state is changed
+   * @param isPaused The new pause state
+   */
   event PausedSet(bool isPaused);
 
-  /// @notice Emitted when a user requests a withdrawal
-  /// @param requestId Unique identifier for the withdrawal request
-  /// @param user Address of the user requesting withdrawal
-  /// @param shares Amount of shares being withdrawn
+  /**
+   * Emitted when a user requests a withdrawal
+   * @param requestId Unique identifier for the withdrawal request
+   * @param user Address of the user requesting withdrawal
+   * @param shares Amount of shares being withdrawn
+   */
   event WithdrawalRequested(
     uint256 indexed requestId,
     address indexed user,
     uint256 shares
   );
 
-  /// @notice Emitted when a withdrawal request is processed and fulfilled
-  /// @param requestId Unique identifier for the processed request
-  /// @param user Address of the user receiving the withdrawal
-  /// @param assets Amount of underlying assets transferred to user
+  /**
+   * Emitted when a withdrawal request is processed and fulfilled
+   * @param requestId Unique identifier for the processed request
+   * @param user Address of the user receiving the withdrawal
+   * @param assets Amount of underlying assets transferred to user
+   */
   event WithdrawalProcessed(
     uint256 indexed requestId,
     address indexed user,
@@ -198,7 +176,8 @@ contract LedgityYieldVault is
 
   // ======== MODIFIERS ======== //
 
-  /// @notice Restricts function access to the authorized liquidity manager
+  /* @notice Restricts function access to the authorized liquidity manager
+   */
   modifier onlyLiquidityManager() {
     if (msg.sender != liquidityManager) revert OnlyLiquidityManager();
     _;
@@ -206,8 +185,9 @@ contract LedgityYieldVault is
 
   // ======== OVERRIDES ======== //
 
-  /// @notice Returns the number of decimals used for the vault token (18)
-  /// @return The number of decimals
+  /* @notice Returns the number of decimals used for the vault token (18)
+   * @return The number of decimals
+   */
   function decimals()
     public
     view
@@ -359,8 +339,10 @@ contract LedgityYieldVault is
 
   // ======== BUFFER INTERNAL HELPERS ======== //
 
-  /// @dev Calculate new buffer rewards since last update
-  /// @return Amount of new rewards accrued in buffer
+  /**
+   * @notice Calculate new buffer rewards since last update
+   * @return Amount of new rewards accrued in buffer
+   */
   function _bufferRewards() private view returns (uint256) {
     if (!hasBufferStrategy) return 0;
 
@@ -372,7 +354,9 @@ contract LedgityYieldVault is
         : 0;
   }
 
-  /// @dev Register and add buffer rewards to total assets
+  /**
+   * @notice Register and add buffer rewards to total assets
+   */
   function _registerBufferRewards() private {
     uint256 reward = _bufferRewards();
     if (reward == 0) return;
@@ -516,10 +500,12 @@ contract LedgityYieldVault is
 
   // ======== WRITE FUNCTIONS ======== //
 
-  /// @notice Migrate legacy L-Tokens to vault shares at 1:1 rate
-  /// @param amount Amount of L-Tokens to migrate
-  /// @return shares Amount of vault shares minted
-  /// @dev No maturity impact applied since capital remains deployed
+  /**
+   * @notice Migrate legacy L-Tokens to vault shares at 1:1 rate
+   * @param amount Amount of L-Tokens to migrate
+   * @return shares Amount of vault shares minted
+   * @dev No maturity impact applied since capital remains deployed
+   */
   function migrateLToken(
     uint256 amount
   )
@@ -528,6 +514,7 @@ contract LedgityYieldVault is
     notBlacklisted(_msgSender())
     returns (uint256 shares)
   {
+    if (lToken == address(0)) revert NoLTokenSet();
     if (amount == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
@@ -631,9 +618,11 @@ contract LedgityYieldVault is
     _withdraw(msg.sender, receiver, owner, 0, shares);
   }
 
-  /// @notice Request a withdrawal that will be processed asynchronously
-  /// @param shares Amount of vault shares to withdraw
-  /// @dev Requires gas fee payment and burns shares immediately
+  /**
+   * @notice Request a withdrawal that will be processed asynchronously
+   * @param shares Amount of vault shares to withdraw
+   * @dev Requires gas fee payment and burns shares immediately
+   */
   function requestWithdrawal(
     uint256 shares
   ) public payable whenNotPaused notBlacklisted(_msgSender()) {
@@ -666,8 +655,10 @@ contract LedgityYieldVault is
     emit WithdrawalRequested(requestId, msg.sender, shares);
   }
 
-  /// @notice Harvest buffer rewards and collect management/performance fees
-  /// @dev Can be called by anyone to update vault state and collect fees
+  /**
+   * @notice Harvest buffer rewards and collect management/performance fees
+   * @dev Can be called by anyone to update vault state and collect fees
+   */
   function harvestFees() public {
     // Add buffer rewards
     _registerBufferRewards();
@@ -677,9 +668,11 @@ contract LedgityYieldVault is
 
   // ======== ADMIN ======== //
 
-  /// @notice Deposit assets into the liquidity buffer
-  /// @param amount Amount of underlying assets to deposit
-  /// @dev Only callable by liquidity manager
+  /**
+   * @notice Deposit assets into the liquidity buffer
+   * @param amount Amount of underlying assets to deposit
+   * @dev Only callable by liquidity manager
+   */
   function depositToBuffer(
     uint256 amount
   ) public onlyLiquidityManager {
@@ -692,17 +685,21 @@ contract LedgityYieldVault is
     if (hasBufferStrategy) _depositBuffer(amount);
   }
 
-  /// @notice Remove excess assets from the liquidity buffer
-  /// @param amount Amount of assets to withdraw from buffer
-  /// @dev Only callable by liquidity manager
+  /**
+   * @notice Remove excess assets from the liquidity buffer
+   * @param amount Amount of assets to withdraw from buffer
+   * @dev Only callable by liquidity manager
+   */
   function skimBuffer(uint256 amount) public onlyLiquidityManager {
     _withdrawBuffer(liquidityManager, amount);
   }
 
-  /// @notice Process queued withdrawal requests by providing liquidity
-  /// @param requestIds Array of request IDs to process
-  /// @param addedLiquidity Additional liquidity provided by liquidity manager
-  /// @dev Only callable by liquidity manager, uses buffer + added liquidity
+  /**
+   * @notice Process queued withdrawal requests by providing liquidity
+   * @param requestIds Array of request IDs to process
+   * @param addedLiquidity Additional liquidity provided by liquidity manager
+   * @dev Only callable by liquidity manager, uses buffer + added liquidity
+   */
   function processRequests(
     uint256[] calldata requestIds,
     uint256 addedLiquidity
@@ -726,7 +723,6 @@ contract LedgityYieldVault is
       ];
 
       if (request.processed) revert RequestAlreadyProcessed();
-      if (request.assets == 0) revert ZeroAmount();
 
       assetsTotal += request.assets;
     }
@@ -785,7 +781,7 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @dev Update fee rates for the vault
+   * @notice Update fee rates for the vault
    * @param managementRate_ The new management fee rate in RATE_BASE
    * @param performanceRate_ The new performance fee rate in RATE_BASE
    * @param withdrawalRate_ The new withdrawal fee rate in RATE_BASE
@@ -803,7 +799,7 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @dev Set a custom fee structure for a specific account
+   * @notice Set a custom fee structure for a specific account
    * @param account The account to set the custom fee structure for
    * @param withdrawalFee The custom withdrawal fee in RATE_BASE
    */
