@@ -188,10 +188,10 @@ contract LedgityYieldVault is
       // Validate that aToken was properly retrieved
       if (aToken != address(0)) {
         hasBufferStrategy = true;
-      IERC20(underlying).approve(
-        address(aaveLendingPool),
-        type(uint256).max
-      );
+        IERC20(underlying).approve(
+          address(aaveLendingPool),
+          type(uint256).max
+        );
       }
     }
   }
@@ -415,27 +415,27 @@ contract LedgityYieldVault is
 
   /**
    * @notice Internal function to handle depositing underlying
-   * @param amount The amount of underlying to deposit
-   * @param from The owner of the underlying
-   * @param to The recipient of the shares tokens
-   * @return netShares The amount of shares tokens received
+   * @param caller The address that called the deposit function
+   * @param receiver The address to receive the minted shares
+   * @param assets The amount of underlying to deposit
    */
   function _deposit(
-    uint256 amount,
-    address from,
-    address to
-  ) internal returns (uint256 netShares) {
-    if (amount == 0) revert ZeroAmount();
+    address caller,
+    address receiver,
+    uint256 assets,
+    uint256 /* shares */
+  ) internal override(ERC4626Upgradeable) {
+    if (assets == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
     // Apply capital deployment impact to amount of shares
-    uint256 maturityImpact = _computeMaturityImpact(amount);
-    uint256 netDeposit = amount - maturityImpact;
-    netShares = convertToShares(netDeposit);
+    uint256 maturityImpact = _computeMaturityImpact(assets);
+    uint256 netDeposit = assets - maturityImpact;
+    uint256 netShares = convertToShares(netDeposit);
 
-    _mint(to, netShares);
+    _mint(receiver, netShares);
     _addAssets(netDeposit);
 
     // Calculate expected buffer balance after this deposit
@@ -454,15 +454,15 @@ contract LedgityYieldVault is
         currentBufferBalance;
 
       // Use smaller amount between deposit amount and buffer deficit
-      bufferAmount = amount < bufferDeficit ? amount : bufferDeficit;
-      vaultAmount = amount - bufferAmount;
+      bufferAmount = assets < bufferDeficit ? assets : bufferDeficit;
+      vaultAmount = assets - bufferAmount;
     } else {
       // Buffer is at or above target - send all to liquidity manager
       bufferAmount = 0;
-      vaultAmount = amount;
+      vaultAmount = assets;
     }
 
-    underlying.transferFrom(from, address(this), amount);
+    underlying.transferFrom(caller, address(this), assets);
 
     // Execute the allocation
     if (0 < bufferAmount) {
@@ -473,43 +473,45 @@ contract LedgityYieldVault is
       underlying.transfer(liquidityManager, vaultAmount);
     }
 
-    emit Deposit(from, to, amount, netShares);
+    emit Deposit(caller, receiver, assets, netShares);
   }
 
   /**
    * @notice Internal function to handle withdraw tokens
+   * @param caller The address that called the withdraw function
+   * @param receiver The address to receive the underlying
+   * @param owner The owner of the shares tokens
    * @param shares The amount of shares tokens to withdraw
-   * @param to The recipient of the underlying
-   * @param from The owner of the shares tokens
-   * @return netAssets The amount of underlying received
    */
   function _withdraw(
-    uint256 shares,
-    address from,
-    address to
-  ) internal returns (uint256 netAssets) {
+    address caller,
+    address receiver,
+    address owner,
+    uint256 /* assets */,
+    uint256 shares
+  ) internal override(ERC4626Upgradeable) {
     if (shares == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
     // Calculate underlying amount using updated rate
-    uint256 withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
-    transferFrom(msg.sender, feeRecipient, withdrawalFee);
+    uint256 withdrawalFee = _computeWithdrawalFee(shares, receiver);
+    transferFrom(caller, feeRecipient, withdrawalFee);
 
     uint256 netShares = shares - withdrawalFee;
-    netAssets = convertToAssets(netShares);
+    uint256 netAssets = convertToAssets(netShares);
 
-    _burn(from, netShares);
+    _burn(caller, netShares);
     _withdrawAssets(netAssets);
 
     if (hasBufferStrategy) {
-      _withdrawBuffer(to, netAssets);
+      _withdrawBuffer(receiver, netAssets);
     } else {
-      underlying.transfer(to, netAssets);
+      underlying.transfer(receiver, netAssets);
     }
 
-    emit Withdraw(from, to, from, netAssets, shares);
+    emit Withdraw(caller, receiver, owner, netAssets, shares);
   }
 
   // ======== WRITE FUNCTIONS ======== //
@@ -547,39 +549,41 @@ contract LedgityYieldVault is
    * @notice Deposit assets (underlying) and mint shares (shares tokens) to receiver
    * @param assets The amount of underlying to deposit
    * @param receiver The address to receive the minted shares
-   * @return shares The number of shares minted
+   * @return sharesPreview The number of shares minted
    */
   function deposit(
     uint256 assets,
     address receiver
   )
     public
-    override
+    override(ERC4626Upgradeable)
     whenNotPaused
     notBlacklisted(_msgSender())
-    returns (uint256 shares)
+    returns (uint256 sharesPreview)
   {
-    shares = _deposit(assets, msg.sender, receiver);
+    sharesPreview = previewDeposit(assets);
+    _deposit(msg.sender, receiver, assets, 0);
   }
 
   /**
    * @notice Mint shares (shares tokens) to receiver by depositing assets (underlying)
    * @param shares The number of shares to mint
    * @param receiver The address to receive the minted shares
-   * @return assets The amount of underlying deposited
+   * @return assetsPreview The amount of underlying deposited
    */
   function mint(
     uint256 shares,
     address receiver
   )
     public
-    override
+    override(ERC4626Upgradeable)
     whenNotPaused
     notBlacklisted(_msgSender())
-    returns (uint256 assets)
+    returns (uint256 assetsPreview)
   {
-    assets = convertToAssets(shares);
-    _deposit(assets, msg.sender, receiver);
+    assetsPreview = previewMint(shares);
+    uint256 assets = convertToAssets(shares);
+    _deposit(msg.sender, receiver, assets, 0);
   }
 
   /**
@@ -587,7 +591,7 @@ contract LedgityYieldVault is
    * @param assets The amount of underlying to withdraw
    * @param receiver The address to receive the withdrawn underlying
    * @param owner The address of the owner of the shares
-   * @return shares The number of shares burned
+   * @return sharesPreview The number of shares burned
    */
   function withdraw(
     uint256 assets,
@@ -595,13 +599,14 @@ contract LedgityYieldVault is
     address owner
   )
     public
-    override
+    override(ERC4626Upgradeable)
     whenNotPaused
     notBlacklisted(owner)
-    returns (uint256 shares)
+    returns (uint256 sharesPreview)
   {
-    shares = convertToShares(assets);
-    _withdraw(shares, owner, receiver);
+    sharesPreview = previewWithdraw(assets);
+    uint256 shares = convertToShares(assets);
+    _withdraw(msg.sender, receiver, owner, 0, shares);
   }
 
   /**
@@ -609,7 +614,7 @@ contract LedgityYieldVault is
    * @param shares The number of shares to redeem
    * @param receiver The address to receive the underlying
    * @param owner The address of the owner of the shares
-   * @return assets The amount of underlying received
+   * @return assetsPreview The amount of underlying received
    */
   function redeem(
     uint256 shares,
@@ -617,12 +622,13 @@ contract LedgityYieldVault is
     address owner
   )
     public
-    override
+    override(ERC4626Upgradeable)
     whenNotPaused
     notBlacklisted(owner)
-    returns (uint256 assets)
+    returns (uint256 assetsPreview)
   {
-    assets = _withdraw(shares, owner, receiver);
+    assetsPreview = previewRedeem(shares);
+    _withdraw(msg.sender, receiver, owner, 0, shares);
   }
 
   /// @notice Request a withdrawal that will be processed asynchronously
