@@ -46,6 +46,36 @@ contract LedgityYieldVault is
   error RequestAlreadyProcessed();
   error InsufficientLiquidity();
 
+  // ======== STRUCTS ======== //
+
+  /**
+   * Structure representing a queued withdrawal request
+   * @notice See WithdrawalRequestRead for more details
+   */
+  struct WithdrawalRequest {
+    address user;
+    uint256 assets;
+    uint256 timestamp;
+    bool processed;
+  }
+
+  /**
+   * Structure representing a queued withdrawal request
+   * @param requestId Unique identifier for the withdrawal request
+   * @param user Address of the user who requested withdrawal
+   * @param assets Amount of underlying assets to withdraw
+   * @param timestamp When the withdrawal request was created
+   * @param processed Whether the request has been fulfilled
+   * @param hasFeeReduction Whether the user has a fee reduction
+   */
+  struct WithdrawalRequestRead {
+    uint256 requestId;
+    address user;
+    uint256 assets;
+    uint256 timestamp;
+    bool processed;
+    bool hasFeeReduction;
+  }
   // ======== STORAGE ======== //
 
   // The underlying ERC20 token that can be deposited into the vault
@@ -74,20 +104,6 @@ contract LedgityYieldVault is
   IERC20 public stakeToken;
   // The amount of stake token required to receive a fee reduction
   uint256 public stakeBalanceForFeeReduction;
-
-  /**
-   * Structure representing a queued withdrawal request
-   * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
-   * @param timestamp When the withdrawal request was created
-   * @param processed Whether the request has been fulfilled
-   */
-  struct WithdrawalRequest {
-    address user;
-    uint256 assets;
-    uint256 timestamp;
-    bool processed;
-  }
 
   // Array storing all withdrawal requests in chronological order
   WithdrawalRequest[] public withdrawalRequests;
@@ -260,90 +276,153 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Get withdrawal requests with optional filtering
+   * @notice Internal helper to filter withdrawal requests with various options
+   * @param user Filter by user address (address(0) = no filter)
    * @param onlyPending If true, only return non-processed requests
-   * @param maxRequests Maximum number of requests to return (0 = no limit)
-   * @return requests Array of withdrawal requests
+   * @param maxRange Maximum number of requests to return (0 = no limit)
+   * @return requests Array of matching withdrawal requests with read structure
    */
-  function getWithdrawalRequests(
+  function _getFilteredRequests(
+    address user,
     bool onlyPending,
-    uint256 maxRequests
-  ) external view returns (WithdrawalRequest[] memory requests) {
+    uint256 maxRange
+  ) internal view returns (WithdrawalRequestRead[] memory requests) {
     uint256 totalRequests = withdrawalRequests.length;
-    if (totalRequests == 0) return requests;
+    if (totalRequests == 0) {
+      return requests;
+    }
 
-    // Count valid requests
-    uint256 validCount;
-    for (uint256 i; i < totalRequests; i++) {
-      if (!onlyPending || !withdrawalRequests[i].processed) {
-        validCount++;
-        if (maxRequests > 0 && validCount >= maxRequests) break;
+    // Determine search range - start from latest requests
+    uint256 searchLimit = maxRange > 0 && maxRange < totalRequests
+      ? maxRange
+      : totalRequests;
+
+    // Count matching requests (search backwards from latest)
+    uint256 matchCount;
+    uint256 searchCount;
+    for (
+      uint256 i = totalRequests - 1;
+      searchCount < searchLimit;
+      i--
+    ) {
+      searchCount++;
+
+      WithdrawalRequest storage request = withdrawalRequests[i];
+      if (
+        (user == address(0) || request.user == user) &&
+        (!onlyPending || !request.processed)
+      ) {
+        matchCount++;
       }
+
+      if (i == 0) break;
     }
 
     // Create result array
-    requests = new WithdrawalRequest[](validCount);
+    requests = new WithdrawalRequestRead[](matchCount);
     uint256 resultIndex;
 
+    // Fill results (search backwards from latest, but fill array in reverse for oldest-first output)
+    searchCount = 0;
     for (
-      uint256 i;
-      i < totalRequests && resultIndex < validCount;
-      i++
+      uint256 i = totalRequests - 1;
+      searchCount < searchLimit && resultIndex < matchCount;
+      i--
     ) {
-      if (!onlyPending || !withdrawalRequests[i].processed) {
-        requests[resultIndex] = withdrawalRequests[i];
+      searchCount++;
+
+      WithdrawalRequest storage request = withdrawalRequests[i];
+      if (
+        (user == address(0) || request.user == user) &&
+        (!onlyPending || !request.processed)
+      ) {
+        bool hasFeeReduction = false;
+        if (stakeToken != address(0)) {
+          hasFeeReduction =
+            stakeToken.balanceOf(request.user) >=
+            stakeBalanceForFeeReduction;
+        }
+
+        // Fill array from end to maintain oldest-first order in output
+        requests[
+          matchCount - 1 - resultIndex
+        ] = WithdrawalRequestRead({
+          requestId: i,
+          user: request.user,
+          assets: request.assets,
+          timestamp: request.timestamp,
+          processed: request.processed,
+          hasFeeReduction: hasFeeReduction
+        });
         resultIndex++;
       }
+
+      if (i == 0) break;
     }
+  }
+
+  /**
+   * @notice Get withdrawal requests with optional filtering
+   * @param onlyPending If true, only return non-processed requests
+   * @param maxRange Maximum number of requests to return (0 = return all)
+   * @return requests Array of withdrawal requests with read structure
+   */
+  function getWithdrawalRequests(
+    bool onlyPending,
+    uint256 maxRange
+  ) external view returns (WithdrawalRequestRead[] memory requests) {
+    return _getFilteredRequests(address(0), onlyPending, maxRange);
   }
 
   /**
    * @notice Get withdrawal requests for a specific user
    * @param user The user address
    * @param onlyPending If true, only return non-processed requests
-   * @return requestIds Array of request IDs for the user
-   * @return requests Array of withdrawal requests for the user
+   * @param maxRange Maximum number of requests to return (0 = return all)
+   * @return requests Array of withdrawal requests for the user with read structure
    */
   function getUserWithdrawalRequests(
     address user,
-    bool onlyPending
-  )
-    external
-    view
-    returns (
-      uint256[] memory requestIds,
-      WithdrawalRequest[] memory requests
-    )
-  {
+    bool onlyPending,
+    uint256 maxRange
+  ) external view returns (WithdrawalRequestRead[] memory requests) {
+    return _getFilteredRequests(user, onlyPending, maxRange);
+  }
+
+  /**
+   * @notice Get specific withdrawal requests by their IDs
+   * @param requestIds Array of request IDs to fetch
+   * @return requests Array of withdrawal requests corresponding to the IDs with read structure
+   */
+  function getWithdrawalRequestsByIds(
+    uint256[] calldata requestIds
+  ) external view returns (WithdrawalRequestRead[] memory requests) {
     uint256 totalRequests = withdrawalRequests.length;
+    requests = new WithdrawalRequestRead[](requestIds.length);
 
-    // Count user requests
-    uint256 userRequestCount;
-    for (uint256 i; i < totalRequests; i++) {
-      if (withdrawalRequests[i].user == user) {
-        if (!onlyPending || !withdrawalRequests[i].processed) {
-          userRequestCount++;
+    for (uint256 i; i < requestIds.length; i++) {
+      if (requestIds[i] < totalRequests) {
+        WithdrawalRequest storage request = withdrawalRequests[
+          requestIds[i]
+        ];
+
+        bool hasFeeReduction = false;
+        if (stakeToken != address(0)) {
+          hasFeeReduction =
+            stakeToken.balanceOf(request.user) >=
+            stakeBalanceForFeeReduction;
         }
-      }
-    }
 
-    // Create result arrays
-    requestIds = new uint256[](userRequestCount);
-    requests = new WithdrawalRequest[](userRequestCount);
-    uint256 resultIndex;
-
-    for (
-      uint256 i;
-      i < totalRequests && resultIndex < userRequestCount;
-      i++
-    ) {
-      if (withdrawalRequests[i].user == user) {
-        if (!onlyPending || !withdrawalRequests[i].processed) {
-          requestIds[resultIndex] = i;
-          requests[resultIndex] = withdrawalRequests[i];
-          resultIndex++;
-        }
+        requests[i] = WithdrawalRequestRead({
+          requestId: requestIds[i],
+          user: request.user,
+          assets: request.assets,
+          timestamp: request.timestamp,
+          processed: request.processed,
+          hasFeeReduction: hasFeeReduction
+        });
       }
+      // Invalid IDs will return default (empty) WithdrawalRequestRead
     }
   }
 
