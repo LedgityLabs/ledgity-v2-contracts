@@ -4,9 +4,7 @@ pragma solidity 0.8.18;
 // Contracts
 import { CCIPTokenModule } from "src/protocol-v2/modules/CCIPTokenModule.sol";
 import { VaultLiquidityModule } from "src/protocol-v2/modules/VaultLiquidityModule.sol";
-//
 import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
-import { BaseUpgradeable } from "src/protocol-v1/abstracts/base/BaseUpgradeable.sol";
 //
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -14,6 +12,7 @@ import { ERC4626Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ER
 import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // Libraries
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import { LedgityDataProvider } from "src/protocol-v2/misc/LedgityDataProvider.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -33,6 +32,7 @@ contract LedgityYieldVault is
 {
   // ======== LIBS ======== //
   using SafeERC20 for IERC20;
+  using LedgityDataProvider for LedgityDataProvider.WithdrawalRequest[];
 
   // ======== ERRORS ======== //
 
@@ -76,34 +76,6 @@ contract LedgityYieldVault is
     IAaveLendingPoolV3 aaveLendingPool_;
   }
 
-  /**
-   * Structure representing a queued withdrawal request
-   * @notice See WithdrawalRequestRead for more details
-   */
-  struct WithdrawalRequest {
-    address user;
-    uint256 assets;
-    uint256 timestamp;
-    bool processed;
-  }
-
-  /**
-   * Structure representing a queued withdrawal request
-   * @param requestId Unique identifier for the withdrawal request
-   * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
-   * @param timestamp When the withdrawal request was created
-   * @param processed Whether the request has been fulfilled
-   * @param hasFeeReduction Whether the user has a fee reduction
-   */
-  struct WithdrawalRequestRead {
-    uint256 requestId;
-    address user;
-    uint256 assets;
-    uint256 timestamp;
-    bool processed;
-    bool hasFeeReduction;
-  }
   // ======== STORAGE ======== //
 
   // The underlying ERC20 token that can be deposited into the vault
@@ -134,7 +106,7 @@ contract LedgityYieldVault is
   uint256 public stakeBalanceForFeeReduction;
 
   // Array storing all withdrawal requests in chronological order
-  WithdrawalRequest[] public withdrawalRequests;
+  LedgityDataProvider.WithdrawalRequest[] public withdrawalRequests;
 
   // ======== EVENTS ======== //
 
@@ -300,90 +272,6 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Internal helper to filter withdrawal requests with various options
-   * @param user Filter by user address (address(0) = no filter)
-   * @param onlyPending If true, only return non-processed requests
-   * @param maxRange Maximum number of requests to return (0 = no limit)
-   * @return requests Array of matching withdrawal requests with read structure
-   */
-  function _getFilteredRequests(
-    address user,
-    bool onlyPending,
-    uint256 maxRange
-  ) internal view returns (WithdrawalRequestRead[] memory requests) {
-    uint256 totalRequests = withdrawalRequests.length;
-
-    // Determine search range - start from latest requests
-    uint256 searchLimit = maxRange > 0 && maxRange < totalRequests
-      ? maxRange
-      : totalRequests;
-
-    // Count matching requests (search backwards from latest)
-    uint256 matchCount;
-    uint256 searchCount;
-    for (
-      uint256 i = totalRequests - 1;
-      searchCount < searchLimit;
-      i--
-    ) {
-      searchCount++;
-
-      WithdrawalRequest storage request = withdrawalRequests[i];
-      if (
-        (user == address(0) || request.user == user) &&
-        (!onlyPending || !request.processed)
-      ) {
-        matchCount++;
-      }
-
-      if (i == 0) break;
-    }
-
-    // Create result array
-    requests = new WithdrawalRequestRead[](matchCount);
-    bool stakeTokenSet = address(stakeToken) != address(0);
-    uint256 resultIndex;
-
-    // Fill results (search backwards from latest, but fill array in reverse for oldest-first output)
-    searchCount = 0;
-    for (
-      uint256 i = totalRequests - 1;
-      searchCount < searchLimit && resultIndex < matchCount;
-      i--
-    ) {
-      searchCount++;
-
-      WithdrawalRequest storage request = withdrawalRequests[i];
-      if (
-        (user == address(0) || request.user == user) &&
-        (!onlyPending || !request.processed)
-      ) {
-        bool hasFeeReduction;
-        if (stakeTokenSet) {
-          hasFeeReduction =
-            stakeToken.balanceOf(request.user) >=
-            stakeBalanceForFeeReduction;
-        }
-
-        // Fill array from end to maintain oldest-first order in output
-        requests[
-          matchCount - 1 - resultIndex
-        ] = WithdrawalRequestRead({
-          requestId: i,
-          user: request.user,
-          assets: request.assets,
-          timestamp: request.timestamp,
-          processed: request.processed,
-          hasFeeReduction: hasFeeReduction
-        });
-        resultIndex++;
-      }
-
-      if (i == 0) break;
-    }
-  }
-
-  /**
    * @notice Get withdrawal requests with optional filtering
    * @param onlyPending If true, only return non-processed requests
    * @param maxRange Maximum number of requests to return (0 = return all)
@@ -392,8 +280,20 @@ contract LedgityYieldVault is
   function getWithdrawalRequests(
     bool onlyPending,
     uint256 maxRange
-  ) external view returns (WithdrawalRequestRead[] memory requests) {
-    return _getFilteredRequests(address(0), onlyPending, maxRange);
+  )
+    external
+    view
+    returns (
+      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+    )
+  {
+    return
+      withdrawalRequests.getWithdrawalRequests(
+        stakeToken,
+        stakeBalanceForFeeReduction,
+        onlyPending,
+        maxRange
+      );
   }
 
   /**
@@ -407,8 +307,21 @@ contract LedgityYieldVault is
     address user,
     bool onlyPending,
     uint256 maxRange
-  ) external view returns (WithdrawalRequestRead[] memory requests) {
-    return _getFilteredRequests(user, onlyPending, maxRange);
+  )
+    external
+    view
+    returns (
+      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+    )
+  {
+    return
+      withdrawalRequests.getUserWithdrawalRequests(
+        stakeToken,
+        stakeBalanceForFeeReduction,
+        user,
+        onlyPending,
+        maxRange
+      );
   }
 
   /**
@@ -418,32 +331,19 @@ contract LedgityYieldVault is
    */
   function getWithdrawalRequestsByIds(
     uint256[] calldata requestIds
-  ) external view returns (WithdrawalRequestRead[] memory requests) {
-    requests = new WithdrawalRequestRead[](requestIds.length);
-
-    bool stakeTokenSet = address(stakeToken) != address(0);
-
-    for (uint256 i; i < requestIds.length; i++) {
-      WithdrawalRequest storage request = withdrawalRequests[
-        requestIds[i]
-      ];
-
-      bool hasFeeReduction;
-      if (stakeTokenSet) {
-        hasFeeReduction =
-          stakeToken.balanceOf(request.user) >=
-          stakeBalanceForFeeReduction;
-      }
-
-      requests[i] = WithdrawalRequestRead({
-        requestId: requestIds[i],
-        user: request.user,
-        assets: request.assets,
-        timestamp: request.timestamp,
-        processed: request.processed,
-        hasFeeReduction: hasFeeReduction
-      });
-    }
+  )
+    external
+    view
+    returns (
+      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+    )
+  {
+    return
+      withdrawalRequests.getWithdrawalRequestsByIds(
+        stakeToken,
+        stakeBalanceForFeeReduction,
+        requestIds
+      );
   }
 
   /**
@@ -756,7 +656,7 @@ contract LedgityYieldVault is
 
     // Create withdrawal request
     withdrawalRequests.push(
-      WithdrawalRequest({
+      LedgityDataProvider.WithdrawalRequest({
         user: msg.sender,
         assets: netAssets,
         timestamp: block.timestamp,
@@ -842,9 +742,8 @@ contract LedgityYieldVault is
     // Calculate total assets needed for selected requests
     uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
-      WithdrawalRequest storage request = withdrawalRequests[
-        requestIds[i]
-      ];
+      LedgityDataProvider.WithdrawalRequest
+        storage request = withdrawalRequests[requestIds[i]];
 
       if (request.processed) revert RequestAlreadyProcessed();
 
@@ -870,9 +769,8 @@ contract LedgityYieldVault is
     // Process each request
     for (uint256 i; i < requestIds.length; i++) {
       uint256 requestId = requestIds[i];
-      WithdrawalRequest storage request = withdrawalRequests[
-        requestId
-      ];
+      LedgityDataProvider.WithdrawalRequest
+        storage request = withdrawalRequests[requestId];
 
       // Transfer assets to user
       underlying.transfer(request.user, request.assets);
