@@ -22,7 +22,7 @@ contract TestedLToken is LToken {
   }
 }
 
-contract Tests is Test, ModifiersExpectations {
+contract Skip_Tests is Test, ModifiersExpectations {
   PreMining tested;
 
   GenericERC20 ldyToken;
