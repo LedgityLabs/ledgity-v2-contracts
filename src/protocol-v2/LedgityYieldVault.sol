@@ -62,24 +62,23 @@ contract LedgityYieldVault is
    * @param aaveLendingPool_ Address of the Aave lending pool (zero address to disable buffer strategy)
    */
   struct VaultParams {
-    string name_;
-    string symbol_;
-    IERC20 underlying_;
-    IERC20 lToken_;
-    IERC20 stakeToken_;
-    uint256 stakeBalanceForFeeReduction_;
-    address globalOwner_;
-    address globalPause_;
-    address globalBlacklist_;
-    address liquidityManager_;
-    address feeRecipient_;
-    IAaveLendingPoolV3 aaveLendingPool_;
+    string name;
+    string symbol;
+    IERC20 asset;
+    IERC20 lToken;
+    IERC20 stakeToken;
+    uint256 stakeBalanceForFeeReduction;
+    address globalOwner;
+    address globalPause;
+    address globalBlacklist;
+    address liquidityManager;
+    address feeRecipient;
+    uint256 liquidityBufferRate;
+    IAaveLendingPoolV3 aaveLendingPool;
   }
 
   // ======== STORAGE ======== //
 
-  // The underlying ERC20 token that can be deposited into the vault
-  IERC20 public underlying;
   // The legacy L-Token that can be migrated to vault shares
   IERC20 public lToken;
 
@@ -126,12 +125,42 @@ contract LedgityYieldVault is
    * Emitted when a withdrawal request is processed and fulfilled
    * @param requestId Unique identifier for the processed request
    * @param user Address of the user receiving the withdrawal
-   * @param assets Amount of underlying assets transferred to user
+   * @param assets Amount of assets transferred to user
    */
   event WithdrawalProcessed(
     uint256 indexed requestId,
     address indexed user,
     uint256 assets
+  );
+
+  /**
+   * Emitted when the liquidity manager and fee recipient are updated
+   * @param liquidityManager The new liquidity manager address
+   * @param feeRecipient The new fee recipient address
+   */
+  event VaultManagersUpdated(
+    address indexed liquidityManager,
+    address indexed feeRecipient
+  );
+
+  /**
+   * Emitted when the liquidity buffer rate is updated
+   * @param bufferRate The new liquidity buffer rate
+   */
+  event BufferRateUpdated(uint256 bufferRate);
+
+  /**
+   * Emitted when the vault parameters are updated
+   * @param newLToken The new L-Token address
+   * @param newStakeToken The new stake token address
+   * @param newStakeBalanceForFeeReduction The new stake balance for fee reduction
+   * @param newAaveLendingPool The new Aave lending pool address
+   */
+  event VaultParamsUpdated(
+    IERC20 indexed newLToken,
+    IERC20 indexed newStakeToken,
+    uint256 newStakeBalanceForFeeReduction,
+    IAaveLendingPoolV3 indexed newAaveLendingPool
   );
 
   // ======== INITIALIZE ======== //
@@ -146,50 +175,49 @@ contract LedgityYieldVault is
     VaultLiquidityInitParams calldata initParams
   ) public initializer {
     if (
-      address(vaultParams.underlying_) == address(0) ||
-      vaultParams.liquidityManager_ == address(0) ||
-      vaultParams.feeRecipient_ == address(0)
+      address(vaultParams.asset) == address(0) ||
+      vaultParams.liquidityManager == address(0) ||
+      vaultParams.feeRecipient == address(0)
     ) revert ZeroAddress();
 
-    __ERC20_init(vaultParams.name_, vaultParams.symbol_);
-    __ERC4626_init(
-      IERC20Upgradeable(address(vaultParams.underlying_))
-    );
+    __ERC20_init(vaultParams.name, vaultParams.symbol);
+    __ERC4626_init(IERC20Upgradeable(address(vaultParams.asset)));
     __AdministeredUpgradable_init(
-      vaultParams.globalOwner_,
-      vaultParams.globalPause_,
-      vaultParams.globalBlacklist_
+      vaultParams.globalOwner,
+      vaultParams.globalPause,
+      vaultParams.globalBlacklist
     );
     // Initialize the liquidity module with APR and fee rates
     __VaultLiquidityModule_init(
       initParams,
-      address(vaultParams.underlying_)
+      address(vaultParams.asset)
     );
     /// @dev This simplifies the cross chain initialization process before being set back to the global owner
     __CCIPCompatible_init(msg.sender);
 
-    liquidityManager = vaultParams.liquidityManager_;
-    feeRecipient = payable(vaultParams.feeRecipient_);
+    liquidityManager = vaultParams.liquidityManager;
+    feeRecipient = payable(vaultParams.feeRecipient);
 
-    underlying = vaultParams.underlying_;
-    lToken = vaultParams.lToken_;
+    lToken = vaultParams.lToken;
 
-    stakeToken = vaultParams.stakeToken_;
+    stakeToken = vaultParams.stakeToken;
     stakeBalanceForFeeReduction = vaultParams
-      .stakeBalanceForFeeReduction_;
+      .stakeBalanceForFeeReduction;
 
-    if (address(vaultParams.aaveLendingPool_) != address(0)) {
-      aaveLendingPool = vaultParams.aaveLendingPool_;
+    liquidityBufferRate = vaultParams.liquidityBufferRate;
+
+    if (address(vaultParams.aaveLendingPool) != address(0)) {
+      aaveLendingPool = vaultParams.aaveLendingPool;
       aToken = IERC20(
         aaveLendingPool
-          .getReserveData(address(underlying))
+          .getReserveData(address(vaultParams.asset))
           .aTokenAddress
       );
 
       // Validate that aToken was properly retrieved
       if (address(aToken) != address(0)) {
         hasBufferStrategy = true;
-        underlying.approve(
+        IERC20(vaultParams.asset).safeApprove(
           address(aaveLendingPool),
           type(uint256).max
         );
@@ -234,10 +262,10 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Get the total underlying assets of the vault
+   * @notice Get the total assets of the vault
    * @dev This includes buffer assets (in Aave if applicable) and assets in the liquidity manager
    * @inheritdoc ERC4626Upgradeable
-   * @return Total underlying assets of the vault
+   * @return Total assets of the vault
    */
   function totalAssets()
     public
@@ -266,7 +294,7 @@ contract LedgityYieldVault is
     // Get buffer assets and Aave APR
     uint256 bufferAssets = aToken.balanceOf(address(this));
     uint256 aaveAPR = aaveLendingPool
-      .getReserveData(address(underlying))
+      .getReserveData(asset())
       .currentLiquidityRate;
 
     return (bufferAssets * aaveAPR) / totalVaultAssets;
@@ -374,31 +402,26 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Deposits the specified amount of underlying assets into the Aave Lending Pool
-   * @param amountAssets The amount of underlying assets to deposit
+   * @notice Deposits the specified amount of assets into the Aave Lending Pool
+   * @param amountAssets The amount of assets to deposit
    */
   function _depositBuffer(uint256 amountAssets) private {
     /// @dev We already approved the contract in the initializer
 
-    aaveLendingPool.deposit(
-      address(underlying),
-      amountAssets,
-      address(this),
-      0
-    );
+    aaveLendingPool.deposit(asset(), amountAssets, address(this), 0);
 
     lastBufferRewardBalance += amountAssets;
   }
 
   /**
-   * @notice Withdraws the specified amount of underlying assets from the Aave Lending Pool
-   * @param to The address to which the underlying assets will be transferred
-   * @param amountAssets The amount of underlying assets to withdraw
+   * @notice Withdraws the specified amount of assets from the Aave Lending Pool
+   * @param to The address to which the assets will be transferred
+   * @param amountAssets The amount of assets to withdraw
    *
    * @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
    */
   function _withdrawBuffer(address to, uint256 amountAssets) private {
-    aaveLendingPool.withdraw(address(underlying), amountAssets, to);
+    aaveLendingPool.withdraw(asset(), amountAssets, to);
 
     lastBufferRewardBalance -= amountAssets;
   }
@@ -441,7 +464,7 @@ contract LedgityYieldVault is
 
     uint256 currentBufferBalance = hasBufferStrategy
       ? aToken.balanceOf(address(this))
-      : underlying.balanceOf(address(this));
+      : IERC20(asset()).balanceOf(address(this));
 
     uint256 bufferAmount;
     uint256 vaultAmount;
@@ -461,7 +484,7 @@ contract LedgityYieldVault is
       vaultAmount = assets_;
     }
 
-    underlying.safeTransferFrom(caller_, address(this), assets_);
+    IERC20(asset()).safeTransferFrom(caller_, address(this), assets_);
 
     // Execute the allocation
     if (0 < bufferAmount) {
@@ -469,7 +492,7 @@ contract LedgityYieldVault is
       /// @dev If no buffer strategy, assets stay in contract as underlying
     }
     if (0 < vaultAmount) {
-      underlying.safeTransfer(liquidityManager, vaultAmount);
+      IERC20(asset()).safeTransfer(liquidityManager, vaultAmount);
     }
 
     emit Deposit(caller_, receiver_, assets_, netShares);
@@ -522,7 +545,7 @@ contract LedgityYieldVault is
     if (hasBufferStrategy) {
       _withdrawBuffer(receiver_, netAssets);
     } else {
-      underlying.safeTransfer(receiver_, netAssets);
+      IERC20(asset()).safeTransfer(receiver_, netAssets);
     }
 
     emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
@@ -703,14 +726,14 @@ contract LedgityYieldVault is
 
   /**
    * @notice Deposit assets into the liquidity buffer
-   * @param amount Amount of underlying assets to deposit
+   * @param amount Amount of assets to deposit
    * @dev Only callable by liquidity manager
    */
   function depositToBuffer(
     uint256 amount
   ) public onlyLiquidityManager {
     // Transfer amount from fund wallet to contract
-    underlying.safeTransferFrom(
+    IERC20(asset()).safeTransferFrom(
       liquidityManager,
       address(this),
       amount
@@ -738,7 +761,7 @@ contract LedgityYieldVault is
     uint256 addedLiquidity
   ) public onlyLiquidityManager {
     if (0 < addedLiquidity) {
-      underlying.safeTransferFrom(
+      IERC20(asset()).safeTransferFrom(
         liquidityManager,
         address(this),
         addedLiquidity
@@ -762,7 +785,7 @@ contract LedgityYieldVault is
     // Check available liquidity (buffer + added liquidity)
     uint256 bufferBalance = hasBufferStrategy
       ? aToken.balanceOf(address(this))
-      : underlying.balanceOf(address(this));
+      : IERC20(asset()).balanceOf(address(this));
 
     uint256 availableLiquidity = bufferBalance + addedLiquidity;
 
@@ -782,7 +805,7 @@ contract LedgityYieldVault is
         storage request = withdrawalRequests[requestId];
 
       // Transfer assets to user
-      underlying.safeTransfer(request.user, request.assets);
+      IERC20(asset()).safeTransfer(request.user, request.assets);
       // Mark as processed
       request.processed = true;
 
@@ -792,5 +815,66 @@ contract LedgityYieldVault is
         request.assets
       );
     }
+  }
+
+  /**
+   * @notice Updates the liquidity manager and fee recipient
+   * @param newLiquidityManager The new liquidity manager address
+   * @param newFeeRecipient The new fee recipient address
+   * @dev Only callable by global owner
+   */
+  function updateVaultManagers(
+    address newLiquidityManager,
+    address payable newFeeRecipient
+  ) public onlyOwner {
+    if (
+      newLiquidityManager == address(0) ||
+      newFeeRecipient == address(0)
+    ) revert ZeroAddress();
+
+    liquidityManager = newLiquidityManager;
+    feeRecipient = newFeeRecipient;
+
+    emit VaultManagersUpdated(newLiquidityManager, newFeeRecipient);
+  }
+
+  /**
+   * @notice Updates the liquidity buffer rate
+   * @param bufferRate The new liquidity buffer rate
+   * @dev Only callable by global owner
+   */
+  function updateBufferRate(uint256 bufferRate) public onlyOwner {
+    liquidityBufferRate = bufferRate;
+
+    emit BufferRateUpdated(bufferRate);
+  }
+
+  /**
+   * @notice Updates vault parameters
+   * @param newLToken The new L-Token address
+   * @param newStakeToken The new stake token address
+   * @param newStakeBalanceForFeeReduction The new stake balance for fee reduction
+   * @param newAaveLendingPool The new Aave lending pool address
+   * @dev Only callable by global owner
+   */
+  function updateVaultParams(
+    IERC20 newLToken,
+    IERC20 newStakeToken,
+    uint256 newStakeBalanceForFeeReduction,
+    IAaveLendingPoolV3 newAaveLendingPool
+  ) public onlyOwner {
+    lToken = newLToken;
+
+    stakeToken = newStakeToken;
+    stakeBalanceForFeeReduction = newStakeBalanceForFeeReduction;
+
+    _setupBufferStrategy(newAaveLendingPool);
+
+    emit VaultParamsUpdated(
+      newLToken,
+      newStakeToken,
+      newStakeBalanceForFeeReduction,
+      newAaveLendingPool
+    );
   }
 }
