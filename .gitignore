@@ -12,6 +12,7 @@ cache
 .bw
 temp
 markups
+foundry/out
 
 # files
 *.env
