@@ -11,6 +11,7 @@ import { BaseUpgradeable } from "src/protocol-v1/abstracts/base/BaseUpgradeable.
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { ERC4626Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC4626Upgradeable.sol";
+import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // Libraries
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 // Interfaces
@@ -234,16 +235,29 @@ contract LedgityYieldVault is
 
   // ======== OVERRIDES ======== //
 
+  /**
+   * @notice Returns the owner of the contract
+   * @return The owner's address
+   */
+  function owner()
+    public
+    view
+    override(OwnableUpgradeable, AdministeredUpgradable)
+    returns (address)
+  {
+    return globalOwner.owner();
+  }
+
   /* @notice Returns the number of decimals used for the vault token (18)
    * @return The number of decimals
    */
   function decimals()
     public
-    view
+    pure
     override(ERC20Upgradeable, ERC4626Upgradeable)
     returns (uint8)
   {
-    return ERC4626Upgradeable.decimals();
+    return 18;
   }
 
   /**
@@ -274,8 +288,7 @@ contract LedgityYieldVault is
     uint256 totalVaultAssets = totalAssets();
 
     // If no assets, return 0
-    if (totalVaultAssets == 0) return 0;
-    if (!hasBufferStrategy) return 0;
+    if (totalVaultAssets == 0 || !hasBufferStrategy) return 0;
 
     // Get buffer assets and Aave APR
     uint256 bufferAssets = aToken.balanceOf(address(this));
@@ -299,9 +312,6 @@ contract LedgityYieldVault is
     uint256 maxRange
   ) internal view returns (WithdrawalRequestRead[] memory requests) {
     uint256 totalRequests = withdrawalRequests.length;
-    if (totalRequests == 0) {
-      return requests;
-    }
 
     // Determine search range - start from latest requests
     uint256 searchLimit = maxRange > 0 && maxRange < totalRequests
@@ -331,6 +341,7 @@ contract LedgityYieldVault is
 
     // Create result array
     requests = new WithdrawalRequestRead[](matchCount);
+    bool stakeTokenSet = address(stakeToken) != address(0);
     uint256 resultIndex;
 
     // Fill results (search backwards from latest, but fill array in reverse for oldest-first output)
@@ -347,8 +358,8 @@ contract LedgityYieldVault is
         (user == address(0) || request.user == user) &&
         (!onlyPending || !request.processed)
       ) {
-        bool hasFeeReduction = false;
-        if (address(stakeToken) != address(0)) {
+        bool hasFeeReduction;
+        if (stakeTokenSet) {
           hasFeeReduction =
             stakeToken.balanceOf(request.user) >=
             stakeBalanceForFeeReduction;
@@ -408,32 +419,30 @@ contract LedgityYieldVault is
   function getWithdrawalRequestsByIds(
     uint256[] calldata requestIds
   ) external view returns (WithdrawalRequestRead[] memory requests) {
-    uint256 totalRequests = withdrawalRequests.length;
     requests = new WithdrawalRequestRead[](requestIds.length);
 
+    bool stakeTokenSet = address(stakeToken) != address(0);
+
     for (uint256 i; i < requestIds.length; i++) {
-      if (requestIds[i] < totalRequests) {
-        WithdrawalRequest storage request = withdrawalRequests[
-          requestIds[i]
-        ];
+      WithdrawalRequest storage request = withdrawalRequests[
+        requestIds[i]
+      ];
 
-        bool hasFeeReduction = false;
-        if (address(stakeToken) != address(0)) {
-          hasFeeReduction =
-            stakeToken.balanceOf(request.user) >=
-            stakeBalanceForFeeReduction;
-        }
-
-        requests[i] = WithdrawalRequestRead({
-          requestId: requestIds[i],
-          user: request.user,
-          assets: request.assets,
-          timestamp: request.timestamp,
-          processed: request.processed,
-          hasFeeReduction: hasFeeReduction
-        });
+      bool hasFeeReduction;
+      if (stakeTokenSet) {
+        hasFeeReduction =
+          stakeToken.balanceOf(request.user) >=
+          stakeBalanceForFeeReduction;
       }
-      // Invalid IDs will return default (empty) WithdrawalRequestRead
+
+      requests[i] = WithdrawalRequestRead({
+        requestId: requestIds[i],
+        user: request.user,
+        assets: request.assets,
+        timestamp: request.timestamp,
+        processed: request.processed,
+        hasFeeReduction: hasFeeReduction
+      });
     }
   }
 
@@ -456,14 +465,11 @@ contract LedgityYieldVault is
    * @return Amount of new rewards accrued in buffer
    */
   function _bufferRewards() private view returns (uint256) {
-    if (!hasBufferStrategy) return 0;
-
-    uint256 bufferAssets = aToken.balanceOf(address(this));
+    uint256 bufferAssets = hasBufferStrategy
+      ? aToken.balanceOf(address(this))
+      : 0;
     // Protect against underflow in case of Aave losses or slashing
-    return
-      bufferAssets > lastBufferRewardBalance
-        ? bufferAssets - lastBufferRewardBalance
-        : 0;
+    return bufferAssets - lastBufferRewardBalance;
   }
 
   /**
@@ -500,32 +506,32 @@ contract LedgityYieldVault is
 
   /**
    * @notice Internal function to handle depositing underlying
-   * @param caller The address that called the deposit function
-   * @param receiver The address to receive the minted shares
-   * @param assets The amount of underlying to deposit
+   * @param caller_ The address that called the deposit function
+   * @param receiver_ The address to receive the minted shares
+   * @param assets_ The amount of underlying to deposit
    */
   function _deposit(
-    address caller,
-    address receiver,
-    uint256 assets,
+    address caller_,
+    address receiver_,
+    uint256 assets_,
     uint256 /* shares */
   )
     internal
     override(ERC4626Upgradeable)
     whenNotPaused
-    notBlacklisted(caller)
+    notBlacklisted(caller_)
   {
-    if (assets == 0) revert ZeroAmount();
+    if (assets_ == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
 
     // Apply capital deployment impact to amount of shares
-    uint256 maturityImpact = _computeMaturityImpact(assets);
-    uint256 netDeposit = assets - maturityImpact;
+    uint256 maturityImpact = _computeMaturityImpact(assets_);
+    uint256 netDeposit = assets_ - maturityImpact;
     uint256 netShares = convertToShares(netDeposit);
 
-    _mint(receiver, netShares);
+    _mint(receiver_, netShares);
     _addAssets(netDeposit);
 
     // Calculate expected buffer balance after this deposit
@@ -544,15 +550,17 @@ contract LedgityYieldVault is
         currentBufferBalance;
 
       // Use smaller amount between deposit amount and buffer deficit
-      bufferAmount = assets < bufferDeficit ? assets : bufferDeficit;
-      vaultAmount = assets - bufferAmount;
+      bufferAmount = assets_ < bufferDeficit
+        ? assets_
+        : bufferDeficit;
+      vaultAmount = assets_ - bufferAmount;
     } else {
       // Buffer is at or above target - send all to liquidity manager
       bufferAmount = 0;
-      vaultAmount = assets;
+      vaultAmount = assets_;
     }
 
-    underlying.transferFrom(caller, address(this), assets);
+    underlying.transferFrom(caller_, address(this), assets_);
 
     // Execute the allocation
     if (0 < bufferAmount) {
@@ -563,29 +571,29 @@ contract LedgityYieldVault is
       underlying.transfer(liquidityManager, vaultAmount);
     }
 
-    emit Deposit(caller, receiver, assets, netShares);
+    emit Deposit(caller_, receiver_, assets_, netShares);
   }
 
   /**
    * @notice Internal function to handle withdraw tokens
-   * @param caller The address that called the withdraw function
-   * @param receiver The address to receive the underlying
-   * @param owner The owner of the shares tokens
-   * @param shares The amount of shares tokens to withdraw
+   * @param caller_ The address that called the withdraw function
+   * @param receiver_ The address to receive the underlying
+   * @param owner_ The owner of the shares tokens
+   * @param shares_ The amount of shares tokens to withdraw
    */
   function _withdraw(
-    address caller,
-    address receiver,
-    address owner,
-    uint256 /* assets */,
-    uint256 shares
+    address caller_,
+    address receiver_,
+    address owner_,
+    uint256 /* assets_ */,
+    uint256 shares_
   )
     internal
     override(ERC4626Upgradeable)
     whenNotPaused
-    notBlacklisted(caller)
+    notBlacklisted(caller_)
   {
-    if (shares == 0) revert ZeroAmount();
+    if (shares_ == 0) revert ZeroAmount();
 
     // Register buffer rewards & take fees before processing
     harvestFees();
@@ -594,25 +602,25 @@ contract LedgityYieldVault is
     uint256 withdrawalFee;
     if (address(stakeToken) != address(0))
       if (
-        stakeToken.balanceOf(caller) < stakeBalanceForFeeReduction
+        stakeToken.balanceOf(caller_) < stakeBalanceForFeeReduction
       ) {
-        withdrawalFee = _computeWithdrawalFee(shares, caller);
-        transferFrom(caller, feeRecipient, withdrawalFee);
+        withdrawalFee = _computeWithdrawalFee(shares_, caller_);
+        transferFrom(caller_, feeRecipient, withdrawalFee);
       }
 
-    uint256 netShares = shares - withdrawalFee;
+    uint256 netShares = shares_ - withdrawalFee;
     uint256 netAssets = convertToAssets(netShares);
 
-    _burn(caller, netShares);
+    _burn(caller_, netShares);
     _withdrawAssets(netAssets);
 
     if (hasBufferStrategy) {
-      _withdrawBuffer(receiver, netAssets);
+      _withdrawBuffer(receiver_, netAssets);
     } else {
-      underlying.transfer(receiver, netAssets);
+      underlying.transfer(receiver_, netAssets);
     }
 
-    emit Withdraw(caller, receiver, owner, netAssets, shares);
+    emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
   }
 
   // ======== WRITE FUNCTIONS ======== //
@@ -681,22 +689,22 @@ contract LedgityYieldVault is
 
   /**
    * @notice Withdraw assets (underlying) by burning shares (shares tokens)
-   * @param assets The amount of underlying to withdraw
-   * @param receiver The address to receive the withdrawn underlying
-   * @param owner The address of the owner of the shares
+   * @param assets_ The amount of underlying to withdraw
+   * @param receiver_ The address to receive the withdrawn underlying
+   * @param owner_ The address of the owner of the shares
    * @return sharesPreview The number of shares burned
    */
   function withdraw(
-    uint256 assets,
-    address receiver,
-    address owner
+    uint256 assets_,
+    address receiver_,
+    address owner_
   ) public override(ERC4626Upgradeable) returns (uint256) {
     _withdraw(
       msg.sender,
-      receiver,
-      owner,
+      receiver_,
+      owner_,
       0,
-      convertToShares(assets)
+      convertToShares(assets_)
     );
     /// @dev Return 0 since cannot preview
     return 0;
@@ -704,17 +712,17 @@ contract LedgityYieldVault is
 
   /**
    * @notice Redeem shares (shares tokens) for assets (underlying)
-   * @param shares The number of shares to redeem
-   * @param receiver The address to receive the underlying
-   * @param owner The address of the owner of the shares
+   * @param shares_ The number of shares to redeem
+   * @param receiver_ The address to receive the underlying
+   * @param owner_ The address of the owner of the shares
    * @return assetsPreview The amount of underlying received
    */
   function redeem(
-    uint256 shares,
-    address receiver,
-    address owner
+    uint256 shares_,
+    address receiver_,
+    address owner_
   ) public override(ERC4626Upgradeable) returns (uint256) {
-    _withdraw(msg.sender, receiver, owner, 0, shares);
+    _withdraw(msg.sender, receiver_, owner_, 0, shares_);
     /// @dev Return 0 since cannot preview
     return 0;
   }
@@ -877,65 +885,5 @@ contract LedgityYieldVault is
         request.assets
       );
     }
-  }
-
-  /**
-   * @notice Set new total assets to handle capital losses or gains
-   * @param newTotalAssets The new total assets amount
-   * @dev This function should be called when there are capital losses/gains that need to be recorded
-   */
-  function setTotalAssets(uint256 newTotalAssets) external onlyOwner {
-    VaultLiquidityModule._setTotalAssets(newTotalAssets);
-  }
-
-  /**
-   * @notice Updates the APR used for rate calculations
-   * @param newAPR The new APR in RATE_BASE
-   */
-  function updateAPR(uint256 newAPR) external onlyOwner {
-    VaultLiquidityModule._updateAPR(newAPR);
-  }
-
-  /**
-   * @notice Update fee rates for the vault
-   * @param managementRate_ The new management fee rate in RATE_BASE
-   * @param performanceRate_ The new performance fee rate in RATE_BASE
-   * @param withdrawalRate_ The new withdrawal fee rate in RATE_BASE
-   */
-  function updateFeeRates(
-    uint256 managementRate_,
-    uint256 performanceRate_,
-    uint256 withdrawalRate_
-  ) external onlyOwner {
-    VaultLiquidityModule._updateFeeRates(
-      managementRate_,
-      performanceRate_,
-      withdrawalRate_
-    );
-  }
-
-  /**
-   * @notice Set a custom fee structure for a specific account
-   * @param account The account to set the custom fee structure for
-   * @param withdrawalFee The custom withdrawal fee in RATE_BASE
-   */
-  function setCustomWithdrawalFee(
-    address account,
-    uint256 withdrawalFee
-  ) external onlyOwner {
-    VaultLiquidityModule._setCustomWithdrawalFee(
-      account,
-      withdrawalFee
-    );
-  }
-
-  /**
-   * @notice Update the deployment delay period
-   * @param newDeploymentDelay The new deployment delay in days
-   */
-  function updateDeploymentDelay(
-    uint256 newDeploymentDelay
-  ) external onlyOwner {
-    VaultLiquidityModule._updateDeploymentDelay(newDeploymentDelay);
   }
 }

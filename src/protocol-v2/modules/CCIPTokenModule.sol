@@ -3,7 +3,7 @@ pragma solidity 0.8.18;
 
 // Contracts
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import { GlobalOwnableUpgradeable } from "../abstracts/GlobalOwnableUpgradeable.sol";
+import { GlobalOwnableUpgradeable } from "src/protocol-v1/abstracts/GlobalOwnableUpgradeable.sol";
 // Interfaces
 import { IGetCCIPAdmin } from "@chainlink/contracts-ccip/contracts/interfaces/IGetCCIPAdmin.sol";
 import { IERC677Receiver } from "@chainlink/contracts/src/v0.8/shared/interfaces/IERC677Receiver.sol";
@@ -25,12 +25,7 @@ error InsufficientAllowance();
  *
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
-contract CCIPTokenModule is
-  IERC677,
-  IGetCCIPAdmin,
-  ERC20Upgradeable,
-  GlobalOwnableUpgradeable
-{
+contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
   // ======== STORAGE ======== //
   // Role management state
   mapping(address => bool) private _minters;

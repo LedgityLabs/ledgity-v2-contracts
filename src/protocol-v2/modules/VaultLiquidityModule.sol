@@ -4,6 +4,7 @@ pragma solidity ^0.8.18;
 // Contracts
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { ERC4626Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC4626Upgradeable.sol";
+import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // Library
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 // Interface
@@ -15,14 +16,17 @@ import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
  *
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
-abstract contract VaultLiquidityModule is ERC4626Upgradeable {
+abstract contract VaultLiquidityModule is
+  ERC4626Upgradeable,
+  OwnableUpgradeable
+{
   /** ======== LIBRARIES ======== */
 
   using Math for uint256;
 
   /** ======== STRUCTS ======== */
 
-  struct VaultInitParams {
+  struct VaultLiquidityInitParams {
     uint256 highWaterMark;
     uint256 deploymentDelay;
     uint256 yieldAPR;
@@ -77,7 +81,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @param params The initialization parameters
    */
   function __VaultLiquidityModule_init(
-    VaultInitParams memory params,
+    VaultLiquidityInitParams memory params,
     address asset
   ) internal {
     __ERC4626_init(ERC20Upgradeable(asset));
@@ -102,16 +106,6 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
   }
 
   /** ======== EVENTS ======== */
-
-  event HighWaterMarkUpdated(
-    uint256 oldHighWaterMark,
-    uint256 newHighWaterMark
-  );
-
-  event RatesUpdated(
-    uint256 newManagementRate,
-    uint256 newPerformanceRate
-  );
 
   event RateCheckpointUpdated(uint256 newRate, uint256 newAPR);
 
@@ -387,9 +381,9 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
   /**
    * @dev Calculate and take management and performance fees
    * Fees are taken as vault shares sent to the fee recipients
-   * @param manager The management fee recipient
+   * @param feeRecipient The management fee recipient
    */
-  function _takeFees(address manager) internal {
+  function _takeFees(address feeRecipient) internal {
     uint256 timeElapsed = block.timestamp - lastFeeTime;
     if (timeElapsed == 0) return;
 
@@ -399,7 +393,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
     ) = _computeFeeData();
 
     if (0 < totalFeeShares) {
-      _mint(manager, totalFeeShares);
+      _mint(feeRecipient, totalFeeShares);
       lastFeeTime = block.timestamp;
     }
 
@@ -416,7 +410,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @param newTotalAssets The new total assets amount
    * @dev This function should be called when there are capital losses/gains that need to be recorded
    */
-  function _setTotalAssets(uint256 newTotalAssets) internal {
+  function setTotalAssets(uint256 newTotalAssets) external onlyOwner {
     uint256 oldTotalAssets = totalAssets();
     _totalAssets = newTotalAssets;
 
@@ -430,7 +424,7 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @notice Updates the APR used for rate calculations
    * @param newAPR The new APR in RATE_BASE
    */
-  function _updateAPR(uint256 newAPR) internal {
+  function updateAPR(uint256 newAPR) external onlyOwner {
     // Snapshot accumulated interest with current APR
     _registerFundRevenue();
 
@@ -447,11 +441,11 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @param performanceRate_ The new performance fee rate in RATE_BASE
    * @param withdrawalRate_ The new withdrawal fee rate in RATE_BASE
    */
-  function _updateFeeRates(
+  function updateFeeRates(
     uint256 managementRate_,
     uint256 performanceRate_,
     uint256 withdrawalRate_
-  ) internal {
+  ) external onlyOwner {
     managementFeeRate = managementRate_;
     performanceFeeRate = performanceRate_;
     withdrawalFeeRate = withdrawalRate_;
@@ -468,10 +462,10 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @param account The account to set the custom fee structure for
    * @param withdrawalFee The custom withdrawal fee in RATE_BASE
    */
-  function _setCustomWithdrawalFee(
+  function setCustomWithdrawalFee(
     address account,
     uint256 withdrawalFee
-  ) internal {
+  ) external onlyOwner {
     accountWithdrawalFee[account] = withdrawalFee;
 
     emit CustomWithdrawalFeeSet(account, withdrawalFee);
@@ -481,9 +475,9 @@ abstract contract VaultLiquidityModule is ERC4626Upgradeable {
    * @notice Update the deployment delay period
    * @param newDeploymentDelay The new deployment delay in days
    */
-  function _updateDeploymentDelay(
+  function updateDeploymentDelay(
     uint256 newDeploymentDelay
-  ) internal {
+  ) external onlyOwner {
     uint256 oldDelay = deploymentDelay;
     deploymentDelay = newDeploymentDelay;
 
