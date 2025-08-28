@@ -58,7 +58,7 @@ contract Tests is Test {
   function testFuzz_incrementReference_2(
     uint256 packIndex,
     uint32 cursorIndex
-  ) public {
+  ) public pure {
     console.log(
       "Should increment cursor by 1 if given reference's cursor <3"
     );
@@ -76,7 +76,9 @@ contract Tests is Test {
     assertEq(newRef.cursorIndex, ref.cursorIndex + 1);
   }
 
-  function testFuzz_incrementReference_3(uint256 packIndex) public {
+  function testFuzz_incrementReference_3(
+    uint256 packIndex
+  ) public pure {
     console.log(
       "Should increment pack by 1 and reset cursor if given reference's cursor == 3"
     );

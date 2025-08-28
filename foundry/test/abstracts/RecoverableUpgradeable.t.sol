@@ -56,7 +56,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // =============================
   // === initialize() function ===
-  function test_initialize_1() public {
+  function test_initialize_1() public view {
     console.log("Should properly set global owner");
     assertEq(tested.globalOwner(), address(globalOwner));
   }

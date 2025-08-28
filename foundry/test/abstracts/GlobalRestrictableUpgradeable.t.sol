@@ -75,14 +75,14 @@ contract Tests is Test, ModifiersExpectations {
 
   // ==================================
   // === globalBlacklist() function ===
-  function test_globalBlacklist_1() public {
+  function test_globalBlacklist_1() public view {
     console.log("Should return address given during initialization");
     assertEq(tested.globalBlacklist(), address(globalBlacklist));
   }
 
   // ===============================
   // === notBlacklisted modifier ===
-  function test_notBlacklisted_1() public {
+  function test_notBlacklisted_1() public view {
     console.log("Should allow calls from non-blacklisted account");
     assertEq(tested.restrictedFunction(), true);
   }

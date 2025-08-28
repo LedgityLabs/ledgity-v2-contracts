@@ -90,27 +90,27 @@ contract Tests is Test, ModifiersExpectations {
 
   // =============================
   // === initialize() function ===
-  function test_initialize_1() public {
+  function test_initialize_1() public view {
     console.log("Should properly set global owner");
     assertEq(tested.globalOwner(), address(globalOwner));
   }
 
-  function test_initialize_2() public {
+  function test_initialize_2() public view {
     console.log("Should properly set global pause");
     assertEq(tested.globalPause(), address(globalPause));
   }
 
-  function test_initialize_3() public {
+  function test_initialize_3() public view {
     console.log("Should properly set global blacklist");
     assertEq(tested.globalBlacklist(), address(globalBlacklist));
   }
 
-  function test_initialize_4() public {
+  function test_initialize_4() public view {
     console.log("Should properly set ERC20 symbol");
     assertEq(tested.symbol(), symbolAtInitTime);
   }
 
-  function test_initialize_5() public {
+  function test_initialize_5() public view {
     console.log("Should properly set ERC20 name");
     assertEq(tested.name(), nameAtInitTime);
   }

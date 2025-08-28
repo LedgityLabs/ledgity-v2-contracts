@@ -223,7 +223,7 @@ contract Tests is Test, ModifiersExpectations {
     );
   }
 
-  function test_initialize_2() public {
+  function test_initialize_2() public view {
     console.log(
       "Should properly set global owner, pause and blacklist"
     );
@@ -234,7 +234,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // ==============================
   // === invested() function ===
-  function test_invested_1() public {
+  function test_invested_1() public view {
     console.log("Should return address given during initialization");
     assertEq(address(tested.invested()), address(investedToken));
   }
@@ -829,7 +829,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // =========================
   // === getAPR() function ===
-  function test_getAPR_1() public {
+  function test_getAPR_1() public view {
     console.log(
       "Should not revert and return 0 before APR is manually set (first APR is created to 0% during init)"
     );
@@ -1331,7 +1331,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // ====================================
   // === _deepInvestmentOf() function ===
-  function testFuzz__deepInvestmentOf_1(address account) public {
+  function testFuzz__deepInvestmentOf_1(address account) public view {
     console.log("Should return 0 when no investment");
 
     assertEq(tested.public_deepInvestmentOf(account), 0);

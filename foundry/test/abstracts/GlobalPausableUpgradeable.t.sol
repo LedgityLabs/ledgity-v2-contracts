@@ -69,14 +69,14 @@ contract Tests is Test, ModifiersExpectations {
 
   // ==================================
   // === globalPause() function ===
-  function test_globalPause_1() public {
+  function test_globalPause_1() public view {
     console.log("Should return address given during initialization");
     assertEq(tested.globalPause(), address(globalPause));
   }
 
   // ===============================
   // === whenNotPaused modifier ===
-  function test_whenNotPaused_1() public {
+  function test_whenNotPaused_1() public view {
     console.log("Should allow calls when globalPause is not paused");
     assertEq(tested.restrictedFunction(), true);
   }

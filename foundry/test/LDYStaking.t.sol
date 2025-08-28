@@ -106,7 +106,7 @@ contract LDYStakingTest is Test, ModifiersExpectations {
     );
   }
 
-  function test_initialize_2() public {
+  function test_initialize_2() public view {
     console.log(
       "Should properly set global owner, pause, blacklist and ldy token"
     );

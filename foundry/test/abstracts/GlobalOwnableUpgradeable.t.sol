@@ -55,7 +55,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // ==============================
   // === globalOwner() function ===
-  function test_globalOwner_1() public {
+  function test_globalOwner_1() public view {
     console.log("Should return address given during initialization");
     assertEq(tested.globalOwner(), address(globalOwner));
   }
@@ -75,7 +75,7 @@ contract Tests is Test, ModifiersExpectations {
 
   // ==========================
   // === onlyOwner modifier ===
-  function test_onlyOwner_1() public {
+  function test_onlyOwner_1() public view {
     console.log("Should allow calls from owner");
     assertEq(tested.restrictedFunction(), true);
   }
