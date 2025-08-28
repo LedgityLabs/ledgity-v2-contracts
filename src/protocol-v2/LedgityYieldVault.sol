@@ -151,21 +151,22 @@ contract LedgityYieldVault is
       vaultParams.feeRecipient_ == address(0)
     ) revert ZeroAddress();
 
+    __ERC20_init(vaultParams.name_, vaultParams.symbol_);
     __ERC4626_init(
       IERC20Upgradeable(address(vaultParams.underlying_))
     );
-    __ERC20_init(vaultParams.name_, vaultParams.symbol_);
     __AdministeredUpgradable_init(
       vaultParams.globalOwner_,
       vaultParams.globalPause_,
       vaultParams.globalBlacklist_
     );
-
     // Initialize the liquidity module with APR and fee rates
     __VaultLiquidityModule_init(
       initParams,
       address(vaultParams.underlying_)
     );
+    /// @dev This simplifies the cross chain initialization process before being set back to the global owner
+    __CCIPCompatible_init(msg.sender);
 
     liquidityManager = vaultParams.liquidityManager_;
     feeRecipient = payable(vaultParams.feeRecipient_);
@@ -460,7 +461,7 @@ contract LedgityYieldVault is
       vaultAmount = assets_;
     }
 
-    underlying.transferFrom(caller_, address(this), assets_);
+    underlying.safeTransferFrom(caller_, address(this), assets_);
 
     // Execute the allocation
     if (0 < bufferAmount) {
@@ -468,7 +469,7 @@ contract LedgityYieldVault is
       /// @dev If no buffer strategy, assets stay in contract as underlying
     }
     if (0 < vaultAmount) {
-      underlying.transfer(liquidityManager, vaultAmount);
+      underlying.safeTransfer(liquidityManager, vaultAmount);
     }
 
     emit Deposit(caller_, receiver_, assets_, netShares);
@@ -505,7 +506,11 @@ contract LedgityYieldVault is
         stakeToken.balanceOf(caller_) < stakeBalanceForFeeReduction
       ) {
         withdrawalFee = _computeWithdrawalFee(shares_, caller_);
-        transferFrom(caller_, feeRecipient, withdrawalFee);
+        IERC20(address(this)).safeTransferFrom(
+          caller_,
+          feeRecipient,
+          withdrawalFee
+        );
       }
 
     uint256 netShares = shares_ - withdrawalFee;
@@ -517,7 +522,7 @@ contract LedgityYieldVault is
     if (hasBufferStrategy) {
       _withdrawBuffer(receiver_, netAssets);
     } else {
-      underlying.transfer(receiver_, netAssets);
+      underlying.safeTransfer(receiver_, netAssets);
     }
 
     emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
@@ -646,7 +651,11 @@ contract LedgityYieldVault is
         stakeToken.balanceOf(msg.sender) < stakeBalanceForFeeReduction
       ) {
         withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
-        transferFrom(msg.sender, feeRecipient, withdrawalFee);
+        IERC20(address(this)).safeTransferFrom(
+          msg.sender,
+          feeRecipient,
+          withdrawalFee
+        );
       }
     // Transfer gas fee to fee recipient
     feeRecipient.transfer(address(this).balance);
@@ -773,7 +782,7 @@ contract LedgityYieldVault is
         storage request = withdrawalRequests[requestId];
 
       // Transfer assets to user
-      underlying.transfer(request.user, request.assets);
+      underlying.safeTransfer(request.user, request.assets);
       // Mark as processed
       request.processed = true;
 
