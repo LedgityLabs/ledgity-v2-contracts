@@ -8,6 +8,7 @@
   "scripts": {
     "compile": "hardhat compile && hardhat export --export-all data/deployments.json && ts-node scripts/extract-abis.mts && wagmi generate",
     "test": "forge test --use 0.8.18 --no-match-contract Skip_",
+    "test:only": "forge test --use 0.8.18 --match-contract Only_",
     "size": "hardhat size-contracts",
     "slither:report": "slither . --compile-force-framework hardhat --hardhat-artifacts-directory ./artifacts/ --checklist > ./audit/slither-report.md",
     "deploy-reset:fork": "hardhat deploy --reset --network hardhat",
