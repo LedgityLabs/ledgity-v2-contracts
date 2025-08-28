@@ -72,7 +72,7 @@ contract LedgityYieldVault is
     address globalPause;
     address globalBlacklist;
     address liquidityManager;
-    address feeRecipient;
+    address payable feeRecipient;
     uint256 liquidityBufferRate;
     IAaveLendingPoolV3 aaveLendingPool;
   }
@@ -167,62 +167,45 @@ contract LedgityYieldVault is
 
   /**
    * @notice Initializes the Vault contract
-   * @param vaultParams Struct containing vault-specific initialization parameters
-   * @param initParams Struct containing initialization parameters for fees, APR, and other settings
+   * @param params Struct containing vault-specific initialization parameters
+   * @param vaultLiquidityInitParams Struct containing initialization parameters for fees, APR, and other settings
    */
   function initialize(
-    VaultParams calldata vaultParams,
-    VaultLiquidityInitParams calldata initParams
+    VaultParams calldata params,
+    VaultLiquidityInitParams calldata vaultLiquidityInitParams
   ) public initializer {
     if (
-      address(vaultParams.asset) == address(0) ||
-      vaultParams.liquidityManager == address(0) ||
-      vaultParams.feeRecipient == address(0)
+      address(params.asset) == address(0) ||
+      params.liquidityManager == address(0) ||
+      params.feeRecipient == address(0)
     ) revert ZeroAddress();
 
-    __ERC20_init(vaultParams.name, vaultParams.symbol);
-    __ERC4626_init(IERC20Upgradeable(address(vaultParams.asset)));
+    __ERC20_init(params.name, params.symbol);
+    __ERC4626_init(IERC20Upgradeable(address(params.asset)));
     __AdministeredUpgradable_init(
-      vaultParams.globalOwner,
-      vaultParams.globalPause,
-      vaultParams.globalBlacklist
+      params.globalOwner,
+      params.globalPause,
+      params.globalBlacklist
     );
     // Initialize the liquidity module with APR and fee rates
     __VaultLiquidityModule_init(
-      initParams,
-      address(vaultParams.asset)
+      vaultLiquidityInitParams,
+      address(params.asset)
     );
     /// @dev This simplifies the cross chain initialization process before being set back to the global owner
     __CCIPCompatible_init(msg.sender);
 
-    liquidityManager = vaultParams.liquidityManager;
-    feeRecipient = payable(vaultParams.feeRecipient);
+    liquidityManager = params.liquidityManager;
+    feeRecipient = params.feeRecipient;
 
-    lToken = vaultParams.lToken;
+    lToken = params.lToken;
 
-    stakeToken = vaultParams.stakeToken;
-    stakeBalanceForFeeReduction = vaultParams
-      .stakeBalanceForFeeReduction;
+    stakeToken = params.stakeToken;
+    stakeBalanceForFeeReduction = params.stakeBalanceForFeeReduction;
 
-    liquidityBufferRate = vaultParams.liquidityBufferRate;
+    liquidityBufferRate = params.liquidityBufferRate;
 
-    if (address(vaultParams.aaveLendingPool) != address(0)) {
-      aaveLendingPool = vaultParams.aaveLendingPool;
-      aToken = IERC20(
-        aaveLendingPool
-          .getReserveData(address(vaultParams.asset))
-          .aTokenAddress
-      );
-
-      // Validate that aToken was properly retrieved
-      if (address(aToken) != address(0)) {
-        hasBufferStrategy = true;
-        IERC20(vaultParams.asset).safeApprove(
-          address(aaveLendingPool),
-          type(uint256).max
-        );
-      }
-    }
+    _setupBufferStrategy(params.aaveLendingPool);
   }
 
   // ======== MODIFIERS ======== //
@@ -279,6 +262,17 @@ contract LedgityYieldVault is
   // ======== VIEW ======== //
 
   /**
+   * @notice Get the buffer strategy assets
+   * @return The buffer strategy assets
+   */
+  function getBufferAssets() public view returns (uint256) {
+    return
+      hasBufferStrategy
+        ? _getBufferStrategyAssets()
+        : IERC20(asset()).balanceOf(address(this));
+  }
+
+  /**
    * @notice Returns the additional APR contribution from the Aave buffer
    * @return uint256 The buffer APR contribution in RAY (1e27 = 100% APR)
    *
@@ -292,7 +286,7 @@ contract LedgityYieldVault is
     if (totalVaultAssets == 0 || !hasBufferStrategy) return 0;
 
     // Get buffer assets and Aave APR
-    uint256 bufferAssets = aToken.balanceOf(address(this));
+    uint256 bufferAssets = getBufferAssets();
     uint256 aaveAPR = aaveLendingPool
       .getReserveData(asset())
       .currentLiquidityRate;
@@ -387,18 +381,55 @@ contract LedgityYieldVault is
     return withdrawalRequests.length;
   }
 
+  // ======== INTERNAL HELPERS ======== //
+
+  /**
+   * @notice Setup the buffer strategy
+   * @param aaveLendingPool_ The Aave lending pool address
+   */
+  function _setupBufferStrategy(
+    IAaveLendingPoolV3 aaveLendingPool_
+  ) private {
+    if (address(aaveLendingPool_) != address(0)) {
+      aaveLendingPool = aaveLendingPool_;
+      aToken = IERC20(
+        aaveLendingPool_
+          .getReserveData(address(asset()))
+          .aTokenAddress
+      );
+
+      // Validate that aToken was properly retrieved
+      if (address(aToken) != address(0)) {
+        hasBufferStrategy = true;
+        IERC20(asset()).safeApprove(
+          address(aaveLendingPool_),
+          type(uint256).max
+        );
+      }
+    } else {
+      hasBufferStrategy = false;
+      aaveLendingPool = IAaveLendingPoolV3(address(0));
+      aToken = IERC20(address(0));
+    }
+  }
+
   // ======== BUFFER INTERNAL HELPERS ======== //
+
+  /**
+   * @notice Get the buffer strategy assets
+   * @return The buffer strategy assets
+   */
+  function _getBufferStrategyAssets() private view returns (uint256) {
+    return aToken.balanceOf(address(this));
+  }
 
   /**
    * @notice Calculate new buffer rewards since last update
    * @return Amount of new rewards accrued in buffer
    */
   function _bufferRewards() private view returns (uint256) {
-    uint256 bufferAssets = hasBufferStrategy
-      ? aToken.balanceOf(address(this))
-      : 0;
-    // Protect against underflow in case of Aave losses or slashing
-    return bufferAssets - lastBufferRewardBalance;
+    if (!hasBufferStrategy) return 0;
+    return _getBufferStrategyAssets() - lastBufferRewardBalance;
   }
 
   /**
@@ -462,9 +493,7 @@ contract LedgityYieldVault is
     uint256 expectedBufferBalance = (totalAssets() *
       liquidityBufferRate) / RATE_BASE;
 
-    uint256 currentBufferBalance = hasBufferStrategy
-      ? aToken.balanceOf(address(this))
-      : IERC20(asset()).balanceOf(address(this));
+    uint256 currentBufferBalance = getBufferAssets();
 
     uint256 bufferAmount;
     uint256 vaultAmount;
@@ -783,9 +812,7 @@ contract LedgityYieldVault is
     }
 
     // Check available liquidity (buffer + added liquidity)
-    uint256 bufferBalance = hasBufferStrategy
-      ? aToken.balanceOf(address(this))
-      : IERC20(asset()).balanceOf(address(this));
+    uint256 bufferBalance = getBufferAssets();
 
     uint256 availableLiquidity = bufferBalance + addedLiquidity;
 
