@@ -1,24 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../lib/forge-std/src/Test.sol";
-import { ModifiersExpectations } from "./_helpers/ModifiersExpectations.sol";
+import "../../lib/forge-std/src/Test.sol";
+import { ModifiersExpectations } from "./helpers/ModifiersExpectations.sol";
 
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
-import { LToken } from "../../src/protocol-v1/LToken.sol";
+import { LToken } from "../../../src/protocol-v1/LToken.sol";
 
-import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
-import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
-import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
+import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
 
-import { SUD } from "../../src/protocol-v1/libs/SUD.sol";
-import { APRHistory as APRH } from "../../src/protocol-v1/libs/APRHistory.sol";
-import { ITransfersListener } from "../../src/protocol-v1/interfaces/ITransfersListener.sol";
+import { SUD } from "../../../src/protocol-v1/libs/SUD.sol";
+import { APRHistory as APRH } from "../../../src/protocol-v1/libs/APRHistory.sol";
+import { ITransfersListener } from "../../../src/protocol-v1/interfaces/ITransfersListener.sol";
 
 contract Vault is ITransfersListener {
   /// @dev Holds the LToken contract address allowed to call onLTokenTransfer()

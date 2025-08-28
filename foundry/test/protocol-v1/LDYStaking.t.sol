@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.18;
 
-import { Test, console } from "../lib/forge-std/src/Test.sol";
-import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
-import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
-import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
-import { ModifiersExpectations } from "./_helpers/ModifiersExpectations.sol";
+import { Test, console } from "../../lib/forge-std/src/Test.sol";
+import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
+import { ModifiersExpectations } from "./helpers/ModifiersExpectations.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 contract LDYStakingTest is Test, ModifiersExpectations {

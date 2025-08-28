@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../../lib/forge-std/src/Test.sol";
-import { SUD } from "../../../src/protocol-v1/libs/SUD.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
+import "../../../lib/forge-std/src/Test.sol";
+import { SUD } from "../../../../src/protocol-v1/libs/SUD.sol";
+import { GenericERC20 } from "../../../../src/protocol-v1/GenericERC20.sol";
 
-import { ModifiersExpectations } from "../_helpers/ModifiersExpectations.sol";
+import { ModifiersExpectations } from "../helpers/ModifiersExpectations.sol";
 
 contract Tests is Test {
   // =============================

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../../lib/forge-std/src/Test.sol";
+import "../../../lib/forge-std/src/Test.sol";
 
 contract ModifiersExpectations is Test {
   function expectRevertOnlyOwner() public {
