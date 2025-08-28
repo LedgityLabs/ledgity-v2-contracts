@@ -4,10 +4,10 @@ pragma solidity ^0.8.18;
 import "../../../lib/forge-std/src/Test.sol";
 import { ModifiersExpectations } from "../../_helpers/ModifiersExpectations.sol";
 
-import { BaseUpgradeable } from "../../../../src/abstracts/base/BaseUpgradeable.sol";
-import { GlobalOwner } from "../../../../src/GlobalOwner.sol";
-import { GlobalPause } from "../../../../src/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../../src/GlobalBlacklist.sol";
+import { BaseUpgradeable } from "../../../../src/protocol-v1/abstracts/base/BaseUpgradeable.sol";
+import { GlobalOwner } from "../../../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../../../src/protocol-v1/GlobalBlacklist.sol";
 
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 

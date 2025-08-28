@@ -2,7 +2,7 @@
 pragma solidity ^0.8.18;
 
 import "../lib/forge-std/src/Test.sol";
-import { LDY } from "../../src/LDY.sol";
+import { LDY } from "../../src/protocol-v1/LDY.sol";
 
 contract Tests is Test {
   LDY tested;

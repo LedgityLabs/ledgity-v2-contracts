@@ -6,15 +6,15 @@ import { ModifiersExpectations } from "../_helpers/ModifiersExpectations.sol";
 
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import { InvestUpgradeable } from "../../../src/abstracts/InvestUpgradeable.sol";
-import { GlobalOwner } from "../../../src/GlobalOwner.sol";
-import { GlobalPause } from "../../../src/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../src/GlobalBlacklist.sol";
+import { InvestUpgradeable } from "../../../src/protocol-v1/abstracts/InvestUpgradeable.sol";
+import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import { GenericERC20 } from "../../../src/GenericERC20.sol";
+import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
 
-import { SUD } from "../../../src/libs/SUD.sol";
-import { APRHistory as APRH } from "../../../src/libs/APRHistory.sol";
+import { SUD } from "../../../src/protocol-v1/libs/SUD.sol";
+import { APRHistory as APRH } from "../../../src/protocol-v1/libs/APRHistory.sol";
 
 contract TestedContract is InvestUpgradeable {
   mapping(address => uint256) public stakeOf;

@@ -3,19 +3,17 @@ pragma solidity ^0.8.18;
 
 import "../lib/forge-std/src/Test.sol";
 // Contracts
-import { WrappedLTokenHedera } from "../../src/hedera/WrappedLTokenHedera.sol";
-import { LTokenHedera } from "../../src/hedera/LTokenHedera.sol";
-import { MockHederaLToken } from "../../src/mock/MockHederaLToken.sol";
-import { GlobalOwner } from "../../src/GlobalOwner.sol";
-import { GlobalPause } from "../../src/GlobalPause.sol";
-import { GlobalBlacklist } from "../../src/GlobalBlacklist.sol";
+import { WrappedLTokenHedera } from "../../src/protocol-v1/hedera/WrappedLTokenHedera.sol";
+import { LTokenHedera } from "../../src/protocol-v1/hedera/LTokenHedera.sol";
+import { MockHederaLToken } from "../../src/protocol-v1/mock/MockHederaLToken.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import { LDYStaking } from "../../src/LDYStaking.sol";
-import { GenericERC20 } from "../../src/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
 //
-import { MockERC20 } from "../../src/mock/MockERC20.sol";
-
-import { console2 as console } from "forge-std/console2.sol";
+import { MockERC20 } from "../../src/protocol-v1/mock/MockERC20.sol";
 
 contract HederaWrappedLTokenTest is Test {
   // ======== Storage ======== //

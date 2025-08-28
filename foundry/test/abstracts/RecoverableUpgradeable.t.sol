@@ -6,10 +6,10 @@ import { ModifiersExpectations } from "../_helpers/ModifiersExpectations.sol";
 
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import { RecoverableUpgradeable } from "../../../src/abstracts/RecoverableUpgradeable.sol";
-import { GlobalOwner } from "../../../src/GlobalOwner.sol";
+import { RecoverableUpgradeable } from "../../../src/protocol-v1/abstracts/RecoverableUpgradeable.sol";
+import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import { GenericERC20 } from "../../../src/GenericERC20.sol";
+import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
 
 contract TestedContract is
   Initializable,

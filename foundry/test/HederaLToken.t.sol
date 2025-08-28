@@ -10,18 +10,18 @@ import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/I
 import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
-import { LTokenHedera } from "../../src/hedera/LTokenHedera.sol";
+import { LTokenHedera } from "../../src/protocol-v1/hedera/LTokenHedera.sol";
 
-import { LDYStaking } from "../../src/LDYStaking.sol";
-import { GlobalOwner } from "../../src/GlobalOwner.sol";
-import { GlobalPause } from "../../src/GlobalPause.sol";
-import { GlobalBlacklist } from "../../src/GlobalBlacklist.sol";
-import { GenericERC20 } from "../../src/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
 
-import { SUD } from "../../src/libs/SUD.sol";
-import { APRHistory as APRH } from "../../src/libs/APRHistory.sol";
+import { SUD } from "../../src/protocol-v1/libs/SUD.sol";
+import { APRHistory as APRH } from "../../src/protocol-v1/libs/APRHistory.sol";
 // Hedera imports
-import { IHederaTokenService } from "../../src/hedera/lib/IHederaTokenService.sol";
+import { IHederaTokenService } from "../../src/protocol-v1/hedera/lib/IHederaTokenService.sol";
 import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract Vault {
@@ -590,8 +590,6 @@ contract Tests is Test, ModifiersExpectations {
     // Assert that the fund address has been changed
     assertEq(address(tested.fund()), _fund);
   }
- 
- 
 
   // ================================
   // === realBalanceOf() function ===
@@ -628,11 +626,8 @@ contract Tests is Test, ModifiersExpectations {
 
   // ============================
   // === balanceOf() function ===
-  function testFuzz_balanceOf_1(
-    uint256 amount
-  ) public {
+  function testFuzz_balanceOf_1(uint256 amount) public {
     console.log("Should mirror changes in realBalanceOf");
-
 
     // Cap amount to 100T
     amount = bound(amount, 0, 100_000_000_000_000 * 10 ** decimals);
@@ -653,7 +648,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 duration
   ) public {
     console.log("Should mirror changes in unmintedRewardsOf");
-
 
     // Cap amount to 100T
     depositedAmount = bound(
@@ -733,7 +727,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should mirror changes in real total supply");
 
-
     // Set first random APR
     tested.setAPR(aprUD7x3);
 
@@ -809,7 +802,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should allow to recover L-Tokens");
 
-
     // Set a first APR
     tested.setAPR(aprUD7x3);
 
@@ -875,7 +867,6 @@ contract Tests is Test, ModifiersExpectations {
       "Shouldn't allow recovering underlying tokens deposited through deposit() or fund() functions"
     );
 
-
     // Set a first random APR
     tested.setAPR(aprUD7x3);
 
@@ -924,7 +915,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 recoverableAmount
   ) public {
     console.log("Should transfer recoverable tokens to owner else");
-
 
     // Ensure recovered and recoverable is greater than 0
     vm.assume(recoverableAmount > 0);
@@ -1067,7 +1057,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should reset from and to accounts investment periods if they are not zero address"
     );
 
-
     // Set a first random APR
     tested.setAPR(aprUD7x3);
 
@@ -1097,7 +1086,7 @@ contract Tests is Test, ModifiersExpectations {
       );
     }
   }
- 
+
   // ======================================
   // === getExpectedRetained() function ===
   function testFuzz_getExpectedRetained_1(
@@ -1172,7 +1161,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly apply total supply");
 
-
     // Set a first random APR
     tested.setAPR(aprUD7x3);
 
@@ -1242,7 +1230,6 @@ contract Tests is Test, ModifiersExpectations {
       "Shouldn't transfer anything if there is no exceeding fund"
     );
 
-
     // Set a first random APR
     tested.setAPR(aprUD7x3);
 
@@ -1302,7 +1289,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly transfer the exceeding amount");
 
-
     // Set a first random APR
     tested.setAPR(aprUD7x3);
 
@@ -1350,7 +1336,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease usableUnderlyings state by the amount of transfered exceeding funds"
     );
-
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1453,7 +1438,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if account hasn't enough underlying tokens"
     );
 
-
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -1490,7 +1474,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease caller underlying balance and increase contract one by the amount of deposited underlying tokens"
     );
-
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1546,7 +1529,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should mint new L-Tokens to the caller in a 1:1 ratio"
     );
 
-
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -1592,7 +1574,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should increase usableUnderlying state by the amount of deposited underlying tokens"
     );
 
-
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -1636,7 +1617,6 @@ contract Tests is Test, ModifiersExpectations {
     uint32 retentionRateUD7x3
   ) public {
     console.log("Should transfer exceeding to fund");
-
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1686,7 +1666,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should always return [inputAmount, 0] if account is elligble to staking tier 2"
     );
-
 
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
@@ -1744,7 +1723,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should else return [inputAmount - fees, fees]");
 
-
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
     vm.assume(account != address(underlyingToken));
@@ -1776,7 +1754,6 @@ contract Tests is Test, ModifiersExpectations {
     uint32 feesRateUD7x3
   ) public {
     console.log("Should properly apply feesRateUD7x3");
-
 
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
@@ -1859,7 +1836,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if account hasn't enough underlying tokens to withdraw"
     );
 
-
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -1898,7 +1874,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account is not elligible to staking tier 2 and contract doesn't hold enough underlying tokens to cover the withdrawal + all already queued withdrawals"
     );
-
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1948,7 +1923,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account is to staking tier 2 and contract doesn't hold enough underlying tokens to cover the current withdrawal"
     );
-
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2026,7 +2000,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should process to withdrawal if account is not elligible to staking tier 2 but contract holds enough underlying tokens to cover the withdrawal + all already queued withdrawals"
     );
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account1 != address(0));
     vm.assume(account1 != address(tested));
@@ -2103,7 +2076,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should process to withdraw if account is to staking tier 2 and contract holds enough underlying tokens to cover the current withdrawal"
     );
 
-
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -2176,7 +2148,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly apply feesRateUD7x3");
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -2223,7 +2194,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease usableUnderlying by withdrawn amount (and not input amount)"
     );
-
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2274,7 +2244,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should also burn fees and so realTotalSupply should decrease by input amount"
     );
-
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2363,7 +2332,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently skip empty requests (processed big requests)"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2455,7 +2423,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently move request to frozenRequests without processing them if emitter account is blacklisted"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2565,7 +2532,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should silently a big request at the end of the queue"
     );
 
-
     // Set first random APR
     tested.setAPR(aprUD7x3);
 
@@ -2673,7 +2639,6 @@ contract Tests is Test, ModifiersExpectations {
       "Shouldn't change any state if doesn't hold enough fund to cover first next request"
     );
 
-
     // Set first random APR
     tested.setAPR(aprUD7x3);
 
@@ -2746,7 +2711,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently return if encountered a non-big next request that can not anymore be covered by the contract"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2828,7 +2792,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should else transfer underlying tokens to emitter account"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2928,7 +2891,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should delete processed requests");
 
-
     // Set first random APR
     tested.setAPR(aprUD7x3);
 
@@ -3006,7 +2968,6 @@ contract Tests is Test, ModifiersExpectations {
     uint160 accountBase
   ) public {
     console.log("Should properly increase unclaimed fees amount");
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3096,7 +3057,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly decrease usable underlyings tokens amount"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3188,7 +3148,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly decrease total queued amount");
 
-
     // Set first random APR
     tested.setAPR(aprUD7x3);
 
@@ -3268,7 +3227,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly increase withdrawal cursor to the next request to be processed"
     );
-
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3422,7 +3380,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if request already processed or cancelled (inactive)"
     );
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -3479,7 +3436,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if request emitter has been blacklisted since emission"
     );
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -3532,7 +3488,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should revert if request is not a big request");
-
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3591,7 +3546,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert withdrawn amount cannot be covered by contract + fund wallet balances"
     );
-
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3664,7 +3618,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should cover request from fund balance in priority");
-
 
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));
@@ -3755,7 +3708,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should use contract tokens to cover request if fund wallet balance is not enough"
     );
 
-
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -3823,7 +3775,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly increase unclaimed fees amount");
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -3886,7 +3837,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly decrease queued amount");
 
-
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -3943,7 +3893,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should delete processed request from queue");
-
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -4035,7 +3984,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if account hasn't deposited enough funds"
     );
 
-
     // Ensure account is not the zero address
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -4070,7 +4018,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if requested amount is greater than uint96 max"
     );
-
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4391,7 +4338,6 @@ contract Tests is Test, ModifiersExpectations {
     uint256 requestedAmount2
   ) public {
     console.log("Should add request at the end of the queue else");
-
 
     // Ensure accounts are different, and neither the zero address nor the LTokenHedera one
     vm.assume(account1 != account2);
@@ -5091,7 +5037,6 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if the contract doesn't hold enough underlyingToken to cover unclaimed fees"
     );
 
-
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -5134,7 +5079,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly transfer funds from contract to owner else"
     );
-
 
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));
@@ -5192,7 +5136,6 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should properly reset unclaimedFees to 0");
 
-
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
@@ -5233,7 +5176,6 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly decrease usableUnderlyings by claimed fees amount"
     );
-
 
     // Ensure account is neither the zero address nor the LTokenHedera one
     vm.assume(account != address(0));

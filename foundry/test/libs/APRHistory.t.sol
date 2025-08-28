@@ -2,7 +2,7 @@
 pragma solidity ^0.8.18;
 
 import "../../lib/forge-std/src/Test.sol";
-import { APRHistory as APRH } from "../../../src/libs/APRHistory.sol";
+import { APRHistory as APRH } from "../../../src/protocol-v1/libs/APRHistory.sol";
 
 contract Tests is Test {
   APRH.Pack[] packs;
