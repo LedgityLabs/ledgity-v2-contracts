@@ -17,7 +17,9 @@ import { LedgityDataProvider } from "src/protocol-v2/libraries/LedgityDataProvid
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
-import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
+import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
+import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
+import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
 
 /**
  * @title LedgityYieldVault
@@ -26,13 +28,15 @@ import { IAaveLendingPoolV3 } from "./interfaces/IAaveLendingPoolV3.sol";
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
 contract LedgityYieldVault is
+  ILedgityYieldVault,
+  ILedgityDataProvider,
   AdministeredUpgradable,
   CCIPTokenModule,
   VaultLiquidityModule
 {
   // ======== LIBS ======== //
   using SafeERC20 for IERC20;
-  using LedgityDataProvider for LedgityDataProvider.WithdrawalRequest[];
+  using LedgityDataProvider for ILedgityDataProvider.WithdrawalRequest[];
 
   // ======== ERRORS ======== //
 
@@ -43,39 +47,6 @@ contract LedgityYieldVault is
   error MissingWithdrawalRequestFee();
   error RequestAlreadyProcessed();
   error InsufficientLiquidity();
-
-  // ======== STRUCTS ======== //
-
-  /**
-   * Structure containing vault-specific initialization parameters
-   * @param name_ Name for the vault shares token
-   * @param symbol_ Symbol for the vault shares token
-   * @param underlying_ Address of the underlying ERC20 token
-   * @param lToken_ Address of the legacy L-Token for migration
-   * @param stakeToken_ Address of the staking token for fee reductions
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
-   * @param globalOwner_ Address of the global owner
-   * @param globalPause_ Address of the global pause controller
-   * @param globalBlacklist_ Address of the global blacklist controller
-   * @param liquidityManager_ Address of the liquidity manager
-   * @param feeRecipient_ Address that receives management and performance fees
-   * @param aaveLendingPool_ Address of the Aave lending pool (zero address to disable buffer strategy)
-   */
-  struct VaultParams {
-    string name;
-    string symbol;
-    IERC20 asset;
-    IERC20 lToken;
-    IERC20 stakeToken;
-    uint256 stakeBalanceForFeeReduction;
-    address globalOwner;
-    address globalPause;
-    address globalBlacklist;
-    address liquidityManager;
-    address payable feeRecipient;
-    uint256 liquidityBufferRate;
-    IAaveLendingPoolV3 aaveLendingPool;
-  }
 
   // ======== STORAGE ======== //
 
@@ -105,7 +76,7 @@ contract LedgityYieldVault is
   uint256 public stakeBalanceForFeeReduction;
 
   // Array storing all withdrawal requests in chronological order
-  LedgityDataProvider.WithdrawalRequest[] public withdrawalRequests;
+  ILedgityDataProvider.WithdrawalRequest[] public withdrawalRequests;
 
   // ======== EVENTS ======== //
 
@@ -253,7 +224,7 @@ contract LedgityYieldVault is
   function totalAssets()
     public
     view
-    override(VaultLiquidityModule)
+    override(VaultLiquidityModule, ILedgityYieldVault)
     returns (uint256)
   {
     return VaultLiquidityModule.totalAssets() + _bufferRewards();
@@ -306,8 +277,9 @@ contract LedgityYieldVault is
   )
     external
     view
+    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
-      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
   {
     return
@@ -333,8 +305,9 @@ contract LedgityYieldVault is
   )
     external
     view
+    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
-      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
   {
     return
@@ -357,8 +330,9 @@ contract LedgityYieldVault is
   )
     external
     view
+    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
-      LedgityDataProvider.WithdrawalRequestRead[] memory requests
+      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
   {
     return
@@ -623,7 +597,11 @@ contract LedgityYieldVault is
   function deposit(
     uint256 assets,
     address receiver
-  ) public override(ERC4626Upgradeable) returns (uint256) {
+  )
+    public
+    override(ERC4626Upgradeable, ILedgityYieldVault)
+    returns (uint256)
+  {
     _deposit(msg.sender, receiver, assets, 0);
     /// @dev Return 0 since cannot preview
     return 0;
@@ -638,7 +616,11 @@ contract LedgityYieldVault is
   function mint(
     uint256 shares,
     address receiver
-  ) public override(ERC4626Upgradeable) returns (uint256) {
+  )
+    public
+    override(ERC4626Upgradeable, ILedgityYieldVault)
+    returns (uint256)
+  {
     _deposit(msg.sender, receiver, convertToAssets(shares), 0);
     /// @dev Return 0 since cannot preview
     return 0;
@@ -655,7 +637,11 @@ contract LedgityYieldVault is
     uint256 assets_,
     address receiver_,
     address owner_
-  ) public override(ERC4626Upgradeable) returns (uint256) {
+  )
+    public
+    override(ERC4626Upgradeable, ILedgityYieldVault)
+    returns (uint256)
+  {
     _withdraw(
       msg.sender,
       receiver_,
@@ -678,7 +664,11 @@ contract LedgityYieldVault is
     uint256 shares_,
     address receiver_,
     address owner_
-  ) public override(ERC4626Upgradeable) returns (uint256) {
+  )
+    public
+    override(ERC4626Upgradeable, ILedgityYieldVault)
+    returns (uint256)
+  {
     _withdraw(msg.sender, receiver_, owner_, 0, shares_);
     /// @dev Return 0 since cannot preview
     return 0;
@@ -717,7 +707,7 @@ contract LedgityYieldVault is
 
     // Create withdrawal request
     withdrawalRequests.push(
-      LedgityDataProvider.WithdrawalRequest({
+      ILedgityDataProvider.WithdrawalRequest({
         user: msg.sender,
         assets: netAssets,
         timestamp: block.timestamp,
@@ -803,7 +793,7 @@ contract LedgityYieldVault is
     // Calculate total assets needed for selected requests
     uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
-      LedgityDataProvider.WithdrawalRequest
+      ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestIds[i]];
 
       if (request.processed) revert RequestAlreadyProcessed();
@@ -828,7 +818,7 @@ contract LedgityYieldVault is
     // Process each request
     for (uint256 i; i < requestIds.length; i++) {
       uint256 requestId = requestIds[i];
-      LedgityDataProvider.WithdrawalRequest
+      ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestId];
 
       // Transfer assets to user

@@ -8,7 +8,7 @@ import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/O
 // Library
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 // Interface
-import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
+import { IVaultLiquidityModule } from "../interfaces/IVaultLiquidityModule.sol";
 
 /**
  * @title VaultLiquidityModule
@@ -17,24 +17,13 @@ import { IERC4626 } from "@openzeppelin/contracts/interfaces/IERC4626.sol";
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
 abstract contract VaultLiquidityModule is
+  IVaultLiquidityModule,
   ERC4626Upgradeable,
   OwnableUpgradeable
 {
   /** ======== LIBRARIES ======== */
 
   using Math for uint256;
-
-  /** ======== STRUCTS ======== */
-
-  struct VaultLiquidityInitParams {
-    uint256 highWaterMark;
-    uint256 deploymentDelay;
-    uint256 yieldAPR;
-    uint256 managementFeeRate;
-    uint256 performanceFeeRate;
-    uint256 withdrawalFeeRate;
-    uint256 withdrawalGasFee;
-  }
 
   /** ======== STORAGE ======== */
 
@@ -79,6 +68,7 @@ abstract contract VaultLiquidityModule is
   /**
    * @notice Initializes the VaultLiquidityModule with fee rates and APR
    * @param params The initialization parameters
+   * @param asset The underlying asset
    */
   function __VaultLiquidityModule_init(
     VaultLiquidityInitParams memory params,
@@ -143,7 +133,7 @@ abstract contract VaultLiquidityModule is
     public
     view
     virtual
-    override(ERC4626Upgradeable)
+    override(ERC4626Upgradeable, IVaultLiquidityModule)
     returns (uint256 currentTotalAssets)
   {
     currentTotalAssets = _totalAssets;
@@ -177,7 +167,12 @@ abstract contract VaultLiquidityModule is
    */
   function convertToShares(
     uint256 assets
-  ) public view override returns (uint256 shares) {
+  )
+    public
+    view
+    override(ERC4626Upgradeable, IVaultLiquidityModule)
+    returns (uint256 shares)
+  {
     uint256 supply = totalSupply();
     uint256 currentAssets = totalAssets();
 
@@ -195,7 +190,12 @@ abstract contract VaultLiquidityModule is
    */
   function convertToAssets(
     uint256 shares
-  ) public view override returns (uint256 assets) {
+  )
+    public
+    view
+    override(ERC4626Upgradeable, IVaultLiquidityModule)
+    returns (uint256 assets)
+  {
     uint256 supply = totalSupply();
     uint256 currentAssets = totalAssets();
 

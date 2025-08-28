@@ -2,40 +2,9 @@
 pragma solidity 0.8.18;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { ILedgityDataProvider } from "../interfaces/ILedgityDataProvider.sol";
 
 library LedgityDataProvider {
-  /**
-   * Structure representing a queued withdrawal request (internal storage)
-   * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
-   * @param timestamp When the withdrawal request was created
-   * @param processed Whether the request has been fulfilled
-   */
-  struct WithdrawalRequest {
-    address user;
-    uint256 assets;
-    uint256 timestamp;
-    bool processed;
-  }
-
-  /**
-   * Structure representing a queued withdrawal request (read view)
-   * @param requestId Unique identifier for the withdrawal request
-   * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
-   * @param timestamp When the withdrawal request was created
-   * @param processed Whether the request has been fulfilled
-   * @param hasFeeReduction Whether the user has a fee reduction
-   */
-  struct WithdrawalRequestRead {
-    uint256 requestId;
-    address user;
-    uint256 assets;
-    uint256 timestamp;
-    bool processed;
-    bool hasFeeReduction;
-  }
-
   /**
    * @notice Get withdrawal requests with optional filtering
    * @param requests_ Storage array of withdrawal requests
@@ -46,20 +15,28 @@ library LedgityDataProvider {
    * @return filteredRequests Array of withdrawal requests with read structure
    */
   function getWithdrawalRequests(
-    WithdrawalRequest[] storage requests_,
+    ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
     uint256 stakeBalanceForFeeReduction_,
     bool onlyPending,
     uint256 maxRange
-  ) external view returns (WithdrawalRequestRead[] memory filteredRequests) {
-    return _getFilteredRequests(
-      requests_,
-      stakeToken_,
-      stakeBalanceForFeeReduction_,
-      address(0),
-      onlyPending,
-      maxRange
-    );
+  )
+    external
+    view
+    returns (
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory filteredRequests
+    )
+  {
+    return
+      _getFilteredRequests(
+        requests_,
+        stakeToken_,
+        stakeBalanceForFeeReduction_,
+        address(0),
+        onlyPending,
+        maxRange
+      );
   }
 
   /**
@@ -73,21 +50,29 @@ library LedgityDataProvider {
    * @return filteredRequests Array of withdrawal requests for the user with read structure
    */
   function getUserWithdrawalRequests(
-    WithdrawalRequest[] storage requests_,
+    ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
     uint256 stakeBalanceForFeeReduction_,
     address user,
     bool onlyPending,
     uint256 maxRange
-  ) external view returns (WithdrawalRequestRead[] memory filteredRequests) {
-    return _getFilteredRequests(
-      requests_,
-      stakeToken_,
-      stakeBalanceForFeeReduction_,
-      user,
-      onlyPending,
-      maxRange
-    );
+  )
+    external
+    view
+    returns (
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory filteredRequests
+    )
+  {
+    return
+      _getFilteredRequests(
+        requests_,
+        stakeToken_,
+        stakeBalanceForFeeReduction_,
+        user,
+        onlyPending,
+        maxRange
+      );
   }
 
   /**
@@ -99,31 +84,43 @@ library LedgityDataProvider {
    * @return selectedRequests Array of withdrawal requests corresponding to the IDs with read structure
    */
   function getWithdrawalRequestsByIds(
-    WithdrawalRequest[] storage requests_,
+    ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
     uint256 stakeBalanceForFeeReduction_,
     uint256[] calldata requestIds
-  ) external view returns (WithdrawalRequestRead[] memory selectedRequests) {
-    selectedRequests = new WithdrawalRequestRead[](requestIds.length);
+  )
+    external
+    view
+    returns (
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory selectedRequests
+    )
+  {
+    selectedRequests = new ILedgityDataProvider.WithdrawalRequestRead[](
+      requestIds.length
+    );
     bool stakeTokenSet = address(stakeToken_) != address(0);
 
     for (uint256 i; i < requestIds.length; i++) {
-      WithdrawalRequest storage request = requests_[requestIds[i]];
+      ILedgityDataProvider.WithdrawalRequest
+        storage request = requests_[requestIds[i]];
 
       bool hasFeeReduction;
       if (stakeTokenSet) {
         hasFeeReduction =
-          stakeToken_.balanceOf(request.user) >= stakeBalanceForFeeReduction_;
+          stakeToken_.balanceOf(request.user) >=
+          stakeBalanceForFeeReduction_;
       }
 
-      selectedRequests[i] = WithdrawalRequestRead({
-        requestId: requestIds[i],
-        user: request.user,
-        assets: request.assets,
-        timestamp: request.timestamp,
-        processed: request.processed,
-        hasFeeReduction: hasFeeReduction
-      });
+      selectedRequests[i] = ILedgityDataProvider
+        .WithdrawalRequestRead({
+          requestId: requestIds[i],
+          user: request.user,
+          assets: request.assets,
+          timestamp: request.timestamp,
+          processed: request.processed,
+          hasFeeReduction: hasFeeReduction
+        });
     }
   }
 
@@ -138,13 +135,20 @@ library LedgityDataProvider {
    * @return filteredRequests Array of matching withdrawal requests with read structure
    */
   function _getFilteredRequests(
-    WithdrawalRequest[] storage requests_,
+    ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
     uint256 stakeBalanceForFeeReduction_,
     address user,
     bool onlyPending,
     uint256 maxRange
-  ) private view returns (WithdrawalRequestRead[] memory filteredRequests) {
+  )
+    private
+    view
+    returns (
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory filteredRequests
+    )
+  {
     uint256 totalRequests = requests_.length;
 
     // Determine search range - start from latest requests
@@ -162,7 +166,8 @@ library LedgityDataProvider {
     ) {
       searchCount++;
 
-      WithdrawalRequest storage request = requests_[i];
+      ILedgityDataProvider.WithdrawalRequest
+        storage request = requests_[i];
       if (
         (user == address(0) || request.user == user) &&
         (!onlyPending || !request.processed)
@@ -174,7 +179,9 @@ library LedgityDataProvider {
     }
 
     // Create result array
-    filteredRequests = new WithdrawalRequestRead[](matchCount);
+    filteredRequests = new ILedgityDataProvider.WithdrawalRequestRead[](
+      matchCount
+    );
     bool stakeTokenSet = address(stakeToken_) != address(0);
     uint256 resultIndex;
 
@@ -187,7 +194,8 @@ library LedgityDataProvider {
     ) {
       searchCount++;
 
-      WithdrawalRequest storage request = requests_[i];
+      ILedgityDataProvider.WithdrawalRequest
+        storage request = requests_[i];
       if (
         (user == address(0) || request.user == user) &&
         (!onlyPending || !request.processed)
@@ -195,13 +203,14 @@ library LedgityDataProvider {
         bool hasFeeReduction;
         if (stakeTokenSet) {
           hasFeeReduction =
-            stakeToken_.balanceOf(request.user) >= stakeBalanceForFeeReduction_;
+            stakeToken_.balanceOf(request.user) >=
+            stakeBalanceForFeeReduction_;
         }
 
         // Fill array from end to maintain oldest-first order in output
         filteredRequests[
           matchCount - 1 - resultIndex
-        ] = WithdrawalRequestRead({
+        ] = ILedgityDataProvider.WithdrawalRequestRead({
           requestId: i,
           user: request.user,
           assets: request.assets,
