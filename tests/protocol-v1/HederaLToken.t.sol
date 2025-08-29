@@ -3624,6 +3624,20 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != address(tested));
     vm.assume(account != fundWallet);
 
+    // Calculate bounds for amount after test setup
+    uint256 fundBalance = underlyingToken.balanceOf(fundWallet);
+    uint256 minBigRequest = tested.getExpectedRetained() / 2 + 1;
+    
+    // Ensure we have a valid range
+    if (fundBalance <= minBigRequest) {
+      // Skip this test case if fund balance is too low
+      vm.assume(false);
+      return;
+    }
+    
+    // Bound amount to be a big request that can be covered by fund wallet
+    amount = bound(amount, minBigRequest, fundBalance);
+
     // Set first random APRs
     tested.setAPR(aprUD7x3);
 
@@ -3638,9 +3652,6 @@ contract Tests is Test, ModifiersExpectations {
     // Set random retention rate
     tested.tool_setRetentionRate(retentionRateUD7x3);
 
-    // Cap requested amount to max withdrawal request amount
-    amount = bound(amount, 1, type(uint96).max);
-
     // Deposit & request amount
     deal(address(underlyingToken), account, amount, true);
     uint256 processingFees = 0.003 ether;
@@ -3650,15 +3661,9 @@ contract Tests is Test, ModifiersExpectations {
     tested.deposit(amount, "");
     vm.stopPrank();
 
-    // Ensure requested amount can be covered by fund wallet
-    vm.assume(amount <= underlyingToken.balanceOf(fundWallet));
-
     // Request withdrawal for the non-big amount
     vm.prank(account);
     tested.requestWithdrawal{ value: processingFees }(amount);
-
-    // Ensure that request is a big request
-    vm.assume(amount > tested.getExpectedRetained() / 2);
 
     // Store old LTokenHedera, fund wallet and account balances for later comparison
     uint256 oldLTokenBalance = underlyingToken.balanceOf(

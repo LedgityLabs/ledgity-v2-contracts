@@ -290,7 +290,7 @@ contract LDYStakingTest is Test, ModifiersExpectations {
     uint256 amount,
     uint256 stakeIndex
   ) public {
-    vm.assume(amount == 0);
+    amount = 0;
     vm.expectRevert("amount = 0");
     ldyStaking.unstake(amount, stakeIndex);
   }
