@@ -19,16 +19,11 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun_version: latest
-
       - name: Install dependencies
-        run: bun i
+        run: npm i
 
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Run tests
-        run: bun test
+        run: npm run test

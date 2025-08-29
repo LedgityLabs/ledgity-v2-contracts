@@ -36,10 +36,10 @@ export default defineConfig({
   out: "src/types/contractTypes.ts",
   plugins: [
     hardhat({
-      project: "./contracts/hardhat/",
+      project: "./",
       deployments: hhPluginDeployments,
-      include: ["contracts/src/**", "contracts/dev/**"],
-      exclude: ["contracts/src/abstracts/**", "contracts/src/libs/**"],
+      include: ["src/"],
+      exclude: ["src/protocol-v1/abstracts/**", "src/protocol-v1/libs/**"],
     }),
     react(),
     actions(),

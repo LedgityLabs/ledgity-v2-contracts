@@ -13,7 +13,7 @@ import "colors";
 import "./tasks/verify.cts";
 import "./tasks/deploy-mock-ccip-token.cts";
 
-import { parseEther } from "ethers/lib/utils";
+import { utils } from "ethers";
 import { type HardhatUserConfig } from "hardhat/config";
 import { HardhatNetworkUserConfig, HttpNetworkUserConfig } from "hardhat/types";
 
@@ -46,20 +46,27 @@ const {
   HEDERA_VERIFY_API_KEY,
 } = process.env;
 
+const forkTarget = HARDHAT_FORK_TARGET?.toLowerCase();
+const deployerPrivateKey =
+  (forkTarget === "hedera" && HEDERA_DEPLOYER_PK) ||
+  DEPLOYER_PK ||
+  utils.keccak256(utils.toUtf8Bytes("dev"));
+
 // Validation
-if (!DEPLOYER_PK && !HEDERA_DEPLOYER_PK)
-  throw Error("Deployer private key not found in environment variables");
-if (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY)
+if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY))
   throw Error("Mainnet config not found in environment variables");
-if (!BASE_RPC_URL || !BASE_VERIFY_API_KEY)
+if (forkTarget === "base" && (!BASE_RPC_URL || !BASE_VERIFY_API_KEY))
   throw Error("Base config not found in environment variables");
-if (!SONIC_RPC_URL || !SONIC_VERIFY_API_KEY)
+if (forkTarget === "sonic" && (!SONIC_RPC_URL || !SONIC_VERIFY_API_KEY))
   throw Error("Sonic config not found in environment variables");
-if (!HEDERA_RPC_URL || !HEDERA_VERIFY_API_KEY)
+if (forkTarget === "hedera" && (!HEDERA_RPC_URL || !HEDERA_VERIFY_API_KEY))
   throw Error("Hedera config not found in environment variables");
-if (!LINEASCAN_RPC_URL || !LINEASCAN_VERIFY_API_KEY)
+if (forkTarget === "linea" && (!LINEASCAN_RPC_URL || !LINEASCAN_VERIFY_API_KEY))
   throw Error("LineaScan config not found in environment variables");
-if (!ARBITRUM_RPC_URL || !ARBITRUM_VERIFY_API_KEY)
+if (
+  forkTarget === "arbitrum" &&
+  (!ARBITRUM_RPC_URL || !ARBITRUM_VERIFY_API_KEY)
+)
   throw Error("Arbitrum config not found in environment variables");
 
 // Centralized network configuration
@@ -67,8 +74,8 @@ interface NetworkConfig {
   chainId: number;
   name: string;
   rpcUrl: string;
-  forkingBlock?: string;
   verifyApiKey: string;
+  forkingBlock?: string;
   apiURL: string;
   browserURL: string;
   deploy?: string[];
@@ -79,9 +86,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   mainnet: {
     name: "mainnet",
     chainId: 1,
-    rpcUrl: MAINNET_RPC_URL,
-    forkingBlock: MAINNET_FORKING_BLOCK,
-    verifyApiKey: MAINNET_VERIFY_API_KEY,
+    rpcUrl: MAINNET_RPC_URL || "",
+    verifyApiKey: MAINNET_VERIFY_API_KEY || "",
+    forkingBlock: MAINNET_FORKING_BLOCK || "",
     apiURL: "https://api.etherscan.io/api",
     browserURL: "https://etherscan.io",
     deploy: ["./contracts/hardhat/deploy-mainnet"],
@@ -89,9 +96,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   base: {
     name: "base",
     chainId: 8453,
-    rpcUrl: BASE_RPC_URL,
+    rpcUrl: BASE_RPC_URL || "",
+    verifyApiKey: BASE_VERIFY_API_KEY || "",
     forkingBlock: BASE_FORKING_BLOCK,
-    verifyApiKey: BASE_VERIFY_API_KEY,
     apiURL: "https://api.basescan.org/api",
     browserURL: "https://basescan.org",
     deploy: ["./contracts/hardhat/deploy-base"],
@@ -99,9 +106,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   sonic: {
     name: "sonic",
     chainId: 146,
-    rpcUrl: SONIC_RPC_URL,
+    rpcUrl: SONIC_RPC_URL || "",
+    verifyApiKey: SONIC_VERIFY_API_KEY || "",
     forkingBlock: SONIC_FORKING_BLOCK,
-    verifyApiKey: SONIC_VERIFY_API_KEY,
     apiURL: "https://api.sonicscan.org/api",
     browserURL: "https://sonicscan.org",
     deploy: ["./contracts/hardhat/deploy-sonic"],
@@ -109,9 +116,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   hedera: {
     name: "hedera",
     chainId: 295,
-    rpcUrl: HEDERA_RPC_URL,
+    rpcUrl: HEDERA_RPC_URL || "",
+    verifyApiKey: HEDERA_VERIFY_API_KEY || "",
     forkingBlock: HEDERA_FORKING_BLOCK,
-    verifyApiKey: HEDERA_VERIFY_API_KEY,
     apiURL: "https://server-verify.hashscan.io",
     browserURL: "https://hashscan.io/mainnet/",
     deploy: ["./contracts/hardhat/deploy-hedera"],
@@ -119,9 +126,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   arbitrum: {
     name: "arbitrumOne",
     chainId: 42161,
-    rpcUrl: ARBITRUM_RPC_URL,
+    rpcUrl: ARBITRUM_RPC_URL || "",
+    verifyApiKey: ARBITRUM_VERIFY_API_KEY || "",
     forkingBlock: ARBITRUM_FORKING_BLOCK,
-    verifyApiKey: ARBITRUM_VERIFY_API_KEY,
     apiURL: "https://api.arbiscan.io",
     browserURL: "https://arbiscan.io",
     deploy: ["./contracts/hardhat/deploy-arbitrum"],
@@ -129,21 +136,19 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
   linea: {
     name: "linea",
     chainId: 59144,
-    rpcUrl: LINEASCAN_RPC_URL,
+    rpcUrl: LINEASCAN_RPC_URL || "",
+    verifyApiKey: LINEASCAN_VERIFY_API_KEY || "",
     forkingBlock: LINEASCAN_FORKING_BLOCK,
-    verifyApiKey: LINEASCAN_VERIFY_API_KEY,
     apiURL: "https://api.lineascan.build/api",
     browserURL: "https://lineascan.build",
   },
 };
 
-// Fork configuration
-const forkTarget = HARDHAT_FORK_TARGET?.toLowerCase();
-if (!forkTarget || !networkConfigs[forkTarget]) {
-  throw Error("Missing or erroneous fork target");
-}
+function makeForkConfig(
+  chainName: string | undefined,
+): { hardhat: HardhatNetworkUserConfig } | {} {
+  if (!chainName) return {};
 
-function makeForkConfig(chainName: string): HardhatNetworkUserConfig {
   const config = networkConfigs[chainName];
   const blockNumber =
     config.forkingBlock === "latest" || !config.forkingBlock
@@ -151,33 +156,34 @@ function makeForkConfig(chainName: string): HardhatNetworkUserConfig {
       : Number(config.forkingBlock);
 
   console.log(
-    `=> Hardhat forking ${chainName.toUpperCase()}${config.forkingBlock ? ` at block ${config.forkingBlock}` : ""}\n`
+    `=> Hardhat configured to fork ${HARDHAT_FORK_TARGET}${config.forkingBlock ? ` at block ${config.forkingBlock}` : ""}\n`
       .magenta,
   );
 
+  /// @dev Nested structure to be destructured safely in case there is no fork
   return {
-    chainId: config.chainId,
-    deploy: config.deploy,
-    saveDeployments: true,
-    live: true,
-    forking: {
-      url: config.rpcUrl,
-      blockNumber,
-    },
-    mining: {
-      auto: true,
-      mempool: {
-        order: "fifo",
+    hardhat: {
+      chainId: config.chainId,
+      deploy: config.deploy,
+      saveDeployments: true,
+      live: true,
+      forking: {
+        url: config.rpcUrl,
+        blockNumber,
       },
-    },
-    accounts: [
-      {
-        privateKey: (chainName === "hedera"
-          ? HEDERA_DEPLOYER_PK
-          : DEPLOYER_PK) as string,
-        balance: parseEther("100000").toString(),
+      mining: {
+        auto: true,
+        mempool: {
+          order: "fifo",
+        },
       },
-    ],
+      accounts: [
+        {
+          privateKey: deployerPrivateKey,
+          balance: utils.parseEther("100000").toString(),
+        },
+      ],
+    },
   };
 }
 
@@ -192,9 +198,7 @@ const networks = Object.entries(networkConfigs).reduce(
     acc[name] = {
       chainId: data.chainId,
       url: data.rpcUrl,
-      accounts: [
-        (name === "hedera" ? HEDERA_DEPLOYER_PK : DEPLOYER_PK) as string,
-      ],
+      accounts: [deployerPrivateKey],
       saveDeployments: true,
       deploy: data.deploy,
       verify: {
@@ -271,7 +275,7 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
-    hardhat: makeForkConfig(forkTarget),
+    ...makeForkConfig(forkTarget),
     ...networks,
   },
   etherscan,
