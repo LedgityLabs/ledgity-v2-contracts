@@ -19,6 +19,8 @@ import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import { MockLToken } from "../../../src/protocol-v1/mock/MockLToken.sol";
 import { MockERC20 } from "../../../src/protocol-v1/mock/MockERC20.sol";
 // Interfaces
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IAaveLendingPoolV3 } from "../../../src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 import { ILedgityYieldVault } from "../../../src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "../../../src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
@@ -84,7 +86,7 @@ contract Fixtures is Test {
   function _deployContracts() private {
     for (uint256 i = 0; i < durations.length; i++) {
       stakingDurationInfos.push(
-        LDYStaking.StakeDurationInfo(durations[i] * OneMonth, 10000)
+        LDYStaking.StakeDurationInfo(durations[i] * 30 days, 10000)
       );
     }
 
@@ -152,7 +154,7 @@ contract Fixtures is Test {
       address(globalBlacklist),
       address(ldyToken),
       stakingDurationInfos,
-      12 * OneMonth,
+      12 * 30 days,
       1000 * 1e18
     );
 
@@ -180,7 +182,9 @@ contract Fixtures is Test {
 
   // ======== ACTION FUNCTIONS ======== //
 
-  function _createLToken() internal returns (MockLToken) {
+  function _createLToken(
+    IERC20 asset_
+  ) internal returns (MockLToken) {
     MockLToken lTokenImpl = new MockLToken();
     ERC1967Proxy lTokenProxy = new ERC1967Proxy(
       address(lTokenImpl),
@@ -188,8 +192,14 @@ contract Fixtures is Test {
     );
     MockLToken lToken = MockLToken(address(lTokenProxy));
 
-    string memory name = string("Ledgity " + asset_.symbol());
-    string memory symbol = string("L" + asset_.symbol());
+    string memory name = string.concat(
+      "Ledgity ",
+      MockERC20(address(asset_)).symbol()
+    );
+    string memory symbol = string.concat(
+      "L",
+      MockERC20(address(asset_)).symbol()
+    );
 
     lToken.initialize(
       address(globalOwner),
@@ -206,7 +216,7 @@ contract Fixtures is Test {
 
   function _createVault(
     IERC20 asset_,
-    address lToken_
+    IERC20 lToken_
   ) internal returns (LedgityYieldVault) {
     LedgityYieldVault yieldVaultImpl = new LedgityYieldVault();
     ERC1967Proxy yieldVaultProxy = new ERC1967Proxy(
@@ -217,16 +227,22 @@ contract Fixtures is Test {
       address(yieldVaultProxy)
     );
 
-    string memory name = string("Ledgity " + asset_.name());
-    string memory symbol = string("ly" + asset_.symbol());
+    string memory name = string.concat(
+      "Ledgity ",
+      MockERC20(address(asset_)).name()
+    );
+    string memory symbol = string.concat(
+      "ly",
+      MockERC20(address(asset_)).symbol()
+    );
 
     ILedgityYieldVault.VaultParams memory vaultParams = ILedgityYieldVault
       .VaultParams({
         name: name,
         symbol: symbol,
-        asset: address(asset_),
+        asset: asset_,
         lToken: lToken_,
-        stakeToken: address(ldyToken),
+        stakeToken: ldyToken,
         stakeBalanceForFeeReduction: 1000 * 1e18,
         globalOwner: address(globalOwner),
         globalPause: address(globalPause),
@@ -285,6 +301,17 @@ contract Fixtures is Test {
       // Arbitrum
       return IERC20(0xaf88d065e77c8cC2239327C5EDb3A432268e5831);
     }
-    revert("AaveLendingPool not set");
+    revert("USDC not set");
+  }
+
+  function _getWethToken() internal view returns (IERC20) {
+    if (block.chainid == 1) {
+      // Mainnet
+      return IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
+    } else if (block.chainid == 42161) {
+      // Arbitrum
+      return IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
+    }
+    revert("WETH not set");
   }
 }

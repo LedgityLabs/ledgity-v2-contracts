@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 // Fixtures
-import { Fixtures } from "./fixtures.sol";
+import { Fixtures } from "./Fixtures.sol";
 // Contracts
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
