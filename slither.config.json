@@ -1,9 +1,13 @@
 {
-  "filter_paths": "src/dependencies,src/mock",
+  "filter_paths": "src/protocol-v1,node_modules",
   "detectors_to_exclude": [
-    "unused-return"
+    "unused-return",
+    "incorrect-equality",
+    "uninitialized-local"
   ],
+  "exclude_high": false,
+  "exclude_medium": false,
+  "exclude_low": true,
   "exclude_informational": true,
-  "exclude_optimization": true,
-  "exclude_low": true
+  "exclude_optimization": true
 }

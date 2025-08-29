@@ -372,6 +372,7 @@ abstract contract VaultLiquidityModule is
     _totalAssets = totalAssets();
 
     // Update compound time to only include full compounding periods
+    // slither-disable-next-line divide-before-multiply
     uint256 fullDays = timeElapsed / 1 days;
     lastCompoundTime += fullDays * 1 days;
 

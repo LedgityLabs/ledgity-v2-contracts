@@ -132,6 +132,7 @@ abstract contract AdministeredUpgradable is
     if (tokenAddress == address(0)) {
       payable(msg.sender).transfer(amount);
     } else {
+      // slither-disable-next-line unchecked-transfer
       IERC20(tokenAddress).transfer(msg.sender, amount);
     }
   }

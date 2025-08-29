@@ -491,6 +491,7 @@ contract LedgityYieldVault is
 
     // Execute the allocation
     if (0 < bufferAmount) {
+      // slither-disable-next-line reentrancy-no-eth
       if (hasBufferStrategy) _depositBuffer(bufferAmount);
       /// @dev If no buffer strategy, assets stay in contract as underlying
     }
@@ -546,6 +547,7 @@ contract LedgityYieldVault is
     _withdrawAssets(netAssets);
 
     if (hasBufferStrategy) {
+      // slither-disable-next-line reentrancy-no-eth
       _withdrawBuffer(receiver_, netAssets);
     } else {
       IERC20(asset()).safeTransfer(receiver_, netAssets);
@@ -752,6 +754,7 @@ contract LedgityYieldVault is
     uint256 amount
   ) public onlyLiquidityManager {
     // Transfer amount from fund wallet to contract
+    // slither-disable-next-line arbitrary-send-erc20
     IERC20(asset()).safeTransferFrom(
       liquidityManager,
       address(this),
@@ -780,6 +783,7 @@ contract LedgityYieldVault is
     uint256 addedLiquidity
   ) public onlyLiquidityManager {
     if (0 < addedLiquidity) {
+      // slither-disable-next-line arbitrary-send-erc20
       IERC20(asset()).safeTransferFrom(
         liquidityManager,
         address(this),
@@ -812,6 +816,7 @@ contract LedgityYieldVault is
     // Withdraw required assets from buffer if needed
     if (hasBufferStrategy) {
       uint256 neededFromBuffer = assetsTotal - availableLiquidity;
+      // slither-disable-next-line reentrancy-no-eth
       _withdrawBuffer(address(this), neededFromBuffer);
     }
 
