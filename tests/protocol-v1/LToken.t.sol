@@ -1,31 +1,27 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../../lib/forge-std/src/Test.sol";
-import { Hsc } from "../../../foundry/lib/hedera-forking/contracts/Hsc.sol";
-
+import "../../foundry/lib/forge-std/src/Test.sol";
 import { ModifiersExpectations } from "./helpers/ModifiersExpectations.sol";
 
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
-import { LTokenHedera } from "../../../src/protocol-v1/hedera/LTokenHedera.sol";
+import { LToken } from "../../src/protocol-v1/LToken.sol";
 
-import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
-import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
 
-import { SUD } from "../../../src/protocol-v1/libs/SUD.sol";
-import { APRHistory as APRH } from "../../../src/protocol-v1/libs/APRHistory.sol";
-// Hedera imports
-import { IHederaTokenService } from "../../../src/protocol-v1/hedera/lib/IHederaTokenService.sol";
-import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import { SUD } from "../../src/protocol-v1/libs/SUD.sol";
+import { APRHistory as APRH } from "../../src/protocol-v1/libs/APRHistory.sol";
+import { ITransfersListener } from "../../src/protocol-v1/interfaces/ITransfersListener.sol";
 
-contract Vault {
-  /// @dev Holds the LTokenHedera contract address allowed to call onLTokenTransfer()
+contract Vault is ITransfersListener {
+  /// @dev Holds the LToken contract address allowed to call onLTokenTransfer()
   address public lToken;
 
   /// @dev Stores data received from onLTokenTransfer()
@@ -36,16 +32,13 @@ contract Vault {
   }
   HookData[] public hookData;
 
-  /// @dev Modifier to restrict access to the LTokenHedera contract
+  /// @dev Modifier to restrict access to the LToken contract
   modifier onlyLToken() {
-    require(
-      msg.sender == lToken,
-      "Vault: restricted to LTokenHedera"
-    );
+    require(msg.sender == lToken, "Vault: restricted to LToken");
     _;
   }
 
-  /// @dev Sets the LTokenHedera contract address allowed to call onLTokenTransfer() at deployment-time
+  /// @dev Sets the LToken contract address allowed to call onLTokenTransfer() at deployment-time
   constructor(address _lToken) {
     lToken = _lToken;
   }
@@ -64,7 +57,7 @@ contract Vault {
   }
 }
 
-contract TestedContract is LTokenHedera {
+contract TestedContract is LToken {
   /**
    * @dev Functions to tests modifiers
    */
@@ -109,7 +102,7 @@ contract TestedContract is LTokenHedera {
   }
 
   /**
-   * @dev Make some useful LTokenHedera functions public to use them in tests
+   * @dev Make some useful LToken functions public to use them in tests
    */
   function public_distributeRewards(
     address account,
@@ -163,7 +156,6 @@ contract FailingReceiver {
 }
 
 contract Tests is Test, ModifiersExpectations {
-  uint8 decimals = 6;
   TestedContract tested;
   GlobalOwner globalOwner;
   GlobalPause globalPause;
@@ -186,9 +178,6 @@ contract Tests is Test, ModifiersExpectations {
   LDYStaking.StakeDurationInfo[] public stakingDurationInfos;
 
   function setUp() public {
-    // Setup Hedera Token Service
-    Hsc.htsSetup();
-
     // Deploy GlobalOwner
     GlobalOwner impl = new GlobalOwner();
     ERC1967Proxy proxy = new ERC1967Proxy(address(impl), "");
@@ -255,7 +244,7 @@ contract Tests is Test, ModifiersExpectations {
     anotherToken = new GenericERC20("Another Token", "ANADA", 18);
     vm.label(address(anotherToken), "Another Token");
 
-    // Deploy tested LTokenHedera contract
+    // Deploy tested LToken contract
     TestedContract impl5 = new TestedContract();
     ERC1967Proxy proxy5 = new ERC1967Proxy(address(impl5), "");
     tested = TestedContract(address(proxy5));
@@ -265,11 +254,10 @@ contract Tests is Test, ModifiersExpectations {
       address(globalBlacklist),
       address(ldyStaking),
       address(underlyingToken),
-      false, // Set to false to avoid HTS errors
-      "LTokenHedera",
+      "LToken",
       "LTK"
     );
-    vm.label(address(tested), "LTokenHedera");
+    vm.label(address(tested), "LToken");
 
     // Set withdrawer wallet
     tested.setWithdrawer(withdrawerWallet);
@@ -320,8 +308,7 @@ contract Tests is Test, ModifiersExpectations {
       address(globalBlacklist),
       address(ldyStaking),
       address(underlyingToken),
-      false, // Set to false to avoid HTS errors
-      "LTokenHedera",
+      "LToken",
       "LTK"
     );
   }
@@ -348,7 +335,7 @@ contract Tests is Test, ModifiersExpectations {
 
   function test_initialize_5() public view {
     console.log("Should properly set L-Token name and symbol");
-    assertEq(tested.name(), "LTokenHedera");
+    assertEq(tested.name(), "LToken");
     assertEq(tested.symbol(), "LTK");
   }
 
@@ -384,7 +371,7 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != withdrawerWallet);
 
     // Should revert
-    vm.expectRevert(LTokenHedera.OnlyWithdrawer.selector);
+    vm.expectRevert(LToken.OnlyWithdrawer.selector);
     vm.prank(account);
     tested.restrictedToWithdrawer();
 
@@ -404,7 +391,7 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != fundWallet);
 
     // Should revert
-    vm.expectRevert(LTokenHedera.OnlyFund.selector);
+    vm.expectRevert(LToken.OnlyFund.selector);
     vm.prank(account);
     tested.restrictedToFund();
 
@@ -438,8 +425,8 @@ contract Tests is Test, ModifiersExpectations {
     assertEq(tested.feesRateUD7x3(), feesRateUD7x3);
   }
 
-  // ===============================
-  // === setRetentionRate() function ===
+  // ====================================
+  // === setRetentionRate() function ====
   function testFuzz_setRetentionRate_1(
     address account,
     uint32 _retentionRateUD7x3
@@ -468,7 +455,7 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.ExceedsRetentionRate.selector);
+    vm.expectRevert(LToken.ExceedsRetentionRate.selector);
     tested.setRetentionRate(_retentionRateUD7x3);
   }
 
@@ -532,7 +519,7 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.WithdrawerZeroAddress.selector);
+    vm.expectRevert(LToken.WithdrawerZeroAddress.selector);
     tested.setWithdrawer(payable(address(0)));
   }
 
@@ -574,7 +561,7 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.FundZeroAddress.selector);
+    vm.expectRevert(LToken.FundZeroAddress.selector);
     tested.setFund(payable(address(0)));
   }
 
@@ -590,6 +577,165 @@ contract Tests is Test, ModifiersExpectations {
     // Assert that the fund address has been changed
     assertEq(address(tested.fund()), _fund);
   }
+
+  // ====================================
+  // === listenToTransfers() function ===
+  function testFuzz_listenToTransfers_1(
+    address account,
+    address listenerContract
+  ) public {
+    console.log("Should revert if not called by owner");
+
+    // Ensure the random account is not the fund wallet
+    vm.assume(account != tested.owner());
+
+    // Expect revert
+    expectRevertOnlyOwner();
+    vm.prank(account);
+    tested.listenToTransfers(listenerContract);
+  }
+
+  function testFuzz_listenToTransfers_2(
+    address listenersContract1,
+    address listenerContract2
+  ) public {
+    console.log(
+      "Should else push given contract address at the end of  the transfersListeners array"
+    );
+
+    // Listen to transfers from contract 1
+    tested.listenToTransfers(listenersContract1);
+
+    // Assert that contract 1 is at the end of the array
+    assertEq(
+      address(tested.transfersListeners(0)),
+      listenersContract1
+    );
+
+    // Listen to transfers from contract 2
+    tested.listenToTransfers(listenerContract2);
+
+    // Assert that contract 2 is now at the end of the array
+    assertEq(
+      address(tested.transfersListeners(1)),
+      listenerContract2
+    );
+  }
+
+  // ====================================
+  // === unlistenToTransfers() function ===
+  function testFuzz_unlistenToTransfers_1(
+    address account,
+    address listenerContract
+  ) public {
+    console.log("Should revert if not called by owner");
+
+    // Ensure the random account is not the fund wallet
+    vm.assume(account != tested.owner());
+
+    // Expect revert
+    expectRevertOnlyOwner();
+    vm.prank(account);
+    tested.unlistenToTransfers(listenerContract);
+  }
+
+  function testFuzz_unlistenToTransfers_2(
+    address listenerContract
+  ) public {
+    console.log(
+      "Should revert if listener contract wasn't listening to transfers"
+    );
+
+    // Expect revert
+    vm.expectRevert(LToken.ListenerNotFound.selector);
+    tested.unlistenToTransfers(listenerContract);
+  }
+
+  function testFuzz_unlistenToTransfers_3(
+    address listenerContract
+  ) public {
+    console.log(
+      "Should revert if listener contract was already unlistening to transfers"
+    );
+
+    // Listen to transfers
+    tested.listenToTransfers(listenerContract);
+
+    // Unlisten to transfers
+    tested.unlistenToTransfers(listenerContract);
+
+    // Expect revert
+    vm.expectRevert(LToken.ListenerNotFound.selector);
+    tested.unlistenToTransfers(listenerContract);
+  }
+
+  function testFuzz_unlistenToTransfers_4(
+    address listenerContract1,
+    address listenerContract2,
+    address listenerContract3
+  ) public {
+    console.log(
+      "Should properly remove listener contract from array else and without leaving any empty slot"
+    );
+
+    // Ensure that 3 listeners addresses are different
+    vm.assume(listenerContract1 != listenerContract2);
+    vm.assume(listenerContract1 != listenerContract3);
+    vm.assume(listenerContract2 != listenerContract3);
+
+    // Listen to transfers from 3 contracts
+    tested.listenToTransfers(listenerContract1);
+    tested.listenToTransfers(listenerContract2);
+    tested.listenToTransfers(listenerContract3);
+
+    // Assert that the 3 contracts are listening to transfers
+    assertEq(
+      address(tested.transfersListeners(0)),
+      listenerContract1
+    );
+    assertEq(
+      address(tested.transfersListeners(1)),
+      listenerContract2
+    );
+    assertEq(
+      address(tested.transfersListeners(2)),
+      listenerContract3
+    );
+
+    // Unlisten to transfers from contract2
+    tested.unlistenToTransfers(listenerContract2);
+
+    // Ensure that contract2 have been removed without leaving slot 1 empty
+    assertEq(
+      address(tested.transfersListeners(0)),
+      listenerContract1
+    );
+    assertEq(
+      address(tested.transfersListeners(1)),
+      listenerContract3
+    );
+
+    // Also ensure that slot 2 doesn't exist anymore
+    vm.expectRevert();
+    tested.transfersListeners(2);
+  }
+
+  // ===========================
+  // === decimals() function ===
+  function testFuzz_decimals_1(uint8 decimals) public {
+    console.log("Should mirror wrapped/underlying token decimals");
+
+    // Set underlying token decimals
+    underlyingToken.setDecimals(decimals);
+
+    // Assert that L-Token contract mirrors those
+    assertEq(tested.decimals(), decimals);
+  }
+
+  // ====================================
+  // === unmintedRewardsOf() function ===
+  // No tests needed as it simply proxies _rewardsOf()
+  // Low priority TODO: Add mirror tests for future safety
 
   // ================================
   // === realBalanceOf() function ===
@@ -626,8 +772,15 @@ contract Tests is Test, ModifiersExpectations {
 
   // ============================
   // === balanceOf() function ===
-  function testFuzz_balanceOf_1(uint256 amount) public {
+  function testFuzz_balanceOf_1(
+    uint8 decimals,
+    uint256 amount
+  ) public {
     console.log("Should mirror changes in realBalanceOf");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Cap amount to 100T
     amount = bound(amount, 0, 100_000_000_000_000 * 10 ** decimals);
@@ -643,11 +796,16 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_balanceOf_2(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint256 depositedAmount,
     uint256 duration
   ) public {
     console.log("Should mirror changes in unmintedRewardsOf");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Cap amount to 100T
     depositedAmount = bound(
@@ -721,11 +879,16 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_totalSupply_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint256 depositedAmount,
     uint256 withdrawnAmount
   ) public {
     console.log("Should mirror changes in real total supply");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -792,15 +955,20 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if trying to recover underlying token"
     );
-    vm.expectRevert(LTokenHedera.CantRecoverUnderlying.selector);
+    vm.expectRevert(LToken.CantRecoverUnderlying.selector);
     tested.recoverERC20(address(underlyingToken), 0);
   }
 
   function testFuzz_recoverERC20_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint256 amount
   ) public {
     console.log("Should allow to recover L-Tokens");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first APR
     tested.setAPR(aprUD7x3);
@@ -854,11 +1022,12 @@ contract Tests is Test, ModifiersExpectations {
 
   function test_recoverUnderlying_2() public {
     console.log("Should revert if there is nothing to recover");
-    vm.expectRevert(LTokenHedera.NothingToRecover.selector);
+    vm.expectRevert(LToken.NothingToRecover.selector);
     tested.recoverUnderlying();
   }
 
   function testFuzz_recoverUnderlying_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint256 fundedAmount,
     uint256 depositedAmount
@@ -866,6 +1035,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Shouldn't allow recovering underlying tokens deposited through deposit() or fund() functions"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -907,14 +1080,19 @@ contract Tests is Test, ModifiersExpectations {
     vm.stopPrank();
 
     // Expect the function to consider there is nothing to recover
-    vm.expectRevert(LTokenHedera.NothingToRecover.selector);
+    vm.expectRevert(LToken.NothingToRecover.selector);
     tested.recoverUnderlying();
   }
 
   function testFuzz_recoverUnderlying_4(
+    uint8 decimals,
     uint256 recoverableAmount
   ) public {
     console.log("Should transfer recoverable tokens to owner else");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure recovered and recoverable is greater than 0
     vm.assume(recoverableAmount > 0);
@@ -1047,6 +1225,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz__beforeTokenTransfer_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     address from,
     address to,
@@ -1056,6 +1235,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should reset from and to accounts investment periods if they are not zero address"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1088,15 +1271,107 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   // ======================================
+  // === _afterTokenTransfer() function ===
+  function testFuzz_afterTokenTransfer_1(
+    uint16 aprUD7x3,
+    address account1,
+    address account2,
+    uint256 amount
+  ) public {
+    console.log(
+      "Should properly call onLTokenTransfer() of all transfers listeners"
+    );
+
+    // Set a first random APR
+    tested.setAPR(aprUD7x3);
+
+    // Assert that accounts are different, aren't zero address nor the contract address
+    vm.assume(account1 != account2);
+    vm.assume(account1 != address(0));
+    vm.assume(account2 != address(0));
+    vm.assume(account1 != address(tested));
+    vm.assume(account2 != address(tested));
+
+    // Listen to transfers from vault1 and vault2
+    tested.listenToTransfers(address(vault1));
+    tested.listenToTransfers(address(vault2));
+
+    // Cap amount to [2, 100T]
+    amount = bound(
+      amount,
+      2,
+      100_000_000_000_000 * 10 ** underlyingToken.decimals()
+    );
+
+    // Give some L-Tokens to account1
+    deal(address(underlyingToken), account1, amount, true);
+    vm.startPrank(account1);
+    underlyingToken.approve(address(tested), amount);
+    tested.deposit(amount, "");
+    vm.stopPrank();
+    assertEq(tested.balanceOf(account1), amount);
+
+    // Perform 3 transactions
+    vm.prank(account1);
+    tested.transfer(account2, amount);
+    vm.prank(account2);
+    tested.transfer(account1, 1);
+    vm.prank(account2);
+    tested.transfer(account1, amount - 1);
+
+    // Assert that transactions have been successfully recorded in vault 1
+    address dataFrom;
+    address dataTo;
+    uint256 dataAmount;
+    (dataFrom, dataTo, dataAmount) = vault1.hookData(0);
+    assertEq(dataFrom, address(0));
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, amount);
+    (dataFrom, dataTo, dataAmount) = vault1.hookData(1);
+    assertEq(dataFrom, account1);
+    assertEq(dataTo, account2);
+    assertEq(dataAmount, amount);
+    (dataFrom, dataTo, dataAmount) = vault1.hookData(2);
+    assertEq(dataFrom, account2);
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, 1);
+    (dataFrom, dataTo, dataAmount) = vault1.hookData(3);
+    assertEq(dataFrom, account2);
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, amount - 1);
+
+    // Assert that transactions have been successfully recorded in vault 2
+    (dataFrom, dataTo, dataAmount) = vault2.hookData(0);
+    assertEq(dataFrom, address(0));
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, amount);
+    (dataFrom, dataTo, dataAmount) = vault2.hookData(1);
+    assertEq(dataFrom, account1);
+    assertEq(dataTo, account2);
+    assertEq(dataAmount, amount);
+    (dataFrom, dataTo, dataAmount) = vault2.hookData(2);
+    assertEq(dataFrom, account2);
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, 1);
+    (dataFrom, dataTo, dataAmount) = vault2.hookData(3);
+    assertEq(dataFrom, account2);
+    assertEq(dataTo, account1);
+    assertEq(dataAmount, amount - 1);
+  }
+
+  // ======================================
   // === getExpectedRetained() function ===
   function testFuzz_getExpectedRetained_1(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
     uint256 totalSupply
   ) public {
     console.log("Should properly apply retention rate");
 
+    // Set random underlying token decimals in [0, 18]
     decimals = uint8(bound(decimals, 2, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1155,11 +1430,16 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_getExpectedRetained_2(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
     uint256 totalSupply
   ) public {
     console.log("Should properly apply total supply");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1222,6 +1502,7 @@ contract Tests is Test, ModifiersExpectations {
   // ===========================================
   // === _transferExceedingToFund() function ===
   function testFuzz_transferExceedingToFund_1(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
     uint256 depositedAmount
@@ -1229,6 +1510,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Shouldn't transfer anything if there is no exceeding fund"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1283,11 +1568,16 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_transferExceedingToFund_2(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
     uint256 depositedAmount
   ) public {
     console.log("Should properly transfer the exceeding amount");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1329,6 +1619,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_transferExceedingToFund_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
     uint256 depositedAmount
@@ -1336,6 +1627,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease usableUnderlyings state by the amount of transfered exceeding funds"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set a first random APR
     tested.setAPR(aprUD7x3);
@@ -1383,7 +1678,7 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should inconditionally revert");
-    vm.expectRevert(LTokenHedera.NotImplemented.selector);
+    vm.expectRevert(LToken.NotImplemented.selector);
     tested.withdrawTo(account, amount);
   }
 
@@ -1394,7 +1689,7 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should inconditionally revert");
-    vm.expectRevert(LTokenHedera.NotImplemented.selector);
+    vm.expectRevert(LToken.NotImplemented.selector);
     tested.depositFor(account, amount);
   }
 
@@ -1429,6 +1724,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_deposit_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 accountBalance,
@@ -1437,6 +1733,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account hasn't enough underlying tokens"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1461,12 +1761,13 @@ contract Tests is Test, ModifiersExpectations {
 
     // Expect revert when trying to deposit more than account balance
     underlyingToken.approve(address(tested), depositedAmount);
-    vm.expectRevert(LTokenHedera.InsufficientBalance.selector);
+    vm.expectRevert(LToken.InsufficientBalance.selector);
     tested.deposit(depositedAmount, "");
     vm.stopPrank();
   }
 
   function testFuzz_deposit_4(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 depositedAmount
@@ -1474,6 +1775,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease caller underlying balance and increase contract one by the amount of deposited underlying tokens"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1521,6 +1826,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_deposit_5(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 depositedAmount
@@ -1528,6 +1834,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should mint new L-Tokens to the caller in a 1:1 ratio"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1566,6 +1876,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_deposit_6(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 depositedAmount
@@ -1573,6 +1884,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should increase usableUnderlying state by the amount of deposited underlying tokens"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1611,12 +1926,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_deposit_7(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 depositedAmount,
     uint32 retentionRateUD7x3
   ) public {
     console.log("Should transfer exceeding to fund");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1657,6 +1977,7 @@ contract Tests is Test, ModifiersExpectations {
   // ============================================
   // === getWithdrawnAmountAndFees() function ===
   function testFuzz_getWithdrawnAmountAndFees_1(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 amount,
@@ -1666,6 +1987,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should always return [inputAmount, 0] if account is elligble to staking tier 2"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
@@ -1716,12 +2041,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_getWithdrawnAmountAndFees_2(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 amount,
     uint32 feesRateUD7x3
   ) public {
     console.log("Should else return [inputAmount - fees, fees]");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
@@ -1748,12 +2078,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_getWithdrawnAmountAndFees_3(
+    uint8 decimals,
     uint16 aprUD7x3,
     address account,
     uint256 amount,
     uint32 feesRateUD7x3
   ) public {
     console.log("Should properly apply feesRateUD7x3");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address nor the the underlying token contract
     vm.assume(account != address(0));
@@ -1827,6 +2162,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_instantWithdrawal_3(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount,
@@ -1835,6 +2171,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account hasn't enough underlying tokens to withdraw"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1860,12 +2200,13 @@ contract Tests is Test, ModifiersExpectations {
     tested.deposit(depositedAmount, "");
 
     // Expect revert when trying to withdraw more than deposited amount
-    vm.expectRevert(LTokenHedera.InsufficientLTokens.selector);
+    vm.expectRevert(LToken.InsufficientLTokens.selector);
     tested.instantWithdrawal(requestedAmount);
     vm.stopPrank();
   }
 
   function testFuzz_instantWithdrawal_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount,
@@ -1874,6 +2215,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account is not elligible to staking tier 2 and contract doesn't hold enough underlying tokens to cover the withdrawal + all already queued withdrawals"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1909,12 +2254,13 @@ contract Tests is Test, ModifiersExpectations {
     tested.deposit(depositedAmount, "");
 
     // Expect revert when because of insufficient funds available
-    vm.expectRevert(LTokenHedera.InsufficientLiquidity.selector);
+    vm.expectRevert(LToken.InsufficientLiquidity.selector);
     tested.instantWithdrawal(depositedAmount);
     vm.stopPrank();
   }
 
   function testFuzz_instantWithdrawal_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 queuedAmount,
@@ -1923,6 +2269,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account is to staking tier 2 and contract doesn't hold enough underlying tokens to cover the current withdrawal"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -1984,12 +2334,13 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert when because of insufficient funds available
-    vm.expectRevert(LTokenHedera.InsufficientLiquidity.selector);
+    vm.expectRevert(LToken.InsufficientLiquidity.selector);
     vm.prank(account);
     tested.instantWithdrawal(tier2Amount);
   }
 
   function testFuzz_instantWithdrawal_6(
+    uint8 decimals,
     address account1,
     address account2,
     uint16 aprUD7x3,
@@ -1999,6 +2350,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should process to withdrawal if account is not elligible to staking tier 2 but contract holds enough underlying tokens to cover the withdrawal + all already queued withdrawals"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account1 != address(0));
@@ -2067,6 +2422,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_instantWithdrawal_7(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 queuedAmount,
@@ -2075,6 +2431,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should process to withdraw if account is to staking tier 2 and contract holds enough underlying tokens to cover the current withdrawal"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2142,11 +2502,16 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_instantWithdrawal_8(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
   ) public {
     console.log("Should properly apply feesRateUD7x3");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2187,6 +2552,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_instantWithdrawal_9(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
@@ -2194,6 +2560,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should decrease usableUnderlying by withdrawn amount (and not input amount)"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2237,6 +2607,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_instantWithdrawal_10(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
@@ -2244,6 +2615,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should also burn fees and so realTotalSupply should decrease by input amount"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -2291,7 +2666,7 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != withdrawerWallet);
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.OnlyWithdrawer.selector);
+    vm.expectRevert(LToken.OnlyWithdrawer.selector);
     vm.prank(account);
     tested.processQueuedRequests();
   }
@@ -2323,6 +2698,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_4(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint256 requestAmount,
@@ -2332,6 +2708,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently skip empty requests (processed big requests)"
     );
+    // Set random underlying token decimals in [0, 18]
+
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2414,6 +2794,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_5(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint256 requestAmount,
@@ -2423,6 +2804,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently move request to frozenRequests without processing them if emitter account is blacklisted"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2525,12 +2910,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_6(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint256 totalDeposited
   ) public {
     console.log(
       "Should silently a big request at the end of the queue"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2630,6 +3020,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_7(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint256 requestAmount,
@@ -2638,6 +3029,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Shouldn't change any state if doesn't hold enough fund to cover first next request"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2702,6 +3097,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_8(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint8 numberOfNotCoveredRequests,
@@ -2711,6 +3107,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should silently return if encountered a non-big next request that can not anymore be covered by the contract"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2783,6 +3183,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_9(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -2792,6 +3193,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should else transfer underlying tokens to emitter account"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2883,6 +3288,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_10(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -2890,6 +3296,10 @@ contract Tests is Test, ModifiersExpectations {
     uint160 accountBase
   ) public {
     console.log("Should delete processed requests");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -2961,6 +3371,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_11(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -2968,6 +3379,10 @@ contract Tests is Test, ModifiersExpectations {
     uint160 accountBase
   ) public {
     console.log("Should properly increase unclaimed fees amount");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3048,6 +3463,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_12(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -3057,6 +3473,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly decrease usable underlyings tokens amount"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3140,6 +3560,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_13(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -3147,6 +3568,10 @@ contract Tests is Test, ModifiersExpectations {
     uint160 accountBase
   ) public {
     console.log("Should properly decrease total queued amount");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3218,6 +3643,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processQueuedRequests_14(
+    uint8 decimals,
     uint16 aprUD7x3,
     uint8 numberOfRequests,
     uint16 feesRateUD7x3,
@@ -3227,6 +3653,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly increase withdrawal cursor to the next request to be processed"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Set first random APR
     tested.setAPR(aprUD7x3);
@@ -3293,6 +3723,7 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Set decimals to 18
+    underlyingToken.setDecimals(18);
 
     // Set APR to 7%
     tested.setAPR(7000);
@@ -3354,7 +3785,7 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != fundWallet);
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.OnlyFund.selector);
+    vm.expectRevert(LToken.OnlyFund.selector);
     vm.prank(account);
     tested.processBigQueuedRequest(requestId);
   }
@@ -3370,6 +3801,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processBigQueuedRequest_3(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3379,6 +3811,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if request already processed or cancelled (inactive)"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3420,12 +3856,13 @@ contract Tests is Test, ModifiersExpectations {
     tested.cancelWithdrawalRequest(0);
 
     // Expect error when trying to process the inactive queued withdrawal
-    vm.expectRevert(LTokenHedera.InvalidRequestId.selector);
+    vm.expectRevert(LToken.InvalidRequestId.selector);
     vm.prank(address(fundWallet));
     tested.processBigQueuedRequest(0);
   }
 
   function testFuzz_processBigQueuedRequest_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3435,6 +3872,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if request emitter has been blacklisted since emission"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3475,12 +3916,13 @@ contract Tests is Test, ModifiersExpectations {
     globalBlacklist.blacklist(account);
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.RequestorBlacklisted.selector);
+    vm.expectRevert(LToken.RequestorBlacklisted.selector);
     vm.prank(address(fundWallet));
     tested.processBigQueuedRequest(0);
   }
 
   function testFuzz_processBigQueuedRequest_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3488,6 +3930,10 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should revert if request is not a big request");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3531,12 +3977,13 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.NotBigRequest.selector);
+    vm.expectRevert(LToken.NotBigRequest.selector);
     vm.prank(address(fundWallet));
     tested.processBigQueuedRequest(0);
   }
 
   function testFuzz_processBigQueuedRequest_6(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3546,6 +3993,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert withdrawn amount cannot be covered by contract + fund wallet balances"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3606,12 +4057,13 @@ contract Tests is Test, ModifiersExpectations {
 
     // Expect revert because 1 token is missing to cover the request
     vm.startPrank(address(fundWallet));
-    vm.expectRevert(LTokenHedera.InsufficientCoverage.selector);
+    vm.expectRevert(LToken.InsufficientCoverage.selector);
     tested.processBigQueuedRequest(0);
     vm.stopPrank();
   }
 
   function testFuzz_processBigQueuedRequest_7(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3619,7 +4071,11 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should cover request from fund balance in priority");
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
     vm.assume(account != fundWallet);
@@ -3660,7 +4116,7 @@ contract Tests is Test, ModifiersExpectations {
     // Ensure that request is a big request
     vm.assume(amount > tested.getExpectedRetained() / 2);
 
-    // Store old LTokenHedera, fund wallet and account balances for later comparison
+    // Store old LToken, fund wallet and account balances for later comparison
     uint256 oldLTokenBalance = underlyingToken.balanceOf(
       address(tested)
     );
@@ -3675,7 +4131,7 @@ contract Tests is Test, ModifiersExpectations {
     tested.processBigQueuedRequest(0);
     vm.stopPrank();
 
-    // LTokenHedera contract balance shouldn't have changed
+    // LToken contract balance shouldn't have changed
     assertEq(
       underlyingToken.balanceOf(address(tested)),
       oldLTokenBalance
@@ -3699,6 +4155,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processBigQueuedRequest_8(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3708,7 +4165,11 @@ contract Tests is Test, ModifiersExpectations {
       "Should use contract tokens to cover request if fund wallet balance is not enough"
     );
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
     vm.assume(account != fundWallet);
@@ -3756,7 +4217,7 @@ contract Tests is Test, ModifiersExpectations {
     tested.processBigQueuedRequest(0);
     vm.stopPrank();
 
-    // LTokenHedera contract balance shouldn't have changed
+    // LToken contract balance shouldn't have changed
     assertEq(underlyingToken.balanceOf(address(tested)), 0);
 
     // Fund wallet balance should have been entirely used
@@ -3767,6 +4228,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processBigQueuedRequest_9(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3774,6 +4236,10 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should properly increase unclaimed fees amount");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3829,6 +4295,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processBigQueuedRequest_10(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3836,6 +4303,10 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should properly decrease queued amount");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3886,6 +4357,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_processBigQueuedRequest_11(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -3893,6 +4365,10 @@ contract Tests is Test, ModifiersExpectations {
     uint256 amount
   ) public {
     console.log("Should delete processed request from queue");
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account are neither the zero address nor the L-Token contract
     vm.assume(account != address(0));
@@ -3975,6 +4451,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_3(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount,
@@ -3983,6 +4460,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if account hasn't deposited enough funds"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4005,12 +4486,13 @@ contract Tests is Test, ModifiersExpectations {
     vm.stopPrank();
 
     // Expect revert when trying to request more than deposited amount
-    vm.expectRevert(LTokenHedera.InsufficientLTokens.selector);
+    vm.expectRevert(LToken.InsufficientLTokens.selector);
     vm.prank(account);
     tested.requestWithdrawal(requestedAmount);
   }
 
   function testFuzz_requestWithdrawal_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4018,6 +4500,10 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if requested amount is greater than uint96 max"
     );
+
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4045,12 +4531,13 @@ contract Tests is Test, ModifiersExpectations {
     vm.stopPrank();
 
     // Expect revert when trying to request more than type(uint96).max
-    vm.expectRevert(LTokenHedera.AmountExceedsUint96.selector);
+    vm.expectRevert(LToken.AmountExceedsUint96.selector);
     vm.prank(account);
     tested.requestWithdrawal(requestedAmount);
   }
 
   function testFuzz_requestWithdrawal_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount,
@@ -4059,6 +4546,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if caller has attached more or less than 0.003ETH of processing fees"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4083,7 +4573,7 @@ contract Tests is Test, ModifiersExpectations {
 
     // Expect revert when not attaching processing fees
     deal(account, attachedProcessingFees);
-    vm.expectRevert(LTokenHedera.IncorrectETHValue.selector);
+    vm.expectRevert(LToken.IncorrectETHValue.selector);
     vm.prank(account);
     tested.requestWithdrawal{ value: attachedProcessingFees }(
       requestedAmount
@@ -4091,6 +4581,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_6(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4098,6 +4589,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should transfer 0.003ETH of processing fees to withdrawer wallet"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4141,11 +4635,15 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_7(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
   ) public {
     console.log("Should burn account withdrawn L-Tokens");
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4192,6 +4690,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_8(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4199,6 +4698,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly set caller as request.account and requestedAmount as request.amount"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4239,6 +4741,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_9(
+    uint8 decimals,
     address account1,
     address account2,
     uint16 aprUD7x3,
@@ -4248,8 +4751,11 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should add request at the begining of the queue if caller is elligible to staking tier 2"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure accounts are different, and neither the zero address nor the LTokenHedera one
+    // Ensure accounts are different, and neither the zero address nor the LToken one
     vm.assume(account1 != account2);
     vm.assume(account1 != address(0));
     vm.assume(account2 != address(0));
@@ -4331,6 +4837,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_10(
+    uint8 decimals,
     address account1,
     address account2,
     uint16 aprUD7x3,
@@ -4339,7 +4846,11 @@ contract Tests is Test, ModifiersExpectations {
   ) public {
     console.log("Should add request at the end of the queue else");
 
-    // Ensure accounts are different, and neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure accounts are different, and neither the zero address nor the LToken one
     vm.assume(account1 != account2);
     vm.assume(account1 != address(0));
     vm.assume(account2 != address(0));
@@ -4418,6 +4929,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_11(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4425,6 +4937,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly increase total queued by requested amount"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4458,6 +4973,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_12(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4465,6 +4981,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly transfer processing fees to Withdrawer"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4501,6 +5020,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_requestWithdrawal_13(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
@@ -4508,6 +5028,9 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly revert if transfer processing fees to Withdrawer fails"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
     // Ensure account is not the zero address
     vm.assume(account != address(0));
@@ -4535,7 +5058,7 @@ contract Tests is Test, ModifiersExpectations {
     tested.setWithdrawer(payable(address(failingWithdrawer)));
 
     // Request withdrawal
-    vm.expectRevert(LTokenHedera.ETHTransferFailed.selector);
+    vm.expectRevert(LToken.ETHTransferFailed.selector);
     vm.prank(account);
     tested.requestWithdrawal{ value: processingFees }(
       requestedAmount
@@ -4573,14 +5096,18 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_cancelWithdrawalRequest_3(
+    uint8 decimals,
     address account1,
     address account2,
     uint16 aprUD7x3,
     uint256 requestedAmount
   ) public {
     console.log("Should revert request doesn't belong to caller");
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure accounts are different, and neither the zero address nor the LTokenHedera one
+    // Ensure accounts are different, and neither the zero address nor the LToken one
     vm.assume(account1 != account2);
     vm.assume(account1 != address(0));
     vm.assume(account2 != address(0));
@@ -4611,19 +5138,23 @@ contract Tests is Test, ModifiersExpectations {
     assertEq(requestAccount, account1);
 
     // Expect revert when trying to cancel the request from account 2
-    vm.expectRevert(LTokenHedera.NotRequestOwner.selector);
+    vm.expectRevert(LToken.NotRequestOwner.selector);
     vm.prank(account2);
     tested.cancelWithdrawalRequest(0);
   }
 
   function testFuzz_cancelWithdrawalRequest_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
   ) public {
     console.log("Should mint back L-Token amount to caller");
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4658,13 +5189,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_cancelWithdrawalRequest_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
   ) public {
     console.log("Should decrease total queued amount accordingly");
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4699,13 +5234,17 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_cancelWithdrawalRequest_6(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 requestedAmount
   ) public {
     console.log("Should delete request from queue");
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4751,7 +5290,7 @@ contract Tests is Test, ModifiersExpectations {
     vm.assume(account != fundWallet);
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.OnlyFund.selector);
+    vm.expectRevert(LToken.OnlyFund.selector);
     vm.prank(account);
     tested.repatriate(requestId);
   }
@@ -4765,6 +5304,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_repatriate_3(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -4774,8 +5314,11 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if the repatriation makes the retention rate exceeding"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4808,12 +5351,13 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert when trying to fund more than fund wallet balance
-    vm.expectRevert(LTokenHedera.InsufficientFundBalance.selector);
+    vm.expectRevert(LToken.InsufficientFundBalance.selector);
     vm.prank(fundWallet);
     tested.repatriate(fundedAmount);
   }
 
   function testFuzz_repatriate_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -4823,8 +5367,11 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should revert if the repatriation makes the retention rate exceeding"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4862,13 +5409,14 @@ contract Tests is Test, ModifiersExpectations {
       tested.getExpectedRetained()
     ) {
       // Expect revert
-      vm.expectRevert(LTokenHedera.ExceedsRetention.selector);
+      vm.expectRevert(LToken.ExceedsRetention.selector);
       vm.prank(fundWallet);
       tested.repatriate(fundedAmount);
     }
   }
 
   function testFuzz_repatriate_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -4878,8 +5426,11 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly transfer funds from fund to contract else"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -4942,6 +5493,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_repatriate_6(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint32 retentionRateUD7x3,
@@ -4951,8 +5503,11 @@ contract Tests is Test, ModifiersExpectations {
     console.log(
       "Should properly transfer funds from fund to contract else"
     );
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -5024,11 +5579,12 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.NoFeesToClaim.selector);
+    vm.expectRevert(LToken.NoFeesToClaim.selector);
     tested.claimFees();
   }
 
   function testFuzz_claimFees_3(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
@@ -5037,7 +5593,11 @@ contract Tests is Test, ModifiersExpectations {
       "Should revert if the contract doesn't hold enough underlyingToken to cover unclaimed fees"
     );
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -5067,11 +5627,12 @@ contract Tests is Test, ModifiersExpectations {
     );
 
     // Expect revert
-    vm.expectRevert(LTokenHedera.InsufficientForFees.selector);
+    vm.expectRevert(LToken.InsufficientForFees.selector);
     tested.claimFees();
   }
 
   function testFuzz_claimFees_4(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
@@ -5080,7 +5641,11 @@ contract Tests is Test, ModifiersExpectations {
       "Should properly transfer funds from contract to owner else"
     );
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -5130,13 +5695,18 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_claimFees_5(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
   ) public {
     console.log("Should properly reset unclaimedFees to 0");
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 
@@ -5169,6 +5739,7 @@ contract Tests is Test, ModifiersExpectations {
   }
 
   function testFuzz_claimFees_6(
+    uint8 decimals,
     address account,
     uint16 aprUD7x3,
     uint256 depositedAmount
@@ -5177,7 +5748,11 @@ contract Tests is Test, ModifiersExpectations {
       "Should properly decrease usableUnderlyings by claimed fees amount"
     );
 
-    // Ensure account is neither the zero address nor the LTokenHedera one
+    // Set random underlying token decimals in [0, 18]
+    decimals = uint8(bound(decimals, 0, 18));
+    underlyingToken.setDecimals(decimals);
+
+    // Ensure account is neither the zero address nor the LToken one
     vm.assume(account != address(0));
     vm.assume(account != address(tested));
 

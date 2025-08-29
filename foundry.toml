@@ -2,7 +2,7 @@
 src = "src"
 out = "foundry/out"
 cache_path = "foundry/cache"
-test = "foundry/test"
+test = "tests"
 libs = ["node_modules", "foundry/lib"]
 optimizer = true
 optimizer_runs = 1

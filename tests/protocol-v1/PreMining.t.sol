@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../../lib/forge-std/src/Test.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
-import { PreMining } from "../../../src/protocol-v1/PreMining.sol";
-import { LToken } from "../../../src/protocol-v1/LToken.sol";
-import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
-import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
+import "../../foundry/lib/forge-std/src/Test.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
+import { PreMining } from "../../src/protocol-v1/PreMining.sol";
+import { LToken } from "../../src/protocol-v1/LToken.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import { ModifiersExpectations } from "./helpers/ModifiersExpectations.sol";
 

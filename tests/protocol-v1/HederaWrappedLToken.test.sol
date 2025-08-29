@@ -1,24 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../../lib/forge-std/src/Test.sol";
+import "../../foundry/lib/forge-std/src/Test.sol";
 // Contracts
-import { WrappedLToken } from "../../../src/protocol-v1/WrappedLToken.sol";
-import { LToken } from "../../../src/protocol-v1/LToken.sol";
-import { MockLToken } from "../../../src/protocol-v1/mock/MockLToken.sol";
-import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
+import { WrappedLTokenHedera } from "../../src/protocol-v1/hedera/WrappedLTokenHedera.sol";
+import { LTokenHedera } from "../../src/protocol-v1/hedera/LTokenHedera.sol";
+import { MockHederaLToken } from "../../src/protocol-v1/mock/MockHederaLToken.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
 //
-import { MockERC20 } from "../../../src/protocol-v1/mock/MockERC20.sol";
+import { MockERC20 } from "../../src/protocol-v1/mock/MockERC20.sol";
 
-contract WrappedLTokenTest is Test {
+contract HederaWrappedLTokenTest is Test {
   // ======== Storage ======== //
-  WrappedLToken wLToken;
-  MockLToken lToken;
+  WrappedLTokenHedera wLToken;
+  MockHederaLToken lToken;
   MockERC20 underlying;
   GlobalOwner globalOwner;
   GlobalPause globalPause;
@@ -72,8 +72,8 @@ contract WrappedLTokenTest is Test {
     GlobalPause globalPauseImpl = new GlobalPause();
     GlobalBlacklist globalBlacklistImpl = new GlobalBlacklist();
     LDYStaking ldyStakingImpl = new LDYStaking();
-    MockLToken lTokenImpl = new MockLToken();
-    WrappedLToken wrappedLTokenImpl = new WrappedLToken();
+    MockHederaLToken lTokenImpl = new MockHederaLToken();
+    WrappedLTokenHedera wrappedLTokenImpl = new WrappedLTokenHedera();
 
     // Deploy proxies
     ERC1967Proxy globalOwnerProxy = new ERC1967Proxy(
@@ -105,8 +105,8 @@ contract WrappedLTokenTest is Test {
     globalPause = GlobalPause(address(globalPauseProxy));
     globalBlacklist = GlobalBlacklist(address(globalBlacklistProxy));
     ldyStaking = LDYStaking(address(ldyStakingProxy));
-    lToken = MockLToken(address(lTokenProxy));
-    wLToken = WrappedLToken(address(wrappedLTokenProxy));
+    lToken = MockHederaLToken(address(lTokenProxy));
+    wLToken = WrappedLTokenHedera(address(wrappedLTokenProxy));
 
     globalOwner.initialize();
     globalPause.initialize(address(globalOwner));
@@ -126,6 +126,7 @@ contract WrappedLTokenTest is Test {
       address(globalBlacklist),
       address(ldyStaking),
       address(underlying),
+      false,
       "LToken",
       "LTK"
     );
@@ -146,7 +147,7 @@ contract WrappedLTokenTest is Test {
     vm.label(address(globalBlacklist), "GlobalBlacklist");
     vm.label(address(ldyStaking), "LDYStaking");
     vm.label(address(lToken), "LToken");
-    vm.label(address(wLToken), "WrappedLToken");
+    vm.label(address(wLToken), "WrappedLTokenHedera");
     //
     vm.label(alice, "Alice");
     vm.label(bob, "Bob");

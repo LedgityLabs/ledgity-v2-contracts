@@ -2,27 +2,27 @@
 pragma solidity ^0.8.18;
 
 // Foundry
-import "../../lib/forge-std/src/Test.sol";
+import "../../foundry/lib/forge-std/src/Test.sol";
 
 // v2 Contracts
-import { LedgityYieldVault } from "../../../src/protocol-v2/LedgityYieldVault.sol";
+import { LedgityYieldVault } from "../../src/protocol-v2/LedgityYieldVault.sol";
 // v1 Contracts
-import { GlobalOwner } from "../../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../../src/protocol-v1/GlobalBlacklist.sol";
-import { GenericERC20 } from "../../../src/protocol-v1/GenericERC20.sol";
-import { LDYStaking } from "../../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
+import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
 // Contracts
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 // Mock Contracts
-import { MockLToken } from "../../../src/protocol-v1/mock/MockLToken.sol";
-import { MockERC20 } from "../../../src/protocol-v1/mock/MockERC20.sol";
+import { MockLToken } from "../../src/protocol-v1/mock/MockLToken.sol";
+import { MockERC20 } from "../../src/protocol-v1/mock/MockERC20.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { IAaveLendingPoolV3 } from "../../../src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
-import { ILedgityYieldVault } from "../../../src/protocol-v2/interfaces/ILedgityYieldVault.sol";
-import { IVaultLiquidityModule } from "../../../src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
+import { IAaveLendingPoolV3 } from "../../src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
+import { ILedgityYieldVault } from "../../src/protocol-v2/interfaces/ILedgityYieldVault.sol";
+import { IVaultLiquidityModule } from "../../src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
 contract Fixtures is Test {
   // ======== LIBS ======== //
