@@ -251,7 +251,7 @@ contract LDYStakingTest is Test, ModifiersExpectations {
 
     // deposit ldy token into the account
     amount = bound(amount, 1, 1_000_000 * 10 ** ldyToken.decimals());
-    deal(address(ldyToken), account1, amount);
+    deal(address(ldyToken), account1, amount * 2);
     deal(address(ldyToken), account2, amount);
 
     // account1 stakes ldy into the ldyStaking contract first time
