@@ -47,6 +47,7 @@ contract LedgityYieldVault is
   error MissingWithdrawalRequestFee();
   error RequestAlreadyProcessed();
   error InsufficientLiquidity();
+  error InsufficientStakeBalanceForInstantWithdrawal();
 
   // ======== STORAGE ======== //
 
@@ -74,6 +75,8 @@ contract LedgityYieldVault is
   IERC20 public stakeToken;
   // The amount of stake token required to receive a fee reduction
   uint256 public stakeBalanceForFeeReduction;
+  // The amount of stake token required to make instant withdrawal
+  uint256 public stakeBalanceForInstantWithdrawal;
 
   // Array storing all withdrawal requests in chronological order
   ILedgityDataProvider.WithdrawalRequest[] public withdrawalRequests;
@@ -188,7 +191,38 @@ contract LedgityYieldVault is
     _;
   }
 
+  /**
+   * @notice Restricts instant withdrawal to users with a stake balance above the threshold
+   */
+  modifier checkInstantWithdrawl() {
+    if (
+      stakeBalanceForInstantWithdrawal != 0 &&
+      balanceOf(msg.sender) < stakeBalanceForInstantWithdrawal
+    ) revert InsufficientStakeBalanceForInstantWithdrawal();
+    _;
+  }
+
   // ======== OVERRIDES ======== //
+
+  /**
+   * @notice Restricts token transfers from or to blacklisted addresses
+   * @param from The sender of the transfer
+   * @param to The recipient of the transfer
+   * @param amount The amount of tokens being transferred
+   */
+  function _beforeTokenTransfer(
+    address from,
+    address to,
+    uint256 amount
+  )
+    internal
+    override(ERC20Upgradeable)
+    whenNotPaused
+    notBlacklisted(from)
+    notBlacklisted(to)
+  {
+    super._beforeTokenTransfer(from, to, amount);
+  }
 
   /**
    * @notice Returns the owner of the contract
@@ -642,6 +676,7 @@ contract LedgityYieldVault is
   )
     public
     override(ERC4626Upgradeable, ILedgityYieldVault)
+    checkInstantWithdrawl
     returns (uint256)
   {
     _withdraw(
@@ -669,6 +704,7 @@ contract LedgityYieldVault is
   )
     public
     override(ERC4626Upgradeable, ILedgityYieldVault)
+    checkInstantWithdrawl
     returns (uint256)
   {
     _withdraw(msg.sender, receiver_, owner_, 0, shares_);
@@ -744,6 +780,20 @@ contract LedgityYieldVault is
   }
 
   // ======== ADMIN ======== //
+
+  /**
+   * @notice Burns shares from a blacklisted user and mints them to another address
+   * @param burnFrom The address to burn shares from
+   * @param remintTo The address to mint shares to
+   */
+  function burnAndRemintBlacklistedShares(
+    address burnFrom,
+    address remintTo
+  ) public onlyOwner {
+    uint256 shares_ = balanceOf(burnFrom);
+    _burn(burnFrom, shares_);
+    _mint(remintTo, shares_);
+  }
 
   /**
    * @notice Deposit assets into the liquidity buffer
