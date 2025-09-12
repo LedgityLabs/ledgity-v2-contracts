@@ -3691,6 +3691,11 @@
           ]
         }
       }
+    },
+    {
+      "name": "hardhat",
+      "chainId": "1",
+      "contracts": {}
     }
   ],
   "146": [

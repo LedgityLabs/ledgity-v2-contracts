@@ -1,7 +1,7 @@
 import fs from "fs";
 import type { DeployFunction } from "hardhat-deploy/dist/types";
 import { isAddress, zeroAddress } from "viem";
-import { dependencies } from "../../dependencies.cts";
+import { dependencies } from "../../data/dependencies";
 
 const LTOKEN_NAME = "Ledgity USDC";
 const LTOKEN_SYMBOL = "LUSDC";

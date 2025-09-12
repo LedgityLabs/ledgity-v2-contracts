@@ -1,0 +1,170 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "onlyPending",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxRange",
+        "type": "uint256"
+      }
+    ],
+    "name": "getUserWithdrawalRequests",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "requestId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "assets",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "processed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasFeeReduction",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ILedgityDataProvider.WithdrawalRequestRead[]",
+        "name": "filteredRequests",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "onlyPending",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxRange",
+        "type": "uint256"
+      }
+    ],
+    "name": "getWithdrawalRequests",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "requestId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "assets",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "processed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasFeeReduction",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ILedgityDataProvider.WithdrawalRequestRead[]",
+        "name": "filteredRequests",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "requestIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getWithdrawalRequestsByIds",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "requestId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "assets",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "processed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasFeeReduction",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ILedgityDataProvider.WithdrawalRequestRead[]",
+        "name": "selectedRequests",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

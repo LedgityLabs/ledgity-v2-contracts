@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "main": "hardhat.config.ts",
   "scripts": {
-    "compile": "hardhat compile && hardhat export --export-all data/deployments.json && ts-node scripts/extract-abis.mts && wagmi generate",
+    "compile": "hardhat compile && hardhat export --export-all data/deployments.json && npx hardhat extract-abis && wagmi generate",
     "test": "forge test --use 0.8.18 --no-match-contract Skip_",
     "test:only": "forge test --use 0.8.18 --match-contract Only_",
     "size": "hardhat size-contracts",

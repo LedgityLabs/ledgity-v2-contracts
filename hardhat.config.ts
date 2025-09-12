@@ -5,8 +5,9 @@ import "@nomicfoundation/hardhat-verify";
 import "colors";
 
 // Tasks
-import "./tasks/verify.cts";
-import "./tasks/deploy-mock-ccip-token.cts";
+import "./tasks/verify";
+import "./tasks/extract-abis";
+import "./tasks/deploy-mock-ccip-token";
 
 import { utils } from "ethers";
 import { type HardhatUserConfig } from "hardhat/config";
