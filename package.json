@@ -10,7 +10,7 @@
     "test": "forge test --use 0.8.18 --no-match-contract Skip_",
     "test:only": "forge test --use 0.8.18 --match-contract Only_",
     "size": "hardhat size-contracts",
-    "typings": "wagmi generate",
+    "typings": "npx hardhat extract-abis && wagmi generate",
     "slither:report": "slither . --compile-force-framework hardhat --hardhat-artifacts-directory ./artifacts/ --checklist > ./audit/slither-report.md",
     "deploy-reset:fork": "hardhat deploy --reset --network hardhat",
     "deploy-reset:fork-base": "cross-env HARDHAT_FORK_TARGET=base hardhat deploy --reset --network hardhat",

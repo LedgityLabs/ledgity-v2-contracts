@@ -11,7 +11,7 @@ task("extract-abis", "Extracts the ABI").setAction(async (taskArgs, hre) => {
   // __dirname is available globally in CommonJS
 
   const sourceDirectory = path.join(__dirname, "../artifacts/src");
-  const destinationDirectory = path.join(__dirname, "../contracts/abis");
+  const destinationDirectory = path.join(__dirname, "../data/abis");
 
   // Check if source directory exists
   if (!fs.existsSync(sourceDirectory)) {
