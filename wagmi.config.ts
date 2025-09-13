@@ -24,34 +24,46 @@ const contractList = [
   "GlobalOwner",
   "GlobalPause",
   "LDYStaking",
+  "LTokenSignaler",
+  //
   "PreMining",
   "LToken",
   "LedgityYieldVault",
   "GenericERC20",
+  //
+  "GlobalBlacklistSonic",
+  "GlobalOwnerSonic",
+  "GlobalPauseSonic",
+  "LDYStakingSonic",
+  "LTokenSignalerSonic",
 ];
 
 // Read ABIs from contracts/abis directory
 const abisPath = join(__dirname, "/data/abis");
 const abiFiles = readdirSync(abisPath).filter((file) => file.endsWith(".json"));
 
-const contracts: ContractType[] = [];
+const contractsRaw: ContractType[] = [];
 
 // First, create contracts from ABI files
 for (const abiFile of abiFiles) {
   const contractName = abiFile.replace(".json", "");
 
-  // Skip if not in whitelist
-  if (contractList.length && !contractList.includes(contractName)) continue;
-
-  // Exclude chain specific implementations that have same interfaces
-  if (contractName.endsWith("Sonic")) continue;
-  if (contractName.endsWith("Hedera")) continue;
+  if (contractList.length) {
+    // Skip if not in whitelist
+    if (!contractList.includes(contractName)) continue;
+  } else {
+    // Exclude chain specific implementations that have same interfaces
+    if (contractName.endsWith("Sonic")) continue;
+    if (contractName.endsWith("Hedera")) continue;
+    // Skip implementation contracts
+    if (contractName.includes("_Implementation")) continue;
+  }
 
   try {
     const abiContent = readFileSync(join(abisPath, abiFile), "utf8");
     const abi = JSON.parse(abiContent);
 
-    contracts.push({
+    contractsRaw.push({
       abi,
       address: {},
       name: contractName,
@@ -74,11 +86,8 @@ for (const chainId in deployedContracts) {
     const chainNumber = Number(chainId);
     const cleanName = name.replace("_Proxy", "");
 
-    // Skip implementation contracts
-    if (name.includes("_Implementation")) continue;
-
     // Find the corresponding contract in our list
-    const foundContract = contracts.find(
+    const foundContract = contractsRaw.find(
       (contract: ContractType) => contract.name === cleanName,
     );
 
@@ -91,15 +100,25 @@ for (const chainId in deployedContracts) {
 console.log(
   "\n=> Generating typing for: ",
   JSON.stringify(
-    contracts.map((contract) => contract.name),
+    contractsRaw.map((contract) => contract.name),
     null,
     2,
   ),
   "\n",
 );
 
+// Override to avoid generating hook with empty hard coded addresses
+const contracts = contractsRaw.map((el) => {
+  return Object.keys(el.address).length === 0
+    ? {
+        ...el,
+        address: undefined,
+      }
+    : el;
+});
+
 const deployments: DeploymentsType = contracts.reduce((acc, contract) => {
-  acc[contract.name] = contract.address;
+  if (contract.address) acc[contract.name] = contract.address;
   return acc;
 }, {} as DeploymentsType);
 

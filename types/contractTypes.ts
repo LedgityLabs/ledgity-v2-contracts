@@ -16,9 +16,6 @@ import {
 // GenericERC20
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
-
-*/
 export const genericErc20Abi = [
   {
     type: 'constructor',
@@ -197,19 +194,6 @@ export const genericErc20Abi = [
     stateMutability: 'nonpayable',
   },
 ] as const
-
-/**
-
-*/
-export const genericErc20Address = {} as const
-
-/**
-
-*/
-export const genericErc20Config = {
-  address: genericErc20Address,
-  abi: genericErc20Abi,
-} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GlobalBlacklist
@@ -464,6 +448,229 @@ export const globalBlacklistConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GlobalBlacklistSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const globalBlacklistSonicAbi = [
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Blacklisted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unblacklisted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'blacklist',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'isBlacklisted',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'registerContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'unBlacklist',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const globalBlacklistSonicAddress = {
+  146: '0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e',
+} as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const globalBlacklistSonicConfig = {
+  address: globalBlacklistSonicAddress,
+  abi: globalBlacklistSonicAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GlobalOwner
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -690,6 +897,204 @@ export const globalOwnerAddress = {
 export const globalOwnerConfig = {
   address: globalOwnerAddress,
   abi: globalOwnerAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GlobalOwnerSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const globalOwnerSonicAbi = [
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferStarted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'acceptOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pendingOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'registerContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const globalOwnerSonicAddress = {
+  146: '0xBbb6f6E3AC59112D90Dcc63dcC27567101450011',
+} as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const globalOwnerSonicConfig = {
+  address: globalOwnerSonicAddress,
+  abi: globalOwnerSonicAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -942,6 +1347,229 @@ export const globalPauseAddress = {
 export const globalPauseConfig = {
   address: globalPauseAddress,
   abi: globalPauseAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GlobalPauseSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const globalPauseSonicAbi = [
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'registerContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const globalPauseSonicAddress = {
+  146: '0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B',
+} as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const globalPauseSonicConfig = {
+  address: globalPauseSonicAddress,
+  abi: globalPauseSonicAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1599,12 +2227,656 @@ export const ldyStakingConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// LToken
+// LDYStakingSonic
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const ldyStakingSonicAbi = [
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'rewardAmount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'rewardPerSec',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'NotifiedRewardAmount',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'reward',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'RewardPaid',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Staked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Unstaked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'MULTIPLIER_BASIS',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'stakeIndex', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'earned',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'finishAt',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'getEarnedUser',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'stakeIndex', internalType: 'uint256', type: 'uint256' }],
+    name: 'getReward',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'index', internalType: 'uint256', type: 'uint256' }],
+    name: 'getStakeDurationInfo',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct LDYStaking.StakeDurationInfo',
+        type: 'tuple',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'getUserStakes',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct LDYStaking.StakingInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'stakedAmount', internalType: 'uint256', type: 'uint256' },
+          { name: 'unStakeAt', internalType: 'uint256', type: 'uint256' },
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'rewardPerTokenPaid',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'rewards', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalBlacklist',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account_', internalType: 'address', type: 'address' }],
+    name: 'highTierAccounts',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalBlacklist_', internalType: 'address', type: 'address' },
+      { name: 'stakeRewardToken_', internalType: 'address', type: 'address' },
+      {
+        name: 'stakeDurationInfos_',
+        internalType: 'struct LDYStaking.StakeDurationInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+      {
+        name: 'stakeDurationForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'stakeAmountForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalBlacklist_', internalType: 'address', type: 'address' },
+      { name: 'stakeRewardToken_', internalType: 'address', type: 'address' },
+      {
+        name: 'stakeDurationInfos_',
+        internalType: 'struct LDYStaking.StakeDurationInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+      {
+        name: 'stakeDurationForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'stakeAmountForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastTimeRewardApplicable',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastUpdateTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account_', internalType: 'address', type: 'address' }],
+    name: 'nbHighTierPositions',
+    outputs: [
+      { name: 'nbPositions_', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'notifyRewardAmount',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'durationInfo',
+        internalType: 'struct LDYStaking.StakeDurationInfo',
+        type: 'tuple',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    name: 'pushStakeDurationInfo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'registerContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardPerToken',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardPerTokenStored',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardRatePerSec',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardsDuration',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'duration', internalType: 'uint256', type: 'uint256' }],
+    name: 'setRewardsDuration',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'stakeAmountForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStakeAmountForPerks',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'stakeDurationForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStakeDurationForPerks',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'stakeDurationIndex', internalType: 'uint8', type: 'uint8' },
+    ],
+    name: 'stake',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeAmountForPerks',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeDurationForPerks',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'stakeDurationInfos',
+    outputs: [
+      { name: 'duration', internalType: 'uint256', type: 'uint256' },
+      { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeRewardToken',
+    outputs: [
+      { name: '', internalType: 'contract IERC20Upgradeable', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'tierOf',
+    outputs: [{ name: 'tier', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalRewards',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalStaked',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalWeightedStake',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'stakeIndex', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'unstake',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'userStakingInfo',
+    outputs: [
+      { name: 'stakedAmount', internalType: 'uint256', type: 'uint256' },
+      { name: 'unStakeAt', internalType: 'uint256', type: 'uint256' },
+      { name: 'duration', internalType: 'uint256', type: 'uint256' },
+      { name: 'rewardPerTokenPaid', internalType: 'uint256', type: 'uint256' },
+      { name: 'rewards', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+] as const
 
-*/
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const ldyStakingSonicAddress = {
+  146: '0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA',
+} as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const ldyStakingSonicConfig = {
+  address: ldyStakingSonicAddress,
+  abi: ldyStakingSonicAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LToken
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const lTokenAbi = [
   { type: 'error', inputs: [], name: 'AmountExceedsUint96' },
   { type: 'error', inputs: [], name: 'CantRecoverUnderlying' },
@@ -2448,23 +3720,431 @@ export const lTokenAbi = [
   },
 ] as const
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LTokenSignaler
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
-
-*/
-export const lTokenAddress = {} as const
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const lTokenSignalerAbi = [
+  { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'lTokenAddress',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'LTokenSignalEvent',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lTokenAddress', internalType: 'address', type: 'address' },
+    ],
+    name: 'signalLToken',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
 
 /**
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const lTokenSignalerAddress = {
+  195: '0x011C5B18aBC74A341209b12D1A6fD7B59E423428',
+  196: '0x011C5B18aBC74A341209b12D1A6fD7B59E423428',
+  295: '0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc',
+  8453: '0x4EeC09DB589C882fbA7C5D03065dfD20912FE877',
+  31337: '0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0',
+  42161: '0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1',
+  59140: '0x04a678103bE57c3d81100fe08e43C94e50adC37B',
+  59144: '0xBA427517505b14C560854aED003304Fc69cbadfb',
+  84532: '0x7A02c93681450241e97C87a2Decb511b42BB16f5',
+  421613: '0x1dA817E33C0dB209C7b508B79F9dac4480f94522',
+  11155111: '0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3',
+} as const
 
-*/
-export const lTokenConfig = { address: lTokenAddress, abi: lTokenAbi } as const
+/**
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const lTokenSignalerConfig = {
+  address: lTokenSignalerAddress,
+  abi: lTokenSignalerAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LTokenSignalerSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const lTokenSignalerSonicAbi = [
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'lTokenAddress',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'LTokenSignalEvent',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'registerContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lTokenAddress', internalType: 'address', type: 'address' },
+    ],
+    name: 'signalLToken',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const lTokenSignalerSonicAddress = {
+  146: '0xF96Af1681a7E926fa694C24D740913c7e860A610',
+} as const
+
+/**
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const lTokenSignalerSonicConfig = {
+  address: lTokenSignalerSonicAddress,
+  abi: lTokenSignalerSonicAbi,
+} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LedgityYieldVault
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
-
-*/
 export const ledgityYieldVaultAbi = [
   { type: 'error', inputs: [], name: 'InsufficientAllowance' },
   { type: 'error', inputs: [], name: 'InsufficientLiquidity' },
@@ -3945,19 +5625,6 @@ export const ledgityYieldVaultAbi = [
   },
 ] as const
 
-/**
-
-*/
-export const ledgityYieldVaultAddress = {} as const
-
-/**
-
-*/
-export const ledgityYieldVaultConfig = {
-  address: ledgityYieldVaultAddress,
-  abi: ledgityYieldVaultAbi,
-} as const
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PreMining
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4370,29 +6037,20 @@ export const preMiningConfig = {
  */
 export const useReadGenericErc20 = /*#__PURE__*/ createUseReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link genericErc20Abi}__ and `functionName` set to `"allowance"`
  */
 export const useReadGenericErc20Allowance = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: genericErc20Abi,
-    address: genericErc20Address,
-    functionName: 'allowance',
-  },
+  { abi: genericErc20Abi, functionName: 'allowance' },
 )
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link genericErc20Abi}__ and `functionName` set to `"balanceOf"`
  */
 export const useReadGenericErc20BalanceOf = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: genericErc20Abi,
-    address: genericErc20Address,
-    functionName: 'balanceOf',
-  },
+  { abi: genericErc20Abi, functionName: 'balanceOf' },
 )
 
 /**
@@ -4400,7 +6058,6 @@ export const useReadGenericErc20BalanceOf = /*#__PURE__*/ createUseReadContract(
  */
 export const useReadGenericErc20Decimals = /*#__PURE__*/ createUseReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'decimals',
 })
 
@@ -4409,7 +6066,6 @@ export const useReadGenericErc20Decimals = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadGenericErc20Name = /*#__PURE__*/ createUseReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'name',
 })
 
@@ -4418,7 +6074,6 @@ export const useReadGenericErc20Name = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadGenericErc20Symbol = /*#__PURE__*/ createUseReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'symbol',
 })
 
@@ -4428,7 +6083,6 @@ export const useReadGenericErc20Symbol = /*#__PURE__*/ createUseReadContract({
 export const useReadGenericErc20TotalSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'totalSupply',
   })
 
@@ -4437,18 +6091,13 @@ export const useReadGenericErc20TotalSupply =
  */
 export const useWriteGenericErc20 = /*#__PURE__*/ createUseWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link genericErc20Abi}__ and `functionName` set to `"approve"`
  */
 export const useWriteGenericErc20Approve = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: genericErc20Abi,
-    address: genericErc20Address,
-    functionName: 'approve',
-  },
+  { abi: genericErc20Abi, functionName: 'approve' },
 )
 
 /**
@@ -4456,7 +6105,6 @@ export const useWriteGenericErc20Approve = /*#__PURE__*/ createUseWriteContract(
  */
 export const useWriteGenericErc20Burn = /*#__PURE__*/ createUseWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'burn',
 })
 
@@ -4466,7 +6114,6 @@ export const useWriteGenericErc20Burn = /*#__PURE__*/ createUseWriteContract({
 export const useWriteGenericErc20BurnFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'burnFrom',
   })
 
@@ -4476,7 +6123,6 @@ export const useWriteGenericErc20BurnFrom =
 export const useWriteGenericErc20DecreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'decreaseAllowance',
   })
 
@@ -4486,7 +6132,6 @@ export const useWriteGenericErc20DecreaseAllowance =
 export const useWriteGenericErc20IncreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'increaseAllowance',
   })
 
@@ -4495,7 +6140,6 @@ export const useWriteGenericErc20IncreaseAllowance =
  */
 export const useWriteGenericErc20Mint = /*#__PURE__*/ createUseWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'mint',
 })
 
@@ -4505,7 +6149,6 @@ export const useWriteGenericErc20Mint = /*#__PURE__*/ createUseWriteContract({
 export const useWriteGenericErc20SetDecimals =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'setDecimals',
   })
 
@@ -4515,7 +6158,6 @@ export const useWriteGenericErc20SetDecimals =
 export const useWriteGenericErc20Transfer =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transfer',
   })
 
@@ -4525,7 +6167,6 @@ export const useWriteGenericErc20Transfer =
 export const useWriteGenericErc20TransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transferFrom',
   })
 
@@ -4534,7 +6175,6 @@ export const useWriteGenericErc20TransferFrom =
  */
 export const useSimulateGenericErc20 = /*#__PURE__*/ createUseSimulateContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
@@ -4543,7 +6183,6 @@ export const useSimulateGenericErc20 = /*#__PURE__*/ createUseSimulateContract({
 export const useSimulateGenericErc20Approve =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'approve',
   })
 
@@ -4553,7 +6192,6 @@ export const useSimulateGenericErc20Approve =
 export const useSimulateGenericErc20Burn =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'burn',
   })
 
@@ -4563,7 +6201,6 @@ export const useSimulateGenericErc20Burn =
 export const useSimulateGenericErc20BurnFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'burnFrom',
   })
 
@@ -4573,7 +6210,6 @@ export const useSimulateGenericErc20BurnFrom =
 export const useSimulateGenericErc20DecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'decreaseAllowance',
   })
 
@@ -4583,7 +6219,6 @@ export const useSimulateGenericErc20DecreaseAllowance =
 export const useSimulateGenericErc20IncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'increaseAllowance',
   })
 
@@ -4593,7 +6228,6 @@ export const useSimulateGenericErc20IncreaseAllowance =
 export const useSimulateGenericErc20Mint =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'mint',
   })
 
@@ -4603,7 +6237,6 @@ export const useSimulateGenericErc20Mint =
 export const useSimulateGenericErc20SetDecimals =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'setDecimals',
   })
 
@@ -4613,7 +6246,6 @@ export const useSimulateGenericErc20SetDecimals =
 export const useSimulateGenericErc20Transfer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transfer',
   })
 
@@ -4623,7 +6255,6 @@ export const useSimulateGenericErc20Transfer =
 export const useSimulateGenericErc20TransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transferFrom',
   })
 
@@ -4631,10 +6262,7 @@ export const useSimulateGenericErc20TransferFrom =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link genericErc20Abi}__
  */
 export const useWatchGenericErc20Event =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: genericErc20Abi,
-    address: genericErc20Address,
-  })
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: genericErc20Abi })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link genericErc20Abi}__ and `eventName` set to `"Approval"`
@@ -4642,7 +6270,6 @@ export const useWatchGenericErc20Event =
 export const useWatchGenericErc20ApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     eventName: 'Approval',
   })
 
@@ -4652,7 +6279,6 @@ export const useWatchGenericErc20ApprovalEvent =
 export const useWatchGenericErc20TransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     eventName: 'Transfer',
   })
 
@@ -5271,6 +6897,373 @@ export const useWatchGlobalBlacklistUpgradedEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonic = /*#__PURE__*/ createUseReadContract({
+  abi: globalBlacklistSonicAbi,
+  address: globalBlacklistSonicAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"isBlacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicIsBlacklisted =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'isBlacklisted',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useReadGlobalBlacklistSonicTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonic =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"blacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicBlacklist =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'blacklist',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicRegisterContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"unBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicUnBlacklist =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'unBlacklist',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWriteGlobalBlacklistSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"blacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicBlacklist =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'blacklist',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicRegisterContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"unBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicUnBlacklist =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'unBlacklist',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useSimulateGlobalBlacklistSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Blacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicBlacklistedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Blacklisted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Unblacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicUnblacklistedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Unblacklisted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const useWatchGlobalBlacklistSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalOwnerAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
@@ -5834,6 +7827,349 @@ export const useWatchGlobalOwnerUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalOwnerAbi,
     address: globalOwnerAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useReadGlobalOwnerSonic = /*#__PURE__*/ createUseReadContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useReadGlobalOwnerSonicOwner = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'owner',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"pendingOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useReadGlobalOwnerSonicPendingOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'pendingOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useReadGlobalOwnerSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonic = /*#__PURE__*/ createUseWriteContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicAcceptOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicRegisterContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWriteGlobalOwnerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicAcceptOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicRegisterContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useSimulateGlobalOwnerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"OwnershipTransferStarted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicOwnershipTransferStartedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'OwnershipTransferStarted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const useWatchGlobalOwnerSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
     eventName: 'Upgraded',
   })
 
@@ -6444,6 +8780,373 @@ export const useWatchGlobalPauseUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalPauseAbi,
     address: globalPauseAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonic = /*#__PURE__*/ createUseReadContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicOwner = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'owner',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useReadGlobalPauseSonicTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonic = /*#__PURE__*/ createUseWriteContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicPause =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'pause',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicRegisterContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicUnpause =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'unpause',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWriteGlobalPauseSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicPause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'pause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicRegisterContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicUnpause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'unpause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useSimulateGlobalPauseSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const useWatchGlobalPauseSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
     eventName: 'Upgraded',
   })
 
@@ -8041,11 +10744,894 @@ export const useWatchLdyStakingUpgradedEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonic = /*#__PURE__*/ createUseReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"MULTIPLIER_BASIS"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicMultiplierBasis =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'MULTIPLIER_BASIS',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"earned"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicEarned = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'earned',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"finishAt"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicFinishAt =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'finishAt',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getEarnedUser"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGetEarnedUser =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getEarnedUser',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGetStakeDurationInfo =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getUserStakes"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGetUserStakes =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getUserStakes',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGlobalBlacklist =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'globalBlacklist',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"highTierAccounts"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicHighTierAccounts =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'highTierAccounts',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"lastTimeRewardApplicable"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicLastTimeRewardApplicable =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'lastTimeRewardApplicable',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"lastUpdateTime"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicLastUpdateTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'lastUpdateTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"nbHighTierPositions"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicNbHighTierPositions =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'nbHighTierPositions',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicOwner = /*#__PURE__*/ createUseReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicPaused = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'paused',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardPerToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicRewardPerToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardPerToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardPerTokenStored"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicRewardPerTokenStored =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardPerTokenStored',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardRatePerSec"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicRewardRatePerSec =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardRatePerSec',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicRewardsDuration =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicStakeAmountForPerks =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicStakeDurationForPerks =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeDurationInfos"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicStakeDurationInfos =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeDurationInfos',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeRewardToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicStakeRewardToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeRewardToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"tierOf"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicTierOf = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'tierOf',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalRewards"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicTotalRewards =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'totalRewards',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalStaked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicTotalStaked =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'totalStaked',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalWeightedStake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicTotalWeightedStake =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'totalWeightedStake',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"userStakingInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useReadLdyStakingSonicUserStakingInfo =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'userStakingInfo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonic = /*#__PURE__*/ createUseWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getReward"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicGetReward =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicNotifyRewardAmount =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicPushStakeDurationInfo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicRegisterContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicSetRewardsDuration =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicSetStakeAmountForPerks =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicSetStakeDurationForPerks =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicStake =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"unstake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicUnstake =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWriteLdyStakingSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getReward"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicGetReward =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicNotifyRewardAmount =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicPushStakeDurationInfo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicRegisterContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicSetRewardsDuration =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicSetStakeAmountForPerks =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicSetStakeDurationForPerks =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicStake =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"unstake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicUnstake =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useSimulateLdyStakingSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"NotifiedRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicNotifiedRewardAmountEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'NotifiedRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"RewardPaid"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicRewardPaidEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'RewardPaid',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Staked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicStakedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Staked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Unstaked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicUnstakedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Unstaked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const useWatchLdyStakingSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__
  */
 export const useReadLToken = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
@@ -8053,7 +11639,6 @@ export const useReadLToken = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenAllowance = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'allowance',
 })
 
@@ -8062,7 +11647,6 @@ export const useReadLTokenAllowance = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'balanceOf',
 })
 
@@ -8071,7 +11655,6 @@ export const useReadLTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenDecimals = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'decimals',
 })
 
@@ -8080,7 +11663,6 @@ export const useReadLTokenDecimals = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenDepositFor = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'depositFor',
 })
 
@@ -8089,7 +11671,6 @@ export const useReadLTokenDepositFor = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenFeesRateUd7x3 = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'feesRateUD7x3',
 })
 
@@ -8098,7 +11679,6 @@ export const useReadLTokenFeesRateUd7x3 = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenFrozenRequests = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'frozenRequests',
 })
 
@@ -8107,7 +11687,6 @@ export const useReadLTokenFrozenRequests = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenFund = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'fund',
 })
 
@@ -8116,7 +11695,6 @@ export const useReadLTokenFund = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenGetApr = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'getAPR',
 })
 
@@ -8126,7 +11704,6 @@ export const useReadLTokenGetApr = /*#__PURE__*/ createUseReadContract({
 export const useReadLTokenGetExpectedRetained =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'getExpectedRetained',
   })
 
@@ -8136,7 +11713,6 @@ export const useReadLTokenGetExpectedRetained =
 export const useReadLTokenGetWithdrawnAmountAndFees =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'getWithdrawnAmountAndFees',
   })
 
@@ -8144,7 +11720,7 @@ export const useReadLTokenGetWithdrawnAmountAndFees =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"globalBlacklist"`
  */
 export const useReadLTokenGlobalBlacklist = /*#__PURE__*/ createUseReadContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'globalBlacklist' },
+  { abi: lTokenAbi, functionName: 'globalBlacklist' },
 )
 
 /**
@@ -8152,7 +11728,6 @@ export const useReadLTokenGlobalBlacklist = /*#__PURE__*/ createUseReadContract(
  */
 export const useReadLTokenGlobalOwner = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'globalOwner',
 })
 
@@ -8161,7 +11736,6 @@ export const useReadLTokenGlobalOwner = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenGlobalPause = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'globalPause',
 })
 
@@ -8170,7 +11744,6 @@ export const useReadLTokenGlobalPause = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenInvested = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'invested',
 })
 
@@ -8179,7 +11752,6 @@ export const useReadLTokenInvested = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenLdyStaking = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'ldyStaking',
 })
 
@@ -8188,7 +11760,6 @@ export const useReadLTokenLdyStaking = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenName = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'name',
 })
 
@@ -8198,7 +11769,6 @@ export const useReadLTokenName = /*#__PURE__*/ createUseReadContract({
 export const useReadLTokenOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'onlyHighTierInstantWithdrawal',
   })
 
@@ -8207,7 +11777,6 @@ export const useReadLTokenOnlyHighTierInstantWithdrawal =
  */
 export const useReadLTokenOwner = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'owner',
 })
 
@@ -8216,7 +11785,6 @@ export const useReadLTokenOwner = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenPaused = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'paused',
 })
 
@@ -8225,7 +11793,6 @@ export const useReadLTokenPaused = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenProxiableUuid = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'proxiableUUID',
 })
 
@@ -8234,7 +11801,6 @@ export const useReadLTokenProxiableUuid = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenRealBalanceOf = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'realBalanceOf',
 })
 
@@ -8242,7 +11808,7 @@ export const useReadLTokenRealBalanceOf = /*#__PURE__*/ createUseReadContract({
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"realTotalSupply"`
  */
 export const useReadLTokenRealTotalSupply = /*#__PURE__*/ createUseReadContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'realTotalSupply' },
+  { abi: lTokenAbi, functionName: 'realTotalSupply' },
 )
 
 /**
@@ -8251,7 +11817,6 @@ export const useReadLTokenRealTotalSupply = /*#__PURE__*/ createUseReadContract(
 export const useReadLTokenRenounceOwnership =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -8261,7 +11826,6 @@ export const useReadLTokenRenounceOwnership =
 export const useReadLTokenRetentionRateUd7x3 =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'retentionRateUD7x3',
   })
 
@@ -8271,7 +11835,6 @@ export const useReadLTokenRetentionRateUd7x3 =
 export const useReadLTokenRewardsRedirectsFromTo =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'rewardsRedirectsFromTo',
   })
 
@@ -8281,7 +11844,6 @@ export const useReadLTokenRewardsRedirectsFromTo =
 export const useReadLTokenRewardsRedirectsToFrom =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'rewardsRedirectsToFrom',
   })
 
@@ -8290,7 +11852,6 @@ export const useReadLTokenRewardsRedirectsToFrom =
  */
 export const useReadLTokenSymbol = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'symbol',
 })
 
@@ -8299,7 +11860,6 @@ export const useReadLTokenSymbol = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenTotalQueued = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'totalQueued',
 })
 
@@ -8308,7 +11868,6 @@ export const useReadLTokenTotalQueued = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'totalSupply',
 })
 
@@ -8318,7 +11877,6 @@ export const useReadLTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
 export const useReadLTokenTransferOwnership =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'transferOwnership',
   })
 
@@ -8328,7 +11886,6 @@ export const useReadLTokenTransferOwnership =
 export const useReadLTokenTransfersListeners =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'transfersListeners',
   })
 
@@ -8337,7 +11894,6 @@ export const useReadLTokenTransfersListeners =
  */
 export const useReadLTokenUnclaimedFees = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'unclaimedFees',
 })
 
@@ -8346,7 +11902,6 @@ export const useReadLTokenUnclaimedFees = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadLTokenUnderlying = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'underlying',
 })
 
@@ -8356,7 +11911,6 @@ export const useReadLTokenUnderlying = /*#__PURE__*/ createUseReadContract({
 export const useReadLTokenUnmintedRewardsOf =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'unmintedRewardsOf',
   })
 
@@ -8366,7 +11920,6 @@ export const useReadLTokenUnmintedRewardsOf =
 export const useReadLTokenUsableUnderlyings =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'usableUnderlyings',
   })
 
@@ -8375,7 +11928,6 @@ export const useReadLTokenUsableUnderlyings =
  */
 export const useReadLTokenWithdrawTo = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawTo',
 })
 
@@ -8385,7 +11937,6 @@ export const useReadLTokenWithdrawTo = /*#__PURE__*/ createUseReadContract({
 export const useReadLTokenWithdrawalFeeInEth =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'withdrawalFeeInEth',
   })
 
@@ -8393,7 +11944,7 @@ export const useReadLTokenWithdrawalFeeInEth =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalQueue"`
  */
 export const useReadLTokenWithdrawalQueue = /*#__PURE__*/ createUseReadContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'withdrawalQueue' },
+  { abi: lTokenAbi, functionName: 'withdrawalQueue' },
 )
 
 /**
@@ -8402,7 +11953,6 @@ export const useReadLTokenWithdrawalQueue = /*#__PURE__*/ createUseReadContract(
 export const useReadLTokenWithdrawalQueueCursor =
   /*#__PURE__*/ createUseReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'withdrawalQueueCursor',
   })
 
@@ -8411,7 +11961,6 @@ export const useReadLTokenWithdrawalQueueCursor =
  */
 export const useReadLTokenWithdrawer = /*#__PURE__*/ createUseReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawer',
 })
 
@@ -8420,7 +11969,6 @@ export const useReadLTokenWithdrawer = /*#__PURE__*/ createUseReadContract({
  */
 export const useWriteLToken = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
@@ -8428,7 +11976,6 @@ export const useWriteLToken = /*#__PURE__*/ createUseWriteContract({
  */
 export const useWriteLTokenApprove = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'approve',
 })
 
@@ -8438,7 +11985,6 @@ export const useWriteLTokenApprove = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenCancelWithdrawalRequest =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'cancelWithdrawalRequest',
   })
 
@@ -8447,7 +11993,6 @@ export const useWriteLTokenCancelWithdrawalRequest =
  */
 export const useWriteLTokenClaimFees = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'claimFees',
 })
 
@@ -8457,7 +12002,6 @@ export const useWriteLTokenClaimFees = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenDecreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -8466,7 +12010,6 @@ export const useWriteLTokenDecreaseAllowance =
  */
 export const useWriteLTokenDeposit = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'deposit',
 })
 
@@ -8476,7 +12019,6 @@ export const useWriteLTokenDeposit = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenIncreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -8485,7 +12027,6 @@ export const useWriteLTokenIncreaseAllowance =
  */
 export const useWriteLTokenInitialize = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'initialize',
 })
 
@@ -8495,7 +12036,6 @@ export const useWriteLTokenInitialize = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenInstantWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'instantWithdrawal',
   })
 
@@ -8505,7 +12045,6 @@ export const useWriteLTokenInstantWithdrawal =
 export const useWriteLTokenListenToTransfers =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'listenToTransfers',
   })
 
@@ -8515,7 +12054,6 @@ export const useWriteLTokenListenToTransfers =
 export const useWriteLTokenProcessBigQueuedRequest =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processBigQueuedRequest',
   })
 
@@ -8525,7 +12063,6 @@ export const useWriteLTokenProcessBigQueuedRequest =
 export const useWriteLTokenProcessQueuedRequests =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processQueuedRequests',
   })
 
@@ -8534,7 +12071,6 @@ export const useWriteLTokenProcessQueuedRequests =
  */
 export const useWriteLTokenRecoverErc20 = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'recoverERC20',
 })
 
@@ -8544,7 +12080,6 @@ export const useWriteLTokenRecoverErc20 = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenRecoverUnderlying =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'recoverUnderlying',
   })
 
@@ -8553,7 +12088,6 @@ export const useWriteLTokenRecoverUnderlying =
  */
 export const useWriteLTokenRepatriate = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'repatriate',
 })
 
@@ -8563,7 +12097,6 @@ export const useWriteLTokenRepatriate = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenRequestWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -8572,7 +12105,6 @@ export const useWriteLTokenRequestWithdrawal =
  */
 export const useWriteLTokenSetApr = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setAPR',
 })
 
@@ -8581,7 +12113,6 @@ export const useWriteLTokenSetApr = /*#__PURE__*/ createUseWriteContract({
  */
 export const useWriteLTokenSetFeesRate = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFeesRate',
 })
 
@@ -8590,7 +12121,6 @@ export const useWriteLTokenSetFeesRate = /*#__PURE__*/ createUseWriteContract({
  */
 export const useWriteLTokenSetFund = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFund',
 })
 
@@ -8598,7 +12128,7 @@ export const useWriteLTokenSetFund = /*#__PURE__*/ createUseWriteContract({
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"setLDYStaking"`
  */
 export const useWriteLTokenSetLdyStaking = /*#__PURE__*/ createUseWriteContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'setLDYStaking' },
+  { abi: lTokenAbi, functionName: 'setLDYStaking' },
 )
 
 /**
@@ -8607,7 +12137,6 @@ export const useWriteLTokenSetLdyStaking = /*#__PURE__*/ createUseWriteContract(
 export const useWriteLTokenSetRetentionRate =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setRetentionRate',
   })
 
@@ -8617,7 +12146,6 @@ export const useWriteLTokenSetRetentionRate =
 export const useWriteLTokenSetWithdrawalFeeInEth =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setWithdrawalFeeInEth',
   })
 
@@ -8625,7 +12153,7 @@ export const useWriteLTokenSetWithdrawalFeeInEth =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"setWithdrawer"`
  */
 export const useWriteLTokenSetWithdrawer = /*#__PURE__*/ createUseWriteContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'setWithdrawer' },
+  { abi: lTokenAbi, functionName: 'setWithdrawer' },
 )
 
 /**
@@ -8634,7 +12162,6 @@ export const useWriteLTokenSetWithdrawer = /*#__PURE__*/ createUseWriteContract(
 export const useWriteLTokenStartRewardsRedirection =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'startRewardsRedirection',
   })
 
@@ -8644,7 +12171,6 @@ export const useWriteLTokenStartRewardsRedirection =
 export const useWriteLTokenStopRewardsRedirection =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'stopRewardsRedirection',
   })
 
@@ -8654,7 +12180,6 @@ export const useWriteLTokenStopRewardsRedirection =
 export const useWriteLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
   })
 
@@ -8663,7 +12188,6 @@ export const useWriteLTokenSwitchOnlyHighTierInstantWithdrawal =
  */
 export const useWriteLTokenTransfer = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transfer',
 })
 
@@ -8672,7 +12196,6 @@ export const useWriteLTokenTransfer = /*#__PURE__*/ createUseWriteContract({
  */
 export const useWriteLTokenTransferFrom = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transferFrom',
 })
 
@@ -8682,7 +12205,6 @@ export const useWriteLTokenTransferFrom = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenUnlistenToTransfers =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'unlistenToTransfers',
   })
 
@@ -8691,7 +12213,6 @@ export const useWriteLTokenUnlistenToTransfers =
  */
 export const useWriteLTokenUpgradeTo = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'upgradeTo',
 })
 
@@ -8701,7 +12222,6 @@ export const useWriteLTokenUpgradeTo = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLTokenUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -8710,14 +12230,13 @@ export const useWriteLTokenUpgradeToAndCall =
  */
 export const useSimulateLToken = /*#__PURE__*/ createUseSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"approve"`
  */
 export const useSimulateLTokenApprove = /*#__PURE__*/ createUseSimulateContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'approve' },
+  { abi: lTokenAbi, functionName: 'approve' },
 )
 
 /**
@@ -8726,7 +12245,6 @@ export const useSimulateLTokenApprove = /*#__PURE__*/ createUseSimulateContract(
 export const useSimulateLTokenCancelWithdrawalRequest =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'cancelWithdrawalRequest',
   })
 
@@ -8736,7 +12254,6 @@ export const useSimulateLTokenCancelWithdrawalRequest =
 export const useSimulateLTokenClaimFees =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'claimFees',
   })
 
@@ -8746,7 +12263,6 @@ export const useSimulateLTokenClaimFees =
 export const useSimulateLTokenDecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -8754,7 +12270,7 @@ export const useSimulateLTokenDecreaseAllowance =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"deposit"`
  */
 export const useSimulateLTokenDeposit = /*#__PURE__*/ createUseSimulateContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'deposit' },
+  { abi: lTokenAbi, functionName: 'deposit' },
 )
 
 /**
@@ -8763,7 +12279,6 @@ export const useSimulateLTokenDeposit = /*#__PURE__*/ createUseSimulateContract(
 export const useSimulateLTokenIncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -8773,7 +12288,6 @@ export const useSimulateLTokenIncreaseAllowance =
 export const useSimulateLTokenInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'initialize',
   })
 
@@ -8783,7 +12297,6 @@ export const useSimulateLTokenInitialize =
 export const useSimulateLTokenInstantWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'instantWithdrawal',
   })
 
@@ -8793,7 +12306,6 @@ export const useSimulateLTokenInstantWithdrawal =
 export const useSimulateLTokenListenToTransfers =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'listenToTransfers',
   })
 
@@ -8803,7 +12315,6 @@ export const useSimulateLTokenListenToTransfers =
 export const useSimulateLTokenProcessBigQueuedRequest =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processBigQueuedRequest',
   })
 
@@ -8813,7 +12324,6 @@ export const useSimulateLTokenProcessBigQueuedRequest =
 export const useSimulateLTokenProcessQueuedRequests =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processQueuedRequests',
   })
 
@@ -8823,7 +12333,6 @@ export const useSimulateLTokenProcessQueuedRequests =
 export const useSimulateLTokenRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'recoverERC20',
   })
 
@@ -8833,7 +12342,6 @@ export const useSimulateLTokenRecoverErc20 =
 export const useSimulateLTokenRecoverUnderlying =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'recoverUnderlying',
   })
 
@@ -8843,7 +12351,6 @@ export const useSimulateLTokenRecoverUnderlying =
 export const useSimulateLTokenRepatriate =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'repatriate',
   })
 
@@ -8853,7 +12360,6 @@ export const useSimulateLTokenRepatriate =
 export const useSimulateLTokenRequestWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -8862,7 +12368,6 @@ export const useSimulateLTokenRequestWithdrawal =
  */
 export const useSimulateLTokenSetApr = /*#__PURE__*/ createUseSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setAPR',
 })
 
@@ -8872,7 +12377,6 @@ export const useSimulateLTokenSetApr = /*#__PURE__*/ createUseSimulateContract({
 export const useSimulateLTokenSetFeesRate =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setFeesRate',
   })
 
@@ -8880,7 +12384,7 @@ export const useSimulateLTokenSetFeesRate =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"setFund"`
  */
 export const useSimulateLTokenSetFund = /*#__PURE__*/ createUseSimulateContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'setFund' },
+  { abi: lTokenAbi, functionName: 'setFund' },
 )
 
 /**
@@ -8889,7 +12393,6 @@ export const useSimulateLTokenSetFund = /*#__PURE__*/ createUseSimulateContract(
 export const useSimulateLTokenSetLdyStaking =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setLDYStaking',
   })
 
@@ -8899,7 +12402,6 @@ export const useSimulateLTokenSetLdyStaking =
 export const useSimulateLTokenSetRetentionRate =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setRetentionRate',
   })
 
@@ -8909,7 +12411,6 @@ export const useSimulateLTokenSetRetentionRate =
 export const useSimulateLTokenSetWithdrawalFeeInEth =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setWithdrawalFeeInEth',
   })
 
@@ -8919,7 +12420,6 @@ export const useSimulateLTokenSetWithdrawalFeeInEth =
 export const useSimulateLTokenSetWithdrawer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setWithdrawer',
   })
 
@@ -8929,7 +12429,6 @@ export const useSimulateLTokenSetWithdrawer =
 export const useSimulateLTokenStartRewardsRedirection =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'startRewardsRedirection',
   })
 
@@ -8939,7 +12438,6 @@ export const useSimulateLTokenStartRewardsRedirection =
 export const useSimulateLTokenStopRewardsRedirection =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'stopRewardsRedirection',
   })
 
@@ -8949,7 +12447,6 @@ export const useSimulateLTokenStopRewardsRedirection =
 export const useSimulateLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
   })
 
@@ -8959,7 +12456,6 @@ export const useSimulateLTokenSwitchOnlyHighTierInstantWithdrawal =
 export const useSimulateLTokenTransfer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'transfer',
   })
 
@@ -8969,7 +12465,6 @@ export const useSimulateLTokenTransfer =
 export const useSimulateLTokenTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'transferFrom',
   })
 
@@ -8979,7 +12474,6 @@ export const useSimulateLTokenTransferFrom =
 export const useSimulateLTokenUnlistenToTransfers =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'unlistenToTransfers',
   })
 
@@ -8989,7 +12483,6 @@ export const useSimulateLTokenUnlistenToTransfers =
 export const useSimulateLTokenUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'upgradeTo',
   })
 
@@ -8999,7 +12492,6 @@ export const useSimulateLTokenUpgradeTo =
 export const useSimulateLTokenUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -9008,7 +12500,6 @@ export const useSimulateLTokenUpgradeToAndCall =
  */
 export const useWatchLTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
@@ -9017,7 +12508,6 @@ export const useWatchLTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
 export const useWatchLTokenAprChangeEventEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'APRChangeEvent',
   })
 
@@ -9027,7 +12517,6 @@ export const useWatchLTokenAprChangeEventEvent =
 export const useWatchLTokenActivityEventEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'ActivityEvent',
   })
 
@@ -9037,7 +12526,6 @@ export const useWatchLTokenActivityEventEvent =
 export const useWatchLTokenAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'AdminChanged',
   })
 
@@ -9047,7 +12535,6 @@ export const useWatchLTokenAdminChangedEvent =
 export const useWatchLTokenApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Approval',
   })
 
@@ -9057,7 +12544,6 @@ export const useWatchLTokenApprovalEvent =
 export const useWatchLTokenBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'BeaconUpgraded',
   })
 
@@ -9067,7 +12553,6 @@ export const useWatchLTokenBeaconUpgradedEvent =
 export const useWatchLTokenInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Initialized',
   })
 
@@ -9077,7 +12562,6 @@ export const useWatchLTokenInitializedEvent =
 export const useWatchLTokenMintedRewardsEventEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'MintedRewardsEvent',
   })
 
@@ -9087,7 +12571,6 @@ export const useWatchLTokenMintedRewardsEventEvent =
 export const useWatchLTokenOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -9097,7 +12580,6 @@ export const useWatchLTokenOwnershipTransferredEvent =
 export const useWatchLTokenPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Paused',
   })
 
@@ -9107,7 +12589,6 @@ export const useWatchLTokenPausedEvent =
 export const useWatchLTokenTvlChangeEventEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'TVLChangeEvent',
   })
 
@@ -9117,7 +12598,6 @@ export const useWatchLTokenTvlChangeEventEvent =
 export const useWatchLTokenTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Transfer',
   })
 
@@ -9127,7 +12607,6 @@ export const useWatchLTokenTransferEvent =
 export const useWatchLTokenUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Unpaused',
   })
 
@@ -9137,7 +12616,822 @@ export const useWatchLTokenUnpausedEvent =
 export const useWatchLTokenUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignaler = /*#__PURE__*/ createUseReadContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignalerGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignalerOwner = /*#__PURE__*/ createUseReadContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignalerProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignalerRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useReadLTokenSignalerTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWriteLTokenSignaler = /*#__PURE__*/ createUseWriteContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWriteLTokenSignalerInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWriteLTokenSignalerSignalLToken =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWriteLTokenSignalerUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWriteLTokenSignalerUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useSimulateLTokenSignaler =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useSimulateLTokenSignalerInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useSimulateLTokenSignalerSignalLToken =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useSimulateLTokenSignalerUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useSimulateLTokenSignalerUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"LTokenSignalEvent"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerLTokenSignalEventEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'LTokenSignalEvent',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const useWatchLTokenSignalerUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonic = /*#__PURE__*/ createUseReadContract({
+  abi: lTokenSignalerSonicAbi,
+  address: lTokenSignalerSonicAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonicOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonicRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useReadLTokenSignalerSonicTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonic = /*#__PURE__*/ createUseWriteContract(
+  { abi: lTokenSignalerSonicAbi, address: lTokenSignalerSonicAddress },
+)
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicRegisterContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicSignalLToken =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWriteLTokenSignalerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicRegisterContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicSignalLToken =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useSimulateLTokenSignalerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"LTokenSignalEvent"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicLTokenSignalEventEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'LTokenSignalEvent',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const useWatchLTokenSignalerSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
     eventName: 'Upgraded',
   })
 
@@ -9146,7 +13440,6 @@ export const useWatchLTokenUpgradedEvent =
  */
 export const useReadLedgityYieldVault = /*#__PURE__*/ createUseReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
 })
 
 /**
@@ -9155,7 +13448,6 @@ export const useReadLedgityYieldVault = /*#__PURE__*/ createUseReadContract({
 export const useReadLedgityYieldVaultAprRateOffset =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'APR_RATE_OFFSET',
   })
 
@@ -9165,7 +13457,6 @@ export const useReadLedgityYieldVaultAprRateOffset =
 export const useReadLedgityYieldVaultRateBase =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'RATE_BASE',
   })
 
@@ -9174,7 +13465,6 @@ export const useReadLedgityYieldVaultRateBase =
  */
 export const useReadLedgityYieldVaultRay = /*#__PURE__*/ createUseReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'RAY',
 })
 
@@ -9184,7 +13474,6 @@ export const useReadLedgityYieldVaultRay = /*#__PURE__*/ createUseReadContract({
 export const useReadLedgityYieldVaultAToken =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'aToken',
   })
 
@@ -9194,7 +13483,6 @@ export const useReadLedgityYieldVaultAToken =
 export const useReadLedgityYieldVaultAaveLendingPool =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'aaveLendingPool',
   })
 
@@ -9204,7 +13492,6 @@ export const useReadLedgityYieldVaultAaveLendingPool =
 export const useReadLedgityYieldVaultAccountWithdrawalFee =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'accountWithdrawalFee',
   })
 
@@ -9214,7 +13501,6 @@ export const useReadLedgityYieldVaultAccountWithdrawalFee =
 export const useReadLedgityYieldVaultAllowance =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'allowance',
   })
 
@@ -9224,7 +13510,6 @@ export const useReadLedgityYieldVaultAllowance =
 export const useReadLedgityYieldVaultAsset =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'asset',
   })
 
@@ -9234,7 +13519,6 @@ export const useReadLedgityYieldVaultAsset =
 export const useReadLedgityYieldVaultBalanceOf =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'balanceOf',
   })
 
@@ -9244,7 +13528,6 @@ export const useReadLedgityYieldVaultBalanceOf =
 export const useReadLedgityYieldVaultConvertToAssets =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'convertToAssets',
   })
 
@@ -9254,7 +13537,6 @@ export const useReadLedgityYieldVaultConvertToAssets =
 export const useReadLedgityYieldVaultConvertToShares =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'convertToShares',
   })
 
@@ -9264,7 +13546,6 @@ export const useReadLedgityYieldVaultConvertToShares =
 export const useReadLedgityYieldVaultDecimals =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'decimals',
   })
 
@@ -9274,7 +13555,6 @@ export const useReadLedgityYieldVaultDecimals =
 export const useReadLedgityYieldVaultDeploymentDelay =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'deploymentDelay',
   })
 
@@ -9284,7 +13564,6 @@ export const useReadLedgityYieldVaultDeploymentDelay =
 export const useReadLedgityYieldVaultFeeRecipient =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'feeRecipient',
   })
 
@@ -9294,7 +13573,6 @@ export const useReadLedgityYieldVaultFeeRecipient =
 export const useReadLedgityYieldVaultGetBufferAssets =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getBufferAssets',
   })
 
@@ -9304,7 +13582,6 @@ export const useReadLedgityYieldVaultGetBufferAssets =
 export const useReadLedgityYieldVaultGetBufferRewardRate =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getBufferRewardRate',
   })
 
@@ -9314,7 +13591,6 @@ export const useReadLedgityYieldVaultGetBufferRewardRate =
 export const useReadLedgityYieldVaultGetCcipAdmin =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getCCIPAdmin',
   })
 
@@ -9324,7 +13600,6 @@ export const useReadLedgityYieldVaultGetCcipAdmin =
 export const useReadLedgityYieldVaultGetUserWithdrawalRequests =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getUserWithdrawalRequests',
   })
 
@@ -9334,7 +13609,6 @@ export const useReadLedgityYieldVaultGetUserWithdrawalRequests =
 export const useReadLedgityYieldVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequestCount',
   })
 
@@ -9344,7 +13618,6 @@ export const useReadLedgityYieldVaultGetWithdrawalRequestCount =
 export const useReadLedgityYieldVaultGetWithdrawalRequests =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequests',
   })
 
@@ -9354,7 +13627,6 @@ export const useReadLedgityYieldVaultGetWithdrawalRequests =
 export const useReadLedgityYieldVaultGetWithdrawalRequestsByIds =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequestsByIds',
   })
 
@@ -9364,7 +13636,6 @@ export const useReadLedgityYieldVaultGetWithdrawalRequestsByIds =
 export const useReadLedgityYieldVaultGlobalBlacklist =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalBlacklist',
   })
 
@@ -9374,7 +13645,6 @@ export const useReadLedgityYieldVaultGlobalBlacklist =
 export const useReadLedgityYieldVaultGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalOwner',
   })
 
@@ -9384,7 +13654,6 @@ export const useReadLedgityYieldVaultGlobalOwner =
 export const useReadLedgityYieldVaultGlobalPause =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalPause',
   })
 
@@ -9394,7 +13663,6 @@ export const useReadLedgityYieldVaultGlobalPause =
 export const useReadLedgityYieldVaultHasBufferStrategy =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'hasBufferStrategy',
   })
 
@@ -9404,7 +13672,6 @@ export const useReadLedgityYieldVaultHasBufferStrategy =
 export const useReadLedgityYieldVaultHighWaterMark =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'highWaterMark',
   })
 
@@ -9414,7 +13681,6 @@ export const useReadLedgityYieldVaultHighWaterMark =
 export const useReadLedgityYieldVaultIsBurner =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'isBurner',
   })
 
@@ -9424,7 +13690,6 @@ export const useReadLedgityYieldVaultIsBurner =
 export const useReadLedgityYieldVaultIsMinter =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'isMinter',
   })
 
@@ -9434,7 +13699,6 @@ export const useReadLedgityYieldVaultIsMinter =
 export const useReadLedgityYieldVaultLToken =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lToken',
   })
 
@@ -9444,7 +13708,6 @@ export const useReadLedgityYieldVaultLToken =
 export const useReadLedgityYieldVaultLastBufferRewardBalance =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastBufferRewardBalance',
   })
 
@@ -9454,7 +13717,6 @@ export const useReadLedgityYieldVaultLastBufferRewardBalance =
 export const useReadLedgityYieldVaultLastCompoundTime =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastCompoundTime',
   })
 
@@ -9464,7 +13726,6 @@ export const useReadLedgityYieldVaultLastCompoundTime =
 export const useReadLedgityYieldVaultLastFeeTime =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastFeeTime',
   })
 
@@ -9474,7 +13735,6 @@ export const useReadLedgityYieldVaultLastFeeTime =
 export const useReadLedgityYieldVaultLiquidityBufferRate =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'liquidityBufferRate',
   })
 
@@ -9484,7 +13744,6 @@ export const useReadLedgityYieldVaultLiquidityBufferRate =
 export const useReadLedgityYieldVaultLiquidityManager =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'liquidityManager',
   })
 
@@ -9494,7 +13753,6 @@ export const useReadLedgityYieldVaultLiquidityManager =
 export const useReadLedgityYieldVaultManagementFeeRate =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'managementFeeRate',
   })
 
@@ -9504,7 +13762,6 @@ export const useReadLedgityYieldVaultManagementFeeRate =
 export const useReadLedgityYieldVaultMaxDeposit =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'maxDeposit',
   })
 
@@ -9514,7 +13771,6 @@ export const useReadLedgityYieldVaultMaxDeposit =
 export const useReadLedgityYieldVaultMaxMint =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'maxMint',
   })
 
@@ -9524,7 +13780,6 @@ export const useReadLedgityYieldVaultMaxMint =
 export const useReadLedgityYieldVaultMaxRedeem =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'maxRedeem',
   })
 
@@ -9534,7 +13789,6 @@ export const useReadLedgityYieldVaultMaxRedeem =
 export const useReadLedgityYieldVaultMaxWithdraw =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'maxWithdraw',
   })
 
@@ -9542,11 +13796,7 @@ export const useReadLedgityYieldVaultMaxWithdraw =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"name"`
  */
 export const useReadLedgityYieldVaultName = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'name',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'name' },
 )
 
 /**
@@ -9555,7 +13805,6 @@ export const useReadLedgityYieldVaultName = /*#__PURE__*/ createUseReadContract(
 export const useReadLedgityYieldVaultOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'owner',
   })
 
@@ -9565,7 +13814,6 @@ export const useReadLedgityYieldVaultOwner =
 export const useReadLedgityYieldVaultPaused =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'paused',
   })
 
@@ -9575,7 +13823,6 @@ export const useReadLedgityYieldVaultPaused =
 export const useReadLedgityYieldVaultPerformanceFeeRate =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'performanceFeeRate',
   })
 
@@ -9585,7 +13832,6 @@ export const useReadLedgityYieldVaultPerformanceFeeRate =
 export const useReadLedgityYieldVaultPreviewDeposit =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewDeposit',
   })
 
@@ -9595,7 +13841,6 @@ export const useReadLedgityYieldVaultPreviewDeposit =
 export const useReadLedgityYieldVaultPreviewMint =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewMint',
   })
 
@@ -9605,7 +13850,6 @@ export const useReadLedgityYieldVaultPreviewMint =
 export const useReadLedgityYieldVaultPreviewRedeem =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewRedeem',
   })
 
@@ -9615,7 +13859,6 @@ export const useReadLedgityYieldVaultPreviewRedeem =
 export const useReadLedgityYieldVaultPreviewWithdraw =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewWithdraw',
   })
 
@@ -9625,7 +13868,6 @@ export const useReadLedgityYieldVaultPreviewWithdraw =
 export const useReadLedgityYieldVaultProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'proxiableUUID',
   })
 
@@ -9635,7 +13877,6 @@ export const useReadLedgityYieldVaultProxiableUuid =
 export const useReadLedgityYieldVaultStakeBalanceForFeeReduction =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'stakeBalanceForFeeReduction',
   })
 
@@ -9645,7 +13886,6 @@ export const useReadLedgityYieldVaultStakeBalanceForFeeReduction =
 export const useReadLedgityYieldVaultStakeBalanceForInstantWithdrawal =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'stakeBalanceForInstantWithdrawal',
   })
 
@@ -9655,7 +13895,6 @@ export const useReadLedgityYieldVaultStakeBalanceForInstantWithdrawal =
 export const useReadLedgityYieldVaultStakeToken =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'stakeToken',
   })
 
@@ -9665,7 +13904,6 @@ export const useReadLedgityYieldVaultStakeToken =
 export const useReadLedgityYieldVaultSymbol =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'symbol',
   })
 
@@ -9675,7 +13913,6 @@ export const useReadLedgityYieldVaultSymbol =
 export const useReadLedgityYieldVaultTotalAssets =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'totalAssets',
   })
 
@@ -9685,7 +13922,6 @@ export const useReadLedgityYieldVaultTotalAssets =
 export const useReadLedgityYieldVaultTotalSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'totalSupply',
   })
 
@@ -9695,7 +13931,6 @@ export const useReadLedgityYieldVaultTotalSupply =
 export const useReadLedgityYieldVaultWithdrawalFeeRate =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalFeeRate',
   })
 
@@ -9705,7 +13940,6 @@ export const useReadLedgityYieldVaultWithdrawalFeeRate =
 export const useReadLedgityYieldVaultWithdrawalGasFee =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalGasFee',
   })
 
@@ -9715,7 +13949,6 @@ export const useReadLedgityYieldVaultWithdrawalGasFee =
 export const useReadLedgityYieldVaultWithdrawalRequests =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalRequests',
   })
 
@@ -9725,7 +13958,6 @@ export const useReadLedgityYieldVaultWithdrawalRequests =
 export const useReadLedgityYieldVaultYieldApr =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'yieldAPR',
   })
 
@@ -9734,7 +13966,6 @@ export const useReadLedgityYieldVaultYieldApr =
  */
 export const useWriteLedgityYieldVault = /*#__PURE__*/ createUseWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
 })
 
 /**
@@ -9743,7 +13974,6 @@ export const useWriteLedgityYieldVault = /*#__PURE__*/ createUseWriteContract({
 export const useWriteLedgityYieldVaultApprove =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'approve',
   })
 
@@ -9753,7 +13983,6 @@ export const useWriteLedgityYieldVaultApprove =
 export const useWriteLedgityYieldVaultBurn =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burn',
   })
 
@@ -9763,7 +13992,6 @@ export const useWriteLedgityYieldVaultBurn =
 export const useWriteLedgityYieldVaultBurnAndRemintBlacklistedShares =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnAndRemintBlacklistedShares',
   })
 
@@ -9773,7 +14001,6 @@ export const useWriteLedgityYieldVaultBurnAndRemintBlacklistedShares =
 export const useWriteLedgityYieldVaultBurnFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnFrom',
   })
 
@@ -9783,7 +14010,6 @@ export const useWriteLedgityYieldVaultBurnFrom =
 export const useWriteLedgityYieldVaultDecreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -9793,7 +14019,6 @@ export const useWriteLedgityYieldVaultDecreaseAllowance =
 export const useWriteLedgityYieldVaultDeposit =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'deposit',
   })
 
@@ -9803,7 +14028,6 @@ export const useWriteLedgityYieldVaultDeposit =
 export const useWriteLedgityYieldVaultDepositToBuffer =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'depositToBuffer',
   })
 
@@ -9813,7 +14037,6 @@ export const useWriteLedgityYieldVaultDepositToBuffer =
 export const useWriteLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantBurnRole',
   })
 
@@ -9823,7 +14046,6 @@ export const useWriteLedgityYieldVaultGrantBurnRole =
 export const useWriteLedgityYieldVaultGrantMintAndBurnRoles =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintAndBurnRoles',
   })
 
@@ -9833,7 +14055,6 @@ export const useWriteLedgityYieldVaultGrantMintAndBurnRoles =
 export const useWriteLedgityYieldVaultGrantMintRole =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintRole',
   })
 
@@ -9843,7 +14064,6 @@ export const useWriteLedgityYieldVaultGrantMintRole =
 export const useWriteLedgityYieldVaultHarvestFees =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'harvestFees',
   })
 
@@ -9853,7 +14073,6 @@ export const useWriteLedgityYieldVaultHarvestFees =
 export const useWriteLedgityYieldVaultIncreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -9863,7 +14082,6 @@ export const useWriteLedgityYieldVaultIncreaseAllowance =
 export const useWriteLedgityYieldVaultInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'initialize',
   })
 
@@ -9873,7 +14091,6 @@ export const useWriteLedgityYieldVaultInitialize =
 export const useWriteLedgityYieldVaultMigrateLToken =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'migrateLToken',
   })
 
@@ -9883,7 +14100,6 @@ export const useWriteLedgityYieldVaultMigrateLToken =
 export const useWriteLedgityYieldVaultMint =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'mint',
   })
 
@@ -9893,7 +14109,6 @@ export const useWriteLedgityYieldVaultMint =
 export const useWriteLedgityYieldVaultProcessRequests =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'processRequests',
   })
 
@@ -9903,7 +14118,6 @@ export const useWriteLedgityYieldVaultProcessRequests =
 export const useWriteLedgityYieldVaultRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'recoverERC20',
   })
 
@@ -9913,7 +14127,6 @@ export const useWriteLedgityYieldVaultRecoverErc20 =
 export const useWriteLedgityYieldVaultRedeem =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'redeem',
   })
 
@@ -9923,7 +14136,6 @@ export const useWriteLedgityYieldVaultRedeem =
 export const useWriteLedgityYieldVaultRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -9933,7 +14145,6 @@ export const useWriteLedgityYieldVaultRenounceOwnership =
 export const useWriteLedgityYieldVaultRequestWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -9943,7 +14154,6 @@ export const useWriteLedgityYieldVaultRequestWithdrawal =
 export const useWriteLedgityYieldVaultRevokeBurnRole =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeBurnRole',
   })
 
@@ -9953,7 +14163,6 @@ export const useWriteLedgityYieldVaultRevokeBurnRole =
 export const useWriteLedgityYieldVaultRevokeMintRole =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeMintRole',
   })
 
@@ -9963,7 +14172,6 @@ export const useWriteLedgityYieldVaultRevokeMintRole =
 export const useWriteLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCCIPAdmin',
   })
 
@@ -9973,7 +14181,6 @@ export const useWriteLedgityYieldVaultSetCcipAdmin =
 export const useWriteLedgityYieldVaultSetCustomWithdrawalFee =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCustomWithdrawalFee',
   })
 
@@ -9983,7 +14190,6 @@ export const useWriteLedgityYieldVaultSetCustomWithdrawalFee =
 export const useWriteLedgityYieldVaultSetTotalAssets =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setTotalAssets',
   })
 
@@ -9993,7 +14199,6 @@ export const useWriteLedgityYieldVaultSetTotalAssets =
 export const useWriteLedgityYieldVaultSkimBuffer =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'skimBuffer',
   })
 
@@ -10003,7 +14208,6 @@ export const useWriteLedgityYieldVaultSkimBuffer =
 export const useWriteLedgityYieldVaultTransfer =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transfer',
   })
 
@@ -10013,7 +14217,6 @@ export const useWriteLedgityYieldVaultTransfer =
 export const useWriteLedgityYieldVaultTransferAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferAndCall',
   })
 
@@ -10023,7 +14226,6 @@ export const useWriteLedgityYieldVaultTransferAndCall =
 export const useWriteLedgityYieldVaultTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferFrom',
   })
 
@@ -10033,7 +14235,6 @@ export const useWriteLedgityYieldVaultTransferFrom =
 export const useWriteLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferOwnership',
   })
 
@@ -10043,7 +14244,6 @@ export const useWriteLedgityYieldVaultTransferOwnership =
 export const useWriteLedgityYieldVaultUpdateApr =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateAPR',
   })
 
@@ -10053,7 +14253,6 @@ export const useWriteLedgityYieldVaultUpdateApr =
 export const useWriteLedgityYieldVaultUpdateBufferRate =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateBufferRate',
   })
 
@@ -10063,7 +14262,6 @@ export const useWriteLedgityYieldVaultUpdateBufferRate =
 export const useWriteLedgityYieldVaultUpdateDeploymentDelay =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateDeploymentDelay',
   })
 
@@ -10073,7 +14271,6 @@ export const useWriteLedgityYieldVaultUpdateDeploymentDelay =
 export const useWriteLedgityYieldVaultUpdateFeeRates =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateFeeRates',
   })
 
@@ -10083,7 +14280,6 @@ export const useWriteLedgityYieldVaultUpdateFeeRates =
 export const useWriteLedgityYieldVaultUpdateVaultManagers =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultManagers',
   })
 
@@ -10093,7 +14289,6 @@ export const useWriteLedgityYieldVaultUpdateVaultManagers =
 export const useWriteLedgityYieldVaultUpdateVaultParams =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultParams',
   })
 
@@ -10103,7 +14298,6 @@ export const useWriteLedgityYieldVaultUpdateVaultParams =
 export const useWriteLedgityYieldVaultUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeTo',
   })
 
@@ -10113,7 +14307,6 @@ export const useWriteLedgityYieldVaultUpgradeTo =
 export const useWriteLedgityYieldVaultUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -10123,7 +14316,6 @@ export const useWriteLedgityYieldVaultUpgradeToAndCall =
 export const useWriteLedgityYieldVaultWithdraw =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdraw',
   })
 
@@ -10131,10 +14323,7 @@ export const useWriteLedgityYieldVaultWithdraw =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const useSimulateLedgityYieldVault =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-  })
+  /*#__PURE__*/ createUseSimulateContract({ abi: ledgityYieldVaultAbi })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"approve"`
@@ -10142,7 +14331,6 @@ export const useSimulateLedgityYieldVault =
 export const useSimulateLedgityYieldVaultApprove =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'approve',
   })
 
@@ -10152,7 +14340,6 @@ export const useSimulateLedgityYieldVaultApprove =
 export const useSimulateLedgityYieldVaultBurn =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burn',
   })
 
@@ -10162,7 +14349,6 @@ export const useSimulateLedgityYieldVaultBurn =
 export const useSimulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnAndRemintBlacklistedShares',
   })
 
@@ -10172,7 +14358,6 @@ export const useSimulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
 export const useSimulateLedgityYieldVaultBurnFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnFrom',
   })
 
@@ -10182,7 +14367,6 @@ export const useSimulateLedgityYieldVaultBurnFrom =
 export const useSimulateLedgityYieldVaultDecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -10192,7 +14376,6 @@ export const useSimulateLedgityYieldVaultDecreaseAllowance =
 export const useSimulateLedgityYieldVaultDeposit =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'deposit',
   })
 
@@ -10202,7 +14385,6 @@ export const useSimulateLedgityYieldVaultDeposit =
 export const useSimulateLedgityYieldVaultDepositToBuffer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'depositToBuffer',
   })
 
@@ -10212,7 +14394,6 @@ export const useSimulateLedgityYieldVaultDepositToBuffer =
 export const useSimulateLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantBurnRole',
   })
 
@@ -10222,7 +14403,6 @@ export const useSimulateLedgityYieldVaultGrantBurnRole =
 export const useSimulateLedgityYieldVaultGrantMintAndBurnRoles =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintAndBurnRoles',
   })
 
@@ -10232,7 +14412,6 @@ export const useSimulateLedgityYieldVaultGrantMintAndBurnRoles =
 export const useSimulateLedgityYieldVaultGrantMintRole =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintRole',
   })
 
@@ -10242,7 +14421,6 @@ export const useSimulateLedgityYieldVaultGrantMintRole =
 export const useSimulateLedgityYieldVaultHarvestFees =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'harvestFees',
   })
 
@@ -10252,7 +14430,6 @@ export const useSimulateLedgityYieldVaultHarvestFees =
 export const useSimulateLedgityYieldVaultIncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -10262,7 +14439,6 @@ export const useSimulateLedgityYieldVaultIncreaseAllowance =
 export const useSimulateLedgityYieldVaultInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'initialize',
   })
 
@@ -10272,7 +14448,6 @@ export const useSimulateLedgityYieldVaultInitialize =
 export const useSimulateLedgityYieldVaultMigrateLToken =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'migrateLToken',
   })
 
@@ -10282,7 +14457,6 @@ export const useSimulateLedgityYieldVaultMigrateLToken =
 export const useSimulateLedgityYieldVaultMint =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'mint',
   })
 
@@ -10292,7 +14466,6 @@ export const useSimulateLedgityYieldVaultMint =
 export const useSimulateLedgityYieldVaultProcessRequests =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'processRequests',
   })
 
@@ -10302,7 +14475,6 @@ export const useSimulateLedgityYieldVaultProcessRequests =
 export const useSimulateLedgityYieldVaultRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'recoverERC20',
   })
 
@@ -10312,7 +14484,6 @@ export const useSimulateLedgityYieldVaultRecoverErc20 =
 export const useSimulateLedgityYieldVaultRedeem =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'redeem',
   })
 
@@ -10322,7 +14493,6 @@ export const useSimulateLedgityYieldVaultRedeem =
 export const useSimulateLedgityYieldVaultRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -10332,7 +14502,6 @@ export const useSimulateLedgityYieldVaultRenounceOwnership =
 export const useSimulateLedgityYieldVaultRequestWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -10342,7 +14511,6 @@ export const useSimulateLedgityYieldVaultRequestWithdrawal =
 export const useSimulateLedgityYieldVaultRevokeBurnRole =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeBurnRole',
   })
 
@@ -10352,7 +14520,6 @@ export const useSimulateLedgityYieldVaultRevokeBurnRole =
 export const useSimulateLedgityYieldVaultRevokeMintRole =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeMintRole',
   })
 
@@ -10362,7 +14529,6 @@ export const useSimulateLedgityYieldVaultRevokeMintRole =
 export const useSimulateLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCCIPAdmin',
   })
 
@@ -10372,7 +14538,6 @@ export const useSimulateLedgityYieldVaultSetCcipAdmin =
 export const useSimulateLedgityYieldVaultSetCustomWithdrawalFee =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCustomWithdrawalFee',
   })
 
@@ -10382,7 +14547,6 @@ export const useSimulateLedgityYieldVaultSetCustomWithdrawalFee =
 export const useSimulateLedgityYieldVaultSetTotalAssets =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setTotalAssets',
   })
 
@@ -10392,7 +14556,6 @@ export const useSimulateLedgityYieldVaultSetTotalAssets =
 export const useSimulateLedgityYieldVaultSkimBuffer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'skimBuffer',
   })
 
@@ -10402,7 +14565,6 @@ export const useSimulateLedgityYieldVaultSkimBuffer =
 export const useSimulateLedgityYieldVaultTransfer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transfer',
   })
 
@@ -10412,7 +14574,6 @@ export const useSimulateLedgityYieldVaultTransfer =
 export const useSimulateLedgityYieldVaultTransferAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferAndCall',
   })
 
@@ -10422,7 +14583,6 @@ export const useSimulateLedgityYieldVaultTransferAndCall =
 export const useSimulateLedgityYieldVaultTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferFrom',
   })
 
@@ -10432,7 +14592,6 @@ export const useSimulateLedgityYieldVaultTransferFrom =
 export const useSimulateLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferOwnership',
   })
 
@@ -10442,7 +14601,6 @@ export const useSimulateLedgityYieldVaultTransferOwnership =
 export const useSimulateLedgityYieldVaultUpdateApr =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateAPR',
   })
 
@@ -10452,7 +14610,6 @@ export const useSimulateLedgityYieldVaultUpdateApr =
 export const useSimulateLedgityYieldVaultUpdateBufferRate =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateBufferRate',
   })
 
@@ -10462,7 +14619,6 @@ export const useSimulateLedgityYieldVaultUpdateBufferRate =
 export const useSimulateLedgityYieldVaultUpdateDeploymentDelay =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateDeploymentDelay',
   })
 
@@ -10472,7 +14628,6 @@ export const useSimulateLedgityYieldVaultUpdateDeploymentDelay =
 export const useSimulateLedgityYieldVaultUpdateFeeRates =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateFeeRates',
   })
 
@@ -10482,7 +14637,6 @@ export const useSimulateLedgityYieldVaultUpdateFeeRates =
 export const useSimulateLedgityYieldVaultUpdateVaultManagers =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultManagers',
   })
 
@@ -10492,7 +14646,6 @@ export const useSimulateLedgityYieldVaultUpdateVaultManagers =
 export const useSimulateLedgityYieldVaultUpdateVaultParams =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultParams',
   })
 
@@ -10502,7 +14655,6 @@ export const useSimulateLedgityYieldVaultUpdateVaultParams =
 export const useSimulateLedgityYieldVaultUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeTo',
   })
 
@@ -10512,7 +14664,6 @@ export const useSimulateLedgityYieldVaultUpgradeTo =
 export const useSimulateLedgityYieldVaultUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -10522,7 +14673,6 @@ export const useSimulateLedgityYieldVaultUpgradeToAndCall =
 export const useSimulateLedgityYieldVaultWithdraw =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdraw',
   })
 
@@ -10530,10 +14680,7 @@ export const useSimulateLedgityYieldVaultWithdraw =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const useWatchLedgityYieldVaultEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-  })
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: ledgityYieldVaultAbi })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"APRUpdated"`
@@ -10541,7 +14688,6 @@ export const useWatchLedgityYieldVaultEvent =
 export const useWatchLedgityYieldVaultAprUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'APRUpdated',
   })
 
@@ -10551,7 +14697,6 @@ export const useWatchLedgityYieldVaultAprUpdatedEvent =
 export const useWatchLedgityYieldVaultAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'AdminChanged',
   })
 
@@ -10561,7 +14706,6 @@ export const useWatchLedgityYieldVaultAdminChangedEvent =
 export const useWatchLedgityYieldVaultApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Approval',
   })
 
@@ -10571,7 +14715,6 @@ export const useWatchLedgityYieldVaultApprovalEvent =
 export const useWatchLedgityYieldVaultBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BeaconUpgraded',
   })
 
@@ -10581,7 +14724,6 @@ export const useWatchLedgityYieldVaultBeaconUpgradedEvent =
 export const useWatchLedgityYieldVaultBufferRateUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BufferRateUpdated',
   })
 
@@ -10591,7 +14733,6 @@ export const useWatchLedgityYieldVaultBufferRateUpdatedEvent =
 export const useWatchLedgityYieldVaultBurnAccessGrantedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BurnAccessGranted',
   })
 
@@ -10601,7 +14742,6 @@ export const useWatchLedgityYieldVaultBurnAccessGrantedEvent =
 export const useWatchLedgityYieldVaultBurnAccessRevokedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BurnAccessRevoked',
   })
 
@@ -10611,7 +14751,6 @@ export const useWatchLedgityYieldVaultBurnAccessRevokedEvent =
 export const useWatchLedgityYieldVaultCcipAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'CCIPAdminChanged',
   })
 
@@ -10621,7 +14760,6 @@ export const useWatchLedgityYieldVaultCcipAdminChangedEvent =
 export const useWatchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'CustomWithdrawalFeeSet',
   })
 
@@ -10631,7 +14769,6 @@ export const useWatchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
 export const useWatchLedgityYieldVaultDeploymentDelayUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'DeploymentDelayUpdated',
   })
 
@@ -10641,7 +14778,6 @@ export const useWatchLedgityYieldVaultDeploymentDelayUpdatedEvent =
 export const useWatchLedgityYieldVaultDepositEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Deposit',
   })
 
@@ -10651,7 +14787,6 @@ export const useWatchLedgityYieldVaultDepositEvent =
 export const useWatchLedgityYieldVaultFeeRatesUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'FeeRatesUpdated',
   })
 
@@ -10661,7 +14796,6 @@ export const useWatchLedgityYieldVaultFeeRatesUpdatedEvent =
 export const useWatchLedgityYieldVaultInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Initialized',
   })
 
@@ -10671,7 +14805,6 @@ export const useWatchLedgityYieldVaultInitializedEvent =
 export const useWatchLedgityYieldVaultMintAccessGrantedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'MintAccessGranted',
   })
 
@@ -10681,7 +14814,6 @@ export const useWatchLedgityYieldVaultMintAccessGrantedEvent =
 export const useWatchLedgityYieldVaultMintAccessRevokedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'MintAccessRevoked',
   })
 
@@ -10691,7 +14823,6 @@ export const useWatchLedgityYieldVaultMintAccessRevokedEvent =
 export const useWatchLedgityYieldVaultOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -10701,7 +14832,6 @@ export const useWatchLedgityYieldVaultOwnershipTransferredEvent =
 export const useWatchLedgityYieldVaultPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Paused',
   })
 
@@ -10711,7 +14841,6 @@ export const useWatchLedgityYieldVaultPausedEvent =
 export const useWatchLedgityYieldVaultRateCheckpointUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'RateCheckpointUpdated',
   })
 
@@ -10721,7 +14850,6 @@ export const useWatchLedgityYieldVaultRateCheckpointUpdatedEvent =
 export const useWatchLedgityYieldVaultTotalAssetsUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'TotalAssetsUpdated',
   })
 
@@ -10731,7 +14859,6 @@ export const useWatchLedgityYieldVaultTotalAssetsUpdatedEvent =
 export const useWatchLedgityYieldVaultTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Transfer',
   })
 
@@ -10741,7 +14868,6 @@ export const useWatchLedgityYieldVaultTransferEvent =
 export const useWatchLedgityYieldVaultUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Unpaused',
   })
 
@@ -10751,7 +14877,6 @@ export const useWatchLedgityYieldVaultUnpausedEvent =
 export const useWatchLedgityYieldVaultUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Upgraded',
   })
 
@@ -10761,7 +14886,6 @@ export const useWatchLedgityYieldVaultUpgradedEvent =
 export const useWatchLedgityYieldVaultVaultManagersUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'VaultManagersUpdated',
   })
 
@@ -10771,7 +14895,6 @@ export const useWatchLedgityYieldVaultVaultManagersUpdatedEvent =
 export const useWatchLedgityYieldVaultVaultParamsUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'VaultParamsUpdated',
   })
 
@@ -10781,7 +14904,6 @@ export const useWatchLedgityYieldVaultVaultParamsUpdatedEvent =
 export const useWatchLedgityYieldVaultWithdrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Withdraw',
   })
 
@@ -10791,7 +14913,6 @@ export const useWatchLedgityYieldVaultWithdrawEvent =
 export const useWatchLedgityYieldVaultWithdrawalProcessedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'WithdrawalProcessed',
   })
 
@@ -10801,7 +14922,6 @@ export const useWatchLedgityYieldVaultWithdrawalProcessedEvent =
 export const useWatchLedgityYieldVaultWithdrawalRequestedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'WithdrawalRequested',
   })
 
@@ -11587,7 +15707,6 @@ export const useWatchPreMiningUnpausedEvent =
  */
 export const readGenericErc20 = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
@@ -11595,7 +15714,6 @@ export const readGenericErc20 = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20Allowance = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'allowance',
 })
 
@@ -11604,7 +15722,6 @@ export const readGenericErc20Allowance = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20BalanceOf = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'balanceOf',
 })
 
@@ -11613,7 +15730,6 @@ export const readGenericErc20BalanceOf = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20Decimals = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'decimals',
 })
 
@@ -11622,7 +15738,6 @@ export const readGenericErc20Decimals = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20Name = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'name',
 })
 
@@ -11631,7 +15746,6 @@ export const readGenericErc20Name = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20Symbol = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'symbol',
 })
 
@@ -11640,7 +15754,6 @@ export const readGenericErc20Symbol = /*#__PURE__*/ createReadContract({
  */
 export const readGenericErc20TotalSupply = /*#__PURE__*/ createReadContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'totalSupply',
 })
 
@@ -11649,7 +15762,6 @@ export const readGenericErc20TotalSupply = /*#__PURE__*/ createReadContract({
  */
 export const writeGenericErc20 = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
@@ -11657,7 +15769,6 @@ export const writeGenericErc20 = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20Approve = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'approve',
 })
 
@@ -11666,7 +15777,6 @@ export const writeGenericErc20Approve = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20Burn = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'burn',
 })
 
@@ -11675,7 +15785,6 @@ export const writeGenericErc20Burn = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20BurnFrom = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'burnFrom',
 })
 
@@ -11685,7 +15794,6 @@ export const writeGenericErc20BurnFrom = /*#__PURE__*/ createWriteContract({
 export const writeGenericErc20DecreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'decreaseAllowance',
   })
 
@@ -11695,7 +15803,6 @@ export const writeGenericErc20DecreaseAllowance =
 export const writeGenericErc20IncreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'increaseAllowance',
   })
 
@@ -11704,7 +15811,6 @@ export const writeGenericErc20IncreaseAllowance =
  */
 export const writeGenericErc20Mint = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'mint',
 })
 
@@ -11713,7 +15819,6 @@ export const writeGenericErc20Mint = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20SetDecimals = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'setDecimals',
 })
 
@@ -11722,7 +15827,6 @@ export const writeGenericErc20SetDecimals = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20Transfer = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'transfer',
 })
 
@@ -11731,7 +15835,6 @@ export const writeGenericErc20Transfer = /*#__PURE__*/ createWriteContract({
  */
 export const writeGenericErc20TransferFrom = /*#__PURE__*/ createWriteContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'transferFrom',
 })
 
@@ -11740,18 +15843,13 @@ export const writeGenericErc20TransferFrom = /*#__PURE__*/ createWriteContract({
  */
 export const simulateGenericErc20 = /*#__PURE__*/ createSimulateContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link genericErc20Abi}__ and `functionName` set to `"approve"`
  */
 export const simulateGenericErc20Approve = /*#__PURE__*/ createSimulateContract(
-  {
-    abi: genericErc20Abi,
-    address: genericErc20Address,
-    functionName: 'approve',
-  },
+  { abi: genericErc20Abi, functionName: 'approve' },
 )
 
 /**
@@ -11759,7 +15857,6 @@ export const simulateGenericErc20Approve = /*#__PURE__*/ createSimulateContract(
  */
 export const simulateGenericErc20Burn = /*#__PURE__*/ createSimulateContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'burn',
 })
 
@@ -11769,7 +15866,6 @@ export const simulateGenericErc20Burn = /*#__PURE__*/ createSimulateContract({
 export const simulateGenericErc20BurnFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'burnFrom',
   })
 
@@ -11779,7 +15875,6 @@ export const simulateGenericErc20BurnFrom =
 export const simulateGenericErc20DecreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'decreaseAllowance',
   })
 
@@ -11789,7 +15884,6 @@ export const simulateGenericErc20DecreaseAllowance =
 export const simulateGenericErc20IncreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'increaseAllowance',
   })
 
@@ -11798,7 +15892,6 @@ export const simulateGenericErc20IncreaseAllowance =
  */
 export const simulateGenericErc20Mint = /*#__PURE__*/ createSimulateContract({
   abi: genericErc20Abi,
-  address: genericErc20Address,
   functionName: 'mint',
 })
 
@@ -11808,7 +15901,6 @@ export const simulateGenericErc20Mint = /*#__PURE__*/ createSimulateContract({
 export const simulateGenericErc20SetDecimals =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'setDecimals',
   })
 
@@ -11818,7 +15910,6 @@ export const simulateGenericErc20SetDecimals =
 export const simulateGenericErc20Transfer =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transfer',
   })
 
@@ -11828,7 +15919,6 @@ export const simulateGenericErc20Transfer =
 export const simulateGenericErc20TransferFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     functionName: 'transferFrom',
   })
 
@@ -11837,7 +15927,6 @@ export const simulateGenericErc20TransferFrom =
  */
 export const watchGenericErc20Event = /*#__PURE__*/ createWatchContractEvent({
   abi: genericErc20Abi,
-  address: genericErc20Address,
 })
 
 /**
@@ -11846,7 +15935,6 @@ export const watchGenericErc20Event = /*#__PURE__*/ createWatchContractEvent({
 export const watchGenericErc20ApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     eventName: 'Approval',
   })
 
@@ -11856,7 +15944,6 @@ export const watchGenericErc20ApprovalEvent =
 export const watchGenericErc20TransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: genericErc20Abi,
-    address: genericErc20Address,
     eventName: 'Transfer',
   })
 
@@ -12470,6 +16557,371 @@ export const watchGlobalBlacklistUpgradedEvent =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonic = /*#__PURE__*/ createReadContract({
+  abi: globalBlacklistSonicAbi,
+  address: globalBlacklistSonicAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"isBlacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicIsBlacklisted =
+  /*#__PURE__*/ createReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'isBlacklisted',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: globalBlacklistSonicAbi,
+  address: globalBlacklistSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const readGlobalBlacklistSonicTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonic = /*#__PURE__*/ createWriteContract({
+  abi: globalBlacklistSonicAbi,
+  address: globalBlacklistSonicAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"blacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicBlacklist =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'blacklist',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicRegisterContract =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"unBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicUnBlacklist =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'unBlacklist',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const writeGlobalBlacklistSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonic =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"blacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicBlacklist =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'blacklist',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicRegisterContract =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"unBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicUnBlacklist =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'unBlacklist',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const simulateGlobalBlacklistSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Blacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicBlacklistedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Blacklisted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Unblacklisted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicUnblacklistedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Unblacklisted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalBlacklistSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
+ */
+export const watchGlobalBlacklistSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalBlacklistSonicAbi,
+    address: globalBlacklistSonicAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalOwnerAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
@@ -13028,6 +17480,347 @@ export const watchGlobalOwnerUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalOwnerAbi,
     address: globalOwnerAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const readGlobalOwnerSonic = /*#__PURE__*/ createReadContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const readGlobalOwnerSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"pendingOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const readGlobalOwnerSonicPendingOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'pendingOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const readGlobalOwnerSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonic = /*#__PURE__*/ createWriteContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicAcceptOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicRegisterContract =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicUpgradeTo = /*#__PURE__*/ createWriteContract(
+  {
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeTo',
+  },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const writeGlobalOwnerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonic = /*#__PURE__*/ createSimulateContract({
+  abi: globalOwnerSonicAbi,
+  address: globalOwnerSonicAddress,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicAcceptOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicRegisterContract =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const simulateGlobalOwnerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"OwnershipTransferStarted"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicOwnershipTransferStartedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'OwnershipTransferStarted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalOwnerSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ */
+export const watchGlobalOwnerSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalOwnerSonicAbi,
+    address: globalOwnerSonicAddress,
     eventName: 'Upgraded',
   })
 
@@ -13631,6 +18424,369 @@ export const watchGlobalPauseUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalPauseAbi,
     address: globalPauseAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonic = /*#__PURE__*/ createReadContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicGlobalOwner = /*#__PURE__*/ createReadContract(
+  {
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'globalOwner',
+  },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicPaused = /*#__PURE__*/ createReadContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+  functionName: 'paused',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const readGlobalPauseSonicTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonic = /*#__PURE__*/ createWriteContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicPause = /*#__PURE__*/ createWriteContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+  functionName: 'pause',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicRegisterContract =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicUnpause = /*#__PURE__*/ createWriteContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+  functionName: 'unpause',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicUpgradeTo = /*#__PURE__*/ createWriteContract(
+  {
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeTo',
+  },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const writeGlobalPauseSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonic = /*#__PURE__*/ createSimulateContract({
+  abi: globalPauseSonicAbi,
+  address: globalPauseSonicAddress,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicPause =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'pause',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicRegisterContract =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicUnpause =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'unpause',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const simulateGlobalPauseSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalPauseSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
+ */
+export const watchGlobalPauseSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalPauseSonicAbi,
+    address: globalPauseSonicAddress,
     eventName: 'Upgraded',
   })
 
@@ -15204,19 +20360,884 @@ export const watchLdyStakingUpgradedEvent =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonic = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"MULTIPLIER_BASIS"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicMultiplierBasis =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'MULTIPLIER_BASIS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"earned"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicEarned = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'earned',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"finishAt"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicFinishAt = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'finishAt',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getEarnedUser"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGetEarnedUser =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getEarnedUser',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGetStakeDurationInfo =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getUserStakes"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGetUserStakes =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getUserStakes',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalBlacklist"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGlobalBlacklist =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'globalBlacklist',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGlobalOwner = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'globalOwner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicGlobalPause = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'globalPause',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"highTierAccounts"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicHighTierAccounts =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'highTierAccounts',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"lastTimeRewardApplicable"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicLastTimeRewardApplicable =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'lastTimeRewardApplicable',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"lastUpdateTime"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicLastUpdateTime =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'lastUpdateTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"nbHighTierPositions"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicNbHighTierPositions =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'nbHighTierPositions',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicPaused = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'paused',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardPerToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicRewardPerToken =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardPerToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardPerTokenStored"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicRewardPerTokenStored =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardPerTokenStored',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardRatePerSec"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicRewardRatePerSec =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardRatePerSec',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"rewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicRewardsDuration =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'rewardsDuration',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicStakeAmountForPerks =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicStakeDurationForPerks =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeDurationInfos"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicStakeDurationInfos =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeDurationInfos',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stakeRewardToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicStakeRewardToken =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stakeRewardToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"tierOf"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicTierOf = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'tierOf',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalRewards"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicTotalRewards = /*#__PURE__*/ createReadContract(
+  {
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'totalRewards',
+  },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalStaked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicTotalStaked = /*#__PURE__*/ createReadContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'totalStaked',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"totalWeightedStake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicTotalWeightedStake =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'totalWeightedStake',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"userStakingInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const readLdyStakingSonicUserStakingInfo =
+  /*#__PURE__*/ createReadContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'userStakingInfo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonic = /*#__PURE__*/ createWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getReward"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicGetReward = /*#__PURE__*/ createWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'getReward',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicInitialize = /*#__PURE__*/ createWriteContract(
+  {
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initialize',
+  },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicNotifyRewardAmount =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicPushStakeDurationInfo =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicRegisterContract =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicSetRewardsDuration =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicSetStakeAmountForPerks =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicSetStakeDurationForPerks =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicStake = /*#__PURE__*/ createWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'stake',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"unstake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicUnstake = /*#__PURE__*/ createWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'unstake',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicUpgradeTo = /*#__PURE__*/ createWriteContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+  functionName: 'upgradeTo',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const writeLdyStakingSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonic = /*#__PURE__*/ createSimulateContract({
+  abi: ldyStakingSonicAbi,
+  address: ldyStakingSonicAddress,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"getReward"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicGetReward =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicNotifyRewardAmount =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicPushStakeDurationInfo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicRegisterContract =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicSetRewardsDuration =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicSetStakeAmountForPerks =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicSetStakeDurationForPerks =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"stake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicStake =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"unstake"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicUnstake =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const simulateLdyStakingSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicEvent = /*#__PURE__*/ createWatchContractEvent(
+  { abi: ldyStakingSonicAbi, address: ldyStakingSonicAddress },
+)
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"NotifiedRewardAmount"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicNotifiedRewardAmountEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'NotifiedRewardAmount',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"RewardPaid"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicRewardPaidEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'RewardPaid',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Staked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicStakedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Staked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Unstaked"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicUnstakedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Unstaked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ldyStakingSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
+ */
+export const watchLdyStakingSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ldyStakingSonicAbi,
+    address: ldyStakingSonicAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenAbi}__
  */
-export const readLToken = /*#__PURE__*/ createReadContract({
-  abi: lTokenAbi,
-  address: lTokenAddress,
-})
+export const readLToken = /*#__PURE__*/ createReadContract({ abi: lTokenAbi })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"allowance"`
  */
 export const readLTokenAllowance = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'allowance',
 })
 
@@ -15225,7 +21246,6 @@ export const readLTokenAllowance = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenBalanceOf = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'balanceOf',
 })
 
@@ -15234,7 +21254,6 @@ export const readLTokenBalanceOf = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenDecimals = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'decimals',
 })
 
@@ -15243,7 +21262,6 @@ export const readLTokenDecimals = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenDepositFor = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'depositFor',
 })
 
@@ -15252,7 +21270,6 @@ export const readLTokenDepositFor = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenFeesRateUd7x3 = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'feesRateUD7x3',
 })
 
@@ -15261,7 +21278,6 @@ export const readLTokenFeesRateUd7x3 = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenFrozenRequests = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'frozenRequests',
 })
 
@@ -15270,7 +21286,6 @@ export const readLTokenFrozenRequests = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenFund = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'fund',
 })
 
@@ -15279,7 +21294,6 @@ export const readLTokenFund = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenGetApr = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'getAPR',
 })
 
@@ -15288,7 +21302,6 @@ export const readLTokenGetApr = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenGetExpectedRetained = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'getExpectedRetained',
 })
 
@@ -15298,7 +21311,6 @@ export const readLTokenGetExpectedRetained = /*#__PURE__*/ createReadContract({
 export const readLTokenGetWithdrawnAmountAndFees =
   /*#__PURE__*/ createReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'getWithdrawnAmountAndFees',
   })
 
@@ -15307,7 +21319,6 @@ export const readLTokenGetWithdrawnAmountAndFees =
  */
 export const readLTokenGlobalBlacklist = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'globalBlacklist',
 })
 
@@ -15316,7 +21327,6 @@ export const readLTokenGlobalBlacklist = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'globalOwner',
 })
 
@@ -15325,7 +21335,6 @@ export const readLTokenGlobalOwner = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenGlobalPause = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'globalPause',
 })
 
@@ -15334,7 +21343,6 @@ export const readLTokenGlobalPause = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenInvested = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'invested',
 })
 
@@ -15343,7 +21351,6 @@ export const readLTokenInvested = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenLdyStaking = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'ldyStaking',
 })
 
@@ -15352,7 +21359,6 @@ export const readLTokenLdyStaking = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenName = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'name',
 })
 
@@ -15362,7 +21368,6 @@ export const readLTokenName = /*#__PURE__*/ createReadContract({
 export const readLTokenOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'onlyHighTierInstantWithdrawal',
   })
 
@@ -15371,7 +21376,6 @@ export const readLTokenOnlyHighTierInstantWithdrawal =
  */
 export const readLTokenOwner = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'owner',
 })
 
@@ -15380,7 +21384,6 @@ export const readLTokenOwner = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenPaused = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'paused',
 })
 
@@ -15389,7 +21392,6 @@ export const readLTokenPaused = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenProxiableUuid = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'proxiableUUID',
 })
 
@@ -15398,7 +21400,6 @@ export const readLTokenProxiableUuid = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenRealBalanceOf = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'realBalanceOf',
 })
 
@@ -15407,7 +21408,6 @@ export const readLTokenRealBalanceOf = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenRealTotalSupply = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'realTotalSupply',
 })
 
@@ -15416,7 +21416,6 @@ export const readLTokenRealTotalSupply = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenRenounceOwnership = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'renounceOwnership',
 })
 
@@ -15425,7 +21424,6 @@ export const readLTokenRenounceOwnership = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenRetentionRateUd7x3 = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'retentionRateUD7x3',
 })
 
@@ -15435,7 +21433,6 @@ export const readLTokenRetentionRateUd7x3 = /*#__PURE__*/ createReadContract({
 export const readLTokenRewardsRedirectsFromTo =
   /*#__PURE__*/ createReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'rewardsRedirectsFromTo',
   })
 
@@ -15445,7 +21442,6 @@ export const readLTokenRewardsRedirectsFromTo =
 export const readLTokenRewardsRedirectsToFrom =
   /*#__PURE__*/ createReadContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'rewardsRedirectsToFrom',
   })
 
@@ -15454,7 +21450,6 @@ export const readLTokenRewardsRedirectsToFrom =
  */
 export const readLTokenSymbol = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'symbol',
 })
 
@@ -15463,7 +21458,6 @@ export const readLTokenSymbol = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenTotalQueued = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'totalQueued',
 })
 
@@ -15472,7 +21466,6 @@ export const readLTokenTotalQueued = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenTotalSupply = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'totalSupply',
 })
 
@@ -15481,7 +21474,6 @@ export const readLTokenTotalSupply = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenTransferOwnership = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transferOwnership',
 })
 
@@ -15490,7 +21482,6 @@ export const readLTokenTransferOwnership = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenTransfersListeners = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transfersListeners',
 })
 
@@ -15499,7 +21490,6 @@ export const readLTokenTransfersListeners = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenUnclaimedFees = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'unclaimedFees',
 })
 
@@ -15508,7 +21498,6 @@ export const readLTokenUnclaimedFees = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenUnderlying = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'underlying',
 })
 
@@ -15517,7 +21506,6 @@ export const readLTokenUnderlying = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenUnmintedRewardsOf = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'unmintedRewardsOf',
 })
 
@@ -15526,7 +21514,6 @@ export const readLTokenUnmintedRewardsOf = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenUsableUnderlyings = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'usableUnderlyings',
 })
 
@@ -15535,7 +21522,6 @@ export const readLTokenUsableUnderlyings = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenWithdrawTo = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawTo',
 })
 
@@ -15544,7 +21530,6 @@ export const readLTokenWithdrawTo = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenWithdrawalFeeInEth = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawalFeeInEth',
 })
 
@@ -15553,7 +21538,6 @@ export const readLTokenWithdrawalFeeInEth = /*#__PURE__*/ createReadContract({
  */
 export const readLTokenWithdrawalQueue = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawalQueue',
 })
 
@@ -15561,11 +21545,7 @@ export const readLTokenWithdrawalQueue = /*#__PURE__*/ createReadContract({
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalQueueCursor"`
  */
 export const readLTokenWithdrawalQueueCursor = /*#__PURE__*/ createReadContract(
-  {
-    abi: lTokenAbi,
-    address: lTokenAddress,
-    functionName: 'withdrawalQueueCursor',
-  },
+  { abi: lTokenAbi, functionName: 'withdrawalQueueCursor' },
 )
 
 /**
@@ -15573,24 +21553,19 @@ export const readLTokenWithdrawalQueueCursor = /*#__PURE__*/ createReadContract(
  */
 export const readLTokenWithdrawer = /*#__PURE__*/ createReadContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'withdrawer',
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenAbi}__
  */
-export const writeLToken = /*#__PURE__*/ createWriteContract({
-  abi: lTokenAbi,
-  address: lTokenAddress,
-})
+export const writeLToken = /*#__PURE__*/ createWriteContract({ abi: lTokenAbi })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"approve"`
  */
 export const writeLTokenApprove = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'approve',
 })
 
@@ -15600,7 +21575,6 @@ export const writeLTokenApprove = /*#__PURE__*/ createWriteContract({
 export const writeLTokenCancelWithdrawalRequest =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'cancelWithdrawalRequest',
   })
 
@@ -15609,7 +21583,6 @@ export const writeLTokenCancelWithdrawalRequest =
  */
 export const writeLTokenClaimFees = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'claimFees',
 })
 
@@ -15618,7 +21591,6 @@ export const writeLTokenClaimFees = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenDecreaseAllowance = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'decreaseAllowance',
 })
 
@@ -15627,7 +21599,6 @@ export const writeLTokenDecreaseAllowance = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenDeposit = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'deposit',
 })
 
@@ -15636,7 +21607,6 @@ export const writeLTokenDeposit = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenIncreaseAllowance = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'increaseAllowance',
 })
 
@@ -15645,7 +21615,6 @@ export const writeLTokenIncreaseAllowance = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenInitialize = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'initialize',
 })
 
@@ -15654,7 +21623,6 @@ export const writeLTokenInitialize = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenInstantWithdrawal = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'instantWithdrawal',
 })
 
@@ -15663,7 +21631,6 @@ export const writeLTokenInstantWithdrawal = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenListenToTransfers = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'listenToTransfers',
 })
 
@@ -15673,7 +21640,6 @@ export const writeLTokenListenToTransfers = /*#__PURE__*/ createWriteContract({
 export const writeLTokenProcessBigQueuedRequest =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processBigQueuedRequest',
   })
 
@@ -15683,7 +21649,6 @@ export const writeLTokenProcessBigQueuedRequest =
 export const writeLTokenProcessQueuedRequests =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processQueuedRequests',
   })
 
@@ -15692,7 +21657,6 @@ export const writeLTokenProcessQueuedRequests =
  */
 export const writeLTokenRecoverErc20 = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'recoverERC20',
 })
 
@@ -15701,7 +21665,6 @@ export const writeLTokenRecoverErc20 = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenRecoverUnderlying = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'recoverUnderlying',
 })
 
@@ -15710,7 +21673,6 @@ export const writeLTokenRecoverUnderlying = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenRepatriate = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'repatriate',
 })
 
@@ -15719,7 +21681,6 @@ export const writeLTokenRepatriate = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenRequestWithdrawal = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'requestWithdrawal',
 })
 
@@ -15728,7 +21689,6 @@ export const writeLTokenRequestWithdrawal = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenSetApr = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setAPR',
 })
 
@@ -15737,7 +21697,6 @@ export const writeLTokenSetApr = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenSetFeesRate = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFeesRate',
 })
 
@@ -15746,7 +21705,6 @@ export const writeLTokenSetFeesRate = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenSetFund = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFund',
 })
 
@@ -15755,7 +21713,6 @@ export const writeLTokenSetFund = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenSetLdyStaking = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setLDYStaking',
 })
 
@@ -15764,7 +21721,6 @@ export const writeLTokenSetLdyStaking = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenSetRetentionRate = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setRetentionRate',
 })
 
@@ -15774,7 +21730,6 @@ export const writeLTokenSetRetentionRate = /*#__PURE__*/ createWriteContract({
 export const writeLTokenSetWithdrawalFeeInEth =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setWithdrawalFeeInEth',
   })
 
@@ -15783,7 +21738,6 @@ export const writeLTokenSetWithdrawalFeeInEth =
  */
 export const writeLTokenSetWithdrawer = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setWithdrawer',
 })
 
@@ -15793,7 +21747,6 @@ export const writeLTokenSetWithdrawer = /*#__PURE__*/ createWriteContract({
 export const writeLTokenStartRewardsRedirection =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'startRewardsRedirection',
   })
 
@@ -15803,7 +21756,6 @@ export const writeLTokenStartRewardsRedirection =
 export const writeLTokenStopRewardsRedirection =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'stopRewardsRedirection',
   })
 
@@ -15813,7 +21765,6 @@ export const writeLTokenStopRewardsRedirection =
 export const writeLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
   })
 
@@ -15822,7 +21773,6 @@ export const writeLTokenSwitchOnlyHighTierInstantWithdrawal =
  */
 export const writeLTokenTransfer = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transfer',
 })
 
@@ -15831,7 +21781,6 @@ export const writeLTokenTransfer = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenTransferFrom = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transferFrom',
 })
 
@@ -15839,11 +21788,7 @@ export const writeLTokenTransferFrom = /*#__PURE__*/ createWriteContract({
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"unlistenToTransfers"`
  */
 export const writeLTokenUnlistenToTransfers = /*#__PURE__*/ createWriteContract(
-  {
-    abi: lTokenAbi,
-    address: lTokenAddress,
-    functionName: 'unlistenToTransfers',
-  },
+  { abi: lTokenAbi, functionName: 'unlistenToTransfers' },
 )
 
 /**
@@ -15851,7 +21796,6 @@ export const writeLTokenUnlistenToTransfers = /*#__PURE__*/ createWriteContract(
  */
 export const writeLTokenUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'upgradeTo',
 })
 
@@ -15860,7 +21804,6 @@ export const writeLTokenUpgradeTo = /*#__PURE__*/ createWriteContract({
  */
 export const writeLTokenUpgradeToAndCall = /*#__PURE__*/ createWriteContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'upgradeToAndCall',
 })
 
@@ -15869,7 +21812,6 @@ export const writeLTokenUpgradeToAndCall = /*#__PURE__*/ createWriteContract({
  */
 export const simulateLToken = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
@@ -15877,7 +21819,6 @@ export const simulateLToken = /*#__PURE__*/ createSimulateContract({
  */
 export const simulateLTokenApprove = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'approve',
 })
 
@@ -15887,7 +21828,6 @@ export const simulateLTokenApprove = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenCancelWithdrawalRequest =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'cancelWithdrawalRequest',
   })
 
@@ -15896,7 +21836,6 @@ export const simulateLTokenCancelWithdrawalRequest =
  */
 export const simulateLTokenClaimFees = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'claimFees',
 })
 
@@ -15906,7 +21845,6 @@ export const simulateLTokenClaimFees = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenDecreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -15915,7 +21853,6 @@ export const simulateLTokenDecreaseAllowance =
  */
 export const simulateLTokenDeposit = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'deposit',
 })
 
@@ -15925,7 +21862,6 @@ export const simulateLTokenDeposit = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenIncreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -15934,7 +21870,6 @@ export const simulateLTokenIncreaseAllowance =
  */
 export const simulateLTokenInitialize = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'initialize',
 })
 
@@ -15944,7 +21879,6 @@ export const simulateLTokenInitialize = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenInstantWithdrawal =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'instantWithdrawal',
   })
 
@@ -15954,7 +21888,6 @@ export const simulateLTokenInstantWithdrawal =
 export const simulateLTokenListenToTransfers =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'listenToTransfers',
   })
 
@@ -15964,7 +21897,6 @@ export const simulateLTokenListenToTransfers =
 export const simulateLTokenProcessBigQueuedRequest =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processBigQueuedRequest',
   })
 
@@ -15974,7 +21906,6 @@ export const simulateLTokenProcessBigQueuedRequest =
 export const simulateLTokenProcessQueuedRequests =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'processQueuedRequests',
   })
 
@@ -15983,7 +21914,6 @@ export const simulateLTokenProcessQueuedRequests =
  */
 export const simulateLTokenRecoverErc20 = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'recoverERC20',
 })
 
@@ -15993,7 +21923,6 @@ export const simulateLTokenRecoverErc20 = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenRecoverUnderlying =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'recoverUnderlying',
   })
 
@@ -16002,7 +21931,6 @@ export const simulateLTokenRecoverUnderlying =
  */
 export const simulateLTokenRepatriate = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'repatriate',
 })
 
@@ -16012,7 +21940,6 @@ export const simulateLTokenRepatriate = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenRequestWithdrawal =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -16021,7 +21948,6 @@ export const simulateLTokenRequestWithdrawal =
  */
 export const simulateLTokenSetApr = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setAPR',
 })
 
@@ -16030,7 +21956,6 @@ export const simulateLTokenSetApr = /*#__PURE__*/ createSimulateContract({
  */
 export const simulateLTokenSetFeesRate = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFeesRate',
 })
 
@@ -16039,7 +21964,6 @@ export const simulateLTokenSetFeesRate = /*#__PURE__*/ createSimulateContract({
  */
 export const simulateLTokenSetFund = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'setFund',
 })
 
@@ -16047,7 +21971,7 @@ export const simulateLTokenSetFund = /*#__PURE__*/ createSimulateContract({
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"setLDYStaking"`
  */
 export const simulateLTokenSetLdyStaking = /*#__PURE__*/ createSimulateContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'setLDYStaking' },
+  { abi: lTokenAbi, functionName: 'setLDYStaking' },
 )
 
 /**
@@ -16056,7 +21980,6 @@ export const simulateLTokenSetLdyStaking = /*#__PURE__*/ createSimulateContract(
 export const simulateLTokenSetRetentionRate =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setRetentionRate',
   })
 
@@ -16066,7 +21989,6 @@ export const simulateLTokenSetRetentionRate =
 export const simulateLTokenSetWithdrawalFeeInEth =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'setWithdrawalFeeInEth',
   })
 
@@ -16074,7 +21996,7 @@ export const simulateLTokenSetWithdrawalFeeInEth =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"setWithdrawer"`
  */
 export const simulateLTokenSetWithdrawer = /*#__PURE__*/ createSimulateContract(
-  { abi: lTokenAbi, address: lTokenAddress, functionName: 'setWithdrawer' },
+  { abi: lTokenAbi, functionName: 'setWithdrawer' },
 )
 
 /**
@@ -16083,7 +22005,6 @@ export const simulateLTokenSetWithdrawer = /*#__PURE__*/ createSimulateContract(
 export const simulateLTokenStartRewardsRedirection =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'startRewardsRedirection',
   })
 
@@ -16093,7 +22014,6 @@ export const simulateLTokenStartRewardsRedirection =
 export const simulateLTokenStopRewardsRedirection =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'stopRewardsRedirection',
   })
 
@@ -16103,7 +22023,6 @@ export const simulateLTokenStopRewardsRedirection =
 export const simulateLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
   })
 
@@ -16112,7 +22031,6 @@ export const simulateLTokenSwitchOnlyHighTierInstantWithdrawal =
  */
 export const simulateLTokenTransfer = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transfer',
 })
 
@@ -16121,7 +22039,6 @@ export const simulateLTokenTransfer = /*#__PURE__*/ createSimulateContract({
  */
 export const simulateLTokenTransferFrom = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'transferFrom',
 })
 
@@ -16131,7 +22048,6 @@ export const simulateLTokenTransferFrom = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenUnlistenToTransfers =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'unlistenToTransfers',
   })
 
@@ -16140,7 +22056,6 @@ export const simulateLTokenUnlistenToTransfers =
  */
 export const simulateLTokenUpgradeTo = /*#__PURE__*/ createSimulateContract({
   abi: lTokenAbi,
-  address: lTokenAddress,
   functionName: 'upgradeTo',
 })
 
@@ -16150,7 +22065,6 @@ export const simulateLTokenUpgradeTo = /*#__PURE__*/ createSimulateContract({
 export const simulateLTokenUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
-    address: lTokenAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -16159,7 +22073,6 @@ export const simulateLTokenUpgradeToAndCall =
  */
 export const watchLTokenEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
 })
 
 /**
@@ -16168,7 +22081,6 @@ export const watchLTokenEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchLTokenAprChangeEventEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'APRChangeEvent',
   })
 
@@ -16178,7 +22090,6 @@ export const watchLTokenAprChangeEventEvent =
 export const watchLTokenActivityEventEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'ActivityEvent',
   })
 
@@ -16188,7 +22099,6 @@ export const watchLTokenActivityEventEvent =
 export const watchLTokenAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'AdminChanged',
   })
 
@@ -16197,7 +22107,6 @@ export const watchLTokenAdminChangedEvent =
  */
 export const watchLTokenApprovalEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
   eventName: 'Approval',
 })
 
@@ -16207,7 +22116,6 @@ export const watchLTokenApprovalEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchLTokenBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'BeaconUpgraded',
   })
 
@@ -16217,7 +22125,6 @@ export const watchLTokenBeaconUpgradedEvent =
 export const watchLTokenInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'Initialized',
   })
 
@@ -16227,7 +22134,6 @@ export const watchLTokenInitializedEvent =
 export const watchLTokenMintedRewardsEventEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'MintedRewardsEvent',
   })
 
@@ -16237,7 +22143,6 @@ export const watchLTokenMintedRewardsEventEvent =
 export const watchLTokenOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -16246,7 +22151,6 @@ export const watchLTokenOwnershipTransferredEvent =
  */
 export const watchLTokenPausedEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
   eventName: 'Paused',
 })
 
@@ -16256,7 +22160,6 @@ export const watchLTokenPausedEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchLTokenTvlChangeEventEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: lTokenAbi,
-    address: lTokenAddress,
     eventName: 'TVLChangeEvent',
   })
 
@@ -16265,7 +22168,6 @@ export const watchLTokenTvlChangeEventEvent =
  */
 export const watchLTokenTransferEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
   eventName: 'Transfer',
 })
 
@@ -16274,7 +22176,6 @@ export const watchLTokenTransferEvent = /*#__PURE__*/ createWatchContractEvent({
  */
 export const watchLTokenUnpausedEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
   eventName: 'Unpaused',
 })
 
@@ -16283,16 +22184,824 @@ export const watchLTokenUnpausedEvent = /*#__PURE__*/ createWatchContractEvent({
  */
 export const watchLTokenUpgradedEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenAbi,
-  address: lTokenAddress,
   eventName: 'Upgraded',
 })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignaler = /*#__PURE__*/ createReadContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignalerGlobalOwner = /*#__PURE__*/ createReadContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+  functionName: 'globalOwner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignalerOwner = /*#__PURE__*/ createReadContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignalerProxiableUuid = /*#__PURE__*/ createReadContract(
+  {
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'proxiableUUID',
+  },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignalerRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const readLTokenSignalerTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const writeLTokenSignaler = /*#__PURE__*/ createWriteContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const writeLTokenSignalerInitialize = /*#__PURE__*/ createWriteContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+  functionName: 'initialize',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const writeLTokenSignalerSignalLToken =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const writeLTokenSignalerUpgradeTo = /*#__PURE__*/ createWriteContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+  functionName: 'upgradeTo',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const writeLTokenSignalerUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const simulateLTokenSignaler = /*#__PURE__*/ createSimulateContract({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const simulateLTokenSignalerInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const simulateLTokenSignalerSignalLToken =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const simulateLTokenSignalerUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const simulateLTokenSignalerUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerEvent = /*#__PURE__*/ createWatchContractEvent({
+  abi: lTokenSignalerAbi,
+  address: lTokenSignalerAddress,
+})
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"LTokenSignalEvent"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerLTokenSignalEventEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'LTokenSignalEvent',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
+ * -
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
+ * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
+ * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
+ */
+export const watchLTokenSignalerUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerAbi,
+    address: lTokenSignalerAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonic = /*#__PURE__*/ createReadContract({
+  abi: lTokenSignalerSonicAbi,
+  address: lTokenSignalerSonicAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonicGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: lTokenSignalerSonicAbi,
+  address: lTokenSignalerSonicAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonicRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const readLTokenSignalerSonicTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonic = /*#__PURE__*/ createWriteContract({
+  abi: lTokenSignalerSonicAbi,
+  address: lTokenSignalerSonicAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicRegisterContract =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicSignalLToken =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const writeLTokenSignalerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonic = /*#__PURE__*/ createSimulateContract(
+  { abi: lTokenSignalerSonicAbi, address: lTokenSignalerSonicAddress },
+)
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"registerContract"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicRegisterContract =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'registerContract',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"signalLToken"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicSignalLToken =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'signalLToken',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const simulateLTokenSignalerSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"LTokenSignalEvent"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicLTokenSignalEventEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'LTokenSignalEvent',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerSonicAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
+ */
+export const watchLTokenSignalerSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: lTokenSignalerSonicAbi,
+    address: lTokenSignalerSonicAddress,
+    eventName: 'Upgraded',
+  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const readLedgityYieldVault = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
 })
 
 /**
@@ -16301,7 +23010,6 @@ export const readLedgityYieldVault = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultAprRateOffset =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'APR_RATE_OFFSET',
   })
 
@@ -16310,7 +23018,6 @@ export const readLedgityYieldVaultAprRateOffset =
  */
 export const readLedgityYieldVaultRateBase = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'RATE_BASE',
 })
 
@@ -16319,7 +23026,6 @@ export const readLedgityYieldVaultRateBase = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultRay = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'RAY',
 })
 
@@ -16328,7 +23034,6 @@ export const readLedgityYieldVaultRay = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultAToken = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'aToken',
 })
 
@@ -16338,7 +23043,6 @@ export const readLedgityYieldVaultAToken = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultAaveLendingPool =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'aaveLendingPool',
   })
 
@@ -16348,7 +23052,6 @@ export const readLedgityYieldVaultAaveLendingPool =
 export const readLedgityYieldVaultAccountWithdrawalFee =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'accountWithdrawalFee',
   })
 
@@ -16357,7 +23060,6 @@ export const readLedgityYieldVaultAccountWithdrawalFee =
  */
 export const readLedgityYieldVaultAllowance = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'allowance',
 })
 
@@ -16366,7 +23068,6 @@ export const readLedgityYieldVaultAllowance = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultAsset = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'asset',
 })
 
@@ -16375,7 +23076,6 @@ export const readLedgityYieldVaultAsset = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultBalanceOf = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'balanceOf',
 })
 
@@ -16385,7 +23085,6 @@ export const readLedgityYieldVaultBalanceOf = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultConvertToAssets =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'convertToAssets',
   })
 
@@ -16395,7 +23094,6 @@ export const readLedgityYieldVaultConvertToAssets =
 export const readLedgityYieldVaultConvertToShares =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'convertToShares',
   })
 
@@ -16404,7 +23102,6 @@ export const readLedgityYieldVaultConvertToShares =
  */
 export const readLedgityYieldVaultDecimals = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'decimals',
 })
 
@@ -16414,7 +23111,6 @@ export const readLedgityYieldVaultDecimals = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultDeploymentDelay =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'deploymentDelay',
   })
 
@@ -16424,7 +23120,6 @@ export const readLedgityYieldVaultDeploymentDelay =
 export const readLedgityYieldVaultFeeRecipient =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'feeRecipient',
   })
 
@@ -16434,7 +23129,6 @@ export const readLedgityYieldVaultFeeRecipient =
 export const readLedgityYieldVaultGetBufferAssets =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getBufferAssets',
   })
 
@@ -16444,7 +23138,6 @@ export const readLedgityYieldVaultGetBufferAssets =
 export const readLedgityYieldVaultGetBufferRewardRate =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getBufferRewardRate',
   })
 
@@ -16454,7 +23147,6 @@ export const readLedgityYieldVaultGetBufferRewardRate =
 export const readLedgityYieldVaultGetCcipAdmin =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getCCIPAdmin',
   })
 
@@ -16464,7 +23156,6 @@ export const readLedgityYieldVaultGetCcipAdmin =
 export const readLedgityYieldVaultGetUserWithdrawalRequests =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getUserWithdrawalRequests',
   })
 
@@ -16474,7 +23165,6 @@ export const readLedgityYieldVaultGetUserWithdrawalRequests =
 export const readLedgityYieldVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequestCount',
   })
 
@@ -16484,7 +23174,6 @@ export const readLedgityYieldVaultGetWithdrawalRequestCount =
 export const readLedgityYieldVaultGetWithdrawalRequests =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequests',
   })
 
@@ -16494,7 +23183,6 @@ export const readLedgityYieldVaultGetWithdrawalRequests =
 export const readLedgityYieldVaultGetWithdrawalRequestsByIds =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'getWithdrawalRequestsByIds',
   })
 
@@ -16504,7 +23192,6 @@ export const readLedgityYieldVaultGetWithdrawalRequestsByIds =
 export const readLedgityYieldVaultGlobalBlacklist =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalBlacklist',
   })
 
@@ -16514,7 +23201,6 @@ export const readLedgityYieldVaultGlobalBlacklist =
 export const readLedgityYieldVaultGlobalOwner =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalOwner',
   })
 
@@ -16524,7 +23210,6 @@ export const readLedgityYieldVaultGlobalOwner =
 export const readLedgityYieldVaultGlobalPause =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'globalPause',
   })
 
@@ -16534,7 +23219,6 @@ export const readLedgityYieldVaultGlobalPause =
 export const readLedgityYieldVaultHasBufferStrategy =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'hasBufferStrategy',
   })
 
@@ -16544,7 +23228,6 @@ export const readLedgityYieldVaultHasBufferStrategy =
 export const readLedgityYieldVaultHighWaterMark =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'highWaterMark',
   })
 
@@ -16553,7 +23236,6 @@ export const readLedgityYieldVaultHighWaterMark =
  */
 export const readLedgityYieldVaultIsBurner = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'isBurner',
 })
 
@@ -16562,7 +23244,6 @@ export const readLedgityYieldVaultIsBurner = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultIsMinter = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'isMinter',
 })
 
@@ -16571,7 +23252,6 @@ export const readLedgityYieldVaultIsMinter = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultLToken = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'lToken',
 })
 
@@ -16581,7 +23261,6 @@ export const readLedgityYieldVaultLToken = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultLastBufferRewardBalance =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastBufferRewardBalance',
   })
 
@@ -16591,7 +23270,6 @@ export const readLedgityYieldVaultLastBufferRewardBalance =
 export const readLedgityYieldVaultLastCompoundTime =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastCompoundTime',
   })
 
@@ -16601,7 +23279,6 @@ export const readLedgityYieldVaultLastCompoundTime =
 export const readLedgityYieldVaultLastFeeTime =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'lastFeeTime',
   })
 
@@ -16611,7 +23288,6 @@ export const readLedgityYieldVaultLastFeeTime =
 export const readLedgityYieldVaultLiquidityBufferRate =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'liquidityBufferRate',
   })
 
@@ -16621,7 +23297,6 @@ export const readLedgityYieldVaultLiquidityBufferRate =
 export const readLedgityYieldVaultLiquidityManager =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'liquidityManager',
   })
 
@@ -16631,7 +23306,6 @@ export const readLedgityYieldVaultLiquidityManager =
 export const readLedgityYieldVaultManagementFeeRate =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'managementFeeRate',
   })
 
@@ -16639,11 +23313,7 @@ export const readLedgityYieldVaultManagementFeeRate =
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"maxDeposit"`
  */
 export const readLedgityYieldVaultMaxDeposit = /*#__PURE__*/ createReadContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'maxDeposit',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'maxDeposit' },
 )
 
 /**
@@ -16651,7 +23321,6 @@ export const readLedgityYieldVaultMaxDeposit = /*#__PURE__*/ createReadContract(
  */
 export const readLedgityYieldVaultMaxMint = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'maxMint',
 })
 
@@ -16660,7 +23329,6 @@ export const readLedgityYieldVaultMaxMint = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultMaxRedeem = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'maxRedeem',
 })
 
@@ -16670,7 +23338,6 @@ export const readLedgityYieldVaultMaxRedeem = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultMaxWithdraw =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'maxWithdraw',
   })
 
@@ -16679,7 +23346,6 @@ export const readLedgityYieldVaultMaxWithdraw =
  */
 export const readLedgityYieldVaultName = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'name',
 })
 
@@ -16688,7 +23354,6 @@ export const readLedgityYieldVaultName = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultOwner = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'owner',
 })
 
@@ -16697,7 +23362,6 @@ export const readLedgityYieldVaultOwner = /*#__PURE__*/ createReadContract({
  */
 export const readLedgityYieldVaultPaused = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'paused',
 })
 
@@ -16707,7 +23371,6 @@ export const readLedgityYieldVaultPaused = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultPerformanceFeeRate =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'performanceFeeRate',
   })
 
@@ -16717,7 +23380,6 @@ export const readLedgityYieldVaultPerformanceFeeRate =
 export const readLedgityYieldVaultPreviewDeposit =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewDeposit',
   })
 
@@ -16727,7 +23389,6 @@ export const readLedgityYieldVaultPreviewDeposit =
 export const readLedgityYieldVaultPreviewMint =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewMint',
   })
 
@@ -16737,7 +23398,6 @@ export const readLedgityYieldVaultPreviewMint =
 export const readLedgityYieldVaultPreviewRedeem =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewRedeem',
   })
 
@@ -16747,7 +23407,6 @@ export const readLedgityYieldVaultPreviewRedeem =
 export const readLedgityYieldVaultPreviewWithdraw =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'previewWithdraw',
   })
 
@@ -16757,7 +23416,6 @@ export const readLedgityYieldVaultPreviewWithdraw =
 export const readLedgityYieldVaultProxiableUuid =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'proxiableUUID',
   })
 
@@ -16767,7 +23425,6 @@ export const readLedgityYieldVaultProxiableUuid =
 export const readLedgityYieldVaultStakeBalanceForFeeReduction =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'stakeBalanceForFeeReduction',
   })
 
@@ -16777,7 +23434,6 @@ export const readLedgityYieldVaultStakeBalanceForFeeReduction =
 export const readLedgityYieldVaultStakeBalanceForInstantWithdrawal =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'stakeBalanceForInstantWithdrawal',
   })
 
@@ -16785,11 +23441,7 @@ export const readLedgityYieldVaultStakeBalanceForInstantWithdrawal =
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"stakeToken"`
  */
 export const readLedgityYieldVaultStakeToken = /*#__PURE__*/ createReadContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'stakeToken',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'stakeToken' },
 )
 
 /**
@@ -16797,7 +23449,6 @@ export const readLedgityYieldVaultStakeToken = /*#__PURE__*/ createReadContract(
  */
 export const readLedgityYieldVaultSymbol = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'symbol',
 })
 
@@ -16807,7 +23458,6 @@ export const readLedgityYieldVaultSymbol = /*#__PURE__*/ createReadContract({
 export const readLedgityYieldVaultTotalAssets =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'totalAssets',
   })
 
@@ -16817,7 +23467,6 @@ export const readLedgityYieldVaultTotalAssets =
 export const readLedgityYieldVaultTotalSupply =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'totalSupply',
   })
 
@@ -16827,7 +23476,6 @@ export const readLedgityYieldVaultTotalSupply =
 export const readLedgityYieldVaultWithdrawalFeeRate =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalFeeRate',
   })
 
@@ -16837,7 +23485,6 @@ export const readLedgityYieldVaultWithdrawalFeeRate =
 export const readLedgityYieldVaultWithdrawalGasFee =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalGasFee',
   })
 
@@ -16847,7 +23494,6 @@ export const readLedgityYieldVaultWithdrawalGasFee =
 export const readLedgityYieldVaultWithdrawalRequests =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdrawalRequests',
   })
 
@@ -16856,7 +23502,6 @@ export const readLedgityYieldVaultWithdrawalRequests =
  */
 export const readLedgityYieldVaultYieldApr = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'yieldAPR',
 })
 
@@ -16865,7 +23510,6 @@ export const readLedgityYieldVaultYieldApr = /*#__PURE__*/ createReadContract({
  */
 export const writeLedgityYieldVault = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
 })
 
 /**
@@ -16873,7 +23517,6 @@ export const writeLedgityYieldVault = /*#__PURE__*/ createWriteContract({
  */
 export const writeLedgityYieldVaultApprove = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'approve',
 })
 
@@ -16882,7 +23525,6 @@ export const writeLedgityYieldVaultApprove = /*#__PURE__*/ createWriteContract({
  */
 export const writeLedgityYieldVaultBurn = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'burn',
 })
 
@@ -16892,7 +23534,6 @@ export const writeLedgityYieldVaultBurn = /*#__PURE__*/ createWriteContract({
 export const writeLedgityYieldVaultBurnAndRemintBlacklistedShares =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnAndRemintBlacklistedShares',
   })
 
@@ -16900,11 +23541,7 @@ export const writeLedgityYieldVaultBurnAndRemintBlacklistedShares =
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"burnFrom"`
  */
 export const writeLedgityYieldVaultBurnFrom = /*#__PURE__*/ createWriteContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'burnFrom',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'burnFrom' },
 )
 
 /**
@@ -16913,7 +23550,6 @@ export const writeLedgityYieldVaultBurnFrom = /*#__PURE__*/ createWriteContract(
 export const writeLedgityYieldVaultDecreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -16922,7 +23558,6 @@ export const writeLedgityYieldVaultDecreaseAllowance =
  */
 export const writeLedgityYieldVaultDeposit = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'deposit',
 })
 
@@ -16932,7 +23567,6 @@ export const writeLedgityYieldVaultDeposit = /*#__PURE__*/ createWriteContract({
 export const writeLedgityYieldVaultDepositToBuffer =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'depositToBuffer',
   })
 
@@ -16942,7 +23576,6 @@ export const writeLedgityYieldVaultDepositToBuffer =
 export const writeLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantBurnRole',
   })
 
@@ -16952,7 +23585,6 @@ export const writeLedgityYieldVaultGrantBurnRole =
 export const writeLedgityYieldVaultGrantMintAndBurnRoles =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintAndBurnRoles',
   })
 
@@ -16962,7 +23594,6 @@ export const writeLedgityYieldVaultGrantMintAndBurnRoles =
 export const writeLedgityYieldVaultGrantMintRole =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintRole',
   })
 
@@ -16972,7 +23603,6 @@ export const writeLedgityYieldVaultGrantMintRole =
 export const writeLedgityYieldVaultHarvestFees =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'harvestFees',
   })
 
@@ -16982,7 +23612,6 @@ export const writeLedgityYieldVaultHarvestFees =
 export const writeLedgityYieldVaultIncreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -16992,7 +23621,6 @@ export const writeLedgityYieldVaultIncreaseAllowance =
 export const writeLedgityYieldVaultInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'initialize',
   })
 
@@ -17002,7 +23630,6 @@ export const writeLedgityYieldVaultInitialize =
 export const writeLedgityYieldVaultMigrateLToken =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'migrateLToken',
   })
 
@@ -17011,7 +23638,6 @@ export const writeLedgityYieldVaultMigrateLToken =
  */
 export const writeLedgityYieldVaultMint = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'mint',
 })
 
@@ -17021,7 +23647,6 @@ export const writeLedgityYieldVaultMint = /*#__PURE__*/ createWriteContract({
 export const writeLedgityYieldVaultProcessRequests =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'processRequests',
   })
 
@@ -17031,7 +23656,6 @@ export const writeLedgityYieldVaultProcessRequests =
 export const writeLedgityYieldVaultRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'recoverERC20',
   })
 
@@ -17040,7 +23664,6 @@ export const writeLedgityYieldVaultRecoverErc20 =
  */
 export const writeLedgityYieldVaultRedeem = /*#__PURE__*/ createWriteContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
   functionName: 'redeem',
 })
 
@@ -17050,7 +23673,6 @@ export const writeLedgityYieldVaultRedeem = /*#__PURE__*/ createWriteContract({
 export const writeLedgityYieldVaultRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -17060,7 +23682,6 @@ export const writeLedgityYieldVaultRenounceOwnership =
 export const writeLedgityYieldVaultRequestWithdrawal =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -17070,7 +23691,6 @@ export const writeLedgityYieldVaultRequestWithdrawal =
 export const writeLedgityYieldVaultRevokeBurnRole =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeBurnRole',
   })
 
@@ -17080,7 +23700,6 @@ export const writeLedgityYieldVaultRevokeBurnRole =
 export const writeLedgityYieldVaultRevokeMintRole =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeMintRole',
   })
 
@@ -17090,7 +23709,6 @@ export const writeLedgityYieldVaultRevokeMintRole =
 export const writeLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCCIPAdmin',
   })
 
@@ -17100,7 +23718,6 @@ export const writeLedgityYieldVaultSetCcipAdmin =
 export const writeLedgityYieldVaultSetCustomWithdrawalFee =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCustomWithdrawalFee',
   })
 
@@ -17110,7 +23727,6 @@ export const writeLedgityYieldVaultSetCustomWithdrawalFee =
 export const writeLedgityYieldVaultSetTotalAssets =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setTotalAssets',
   })
 
@@ -17120,7 +23736,6 @@ export const writeLedgityYieldVaultSetTotalAssets =
 export const writeLedgityYieldVaultSkimBuffer =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'skimBuffer',
   })
 
@@ -17128,11 +23743,7 @@ export const writeLedgityYieldVaultSkimBuffer =
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transfer"`
  */
 export const writeLedgityYieldVaultTransfer = /*#__PURE__*/ createWriteContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'transfer',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'transfer' },
 )
 
 /**
@@ -17141,7 +23752,6 @@ export const writeLedgityYieldVaultTransfer = /*#__PURE__*/ createWriteContract(
 export const writeLedgityYieldVaultTransferAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferAndCall',
   })
 
@@ -17151,7 +23761,6 @@ export const writeLedgityYieldVaultTransferAndCall =
 export const writeLedgityYieldVaultTransferFrom =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferFrom',
   })
 
@@ -17161,7 +23770,6 @@ export const writeLedgityYieldVaultTransferFrom =
 export const writeLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferOwnership',
   })
 
@@ -17171,7 +23779,6 @@ export const writeLedgityYieldVaultTransferOwnership =
 export const writeLedgityYieldVaultUpdateApr =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateAPR',
   })
 
@@ -17181,7 +23788,6 @@ export const writeLedgityYieldVaultUpdateApr =
 export const writeLedgityYieldVaultUpdateBufferRate =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateBufferRate',
   })
 
@@ -17191,7 +23797,6 @@ export const writeLedgityYieldVaultUpdateBufferRate =
 export const writeLedgityYieldVaultUpdateDeploymentDelay =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateDeploymentDelay',
   })
 
@@ -17201,7 +23806,6 @@ export const writeLedgityYieldVaultUpdateDeploymentDelay =
 export const writeLedgityYieldVaultUpdateFeeRates =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateFeeRates',
   })
 
@@ -17211,7 +23815,6 @@ export const writeLedgityYieldVaultUpdateFeeRates =
 export const writeLedgityYieldVaultUpdateVaultManagers =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultManagers',
   })
 
@@ -17221,7 +23824,6 @@ export const writeLedgityYieldVaultUpdateVaultManagers =
 export const writeLedgityYieldVaultUpdateVaultParams =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultParams',
   })
 
@@ -17231,7 +23833,6 @@ export const writeLedgityYieldVaultUpdateVaultParams =
 export const writeLedgityYieldVaultUpgradeTo =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeTo',
   })
 
@@ -17241,7 +23842,6 @@ export const writeLedgityYieldVaultUpgradeTo =
 export const writeLedgityYieldVaultUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -17249,11 +23849,7 @@ export const writeLedgityYieldVaultUpgradeToAndCall =
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"withdraw"`
  */
 export const writeLedgityYieldVaultWithdraw = /*#__PURE__*/ createWriteContract(
-  {
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-    functionName: 'withdraw',
-  },
+  { abi: ledgityYieldVaultAbi, functionName: 'withdraw' },
 )
 
 /**
@@ -17261,7 +23857,6 @@ export const writeLedgityYieldVaultWithdraw = /*#__PURE__*/ createWriteContract(
  */
 export const simulateLedgityYieldVault = /*#__PURE__*/ createSimulateContract({
   abi: ledgityYieldVaultAbi,
-  address: ledgityYieldVaultAddress,
 })
 
 /**
@@ -17270,7 +23865,6 @@ export const simulateLedgityYieldVault = /*#__PURE__*/ createSimulateContract({
 export const simulateLedgityYieldVaultApprove =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'approve',
   })
 
@@ -17280,7 +23874,6 @@ export const simulateLedgityYieldVaultApprove =
 export const simulateLedgityYieldVaultBurn =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burn',
   })
 
@@ -17290,7 +23883,6 @@ export const simulateLedgityYieldVaultBurn =
 export const simulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnAndRemintBlacklistedShares',
   })
 
@@ -17300,7 +23892,6 @@ export const simulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
 export const simulateLedgityYieldVaultBurnFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'burnFrom',
   })
 
@@ -17310,7 +23901,6 @@ export const simulateLedgityYieldVaultBurnFrom =
 export const simulateLedgityYieldVaultDecreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -17320,7 +23910,6 @@ export const simulateLedgityYieldVaultDecreaseAllowance =
 export const simulateLedgityYieldVaultDeposit =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'deposit',
   })
 
@@ -17330,7 +23919,6 @@ export const simulateLedgityYieldVaultDeposit =
 export const simulateLedgityYieldVaultDepositToBuffer =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'depositToBuffer',
   })
 
@@ -17340,7 +23928,6 @@ export const simulateLedgityYieldVaultDepositToBuffer =
 export const simulateLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantBurnRole',
   })
 
@@ -17350,7 +23937,6 @@ export const simulateLedgityYieldVaultGrantBurnRole =
 export const simulateLedgityYieldVaultGrantMintAndBurnRoles =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintAndBurnRoles',
   })
 
@@ -17360,7 +23946,6 @@ export const simulateLedgityYieldVaultGrantMintAndBurnRoles =
 export const simulateLedgityYieldVaultGrantMintRole =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'grantMintRole',
   })
 
@@ -17370,7 +23955,6 @@ export const simulateLedgityYieldVaultGrantMintRole =
 export const simulateLedgityYieldVaultHarvestFees =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'harvestFees',
   })
 
@@ -17380,7 +23964,6 @@ export const simulateLedgityYieldVaultHarvestFees =
 export const simulateLedgityYieldVaultIncreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -17390,7 +23973,6 @@ export const simulateLedgityYieldVaultIncreaseAllowance =
 export const simulateLedgityYieldVaultInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'initialize',
   })
 
@@ -17400,7 +23982,6 @@ export const simulateLedgityYieldVaultInitialize =
 export const simulateLedgityYieldVaultMigrateLToken =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'migrateLToken',
   })
 
@@ -17410,7 +23991,6 @@ export const simulateLedgityYieldVaultMigrateLToken =
 export const simulateLedgityYieldVaultMint =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'mint',
   })
 
@@ -17420,7 +24000,6 @@ export const simulateLedgityYieldVaultMint =
 export const simulateLedgityYieldVaultProcessRequests =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'processRequests',
   })
 
@@ -17430,7 +24009,6 @@ export const simulateLedgityYieldVaultProcessRequests =
 export const simulateLedgityYieldVaultRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'recoverERC20',
   })
 
@@ -17440,7 +24018,6 @@ export const simulateLedgityYieldVaultRecoverErc20 =
 export const simulateLedgityYieldVaultRedeem =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'redeem',
   })
 
@@ -17450,7 +24027,6 @@ export const simulateLedgityYieldVaultRedeem =
 export const simulateLedgityYieldVaultRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -17460,7 +24036,6 @@ export const simulateLedgityYieldVaultRenounceOwnership =
 export const simulateLedgityYieldVaultRequestWithdrawal =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'requestWithdrawal',
   })
 
@@ -17470,7 +24045,6 @@ export const simulateLedgityYieldVaultRequestWithdrawal =
 export const simulateLedgityYieldVaultRevokeBurnRole =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeBurnRole',
   })
 
@@ -17480,7 +24054,6 @@ export const simulateLedgityYieldVaultRevokeBurnRole =
 export const simulateLedgityYieldVaultRevokeMintRole =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'revokeMintRole',
   })
 
@@ -17490,7 +24063,6 @@ export const simulateLedgityYieldVaultRevokeMintRole =
 export const simulateLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCCIPAdmin',
   })
 
@@ -17500,7 +24072,6 @@ export const simulateLedgityYieldVaultSetCcipAdmin =
 export const simulateLedgityYieldVaultSetCustomWithdrawalFee =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setCustomWithdrawalFee',
   })
 
@@ -17510,7 +24081,6 @@ export const simulateLedgityYieldVaultSetCustomWithdrawalFee =
 export const simulateLedgityYieldVaultSetTotalAssets =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'setTotalAssets',
   })
 
@@ -17520,7 +24090,6 @@ export const simulateLedgityYieldVaultSetTotalAssets =
 export const simulateLedgityYieldVaultSkimBuffer =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'skimBuffer',
   })
 
@@ -17530,7 +24099,6 @@ export const simulateLedgityYieldVaultSkimBuffer =
 export const simulateLedgityYieldVaultTransfer =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transfer',
   })
 
@@ -17540,7 +24108,6 @@ export const simulateLedgityYieldVaultTransfer =
 export const simulateLedgityYieldVaultTransferAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferAndCall',
   })
 
@@ -17550,7 +24117,6 @@ export const simulateLedgityYieldVaultTransferAndCall =
 export const simulateLedgityYieldVaultTransferFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferFrom',
   })
 
@@ -17560,7 +24126,6 @@ export const simulateLedgityYieldVaultTransferFrom =
 export const simulateLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'transferOwnership',
   })
 
@@ -17570,7 +24135,6 @@ export const simulateLedgityYieldVaultTransferOwnership =
 export const simulateLedgityYieldVaultUpdateApr =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateAPR',
   })
 
@@ -17580,7 +24144,6 @@ export const simulateLedgityYieldVaultUpdateApr =
 export const simulateLedgityYieldVaultUpdateBufferRate =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateBufferRate',
   })
 
@@ -17590,7 +24153,6 @@ export const simulateLedgityYieldVaultUpdateBufferRate =
 export const simulateLedgityYieldVaultUpdateDeploymentDelay =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateDeploymentDelay',
   })
 
@@ -17600,7 +24162,6 @@ export const simulateLedgityYieldVaultUpdateDeploymentDelay =
 export const simulateLedgityYieldVaultUpdateFeeRates =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateFeeRates',
   })
 
@@ -17610,7 +24171,6 @@ export const simulateLedgityYieldVaultUpdateFeeRates =
 export const simulateLedgityYieldVaultUpdateVaultManagers =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultManagers',
   })
 
@@ -17620,7 +24180,6 @@ export const simulateLedgityYieldVaultUpdateVaultManagers =
 export const simulateLedgityYieldVaultUpdateVaultParams =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'updateVaultParams',
   })
 
@@ -17630,7 +24189,6 @@ export const simulateLedgityYieldVaultUpdateVaultParams =
 export const simulateLedgityYieldVaultUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeTo',
   })
 
@@ -17640,7 +24198,6 @@ export const simulateLedgityYieldVaultUpgradeTo =
 export const simulateLedgityYieldVaultUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'upgradeToAndCall',
   })
 
@@ -17650,7 +24207,6 @@ export const simulateLedgityYieldVaultUpgradeToAndCall =
 export const simulateLedgityYieldVaultWithdraw =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     functionName: 'withdraw',
   })
 
@@ -17658,10 +24214,7 @@ export const simulateLedgityYieldVaultWithdraw =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const watchLedgityYieldVaultEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
-  })
+  /*#__PURE__*/ createWatchContractEvent({ abi: ledgityYieldVaultAbi })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"APRUpdated"`
@@ -17669,7 +24222,6 @@ export const watchLedgityYieldVaultEvent =
 export const watchLedgityYieldVaultAprUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'APRUpdated',
   })
 
@@ -17679,7 +24231,6 @@ export const watchLedgityYieldVaultAprUpdatedEvent =
 export const watchLedgityYieldVaultAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'AdminChanged',
   })
 
@@ -17689,7 +24240,6 @@ export const watchLedgityYieldVaultAdminChangedEvent =
 export const watchLedgityYieldVaultApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Approval',
   })
 
@@ -17699,7 +24249,6 @@ export const watchLedgityYieldVaultApprovalEvent =
 export const watchLedgityYieldVaultBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BeaconUpgraded',
   })
 
@@ -17709,7 +24258,6 @@ export const watchLedgityYieldVaultBeaconUpgradedEvent =
 export const watchLedgityYieldVaultBufferRateUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BufferRateUpdated',
   })
 
@@ -17719,7 +24267,6 @@ export const watchLedgityYieldVaultBufferRateUpdatedEvent =
 export const watchLedgityYieldVaultBurnAccessGrantedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BurnAccessGranted',
   })
 
@@ -17729,7 +24276,6 @@ export const watchLedgityYieldVaultBurnAccessGrantedEvent =
 export const watchLedgityYieldVaultBurnAccessRevokedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'BurnAccessRevoked',
   })
 
@@ -17739,7 +24285,6 @@ export const watchLedgityYieldVaultBurnAccessRevokedEvent =
 export const watchLedgityYieldVaultCcipAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'CCIPAdminChanged',
   })
 
@@ -17749,7 +24294,6 @@ export const watchLedgityYieldVaultCcipAdminChangedEvent =
 export const watchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'CustomWithdrawalFeeSet',
   })
 
@@ -17759,7 +24303,6 @@ export const watchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
 export const watchLedgityYieldVaultDeploymentDelayUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'DeploymentDelayUpdated',
   })
 
@@ -17769,7 +24312,6 @@ export const watchLedgityYieldVaultDeploymentDelayUpdatedEvent =
 export const watchLedgityYieldVaultDepositEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Deposit',
   })
 
@@ -17779,7 +24321,6 @@ export const watchLedgityYieldVaultDepositEvent =
 export const watchLedgityYieldVaultFeeRatesUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'FeeRatesUpdated',
   })
 
@@ -17789,7 +24330,6 @@ export const watchLedgityYieldVaultFeeRatesUpdatedEvent =
 export const watchLedgityYieldVaultInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Initialized',
   })
 
@@ -17799,7 +24339,6 @@ export const watchLedgityYieldVaultInitializedEvent =
 export const watchLedgityYieldVaultMintAccessGrantedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'MintAccessGranted',
   })
 
@@ -17809,7 +24348,6 @@ export const watchLedgityYieldVaultMintAccessGrantedEvent =
 export const watchLedgityYieldVaultMintAccessRevokedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'MintAccessRevoked',
   })
 
@@ -17819,7 +24357,6 @@ export const watchLedgityYieldVaultMintAccessRevokedEvent =
 export const watchLedgityYieldVaultOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -17829,7 +24366,6 @@ export const watchLedgityYieldVaultOwnershipTransferredEvent =
 export const watchLedgityYieldVaultPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Paused',
   })
 
@@ -17839,7 +24375,6 @@ export const watchLedgityYieldVaultPausedEvent =
 export const watchLedgityYieldVaultRateCheckpointUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'RateCheckpointUpdated',
   })
 
@@ -17849,7 +24384,6 @@ export const watchLedgityYieldVaultRateCheckpointUpdatedEvent =
 export const watchLedgityYieldVaultTotalAssetsUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'TotalAssetsUpdated',
   })
 
@@ -17859,7 +24393,6 @@ export const watchLedgityYieldVaultTotalAssetsUpdatedEvent =
 export const watchLedgityYieldVaultTransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Transfer',
   })
 
@@ -17869,7 +24402,6 @@ export const watchLedgityYieldVaultTransferEvent =
 export const watchLedgityYieldVaultUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Unpaused',
   })
 
@@ -17879,7 +24411,6 @@ export const watchLedgityYieldVaultUnpausedEvent =
 export const watchLedgityYieldVaultUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Upgraded',
   })
 
@@ -17889,7 +24420,6 @@ export const watchLedgityYieldVaultUpgradedEvent =
 export const watchLedgityYieldVaultVaultManagersUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'VaultManagersUpdated',
   })
 
@@ -17899,7 +24429,6 @@ export const watchLedgityYieldVaultVaultManagersUpdatedEvent =
 export const watchLedgityYieldVaultVaultParamsUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'VaultParamsUpdated',
   })
 
@@ -17909,7 +24438,6 @@ export const watchLedgityYieldVaultVaultParamsUpdatedEvent =
 export const watchLedgityYieldVaultWithdrawEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'Withdraw',
   })
 
@@ -17919,7 +24447,6 @@ export const watchLedgityYieldVaultWithdrawEvent =
 export const watchLedgityYieldVaultWithdrawalProcessedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'WithdrawalProcessed',
   })
 
@@ -17929,7 +24456,6 @@ export const watchLedgityYieldVaultWithdrawalProcessedEvent =
 export const watchLedgityYieldVaultWithdrawalRequestedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
-    address: ledgityYieldVaultAddress,
     eventName: 'WithdrawalRequested',
   })
 
