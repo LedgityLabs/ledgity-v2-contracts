@@ -21,6 +21,7 @@ type DeploymentsType = {
 /// @dev Contracts whitelist
 const contractList = [
   "GlobalBlacklist",
+  "GlobalAccessList",
   "GlobalOwner",
   "GlobalPause",
   "LDYStaking",

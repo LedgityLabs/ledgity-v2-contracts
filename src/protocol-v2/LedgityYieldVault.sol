@@ -218,8 +218,8 @@ contract LedgityYieldVault is
     internal
     override(ERC20Upgradeable)
     whenNotPaused
-    notBlacklisted(from)
-    notBlacklisted(to)
+    notRestricted(from)
+    notRestricted(to)
   {
     super._beforeTokenTransfer(from, to, amount);
   }
@@ -482,7 +482,7 @@ contract LedgityYieldVault is
     internal
     override(ERC4626Upgradeable)
     whenNotPaused
-    notBlacklisted(caller_)
+    notRestricted(caller_)
   {
     if (assets_ == 0) revert ZeroAmount();
 
@@ -553,7 +553,7 @@ contract LedgityYieldVault is
     internal
     override(ERC4626Upgradeable)
     whenNotPaused
-    notBlacklisted(caller_)
+    notRestricted(caller_)
   {
     if (shares_ == 0) revert ZeroAmount();
 
@@ -603,7 +603,7 @@ contract LedgityYieldVault is
   )
     public
     whenNotPaused
-    notBlacklisted(_msgSender())
+    notRestricted(msg.sender)
     returns (uint256 shares)
   {
     if (address(lToken) == address(0)) revert NoLTokenSet();
@@ -719,7 +719,7 @@ contract LedgityYieldVault is
    */
   function requestWithdrawal(
     uint256 shares
-  ) public payable whenNotPaused notBlacklisted(_msgSender()) {
+  ) public payable whenNotPaused notRestricted(msg.sender) {
     if (shares == 0) revert ZeroAmount();
     if (msg.value < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();

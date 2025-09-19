@@ -1,7 +1,17 @@
 [
   {
     "inputs": [],
-    "name": "UserIsRestricted",
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "AccountAlreadyRestricted",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "AccountNotRestricted",
     "type": "error"
   },
   {
@@ -78,7 +88,7 @@
         "type": "address"
       }
     ],
-    "name": "Paused",
+    "name": "RestrictAccount",
     "type": "event"
   },
   {
@@ -91,7 +101,7 @@
         "type": "address"
       }
     ],
-    "name": "Unpaused",
+    "name": "UnrestrictAccount",
     "type": "event"
   },
   {
@@ -108,6 +118,30 @@
     "type": "event"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startIndex",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "nbAccounts",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRestrictedAccounts",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "globalOwner",
     "outputs": [
@@ -121,26 +155,19 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "globalPause",
-    "outputs": [
+    "inputs": [
       {
-        "internalType": "contract IGlobalPause",
-        "name": "",
+        "internalType": "address",
+        "name": "account",
         "type": "address"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "globalRestrict",
+    "name": "isRestricted",
     "outputs": [
       {
-        "internalType": "contract IGlobalAccessList",
+        "internalType": "bool",
         "name": "",
-        "type": "address"
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -161,19 +188,6 @@
   },
   {
     "inputs": [],
-    "name": "paused",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "proxiableUUID",
     "outputs": [
       {
@@ -183,24 +197,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "recoverERC20",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -214,11 +210,56 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "restrictAccount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "restrictedAccounts",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "newOwner",
         "type": "address"
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "unRestrictAccount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

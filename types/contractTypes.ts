@@ -196,6 +196,208 @@ export const genericErc20Abi = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GlobalAccessList
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const globalAccessListAbi = [
+  { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
+  { type: 'error', inputs: [], name: 'AccountAlreadyRestricted' },
+  { type: 'error', inputs: [], name: 'AccountNotRestricted' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'RestrictAccount',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'UnrestrictAccount',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'startIndex', internalType: 'uint256', type: 'uint256' },
+      { name: 'nbAccounts', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getRestrictedAccounts',
+    outputs: [{ name: '', internalType: 'address[]', type: 'address[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'isRestricted',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'restrictAccount',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'restrictedAccounts',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'unRestrictAccount',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GlobalBlacklist
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4172,7 +4374,7 @@ export const ledgityYieldVaultAbi = [
     inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
     name: 'SenderNotMinter',
   },
-  { type: 'error', inputs: [], name: 'UserIsBlacklisted' },
+  { type: 'error', inputs: [], name: 'UserIsRestricted' },
   { type: 'error', inputs: [], name: 'ZeroAddress' },
   { type: 'error', inputs: [], name: 'ZeroAddress' },
   { type: 'error', inputs: [], name: 'ZeroAmount' },
@@ -4194,6 +4396,25 @@ export const ledgityYieldVaultAbi = [
       },
     ],
     name: 'APRUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'withdrawalFee',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'AccountWithdrawalFeeSet',
   },
   {
     type: 'event',
@@ -4309,25 +4530,6 @@ export const ledgityYieldVaultAbi = [
       },
     ],
     name: 'CCIPAdminChanged',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'account',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'withdrawalFee',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'CustomWithdrawalFeeSet',
   },
   {
     type: 'event',
@@ -4976,15 +5178,6 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [],
-    name: 'globalBlacklist',
-    outputs: [
-      { name: '', internalType: 'contract IGlobalBlacklist', type: 'address' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
     name: 'globalOwner',
     outputs: [
       { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
@@ -4997,6 +5190,15 @@ export const ledgityYieldVaultAbi = [
     name: 'globalPause',
     outputs: [
       { name: '', internalType: 'contract IGlobalPause', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalRestrict',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalAccessList', type: 'address' },
     ],
     stateMutability: 'view',
   },
@@ -5376,18 +5578,18 @@ export const ledgityYieldVaultAbi = [
   },
   {
     type: 'function',
-    inputs: [{ name: 'newAdmin', internalType: 'address', type: 'address' }],
-    name: 'setCCIPAdmin',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'withdrawalFee', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setAccountWithdrawalFee',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'account', internalType: 'address', type: 'address' },
-      { name: 'withdrawalFee', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'setCustomWithdrawalFee',
+    inputs: [{ name: 'newAdmin', internalType: 'address', type: 'address' }],
+    name: 'setCCIPAdmin',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -6280,6 +6482,255 @@ export const useWatchGenericErc20TransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: genericErc20Abi,
     eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const useReadGlobalAccessList = /*#__PURE__*/ createUseReadContract({
+  abi: globalAccessListAbi,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
+ */
+export const useReadGlobalAccessListGetRestrictedAccounts =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'getRestrictedAccounts',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const useReadGlobalAccessListGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
+ */
+export const useReadGlobalAccessListIsRestricted =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'isRestricted',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
+ */
+export const useReadGlobalAccessListOwner = /*#__PURE__*/ createUseReadContract(
+  { abi: globalAccessListAbi, functionName: 'owner' },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const useReadGlobalAccessListProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
+ */
+export const useReadGlobalAccessListRestrictedAccounts =
+  /*#__PURE__*/ createUseReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictedAccounts',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const useWriteGlobalAccessList = /*#__PURE__*/ createUseWriteContract({
+  abi: globalAccessListAbi,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useWriteGlobalAccessListRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ */
+export const useWriteGlobalAccessListRestrictAccount =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictAccount',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useWriteGlobalAccessListTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ */
+export const useWriteGlobalAccessListUnRestrictAccount =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'unRestrictAccount',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useWriteGlobalAccessListUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useWriteGlobalAccessListUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const useSimulateGlobalAccessList =
+  /*#__PURE__*/ createUseSimulateContract({ abi: globalAccessListAbi })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useSimulateGlobalAccessListRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ */
+export const useSimulateGlobalAccessListRestrictAccount =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictAccount',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useSimulateGlobalAccessListTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ */
+export const useSimulateGlobalAccessListUnRestrictAccount =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'unRestrictAccount',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useSimulateGlobalAccessListUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useSimulateGlobalAccessListUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const useWatchGlobalAccessListEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: globalAccessListAbi })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const useWatchGlobalAccessListAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const useWatchGlobalAccessListBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const useWatchGlobalAccessListInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const useWatchGlobalAccessListOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
+ */
+export const useWatchGlobalAccessListRestrictAccountEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'RestrictAccount',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
+ */
+export const useWatchGlobalAccessListUnrestrictAccountEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'UnrestrictAccount',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const useWatchGlobalAccessListUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'Upgraded',
   })
 
 /**
@@ -13631,15 +14082,6 @@ export const useReadLedgityYieldVaultGetWithdrawalRequestsByIds =
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalBlacklist"`
- */
-export const useReadLedgityYieldVaultGlobalBlacklist =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'globalBlacklist',
-  })
-
-/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalOwner"`
  */
 export const useReadLedgityYieldVaultGlobalOwner =
@@ -13655,6 +14097,15 @@ export const useReadLedgityYieldVaultGlobalPause =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const useReadLedgityYieldVaultGlobalRestrict =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'globalRestrict',
   })
 
 /**
@@ -14167,21 +14618,21 @@ export const useWriteLedgityYieldVaultRevokeMintRole =
   })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const useWriteLedgityYieldVaultSetAccountWithdrawalFee =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCCIPAdmin"`
  */
 export const useWriteLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'setCCIPAdmin',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCustomWithdrawalFee"`
- */
-export const useWriteLedgityYieldVaultSetCustomWithdrawalFee =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'setCustomWithdrawalFee',
   })
 
 /**
@@ -14524,21 +14975,21 @@ export const useSimulateLedgityYieldVaultRevokeMintRole =
   })
 
 /**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const useSimulateLedgityYieldVaultSetAccountWithdrawalFee =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCCIPAdmin"`
  */
 export const useSimulateLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'setCCIPAdmin',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCustomWithdrawalFee"`
- */
-export const useSimulateLedgityYieldVaultSetCustomWithdrawalFee =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'setCustomWithdrawalFee',
   })
 
 /**
@@ -14692,6 +15143,15 @@ export const useWatchLedgityYieldVaultAprUpdatedEvent =
   })
 
 /**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"AccountWithdrawalFeeSet"`
+ */
+export const useWatchLedgityYieldVaultAccountWithdrawalFeeSetEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'AccountWithdrawalFeeSet',
+  })
+
+/**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"AdminChanged"`
  */
 export const useWatchLedgityYieldVaultAdminChangedEvent =
@@ -14752,15 +15212,6 @@ export const useWatchLedgityYieldVaultCcipAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'CCIPAdminChanged',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"CustomWithdrawalFeeSet"`
- */
-export const useWatchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ledgityYieldVaultAbi,
-    eventName: 'CustomWithdrawalFeeSet',
   })
 
 /**
@@ -15945,6 +16396,253 @@ export const watchGenericErc20TransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: genericErc20Abi,
     eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const readGlobalAccessList = /*#__PURE__*/ createReadContract({
+  abi: globalAccessListAbi,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
+ */
+export const readGlobalAccessListGetRestrictedAccounts =
+  /*#__PURE__*/ createReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'getRestrictedAccounts',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const readGlobalAccessListGlobalOwner = /*#__PURE__*/ createReadContract(
+  { abi: globalAccessListAbi, functionName: 'globalOwner' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
+ */
+export const readGlobalAccessListIsRestricted =
+  /*#__PURE__*/ createReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'isRestricted',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
+ */
+export const readGlobalAccessListOwner = /*#__PURE__*/ createReadContract({
+  abi: globalAccessListAbi,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const readGlobalAccessListProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
+ */
+export const readGlobalAccessListRestrictedAccounts =
+  /*#__PURE__*/ createReadContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictedAccounts',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const writeGlobalAccessList = /*#__PURE__*/ createWriteContract({
+  abi: globalAccessListAbi,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const writeGlobalAccessListRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ */
+export const writeGlobalAccessListRestrictAccount =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictAccount',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const writeGlobalAccessListTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ */
+export const writeGlobalAccessListUnRestrictAccount =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'unRestrictAccount',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const writeGlobalAccessListUpgradeTo = /*#__PURE__*/ createWriteContract(
+  { abi: globalAccessListAbi, functionName: 'upgradeTo' },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const writeGlobalAccessListUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const simulateGlobalAccessList = /*#__PURE__*/ createSimulateContract({
+  abi: globalAccessListAbi,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const simulateGlobalAccessListRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ */
+export const simulateGlobalAccessListRestrictAccount =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'restrictAccount',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const simulateGlobalAccessListTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ */
+export const simulateGlobalAccessListUnRestrictAccount =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'unRestrictAccount',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const simulateGlobalAccessListUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const simulateGlobalAccessListUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
+ */
+export const watchGlobalAccessListEvent =
+  /*#__PURE__*/ createWatchContractEvent({ abi: globalAccessListAbi })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const watchGlobalAccessListAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const watchGlobalAccessListBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const watchGlobalAccessListInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const watchGlobalAccessListOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
+ */
+export const watchGlobalAccessListRestrictAccountEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'RestrictAccount',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
+ */
+export const watchGlobalAccessListUnrestrictAccountEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'UnrestrictAccount',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const watchGlobalAccessListUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    eventName: 'Upgraded',
   })
 
 /**
@@ -23187,15 +23885,6 @@ export const readLedgityYieldVaultGetWithdrawalRequestsByIds =
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalBlacklist"`
- */
-export const readLedgityYieldVaultGlobalBlacklist =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'globalBlacklist',
-  })
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalOwner"`
  */
 export const readLedgityYieldVaultGlobalOwner =
@@ -23211,6 +23900,15 @@ export const readLedgityYieldVaultGlobalPause =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const readLedgityYieldVaultGlobalRestrict =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'globalRestrict',
   })
 
 /**
@@ -23704,21 +24402,21 @@ export const writeLedgityYieldVaultRevokeMintRole =
   })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const writeLedgityYieldVaultSetAccountWithdrawalFee =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCCIPAdmin"`
  */
 export const writeLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'setCCIPAdmin',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCustomWithdrawalFee"`
- */
-export const writeLedgityYieldVaultSetCustomWithdrawalFee =
-  /*#__PURE__*/ createWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'setCustomWithdrawalFee',
   })
 
 /**
@@ -24058,21 +24756,21 @@ export const simulateLedgityYieldVaultRevokeMintRole =
   })
 
 /**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const simulateLedgityYieldVaultSetAccountWithdrawalFee =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCCIPAdmin"`
  */
 export const simulateLedgityYieldVaultSetCcipAdmin =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'setCCIPAdmin',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"setCustomWithdrawalFee"`
- */
-export const simulateLedgityYieldVaultSetCustomWithdrawalFee =
-  /*#__PURE__*/ createSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'setCustomWithdrawalFee',
   })
 
 /**
@@ -24226,6 +24924,15 @@ export const watchLedgityYieldVaultAprUpdatedEvent =
   })
 
 /**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"AccountWithdrawalFeeSet"`
+ */
+export const watchLedgityYieldVaultAccountWithdrawalFeeSetEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'AccountWithdrawalFeeSet',
+  })
+
+/**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"AdminChanged"`
  */
 export const watchLedgityYieldVaultAdminChangedEvent =
@@ -24286,15 +24993,6 @@ export const watchLedgityYieldVaultCcipAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'CCIPAdminChanged',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"CustomWithdrawalFeeSet"`
- */
-export const watchLedgityYieldVaultCustomWithdrawalFeeSetEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: ledgityYieldVaultAbi,
-    eventName: 'CustomWithdrawalFeeSet',
   })
 
 /**
