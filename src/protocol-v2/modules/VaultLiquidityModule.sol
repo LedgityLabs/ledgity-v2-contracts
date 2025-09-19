@@ -107,7 +107,7 @@ abstract contract VaultLiquidityModule is
     uint256 withdrawalRate
   );
 
-  event CustomWithdrawalFeeSet(
+  event AccountWithdrawalFeeSet(
     address indexed account,
     uint256 withdrawalFee
   );
@@ -463,13 +463,13 @@ abstract contract VaultLiquidityModule is
    * @param account The account to set the custom fee structure for
    * @param withdrawalFee The custom withdrawal fee in RATE_BASE
    */
-  function setCustomWithdrawalFee(
+  function setAccountWithdrawalFee(
     address account,
     uint256 withdrawalFee
   ) external onlyOwner {
     accountWithdrawalFee[account] = withdrawalFee;
 
-    emit CustomWithdrawalFeeSet(account, withdrawalFee);
+    emit AccountWithdrawalFeeSet(account, withdrawalFee);
   }
 
   /**
