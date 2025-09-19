@@ -10,19 +10,19 @@ import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/O
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IGlobalOwner } from "src/protocol-v2/interfaces/IGlobalOwner.sol";
 import { IGlobalPause } from "src/protocol-v2/interfaces/IGlobalPause.sol";
-import { IGlobalBlacklist } from "src/protocol-v2/interfaces/IGlobalBlacklist.sol";
+import { IGlobalAccessList } from "src/protocol-v2/interfaces/IGlobalAccessList.sol";
 
 /**
  * @title AdministeredUpgradable
  * @notice Abstract base contract providing administration features for upgradeable contracts
- * @dev This contract integrates with global administration contracts (GlobalOwner, GlobalPause, GlobalBlacklist)
+ * @dev This contract integrates with global administration contracts (GlobalOwner, GlobalPause, GlobalRestrict)
  *      to provide centralized ownership, pause functionality, and blacklist management across the protocol.
  *      It implements UUPS upgradeability pattern and includes token recovery functionality.
  *
  *      Key features:
  *      - Global ownership management through IGlobalOwner
  *      - Global pause functionality through IGlobalPause
- *      - Global blacklist integration through IGlobalBlacklist
+ *      - Global blacklist integration through IGlobalAccessList
  *      - UUPS upgradeable pattern with owner-restricted upgrades
  *      - ERC20 token recovery for admin purposes
  *
@@ -36,13 +36,13 @@ abstract contract AdministeredUpgradable is
 {
   // =========== ERRORS =========== //
 
-  error UserIsBlacklisted();
+  error UserIsRestricted();
 
   // =========== STORAGE =========== //
 
   IGlobalOwner public globalOwner;
   IGlobalPause public globalPause;
-  IGlobalBlacklist public globalBlacklist;
+  IGlobalAccessList public globalRestrict;
 
   // =========== CONSTRUCTOR & INITIALIZER =========== //
 
@@ -56,12 +56,12 @@ abstract contract AdministeredUpgradable is
    * @dev See: https://docs.openzeppelin.com/contracts/4.x/upgradeable
    * @param globalOwner_ The address of the GlobalOwner contract.
    * @param globalPause_ The address of the GlobalPause contract.
-   * @param globalBlacklist_ The address of the GlobalBlacklist contract.
+   * @param globalRestrict_ The address of the GlobalRestrict contract.
    */
   function __AdministeredUpgradable_init(
     address globalOwner_,
     address globalPause_,
-    address globalBlacklist_
+    address globalRestrict_
   ) internal onlyInitializing {
     __UUPSUpgradeable_init();
     __Pausable_init_unchained();
@@ -69,7 +69,7 @@ abstract contract AdministeredUpgradable is
 
     globalOwner = IGlobalOwner(globalOwner_);
     globalPause = IGlobalPause(globalPause_);
-    globalBlacklist = IGlobalBlacklist(globalBlacklist_);
+    globalRestrict = IGlobalAccessList(globalRestrict_);
 
     transferOwnership(globalOwner.owner());
   }
@@ -106,15 +106,15 @@ abstract contract AdministeredUpgradable is
     return globalPause.paused();
   }
 
-  // =========== BLACKLIST =========== //
+  // =========== RESTRICTIONS =========== //
 
   /**
-   * @notice Reverts if the given account is blacklisted by the GlobalBlacklist contract.
+   * @notice Reverts if the given account is restricted by the GlobalRestrict contract.
    * @param account Address to verify.
    */
-  modifier notBlacklisted(address account) {
-    if (globalBlacklist.isBlacklisted(account))
-      revert UserIsBlacklisted();
+  modifier notRestricted(address account) {
+    if (globalRestrict.isRestricted(account))
+      revert UserIsRestricted();
     _;
   }
 
