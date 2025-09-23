@@ -116,7 +116,7 @@ library LedgityDataProvider {
         .WithdrawalRequestRead({
           requestId: requestIds[i],
           user: request.user,
-          assets: request.assets,
+          amount: request.amount,
           timestamp: request.timestamp,
           processed: request.processed,
           hasFeeReduction: hasFeeReduction
@@ -213,7 +213,7 @@ library LedgityDataProvider {
         ] = ILedgityDataProvider.WithdrawalRequestRead({
           requestId: i,
           user: request.user,
-          assets: request.assets,
+          amount: request.amount,
           timestamp: request.timestamp,
           processed: request.processed,
           hasFeeReduction: hasFeeReduction

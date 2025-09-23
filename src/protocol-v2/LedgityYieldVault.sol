@@ -99,12 +99,12 @@ contract LedgityYieldVault is
    * Emitted when a withdrawal request is processed and fulfilled
    * @param requestId Unique identifier for the processed request
    * @param user Address of the user receiving the withdrawal
-   * @param assets Amount of assets transferred to user
+   * @param amount Amount of assets transferred to user
    */
   event WithdrawalProcessed(
     uint256 indexed requestId,
     address indexed user,
-    uint256 assets
+    uint256 amount
   );
 
   /**
@@ -747,7 +747,7 @@ contract LedgityYieldVault is
     withdrawalRequests.push(
       ILedgityDataProvider.WithdrawalRequest({
         user: msg.sender,
-        assets: netAssets,
+        amount: netAssets,
         timestamp: block.timestamp,
         processed: false
       })
@@ -852,7 +852,7 @@ contract LedgityYieldVault is
 
       if (request.processed) revert RequestAlreadyProcessed();
 
-      assetsTotal += request.assets;
+      assetsTotal += request.amount;
     }
 
     // Check available liquidity (buffer + added liquidity)
@@ -877,14 +877,14 @@ contract LedgityYieldVault is
         storage request = withdrawalRequests[requestId];
 
       // Transfer assets to user
-      IERC20(asset()).safeTransfer(request.user, request.assets);
+      IERC20(asset()).safeTransfer(request.user, request.amount);
       // Mark as processed
       request.processed = true;
 
       emit WithdrawalProcessed(
         requestId,
         request.user,
-        request.assets
+        request.amount
       );
     }
   }

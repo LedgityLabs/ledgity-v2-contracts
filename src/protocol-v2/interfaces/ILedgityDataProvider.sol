@@ -5,13 +5,13 @@ interface ILedgityDataProvider {
   /**
    * Structure representing a queued withdrawal request (internal storage)
    * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
+   * @param amount Amount of underlying assets to withdraw
    * @param timestamp When the withdrawal request was created
    * @param processed Whether the request has been fulfilled
    */
   struct WithdrawalRequest {
     address user;
-    uint256 assets;
+    uint256 amount;
     uint256 timestamp;
     bool processed;
   }
@@ -20,7 +20,7 @@ interface ILedgityDataProvider {
    * @notice Structure representing a queued withdrawal request (read view)
    * @param requestId Unique identifier for the withdrawal request
    * @param user Address of the user who requested withdrawal
-   * @param assets Amount of underlying assets to withdraw
+   * @param amount Amount of underlying assets to withdraw
    * @param timestamp When the withdrawal request was created
    * @param processed Whether the request has been fulfilled
    * @param hasFeeReduction Whether the user has a fee reduction
@@ -28,7 +28,7 @@ interface ILedgityDataProvider {
   struct WithdrawalRequestRead {
     uint256 requestId;
     address user;
-    uint256 assets;
+    uint256 amount;
     uint256 timestamp;
     bool processed;
     bool hasFeeReduction;

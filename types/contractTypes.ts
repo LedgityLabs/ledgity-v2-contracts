@@ -4866,7 +4866,7 @@ export const ledgityYieldVaultAbi = [
       },
       { name: 'user', internalType: 'address', type: 'address', indexed: true },
       {
-        name: 'assets',
+        name: 'amount',
         internalType: 'uint256',
         type: 'uint256',
         indexed: false,
@@ -5112,7 +5112,7 @@ export const ledgityYieldVaultAbi = [
         components: [
           { name: 'requestId', internalType: 'uint256', type: 'uint256' },
           { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'assets', internalType: 'uint256', type: 'uint256' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
           { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
           { name: 'processed', internalType: 'bool', type: 'bool' },
           { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
@@ -5143,7 +5143,7 @@ export const ledgityYieldVaultAbi = [
         components: [
           { name: 'requestId', internalType: 'uint256', type: 'uint256' },
           { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'assets', internalType: 'uint256', type: 'uint256' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
           { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
           { name: 'processed', internalType: 'bool', type: 'bool' },
           { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
@@ -5166,7 +5166,7 @@ export const ledgityYieldVaultAbi = [
         components: [
           { name: 'requestId', internalType: 'uint256', type: 'uint256' },
           { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'assets', internalType: 'uint256', type: 'uint256' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
           { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
           { name: 'processed', internalType: 'bool', type: 'bool' },
           { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
@@ -5812,7 +5812,7 @@ export const ledgityYieldVaultAbi = [
     name: 'withdrawalRequests',
     outputs: [
       { name: 'user', internalType: 'address', type: 'address' },
-      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
       { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
       { name: 'processed', internalType: 'bool', type: 'bool' },
     ],
