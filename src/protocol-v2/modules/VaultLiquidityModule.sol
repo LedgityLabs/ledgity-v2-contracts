@@ -35,7 +35,7 @@ abstract contract VaultLiquidityModule is
   // Total assets under management
   uint256 private _totalAssets;
   // Offset between vault decimals and underlying asset decimals
-  uint8 private decimalsOffset;
+  uint8 public decimalsOffset;
 
   // Last timestamp when assets were compounded (only full compounding periods)
   uint256 public lastCompoundTime;
@@ -121,7 +121,17 @@ abstract contract VaultLiquidityModule is
 
   /** ======== OVERRIDES ======== */
 
-  function _decimalsOffset() internal view override returns (uint8) {
+  /**
+   * @dev Get the offset between vault decimals and underlying asset decimals
+   * @return decimalsOffset The offset between vault decimals and underlying asset decimals
+   * @dev In the form of a function to allow parent contracts to call this override
+   */
+  function _decimalsOffset()
+    internal
+    view
+    override(ERC4626Upgradeable)
+    returns (uint8)
+  {
     return decimalsOffset;
   }
 
