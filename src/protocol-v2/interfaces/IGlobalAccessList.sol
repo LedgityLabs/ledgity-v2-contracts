@@ -18,10 +18,10 @@ interface IGlobalAccessList {
 
   /// @notice Emitted when an account is added to the restricted list
   /// @param account The address of the restricted account
-  event RestrictAccount(address account);
+  event RestrictAccount(address indexed account);
   /// @notice Emitted when an account is removed from the restricted list
   /// @param account The address of the unrestricted account
-  event UnrestrictAccount(address account);
+  event UnrestrictAccount(address indexed account);
 
   // =========== READ FUNCTIONS =========== //
 

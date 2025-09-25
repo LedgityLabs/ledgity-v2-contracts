@@ -53,12 +53,13 @@ contract Fixtures is Test {
 
   // ======== USERS
 
-  address alice = address(0xA11CE);
-  address bob = address(0xB0B);
-  address carol = address(0xCA401);
+  address testAccount1 = address(0xA11CE);
+  address testAccount2 = address(0xB0B);
+  address testAccount3 = address(0xCA401);
+  address unauthorizedUser = address(0x666);
   address deployer = address(this);
 
-  address[] users = [alice, bob, carol];
+  address[] users = [testAccount1, testAccount2, testAccount3];
 
   address feeRecipient = address(feeRecipient);
   address liquidityManager = address(liquidityManager);
@@ -137,9 +138,10 @@ contract Fixtures is Test {
     vm.label(address(globalAccessList), "GlobalAccessList");
     vm.label(address(ldyStaking), "LDYStaking");
     //
-    vm.label(alice, "Alice");
-    vm.label(bob, "Bob");
-    vm.label(carol, "Carol");
+    vm.label(testAccount1, "Alice");
+    vm.label(testAccount2, "Bob");
+    vm.label(testAccount3, "Carol");
+    vm.label(unauthorizedUser, "Unauthorized User");
     vm.label(deployer, "Deployer");
     vm.label(feeRecipient, "Fee Recipient");
     vm.label(liquidityManager, "Liquidity Manager");
