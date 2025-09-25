@@ -27,9 +27,9 @@ contract GlobalAccessList is
   /// @notice Reference to the GlobalOwner contract
   IGlobalOwner public globalOwner;
 
-  /// @dev Initialize list with an account since index 0 is reserved for non restricted accounts
-  address[] public restrictedAccounts = [address(0)];
-  /// @dev Mapping from account address to its index in the restrictedAccounts array
+  /// @dev Array of restricted accounts
+  address[] public restrictedAccounts;
+  /// @dev Mapping from account address to its index in the restrictedAccounts array (index + 1, 0 means not restricted)
   mapping(address => uint256) private restrictedAccountsIndex;
 
   // =========== CONSTRUCTOR & INITIALIZER =========== //
@@ -102,6 +102,11 @@ contract GlobalAccessList is
     uint256 startIndex,
     uint256 nbAccounts
   ) external view returns (address[] memory) {
+    // Handle edge case where startIndex is beyond array length
+    if (startIndex >= restrictedAccounts.length) {
+      return new address[](0);
+    }
+
     uint256 endIndex = restrictedAccounts.length <
       startIndex + nbAccounts
       ? restrictedAccounts.length
@@ -127,8 +132,8 @@ contract GlobalAccessList is
     if (restrictedAccountsIndex[account] != 0)
       revert AccountAlreadyRestricted();
 
-    restrictedAccountsIndex[account] = restrictedAccounts.length;
     restrictedAccounts.push(account);
+    restrictedAccountsIndex[account] = restrictedAccounts.length; // Store index + 1
 
     emit RestrictAccount(account);
   }
@@ -142,14 +147,15 @@ contract GlobalAccessList is
     if (restrictedAccountsIndex[account] == 0)
       revert AccountNotRestricted();
 
-    uint256 index = restrictedAccountsIndex[account];
+    uint256 indexPlusOne = restrictedAccountsIndex[account];
+    uint256 index = indexPlusOne - 1; // Convert back to actual array index
     address lastAccount = restrictedAccounts[
       restrictedAccounts.length - 1
     ];
 
     // Move the last element to the position of the element to remove
     restrictedAccounts[index] = lastAccount;
-    restrictedAccountsIndex[lastAccount] = index;
+    restrictedAccountsIndex[lastAccount] = indexPlusOne; // Keep the +1 offset
 
     // Remove the account from mapping and array
     restrictedAccountsIndex[account] = 0;

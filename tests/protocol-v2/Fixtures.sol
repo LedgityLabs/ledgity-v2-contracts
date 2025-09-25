@@ -29,13 +29,20 @@ contract Fixtures is Test {
   // ======== LIBS ======== //
   using Strings for string;
 
+  // ======== CONSTANTS
+
+  uint256 public constant INITIAL_BALANCE = 1_000_000 ether;
+  uint256 public constant RATE_BASE = 100_000;
+  uint256 public constant RAY = 1e27;
+  uint256 public constant APR_RATE_OFFSET = RAY / RATE_BASE;
+
   // ======== STORAGE ======== //
   uint256 private checkpointSnapshotInitial;
   uint256 private checkpointSnapshot;
 
   // ======== CONFIGS
 
-  string[] public forkTargets = [
+  string[] private forkTargets = [
     "MAINNET",
     "BASE",
     "ARBITRUM",
@@ -43,44 +50,37 @@ contract Fixtures is Test {
     "SONIC",
     "LINEASCAN"
   ];
-  LDYStaking.StakeDurationInfo[] public stakingDurationInfos;
-  uint256[] durations = [0, 1, 6, 12, 24, 36];
+  LDYStaking.StakeDurationInfo[] private stakingDurationInfos;
+  uint256[] private durations = [0, 1, 6, 12, 24, 36];
 
   // ======== CONTRACTS
 
-  IERC20 usdc;
-  IERC20 weth;
-  MockERC20 mockUsdc;
-  MockERC20 mockWeth;
+  IERC20 public usdc;
+  IERC20 public weth;
+  MockERC20 public mockUsdc;
+  MockERC20 public mockWeth;
 
-  GlobalOwner globalOwner;
-  GlobalPause globalPause;
-  GlobalAccessList globalAccessList;
+  GlobalOwner public globalOwner;
+  GlobalPause public globalPause;
+  GlobalAccessList public globalAccessList;
 
-  GenericERC20 ldyToken;
-  LDYStaking ldyStaking;
+  GenericERC20 public ldyToken;
+  LDYStaking public ldyStaking;
 
   // ======== USERS
 
-  address testAccount1 = address(0xA11CE);
-  address testAccount2 = address(0xB0B);
-  address testAccount3 = address(0xCA401);
-  address unauthorizedUser = address(0x666);
-  address deployer = address(this);
+  address public testAccount1 = address(0xA11CE);
+  address public testAccount2 = address(0xB0B);
+  address public testAccount3 = address(0xCA401);
+  address public unauthorizedUser = address(0x666);
+  address public deployer = address(this);
 
-  address[] users = [testAccount1, testAccount2, testAccount3];
+  address[] public users = [testAccount1, testAccount2, testAccount3];
 
-  address feeRecipient = address(feeRecipient);
-  address liquidityManager = address(liquidityManager);
+  address public feeRecipient = address(feeRecipient);
+  address public liquidityManager = address(liquidityManager);
 
-  IAaveLendingPoolV3 aaveLendingPool;
-
-  // ======== CONSTANTS
-
-  uint256 public constant INITIAL_BALANCE = 1_000_000 ether;
-  uint256 public constant RATE_BASE = 100_000;
-  uint256 public constant RAY = 1e27;
-  uint256 public constant APR_RATE_OFFSET = RAY / RATE_BASE;
+  IAaveLendingPoolV3 public aaveLendingPool;
 
   // ======== SETUP FUNCTIONS ======== //
 
@@ -347,7 +347,6 @@ contract Fixtures is Test {
   }
 
   function _getUsdcToken() internal view returns (IERC20) {
-    console.log("(((((((((block.chainid))))))))): ", block.chainid);
     if (block.chainid == 1) {
       // Mainnet
       return IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
-import { Test } from "foundry/lib/forge-std/src/Test.sol";
+import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 
 // Fixtures
 import { Fixtures } from "./Fixtures.sol";
@@ -14,8 +14,8 @@ import { IGlobalOwner } from "src/protocol-v2/interfaces/IGlobalOwner.sol";
 
 contract GlobalAccessListTest is Test, Fixtures {
   // Events for testing
-  event RestrictAccount(address account);
-  event UnrestrictAccount(address account);
+  event RestrictAccount(address indexed account);
+  event UnrestrictAccount(address indexed account);
 
   function setUp() public {
     _setUp();
@@ -33,12 +33,10 @@ contract GlobalAccessListTest is Test, Fixtures {
     // Check that owner is set to globalOwner.owner()
     assertEq(globalAccessList.owner(), globalOwner.owner());
 
-    // Check that restrictedAccounts array is initialized with address(0) at index 0
-    assertEq(globalAccessList.restrictedAccounts(0), address(0));
-
-    // Check that no accounts are restricted initially (except address(0) placeholder)
+    // Check that no accounts are restricted initially
     assertFalse(globalAccessList.isRestricted(testAccount1));
     assertFalse(globalAccessList.isRestricted(testAccount2));
+    assertFalse(globalAccessList.isRestricted(address(0)));
   }
 
   function test_cannotInitializeTwice() public {
@@ -52,7 +50,7 @@ contract GlobalAccessListTest is Test, Fixtures {
   function test_restrictAccount_success() public {
     // Restrict an account as owner
     vm.prank(globalOwner.owner());
-    vm.expectEmit(true, false, false, false);
+    vm.expectEmit(true, false, false, true);
     emit RestrictAccount(testAccount1);
     globalAccessList.restrictAccount(testAccount1);
 
@@ -87,10 +85,10 @@ contract GlobalAccessListTest is Test, Fixtures {
     assertTrue(globalAccessList.isRestricted(testAccount2));
     assertTrue(globalAccessList.isRestricted(testAccount3));
 
-    // Verify total count (including address(0) at index 0)
+    // Verify total count
     address[] memory allRestricted = globalAccessList
       .getRestrictedAccounts(0, 10);
-    assertEq(allRestricted.length, 4); // address(0) + 3 test accounts
+    assertEq(allRestricted.length, 3); // 3 test accounts
   }
 
   function test_restrictAccount_onlyOwner() public {
@@ -130,7 +128,7 @@ contract GlobalAccessListTest is Test, Fixtures {
 
     // Then unrestrict it
     vm.prank(owner);
-    vm.expectEmit(true, false, false, false);
+    vm.expectEmit(true, false, false, true);
     emit UnrestrictAccount(testAccount1);
     globalAccessList.unRestrictAccount(testAccount1);
 
@@ -151,7 +149,7 @@ contract GlobalAccessListTest is Test, Fixtures {
     // Get initial state
     address[] memory beforeUnrestrict = globalAccessList
       .getRestrictedAccounts(0, 10);
-    assertEq(beforeUnrestrict.length, 4); // address(0) + 3 accounts
+    assertEq(beforeUnrestrict.length, 3); // 3 accounts
 
     // Unrestrict middle account (testAccount2)
     vm.prank(owner);
@@ -167,7 +165,7 @@ contract GlobalAccessListTest is Test, Fixtures {
     // Verify array length decreased
     address[] memory afterUnrestrict = globalAccessList
       .getRestrictedAccounts(0, 10);
-    assertEq(afterUnrestrict.length, 3); // address(0) + 2 remaining accounts
+    assertEq(afterUnrestrict.length, 2); // 2 remaining accounts
   }
 
   function test_unRestrictAccount_onlyOwner() public {
@@ -218,11 +216,10 @@ contract GlobalAccessListTest is Test, Fixtures {
   // =========== GET RESTRICTED ACCOUNTS TESTS =========== //
 
   function test_getRestrictedAccounts_emptyList() public view {
-    // Should return only address(0) initially
+    // Should return empty array initially
     address[] memory accounts = globalAccessList
       .getRestrictedAccounts(0, 10);
-    assertEq(accounts.length, 1);
-    assertEq(accounts[0], address(0));
+    assertEq(accounts.length, 0);
   }
 
   function test_getRestrictedAccounts_pagination() public {
@@ -241,19 +238,19 @@ contract GlobalAccessListTest is Test, Fixtures {
       2
     );
     assertEq(page1.length, 2);
-    assertEq(page1[0], address(0)); // First element is always address(0)
+    assertEq(page1[0], testAccount1); // First restricted account
 
-    // Test pagination - get next 2 accounts
+    // Test pagination - get next account
     address[] memory page2 = globalAccessList.getRestrictedAccounts(
       2,
       2
     );
-    assertEq(page2.length, 2);
+    assertEq(page2.length, 1);
 
     // Test getting all accounts
     address[] memory allAccounts = globalAccessList
       .getRestrictedAccounts(0, 10);
-    assertEq(allAccounts.length, 4); // address(0) + 3 test accounts
+    assertEq(allAccounts.length, 3); // 3 test accounts
   }
 
   function test_getRestrictedAccounts_boundaryConditions() public {
@@ -266,7 +263,7 @@ contract GlobalAccessListTest is Test, Fixtures {
     // Test requesting more accounts than available
     address[] memory accounts = globalAccessList
       .getRestrictedAccounts(0, 100);
-    assertEq(accounts.length, 2); // address(0) + testAccount1
+    assertEq(accounts.length, 1); // testAccount1
 
     // Test starting from index beyond array length
     address[] memory emptyResult = globalAccessList
@@ -308,17 +305,14 @@ contract GlobalAccessListTest is Test, Fixtures {
   // =========== UPGRADE AUTHORIZATION TESTS =========== //
 
   function test_authorizeUpgrade_onlyOwner() public {
-    // Owner should be able to authorize upgrade
-    vm.prank(globalOwner.owner());
-    // This should not revert (testing internal function through upgrade mechanism)
     // We can't directly test _authorizeUpgrade as it's internal, but we can verify
-    // that only owner can call upgrade functions
+    // that only owner can call upgrade functions by testing the onlyOwner modifier
+    // through other functions that use it
 
-    // Non-owner should not be able to authorize upgrade
+    // Test that non-owner cannot call owner-only functions
     vm.prank(unauthorizedUser);
     vm.expectRevert("Ownable: caller is not the owner");
-    // This would be called during upgrade process, but we can't test it directly
-    // The important thing is that onlyOwner modifier is applied
+    globalAccessList.restrictAccount(testAccount1);
   }
 
   // =========== EDGE CASES AND ERROR HANDLING =========== //
@@ -372,7 +366,7 @@ contract GlobalAccessListTest is Test, Fixtures {
     // Verify array length is correct
     address[] memory remaining = globalAccessList
       .getRestrictedAccounts(0, 20);
-    assertEq(remaining.length, 10); // address(0) + 9 remaining accounts
+    assertEq(remaining.length, 9); // 9 remaining accounts
   }
 
   // =========== INTEGRATION WITH GLOBAL OWNER =========== //
