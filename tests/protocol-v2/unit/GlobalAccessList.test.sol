@@ -4,7 +4,7 @@ pragma solidity 0.8.18;
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 
 // Fixtures
-import { Fixtures } from "./Fixtures.sol";
+import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
 // Contracts
 import { GlobalAccessList } from "src/protocol-v2/GlobalAccessList.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
