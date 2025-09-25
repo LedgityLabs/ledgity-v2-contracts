@@ -6,10 +6,10 @@ import "../../foundry/lib/forge-std/src/Test.sol";
 
 // v2 Contracts
 import { LedgityYieldVault } from "../../src/protocol-v2/LedgityYieldVault.sol";
+import { GlobalAccessList } from "../../src/protocol-v2/GlobalAccessList.sol";
 // v1 Contracts
 import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
 import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
-import { GlobalBlacklist } from "../../src/protocol-v1/GlobalBlacklist.sol";
 import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
 import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
 // Contracts
@@ -46,7 +46,7 @@ contract Fixtures is Test {
 
   GlobalOwner globalOwner;
   GlobalPause globalPause;
-  GlobalBlacklist globalBlacklist;
+  GlobalAccessList globalAccessList;
 
   GenericERC20 ldyToken;
   LDYStaking ldyStaking;
@@ -101,7 +101,7 @@ contract Fixtures is Test {
 
     GlobalOwner globalOwnerImpl = new GlobalOwner();
     GlobalPause globalPauseImpl = new GlobalPause();
-    GlobalBlacklist globalBlacklistImpl = new GlobalBlacklist();
+    GlobalAccessList globalAccessListImpl = new GlobalAccessList();
     LDYStaking ldyStakingImpl = new LDYStaking();
 
     // Deploy proxies
@@ -113,8 +113,8 @@ contract Fixtures is Test {
       address(globalPauseImpl),
       ""
     );
-    ERC1967Proxy globalBlacklistProxy = new ERC1967Proxy(
-      address(globalBlacklistImpl),
+    ERC1967Proxy globalAccessListProxy = new ERC1967Proxy(
+      address(globalAccessListImpl),
       ""
     );
     ERC1967Proxy ldyStakingProxy = new ERC1967Proxy(
@@ -124,7 +124,9 @@ contract Fixtures is Test {
 
     globalOwner = GlobalOwner(address(globalOwnerProxy));
     globalPause = GlobalPause(address(globalPauseProxy));
-    globalBlacklist = GlobalBlacklist(address(globalBlacklistProxy));
+    globalAccessList = GlobalAccessList(
+      address(globalAccessListProxy)
+    );
     ldyStaking = LDYStaking(address(ldyStakingProxy));
 
     // Setup labels
@@ -132,7 +134,7 @@ contract Fixtures is Test {
     vm.label(address(ldyToken), "LDY token");
     vm.label(address(globalOwner), "GlobalOwner");
     vm.label(address(globalPause), "GlobalPause");
-    vm.label(address(globalBlacklist), "GlobalBlacklist");
+    vm.label(address(globalAccessList), "GlobalAccessList");
     vm.label(address(ldyStaking), "LDYStaking");
     //
     vm.label(alice, "Alice");
@@ -146,12 +148,12 @@ contract Fixtures is Test {
   function _setupInitialState() private {
     globalOwner.initialize();
     globalPause.initialize(address(globalOwner));
-    globalBlacklist.initialize(address(globalOwner));
+    globalAccessList.initialize(address(globalOwner));
 
     ldyStaking.initialize(
       address(globalOwner),
       address(globalPause),
-      address(globalBlacklist),
+      address(globalAccessList),
       address(ldyToken),
       stakingDurationInfos,
       12 * 30 days,
@@ -204,7 +206,7 @@ contract Fixtures is Test {
     lToken.initialize(
       address(globalOwner),
       address(globalPause),
-      address(globalBlacklist),
+      address(globalAccessList),
       address(ldyStaking),
       address(usdc),
       name,
@@ -246,7 +248,7 @@ contract Fixtures is Test {
         stakeBalanceForFeeReduction: 1000 * 1e18,
         globalOwner: address(globalOwner),
         globalPause: address(globalPause),
-        globalBlacklist: address(globalBlacklist),
+        globalAccessList: address(globalAccessList),
         liquidityManager: address(liquidityManager),
         feeRecipient: payable(feeRecipient),
         liquidityBufferRate: 10_000, // 10%

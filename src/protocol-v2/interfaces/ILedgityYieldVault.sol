@@ -17,7 +17,7 @@ interface ILedgityYieldVault {
     uint256 stakeBalanceForFeeReduction;
     address globalOwner;
     address globalPause;
-    address globalBlacklist;
+    address globalAccessList;
     address liquidityManager;
     address payable feeRecipient;
     uint256 liquidityBufferRate;

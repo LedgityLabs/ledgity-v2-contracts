@@ -44,9 +44,7 @@ contract GlobalAccessList is
    * @dev See: https://docs.openzeppelin.com/contracts/4.x/upgradeable
    * @param globalOwner_ The address of the GlobalOwner contract.
    */
-  function __AdministeredUpgradable_init(
-    address globalOwner_
-  ) internal onlyInitializing {
+  function initialize(address globalOwner_) external initializer {
     __UUPSUpgradeable_init();
     __Ownable_init_unchained();
 

@@ -159,7 +159,7 @@ contract LedgityYieldVault is
     __AdministeredUpgradable_init(
       params.globalOwner,
       params.globalPause,
-      params.globalBlacklist
+      params.globalAccessList
     );
     // Initialize the liquidity module with APR and fee rates
     __VaultLiquidityModule_init(
@@ -205,7 +205,7 @@ contract LedgityYieldVault is
   // ======== OVERRIDES ======== //
 
   /**
-   * @notice Restricts token transfers from or to blacklisted addresses
+   * @notice Restricts token transfers from or to restricted addresses
    * @param from The sender of the transfer
    * @param to The recipient of the transfer
    * @param amount The amount of tokens being transferred
