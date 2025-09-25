@@ -29,7 +29,6 @@ import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataPro
  */
 contract LedgityYieldVault is
   ILedgityYieldVault,
-  ILedgityDataProvider,
   AdministeredUpgradable,
   CCIPTokenModule,
   VaultLiquidityModule
@@ -68,8 +67,6 @@ contract LedgityYieldVault is
   IAaveLendingPoolV3 public aaveLendingPool;
   // Aave interest bearing token address (aToken) or zero address if no Aave integration
   IERC20 public aToken;
-  // Last recorded balance of buffer rewards to track new accruals
-  uint256 public lastBufferRewardBalance;
 
   // Token representing user's stake in the protocol for fee reductions
   IERC20 public stakeToken;
@@ -249,21 +246,6 @@ contract LedgityYieldVault is
     return 18;
   }
 
-  /**
-   * @notice Get the total assets of the vault
-   * @dev This includes buffer assets (in Aave if applicable) and assets in the liquidity manager
-   * @inheritdoc ERC4626Upgradeable
-   * @return Total assets of the vault
-   */
-  function totalAssets()
-    public
-    view
-    override(VaultLiquidityModule, ILedgityYieldVault)
-    returns (uint256)
-  {
-    return VaultLiquidityModule.totalAssets() + _bufferRewards();
-  }
-
   // ======== VIEW ======== //
 
   /**
@@ -311,7 +293,6 @@ contract LedgityYieldVault is
   )
     external
     view
-    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
       ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
@@ -339,7 +320,6 @@ contract LedgityYieldVault is
   )
     external
     view
-    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
       ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
@@ -364,7 +344,6 @@ contract LedgityYieldVault is
   )
     external
     view
-    override(ILedgityDataProvider, ILedgityYieldVault)
     returns (
       ILedgityDataProvider.WithdrawalRequestRead[] memory requests
     )
@@ -432,37 +411,26 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Calculate new buffer rewards since last update
-   * @return Amount of new rewards accrued in buffer
-   */
-  function _bufferRewards() private view returns (uint256) {
-    if (!hasBufferStrategy) return 0;
-    return _getBufferStrategyAssets() - lastBufferRewardBalance;
-  }
-
-  /**
    * @notice Deposits the specified amount of assets into the Aave Lending Pool
    * @param amountAssets The amount of assets to deposit
    */
   function _depositBuffer(uint256 amountAssets) private {
     /// @dev We already approved the contract in the initializer
-
     aaveLendingPool.deposit(asset(), amountAssets, address(this), 0);
-
-    lastBufferRewardBalance += amountAssets;
   }
 
   /**
    * @notice Withdraws the specified amount of assets from the Aave Lending Pool
    * @param to The address to which the assets will be transferred
    * @param amountAssets The amount of assets to withdraw
-   *
-   * @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
    */
   function _withdrawBuffer(address to, uint256 amountAssets) private {
-    aaveLendingPool.withdraw(asset(), amountAssets, to);
-
-    lastBufferRewardBalance -= amountAssets;
+    if (hasBufferStrategy) {
+      /// @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
+      aaveLendingPool.withdraw(asset(), amountAssets, to);
+    } else {
+      IERC20(asset()).safeTransfer(to, amountAssets);
+    }
   }
 
   // ======== VAULT INTERNAL HELPERS ======== //
@@ -580,12 +548,8 @@ contract LedgityYieldVault is
     _burn(caller_, netShares);
     _withdrawAssets(netAssets);
 
-    if (hasBufferStrategy) {
-      // slither-disable-next-line reentrancy-no-eth
-      _withdrawBuffer(receiver_, netAssets);
-    } else {
-      IERC20(asset()).safeTransfer(receiver_, netAssets);
-    }
+    // slither-disable-next-line reentrancy-no-eth
+    _withdrawBuffer(receiver_, netAssets);
 
     emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
   }
@@ -769,12 +733,6 @@ contract LedgityYieldVault is
    * @dev Can be called by anyone to update vault state and collect fees
    */
   function harvestFees() public {
-    // Add buffer rewards
-    uint256 reward = _bufferRewards();
-
-    _addAssets(reward);
-    lastBufferRewardBalance += reward;
-
     // Take management and performance fees
     _takeFees(feeRecipient);
   }
@@ -865,9 +823,11 @@ contract LedgityYieldVault is
 
     // Withdraw required assets from buffer if needed
     if (hasBufferStrategy) {
-      uint256 neededFromBuffer = assetsTotal - availableLiquidity;
       // slither-disable-next-line reentrancy-no-eth
-      _withdrawBuffer(address(this), neededFromBuffer);
+      _withdrawBuffer(
+        address(this),
+        assetsTotal - availableLiquidity
+      );
     }
 
     // Process each request

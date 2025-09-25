@@ -8,7 +8,7 @@ import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/O
 // Library
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 // Interface
-import { IVaultLiquidityModule } from "../interfaces/IVaultLiquidityModule.sol";
+import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
 /**
  * @title VaultLiquidityModule
@@ -142,7 +142,6 @@ abstract contract VaultLiquidityModule is
   function totalAssets()
     public
     view
-    virtual
     override(ERC4626Upgradeable, IVaultLiquidityModule)
     returns (uint256 currentTotalAssets)
   {

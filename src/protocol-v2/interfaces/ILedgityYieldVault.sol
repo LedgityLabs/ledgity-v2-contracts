@@ -5,9 +5,9 @@ pragma solidity 0.8.18;
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
-import { IVaultLiquidityModule } from "./IVaultLiquidityModule.sol";
+import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
-interface ILedgityYieldVault {
+interface ILedgityYieldVault is ILedgityDataProvider {
   struct VaultParams {
     string name;
     string symbol;
@@ -47,8 +47,6 @@ interface ILedgityYieldVault {
 
   function aToken() external view returns (IERC20);
 
-  function lastBufferRewardBalance() external view returns (uint256);
-
   function stakeToken() external view returns (IERC20);
 
   function stakeBalanceForFeeReduction()
@@ -67,8 +65,6 @@ interface ILedgityYieldVault {
       uint256 timestamp,
       bool processed
     );
-
-  function totalAssets() external view returns (uint256);
 
   function getBufferAssets() external view returns (uint256);
 
