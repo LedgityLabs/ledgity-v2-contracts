@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
+import { Test } from "foundry/lib/forge-std/src/Test.sol";
+
 // Fixtures
 import { Fixtures } from "./Fixtures.sol";
 // Contracts
@@ -10,7 +12,7 @@ import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy
 import { IGlobalAccessList } from "src/protocol-v2/interfaces/IGlobalAccessList.sol";
 import { IGlobalOwner } from "src/protocol-v2/interfaces/IGlobalOwner.sol";
 
-contract GlobalAccessListTest is Fixtures {
+contract GlobalAccessListTest is Test, Fixtures {
   // Events for testing
   event RestrictAccount(address account);
   event UnrestrictAccount(address account);

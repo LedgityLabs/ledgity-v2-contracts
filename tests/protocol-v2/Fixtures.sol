@@ -2,27 +2,28 @@
 pragma solidity ^0.8.18;
 
 // Foundry
-import "../../foundry/lib/forge-std/src/Test.sol";
+import "foundry/lib/forge-std/src/Test.sol";
 
 // v2 Contracts
-import { LedgityYieldVault } from "../../src/protocol-v2/LedgityYieldVault.sol";
-import { GlobalAccessList } from "../../src/protocol-v2/GlobalAccessList.sol";
+import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
+import { GlobalAccessList } from "src/protocol-v2/GlobalAccessList.sol";
 // v1 Contracts
-import { GlobalOwner } from "../../src/protocol-v1/GlobalOwner.sol";
-import { GlobalPause } from "../../src/protocol-v1/GlobalPause.sol";
-import { GenericERC20 } from "../../src/protocol-v1/GenericERC20.sol";
-import { LDYStaking } from "../../src/protocol-v1/LDYStaking.sol";
+import { GlobalOwner } from "src/protocol-v1/GlobalOwner.sol";
+import { GlobalPause } from "src/protocol-v1/GlobalPause.sol";
+import { GenericERC20 } from "src/protocol-v1/GenericERC20.sol";
+import { LDYStaking } from "src/protocol-v1/LDYStaking.sol";
 // Contracts
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
+// Libraries
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 // Mock Contracts
-import { MockLToken } from "../../src/protocol-v1/mock/MockLToken.sol";
-import { MockERC20 } from "../../src/protocol-v1/mock/MockERC20.sol";
+import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
+import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { IAaveLendingPoolV3 } from "../../src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
-import { ILedgityYieldVault } from "../../src/protocol-v2/interfaces/ILedgityYieldVault.sol";
-import { IVaultLiquidityModule } from "../../src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
+import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
+import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
+import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
 contract Fixtures is Test {
   // ======== LIBS ======== //
@@ -34,6 +35,14 @@ contract Fixtures is Test {
 
   // ======== CONFIGS
 
+  string[] public forkTargets = [
+    "MAINNET",
+    "BASE",
+    "ARBITRUM",
+    "HEDERA",
+    "SONIC",
+    "LINEASCAN"
+  ];
   LDYStaking.StakeDurationInfo[] public stakingDurationInfos;
   uint256[] durations = [0, 1, 6, 12, 24, 36];
 
@@ -75,7 +84,47 @@ contract Fixtures is Test {
 
   // ======== SETUP FUNCTIONS ======== //
 
+  function _selectFork() internal {
+    // Fork network based on HARDHAT_FORK_TARGET environment variable
+    string memory forkTarget = vm.envOr(
+      "HARDHAT_FORK_TARGET",
+      string("mainnet")
+    );
+
+    string memory rpcUrl;
+    uint256 forkingBlock;
+
+    for (uint256 i = 0; i < forkTargets.length; i++) {
+      if (forkTarget.equal(forkTargets[i])) {
+        rpcUrl = vm.envString(
+          string.concat(forkTargets[i], "_RPC_URL")
+        );
+        string memory blockStr = vm.envOr(
+          string.concat(forkTargets[i], "_FORKING_BLOCK"),
+          string("")
+        );
+        forkingBlock = bytes(blockStr).length > 0 &&
+          !blockStr.equal("latest")
+          ? vm.parseUint(blockStr)
+          : 0;
+        break;
+      }
+    }
+
+    if (rpcUrl.equal("")) {
+      revert(string.concat("Unsupported fork target: ", forkTarget));
+    }
+
+    if (forkingBlock > 0) {
+      vm.createSelectFork(rpcUrl, forkingBlock);
+    } else {
+      vm.createSelectFork(rpcUrl);
+    }
+  }
+
   function _setUp() internal {
+    _selectFork();
+
     // Expensive setup
     _deployContracts();
     _setupInitialState();
@@ -298,6 +347,7 @@ contract Fixtures is Test {
   }
 
   function _getUsdcToken() internal view returns (IERC20) {
+    console.log("(((((((((block.chainid))))))))): ", block.chainid);
     if (block.chainid == 1) {
       // Mainnet
       return IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
