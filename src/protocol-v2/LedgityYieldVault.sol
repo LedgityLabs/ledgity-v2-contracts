@@ -58,7 +58,7 @@ contract LedgityYieldVault is
   // Address that receives management and performance fees
   address payable public feeRecipient;
 
-  // Target percentage of total assets to maintain in liquidity buffer (in RATE_BASE)
+  // Target percentage of total assets to maintain in liquidity buffer in RAY
   uint256 public liquidityBufferRate;
 
   // Whether the vault uses Aave as a buffer strategy for idle funds
@@ -255,7 +255,7 @@ contract LedgityYieldVault is
   function getBufferAssets() public view returns (uint256) {
     return
       hasBufferStrategy
-        ? _getBufferStrategyAssets()
+        ? aToken.balanceOf(address(this))
         : IERC20(asset()).balanceOf(address(this));
   }
 
@@ -403,14 +403,6 @@ contract LedgityYieldVault is
   // ======== BUFFER INTERNAL HELPERS ======== //
 
   /**
-   * @notice Get the buffer strategy assets
-   * @return The buffer strategy assets
-   */
-  function _getBufferStrategyAssets() private view returns (uint256) {
-    return aToken.balanceOf(address(this));
-  }
-
-  /**
    * @notice Deposits the specified amount of assets into the Aave Lending Pool
    * @param amountAssets The amount of assets to deposit
    */
@@ -428,7 +420,8 @@ contract LedgityYieldVault is
     if (hasBufferStrategy) {
       /// @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
       aaveLendingPool.withdraw(asset(), amountAssets, to);
-    } else {
+    } else if (to != address(this)) {
+      /// @dev Skip operation when sending to itself
       IERC20(asset()).safeTransfer(to, amountAssets);
     }
   }
@@ -467,7 +460,7 @@ contract LedgityYieldVault is
 
     // Calculate expected buffer balance after this deposit
     uint256 expectedBufferBalance = (totalAssets() *
-      liquidityBufferRate) / RATE_BASE;
+      liquidityBufferRate) / RAY;
 
     uint256 currentBufferBalance = getBufferAssets();
 

@@ -28,9 +28,7 @@ abstract contract VaultLiquidityModule is
   /** ======== STORAGE ======== */
 
   // Base rate constant representing 100%
-  uint256 public constant RATE_BASE = 100_000;
   uint256 public constant RAY = 1e27;
-  uint256 public constant APR_RATE_OFFSET = RAY / RATE_BASE;
 
   // Total assets under management
   uint256 private _totalAssets;
@@ -48,14 +46,14 @@ abstract contract VaultLiquidityModule is
   // Deployment delay period in days for calculating deposit fees
   uint256 public deploymentDelay;
 
-  // Annual Percentage Rate in RATE_BASE
+  // Annual Percentage Rate in RAY
   uint256 public yieldAPR;
 
-  // Management fee in RATE_BASE
+  // Management fee in RAY
   uint256 public managementFeeRate;
-  // Performance fee in RATE_BASE
+  // Performance fee in RAY
   uint256 public performanceFeeRate;
-  // Withdrawal fee in RATE_BASE
+  // Withdrawal fee in RAY
   uint256 public withdrawalFeeRate;
   // Required amount of msg.value attached to withdrawal requests
   uint256 public withdrawalGasFee;
@@ -153,16 +151,15 @@ abstract contract VaultLiquidityModule is
     uint256 fullDays = timeElapsed / 1 days;
 
     if (0 < fullDays) {
-      // We want an APR with RAY precision that we can use as a coefficient (100% = 1)
-      uint256 aprBaseOneRay = yieldAPR * APR_RATE_OFFSET;
       // Daily rate = APR / 365
-      uint256 dailyRatio = aprBaseOneRay / 365;
+      uint256 dailyRate = yieldAPR / 365;
 
       // Apply daily compounding for full days only
       for (uint256 i; i < fullDays; i++) {
-        currentTotalAssets =
-          (currentTotalAssets * (RAY + dailyRatio)) /
-          RAY;
+        currentTotalAssets = currentTotalAssets.mulDiv(
+          RAY + dailyRate,
+          RAY
+        );
       }
     }
 
@@ -229,14 +226,12 @@ abstract contract VaultLiquidityModule is
     if (deploymentDelay == 0) return 0;
 
     // Calculate compound factor for deployment delay period
-    // Convert APR to daily rate with RAY precision
-    uint256 aprBaseOneRay = yieldAPR * APR_RATE_OFFSET;
-    uint256 dailyRate = aprBaseOneRay / 365;
+    uint256 dailyRate = yieldAPR / 365;
 
     // Calculate: (1 + dailyRate)^deploymentDelay
     uint256 compoundFactor = RAY;
     for (uint256 i; i < deploymentDelay; i++) {
-      compoundFactor = (compoundFactor * (RAY + dailyRate)) / RAY;
+      compoundFactor = compoundFactor.mulDiv(RAY + dailyRate, RAY);
     }
 
     // Fee = assets * ((1 + rate)^delay - 1) / (1 + rate)^delay
@@ -260,7 +255,7 @@ abstract contract VaultLiquidityModule is
       : withdrawalFeeRate;
 
     // Calculate fee amount
-    fee = amount.mulDiv(feeRate, RATE_BASE, Math.Rounding.Up);
+    fee = amount.mulDiv(feeRate, RAY, Math.Rounding.Up);
   }
 
   /**
@@ -284,7 +279,7 @@ abstract contract VaultLiquidityModule is
 
     uint256 annualManagementFees = currentAssets.mulDiv(
       managementFeeRate,
-      RATE_BASE,
+      RAY,
       Math.Rounding.Up
     );
     uint256 managementFeeAssets = annualManagementFees.mulDiv(
@@ -319,7 +314,7 @@ abstract contract VaultLiquidityModule is
 
       performanceFeeAssets = profit.mulDiv(
         performanceFeeRate,
-        RATE_BASE,
+        RAY,
         Math.Rounding.Up
       );
 
@@ -432,7 +427,7 @@ abstract contract VaultLiquidityModule is
 
   /**
    * @notice Updates the APR used for rate calculations
-   * @param newAPR The new APR in RATE_BASE
+   * @param newAPR The new APR in RAY
    */
   function updateAPR(uint256 newAPR) external onlyOwner {
     // Snapshot accumulated interest with current APR
@@ -447,9 +442,9 @@ abstract contract VaultLiquidityModule is
 
   /**
    * @dev Update fee rates for the vault
-   * @param managementRate_ The new management fee rate in RATE_BASE
-   * @param performanceRate_ The new performance fee rate in RATE_BASE
-   * @param withdrawalRate_ The new withdrawal fee rate in RATE_BASE
+   * @param managementRate_ The new management fee rate in RAY
+   * @param performanceRate_ The new performance fee rate in RAY
+   * @param withdrawalRate_ The new withdrawal fee rate in RAY
    */
   function updateFeeRates(
     uint256 managementRate_,
@@ -470,7 +465,7 @@ abstract contract VaultLiquidityModule is
   /**
    * @dev Set a custom fee structure for a specific account
    * @param account The account to set the custom fee structure for
-   * @param withdrawalFee The custom withdrawal fee in RATE_BASE
+   * @param withdrawalFee The custom withdrawal fee in RAY
    */
   function setAccountWithdrawalFee(
     address account,

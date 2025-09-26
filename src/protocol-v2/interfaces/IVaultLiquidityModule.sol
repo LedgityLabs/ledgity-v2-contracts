@@ -12,11 +12,7 @@ interface IVaultLiquidityModule {
     uint256 withdrawalGasFee;
   }
 
-  function RATE_BASE() external view returns (uint256);
-
   function RAY() external view returns (uint256);
-
-  function APR_RATE_OFFSET() external view returns (uint256);
 
   function lastCompoundTime() external view returns (uint256);
 
