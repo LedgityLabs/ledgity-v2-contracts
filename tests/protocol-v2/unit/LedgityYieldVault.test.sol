@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
+// Foundry
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 
 // Fixtures
@@ -138,7 +139,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         globalAccessList: address(globalAccessList),
         liquidityManager: liquidityManager,
         feeRecipient: payable(feeRecipient),
-        liquidityBufferRate: 10_000, // 10%
+        liquidityBufferRate: (10 * RAY) / 100, // 10%
         aaveLendingPool: hasAave_
           ? aaveLendingPool
           : IAaveLendingPoolV3(address(0))
@@ -148,11 +149,11 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       memory vaultLiquidityInitParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
           highWaterMark: RAY,
-          deploymentDelay: 1 days,
-          yieldAPR: 5 * RAY, // 5% APR
-          managementFeeRate: 200, // 0.2%
-          performanceFeeRate: 2000, // 2%
-          withdrawalFeeRate: 50, // 0.05%
+          deploymentDelay: 1,
+          yieldAPR: (5 * RAY) / 100, // 5% APR
+          managementFeeRate: (2 * RAY) / 1000, // 0.2%
+          performanceFeeRate: (2 * RAY) / 100, // 2%
+          withdrawalFeeRate: (5 * RAY) / 10000, // 0.05%
           withdrawalGasFee: 0.001 ether
         });
 
@@ -240,7 +241,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       memory liquidityParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
           highWaterMark: RAY,
-          deploymentDelay: 1 days,
+          deploymentDelay: 1,
           yieldAPR: 5 * RAY,
           managementFeeRate: 200,
           performanceFeeRate: 2000,

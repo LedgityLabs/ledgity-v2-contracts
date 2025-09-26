@@ -2,7 +2,7 @@
 pragma solidity ^0.8.18;
 
 // Foundry
-import "foundry/lib/forge-std/src/Test.sol";
+import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 
 // v2 Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
@@ -302,7 +302,7 @@ contract Fixtures is Test {
       memory vaultLiquidityInitParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
           highWaterMark: 0,
-          deploymentDelay: 3,
+          deploymentDelay: 2,
           yieldAPR: 7_000, // 7%
           managementFeeRate: 1_000, // 1%
           performanceFeeRate: 2_000, // 2%
