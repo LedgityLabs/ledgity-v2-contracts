@@ -429,6 +429,40 @@ contract LedgityYieldVault is
   // ======== VAULT INTERNAL HELPERS ======== //
 
   /**
+   * @notice Internal function to handle shares conversion and fees on withdrawal
+   * @param caller_ The address that called the withdraw function
+   * @param shares_ The number of shares to withdraw
+   */
+  function _processSharesAndFeesOnWithdrawal(
+    address caller_,
+    uint256 shares_
+  ) internal returns (uint256 /*netAssets*/) {
+    if (shares_ == 0) revert ZeroAmount();
+
+    // Take fees before processing
+    harvestFees();
+
+    // Calculate underlying amount using updated rate
+    uint256 withdrawalFee;
+    if (address(stakeToken) != address(0))
+      if (
+        stakeToken.balanceOf(caller_) < stakeBalanceForFeeReduction
+      ) {
+        withdrawalFee = _computeWithdrawalFee(shares_, caller_);
+        /// @dev These are not new shares since we burn all user shares & withdraw net shares
+        _mint(feeRecipient, withdrawalFee);
+      }
+
+    uint256 netShares = shares_ - withdrawalFee;
+    uint256 netAssets = convertToAssets(netShares);
+
+    _burn(caller_, shares_);
+    _withdrawAssets(netAssets);
+
+    return netAssets;
+  }
+
+  /**
    * @notice Internal function to handle depositing underlying
    * @param caller_ The address that called the deposit function
    * @param receiver_ The address to receive the minted shares
@@ -447,7 +481,7 @@ contract LedgityYieldVault is
   {
     if (assets_ == 0) revert ZeroAmount();
 
-    // Register buffer rewards & take fees before processing
+    // Take fees before processing
     harvestFees();
 
     // Apply capital deployment impact to amount of shares
@@ -516,30 +550,10 @@ contract LedgityYieldVault is
     whenNotPaused
     notRestricted(caller_)
   {
-    if (shares_ == 0) revert ZeroAmount();
-
-    // Register buffer rewards & take fees before processing
-    harvestFees();
-
-    // Calculate underlying amount using updated rate
-    uint256 withdrawalFee;
-    if (address(stakeToken) != address(0))
-      if (
-        stakeToken.balanceOf(caller_) < stakeBalanceForFeeReduction
-      ) {
-        withdrawalFee = _computeWithdrawalFee(shares_, caller_);
-        IERC20(address(this)).safeTransferFrom(
-          caller_,
-          feeRecipient,
-          withdrawalFee
-        );
-      }
-
-    uint256 netShares = shares_ - withdrawalFee;
-    uint256 netAssets = convertToAssets(netShares);
-
-    _burn(caller_, netShares);
-    _withdrawAssets(netAssets);
+    uint256 netAssets = _processSharesAndFeesOnWithdrawal(
+      caller_,
+      shares_
+    );
 
     // slither-disable-next-line reentrancy-no-eth
     _withdrawBuffer(receiver_, netAssets);
@@ -566,7 +580,7 @@ contract LedgityYieldVault is
     if (address(lToken) == address(0)) revert NoLTokenSet();
     if (amount == 0) revert ZeroAmount();
 
-    // Register buffer rewards & take fees before processing
+    // Take fees before processing
     harvestFees();
 
     lToken.safeTransferFrom(msg.sender, liquidityManager, amount);
@@ -677,28 +691,15 @@ contract LedgityYieldVault is
   function requestWithdrawal(
     uint256 shares
   ) public payable whenNotPaused notRestricted(msg.sender) {
-    if (shares == 0) revert ZeroAmount();
     if (msg.value < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();
-
-    // Calculate underlying amount using updated rate
-    uint256 withdrawalFee;
-    if (address(stakeToken) != address(0))
-      if (
-        stakeToken.balanceOf(msg.sender) < stakeBalanceForFeeReduction
-      ) {
-        withdrawalFee = _computeWithdrawalFee(shares, msg.sender);
-        IERC20(address(this)).safeTransferFrom(
-          msg.sender,
-          feeRecipient,
-          withdrawalFee
-        );
-      }
     // Transfer gas fee to fee recipient
     feeRecipient.transfer(address(this).balance);
 
-    uint256 netShares = shares - withdrawalFee;
-    uint256 netAssets = convertToAssets(netShares);
+    uint256 netAssets = _processSharesAndFeesOnWithdrawal(
+      msg.sender,
+      shares
+    );
 
     // Create withdrawal request
     withdrawalRequests.push(
@@ -709,10 +710,6 @@ contract LedgityYieldVault is
         processed: false
       })
     );
-
-    // Burn shares from user
-    _burn(msg.sender, netShares);
-    _withdrawAssets(netAssets);
 
     emit WithdrawalRequested(
       withdrawalRequests.length - 1,
@@ -792,7 +789,7 @@ contract LedgityYieldVault is
       );
     }
 
-    // Register buffer rewards & take fees before processing
+    // Take fees before processing
     harvestFees();
 
     // Calculate total assets needed for selected requests
