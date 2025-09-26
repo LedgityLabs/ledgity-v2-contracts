@@ -9,6 +9,7 @@
     "compile": "hardhat compile && hardhat export --export-all data/deployments.json && npx hardhat extract-abis && wagmi generate",
     "test": "forge test --use 0.8.18 --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_",
     "test:verbose": "forge test --use 0.8.18 --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_ -vvv",
+    "test:verbose+": "forge test --use 0.8.18 --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_ -vvvv",
     "test:v1": "forge test --use 0.8.18 --match-path \"tests/protocol-v1/*\" --no-match-contract Skip_",
     "test:only": "forge test --use 0.8.18 --match-path \"tests/protocol-v2/*\" --match-contract Only_",
     "size": "hardhat size-contracts",

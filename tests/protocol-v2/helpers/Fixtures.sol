@@ -31,10 +31,8 @@ contract Fixtures is Test {
 
   // ======== CONSTANTS
 
-  uint256 public constant INITIAL_BALANCE = 1_000_000 ether;
-  uint256 public constant RATE_BASE = 100_000;
-  uint256 public constant RAY = 1e27;
-  uint256 public constant APR_RATE_OFFSET = RAY / RATE_BASE;
+  uint256 internal constant INITIAL_BALANCE = 1_000_000 ether;
+  uint256 internal constant RAY = 1e27;
 
   // ======== STORAGE ======== //
   uint256 private checkpointSnapshotInitial;
@@ -55,32 +53,36 @@ contract Fixtures is Test {
 
   // ======== CONTRACTS
 
-  IERC20 public usdc;
-  IERC20 public weth;
-  MockERC20 public mockUsdc;
-  MockERC20 public mockWeth;
+  IERC20 internal usdc;
+  IERC20 internal weth;
+  MockERC20 internal mockUsdc;
+  MockERC20 internal mockWeth;
 
-  GlobalOwner public globalOwner;
-  GlobalPause public globalPause;
-  GlobalAccessList public globalAccessList;
+  GlobalOwner internal globalOwner;
+  GlobalPause internal globalPause;
+  GlobalAccessList internal globalAccessList;
 
-  GenericERC20 public ldyToken;
-  LDYStaking public ldyStaking;
+  GenericERC20 internal ldyToken;
+  LDYStaking internal ldyStaking;
 
   // ======== USERS
 
-  address public testAccount1 = address(0xA11CE);
-  address public testAccount2 = address(0xB0B);
-  address public testAccount3 = address(0xCA401);
-  address public unauthorizedUser = address(0x666);
-  address public deployer = address(this);
+  address internal testAccount1 = address(0xA11CE);
+  address internal testAccount2 = address(0xB0B);
+  address internal testAccount3 = address(0xCA401);
+  address internal unauthorizedUser = address(0x666);
+  address internal deployer = address(this);
 
-  address[] public users = [testAccount1, testAccount2, testAccount3];
+  address[] internal users = [
+    testAccount1,
+    testAccount2,
+    testAccount3
+  ];
 
-  address public feeRecipient = address(feeRecipient);
-  address public liquidityManager = address(liquidityManager);
+  address internal feeRecipient = address(0xfee);
+  address internal liquidityManager = address(0x777);
 
-  IAaveLendingPoolV3 public aaveLendingPool;
+  IAaveLendingPoolV3 internal aaveLendingPool;
 
   // ======== SETUP FUNCTIONS ======== //
 
@@ -123,14 +125,18 @@ contract Fixtures is Test {
   }
 
   function _setUp() internal {
-    _selectFork();
+    if (checkpointSnapshotInitial != 0) {
+      vm.revertToState(checkpointSnapshotInitial);
+    } else {
+      _selectFork();
 
-    // Expensive setup
-    _deployContracts();
-    _setupInitialState();
+      // Expensive setup
+      _deployContracts();
+      _setupInitialState();
 
-    // Save snapshot after expensive setup
-    checkpointSnapshotInitial = vm.snapshot();
+      // Save snapshot after expensive setup
+      checkpointSnapshotInitial = vm.snapshotState();
+    }
   }
 
   function _deployContracts() private {
@@ -213,24 +219,10 @@ contract Fixtures is Test {
 
     for (uint256 i; i < users.length; i++) {
       deal(address(usdc), users[i], INITIAL_BALANCE);
-      deal(address(usdc), users[i], INITIAL_BALANCE);
+      deal(address(weth), users[i], INITIAL_BALANCE);
       mockUsdc.mint(users[i], INITIAL_BALANCE);
       mockWeth.mint(users[i], INITIAL_BALANCE);
     }
-  }
-
-  // ======== CHECKPOINT FUNCTIONS ======== //
-
-  function _createCheckpoint() internal {
-    checkpointSnapshot = vm.snapshot();
-  }
-
-  function _revertToCheckpoint() internal {
-    vm.revertTo(checkpointSnapshot);
-  }
-
-  function _revertToCheckpointInitial() internal {
-    vm.revertTo(checkpointSnapshotInitial);
   }
 
   // ======== ACTION FUNCTIONS ======== //
@@ -259,7 +251,7 @@ contract Fixtures is Test {
       address(globalPause),
       address(globalAccessList),
       address(ldyStaking),
-      address(usdc),
+      address(asset_),
       name,
       symbol
     );
