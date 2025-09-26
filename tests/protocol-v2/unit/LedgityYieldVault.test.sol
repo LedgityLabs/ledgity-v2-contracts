@@ -46,7 +46,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     // Setup 4 vault configurations: USDC/WETH × with/without Aave
     vaultConfigs.push(
       VaultConfig({
-        asset: mockUsdc,
+        asset: usdc,
         assetName: "USDC",
         decimals: 6,
         hasAave: true
@@ -55,7 +55,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
     vaultConfigs.push(
       VaultConfig({
-        asset: mockUsdc,
+        asset: usdc,
         assetName: "USDC",
         decimals: 6,
         hasAave: false
@@ -64,7 +64,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
     vaultConfigs.push(
       VaultConfig({
-        asset: mockWeth,
+        asset: weth,
         assetName: "WETH",
         decimals: 18,
         hasAave: true
@@ -73,7 +73,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
     vaultConfigs.push(
       VaultConfig({
-        asset: mockWeth,
+        asset: weth,
         assetName: "WETH",
         decimals: 18,
         hasAave: false
@@ -507,6 +507,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       VaultConfig memory config = vaultConfigs[i];
       uint256 depositAmount = _getTestDepositAmount(config.asset);
 
+      deal(address(config.asset), liquidityManager, depositAmount);
+
       vm.prank(liquidityManager);
       vault.depositToBuffer(depositAmount);
 
@@ -533,6 +535,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       LedgityYieldVault vault = vaults[i];
       VaultConfig memory config = vaultConfigs[i];
       uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      deal(address(config.asset), liquidityManager, depositAmount);
 
       // First deposit to buffer
       vm.prank(liquidityManager);

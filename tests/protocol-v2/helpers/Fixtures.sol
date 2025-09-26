@@ -218,6 +218,8 @@ contract Fixtures is Test {
     );
 
     for (uint256 i; i < users.length; i++) {
+      deal(users[i], INITIAL_BALANCE);
+
       deal(address(usdc), users[i], INITIAL_BALANCE);
       deal(address(weth), users[i], INITIAL_BALANCE);
       mockUsdc.mint(users[i], INITIAL_BALANCE);
