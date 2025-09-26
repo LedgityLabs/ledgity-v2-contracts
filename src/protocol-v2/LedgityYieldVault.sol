@@ -388,7 +388,7 @@ contract LedgityYieldVault is
       // Validate that aToken was properly retrieved
       if (address(aToken) != address(0)) {
         hasBufferStrategy = true;
-        IERC20(asset()).safeApprove(
+        IERC20(asset()).forceApprove(
           address(aaveLendingPool_),
           type(uint256).max
         );
@@ -420,8 +420,7 @@ contract LedgityYieldVault is
     if (hasBufferStrategy) {
       /// @dev In AAVE the aTokens are rebase tokens so underlying amount is the same as aToken amount
       aaveLendingPool.withdraw(asset(), amountAssets, to);
-    } else if (to != address(this)) {
-      /// @dev Skip operation when sending to itself
+    } else {
       IERC20(asset()).safeTransfer(to, amountAssets);
     }
   }
@@ -808,16 +807,13 @@ contract LedgityYieldVault is
 
     uint256 availableLiquidity = bufferBalance + addedLiquidity;
 
-    if (availableLiquidity < assetsTotal)
+    if ((bufferBalance + addedLiquidity) < assetsTotal)
       revert InsufficientLiquidity();
 
     // Withdraw required assets from buffer if needed
-    if (hasBufferStrategy) {
+    if (hasBufferStrategy && addedLiquidity < assetsTotal) {
       // slither-disable-next-line reentrancy-no-eth
-      _withdrawBuffer(
-        address(this),
-        assetsTotal - availableLiquidity
-      );
+      _withdrawBuffer(address(this), assetsTotal - addedLiquidity);
     }
 
     // Process each request

@@ -10,6 +10,7 @@ import { GlobalAccessList } from "src/protocol-v2/GlobalAccessList.sol";
 // v1 Contracts
 import { GlobalOwner } from "src/protocol-v1/GlobalOwner.sol";
 import { GlobalPause } from "src/protocol-v1/GlobalPause.sol";
+import { GlobalBlacklist } from "src/protocol-v1/GlobalBlacklist.sol";
 import { GenericERC20 } from "src/protocol-v1/GenericERC20.sol";
 import { LDYStaking } from "src/protocol-v1/LDYStaking.sol";
 // Contracts
@@ -60,6 +61,7 @@ contract Fixtures is Test {
 
   GlobalOwner internal globalOwner;
   GlobalPause internal globalPause;
+  GlobalBlacklist internal globalBlacklist;
   GlobalAccessList internal globalAccessList;
 
   GenericERC20 internal ldyToken;
@@ -157,6 +159,7 @@ contract Fixtures is Test {
 
     GlobalOwner globalOwnerImpl = new GlobalOwner();
     GlobalPause globalPauseImpl = new GlobalPause();
+    GlobalBlacklist globalBlacklistImpl = new GlobalBlacklist();
     GlobalAccessList globalAccessListImpl = new GlobalAccessList();
     LDYStaking ldyStakingImpl = new LDYStaking();
 
@@ -167,6 +170,10 @@ contract Fixtures is Test {
     );
     ERC1967Proxy globalPauseProxy = new ERC1967Proxy(
       address(globalPauseImpl),
+      ""
+    );
+    ERC1967Proxy globalBlacklistProxy = new ERC1967Proxy(
+      address(globalBlacklistImpl),
       ""
     );
     ERC1967Proxy globalAccessListProxy = new ERC1967Proxy(
@@ -180,6 +187,7 @@ contract Fixtures is Test {
 
     globalOwner = GlobalOwner(address(globalOwnerProxy));
     globalPause = GlobalPause(address(globalPauseProxy));
+    globalBlacklist = GlobalBlacklist(address(globalBlacklistProxy));
     globalAccessList = GlobalAccessList(
       address(globalAccessListProxy)
     );
@@ -187,9 +195,15 @@ contract Fixtures is Test {
 
     // Setup labels
     vm.label(address(usdc), "USDC token");
+    vm.label(address(weth), "WETH token");
+    vm.label(address(mockUsdc), "Mock USDC token");
+    vm.label(address(mockWeth), "Mock WETH token");
     vm.label(address(ldyToken), "LDY token");
+    vm.label(address(aaveLendingPool), "Aave Lending Pool");
+    //
     vm.label(address(globalOwner), "GlobalOwner");
     vm.label(address(globalPause), "GlobalPause");
+    vm.label(address(globalBlacklist), "GlobalBlacklist");
     vm.label(address(globalAccessList), "GlobalAccessList");
     vm.label(address(ldyStaking), "LDYStaking");
     //
@@ -205,12 +219,13 @@ contract Fixtures is Test {
   function _setupInitialState() private {
     globalOwner.initialize();
     globalPause.initialize(address(globalOwner));
+    globalBlacklist.initialize(address(globalOwner));
     globalAccessList.initialize(address(globalOwner));
 
     ldyStaking.initialize(
       address(globalOwner),
       address(globalPause),
-      address(globalAccessList),
+      address(globalBlacklist),
       address(ldyToken),
       stakingDurationInfos,
       12 * 30 days,
@@ -251,7 +266,7 @@ contract Fixtures is Test {
     lToken.initialize(
       address(globalOwner),
       address(globalPause),
-      address(globalAccessList),
+      address(globalBlacklist),
       address(ldyStaking),
       address(asset_),
       name,

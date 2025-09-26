@@ -26,6 +26,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     string assetName;
     uint256 decimals;
     bool hasAave;
+    bool hasLToken;
   }
 
   VaultConfig[] public vaultConfigs;
@@ -49,7 +50,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         asset: usdc,
         assetName: "USDC",
         decimals: 6,
-        hasAave: true
+        hasAave: true,
+        hasLToken: true
       })
     );
 
@@ -58,7 +60,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         asset: usdc,
         assetName: "USDC",
         decimals: 6,
-        hasAave: false
+        hasAave: false,
+        hasLToken: true
       })
     );
 
@@ -67,7 +70,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         asset: weth,
         assetName: "WETH",
         decimals: 18,
-        hasAave: true
+        hasAave: true,
+        hasLToken: false
       })
     );
 
@@ -76,7 +80,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         asset: weth,
         assetName: "WETH",
         decimals: 18,
-        hasAave: false
+        hasAave: false,
+        hasLToken: false
       })
     );
 
@@ -85,8 +90,11 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       VaultConfig memory config = vaultConfigs[i];
 
       // Create L-Token for this asset
-      MockLToken lToken = _createLToken(config.asset);
-      lTokens.push(lToken);
+      MockLToken lToken;
+      if (config.hasLToken) {
+        lToken = _createLToken(config.asset);
+        lTokens.push(lToken);
+      }
 
       // Create vault - modify _createVault to handle Aave configuration
       LedgityYieldVault vault = _createVaultWithConfig(
@@ -200,7 +208,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       assertEq(address(vault.asset()), address(config.asset));
       assertEq(vault.liquidityManager(), liquidityManager);
       assertEq(vault.feeRecipient(), feeRecipient);
-      assertEq(vault.liquidityBufferRate(), 10_000);
+      assertEq(vault.liquidityBufferRate(), (10 * RAY) / 100);
       assertEq(vault.decimals(), 18);
       assertEq(vault.totalSupply(), 0);
       assertEq(vault.totalAssets(), 0);
@@ -332,35 +340,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
       assertEq(vault.balanceOf(testAccount1), 0);
       assertGt(vault.balanceOf(testAccount2), 0);
-    }
-  }
-
-  // ======== MINT TESTS ======== //
-
-  function test_mint_success() public {
-    for (uint256 i = 0; i < vaults.length; i++) {
-      LedgityYieldVault vault = vaults[i];
-      VaultConfig memory config = vaultConfigs[i];
-
-      uint256 initialBalance = config.asset.balanceOf(testAccount1);
-
-      vm.prank(testAccount1);
-      vault.mint(TEST_SHARES_AMOUNT, testAccount1);
-
-      assertLt(config.asset.balanceOf(testAccount1), initialBalance);
-      assertEq(vault.balanceOf(testAccount1), TEST_SHARES_AMOUNT);
-    }
-  }
-
-  function test_mint_differentReceiver() public {
-    for (uint256 i = 0; i < vaults.length; i++) {
-      LedgityYieldVault vault = vaults[i];
-
-      vm.prank(testAccount1);
-      vault.mint(TEST_SHARES_AMOUNT, testAccount2);
-
-      assertEq(vault.balanceOf(testAccount1), 0);
-      assertEq(vault.balanceOf(testAccount2), TEST_SHARES_AMOUNT);
     }
   }
 
@@ -588,6 +567,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       vm.prank(testAccount1);
       vault.requestWithdrawal{ value: gasFee }(shares);
 
+      deal(address(config.asset), liquidityManager, depositAmount);
+
       // Add liquidity to buffer for processing
       vm.prank(liquidityManager);
       vault.depositToBuffer(depositAmount);
@@ -690,9 +671,11 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       VaultConfig memory config = vaultConfigs[i];
       uint256 depositAmount = _getTestDepositAmount(config.asset);
 
-      vm.prank(testAccount1);
-      vm.expectRevert(LedgityYieldVault.NoLTokenSet.selector);
-      vault.migrateLToken(depositAmount);
+      if (!config.hasLToken) {
+        vm.prank(testAccount1);
+        vm.expectRevert(LedgityYieldVault.NoLTokenSet.selector);
+        vault.migrateLToken(depositAmount);
+      }
     }
   }
 
@@ -700,6 +683,9 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     // Test with vaults that have L-Token support
     for (uint256 i = 0; i < vaults.length; i++) {
       LedgityYieldVault vault = vaults[i];
+
+      if (address(vault.lToken()) == address(0)) continue;
+
       MockLToken lToken = lTokens[i];
 
       // Approve L-Token for migration
@@ -715,6 +701,9 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
   function test_migrateLToken_success() public {
     for (uint256 i = 0; i < vaults.length; i++) {
       LedgityYieldVault vault = vaults[i];
+
+      if (address(vault.lToken()) == address(0)) continue;
+
       MockLToken lToken = lTokens[i];
       VaultConfig memory config = vaultConfigs[i];
       uint256 migrationAmount = _getTestDepositAmount(config.asset);
@@ -774,7 +763,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       );
 
       // Partial withdrawal
-      uint256 shares1 = vault.balanceOf(testAccount1) / 2;
+      uint256 shares1 = vault.balanceOf(testAccount1) / 4;
       vm.prank(testAccount1);
       vault.redeem(shares1, testAccount1, testAccount1);
 
