@@ -4,13 +4,39 @@ pragma solidity ^0.8.18;
 interface IVaultLiquidityModule {
   struct VaultLiquidityInitParams {
     uint256 highWaterMark;
-    uint256 deploymentDelay;
     uint256 yieldAPR;
     uint256 managementFeeRate;
     uint256 performanceFeeRate;
     uint256 withdrawalFeeRate;
     uint256 withdrawalGasFee;
+    uint8 deploymentDelay;
   }
+
+  /** ======== EVENTS ======== */
+
+  event RateCheckpointUpdated(uint256 newRate, uint256 newAPR);
+
+  event APRUpdated(uint256 newAPR, uint256 oldAPR);
+
+  event FeeRatesUpdated(
+    uint256 managementFeeRate,
+    uint256 performanceRate,
+    uint256 withdrawalRate
+  );
+
+  event AccountWithdrawalFeeSet(
+    address indexed account,
+    uint256 withdrawalFee
+  );
+
+  event TotalAssetsUpdated(
+    uint256 oldTotalAssets,
+    uint256 newTotalAssets
+  );
+
+  event DeploymentDelayUpdated(uint8 oldDelay, uint8 newDelay);
+
+  /** ======== FUNCTIONS ======== */
 
   function RAY() external view returns (uint256);
 
@@ -20,7 +46,7 @@ interface IVaultLiquidityModule {
 
   function highWaterMark() external view returns (uint256);
 
-  function deploymentDelay() external view returns (uint256);
+  function deploymentDelay() external view returns (uint8);
 
   function yieldAPR() external view returns (uint256);
 
@@ -64,5 +90,5 @@ interface IVaultLiquidityModule {
     uint256 withdrawalFee
   ) external;
 
-  function updateDeploymentDelay(uint256 newDeploymentDelay) external;
+  function updateDeploymentDelay(uint8 newDeploymentDelay) external;
 }

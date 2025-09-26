@@ -43,8 +43,8 @@ abstract contract VaultLiquidityModule is
   // the price per share is above this value
   uint256 public highWaterMark;
 
-  // Deployment delay period in days for calculating deposit fees
-  uint256 public deploymentDelay;
+  // Deployment delay period in days for calculating deposit fees (max 255 days)
+  uint8 public deploymentDelay;
 
   // Annual Percentage Rate in RAY
   uint256 public yieldAPR;
@@ -92,30 +92,6 @@ abstract contract VaultLiquidityModule is
 
     emit APRUpdated(params.yieldAPR, 0);
   }
-
-  /** ======== EVENTS ======== */
-
-  event RateCheckpointUpdated(uint256 newRate, uint256 newAPR);
-
-  event APRUpdated(uint256 newAPR, uint256 oldAPR);
-
-  event FeeRatesUpdated(
-    uint256 managementFeeRate,
-    uint256 performanceRate,
-    uint256 withdrawalRate
-  );
-
-  event AccountWithdrawalFeeSet(
-    address indexed account,
-    uint256 withdrawalFee
-  );
-
-  event TotalAssetsUpdated(
-    uint256 oldTotalAssets,
-    uint256 newTotalAssets
-  );
-
-  event DeploymentDelayUpdated(uint256 oldDelay, uint256 newDelay);
 
   /** ======== OVERRIDES ======== */
 
@@ -481,9 +457,9 @@ abstract contract VaultLiquidityModule is
    * @param newDeploymentDelay The new deployment delay in days
    */
   function updateDeploymentDelay(
-    uint256 newDeploymentDelay
+    uint8 newDeploymentDelay
   ) external onlyOwner {
-    uint256 oldDelay = deploymentDelay;
+    uint8 oldDelay = deploymentDelay;
     deploymentDelay = newDeploymentDelay;
 
     emit DeploymentDelayUpdated(oldDelay, newDeploymentDelay);
