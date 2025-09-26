@@ -12,7 +12,7 @@ import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy
 import { IGlobalAccessList } from "src/protocol-v2/interfaces/IGlobalAccessList.sol";
 import { IGlobalOwner } from "src/protocol-v2/interfaces/IGlobalOwner.sol";
 
-contract GlobalAccessListTest is Test, Fixtures {
+contract GlobalAccessList_UnitTest is Test, Fixtures {
   // Events for testing
   event RestrictAccount(address indexed account);
   event UnrestrictAccount(address indexed account);
