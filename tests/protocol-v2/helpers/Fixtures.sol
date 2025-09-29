@@ -280,6 +280,14 @@ contract Fixtures is Test {
     IERC20 asset_,
     IERC20 lToken_
   ) internal returns (LedgityYieldVault) {
+    return _createVaultWithConfig(asset_, lToken_, true);
+  }
+
+  function _createVaultWithConfig(
+    IERC20 asset_,
+    IERC20 lToken_,
+    bool hasAave_
+  ) internal returns (LedgityYieldVault) {
     LedgityYieldVault yieldVaultImpl = new LedgityYieldVault();
     ERC1967Proxy yieldVaultProxy = new ERC1967Proxy(
       address(yieldVaultImpl),
@@ -291,7 +299,8 @@ contract Fixtures is Test {
 
     string memory name = string.concat(
       "Ledgity ",
-      MockERC20(address(asset_)).name()
+      MockERC20(address(asset_)).name(),
+      hasAave_ ? " (Aave)" : ""
     );
     string memory symbol = string.concat(
       "ly",
@@ -309,27 +318,45 @@ contract Fixtures is Test {
         globalOwner: address(globalOwner),
         globalPause: address(globalPause),
         globalAccessList: address(globalAccessList),
-        liquidityManager: address(liquidityManager),
+        liquidityManager: liquidityManager,
         feeRecipient: payable(feeRecipient),
-        liquidityBufferRate: 10_000, // 10%
-        aaveLendingPool: aaveLendingPool
+        liquidityBufferRate: (10 * RAY) / 100, // 10% in RAY
+        aaveLendingPool: hasAave_
+          ? aaveLendingPool
+          : IAaveLendingPoolV3(address(0))
       });
 
     IVaultLiquidityModule.VaultLiquidityInitParams
       memory vaultLiquidityInitParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
-          highWaterMark: 0,
-          deploymentDelay: 2,
-          yieldAPR: 7_000, // 7%
-          managementFeeRate: 1_000, // 1%
-          performanceFeeRate: 2_000, // 2%
-          withdrawalFeeRate: 500, // 0.5%
-          withdrawalGasFee: 10000000000000000 // 0.01 ETH
+          highWaterMark: RAY, // 1:1 ratio
+          deploymentDelay: 1,
+          yieldAPR: (5 * RAY) / 100, // 5% APR in RAY
+          managementFeeRate: (2 * RAY) / 1000, // 0.2% in RAY
+          performanceFeeRate: (2 * RAY) / 100, // 2% in RAY
+          withdrawalFeeRate: (5 * RAY) / 10000, // 0.05% in RAY
+          withdrawalGasFee: 0.001 ether
         });
 
     yieldVault.initialize(vaultParams, vaultLiquidityInitParams);
 
     return yieldVault;
+  }
+
+  function _setupApprovalsForVault(
+    LedgityYieldVault vault,
+    IERC20 asset
+  ) internal {
+    address[] memory accounts = new address[](4);
+    accounts[0] = testAccount1;
+    accounts[1] = testAccount2;
+    accounts[2] = testAccount3;
+    accounts[3] = liquidityManager;
+
+    for (uint256 i = 0; i < accounts.length; i++) {
+      vm.prank(accounts[i]);
+      asset.approve(address(vault), type(uint256).max);
+    }
   }
 
   // ======== HELPER FUNCTIONS ======== //

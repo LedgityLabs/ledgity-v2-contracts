@@ -70,7 +70,7 @@ contract LedgityYieldVault is
 
   // Token representing user's stake in the protocol for fee reductions
   IERC20 public stakeToken;
-  // The amount of stake token required to receive a fee reduction
+  // The amount of stake token required to receive a withdrawal fee reduction
   uint256 public stakeBalanceForFeeReduction;
   // The amount of stake token required to make instant withdrawal
   uint256 public stakeBalanceForInstantWithdrawal;
@@ -406,7 +406,7 @@ contract LedgityYieldVault is
    * @notice Deposits the specified amount of assets into the Aave Lending Pool
    * @param amountAssets The amount of assets to deposit
    */
-  function _depositBuffer(uint256 amountAssets) private {
+  function _investBuffer(uint256 amountAssets) private {
     /// @dev We already approved the contract in the initializer
     aaveLendingPool.deposit(asset(), amountAssets, address(this), 0);
   }
@@ -517,10 +517,9 @@ contract LedgityYieldVault is
 
     IERC20(asset()).safeTransferFrom(caller_, address(this), assets_);
 
-    // Execute the allocation
-    if (0 < bufferAmount) {
       // slither-disable-next-line reentrancy-no-eth
-      if (hasBufferStrategy) _depositBuffer(bufferAmount);
+    if (0 < bufferAmount && hasBufferStrategy) {
+      _investBuffer(bufferAmount);
       /// @dev If no buffer strategy, assets stay in contract as underlying
     }
     if (0 < vaultAmount) {
@@ -757,7 +756,7 @@ contract LedgityYieldVault is
       address(this),
       amount
     );
-    if (hasBufferStrategy) _depositBuffer(amount);
+    if (hasBufferStrategy) _investBuffer(amount);
   }
 
   /**
@@ -804,9 +803,6 @@ contract LedgityYieldVault is
 
     // Check available liquidity (buffer + added liquidity)
     uint256 bufferBalance = getBufferAssets();
-
-    uint256 availableLiquidity = bufferBalance + addedLiquidity;
-
     if ((bufferBalance + addedLiquidity) < assetsTotal)
       revert InsufficientLiquidity();
 

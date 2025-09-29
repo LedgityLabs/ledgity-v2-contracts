@@ -35,8 +35,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
   uint256 public constant TEST_DEPOSIT_AMOUNT_USDC = 1000 * 1e6; // 1000 USDC (6 decimals)
   uint256 public constant TEST_DEPOSIT_AMOUNT_WETH = 1 * 1e18; // 1 WETH (18 decimals)
-  uint256 public constant TEST_DEPOSIT_AMOUNT = 1000 ether; // Legacy constant for compatibility
-  uint256 public constant TEST_SHARES_AMOUNT = 500 * 1e18; // Always 18 decimals for shares
 
   function setUp() public {
     _setUp();
@@ -96,7 +94,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         lTokens.push(lToken);
       }
 
-      // Create vault - modify _createVault to handle Aave configuration
       LedgityYieldVault vault = _createVaultWithConfig(
         config.asset,
         IERC20(address(lToken)),
@@ -106,83 +103,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
       // Setup approvals for all test accounts
       _setupApprovalsForVault(vault, config.asset);
-    }
-  }
-
-  function _createVaultWithConfig(
-    IERC20 asset_,
-    IERC20 lToken_,
-    bool hasAave_
-  ) internal returns (LedgityYieldVault) {
-    LedgityYieldVault yieldVaultImpl = new LedgityYieldVault();
-    ERC1967Proxy yieldVaultProxy = new ERC1967Proxy(
-      address(yieldVaultImpl),
-      ""
-    );
-    LedgityYieldVault yieldVault = LedgityYieldVault(
-      address(yieldVaultProxy)
-    );
-
-    string memory name = string.concat(
-      "Test ",
-      MockERC20(address(asset_)).name(),
-      hasAave_ ? " (Aave)" : " (No Aave)"
-    );
-    string memory symbol = string.concat(
-      "t",
-      MockERC20(address(asset_)).symbol(),
-      hasAave_ ? "A" : "N"
-    );
-
-    ILedgityYieldVault.VaultParams memory vaultParams = ILedgityYieldVault
-      .VaultParams({
-        name: name,
-        symbol: symbol,
-        asset: asset_,
-        lToken: lToken_,
-        stakeToken: ldyToken,
-        stakeBalanceForFeeReduction: 1000 * 1e18,
-        globalOwner: address(globalOwner),
-        globalPause: address(globalPause),
-        globalAccessList: address(globalAccessList),
-        liquidityManager: liquidityManager,
-        feeRecipient: payable(feeRecipient),
-        liquidityBufferRate: (10 * RAY) / 100, // 10%
-        aaveLendingPool: hasAave_
-          ? aaveLendingPool
-          : IAaveLendingPoolV3(address(0))
-      });
-
-    IVaultLiquidityModule.VaultLiquidityInitParams
-      memory vaultLiquidityInitParams = IVaultLiquidityModule
-        .VaultLiquidityInitParams({
-          highWaterMark: RAY,
-          deploymentDelay: 1,
-          yieldAPR: (5 * RAY) / 100, // 5% APR
-          managementFeeRate: (2 * RAY) / 1000, // 0.2%
-          performanceFeeRate: (2 * RAY) / 100, // 2%
-          withdrawalFeeRate: (5 * RAY) / 10000, // 0.05%
-          withdrawalGasFee: 0.001 ether
-        });
-
-    yieldVault.initialize(vaultParams, vaultLiquidityInitParams);
-
-    return yieldVault;
-  }
-
-  function _setupApprovalsForVault(
-    LedgityYieldVault vault,
-    IERC20 asset
-  ) internal {
-    address[] memory accounts = new address[](4);
-    accounts[0] = testAccount1;
-    accounts[1] = testAccount2;
-    accounts[2] = testAccount3;
-    accounts[3] = liquidityManager;
-
-    for (uint256 i = 0; i < accounts.length; i++) {
-      vm.prank(accounts[i]);
-      asset.approve(address(vault), type(uint256).max);
     }
   }
 
@@ -864,6 +784,489 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         IERC20(address(0)),
         0,
         aaveLendingPool
+      );
+    }
+  }
+
+  // ======== MINT TESTS ======== //
+
+  function test_mint_success() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Calculate shares to mint
+      uint256 sharesToMint = vault.convertToShares(depositAmount);
+
+      uint256 initialBalance = config.asset.balanceOf(testAccount1);
+      uint256 initialTotalAssets = vault.totalAssets();
+
+      vm.prank(testAccount1);
+      vault.mint(sharesToMint, testAccount1);
+
+      // Should have transferred assets from caller
+      assertLt(config.asset.balanceOf(testAccount1), initialBalance);
+      // Should have minted shares to receiver
+      assertGt(vault.balanceOf(testAccount1), 0);
+      // Should have increased total assets
+      assertGt(vault.totalAssets(), initialTotalAssets);
+    }
+  }
+
+  function test_mint_differentReceiver() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      uint256 sharesToMint = vault.convertToShares(depositAmount);
+
+      vm.prank(testAccount1);
+      vault.mint(sharesToMint, testAccount2);
+
+      // Caller should have paid assets
+      assertEq(vault.balanceOf(testAccount1), 0);
+      // Receiver should have received shares
+      assertGt(vault.balanceOf(testAccount2), 0);
+    }
+  }
+
+  function test_mint_zeroShares_reverts() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+
+      vm.prank(testAccount1);
+      vm.expectRevert(LedgityYieldVault.ZeroAmount.selector);
+      vault.mint(0, testAccount1);
+    }
+  }
+
+  // ======== WITHDRAW TESTS ======== //
+
+  function test_withdraw_success() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // First deposit
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 withdrawAmount = depositAmount / 10;
+      uint256 initialBalance = config.asset.balanceOf(testAccount1);
+      uint256 initialShares = vault.balanceOf(testAccount1);
+
+      vm.prank(testAccount1);
+      vault.withdraw(withdrawAmount, testAccount1, testAccount1);
+
+      assertGt(config.asset.balanceOf(testAccount1), initialBalance);
+      assertLt(vault.balanceOf(testAccount1), initialShares);
+    }
+  }
+
+  // ======== BUFFER REWARD RATE TESTS ======== //
+
+  function test_getBufferRewardRate_zero_when_no_assets()
+    public
+    view
+  {
+    // Test with fresh vaults that have no assets
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      assertEq(vault.getBufferRewardRate(), 0);
+    }
+  }
+
+  function test_getBufferRewardRate_zero_when_no_buffer_strategy()
+    public
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+
+      if (!config.hasAave) {
+        uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+        vm.prank(testAccount1);
+        vault.deposit(depositAmount, testAccount1);
+
+        // Should return 0 when no buffer strategy
+        assertEq(vault.getBufferRewardRate(), 0);
+      }
+    }
+  }
+
+  // ======== WITHDRAWAL REQUESTS BY IDS TESTS ======== //
+
+  function test_getWithdrawalRequestsByIds_returns_selected_requests()
+    public
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Create multiple withdrawal requests
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+      vm.prank(testAccount2);
+      vault.deposit(depositAmount, testAccount2);
+      vm.prank(testAccount3);
+      vault.deposit(depositAmount, testAccount3);
+
+      uint256 shares1 = vault.balanceOf(testAccount1);
+      uint256 shares2 = vault.balanceOf(testAccount2);
+      uint256 shares3 = vault.balanceOf(testAccount3);
+      uint256 gasFee = vault.withdrawalGasFee();
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares1);
+      vm.prank(testAccount2);
+      vault.requestWithdrawal{ value: gasFee }(shares2);
+      vm.prank(testAccount3);
+      vault.requestWithdrawal{ value: gasFee }(shares3);
+
+      // Get specific requests by IDs
+      uint256[] memory requestIds = new uint256[](2);
+      requestIds[0] = 0;
+      requestIds[1] = 2;
+
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory selectedRequests = vault.getWithdrawalRequestsByIds(
+          requestIds
+        );
+
+      assertEq(selectedRequests.length, 2);
+      assertEq(selectedRequests[0].requestId, 0);
+      assertEq(selectedRequests[0].user, testAccount1);
+      assertEq(selectedRequests[1].requestId, 2);
+      assertEq(selectedRequests[1].user, testAccount3);
+    }
+  }
+
+  // ======== PROCESS REQUESTS EDGE CASES ======== //
+
+  function test_processRequests_insufficientLiquidity_reverts()
+    public
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Create a withdrawal request
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 gasFee = vault.withdrawalGasFee();
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares);
+
+      uint256[] memory requestIds = new uint256[](1);
+      requestIds[0] = 0;
+
+      // Try to process without sufficient liquidity
+      vm.prank(liquidityManager);
+      vm.expectRevert(
+        LedgityYieldVault.InsufficientLiquidity.selector
+      );
+      vault.processRequests(requestIds, 0);
+    }
+  }
+
+  function test_processRequests_double_processing_reverts() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Create a withdrawal request
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 gasFee = vault.withdrawalGasFee();
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares);
+
+      // Add sufficient liquidity
+      deal(address(config.asset), liquidityManager, depositAmount);
+      vm.prank(liquidityManager);
+      vault.depositToBuffer(depositAmount);
+
+      uint256[] memory requestIds = new uint256[](1);
+      requestIds[0] = 0;
+
+      // Process once
+      vm.prank(liquidityManager);
+      vault.processRequests(requestIds, 0);
+
+      // Try to process again - should revert
+      vm.prank(liquidityManager);
+      vm.expectRevert(
+        LedgityYieldVault.RequestAlreadyProcessed.selector
+      );
+      vault.processRequests(requestIds, 0);
+    }
+  }
+
+  function test_processRequests_with_added_liquidity_only() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Create a withdrawal request
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 gasFee = vault.withdrawalGasFee();
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares);
+
+      // Get the request amount
+      ILedgityDataProvider.WithdrawalRequestRead[]
+        memory requests = vault.getWithdrawalRequests(false, 0);
+      uint256 requestAmount = requests[0].amount;
+
+      // Provide exact liquidity needed via addedLiquidity parameter
+      deal(address(config.asset), liquidityManager, requestAmount);
+
+      uint256[] memory requestIds = new uint256[](1);
+      requestIds[0] = 0;
+
+      uint256 initialBalance = config.asset.balanceOf(testAccount1);
+
+      vm.prank(liquidityManager);
+      vault.processRequests(requestIds, requestAmount);
+
+      assertGt(config.asset.balanceOf(testAccount1), initialBalance);
+    }
+  }
+
+  // ======== VAULT LIQUIDITY MODULE ADMIN TESTS ======== //
+
+  function test_updateAPR_updates_value() public {
+    uint256 newAPR = (8 * RAY) / 100; // 8% APR
+
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      uint256 oldAPR = vault.yieldAPR();
+
+      vm.prank(globalOwner.owner());
+      vault.updateAPR(newAPR);
+
+      assertEq(vault.yieldAPR(), newAPR);
+      assertNotEq(vault.yieldAPR(), oldAPR);
+    }
+  }
+
+  function test_updateFeeRates_updates_values() public {
+    uint256 newManagementRate = (3 * RAY) / 1000; // 0.3%
+    uint256 newPerformanceRate = (3 * RAY) / 100; // 3%
+    uint256 newWithdrawalRate = (1 * RAY) / 1000; // 0.1%
+
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+
+      vm.prank(globalOwner.owner());
+      vault.updateFeeRates(
+        newManagementRate,
+        newPerformanceRate,
+        newWithdrawalRate
+      );
+
+      assertEq(vault.managementFeeRate(), newManagementRate);
+      assertEq(vault.performanceFeeRate(), newPerformanceRate);
+      assertEq(vault.withdrawalFeeRate(), newWithdrawalRate);
+    }
+  }
+
+  function test_setTotalAssets_resets_totalAssets_and_compound_time()
+    public
+  {
+    uint256 newTotalAssets = 500 ether;
+
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+
+      uint256 oldCompoundTime = vault.lastCompoundTime();
+
+      vm.prank(globalOwner.owner());
+      vault.setTotalAssets(newTotalAssets);
+
+      assertEq(vault.totalAssets(), newTotalAssets);
+      assertGe(vault.lastCompoundTime(), oldCompoundTime);
+    }
+  }
+
+  function test_setAccountWithdrawalFee_affects_withdrawal_fee()
+    public
+  {
+    uint256 customWithdrawalFee = (1 * RAY) / 100; // 1% custom fee
+
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Set custom withdrawal fee for testAccount1
+      vm.prank(globalOwner.owner());
+      vault.setAccountWithdrawalFee(
+        testAccount1,
+        customWithdrawalFee
+      );
+
+      assertEq(
+        vault.accountWithdrawalFee(testAccount1),
+        customWithdrawalFee
+      );
+
+      // Deposit and request withdrawal to test fee effect
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 gasFee = vault.withdrawalGasFee();
+      uint256 initialFeeRecipientShares = vault.balanceOf(
+        feeRecipient
+      );
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares);
+
+      // Fee recipient should have received withdrawal fee shares
+      assertGt(
+        vault.balanceOf(feeRecipient),
+        initialFeeRecipientShares
+      );
+    }
+  }
+
+  function test_updateDeploymentDelay_increases_maturity_impact()
+    public
+  {
+    uint8 newDeploymentDelay = 7; // 7 days
+
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      vm.prank(globalOwner.owner());
+      vault.updateDeploymentDelay(newDeploymentDelay);
+
+      assertEq(vault.deploymentDelay(), newDeploymentDelay);
+
+      // First deposit should mint fewer shares due to maturity impact
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      // With deployment delay > 0, shares should be less than deposit amount
+      // (when total supply is 0, normally shares = assets)
+      uint256 shares = vault.balanceOf(testAccount1);
+      assertLt(shares, depositAmount);
+    }
+  }
+
+  // ======== GETTER TESTS ======== //
+
+  function test_RAY_constant_exposed() public view {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      assertEq(vaults[i].RAY(), 1e27);
+    }
+  }
+
+  function test_lastFeeTime_updates_on_harvestFees_with_time()
+    public
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Deposit to generate some activity
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 oldLastFeeTime = vault.lastFeeTime();
+      uint256 oldHighWaterMark = vault.highWaterMark();
+
+      // Warp time forward
+      vm.warp(block.timestamp + 1 days);
+
+      vault.harvestFees();
+
+      // lastFeeTime should be updated
+      assertGe(vault.lastFeeTime(), oldLastFeeTime);
+      // highWaterMark should be non-decreasing
+      assertGe(vault.highWaterMark(), oldHighWaterMark);
+    }
+  }
+
+  function test_aToken_is_set_only_when_hasBufferStrategy()
+    public
+    view
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+
+      if (config.hasAave) {
+        assertNotEq(address(vault.aToken()), address(0));
+      } else {
+        assertEq(address(vault.aToken()), address(0));
+      }
+    }
+  }
+
+  // ======== BURN AND REMINT TESTS ======== //
+
+  function test_burnAndRemintBlacklistedShares_onlyOwner_and_moves_shares()
+    public
+  {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Give testAccount1 some shares
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 initialAccount2Shares = vault.balanceOf(testAccount2);
+
+      vm.prank(globalOwner.owner());
+      vault.burnAndRemintBlacklistedShares(
+        testAccount1,
+        testAccount2
+      );
+
+      assertEq(vault.balanceOf(testAccount1), 0);
+      assertEq(
+        vault.balanceOf(testAccount2),
+        initialAccount2Shares + shares
+      );
+    }
+  }
+
+  function test_burnAndRemintBlacklistedShares_onlyOwner() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+
+      vm.prank(testAccount1);
+      vm.expectRevert();
+      vault.burnAndRemintBlacklistedShares(
+        testAccount1,
+        testAccount2
       );
     }
   }
