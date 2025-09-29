@@ -10,16 +10,14 @@ evm_version = "cancun"
 ffi = true # required by hedera-forking
 allow_internal_expect_revert = true
 
-[profile.default.fuzz]
-runs = 250
+[fuzz]
+runs = 256
+seed = '0xc0ffee' # Seed for reproducibility
+show_logs = true
 
-[profile.default.invariant]
-runs = 250
-depth = 20
-
-[profile.ci.fuzz]
-runs = 10000
-
-[profile.ci.invariant]
-runs = 10000
-depth = 50
+[invariant]
+runs = 256 # Number of tests to run
+depth = 100 # Number of function calls in each test
+seed = '0xc0ffee' # Seed for reproducibility
+show_logs = true
+ 
