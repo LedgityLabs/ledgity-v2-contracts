@@ -245,15 +245,15 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "oldDelay",
-        "type": "uint256"
+        "type": "uint8"
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "newDelay",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "name": "DeploymentDelayUpdated",
@@ -645,32 +645,6 @@
   },
   {
     "inputs": [],
-    "name": "APR_RATE_OFFSET",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RATE_BASE",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "RAY",
     "outputs": [
       {
@@ -967,9 +941,9 @@
     "name": "deploymentDelay",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -1059,6 +1033,24 @@
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFeeData",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -1426,7 +1418,7 @@
           },
           {
             "internalType": "address",
-            "name": "globalBlacklist",
+            "name": "globalAccessList",
             "type": "address"
           },
           {
@@ -1463,11 +1455,6 @@
           },
           {
             "internalType": "uint256",
-            "name": "deploymentDelay",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
             "name": "yieldAPR",
             "type": "uint256"
           },
@@ -1490,6 +1477,11 @@
             "internalType": "uint256",
             "name": "withdrawalGasFee",
             "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "deploymentDelay",
+            "type": "uint8"
           }
         ],
         "internalType": "struct IVaultLiquidityModule.VaultLiquidityInitParams",
@@ -1548,19 +1540,6 @@
         "internalType": "contract IERC20",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lastBufferRewardBalance",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -2135,7 +2114,7 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "currentTotalAssets",
         "type": "uint256"
       }
     ],
@@ -2279,9 +2258,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "newDeploymentDelay",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "name": "updateDeploymentDelay",

@@ -270,7 +270,7 @@ export const globalAccessListAbi = [
         name: 'account',
         internalType: 'address',
         type: 'address',
-        indexed: false,
+        indexed: true,
       },
     ],
     name: 'RestrictAccount',
@@ -283,7 +283,7 @@ export const globalAccessListAbi = [
         name: 'account',
         internalType: 'address',
         type: 'address',
-        indexed: false,
+        indexed: true,
       },
     ],
     name: 'UnrestrictAccount',
@@ -319,6 +319,15 @@ export const globalAccessListAbi = [
       { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
     ],
     stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
   },
   {
     type: 'function',
@@ -4537,14 +4546,14 @@ export const ledgityYieldVaultAbi = [
     inputs: [
       {
         name: 'oldDelay',
-        internalType: 'uint256',
-        type: 'uint256',
+        internalType: 'uint8',
+        type: 'uint8',
         indexed: false,
       },
       {
         name: 'newDelay',
-        internalType: 'uint256',
-        type: 'uint256',
+        internalType: 'uint8',
+        type: 'uint8',
         indexed: false,
       },
     ],
@@ -4897,20 +4906,6 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [],
-    name: 'APR_RATE_OFFSET',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'RATE_BASE',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
     name: 'RAY',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
@@ -5055,7 +5050,7 @@ export const ledgityYieldVaultAbi = [
     type: 'function',
     inputs: [],
     name: 'deploymentDelay',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
     stateMutability: 'view',
   },
   {
@@ -5101,6 +5096,16 @@ export const ledgityYieldVaultAbi = [
     inputs: [],
     name: 'getCCIPAdmin',
     outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getFeeData',
+    outputs: [
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+    ],
     stateMutability: 'view',
   },
   {
@@ -5285,7 +5290,11 @@ export const ledgityYieldVaultAbi = [
           },
           { name: 'globalOwner', internalType: 'address', type: 'address' },
           { name: 'globalPause', internalType: 'address', type: 'address' },
-          { name: 'globalBlacklist', internalType: 'address', type: 'address' },
+          {
+            name: 'globalAccessList',
+            internalType: 'address',
+            type: 'address',
+          },
           {
             name: 'liquidityManager',
             internalType: 'address',
@@ -5314,7 +5323,6 @@ export const ledgityYieldVaultAbi = [
         type: 'tuple',
         components: [
           { name: 'highWaterMark', internalType: 'uint256', type: 'uint256' },
-          { name: 'deploymentDelay', internalType: 'uint256', type: 'uint256' },
           { name: 'yieldAPR', internalType: 'uint256', type: 'uint256' },
           {
             name: 'managementFeeRate',
@@ -5336,6 +5344,7 @@ export const ledgityYieldVaultAbi = [
             internalType: 'uint256',
             type: 'uint256',
           },
+          { name: 'deploymentDelay', internalType: 'uint8', type: 'uint8' },
         ],
       },
     ],
@@ -5362,13 +5371,6 @@ export const ledgityYieldVaultAbi = [
     inputs: [],
     name: 'lToken',
     outputs: [{ name: '', internalType: 'contract IERC20', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'lastBufferRewardBalance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
@@ -5648,7 +5650,9 @@ export const ledgityYieldVaultAbi = [
     type: 'function',
     inputs: [],
     name: 'totalAssets',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    outputs: [
+      { name: 'currentTotalAssets', internalType: 'uint256', type: 'uint256' },
+    ],
     stateMutability: 'view',
   },
   {
@@ -5714,7 +5718,7 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [
-      { name: 'newDeploymentDelay', internalType: 'uint256', type: 'uint256' },
+      { name: 'newDeploymentDelay', internalType: 'uint8', type: 'uint8' },
     ],
     name: 'updateDeploymentDelay',
     outputs: [],
@@ -6558,6 +6562,15 @@ export const useWriteGlobalAccessList = /*#__PURE__*/ createUseWriteContract({
 })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useWriteGlobalAccessListInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'initialize',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  */
 export const useWriteGlobalAccessListRenounceOwnership =
@@ -6616,6 +6629,15 @@ export const useWriteGlobalAccessListUpgradeToAndCall =
  */
 export const useSimulateGlobalAccessList =
   /*#__PURE__*/ createUseSimulateContract({ abi: globalAccessListAbi })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useSimulateGlobalAccessListInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'initialize',
+  })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -13901,24 +13923,6 @@ export const useReadLedgityYieldVault = /*#__PURE__*/ createUseReadContract({
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"APR_RATE_OFFSET"`
- */
-export const useReadLedgityYieldVaultAprRateOffset =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'APR_RATE_OFFSET',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"RATE_BASE"`
- */
-export const useReadLedgityYieldVaultRateBase =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'RATE_BASE',
-  })
-
-/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"RAY"`
  */
 export const useReadLedgityYieldVaultRay = /*#__PURE__*/ createUseReadContract({
@@ -14062,6 +14066,15 @@ export const useReadLedgityYieldVaultGetCcipAdmin =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getFeeData"`
+ */
+export const useReadLedgityYieldVaultGetFeeData =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'getFeeData',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
  */
 export const useReadLedgityYieldVaultGetUserWithdrawalRequests =
@@ -14167,15 +14180,6 @@ export const useReadLedgityYieldVaultLToken =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'lToken',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"lastBufferRewardBalance"`
- */
-export const useReadLedgityYieldVaultLastBufferRewardBalance =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'lastBufferRewardBalance',
   })
 
 /**
@@ -16480,6 +16484,15 @@ export const writeGlobalAccessList = /*#__PURE__*/ createWriteContract({
 })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ */
+export const writeGlobalAccessListInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: globalAccessListAbi,
+    functionName: 'initialize',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  */
 export const writeGlobalAccessListRenounceOwnership =
@@ -16537,6 +16550,15 @@ export const writeGlobalAccessListUpgradeToAndCall =
 export const simulateGlobalAccessList = /*#__PURE__*/ createSimulateContract({
   abi: globalAccessListAbi,
 })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ */
+export const simulateGlobalAccessListInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: globalAccessListAbi,
+    functionName: 'initialize',
+  })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -23719,23 +23741,6 @@ export const readLedgityYieldVault = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"APR_RATE_OFFSET"`
- */
-export const readLedgityYieldVaultAprRateOffset =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'APR_RATE_OFFSET',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"RATE_BASE"`
- */
-export const readLedgityYieldVaultRateBase = /*#__PURE__*/ createReadContract({
-  abi: ledgityYieldVaultAbi,
-  functionName: 'RATE_BASE',
-})
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"RAY"`
  */
 export const readLedgityYieldVaultRay = /*#__PURE__*/ createReadContract({
@@ -23874,6 +23879,13 @@ export const readLedgityYieldVaultGetCcipAdmin =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getFeeData"`
+ */
+export const readLedgityYieldVaultGetFeeData = /*#__PURE__*/ createReadContract(
+  { abi: ledgityYieldVaultAbi, functionName: 'getFeeData' },
+)
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
  */
 export const readLedgityYieldVaultGetUserWithdrawalRequests =
@@ -23977,15 +23989,6 @@ export const readLedgityYieldVaultLToken = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
   functionName: 'lToken',
 })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"lastBufferRewardBalance"`
- */
-export const readLedgityYieldVaultLastBufferRewardBalance =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'lastBufferRewardBalance',
-  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"lastCompoundTime"`

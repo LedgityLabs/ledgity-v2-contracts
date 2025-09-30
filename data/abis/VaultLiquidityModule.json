@@ -67,15 +67,15 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "oldDelay",
-        "type": "uint256"
+        "type": "uint8"
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "newDelay",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "name": "DeploymentDelayUpdated",
@@ -268,32 +268,6 @@
     ],
     "name": "Withdraw",
     "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "APR_RATE_OFFSET",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RATE_BASE",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   },
   {
     "inputs": [],
@@ -500,9 +474,9 @@
     "name": "deploymentDelay",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -1011,9 +985,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint8",
         "name": "newDeploymentDelay",
-        "type": "uint256"
+        "type": "uint8"
       }
     ],
     "name": "updateDeploymentDelay",

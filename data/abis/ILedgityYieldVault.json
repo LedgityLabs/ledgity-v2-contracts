@@ -348,7 +348,7 @@
           },
           {
             "internalType": "address",
-            "name": "globalBlacklist",
+            "name": "globalAccessList",
             "type": "address"
           },
           {
@@ -385,11 +385,6 @@
           },
           {
             "internalType": "uint256",
-            "name": "deploymentDelay",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
             "name": "yieldAPR",
             "type": "uint256"
           },
@@ -412,6 +407,11 @@
             "internalType": "uint256",
             "name": "withdrawalGasFee",
             "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "deploymentDelay",
+            "type": "uint8"
           }
         ],
         "internalType": "struct IVaultLiquidityModule.VaultLiquidityInitParams",
@@ -432,19 +432,6 @@
         "internalType": "contract IERC20",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lastBufferRewardBalance",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -613,19 +600,6 @@
         "internalType": "contract IERC20",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalAssets",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
