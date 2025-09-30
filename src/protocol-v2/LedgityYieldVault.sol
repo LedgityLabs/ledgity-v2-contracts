@@ -253,7 +253,14 @@ contract LedgityYieldVault is
    * @return totalFeeShares The total fee shares to be minted
    * @return pricePerShare The price per share
    */
-  function getFeeData() public view returns (uint256, uint256) {
+  function getFeeData()
+    public
+    view
+    returns (
+      uint256 /* totalFeeShares */,
+      uint256 /* pricePerShare */
+    )
+  {
     return _computeFeeData();
   }
 
@@ -439,7 +446,7 @@ contract LedgityYieldVault is
    * @param caller_ The address that called the withdraw function
    * @param shares_ The number of shares to withdraw
    */
-  function _processSharesAndFeesOnWithdrawal(
+  function _burnSharesTakeFeesOnWithdrawal(
     address caller_,
     uint256 shares_
   ) internal returns (uint256 /*netAssets*/) {
@@ -466,6 +473,33 @@ contract LedgityYieldVault is
     _withdrawAssets(netAssets);
 
     return netAssets;
+  }
+
+    /**
+   * @notice Internal function to handle withdraw tokens
+   * @param caller_ The address that called the withdraw function
+   * @param receiver_ The address to receive the underlying
+   * @param owner_ The owner of the shares tokens
+   * @param shares_ The amount of shares tokens to withdraw
+   */
+  function _withdrawFromVault(
+    address caller_,
+    address receiver_,
+    address owner_,
+    uint256 /* assets_ */,
+    uint256 shares_
+  )
+    internal
+    whenNotPaused
+    notRestricted(caller_)
+    returns (uint256 netAssets)
+  {
+    netAssets = _burnSharesTakeFeesOnWithdrawal(caller_, shares_);
+
+    // slither-disable-next-line reentrancy-no-eth
+    _withdrawBuffer(receiver_, netAssets);
+
+    emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
   }
 
   /**
@@ -536,33 +570,6 @@ contract LedgityYieldVault is
     _mint(receiver_, netShares);
 
     emit Deposit(caller_, receiver_, assets_, netShares);
-  }
-
-  /**
-   * @notice Internal function to handle withdraw tokens
-   * @param caller_ The address that called the withdraw function
-   * @param receiver_ The address to receive the underlying
-   * @param owner_ The owner of the shares tokens
-   * @param shares_ The amount of shares tokens to withdraw
-   */
-  function _withdrawFromVault(
-    address caller_,
-    address receiver_,
-    address owner_,
-    uint256 /* assets_ */,
-    uint256 shares_
-  )
-    internal
-    whenNotPaused
-    notRestricted(caller_)
-    returns (uint256 netAssets)
-  {
-    netAssets = _processSharesAndFeesOnWithdrawal(caller_, shares_);
-
-    // slither-disable-next-line reentrancy-no-eth
-    _withdrawBuffer(receiver_, netAssets);
-
-    emit Withdraw(caller_, receiver_, owner_, netAssets, shares_);
   }
 
   // ======== WRITE FUNCTIONS ======== //
@@ -699,8 +706,8 @@ contract LedgityYieldVault is
       revert MissingWithdrawalRequestFee();
     // Transfer gas fee to fee recipient
     feeRecipient.transfer(address(this).balance);
-
-    uint256 netAssets = _processSharesAndFeesOnWithdrawal(
+ 
+    uint256 netAssets = _burnSharesTakeFeesOnWithdrawal(
       msg.sender,
       shares
     );

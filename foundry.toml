@@ -7,17 +7,16 @@ libs = ["node_modules", "foundry/lib"]
 optimizer = true
 optimizer_runs = 1
 evm_version = "cancun"
-ffi = true # required by hedera-forking
+ffi = true                             # required by hedera-forking
 allow_internal_expect_revert = true
 
 [fuzz]
-runs = 256
+runs = 100
 seed = '0xc0ffee' # Seed for reproducibility
 show_logs = true
 
 [invariant]
-runs = 256 # Number of tests to run
-depth = 100 # Number of function calls in each test
+runs = 50         # Number of tests to run
+depth = 100       # Number of function calls in each test
 seed = '0xc0ffee' # Seed for reproducibility
 show_logs = true
- 

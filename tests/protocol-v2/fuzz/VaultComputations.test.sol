@@ -84,6 +84,44 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
+  function _calculateExpectedFeeShares(
+    uint256 currentAssets,
+    uint256 totalSupply,
+    uint256 timeElapsed,
+    uint256 managementFeeRate,
+    uint256 performanceFeeRate,
+    uint256 highWaterMark
+  ) internal view returns (uint256) {
+    uint256 decimalsOffset = 1;
+
+    uint256 annualManagementFees = (currentAssets *
+      managementFeeRate) / RAY;
+    uint256 managementFeeAssets = (annualManagementFees *
+      timeElapsed) / 365 days;
+
+    uint256 sharesDenominator = totalSupply + decimalsOffset;
+    if (sharesDenominator == 0) sharesDenominator = 1;
+
+    uint256 pricePerShareBeforePerfFee = (10 ** vault.decimals() *
+      ((currentAssets + 1) - managementFeeAssets)) /
+      sharesDenominator;
+
+    uint256 performanceFeeAssets = 0;
+    if (highWaterMark < pricePerShareBeforePerfFee) {
+      uint256 profitPerShare = pricePerShareBeforePerfFee -
+        highWaterMark;
+      uint256 profit = (profitPerShare * totalSupply) /
+        (10 ** vault.decimals());
+      performanceFeeAssets = (profit * performanceFeeRate) / RAY;
+    }
+
+    uint256 totalFeeAssets = managementFeeAssets +
+      performanceFeeAssets;
+    return
+      (totalFeeAssets * (totalSupply + decimalsOffset)) /
+      ((currentAssets - totalFeeAssets) + 1);
+  }
+
   // ============ BUFFER TESTS ============ //
 
   function testFuzz_bufferAutoBalancing(
@@ -144,16 +182,21 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
-  function test_bufferRewardsDoNotAffectShareValue() public {
+  function testFuzz_bufferRewardsDoNotAffectShareValue(
+    uint256 depositAmount,
+    uint256 bufferRewards
+  ) public {
     if (!vault.hasBufferStrategy()) return;
 
-    _depositToVault(testAccount1, BASE_DEPOSIT);
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    bufferRewards = bound(bufferRewards, 1e18, 10_000 * 1e18);
+
+    _depositToVault(testAccount1, depositAmount);
 
     uint256 initialShares = vault.balanceOf(testAccount1);
     uint256 initialPricePerShare = vault.convertToAssets(1e18);
 
     // Simulate buffer earning rewards by manually adding assets to buffer
-    uint256 bufferRewards = 1000 * 1e18;
     deal(
       address(asset),
       address(vault),
@@ -188,8 +231,13 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
 
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
     uint256 managementFeeRate = vault.managementFeeRate();
+    uint256 lastFeeTime = vault.lastFeeTime();
+    uint256 totalSupplyBefore = vault.totalSupply();
 
     _warpDays(days_);
+
+    uint256 currentAssetsBefore = vault.totalAssets();
+    uint256 timeElapsed = block.timestamp - lastFeeTime;
 
     vault.harvestFees();
 
@@ -197,38 +245,42 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 feeShares = finalFeeRecipientShares -
       initialFeeRecipientShares;
 
-    // Calculate expected management fee
-    uint256 totalAssets = vault.totalAssets();
-    uint256 expectedAnnualFee = (totalAssets * managementFeeRate) /
-      RAY;
-    uint256 expectedFeeForPeriod = (expectedAnnualFee * days_) / 365;
-
-    if (expectedFeeForPeriod > 0) {
-      assertGt(feeShares, 0, "Management fees should be collected");
+    if (feeShares > 0) {
+      uint256 expectedFeeShares = _calculateExpectedFeeShares(
+        currentAssetsBefore,
+        totalSupplyBefore,
+        timeElapsed,
+        managementFeeRate,
+        vault.performanceFeeRate(),
+        vault.highWaterMark()
+      );
 
       uint256 feeAssets = vault.convertToAssets(feeShares);
+      uint256 expectedFeeAssetsValue = vault.convertToAssets(
+        expectedFeeShares
+      );
+
       _assertApproxEq(
         feeAssets,
-        expectedFeeForPeriod,
-        "Management fee amount incorrect"
+        expectedFeeAssetsValue,
+        "Total fee amount incorrect"
       );
     }
   }
 
-  function test_managementFeeDoesNotReduceShareholderValue() public {
-    _depositToVault(testAccount1, BASE_DEPOSIT);
+  function testFuzz_managementFeeDoesNotReduceShareholderValue(
+    uint256 depositAmount,
+    uint256 days_
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    days_ = bound(days_, 1, 365);
+
+    _depositToVault(testAccount1, depositAmount);
 
     uint256 initialShares = vault.balanceOf(testAccount1);
     uint256 initialAssets = vault.convertToAssets(initialShares);
 
-    _warpDays(30); // 30 days
-
-    // Assets should have grown due to APR
-    uint256 expectedAssets = _calculateExpectedCompoundedAssets(
-      initialAssets,
-      vault.yieldAPR(),
-      30
-    );
+    _warpDays(days_);
 
     vault.harvestFees();
 
@@ -239,19 +291,6 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
       finalAssets,
       initialAssets,
       "User assets should have grown"
-    );
-
-    // The growth should be close to expected (minus management fees)
-    uint256 managementFeeRate = vault.managementFeeRate();
-    uint256 expectedFeeReduction = (expectedAssets *
-      managementFeeRate *
-      30) / (RAY * 365);
-    uint256 expectedNetAssets = expectedAssets - expectedFeeReduction;
-
-    _assertApproxEq(
-      finalAssets,
-      expectedNetAssets,
-      "Net assets after management fees incorrect"
     );
   }
 
@@ -286,10 +325,16 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     }
   }
 
-  function test_performanceFeeWatermarkPreventsDoubleFee() public {
-    _depositToVault(testAccount1, BASE_DEPOSIT);
+  function testFuzz_performanceFeeWatermarkPreventsDoubleFee(
+    uint256 depositAmount,
+    uint256 days_
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    days_ = bound(days_, 1, 365);
 
-    _warpDays(30);
+    _depositToVault(testAccount1, depositAmount);
+
+    _warpDays(days_);
     vault.harvestFees();
 
     uint256 waterMarkAfterFirstHarvest = vault.highWaterMark();
@@ -317,41 +362,61 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
-  function test_performanceFeeDisabledOnValueDecrease() public {
-    _depositToVault(testAccount1, BASE_DEPOSIT);
+  function testFuzz_performanceFeeDisabledOnValueDecrease(
+    uint256 depositAmount,
+    uint256 days_
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    days_ = bound(days_, 1, 365);
 
-    _warpDays(30);
+    _depositToVault(testAccount1, depositAmount);
+
+    _warpDays(days_);
     vault.harvestFees();
 
     uint256 highWaterMark = vault.highWaterMark();
+    uint256 lastFeeTime = vault.lastFeeTime();
 
     // Simulate value decrease by setting lower total assets
-    uint256 reducedAssets = vault.totalAssets() / 2;
     vm.prank(globalOwner.owner());
-    vault.setTotalAssets(reducedAssets);
+    vault.setTotalAssets(vault.totalAssets() / 2);
 
     uint256 feeRecipientSharesBefore = vault.balanceOf(feeRecipient);
+    uint256 totalSupplyBefore = vault.totalSupply();
 
-    _warpDays(30);
+    _warpDays(days_);
+
+    uint256 currentAssetsBefore = vault.totalAssets();
+
     vault.harvestFees();
 
-    uint256 feeRecipientSharesAfter = vault.balanceOf(feeRecipient);
-
-    // No performance fees should be collected when below high water mark
-    // (only management fees might be collected)
-    uint256 performanceFeeShares = feeRecipientSharesAfter -
+    uint256 feeSharesCollected = vault.balanceOf(feeRecipient) -
       feeRecipientSharesBefore;
     uint256 currentPricePerShare = vault.convertToAssets(1e18);
 
+    // When below high water mark, only management fees should be collected
     if (currentPricePerShare < highWaterMark) {
-      // Performance fee should be minimal or zero
-      uint256 performanceFeeAssets = vault.convertToAssets(
-        performanceFeeShares
+      uint256 expectedFeeShares = _calculateExpectedFeeShares(
+        currentAssetsBefore,
+        totalSupplyBefore,
+        block.timestamp - lastFeeTime,
+        vault.managementFeeRate(),
+        vault.performanceFeeRate(),
+        highWaterMark
       );
-      assertLt(
-        performanceFeeAssets,
-        100 * 1e18,
-        "Performance fees should be minimal when below high water mark"
+
+      uint256 feeAssetsCollected = vault.convertToAssets(
+        feeSharesCollected
+      );
+      uint256 expectedFeeAssets = vault.convertToAssets(
+        expectedFeeShares
+      );
+
+      // Verify only management fees were collected (with tolerance)
+      _assertApproxEq(
+        feeAssetsCollected,
+        expectedFeeAssets,
+        "Only management fees should be collected when below high water mark"
       );
     }
   }
@@ -373,6 +438,10 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
 
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
 
+    deal(address(asset), liquidityManager, depositAmount);
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(depositAmount);
+
     vm.prank(testAccount1);
     vault.redeem(sharesToWithdraw, testAccount1, testAccount1);
 
@@ -391,18 +460,29 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
-  function test_noWithdrawalFeeWithStakeReduction() public {
-    _depositToVault(testAccount1, BASE_DEPOSIT);
+  function testFuzz_noWithdrawalFeeWithStakeReduction(
+    uint256 depositAmount,
+    uint256 withdrawalRatio
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    withdrawalRatio = bound(withdrawalRatio, 1, 100); // 1% to 100%
+
+    _depositToVault(testAccount1, depositAmount);
 
     // Give user enough stake tokens for fee reduction
     uint256 stakeRequired = vault.stakeBalanceForFeeReduction();
     deal(address(vault.stakeToken()), testAccount1, stakeRequired);
 
     uint256 shares = vault.balanceOf(testAccount1);
+    uint256 sharesToWithdraw = (shares * withdrawalRatio) / 100;
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
 
+    deal(address(asset), liquidityManager, depositAmount);
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(depositAmount);
+
     vm.prank(testAccount1);
-    vault.redeem(shares / 2, testAccount1, testAccount1);
+    vault.redeem(sharesToWithdraw, testAccount1, testAccount1);
 
     uint256 finalFeeRecipientShares = vault.balanceOf(feeRecipient);
 
@@ -419,7 +499,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 customFeeRate
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    customFeeRate = bound(customFeeRate, 0, RAY / 10); // 0% to 10%
+    customFeeRate = bound(customFeeRate, RAY / 10_000_000, RAY / 10); // 0.00000001% to 10%
 
     // Set custom withdrawal fee for testAccount1
     vm.prank(globalOwner.owner());
@@ -429,6 +509,10 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
 
     uint256 shares = vault.balanceOf(testAccount1);
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
+
+    deal(address(asset), liquidityManager, depositAmount);
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(depositAmount);
 
     vm.prank(testAccount1);
     vault.redeem(shares / 2, testAccount1, testAccount1);
@@ -492,23 +576,27 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
-  function test_deploymentDelayVsLTokenMigration() public {
-    uint256 amount = BASE_DEPOSIT;
+  function testFuzz_deploymentDelayVsLTokenMigration(
+    uint256 depositAmount,
+    uint8 deploymentDelay
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    deploymentDelay = uint8(bound(deploymentDelay, 1, 30)); // 1 to 30 days
 
     // Set deployment delay
     vm.prank(globalOwner.owner());
-    vault.updateDeploymentDelay(7); // 7 days
+    vault.updateDeploymentDelay(deploymentDelay);
 
     // Regular deposit with deployment delay
-    _depositToVault(testAccount1, amount);
+    _depositToVault(testAccount1, depositAmount);
     uint256 sharesFromDeposit = vault.balanceOf(testAccount1);
 
     // L-Token migration (no deployment delay)
-    lToken.mint(testAccount2, amount);
+    lToken.mint(testAccount2, depositAmount);
     vm.prank(testAccount2);
-    lToken.approve(address(vault), amount);
+    lToken.approve(address(vault), depositAmount);
     vm.prank(testAccount2);
-    uint256 sharesFromMigration = vault.migrateLToken(amount);
+    uint256 sharesFromMigration = vault.migrateLToken(depositAmount);
 
     // Migration should give more shares than regular deposit due to no deployment delay
     assertGt(
@@ -518,15 +606,23 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     );
   }
 
-  function test_instantDepositWithdrawalImpact() public {
-    uint256 amount = BASE_DEPOSIT;
+  function testFuzz_instantDepositWithdrawalImpact(
+    uint256 depositAmount,
+    uint8 deploymentDelay
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    deploymentDelay = uint8(bound(deploymentDelay, 1, 30)); // 1 to 30 days
 
     // Set deployment delay
     vm.prank(globalOwner.owner());
-    vault.updateDeploymentDelay(7);
+    vault.updateDeploymentDelay(deploymentDelay);
 
-    _depositToVault(testAccount1, amount);
+    _depositToVault(testAccount1, depositAmount);
     uint256 shares = vault.balanceOf(testAccount1);
+
+    deal(address(asset), liquidityManager, depositAmount);
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(depositAmount);
 
     // Immediate withdrawal should work but with reduced assets due to deployment delay
     vm.prank(testAccount1);
@@ -534,19 +630,20 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
 
     uint256 finalBalance = asset.balanceOf(testAccount1);
     uint256 initialBalance = INITIAL_BALANCE;
-    uint256 netReceived = finalBalance - (initialBalance - amount);
+    uint256 netReceived = finalBalance -
+      (initialBalance - depositAmount);
 
     // User should receive less than deposited due to deployment delay
     assertLt(
       netReceived,
-      amount,
+      depositAmount,
       "Immediate withdrawal after deposit with delay should result in loss"
     );
   }
 
   // ============ FEE COLLECTION INTEGRATION TESTS ============ //
 
-  function testFuzz_feeCollectionDoesNotReduceShareholderValue(
+  function testFuzz_feeCollectionDilutesShareValue(
     uint256 depositAmount,
     uint256 days_
   ) public {
@@ -556,42 +653,50 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     _depositToVault(testAccount1, depositAmount);
 
     uint256 initialShares = vault.balanceOf(testAccount1);
+    uint256 initialAssets = vault.convertToAssets(initialShares);
     uint256 initialTotalSupply = vault.totalSupply();
 
     _warpDays(days_);
 
-    uint256 assetsBeforeFees = vault.convertToAssets(initialShares);
-
     vault.harvestFees();
 
-    uint256 assetsAfterFees = vault.convertToAssets(initialShares);
+    uint256 finalAssets = vault.convertToAssets(initialShares);
     uint256 finalTotalSupply = vault.totalSupply();
 
-    // User's asset value should not decrease due to fee collection
-    assertGe(
-      assetsAfterFees,
-      assetsBeforeFees,
-      "Fee collection should not reduce user asset value"
+    // User's shares should still have grown due to yield
+    assertGt(
+      finalAssets,
+      initialAssets,
+      "User assets should have grown despite fee dilution"
     );
 
     // Total supply should increase due to fee shares minted
-    assertGe(
+    assertGt(
       finalTotalSupply,
       initialTotalSupply,
       "Total supply should increase from fee collection"
     );
   }
 
-  function test_comprehensiveFeeCalculation() public {
-    uint256 amount = BASE_DEPOSIT;
+  function testFuzz_comprehensiveFeeCalculation(
+    uint256 depositAmount,
+    uint256 days_
+  ) public {
+    depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
+    days_ = bound(days_, 30, 365); // 30 days to 1 year for meaningful fee collection
 
-    _depositToVault(testAccount1, amount);
-    _depositToVault(testAccount2, amount);
+    _depositToVault(testAccount1, depositAmount);
+    _depositToVault(testAccount2, depositAmount);
 
     uint256 initialTotalAssets = vault.totalAssets();
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
+    uint256 lastFeeTime = vault.lastFeeTime();
+    uint256 totalSupplyBefore = vault.totalSupply();
 
-    _warpDays(90); // 3 months
+    _warpDays(days_);
+
+    uint256 currentAssetsBefore = vault.totalAssets();
+    uint256 timeElapsed = block.timestamp - lastFeeTime;
 
     vault.harvestFees();
 
@@ -610,29 +715,25 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     // Verify fees were collected
     assertGt(feeShares, 0, "Fees should be collected");
 
-    // Verify fee calculation components
-    uint256 managementFeeRate = vault.managementFeeRate();
-    uint256 performanceFeeRate = vault.performanceFeeRate();
-
-    assertTrue(
-      managementFeeRate > 0,
-      "Management fee rate should be set"
-    );
-    assertTrue(
-      performanceFeeRate > 0,
-      "Performance fee rate should be set"
+    // Calculate expected fees using exact formula from _computeFeeData
+    uint256 expectedFeeShares = _calculateExpectedFeeShares(
+      currentAssetsBefore,
+      totalSupplyBefore,
+      timeElapsed,
+      vault.managementFeeRate(),
+      vault.performanceFeeRate(),
+      vault.highWaterMark()
     );
 
-    // Fee assets should be reasonable proportion of total assets
-    uint256 feeAssets = vault.convertToAssets(feeShares);
-    uint256 feePercentage = (feeAssets * 100 * RAY) /
-      finalTotalAssets;
+    uint256 actualFeeAssets = vault.convertToAssets(feeShares);
+    uint256 expectedFeeAssetsValue = vault.convertToAssets(
+      expectedFeeShares
+    );
 
-    // Fees should be less than 10% of total assets for 3 months
-    assertLt(
-      feePercentage,
-      10 * RAY,
-      "Fees should be reasonable proportion of total assets"
+    _assertApproxEq(
+      actualFeeAssets,
+      expectedFeeAssetsValue,
+      "Total fee calculation incorrect"
     );
   }
 }

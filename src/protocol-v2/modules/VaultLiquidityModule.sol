@@ -162,7 +162,9 @@ abstract contract VaultLiquidityModule is
       return assets;
     }
 
-    shares = assets.mulDiv(supply, currentAssets);
+    (uint256 feeShares, ) = _computeFeeData();
+
+    shares = assets.mulDiv(supply + feeShares, currentAssets);
   }
 
   /**
@@ -185,7 +187,9 @@ abstract contract VaultLiquidityModule is
       return shares;
     }
 
-    assets = shares.mulDiv(currentAssets, supply);
+    (uint256 feeShares, ) = _computeFeeData();
+
+    assets = shares.mulDiv(currentAssets, supply + feeShares);
   }
 
   /** ======== INTERNAL VIEWS ======== */
