@@ -5,6 +5,8 @@ pragma solidity 0.8.18;
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
+// Libraries
+import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
@@ -14,6 +16,8 @@ import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract LTokenMigration_IntegrationTest is Test, Fixtures {
+  using Math for uint256;
+
   LedgityYieldVault public vault;
   MockLToken public lToken;
   IERC20 public asset;
@@ -71,7 +75,7 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
     uint256 actual,
     uint256 expected,
     string memory message
-  ) internal {
+  ) internal pure {
     if (expected == 0) {
       assertEq(actual, 0, message);
       return;
@@ -268,14 +272,34 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
     // Direct deposit (with deployment delay)
     uint256 sharesFromDeposit = _depositToVault(testAccount2, amount);
 
-    // Migration should significantly outperform direct deposit
-    uint256 advantage = ((sharesFromMigration - sharesFromDeposit) *
-      100 *
-      1e18) / sharesFromDeposit;
-    assertGt(
-      advantage,
-      1e18,
-      "Migration should have >1% advantage over direct deposit with deployment delay"
+    // Calculate compound factor for deployment delay period
+    uint256 yieldAPR = vault.yieldAPR();
+    uint256 dailyRate = yieldAPR / 365;
+
+    // Calculate: (1 + dailyRate)^deploymentDelay
+    uint256 compoundFactor = RAY;
+    for (uint256 i; i < 7; i++) {
+      compoundFactor = compoundFactor.mulDiv(RAY + dailyRate, RAY);
+    }
+
+    // Fee = assets * ((1 + rate)^delay - 1) / (1 + rate)^delay
+    // This ensures: (assets - fee) * (1 + rate)^delay = assets
+    uint256 expectedFee = (amount * (compoundFactor - RAY)) /
+      compoundFactor;
+    uint256 expectedShares = amount - expectedFee;
+
+    // Verify migration gives full shares (no deployment delay)
+    assertEq(
+      sharesFromMigration,
+      amount,
+      "Migration should receive full shares without deployment delay"
+    );
+
+    // Verify direct deposit receives reduced shares (with deployment delay)
+    _assertApproxEq(
+      sharesFromDeposit,
+      expectedShares,
+      "Direct deposit should receive shares minus maturity impact"
     );
   }
 
@@ -619,6 +643,10 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
 
     // Immediate withdrawal
     uint256 initialBalance = asset.balanceOf(testAccount1);
+
+    deal(address(asset), liquidityManager, migrationAmount);
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(migrationAmount);
 
     vm.prank(testAccount1);
     vault.redeem(shares, testAccount1, testAccount1);

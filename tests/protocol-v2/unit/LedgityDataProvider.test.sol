@@ -305,19 +305,23 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
       VaultConfig memory config = vaultConfigs[i];
       uint256 depositAmount = _getTestDepositAmount(config.asset);
 
+      uint256 gasFee = vault.withdrawalGasFee();
+
       // Create multiple withdrawal requests
       for (uint256 j = 0; j < 5; j++) {
-        address user = address(uint160(uint256(uint160(testAccount1)) + j));
+        address user = address(
+          uint160(uint256(uint160(testAccount1)) + j)
+        );
         deal(address(config.asset), user, depositAmount);
-        
+        deal(user, gasFee);
+
         vm.prank(user);
         config.asset.approve(address(vault), depositAmount);
-        
+
         vm.prank(user);
         vault.deposit(depositAmount, user);
 
         uint256 shares = vault.balanceOf(user);
-        uint256 gasFee = vault.withdrawalGasFee();
 
         vm.prank(user);
         vault.requestWithdrawal{ value: gasFee }(shares);

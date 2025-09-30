@@ -249,6 +249,15 @@ contract LedgityYieldVault is
   // ======== VIEW ======== //
 
   /**
+   * @notice Get the fee data
+   * @return totalFeeShares The total fee shares to be minted
+   * @return pricePerShare The price per share
+   */
+  function getFeeData() public view returns (uint256, uint256) {
+    return _computeFeeData();
+  }
+
+  /**
    * @notice Get the buffer strategy assets
    * @return The buffer strategy assets
    */
@@ -269,10 +278,8 @@ contract LedgityYieldVault is
   function getBufferRewardRate() external view returns (uint256) {
     uint256 totalVaultAssets = totalAssets();
 
-    // If no assets, return 0
     if (totalVaultAssets == 0 || !hasBufferStrategy) return 0;
 
-    // Get buffer assets and Aave APR
     uint256 bufferAssets = getBufferAssets();
     uint256 aaveAPR = aaveLendingPool
       .getReserveData(asset())
@@ -467,16 +474,16 @@ contract LedgityYieldVault is
    * @param receiver_ The address to receive the minted shares
    * @param assets_ The amount of underlying to deposit
    */
-  function _deposit(
+  function _depositToVault(
     address caller_,
     address receiver_,
     uint256 assets_,
     uint256 /* shares */
   )
     internal
-    override(ERC4626Upgradeable)
     whenNotPaused
     notRestricted(caller_)
+    returns (uint256 netShares)
   {
     if (assets_ == 0) revert ZeroAmount();
 
@@ -486,9 +493,9 @@ contract LedgityYieldVault is
     // Apply capital deployment impact to amount of shares
     uint256 maturityImpact = _computeMaturityImpact(assets_);
     uint256 netDeposit = assets_ - maturityImpact;
-    uint256 netShares = convertToShares(netDeposit);
+    netShares = convertToShares(netDeposit);
 
-    _mint(receiver_, netShares);
+    /// @dev Add assets before computing the expected buffer balance
     _addAssets(netDeposit);
 
     // Calculate expected buffer balance after this deposit
@@ -526,6 +533,8 @@ contract LedgityYieldVault is
       IERC20(asset()).safeTransfer(liquidityManager, vaultAmount);
     }
 
+    _mint(receiver_, netShares);
+
     emit Deposit(caller_, receiver_, assets_, netShares);
   }
 
@@ -536,7 +545,7 @@ contract LedgityYieldVault is
    * @param owner_ The owner of the shares tokens
    * @param shares_ The amount of shares tokens to withdraw
    */
-  function _withdraw(
+  function _withdrawFromVault(
     address caller_,
     address receiver_,
     address owner_,
@@ -544,14 +553,11 @@ contract LedgityYieldVault is
     uint256 shares_
   )
     internal
-    override(ERC4626Upgradeable)
     whenNotPaused
     notRestricted(caller_)
+    returns (uint256 netAssets)
   {
-    uint256 netAssets = _processSharesAndFeesOnWithdrawal(
-      caller_,
-      shares_
-    );
+    netAssets = _processSharesAndFeesOnWithdrawal(caller_, shares_);
 
     // slither-disable-next-line reentrancy-no-eth
     _withdrawBuffer(receiver_, netAssets);
@@ -607,9 +613,7 @@ contract LedgityYieldVault is
     override(ERC4626Upgradeable, ILedgityYieldVault)
     returns (uint256)
   {
-    _deposit(msg.sender, receiver, assets, 0);
-    /// @dev Return 0 since cannot preview
-    return 0;
+    return _depositToVault(msg.sender, receiver, assets, 0);
   }
 
   /**
@@ -626,9 +630,13 @@ contract LedgityYieldVault is
     override(ERC4626Upgradeable, ILedgityYieldVault)
     returns (uint256)
   {
-    _deposit(msg.sender, receiver, convertToAssets(shares), 0);
-    /// @dev Return 0 since cannot preview
-    return 0;
+    return
+      _depositToVault(
+        msg.sender,
+        receiver,
+        convertToAssets(shares),
+        0
+      );
   }
 
   /**
@@ -648,15 +656,14 @@ contract LedgityYieldVault is
     checkInstantWithdrawl
     returns (uint256)
   {
-    _withdraw(
+    return
+      _withdrawFromVault(
       msg.sender,
       receiver_,
       owner_,
       0,
       convertToShares(assets_)
     );
-    /// @dev Return 0 since cannot preview
-    return 0;
   }
 
   /**
@@ -676,9 +683,8 @@ contract LedgityYieldVault is
     checkInstantWithdrawl
     returns (uint256)
   {
-    _withdraw(msg.sender, receiver_, owner_, 0, shares_);
-    /// @dev Return 0 since cannot preview
-    return 0;
+    return
+      _withdrawFromVault(msg.sender, receiver_, owner_, 0, shares_);
   }
 
   /**
