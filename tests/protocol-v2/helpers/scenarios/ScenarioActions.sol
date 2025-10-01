@@ -5,7 +5,7 @@ pragma solidity 0.8.18;
 import { Test } from "foundry/lib/forge-std/src/Test.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
-import { ScenarioComputations } from "tests/protocol-v2/helpers/ScenarioComputations.sol";
+import { ScenarioComputations } from "tests/protocol-v2/helpers/scenarios/ScenarioComputations.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -77,18 +77,20 @@ contract ScenarioActions is Test, ScenarioComputations {
       );
 
       // Compute expected states
-      VaultState memory expectedVault = computeExpectedStateAfterDeposit(
-        vaultBefore,
-        amount,
-        vault
-      );
-      AccountState memory expectedAccount = computeExpectedAccountsAfterDeposit(
-        accountBefore,
-        amount,
-        result.sharesMinted,
-        vaultBefore,
-        vault
-      );
+      VaultState
+        memory expectedVault = computeExpectedStateAfterDeposit(
+          vaultBefore,
+          amount,
+          vault
+        );
+      AccountState
+        memory expectedAccount = computeExpectedAccountsAfterDeposit(
+          accountBefore,
+          amount,
+          result.sharesMinted,
+          vaultBefore,
+          vault
+        );
 
       // Validate state transitions
       validateVaultState(vaultAfter, expectedVault, 0.001e18);
@@ -141,18 +143,20 @@ contract ScenarioActions is Test, ScenarioComputations {
         user
       );
 
-      VaultState memory expectedVault = computeExpectedStateAfterDeposit(
-        vaultBefore,
-        result.assetsDeposited,
-        vault
-      );
-      AccountState memory expectedAccount = computeExpectedAccountsAfterDeposit(
-        accountBefore,
-        result.assetsDeposited,
-        result.sharesMinted,
-        vaultBefore,
-        vault
-      );
+      VaultState
+        memory expectedVault = computeExpectedStateAfterDeposit(
+          vaultBefore,
+          result.assetsDeposited,
+          vault
+        );
+      AccountState
+        memory expectedAccount = computeExpectedAccountsAfterDeposit(
+          accountBefore,
+          result.assetsDeposited,
+          result.sharesMinted,
+          vaultBefore,
+          vault
+        );
 
       validateVaultState(vaultAfter, expectedVault, 0.001e18);
       validateAccountState(accountAfter, expectedAccount);
@@ -203,19 +207,21 @@ contract ScenarioActions is Test, ScenarioComputations {
         user
       );
 
-      VaultState memory expectedVault = computeExpectedStateAfterWithdraw(
-        vaultBefore,
-        assets,
-        result.sharesBurned,
-        vault
-      );
-      AccountState memory expectedAccount = computeExpectedAccountsAfterWithdraw(
-        accountBefore,
-        assets,
-        result.sharesBurned,
-        vaultBefore,
-        vault
-      );
+      VaultState
+        memory expectedVault = computeExpectedStateAfterWithdraw(
+          vaultBefore,
+          assets,
+          result.sharesBurned,
+          vault
+        );
+      AccountState
+        memory expectedAccount = computeExpectedAccountsAfterWithdraw(
+          accountBefore,
+          assets,
+          result.sharesBurned,
+          vaultBefore,
+          vault
+        );
 
       validateVaultState(vaultAfter, expectedVault, 0.001e18);
       validateAccountState(accountAfter, expectedAccount);
@@ -264,19 +270,21 @@ contract ScenarioActions is Test, ScenarioComputations {
         user
       );
 
-      VaultState memory expectedVault = computeExpectedStateAfterWithdraw(
-        vaultBefore,
-        result.assetsWithdrawn,
-        shares,
-        vault
-      );
-      AccountState memory expectedAccount = computeExpectedAccountsAfterWithdraw(
-        accountBefore,
-        result.assetsWithdrawn,
-        shares,
-        vaultBefore,
-        vault
-      );
+      VaultState
+        memory expectedVault = computeExpectedStateAfterWithdraw(
+          vaultBefore,
+          result.assetsWithdrawn,
+          shares,
+          vault
+        );
+      AccountState
+        memory expectedAccount = computeExpectedAccountsAfterWithdraw(
+          accountBefore,
+          result.assetsWithdrawn,
+          shares,
+          vaultBefore,
+          vault
+        );
 
       validateVaultState(vaultAfter, expectedVault, 0.001e18);
       validateAccountState(accountAfter, expectedAccount);
@@ -460,18 +468,12 @@ contract ScenarioActions is Test, ScenarioComputations {
   ) internal {
     if (expectSuccess) {
       vm.startPrank(user);
-      IERC20(address(vault.lToken())).approve(
-        address(vault),
-        amount
-      );
+      IERC20(address(vault.lToken())).approve(address(vault), amount);
       vault.migrateLToken(amount);
       vm.stopPrank();
     } else {
       vm.startPrank(user);
-      IERC20(address(vault.lToken())).approve(
-        address(vault),
-        amount
-      );
+      IERC20(address(vault.lToken())).approve(address(vault), amount);
       if (expectedRevertMsg.length > 0) {
         vm.expectRevert(expectedRevertMsg);
       } else {
@@ -520,7 +522,11 @@ contract ScenarioActions is Test, ScenarioComputations {
   ) internal {
     if (expectSuccess) {
       vm.prank(owner);
-      vault.updateFeeRates(managementFee, performanceFee, withdrawalFee);
+      vault.updateFeeRates(
+        managementFee,
+        performanceFee,
+        withdrawalFee
+      );
     } else {
       vm.prank(owner);
       if (expectedRevertMsg.length > 0) {
@@ -528,7 +534,11 @@ contract ScenarioActions is Test, ScenarioComputations {
       } else {
         vm.expectRevert();
       }
-      vault.updateFeeRates(managementFee, performanceFee, withdrawalFee);
+      vault.updateFeeRates(
+        managementFee,
+        performanceFee,
+        withdrawalFee
+      );
     }
   }
 
@@ -563,7 +573,6 @@ contract ScenarioActions is Test, ScenarioComputations {
   function actionTimeWarp(uint256 timeJump) internal {
     vm.warp(block.timestamp + timeJump);
   }
-
 
   // ======== INTERNAL STATE CAPTURE ======== //
 
@@ -621,7 +630,6 @@ contract ScenarioActions is Test, ScenarioComputations {
     );
   }
 
-
   function _getSharePrice(
     LedgityYieldVault vault
   ) internal view returns (uint256) {
@@ -629,5 +637,4 @@ contract ScenarioActions is Test, ScenarioComputations {
     if (totalSupply == 0) return 1e18;
     return vault.convertToAssets(1e18);
   }
-
 }

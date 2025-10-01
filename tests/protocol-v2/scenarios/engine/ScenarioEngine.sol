@@ -5,7 +5,7 @@ pragma solidity 0.8.18;
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
-import { ScenarioActions } from "tests/protocol-v2/helpers/ScenarioActions.sol";
+import { ScenarioActions } from "tests/protocol-v2/helpers/scenarios/ScenarioActions.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
@@ -23,14 +23,18 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
 
   enum ActionType {
     Deposit,
+    Mint,
     Withdraw,
+    Redeem,
     RequestWithdrawal,
     ProcessRequests,
     DepositToBuffer,
     SkimBuffer,
     HarvestFees,
+    MigrateLToken,
     TimeWarp,
     UpdateAPR,
+    UpdateFees,
     SetTotalAssets
   }
 
@@ -48,6 +52,7 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
     uint256 timeWarp;
     ExpectedOutcome expected;
     bytes revertMessage;
+    bytes args;
   }
 
   // ======== STATE ======== //
@@ -188,6 +193,56 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
           " shares"
         )
       );
+    } else if (action.actionType == ActionType.ProcessRequests) {
+      logMessage = string(
+        abi.encodePacked("Process withdrawal requests by ", actorName)
+      );
+    } else if (action.actionType == ActionType.MigrateLToken) {
+      string memory amount = string(
+        abi.encodePacked(action.amount / (10 ** assetDecimals))
+      );
+
+      logMessage = string(
+        abi.encodePacked(
+          "Migrate LToken by ",
+          actorName,
+          " for ",
+          amount,
+          " tokens"
+        )
+      );
+    } else if (action.actionType == ActionType.UpdateAPR) {
+      logMessage = string(
+        abi.encodePacked("Update APR to ", action.amount)
+      );
+    } else if (action.actionType == ActionType.Redeem) {
+      string memory amount = string(
+        abi.encodePacked(action.amount / (10 ** vaultDecimals))
+      );
+
+      logMessage = string(
+        abi.encodePacked(
+          "Redeem by ",
+          actorName,
+          " for ",
+          amount,
+          " shares"
+        )
+      );
+    } else if (action.actionType == ActionType.Mint) {
+      string memory amount = string(
+        abi.encodePacked(action.amount / (10 ** vaultDecimals))
+      );
+
+      logMessage = string(
+        abi.encodePacked(
+          "Mint by ",
+          actorName,
+          " for ",
+          amount,
+          " shares"
+        )
+      );
     }
 
     // Expected outcome
@@ -217,9 +272,93 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
     bool expectSuccess = action.expected == ExpectedOutcome.Success;
 
     if (action.actionType == ActionType.Deposit) {
-      // === DEPOSIT === //
+      address receiver = action.args.length > 0
+        ? abi.decode(action.args, (address))
+        : (action.actor);
 
       actionDeposit(
+        vault,
+        asset,
+        action.actor,
+        receiver,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.Mint) {
+      address receiver = action.args.length > 0
+        ? abi.decode(action.args, (address))
+        : (action.actor);
+
+      actionMint(
+        vault,
+        asset,
+        action.actor,
+        receiver,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.Withdraw) {
+      (address receiver, address owner) = action.args.length > 0
+        ? abi.decode(action.args, (address, address))
+        : (action.actor, action.actor);
+
+      actionWithdraw(
+        vault,
+        asset,
+        action.actor,
+        receiver,
+        owner,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.Redeem) {
+      (address receiver, address owner) = action.args.length > 0
+        ? abi.decode(action.args, (address, address))
+        : (action.actor, action.actor);
+
+      actionRedeem(
+        vault,
+        asset,
+        action.actor,
+        receiver,
+        owner,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.RequestWithdrawal) {
+      uint256 gasFee = action.args.length > 0
+        ? abi.decode(action.args, (uint256))
+        : (vault.withdrawalGasFee());
+
+      actionRequestWithdrawal(
+        vault,
+        action.actor,
+        action.amount,
+        gasFee,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.ProcessRequests) {
+      (uint256[] memory requestIds, uint256 addAssets) = abi.decode(
+        action.args,
+        (uint256[], uint256)
+      );
+
+      actionProcessRequests(
+        vault,
+        asset,
+        action.actor,
+        requestIds,
+        addAssets,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.DepositToBuffer) {
+      actionDepositToBuffer(
         vault,
         asset,
         action.actor,
@@ -227,19 +366,57 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         expectSuccess,
         action.revertMessage
       );
-    } else if (action.actionType == ActionType.Withdraw) {
-      // === WITHDRAW === //
-    } else if (action.actionType == ActionType.RequestWithdrawal) {
-      // === REQUEST WITHDRAWAL === //
-    } else if (action.actionType == ActionType.DepositToBuffer) {
-      // === DEPOSIT TO BUFFER === //
     } else if (action.actionType == ActionType.SkimBuffer) {
-      // === SKIM BUFFER === //
+      actionSkimBuffer(
+        vault,
+        action.actor,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
     } else if (action.actionType == ActionType.HarvestFees) {
-      // === HARVEST FEES === //
-    } else if (action.actionType == ActionType.TimeWarp) {
-      // === TIME WARP === //
+      actionHarvestFees(vault, expectSuccess, action.revertMessage);
+    } else if (action.actionType == ActionType.MigrateLToken) {
+      actionMigrateLToken(
+        vault,
+        action.actor,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.UpdateAPR) {
+      actionUpdateAPR(
+        vault,
+        action.actor,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.UpdateFees) {
+      (
+        uint256 managementFee,
+        uint256 performanceFee,
+        uint256 withdrawalFee
+      ) = abi.decode(action.args, (uint256, uint256, uint256));
 
+      actionUpdateFees(
+        vault,
+        action.actor,
+        managementFee,
+        performanceFee,
+        withdrawalFee,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.SetTotalAssets) {
+      actionSetTotalAssets(
+        vault,
+        action.actor,
+        action.amount,
+        expectSuccess,
+        action.revertMessage
+      );
+    } else if (action.actionType == ActionType.TimeWarp) {
       actionTimeWarp(action.amount);
     }
   }

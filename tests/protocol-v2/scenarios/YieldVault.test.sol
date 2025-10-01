@@ -4,7 +4,9 @@ pragma solidity 0.8.18;
 // Foundry
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Engine
-import { ScenarioEngine } from "tests/protocol-v2/scenarios/ScenarioEngine.sol";
+import { ScenarioEngine } from "tests/protocol-v2/scenarios/engine/ScenarioEngine.sol";
+// Helpers
+import { Args } from "tests/protocol-v2/helpers/scenarios/ScenarioEncodeArgs.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
@@ -50,7 +52,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 100000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[1] = ScenarioAction({
@@ -59,7 +62,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 50000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Time passes, yield accrues
@@ -69,7 +73,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 30 days,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Charlie deposits after yield
@@ -79,7 +84,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 75000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // More time passes
@@ -89,7 +95,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 60 days,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Harvest fees
@@ -99,7 +106,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 0,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Buffer operations
@@ -109,7 +117,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 50000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Alice withdraws part
@@ -119,7 +128,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 30000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // More time and yield
@@ -129,7 +139,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 15 days,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Final deposit
@@ -139,7 +150,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 25000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     // Execute scenario
@@ -213,7 +225,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 100000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[1] = ScenarioAction({
@@ -222,7 +235,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 50000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[2] = ScenarioAction({
@@ -231,7 +245,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 30000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[3] = ScenarioAction({
@@ -240,7 +255,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 20000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[4] = ScenarioAction({
@@ -249,7 +265,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 10000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[5] = ScenarioAction({
@@ -258,7 +275,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 15000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[6] = ScenarioAction({
@@ -267,7 +285,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 40000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     actions[7] = ScenarioAction({
@@ -276,7 +295,8 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 10000 * 1e18,
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
-      revertMessage: ""
+      revertMessage: "",
+      args: Args.none()
     });
 
     executeScenario(actions, "Buffer Stress Test");
@@ -306,9 +326,69 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
       amount: 0,
       timeWarp: 0,
       expected: ExpectedOutcome.Revert,
-      revertMessage: abi.encodeWithSignature("ZeroAmount()")
+      revertMessage: abi.encodeWithSignature("ZeroAmount()"),
+      args: Args.none()
     });
 
     executeScenario(actions, "Zero Deposit Reverts");
+  }
+
+  /**
+   * @notice Scenario: Deposit with custom receiver
+   * @dev Demonstrates using Args library for custom receivers
+   */
+  function test_scenario_depositWithCustomReceiver() public {
+    ScenarioAction[] memory actions = new ScenarioAction[](3);
+
+    // Alice deposits but Bob receives the shares
+    actions[0] = ScenarioAction({
+      actionType: ActionType.Deposit,
+      actor: testAccount1,
+      amount: 50000 * 1e18,
+      timeWarp: 0,
+      expected: ExpectedOutcome.Success,
+      revertMessage: "",
+      args: Args.depositAssets(50000 * 1e18, testAccount2)
+    });
+
+    // Bob withdraws (he owns the shares)
+    actions[1] = ScenarioAction({
+      actionType: ActionType.Withdraw,
+      actor: testAccount2,
+      amount: 10000 * 1e18,
+      timeWarp: 0,
+      expected: ExpectedOutcome.Success,
+      revertMessage: "",
+      args: Args.withdrawAssets(10000 * 1e18, testAccount2, testAccount2)
+    });
+
+    // Charlie mints shares for himself
+    actions[2] = ScenarioAction({
+      actionType: ActionType.Mint,
+      actor: testAccount3,
+      amount: 30000 * 1e18,
+      timeWarp: 0,
+      expected: ExpectedOutcome.Success,
+      revertMessage: "",
+      args: Args.mintShares(30000 * 1e18, testAccount3)
+    });
+
+    executeScenario(actions, "Deposit with Custom Receiver");
+
+    // Validate Bob received shares from Alice's deposit
+    uint256 bobShares = vault.balanceOf(testAccount2);
+    assertGt(
+      bobShares,
+      0,
+      "Bob should have shares from Alice's deposit"
+    );
+
+    // Validate Charlie has shares
+    uint256 charlieShares = vault.balanceOf(testAccount3);
+    assertGt(charlieShares, 0, "Charlie should have shares");
+
+    // Validate Alice has no shares (she deposited for Bob)
+    uint256 aliceShares = vault.balanceOf(testAccount1);
+    assertEq(aliceShares, 0, "Alice should have no shares");
   }
 }
