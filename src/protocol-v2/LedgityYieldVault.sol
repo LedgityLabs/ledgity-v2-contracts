@@ -756,20 +756,20 @@ contract LedgityYieldVault is
 
   /**
    * @notice Deposit assets into the liquidity buffer
-   * @param amount Amount of assets to deposit
+   * @param assets Amount of assets to deposit
    * @dev Only callable by liquidity manager
    */
   function depositToBuffer(
-    uint256 amount
+    uint256 assets
   ) public onlyLiquidityManager {
-    // Transfer amount from fund wallet to contract
+    // Transfer assets from fund wallet to contract
     // slither-disable-next-line arbitrary-send-erc20
     IERC20(asset()).safeTransferFrom(
       liquidityManager,
       address(this),
-      amount
+      assets
     );
-    if (hasBufferStrategy) _investBuffer(amount);
+    if (hasBufferStrategy) _investBuffer(assets);
   }
 
   /**
@@ -784,19 +784,19 @@ contract LedgityYieldVault is
   /**
    * @notice Process queued withdrawal requests by providing liquidity
    * @param requestIds Array of request IDs to process
-   * @param addedLiquidity Additional liquidity provided by liquidity manager
+   * @param addAssets Additional liquidity provided by liquidity manager
    * @dev Only callable by liquidity manager, uses buffer + added liquidity
    */
   function processRequests(
     uint256[] calldata requestIds,
-    uint256 addedLiquidity
+    uint256 addAssets
   ) public onlyLiquidityManager {
-    if (0 < addedLiquidity) {
+    if (0 < addAssets) {
       // slither-disable-next-line arbitrary-send-erc20
       IERC20(asset()).safeTransferFrom(
         liquidityManager,
         address(this),
-        addedLiquidity
+        addAssets
       );
     }
 
@@ -816,13 +816,13 @@ contract LedgityYieldVault is
 
     // Check available liquidity (buffer + added liquidity)
     uint256 bufferBalance = getBufferAssets();
-    if ((bufferBalance + addedLiquidity) < assetsTotal)
+    if ((bufferBalance + addAssets) < assetsTotal)
       revert InsufficientLiquidity();
 
     // Withdraw required assets from buffer if needed
-    if (hasBufferStrategy && addedLiquidity < assetsTotal) {
+    if (hasBufferStrategy && addAssets < assetsTotal) {
       // slither-disable-next-line reentrancy-no-eth
-      _withdrawBuffer(address(this), assetsTotal - addedLiquidity);
+      _withdrawBuffer(address(this), assetsTotal - addAssets);
     }
 
     // Process each request

@@ -14,6 +14,7 @@ import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataPro
 import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract LTokenMigration_IntegrationTest is Test, Fixtures {
   using Math for uint256;
@@ -21,15 +22,19 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
   LedgityYieldVault public vault;
   MockLToken public lToken;
   IERC20 public asset;
+  uint256 oneAsset;
 
-  uint256 public constant PRECISION_TOLERANCE = 1e15; // 0.1% tolerance
-  uint256 public constant BASE_AMOUNT = 10000 * 1e18; // 10k tokens
+  uint256 public PRECISION_TOLERANCE = 1e15; // 0.1% tolerance
+  uint256 public BASE_AMOUNT;
 
   function setUp() public {
     _setUp();
 
     // Use mock WETH for consistent 18 decimals
     asset = usdc;
+    oneAsset = 10 ** IERC20Metadata(address(asset)).decimals();
+    BASE_AMOUNT = 10000 * oneAsset;
+
     lToken = _createLToken(asset);
     vault = _createVault(asset, IERC20(address(lToken)));
 
@@ -75,7 +80,7 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
     uint256 actual,
     uint256 expected,
     string memory message
-  ) internal pure {
+  ) internal view {
     if (expected == 0) {
       assertEq(actual, 0, message);
       return;
@@ -136,7 +141,11 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
   }
 
   function testFuzz_migrationAmounts(uint256 migrationAmount) public {
-    migrationAmount = bound(migrationAmount, 1e18, 1_000_000 * 1e18);
+    migrationAmount = bound(
+      migrationAmount,
+      oneAsset,
+      1_000_000 * oneAsset
+    );
 
     _mintLTokens(testAccount1, migrationAmount);
 
@@ -520,8 +529,12 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
     uint256 migrationAmount,
     uint256 existingAssets
   ) public {
-    migrationAmount = bound(migrationAmount, 1e18, 100_000 * 1e18);
-    existingAssets = bound(existingAssets, 0, 100_000 * 1e18);
+    migrationAmount = bound(
+      migrationAmount,
+      oneAsset,
+      100_000 * oneAsset
+    );
+    existingAssets = bound(existingAssets, 0, 100_000 * oneAsset);
 
     // Create existing vault state if specified
     if (existingAssets > 0) {
