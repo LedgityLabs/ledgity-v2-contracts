@@ -84,6 +84,9 @@ contract Fixtures is Test {
   address internal feeRecipient = address(0xfee);
   address internal liquidityManager = address(0x777);
 
+  // Actor name mapping
+  mapping(address => string) internal actorNames;
+
   IAaveLendingPoolV3 internal aaveLendingPool;
 
   // ======== SETUP FUNCTIONS ======== //
@@ -214,6 +217,14 @@ contract Fixtures is Test {
     vm.label(deployer, "Deployer");
     vm.label(feeRecipient, "Fee Recipient");
     vm.label(liquidityManager, "Liquidity Manager");
+
+    // Setup actor name mapping
+    actorNames[testAccount1] = "Alice";
+    actorNames[testAccount2] = "Bob";
+    actorNames[testAccount3] = "Carol";
+    actorNames[liquidityManager] = "Liquidity Manager";
+    actorNames[feeRecipient] = "Fee Recipient";
+    actorNames[address(this)] = "Owner";
   }
 
   function _setupInitialState() private {
