@@ -16,6 +16,7 @@ import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 /**
  * @title Vault_InvariantsTest
@@ -32,7 +33,7 @@ contract Vault_InvariantsTest is StdInvariant, Test, Fixtures {
   MockLToken public lToken;
 
   // Configuration
-  uint256 public constant INITIAL_VAULT_ASSETS = 1000000 * 1e18; // 1M tokens
+  uint256 public INITIAL_VAULT_ASSETS;
 
   function setUp() public {
     _setUp();
@@ -40,6 +41,10 @@ contract Vault_InvariantsTest is StdInvariant, Test, Fixtures {
     asset = usdc;
     lToken = _createLToken(asset);
     vault = _createVault(asset, IERC20(address(lToken)));
+
+    INITIAL_VAULT_ASSETS =
+      1_000_000 *
+      10 ** IERC20Metadata(address(asset)).decimals();
 
     // Setup initial vault state
     deal(address(asset), address(this), INITIAL_VAULT_ASSETS);
@@ -117,6 +122,7 @@ contract Vault_InvariantsTest is StdInvariant, Test, Fixtures {
       vault.balanceOf(testAccount2) +
       vault.balanceOf(testAccount3) +
       vault.balanceOf(liquidityManager) +
+      vault.balanceOf(feeRecipient) +
       vault.balanceOf(address(handler));
 
     assertEq(
@@ -339,13 +345,18 @@ contract VaultHandler is Test, Fixtures {
   uint256 public ghost_highWaterMark;
 
   // Configuration
-  uint256 public constant MAX_DEPOSIT = 100000 * 1e18;
-  uint256 public constant MIN_DEPOSIT = 1 * 1e18;
-  uint256 public constant MAX_TIME_WARP = 30 days;
+  uint256 public MAX_DEPOSIT;
+  uint256 public MIN_DEPOSIT;
+  uint256 public MAX_TIME_WARP = 30 days;
 
   constructor(LedgityYieldVault _vault, IERC20 _asset) {
     vault = _vault;
     asset = _asset;
+
+    MAX_DEPOSIT =
+      100_000 *
+      10 ** IERC20Metadata(address(asset)).decimals();
+    MIN_DEPOSIT = 1 * 10 ** IERC20Metadata(address(asset)).decimals();
 
     // Initialize ghost variables
     ghost_initialAssets = _vault.totalAssets();
