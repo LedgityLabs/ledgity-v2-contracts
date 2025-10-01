@@ -29,7 +29,7 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
     _setUp();
 
     // Use mock WETH for consistent 18 decimals
-    asset = mockWeth;
+    asset = usdc;
     lToken = _createLToken(asset);
     vault = _createVault(asset, IERC20(address(lToken)));
 
