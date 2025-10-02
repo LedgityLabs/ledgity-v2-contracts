@@ -9,9 +9,9 @@ const deployerFunction: DeployFunction = async ({
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  if (!fs.existsSync("temp/lTokenDeploys.json")) {
+  if (!fs.existsSync("temp/deployedTokens.json")) {
     fs.mkdirSync("temp");
-    fs.writeFileSync("temp/lTokenDeploys.json", "{}", "utf8");
+    fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
   }
 
   const result = await deployments.deploy("LDYSonic", {
@@ -21,19 +21,19 @@ const deployerFunction: DeployFunction = async ({
     waitConfirmations: 1,
   });
 
-  // Update lTokenDeploys.json
-  const lTokenDeploys: {
+  // Update deployedTokens.json
+  const deployedTokens: {
     [chainId: string]: {
       [symbol: string]: string;
     };
-  } = JSON.parse(fs.readFileSync("temp/lTokenDeploys.json", "utf8"));
+  } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
 
-  lTokenDeploys[chainId] ??= {};
-  lTokenDeploys[chainId]["LDY"] = result.address;
+  deployedTokens[chainId] ??= {};
+  deployedTokens[chainId]["LDY"] = result.address;
 
   fs.writeFileSync(
-    "temp/lTokenDeploys.json",
-    JSON.stringify(lTokenDeploys, null, 2),
+    "temp/deployedTokens.json",
+    JSON.stringify(deployedTokens, null, 2),
     "utf8",
   );
 };

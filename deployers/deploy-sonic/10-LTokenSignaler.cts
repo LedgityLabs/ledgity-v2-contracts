@@ -32,13 +32,13 @@ const deployerFunction: DeployFunction = async ({
   // Skip signaling tokens if this is the previous deployment
   if (!result.newlyDeployed) return;
 
-  if (!fs.existsSync("temp/lTokenDeploys.json")) return;
+  if (!fs.existsSync("temp/deployedTokens.json")) return;
 
-  const lTokenDeploys: {
+  const deployedTokens: {
     [chainId: string]: {
       [symbol: string]: string;
     };
-  } = JSON.parse(fs.readFileSync("temp/lTokenDeploys.json", "utf8"));
+  } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
 
   const lTokenSignaler = await ethers.getContractAt(
     "LTokenSignaler",
@@ -46,7 +46,7 @@ const deployerFunction: DeployFunction = async ({
   );
 
   for (const symbol of LTOKEN_SYMBOLS) {
-    const lTokenAddress = lTokenDeploys?.[chainId]?.[symbol];
+    const lTokenAddress = deployedTokens?.[chainId]?.[symbol];
     if (!lTokenAddress) continue;
 
     await lTokenSignaler

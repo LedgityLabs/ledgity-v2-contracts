@@ -2,8 +2,8 @@ import fs from "fs";
 import type { DeployFunction } from "hardhat-deploy/dist/types";
 import { isAddress, parseUnits, zeroAddress } from "viem";
 
-if (!fs.existsSync("temp/lTokenDeploys.json"))
-  throw new Error("lTokenDeploys.json not found");
+if (!fs.existsSync("temp/deployedTokens.json"))
+  throw new Error("deployedTokens.json not found");
 
 const deployerFunction: DeployFunction = async ({
   getNamedAccounts,
@@ -13,12 +13,12 @@ const deployerFunction: DeployFunction = async ({
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  const lTokenDeploys: {
+  const deployedTokens: {
     [chainId: string]: {
       [symbol: string]: string;
     };
-  } = JSON.parse(fs.readFileSync("temp/lTokenDeploys.json", "utf8"));
-  const LDY_TOKEN = lTokenDeploys?.[chainId]?.["LDY"];
+  } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
+  const LDY_TOKEN = deployedTokens?.[chainId]?.["LDY"];
 
   // Check if LDY token address is set
   if (!LDY_TOKEN || !isAddress(LDY_TOKEN) || LDY_TOKEN === zeroAddress)

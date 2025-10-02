@@ -1,4 +1,4 @@
-import { Address, parseEther, parseUnits } from "viem";
+import { Address, parseEther, parseUnits, zeroAddress } from "viem";
 import { dependencies } from "./dependencies";
 
 type VaultParams = {
@@ -48,6 +48,12 @@ export function getParametersForVault(
 
   if (!chainConfig || !vaultConfig) throw Error("Vault not found");
   if (!vaultConfig.asset) throw Error("Asset not found");
+
+  if (
+    chainConfig.liquidityManager === zeroAddress ||
+    chainConfig.feeRecipient === zeroAddress
+  )
+    throw Error("Invalid liquidityManager or feeRecipient");
 
   return [
     {

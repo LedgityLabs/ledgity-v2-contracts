@@ -63,12 +63,12 @@ const deployerFunction: DeployFunction = async ({
 
   // Deploy the LToken
   await deployments.deploy(VAULT_TOKEN_SYMBOL, {
-    contract: "LedgityYieldVaultSonic",
+    contract: "LedgityYieldVaultHedera",
     from: deployer,
     log: true,
     proxy: {
       proxyContract: "UUPS",
-      implementationName: "LedgityYieldVaultSonic_Implementation",
+      implementationName: "LedgityYieldVaultHedera_Implementation",
       execute: {
         init: {
           methodName: "initializeAndRegister",

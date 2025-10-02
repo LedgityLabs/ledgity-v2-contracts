@@ -6,10 +6,20 @@ const deployerFunction: DeployFunction = async ({
 }) => {
   const { deployer } = await getNamedAccounts();
 
-  // Deploy the shared LToken implementation
-  await deployments.deploy("WrappedLTokenHedera", {
+  const globalOwner = await deployments.get("GlobalOwner");
+
+  await deployments.deploy("GlobalAccessList", {
     from: deployer,
     log: true,
+    proxy: {
+      proxyContract: "UUPS",
+      execute: {
+        init: {
+          methodName: "initialize",
+          args: [globalOwner.address],
+        },
+      },
+    },
     waitConfirmations: 1,
   });
 };
