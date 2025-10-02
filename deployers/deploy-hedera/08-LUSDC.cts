@@ -1,7 +1,8 @@
-import fs from "fs";
 import type { DeployFunction } from "hardhat-deploy/dist/types";
-import { isAddress, zeroAddress } from "viem";
-import { dependencies } from "../../data/dependencies";
+import {
+  getTokenAddress,
+  writeTempTokenAddress,
+} from "../../data/configsContracts";
 
 const LTOKEN_NAME = "Ledgity USDC";
 const LTOKEN_SYMBOL = "LUSDC";
@@ -23,21 +24,8 @@ const deployerFunction: DeployFunction = async ({
   const ldyStaking = await deployments.get("LDYStaking");
   const aprHistory = await deployments.get("APRHistory");
 
-  if (!fs.existsSync("temp/deployedTokens.json")) {
-    fs.mkdirSync("temp");
-    fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
-  }
-
   // Check if the underlying token is set in dependencies
-  const underlyingAddress = dependencies[chainId][UNDERLYING_TOKEN_SYMBOL];
-  if (
-    !underlyingAddress ||
-    underlyingAddress === zeroAddress ||
-    !isAddress(underlyingAddress)
-  )
-    throw new Error(
-      `Missing ${UNDERLYING_TOKEN_SYMBOL} address for chain ${chainId}`,
-    );
+  const UNDERLYING_TOKEN = getTokenAddress(chainId, UNDERLYING_TOKEN_SYMBOL);
 
   // Deploy the proxy
   const result = await deployments.deploy(LTOKEN_SYMBOL, {
@@ -58,7 +46,7 @@ const deployerFunction: DeployFunction = async ({
             globalPause.address,
             globalBlacklist.address,
             ldyStaking.address,
-            underlyingAddress,
+            UNDERLYING_TOKEN,
             IS_HTOKEN,
             LTOKEN_NAME,
             LTOKEN_SYMBOL,
@@ -70,20 +58,7 @@ const deployerFunction: DeployFunction = async ({
   });
 
   // Update deployedTokens.json
-  const deployedTokens: {
-    [chainId: string]: {
-      [symbol: string]: string;
-    };
-  } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
-
-  deployedTokens[chainId] ??= {};
-  deployedTokens[chainId][LTOKEN_SYMBOL] = result.address;
-
-  fs.writeFileSync(
-    "temp/deployedTokens.json",
-    JSON.stringify(deployedTokens, null, 2),
-    "utf8",
-  );
+  writeTempTokenAddress(chainId, LTOKEN_SYMBOL, result.address);
 };
 
 export default deployerFunction;

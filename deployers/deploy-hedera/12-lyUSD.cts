@@ -1,14 +1,15 @@
 import fs from "fs";
 import { type DeployFunction } from "hardhat-deploy/dist/types";
-import { isAddress, zeroAddress, Address } from "viem";
-import { getParametersForVault } from "../../data/configsContracts";
+import { Address } from "viem";
+import {
+  getParametersForVault,
+  getTokenAddress,
+  writeTempTokenAddress,
+} from "../../data/configsContracts";
 
 const LTOKEN_SYMBOL = "LUSDC";
 const VAULT_TOKEN_NAME = "Ledgity USD Vault";
 const VAULT_TOKEN_SYMBOL = "lyUSD";
-
-if (!fs.existsSync("temp/deployedTokens.json"))
-  throw new Error("deployedTokens.json not found");
 
 const deployerFunction: DeployFunction = async ({
   getNamedAccounts,
@@ -36,33 +37,22 @@ const deployerFunction: DeployFunction = async ({
   } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
 
   // Check if the underlying lToken is set in dependencies
-  const lTokenAddress = deployedTokens?.[chainId]?.[LTOKEN_SYMBOL];
-  const stakeTokenAddress = deployedTokens?.[chainId]?.LDY;
-  if (
-    !lTokenAddress ||
-    lTokenAddress === zeroAddress ||
-    !isAddress(lTokenAddress) ||
-    !stakeTokenAddress ||
-    stakeTokenAddress === zeroAddress ||
-    !isAddress(stakeTokenAddress)
-  )
-    throw new Error(
-      `Missing or invalid ${LTOKEN_SYMBOL} or LDY address for chain ${chainId}`,
-    );
+  const LTOKEN_ADDRESS = getTokenAddress(chainId, LTOKEN_SYMBOL);
+  const LDY_ADDRESS = getTokenAddress(chainId, "LDY");
 
   const args = getParametersForVault(
     Number(chainId),
     VAULT_TOKEN_NAME,
     VAULT_TOKEN_SYMBOL,
-    lTokenAddress,
-    stakeTokenAddress,
+    LTOKEN_ADDRESS,
+    LDY_ADDRESS,
     globalOwner,
     globalPause,
     globalAccessList,
   );
 
   // Deploy the LToken
-  await deployments.deploy(VAULT_TOKEN_SYMBOL, {
+  const result = await deployments.deploy(VAULT_TOKEN_SYMBOL, {
     contract: "LedgityYieldVaultHedera",
     from: deployer,
     log: true,
@@ -78,6 +68,9 @@ const deployerFunction: DeployFunction = async ({
     },
     waitConfirmations: 1,
   });
+
+  // Update deployedTokens.json
+  writeTempTokenAddress(chainId, VAULT_TOKEN_SYMBOL, result.address);
 };
 
 export default deployerFunction;

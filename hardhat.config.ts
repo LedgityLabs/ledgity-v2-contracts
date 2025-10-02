@@ -12,6 +12,7 @@ import "./tasks/deploy-mock-ccip-token";
 import { utils } from "ethers";
 import { type HardhatUserConfig } from "hardhat/config";
 import { HardhatNetworkUserConfig, HttpNetworkUserConfig } from "hardhat/types";
+import fs from "fs";
 
 import dotenv from "dotenv";
 import colors from "colors";
@@ -64,6 +65,12 @@ if (
   (!ARBITRUM_RPC_URL || !ARBITRUM_VERIFY_API_KEY)
 )
   throw Error("Arbitrum config not found in environment variables");
+
+/// @dev Create the temp file to write token deployments
+if (!fs.existsSync("temp/deployedTokens.json")) {
+  fs.mkdirSync("temp");
+  fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
+}
 
 // Centralized network configuration
 interface NetworkConfig {

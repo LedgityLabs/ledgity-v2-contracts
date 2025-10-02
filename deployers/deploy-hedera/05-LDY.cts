@@ -1,5 +1,5 @@
-import fs from "fs";
 import { type DeployFunction } from "hardhat-deploy/dist/types";
+import { writeTempTokenAddress } from "../../data/configsContracts";
 
 const deployerFunction: DeployFunction = async ({
   getNamedAccounts,
@@ -9,11 +9,6 @@ const deployerFunction: DeployFunction = async ({
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  if (!fs.existsSync("temp/deployedTokens.json")) {
-    fs.mkdirSync("temp");
-    fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
-  }
-
   const result = await deployments.deploy("LDY", {
     from: deployer,
     contract: "LDY",
@@ -22,20 +17,7 @@ const deployerFunction: DeployFunction = async ({
   });
 
   // Update deployedTokens.json
-  const deployedTokens: {
-    [chainId: string]: {
-      [symbol: string]: string;
-    };
-  } = JSON.parse(fs.readFileSync("temp/deployedTokens.json", "utf8"));
-
-  deployedTokens[chainId] ??= {};
-  deployedTokens[chainId]["LDY"] = result.address;
-
-  fs.writeFileSync(
-    "temp/deployedTokens.json",
-    JSON.stringify(deployedTokens, null, 2),
-    "utf8",
-  );
+  writeTempTokenAddress(chainId, "LDY", result.address);
 };
 
 export default deployerFunction;
