@@ -73,7 +73,9 @@ contract ScenarioComputations is Test, Fixtures {
     expectedState.totalAssets = stateBefore.totalAssets + netDeposit;
 
     // Expected total supply increases by shares minted
-    expectedState.totalSupply = stateBefore.totalSupply + sharesToMint;
+    expectedState.totalSupply =
+      stateBefore.totalSupply +
+      sharesToMint;
 
     // Buffer stays same (assets distributed separately)
     expectedState.bufferAssets = stateBefore.bufferAssets;
@@ -107,27 +109,40 @@ contract ScenarioComputations is Test, Fixtures {
     LedgityYieldVault vault
   ) internal view returns (AccountState memory expectedAccount) {
     // User spent assets
-    expectedAccount.userAssetBalance = accountBefore.userAssetBalance - depositAmount;
+    expectedAccount.userAssetBalance =
+      accountBefore.userAssetBalance -
+      depositAmount;
     // User received shares
-    expectedAccount.userShareBalance = accountBefore.userShareBalance + sharesMinted;
+    expectedAccount.userShareBalance =
+      accountBefore.userShareBalance +
+      sharesMinted;
 
     // Calculate expected buffer balance
     uint256 liquidityBufferRate = vault.liquidityBufferRate();
-    uint256 expectedBufferBalance = ((stateBefore.totalAssets + depositAmount) * liquidityBufferRate) / RAY;
+    uint256 expectedBufferBalance = ((stateBefore.totalAssets +
+      depositAmount) * liquidityBufferRate) / RAY;
     uint256 currentBufferBalance = stateBefore.bufferAssets;
 
     if (currentBufferBalance < expectedBufferBalance) {
       // Buffer needs filling
-      uint256 bufferDeficit = expectedBufferBalance - currentBufferBalance;
-      uint256 bufferAmount = depositAmount < bufferDeficit ? depositAmount : bufferDeficit;
-      expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance + (depositAmount - bufferAmount);
+      uint256 bufferDeficit = expectedBufferBalance -
+        currentBufferBalance;
+      uint256 bufferAmount = depositAmount < bufferDeficit
+        ? depositAmount
+        : bufferDeficit;
+      expectedAccount.liquidityManagerAssetBalance =
+        accountBefore.liquidityManagerAssetBalance +
+        (depositAmount - bufferAmount);
     } else {
       // Buffer is full, all goes to liquidity manager
-      expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance + depositAmount;
+      expectedAccount.liquidityManagerAssetBalance =
+        accountBefore.liquidityManagerAssetBalance +
+        depositAmount;
     }
 
     // Fee recipient shares may increase due to harvestFees
-    expectedAccount.feeRecipientShareBalance = accountBefore.feeRecipientShareBalance;
+    expectedAccount.feeRecipientShareBalance = accountBefore
+      .feeRecipientShareBalance;
   }
 
   // ======== WITHDRAWAL COMPUTATIONS ======== //
@@ -146,10 +161,14 @@ contract ScenarioComputations is Test, Fixtures {
     LedgityYieldVault /* vault */
   ) internal view returns (VaultState memory expectedState) {
     // Total assets decrease by gross withdrawal
-    expectedState.totalAssets = stateBefore.totalAssets - assetsWithdrawn;
+    expectedState.totalAssets =
+      stateBefore.totalAssets -
+      assetsWithdrawn;
 
     // Total supply decreases by shares burned
-    expectedState.totalSupply = stateBefore.totalSupply - sharesBurned;
+    expectedState.totalSupply =
+      stateBefore.totalSupply -
+      sharesBurned;
 
     // Buffer stays same (assets withdrawn separately)
     expectedState.bufferAssets = stateBefore.bufferAssets;
@@ -182,23 +201,31 @@ contract ScenarioComputations is Test, Fixtures {
     LedgityYieldVault /* vault */
   ) internal pure returns (AccountState memory expectedAccount) {
     // User received assets
-    expectedAccount.userAssetBalance = accountBefore.userAssetBalance + assetsWithdrawn;
+    expectedAccount.userAssetBalance =
+      accountBefore.userAssetBalance +
+      assetsWithdrawn;
     // User burned shares
-    expectedAccount.userShareBalance = accountBefore.userShareBalance - sharesBurned;
+    expectedAccount.userShareBalance =
+      accountBefore.userShareBalance -
+      sharesBurned;
 
     // Assets withdrawn from buffer first, then liquidity manager
     uint256 bufferAssets = stateBefore.bufferAssets;
     if (bufferAssets >= assetsWithdrawn) {
       // All from buffer
-      expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance;
+      expectedAccount.liquidityManagerAssetBalance = accountBefore
+        .liquidityManagerAssetBalance;
     } else {
       // Buffer + liquidity manager
       uint256 fromLiquidityManager = assetsWithdrawn - bufferAssets;
-      expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance - fromLiquidityManager;
+      expectedAccount.liquidityManagerAssetBalance =
+        accountBefore.liquidityManagerAssetBalance -
+        fromLiquidityManager;
     }
 
     // Fee recipient shares may increase due to harvestFees
-    expectedAccount.feeRecipientShareBalance = accountBefore.feeRecipientShareBalance;
+    expectedAccount.feeRecipientShareBalance = accountBefore
+      .feeRecipientShareBalance;
   }
 
   // ======== TIME WARP COMPUTATIONS ======== //
@@ -232,7 +259,9 @@ contract ScenarioComputations is Test, Fixtures {
 
     // Time-based state updates
     expectedState.lastFeeTime = stateBefore.lastFeeTime;
-    expectedState.lastCompoundTime = stateBefore.lastCompoundTime + (fullDays * 1 days);
+    expectedState.lastCompoundTime =
+      stateBefore.lastCompoundTime +
+      (fullDays * 1 days);
     expectedState.highWaterMark = stateBefore.highWaterMark;
 
     // Share price after time warp
@@ -254,10 +283,14 @@ contract ScenarioComputations is Test, Fixtures {
   function computeExpectedStateAfterHarvestFees(
     VaultState memory stateBefore,
     LedgityYieldVault vault
-  ) internal view returns (VaultState memory expectedState, uint256 feeSharesMinted) {
+  )
+    internal
+    view
+    returns (VaultState memory expectedState, uint256 feeSharesMinted)
+  {
     // Calculate fees
     uint256 timeElapsed = block.timestamp - stateBefore.lastFeeTime;
-    
+
     uint256 managementFeeAssets = computeManagementFees(
       stateBefore.totalAssets,
       vault.managementFeeRate(),
@@ -271,7 +304,8 @@ contract ScenarioComputations is Test, Fixtures {
       vault.performanceFeeRate()
     );
 
-    uint256 totalFeeAssets = managementFeeAssets + performanceFeeAssets;
+    uint256 totalFeeAssets = managementFeeAssets +
+      performanceFeeAssets;
 
     // Convert fees to shares (accounting for dilution)
     feeSharesMinted = totalFeeAssets.mulDiv(
@@ -282,7 +316,9 @@ contract ScenarioComputations is Test, Fixtures {
 
     // State after fees
     expectedState.totalAssets = stateBefore.totalAssets;
-    expectedState.totalSupply = stateBefore.totalSupply + feeSharesMinted;
+    expectedState.totalSupply =
+      stateBefore.totalSupply +
+      feeSharesMinted;
     expectedState.bufferAssets = stateBefore.bufferAssets;
     expectedState.lastFeeTime = block.timestamp;
     expectedState.lastCompoundTime = stateBefore.lastCompoundTime;
@@ -292,7 +328,8 @@ contract ScenarioComputations is Test, Fixtures {
       expectedState.totalAssets,
       expectedState.totalSupply
     );
-    expectedState.highWaterMark = newSharePrice > stateBefore.highWaterMark
+    expectedState.highWaterMark = newSharePrice >
+      stateBefore.highWaterMark
       ? newSharePrice
       : stateBefore.highWaterMark;
     expectedState.sharePrice = newSharePrice;
@@ -310,8 +347,11 @@ contract ScenarioComputations is Test, Fixtures {
   ) internal pure returns (AccountState memory expectedAccount) {
     expectedAccount.userAssetBalance = accountBefore.userAssetBalance;
     expectedAccount.userShareBalance = accountBefore.userShareBalance;
-    expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance;
-    expectedAccount.feeRecipientShareBalance = accountBefore.feeRecipientShareBalance + feeSharesMinted;
+    expectedAccount.liquidityManagerAssetBalance = accountBefore
+      .liquidityManagerAssetBalance;
+    expectedAccount.feeRecipientShareBalance =
+      accountBefore.feeRecipientShareBalance +
+      feeSharesMinted;
   }
 
   // ======== BUFFER OPERATION COMPUTATIONS ======== //
@@ -341,7 +381,9 @@ contract ScenarioComputations is Test, Fixtures {
     uint256 amount
   ) internal pure returns (AccountState memory expectedAccount) {
     expectedAccount = accountBefore;
-    expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance - amount;
+    expectedAccount.liquidityManagerAssetBalance =
+      accountBefore.liquidityManagerAssetBalance -
+      amount;
   }
 
   /**
@@ -369,7 +411,9 @@ contract ScenarioComputations is Test, Fixtures {
     uint256 amount
   ) internal pure returns (AccountState memory expectedAccount) {
     expectedAccount = accountBefore;
-    expectedAccount.liquidityManagerAssetBalance = accountBefore.liquidityManagerAssetBalance + amount;
+    expectedAccount.liquidityManagerAssetBalance =
+      accountBefore.liquidityManagerAssetBalance +
+      amount;
   }
 
   // ======== INTERNAL HELPERS ======== //
@@ -510,14 +554,16 @@ contract ScenarioComputations is Test, Fixtures {
     uint256 performanceFeeRate
   ) internal pure returns (uint256 performanceFeeAssets) {
     // Price per share before performance fees
-    uint256 pricePerShare = (stateBefore.totalAssets - managementFeeAssets).mulDiv(
-      1e18,
-      stateBefore.totalSupply + 1,
-      Math.Rounding.Up
-    );
+    uint256 pricePerShare = (stateBefore.totalAssets -
+      managementFeeAssets).mulDiv(
+        1e18,
+        stateBefore.totalSupply + 1,
+        Math.Rounding.Up
+      );
 
     if (pricePerShare > stateBefore.highWaterMark) {
-      uint256 profitPerShare = pricePerShare - stateBefore.highWaterMark;
+      uint256 profitPerShare = pricePerShare -
+        stateBefore.highWaterMark;
       uint256 profit = profitPerShare.mulDiv(
         stateBefore.totalSupply,
         1e18,
@@ -543,7 +589,7 @@ contract ScenarioComputations is Test, Fixtures {
     VaultState memory actual,
     VaultState memory expected,
     uint256 tolerance
-  ) internal view {
+  ) internal pure {
     assertApproxEqRel(
       actual.totalAssets,
       expected.totalAssets,
@@ -592,7 +638,7 @@ contract ScenarioComputations is Test, Fixtures {
   function validateAccountState(
     AccountState memory actual,
     AccountState memory expected
-  ) internal view {
+  ) internal pure {
     assertEq(
       actual.userAssetBalance,
       expected.userAssetBalance,

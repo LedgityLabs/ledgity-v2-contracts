@@ -51,62 +51,110 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal returns (DepositResult memory result) {
-    // Capture state before
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
-    AccountState memory accountBefore = _captureAccountStateBefore(
+    if (expectSuccess) {
+      result = _executeDepositSuccess(
+        vault,
+        asset,
+        user,
+        receiver,
+        amount
+      );
+    } else {
+      _executeDepositRevert(
+        vault,
+        asset,
+        user,
+        receiver,
+        amount,
+        expectedRevertMsg
+      );
+    }
+  }
+
+  function _executeDepositSuccess(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    uint256 amount
+  ) private returns (DepositResult memory result) {
+    VaultState memory vaultBefore = _captureVaultState(vault);
+    AccountState memory accountBefore = _captureAccountState(
       vault,
       asset,
       user
     );
 
-    if (expectSuccess) {
-      // Execute deposit
-      vm.startPrank(user);
-      asset.approve(address(vault), amount);
-      result.sharesMinted = vault.deposit(amount, receiver);
-      vm.stopPrank();
+    vm.startPrank(user);
+    asset.approve(address(vault), amount);
+    result.sharesMinted = vault.deposit(amount, receiver);
+    vm.stopPrank();
 
-      result.assetsDeposited = amount;
+    result.assetsDeposited = amount;
 
-      // Capture state after
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
-      AccountState memory accountAfter = _captureAccountStateAfter(
-        vault,
-        asset,
-        user
+    _validateDepositState(
+      vault,
+      asset,
+      user,
+      vaultBefore,
+      accountBefore,
+      amount,
+      result.sharesMinted
+    );
+  }
+
+  function _executeDepositRevert(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    uint256 amount,
+    bytes memory expectedRevertMsg
+  ) private {
+    vm.startPrank(user);
+    asset.approve(address(vault), amount);
+    if (expectedRevertMsg.length > 0) {
+      vm.expectRevert(expectedRevertMsg);
+    } else {
+      vm.expectRevert();
+    }
+    vault.deposit(amount, receiver);
+    vm.stopPrank();
+  }
+
+  function _validateDepositState(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    VaultState memory vaultBefore,
+    AccountState memory accountBefore,
+    uint256 amount,
+    uint256 sharesMinted
+  ) private view {
+    VaultState memory vaultAfter = _captureVaultState(vault);
+    AccountState memory accountAfter = _captureAccountState(
+      vault,
+      asset,
+      user
+    );
+
+    VaultState
+      memory expectedVault = computeExpectedStateAfterDeposit(
+        vaultBefore,
+        amount,
+        vault
+      );
+    AccountState
+      memory expectedAccount = computeExpectedAccountsAfterDeposit(
+        accountBefore,
+        amount,
+        sharesMinted,
+        vaultBefore,
+        vault
       );
 
-      // Compute expected states
-      VaultState
-        memory expectedVault = computeExpectedStateAfterDeposit(
-          vaultBefore,
-          amount,
-          vault
-        );
-      AccountState
-        memory expectedAccount = computeExpectedAccountsAfterDeposit(
-          accountBefore,
-          amount,
-          result.sharesMinted,
-          vaultBefore,
-          vault
-        );
-
-      // Validate state transitions
-      validateVaultState(vaultAfter, expectedVault, 0.001e18);
-      validateAccountState(accountAfter, expectedAccount);
-    } else {
-      // Expect revert
-      vm.startPrank(user);
-      asset.approve(address(vault), amount);
-      if (expectedRevertMsg.length > 0) {
-        vm.expectRevert(expectedRevertMsg);
-      } else {
-        vm.expectRevert();
-      }
-      vault.deposit(amount, receiver);
-      vm.stopPrank();
-    }
+    validateVaultState(vaultAfter, expectedVault, 0.001e18);
+    validateAccountState(accountAfter, expectedAccount);
   }
 
   /**
@@ -121,57 +169,76 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal returns (DepositResult memory result) {
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
-    AccountState memory accountBefore = _captureAccountStateBefore(
+    if (expectSuccess) {
+      result = _executeMintSuccess(
+        vault,
+        asset,
+        user,
+        receiver,
+        shares
+      );
+    } else {
+      _executeMintRevert(
+        vault,
+        asset,
+        user,
+        receiver,
+        shares,
+        expectedRevertMsg
+      );
+    }
+  }
+
+  function _executeMintSuccess(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    uint256 shares
+  ) private returns (DepositResult memory result) {
+    VaultState memory vaultBefore = _captureVaultState(vault);
+    AccountState memory accountBefore = _captureAccountState(
       vault,
       asset,
       user
     );
 
-    if (expectSuccess) {
-      vm.startPrank(user);
-      uint256 assetsNeeded = vault.previewMint(shares);
-      asset.approve(address(vault), assetsNeeded);
-      result.assetsDeposited = vault.mint(shares, receiver);
-      result.sharesMinted = shares;
-      vm.stopPrank();
+    vm.startPrank(user);
+    uint256 assetsNeeded = vault.previewMint(shares);
+    asset.approve(address(vault), assetsNeeded);
+    result.assetsDeposited = vault.mint(shares, receiver);
+    result.sharesMinted = shares;
+    vm.stopPrank();
 
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
-      AccountState memory accountAfter = _captureAccountStateAfter(
-        vault,
-        asset,
-        user
-      );
+    _validateDepositState(
+      vault,
+      asset,
+      user,
+      vaultBefore,
+      accountBefore,
+      result.assetsDeposited,
+      shares
+    );
+  }
 
-      VaultState
-        memory expectedVault = computeExpectedStateAfterDeposit(
-          vaultBefore,
-          result.assetsDeposited,
-          vault
-        );
-      AccountState
-        memory expectedAccount = computeExpectedAccountsAfterDeposit(
-          accountBefore,
-          result.assetsDeposited,
-          result.sharesMinted,
-          vaultBefore,
-          vault
-        );
-
-      validateVaultState(vaultAfter, expectedVault, 0.001e18);
-      validateAccountState(accountAfter, expectedAccount);
+  function _executeMintRevert(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    uint256 shares,
+    bytes memory expectedRevertMsg
+  ) private {
+    vm.startPrank(user);
+    uint256 assetsNeeded = vault.previewMint(shares);
+    asset.approve(address(vault), assetsNeeded);
+    if (expectedRevertMsg.length > 0) {
+      vm.expectRevert(expectedRevertMsg);
     } else {
-      vm.startPrank(user);
-      uint256 assetsNeeded = vault.previewMint(shares);
-      asset.approve(address(vault), assetsNeeded);
-      if (expectedRevertMsg.length > 0) {
-        vm.expectRevert(expectedRevertMsg);
-      } else {
-        vm.expectRevert();
-      }
-      vault.mint(shares, receiver);
-      vm.stopPrank();
+      vm.expectRevert();
     }
+    vault.mint(shares, receiver);
+    vm.stopPrank();
   }
 
   /**
@@ -187,54 +254,110 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal returns (WithdrawResult memory result) {
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
-    AccountState memory accountBefore = _captureAccountStateBefore(
+    if (expectSuccess) {
+      result = _executeWithdrawSuccess(
+        vault,
+        asset,
+        user,
+        receiver,
+        owner,
+        assets
+      );
+    } else {
+      _executeWithdrawRevert(
+        vault,
+        user,
+        receiver,
+        owner,
+        assets,
+        expectedRevertMsg
+      );
+    }
+  }
+
+  function _executeWithdrawSuccess(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    address owner,
+    uint256 assets
+  ) private returns (WithdrawResult memory result) {
+    VaultState memory vaultBefore = _captureVaultState(vault);
+    AccountState memory accountBefore = _captureAccountState(
       vault,
       asset,
       user
     );
 
-    if (expectSuccess) {
-      vm.startPrank(user);
-      result.sharesBurned = vault.withdraw(assets, receiver, owner);
-      result.assetsWithdrawn = assets;
-      vm.stopPrank();
+    vm.startPrank(user);
+    result.sharesBurned = vault.withdraw(assets, receiver, owner);
+    result.assetsWithdrawn = assets;
+    vm.stopPrank();
 
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
-      AccountState memory accountAfter = _captureAccountStateAfter(
-        vault,
-        asset,
-        user
+    _validateWithdrawState(
+      vault,
+      asset,
+      user,
+      vaultBefore,
+      accountBefore,
+      assets,
+      result.sharesBurned
+    );
+  }
+
+  function _executeWithdrawRevert(
+    LedgityYieldVault vault,
+    address user,
+    address receiver,
+    address owner,
+    uint256 assets,
+    bytes memory expectedRevertMsg
+  ) private {
+    vm.startPrank(user);
+    if (expectedRevertMsg.length > 0) {
+      vm.expectRevert(expectedRevertMsg);
+    } else {
+      vm.expectRevert();
+    }
+    vault.withdraw(assets, receiver, owner);
+    vm.stopPrank();
+  }
+
+  function _validateWithdrawState(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    VaultState memory vaultBefore,
+    AccountState memory accountBefore,
+    uint256 assets,
+    uint256 sharesBurned
+  ) private view {
+    VaultState memory vaultAfter = _captureVaultState(vault);
+    AccountState memory accountAfter = _captureAccountState(
+      vault,
+      asset,
+      user
+    );
+
+    VaultState
+      memory expectedVault = computeExpectedStateAfterWithdraw(
+        vaultBefore,
+        assets,
+        sharesBurned,
+        vault
+      );
+    AccountState
+      memory expectedAccount = computeExpectedAccountsAfterWithdraw(
+        accountBefore,
+        assets,
+        sharesBurned,
+        vaultBefore,
+        vault
       );
 
-      VaultState
-        memory expectedVault = computeExpectedStateAfterWithdraw(
-          vaultBefore,
-          assets,
-          result.sharesBurned,
-          vault
-        );
-      AccountState
-        memory expectedAccount = computeExpectedAccountsAfterWithdraw(
-          accountBefore,
-          assets,
-          result.sharesBurned,
-          vaultBefore,
-          vault
-        );
-
-      validateVaultState(vaultAfter, expectedVault, 0.001e18);
-      validateAccountState(accountAfter, expectedAccount);
-    } else {
-      vm.startPrank(user);
-      if (expectedRevertMsg.length > 0) {
-        vm.expectRevert(expectedRevertMsg);
-      } else {
-        vm.expectRevert();
-      }
-      vault.withdraw(assets, receiver, owner);
-      vm.stopPrank();
-    }
+    validateVaultState(vaultAfter, expectedVault, 0.001e18);
+    validateAccountState(accountAfter, expectedAccount);
   }
 
   /**
@@ -250,54 +373,74 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal returns (WithdrawResult memory result) {
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
-    AccountState memory accountBefore = _captureAccountStateBefore(
+    if (expectSuccess) {
+      result = _executeRedeemSuccess(
+        vault,
+        asset,
+        user,
+        receiver,
+        owner,
+        shares
+      );
+    } else {
+      _executeRedeemRevert(
+        vault,
+        user,
+        receiver,
+        owner,
+        shares,
+        expectedRevertMsg
+      );
+    }
+  }
+
+  function _executeRedeemSuccess(
+    LedgityYieldVault vault,
+    IERC20 asset,
+    address user,
+    address receiver,
+    address owner,
+    uint256 shares
+  ) private returns (WithdrawResult memory result) {
+    VaultState memory vaultBefore = _captureVaultState(vault);
+    AccountState memory accountBefore = _captureAccountState(
       vault,
       asset,
       user
     );
 
-    if (expectSuccess) {
-      vm.startPrank(user);
-      result.assetsWithdrawn = vault.redeem(shares, receiver, owner);
-      result.sharesBurned = shares;
-      vm.stopPrank();
+    vm.startPrank(user);
+    result.assetsWithdrawn = vault.redeem(shares, receiver, owner);
+    result.sharesBurned = shares;
+    vm.stopPrank();
 
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
-      AccountState memory accountAfter = _captureAccountStateAfter(
-        vault,
-        asset,
-        user
-      );
+    _validateWithdrawState(
+      vault,
+      asset,
+      user,
+      vaultBefore,
+      accountBefore,
+      result.assetsWithdrawn,
+      shares
+    );
+  }
 
-      VaultState
-        memory expectedVault = computeExpectedStateAfterWithdraw(
-          vaultBefore,
-          result.assetsWithdrawn,
-          shares,
-          vault
-        );
-      AccountState
-        memory expectedAccount = computeExpectedAccountsAfterWithdraw(
-          accountBefore,
-          result.assetsWithdrawn,
-          shares,
-          vaultBefore,
-          vault
-        );
-
-      validateVaultState(vaultAfter, expectedVault, 0.001e18);
-      validateAccountState(accountAfter, expectedAccount);
+  function _executeRedeemRevert(
+    LedgityYieldVault vault,
+    address user,
+    address receiver,
+    address owner,
+    uint256 shares,
+    bytes memory expectedRevertMsg
+  ) private {
+    vm.startPrank(user);
+    if (expectedRevertMsg.length > 0) {
+      vm.expectRevert(expectedRevertMsg);
     } else {
-      vm.startPrank(user);
-      if (expectedRevertMsg.length > 0) {
-        vm.expectRevert(expectedRevertMsg);
-      } else {
-        vm.expectRevert();
-      }
-      vault.redeem(shares, receiver, owner);
-      vm.stopPrank();
+      vm.expectRevert();
     }
+    vault.redeem(shares, receiver, owner);
+    vm.stopPrank();
   }
 
   /**
@@ -311,7 +454,7 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal {
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
+    VaultState memory vaultBefore = _captureVaultState(vault);
 
     if (expectSuccess) {
       vm.startPrank(user);
@@ -319,7 +462,7 @@ contract ScenarioActions is Test, ScenarioComputations {
       vault.requestWithdrawal{ value: gasFee }(shares);
       vm.stopPrank();
 
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
+      VaultState memory vaultAfter = _captureVaultState(vault);
 
       assertLt(
         vaultAfter.totalSupply,
@@ -434,12 +577,12 @@ contract ScenarioActions is Test, ScenarioComputations {
     bool expectSuccess,
     bytes memory expectedRevertMsg
   ) internal {
-    VaultState memory vaultBefore = _captureVaultStateBefore(vault);
+    VaultState memory vaultBefore = _captureVaultState(vault);
 
     if (expectSuccess) {
       vault.harvestFees();
 
-      VaultState memory vaultAfter = _captureVaultStateAfter(vault);
+      VaultState memory vaultAfter = _captureVaultState(vault);
 
       assertGe(
         vaultAfter.lastFeeTime,
@@ -576,7 +719,7 @@ contract ScenarioActions is Test, ScenarioComputations {
 
   // ======== INTERNAL STATE CAPTURE ======== //
 
-  function _captureVaultStateBefore(
+  function _captureVaultState(
     LedgityYieldVault vault
   ) internal view returns (VaultState memory state) {
     state.totalAssets = vault.totalAssets();
@@ -588,34 +731,7 @@ contract ScenarioActions is Test, ScenarioComputations {
     state.sharePrice = _getSharePrice(vault);
   }
 
-  function _captureAccountStateBefore(
-    LedgityYieldVault vault,
-    IERC20 asset,
-    address user
-  ) internal view returns (AccountState memory state) {
-    state.userAssetBalance = asset.balanceOf(user);
-    state.userShareBalance = vault.balanceOf(user);
-    state.liquidityManagerAssetBalance = asset.balanceOf(
-      vault.liquidityManager()
-    );
-    state.feeRecipientShareBalance = vault.balanceOf(
-      vault.feeRecipient()
-    );
-  }
-
-  function _captureVaultStateAfter(
-    LedgityYieldVault vault
-  ) internal view returns (VaultState memory state) {
-    state.totalAssets = vault.totalAssets();
-    state.totalSupply = vault.totalSupply();
-    state.bufferAssets = vault.getBufferAssets();
-    state.lastFeeTime = vault.lastFeeTime();
-    state.lastCompoundTime = vault.lastCompoundTime();
-    state.highWaterMark = vault.highWaterMark();
-    state.sharePrice = _getSharePrice(vault);
-  }
-
-  function _captureAccountStateAfter(
+  function _captureAccountState(
     LedgityYieldVault vault,
     IERC20 asset,
     address user

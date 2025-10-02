@@ -48,11 +48,17 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
   struct ScenarioAction {
     ActionType actionType;
     address actor;
-    uint256 amount;
     uint256 timeWarp;
     ExpectedOutcome expected;
     bytes revertMessage;
     bytes args;
+    uint8 vaultIndex;
+  }
+
+  struct VaultConfig {
+    LedgityYieldVault vault;
+    IERC20 asset;
+    string name;
   }
 
   // ======== STATE ======== //
@@ -60,6 +66,9 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
   LedgityYieldVault internal vault;
   IERC20 internal asset;
   uint256 internal scenarioStartTime;
+
+  VaultConfig[] internal vaults;
+  bool internal multiVaultMode;
 
   // ======== ENGINE FUNCTIONS ======== //
 
@@ -91,13 +100,44 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
   }
 
   /**
+   * @notice Register multiple vaults for multi-chain simulation
+   * @param vaultConfigs Array of vault configurations
+   */
+  function _registerVaults(
+    VaultConfig[] memory vaultConfigs
+  ) internal {
+    multiVaultMode = vaultConfigs.length > 1;
+
+    for (uint256 i; i < vaultConfigs.length; i++) {
+      vaults.push(vaultConfigs[i]);
+    }
+
+    if (multiVaultMode) {
+      console.log("\n=== Multi-Vault Mode Enabled ===");
+      console.log("Tracking", vaults.length, "vaults");
+      for (uint256 i; i < vaults.length; i++) {
+        console.log("Vault", i, ":", vaults[i].name);
+      }
+      console.log("==================================\n");
+    }
+  }
+
+  /**
    * @notice Log action details in single-line format
    * @dev Format: "Action by Actor for Amount expected to OUTCOME after X hours"
    */
   function _logAction(ScenarioAction memory action) private view {
     string memory actorName = actorNames[action.actor];
-    string memory assetSymbol = IERC20Metadata(address(asset))
+
+    IERC20 currentAsset = multiVaultMode
+      ? vaults[action.vaultIndex].asset
+      : asset;
+    string memory assetSymbol = IERC20Metadata(address(currentAsset))
       .symbol();
+
+    if (multiVaultMode) {
+      console.log(vaults[action.vaultIndex].name);
+    }
     string memory outcome = action.expected == ExpectedOutcome.Success
       ? "SUCCEED"
       : "REVERT";
@@ -110,8 +150,12 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
 
     // Action type and actor
     if (action.actionType == ActionType.Deposit) {
+      (uint256 assets, ) = abi.decode(
+        action.args,
+        (uint256, address)
+      );
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** assetDecimals))
+        abi.encodePacked(assets / (10 ** assetDecimals))
       );
 
       logMessage = string(
@@ -125,10 +169,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         )
       );
     } else if (action.actionType == ActionType.Withdraw) {
-      string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** assetDecimals))
+      (uint256 assets, , ) = abi.decode(
+        action.args,
+        (uint256, address, address)
       );
-
+      string memory amount = string(
+        abi.encodePacked(assets / (10 ** assetDecimals))
+      );
       logMessage = string(
         abi.encodePacked(
           "Withdraw by ",
@@ -140,18 +187,20 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         )
       );
     } else if (action.actionType == ActionType.HarvestFees) {
-      logMessage = string(abi.encodePacked("Harvest fees"));
+      logMessage = "Harvest fees";
     } else if (action.actionType == ActionType.TimeWarp) {
+      uint256 timeJump = abi.decode(action.args, (uint256));
       logMessage = string(
         abi.encodePacked(
           "Time warp for ",
-          action.amount / 1 hours,
+          timeJump / 1 hours,
           " hours"
         )
       );
     } else if (action.actionType == ActionType.DepositToBuffer) {
+      uint256 assets = abi.decode(action.args, (uint256));
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** assetDecimals))
+        abi.encodePacked(assets / (10 ** assetDecimals))
       );
 
       logMessage = string(
@@ -165,8 +214,9 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         )
       );
     } else if (action.actionType == ActionType.SkimBuffer) {
+      uint256 assets = abi.decode(action.args, (uint256));
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** assetDecimals))
+        abi.encodePacked(assets / (10 ** assetDecimals))
       );
 
       logMessage = string(
@@ -180,8 +230,12 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         )
       );
     } else if (action.actionType == ActionType.RequestWithdrawal) {
+      (uint256 shares, ) = abi.decode(
+        action.args,
+        (uint256, uint256)
+      );
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** vaultDecimals))
+        abi.encodePacked(shares / (10 ** vaultDecimals))
       );
 
       logMessage = string(
@@ -198,8 +252,9 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         abi.encodePacked("Process withdrawal requests by ", actorName)
       );
     } else if (action.actionType == ActionType.MigrateLToken) {
+      uint256 lTokens = abi.decode(action.args, (uint256));
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** assetDecimals))
+        abi.encodePacked(lTokens / (10 ** assetDecimals))
       );
 
       logMessage = string(
@@ -208,16 +263,26 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
           actorName,
           " for ",
           amount,
-          " tokens"
+          " l-tokens"
         )
       );
     } else if (action.actionType == ActionType.UpdateAPR) {
+      uint256 newAPR = abi.decode(action.args, (uint256));
       logMessage = string(
-        abi.encodePacked("Update APR to ", action.amount)
+        abi.encodePacked(
+          "Update APR to ",
+          (newAPR / RAY) * 10,
+          ".",
+          (newAPR % RAY) / (RAY / 100)
+        )
       );
     } else if (action.actionType == ActionType.Redeem) {
+      (uint256 shares, , ) = abi.decode(
+        action.args,
+        (uint256, address, address)
+      );
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** vaultDecimals))
+        abi.encodePacked(shares / (10 ** vaultDecimals))
       );
 
       logMessage = string(
@@ -230,8 +295,12 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         )
       );
     } else if (action.actionType == ActionType.Mint) {
+      (uint256 shares, ) = abi.decode(
+        action.args,
+        (uint256, address)
+      );
       string memory amount = string(
-        abi.encodePacked(action.amount / (10 ** vaultDecimals))
+        abi.encodePacked(shares / (10 ** vaultDecimals))
       );
 
       logMessage = string(
@@ -271,73 +340,85 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
   function _executeAction(ScenarioAction memory action) private {
     bool expectSuccess = action.expected == ExpectedOutcome.Success;
 
+    LedgityYieldVault currentVault = multiVaultMode
+      ? vaults[action.vaultIndex].vault
+      : vault;
+    IERC20 currentAsset = multiVaultMode
+      ? vaults[action.vaultIndex].asset
+      : asset;
+
     if (action.actionType == ActionType.Deposit) {
-      address receiver = action.args.length > 0
-        ? abi.decode(action.args, (address))
-        : (action.actor);
+      (uint256 amount, address receiver) = abi.decode(
+        action.args,
+        (uint256, address)
+      );
 
       actionDeposit(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
         receiver,
-        action.amount,
+        amount,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.Mint) {
-      address receiver = action.args.length > 0
-        ? abi.decode(action.args, (address))
-        : (action.actor);
+      (uint256 shares, address receiver) = abi.decode(
+        action.args,
+        (uint256, address)
+      );
 
       actionMint(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
         receiver,
-        action.amount,
+        shares,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.Withdraw) {
-      (address receiver, address owner) = action.args.length > 0
-        ? abi.decode(action.args, (address, address))
-        : (action.actor, action.actor);
+      (uint256 assets, address receiver, address owner) = abi.decode(
+        action.args,
+        (uint256, address, address)
+      );
 
       actionWithdraw(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
         receiver,
         owner,
-        action.amount,
+        assets,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.Redeem) {
-      (address receiver, address owner) = action.args.length > 0
-        ? abi.decode(action.args, (address, address))
-        : (action.actor, action.actor);
+      (uint256 shares, address receiver, address owner) = abi.decode(
+        action.args,
+        (uint256, address, address)
+      );
 
       actionRedeem(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
         receiver,
         owner,
-        action.amount,
+        shares,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.RequestWithdrawal) {
-      uint256 gasFee = action.args.length > 0
-        ? abi.decode(action.args, (uint256))
-        : (vault.withdrawalGasFee());
+      (uint256 shares, uint256 gasFee) = abi.decode(
+        action.args,
+        (uint256, uint256)
+      );
 
       actionRequestWithdrawal(
-        vault,
+        currentVault,
         action.actor,
-        action.amount,
+        shares,
         gasFee,
         expectSuccess,
         action.revertMessage
@@ -349,8 +430,8 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       );
 
       actionProcessRequests(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
         requestIds,
         addAssets,
@@ -358,37 +439,49 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.revertMessage
       );
     } else if (action.actionType == ActionType.DepositToBuffer) {
+      uint256 amount = abi.decode(action.args, (uint256));
+
       actionDepositToBuffer(
-        vault,
-        asset,
+        currentVault,
+        currentAsset,
         action.actor,
-        action.amount,
+        amount,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.SkimBuffer) {
+      uint256 amount = abi.decode(action.args, (uint256));
+
       actionSkimBuffer(
-        vault,
+        currentVault,
         action.actor,
-        action.amount,
+        amount,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.HarvestFees) {
-      actionHarvestFees(vault, expectSuccess, action.revertMessage);
+      actionHarvestFees(
+        currentVault,
+        expectSuccess,
+        action.revertMessage
+      );
     } else if (action.actionType == ActionType.MigrateLToken) {
+      uint256 amount = abi.decode(action.args, (uint256));
+
       actionMigrateLToken(
-        vault,
+        currentVault,
         action.actor,
-        action.amount,
+        amount,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.UpdateAPR) {
+      uint256 newAPR = abi.decode(action.args, (uint256));
+
       actionUpdateAPR(
-        vault,
+        currentVault,
         action.actor,
-        action.amount,
+        newAPR,
         expectSuccess,
         action.revertMessage
       );
@@ -400,7 +493,7 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       ) = abi.decode(action.args, (uint256, uint256, uint256));
 
       actionUpdateFees(
-        vault,
+        currentVault,
         action.actor,
         managementFee,
         performanceFee,
@@ -409,15 +502,18 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.revertMessage
       );
     } else if (action.actionType == ActionType.SetTotalAssets) {
+      uint256 amount = abi.decode(action.args, (uint256));
+
       actionSetTotalAssets(
-        vault,
+        currentVault,
         action.actor,
-        action.amount,
+        amount,
         expectSuccess,
         action.revertMessage
       );
     } else if (action.actionType == ActionType.TimeWarp) {
-      actionTimeWarp(action.amount);
+      uint256 timeJump = abi.decode(action.args, (uint256));
+      actionTimeWarp(timeJump);
     }
   }
 }

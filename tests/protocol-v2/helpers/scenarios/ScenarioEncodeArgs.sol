@@ -8,40 +8,40 @@ pragma solidity 0.8.18;
  */
 library Args {
   function depositAssets(
-    uint256 /* assets */,
+    uint256 assets,
     address receiver
   ) internal pure returns (bytes memory) {
-    return abi.encode(receiver);
+    return abi.encode(assets, receiver);
   }
 
   function mintShares(
-    uint256 /* shares */,
+    uint256 shares,
     address receiver
   ) internal pure returns (bytes memory) {
-    return abi.encode(receiver);
+    return abi.encode(shares, receiver);
   }
 
   function withdrawAssets(
-    uint256 /* assets */,
+    uint256 assets,
     address receiver,
     address owner
   ) internal pure returns (bytes memory) {
-    return abi.encode(receiver, owner);
+    return abi.encode(assets, receiver, owner);
   }
 
   function redeemShares(
-    uint256 /* shares */,
+    uint256 shares,
     address receiver,
     address owner
   ) internal pure returns (bytes memory) {
-    return abi.encode(receiver, owner);
+    return abi.encode(shares, receiver, owner);
   }
 
   function requestWithdrawalShares(
-    uint256 /* shares */,
+    uint256 shares,
     uint256 gasFee
   ) internal pure returns (bytes memory) {
-    return abi.encode(gasFee);
+    return abi.encode(shares, gasFee);
   }
 
   function processRequestsAssets(
@@ -59,7 +59,37 @@ library Args {
     return abi.encode(managementFee, performanceFee, withdrawalFee);
   }
 
-  function none() internal pure returns (bytes memory) {
+  function timeWarp(uint256 timeJump) internal pure returns (bytes memory) {
+    return abi.encode(timeJump);
+  }
+
+  function harvestFees() internal pure returns (bytes memory) {
     return "";
+  }
+
+  function depositToBuffer(
+    uint256 amount
+  ) internal pure returns (bytes memory) {
+    return abi.encode(amount);
+  }
+
+  function skimBuffer(uint256 amount) internal pure returns (bytes memory) {
+    return abi.encode(amount);
+  }
+
+  function migrateLToken(
+    uint256 amount
+  ) internal pure returns (bytes memory) {
+    return abi.encode(amount);
+  }
+
+  function updateAPR(uint256 newAPR) internal pure returns (bytes memory) {
+    return abi.encode(newAPR);
+  }
+
+  function setTotalAssets(
+    uint256 amount
+  ) internal pure returns (bytes memory) {
+    return abi.encode(amount);
   }
 }
