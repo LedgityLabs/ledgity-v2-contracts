@@ -9,7 +9,7 @@ library LedgityDataProvider {
    * @notice Get withdrawal requests with optional filtering
    * @param requests_ Storage array of withdrawal requests
    * @param stakeToken_ Stake token contract for fee reduction checks
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param stakeForFeeReduction_ Minimum stake balance required for fee reduction
    * @param onlyPending If true, only return non-processed requests
    * @param maxRange Maximum number of requests to return (0 = return all)
    * @return filteredRequests Array of withdrawal requests with read structure
@@ -17,7 +17,7 @@ library LedgityDataProvider {
   function getWithdrawalRequests(
     ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
-    uint256 stakeBalanceForFeeReduction_,
+    uint256 stakeForFeeReduction_,
     bool onlyPending,
     uint256 maxRange
   )
@@ -32,7 +32,7 @@ library LedgityDataProvider {
       _getFilteredRequests(
         requests_,
         stakeToken_,
-        stakeBalanceForFeeReduction_,
+        stakeForFeeReduction_,
         address(0),
         onlyPending,
         maxRange
@@ -43,7 +43,7 @@ library LedgityDataProvider {
    * @notice Get withdrawal requests for a specific user
    * @param requests_ Storage array of withdrawal requests
    * @param stakeToken_ Stake token contract for fee reduction checks
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param stakeForFeeReduction_ Minimum stake balance required for fee reduction
    * @param user The user address
    * @param onlyPending If true, only return non-processed requests
    * @param maxRange Maximum number of requests to return (0 = return all)
@@ -52,7 +52,7 @@ library LedgityDataProvider {
   function getUserWithdrawalRequests(
     ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
-    uint256 stakeBalanceForFeeReduction_,
+    uint256 stakeForFeeReduction_,
     address user,
     bool onlyPending,
     uint256 maxRange
@@ -68,7 +68,7 @@ library LedgityDataProvider {
       _getFilteredRequests(
         requests_,
         stakeToken_,
-        stakeBalanceForFeeReduction_,
+        stakeForFeeReduction_,
         user,
         onlyPending,
         maxRange
@@ -79,14 +79,14 @@ library LedgityDataProvider {
    * @notice Get specific withdrawal requests by their IDs
    * @param requests_ Storage array of withdrawal requests
    * @param stakeToken_ Stake token contract for fee reduction checks
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param stakeForFeeReduction_ Minimum stake balance required for fee reduction
    * @param requestIds Array of request IDs to fetch
    * @return selectedRequests Array of withdrawal requests corresponding to the IDs with read structure
    */
   function getWithdrawalRequestsByIds(
     ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
-    uint256 stakeBalanceForFeeReduction_,
+    uint256 stakeForFeeReduction_,
     uint256[] calldata requestIds
   )
     external
@@ -109,7 +109,7 @@ library LedgityDataProvider {
       if (stakeTokenSet) {
         hasFeeReduction =
           stakeToken_.balanceOf(request.user) >=
-          stakeBalanceForFeeReduction_;
+          stakeForFeeReduction_;
       }
 
       selectedRequests[i] = ILedgityDataProvider
@@ -128,7 +128,7 @@ library LedgityDataProvider {
    * @notice Internal helper to filter withdrawal requests with various options
    * @param requests_ Storage array of withdrawal requests
    * @param stakeToken_ Stake token contract for fee reduction checks
-   * @param stakeBalanceForFeeReduction_ Minimum stake balance required for fee reduction
+   * @param stakeForFeeReduction_ Minimum stake balance required for fee reduction
    * @param user Filter by user address (address(0) = no filter)
    * @param onlyPending If true, only return non-processed requests
    * @param maxRange Maximum number of requests to return (0 = no limit)
@@ -137,7 +137,7 @@ library LedgityDataProvider {
   function _getFilteredRequests(
     ILedgityDataProvider.WithdrawalRequest[] storage requests_,
     IERC20 stakeToken_,
-    uint256 stakeBalanceForFeeReduction_,
+    uint256 stakeForFeeReduction_,
     address user,
     bool onlyPending,
     uint256 maxRange
@@ -204,7 +204,7 @@ library LedgityDataProvider {
         if (stakeTokenSet) {
           hasFeeReduction =
             stakeToken_.balanceOf(request.user) >=
-            stakeBalanceForFeeReduction_;
+            stakeForFeeReduction_;
         }
 
         // Fill array from end to maintain oldest-first order in output
