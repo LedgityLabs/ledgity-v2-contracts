@@ -1,5 +1,7 @@
-import { Address, parseEther, parseUnits, zeroAddress } from "viem";
+import fs from "fs";
+import { Address, parseEther, parseUnits, zeroAddress, isAddress } from "viem";
 import { dependencies } from "./dependencies";
+import deployedContracts from "./deployments.json";
 
 type VaultParams = {
   name: string;
@@ -28,9 +30,64 @@ type VaultLiquidityInitParams = {
   deploymentDelay: number;
 };
 
+const TEMP_TOKENS_FILE = "temp/deployedTokens.json";
+
 function toRay(amount: number, decimals = 0) {
   // @dev ex: amount 100 = 100% => 2 decimals
   return parseUnits(amount.toString(), 27 - decimals);
+}
+
+export function writeTempTokenAddress(
+  chainId: number | string,
+  symbol: string,
+  address: string,
+) {
+  if (!fs.existsSync(TEMP_TOKENS_FILE)) {
+    fs.mkdirSync("temp");
+    fs.writeFileSync(TEMP_TOKENS_FILE, "{}", "utf8");
+  }
+
+  const deployedTokens: {
+    [chainId: string]: {
+      [symbol: string]: string;
+    };
+  } = JSON.parse(fs.readFileSync(TEMP_TOKENS_FILE, "utf8"));
+
+  const stringChainId = chainId.toString();
+
+  deployedTokens[stringChainId] ??= {};
+  deployedTokens[stringChainId][symbol] = address;
+
+  fs.writeFileSync(
+    TEMP_TOKENS_FILE,
+    JSON.stringify(deployedTokens, null, 2),
+    "utf8",
+  );
+}
+
+export function getTokenAddress(
+  chainId: number | string,
+  symbol: string,
+): Address {
+  const stringChainId = chainId.toString();
+
+  const fromDeps = (dependencies as any)[stringChainId]?.[symbol];
+  const fromTemp = fs.existsSync(TEMP_TOKENS_FILE)
+    ? JSON.parse(fs.readFileSync(TEMP_TOKENS_FILE, "utf8"))?.[stringChainId]?.[
+        symbol
+      ]
+    : undefined;
+  const fromDeployments =
+    (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[
+      `${symbol}_Proxy`
+    ] || (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[symbol];
+
+  const address = fromTemp || fromDeps || fromDeployments;
+
+  if (!address || !isAddress(address) || address === zeroAddress)
+    throw Error("Token not found");
+
+  return address as Address;
 }
 
 export function getParametersForVault(
@@ -50,7 +107,7 @@ export function getParametersForVault(
   if (!vaultConfig.asset) throw Error("Asset not found");
 
   if (
-    chainConfig.liquidityManager === zeroAddress ||
+    vaultConfig.liquidityManager === zeroAddress ||
     chainConfig.feeRecipient === zeroAddress
   )
     throw Error("Invalid liquidityManager or feeRecipient");
@@ -67,10 +124,10 @@ export function getParametersForVault(
       //
       stakeForFeeReduction: chainConfig.stakeForFeeReduction,
       stakeForInstantWithdrawal: chainConfig.stakeForInstantWithdrawal,
-      liquidityManager: chainConfig.liquidityManager,
       feeRecipient: chainConfig.feeRecipient,
       //
       asset: vaultConfig.asset,
+      liquidityManager: vaultConfig.liquidityManager,
       liquidityBufferRate: vaultConfig.liquidityBufferRate,
       aaveLendingPool: vaultConfig.aaveLendingPool,
     },
@@ -88,7 +145,6 @@ export function getParametersForVault(
 
 const configsContracts: {
   [chainId: string]: {
-    liquidityManager: Address;
     feeRecipient: Address;
     stakeForFeeReduction: bigint;
     stakeForInstantWithdrawal: bigint;
@@ -96,6 +152,7 @@ const configsContracts: {
       [symbol: string]: {
         asset: Address | undefined;
         liquidityBufferRate: bigint;
+        liquidityManager: Address;
         aaveLendingPool: Address;
         //
         highWaterMark: bigint;
@@ -109,15 +166,16 @@ const configsContracts: {
     };
   };
 } = {
+  // Ethereum
   [1]: {
-    liquidityManager: "0x0000000000000000000000000000000000000000",
-    feeRecipient: "0x0000000000000000000000000000000000000000",
+    feeRecipient: "0x0000000000000000000000000000000000000001",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     vaults: {
       lyUSD: {
         asset: dependencies["1"].USDC,
         liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0x0000000000000000000000000000000000000001",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
         highWaterMark: 0n, // default 1:1 ratio
