@@ -333,7 +333,12 @@
           },
           {
             "internalType": "uint256",
-            "name": "stakeBalanceForFeeReduction",
+            "name": "stakeForFeeReduction",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeForInstantWithdrawal",
             "type": "uint256"
           },
           {
@@ -581,7 +586,7 @@
   },
   {
     "inputs": [],
-    "name": "stakeBalanceForFeeReduction",
+    "name": "stakeForFeeReduction",
     "outputs": [
       {
         "internalType": "uint256",
@@ -650,7 +655,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "newStakeBalanceForFeeReduction",
+        "name": "newStakeForFeeReduction",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newStakeForInstantWithdrawal",
         "type": "uint256"
       },
       {

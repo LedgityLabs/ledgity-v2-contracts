@@ -1508,6 +1508,133 @@
   {
     "inputs": [
       {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "asset",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "lToken",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "stakeToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeForFeeReduction",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeForInstantWithdrawal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "globalOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "globalPause",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "globalAccessList",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "liquidityManager",
+            "type": "address"
+          },
+          {
+            "internalType": "address payable",
+            "name": "feeRecipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liquidityBufferRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "contract IAaveLendingPoolV3",
+            "name": "aaveLendingPool",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct ILedgityYieldVault.VaultParams",
+        "name": "params",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "highWaterMark",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "yieldAPR",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "managementFeeRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "performanceFeeRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawalFeeRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawalGasFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "deploymentDelay",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct IVaultLiquidityModule.VaultLiquidityInitParams",
+        "name": "vaultLiquidityInitParams",
+        "type": "tuple"
+      }
+    ],
+    "name": "initializeAndRegister",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "account",
         "type": "address"
