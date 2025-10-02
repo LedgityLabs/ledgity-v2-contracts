@@ -46,7 +46,7 @@ contract LedgityYieldVault is
   error MissingWithdrawalRequestFee();
   error RequestAlreadyProcessed();
   error InsufficientLiquidity();
-  error InsufficientStakeBalanceForInstantWithdrawal();
+  error InsufficientStakeForInstantWithdrawal();
 
   // ======== STORAGE ======== //
 
@@ -71,9 +71,9 @@ contract LedgityYieldVault is
   // Token representing user's stake in the protocol for fee reductions
   IERC20 public stakeToken;
   // The amount of stake token required to receive a withdrawal fee reduction
-  uint256 public stakeBalanceForFeeReduction;
+  uint256 public stakeForFeeReduction;
   // The amount of stake token required to make instant withdrawal
-  uint256 public stakeBalanceForInstantWithdrawal;
+  uint256 public stakeForInstantWithdrawal;
 
   // Array storing all withdrawal requests in chronological order
   ILedgityDataProvider.WithdrawalRequest[] public withdrawalRequests;
@@ -124,13 +124,15 @@ contract LedgityYieldVault is
    * Emitted when the vault parameters are updated
    * @param newLToken The new L-Token address
    * @param newStakeToken The new stake token address
-   * @param newStakeBalanceForFeeReduction The new stake balance for fee reduction
+   * @param newStakeForFeeReduction The new stake balance for fee reduction
+   * @param newStakeForInstantWithdrawal The new stake balance for instant withdrawal
    * @param newAaveLendingPool The new Aave lending pool address
    */
   event VaultParamsUpdated(
     IERC20 indexed newLToken,
     IERC20 indexed newStakeToken,
-    uint256 newStakeBalanceForFeeReduction,
+    uint256 newStakeForFeeReduction,
+    uint256 newStakeForInstantWithdrawal,
     IAaveLendingPoolV3 indexed newAaveLendingPool
   );
 
@@ -172,7 +174,8 @@ contract LedgityYieldVault is
     lToken = params.lToken;
 
     stakeToken = params.stakeToken;
-    stakeBalanceForFeeReduction = params.stakeBalanceForFeeReduction;
+    stakeForFeeReduction = params.stakeForFeeReduction;
+    stakeForInstantWithdrawal = params.stakeForInstantWithdrawal;
 
     liquidityBufferRate = params.liquidityBufferRate;
 
@@ -185,17 +188,6 @@ contract LedgityYieldVault is
    */
   modifier onlyLiquidityManager() {
     if (msg.sender != liquidityManager) revert OnlyLiquidityManager();
-    _;
-  }
-
-  /**
-   * @notice Restricts instant withdrawal to users with a stake balance above the threshold
-   */
-  modifier checkInstantWithdrawl() {
-    if (
-      stakeBalanceForInstantWithdrawal != 0 &&
-      balanceOf(msg.sender) < stakeBalanceForInstantWithdrawal
-    ) revert InsufficientStakeBalanceForInstantWithdrawal();
     _;
   }
 
@@ -314,7 +306,7 @@ contract LedgityYieldVault is
     return
       withdrawalRequests.getWithdrawalRequests(
         stakeToken,
-        stakeBalanceForFeeReduction,
+        stakeForFeeReduction,
         onlyPending,
         maxRange
       );
@@ -341,7 +333,7 @@ contract LedgityYieldVault is
     return
       withdrawalRequests.getUserWithdrawalRequests(
         stakeToken,
-        stakeBalanceForFeeReduction,
+        stakeForFeeReduction,
         user,
         onlyPending,
         maxRange
@@ -365,7 +357,7 @@ contract LedgityYieldVault is
     return
       withdrawalRequests.getWithdrawalRequestsByIds(
         stakeToken,
-        stakeBalanceForFeeReduction,
+        stakeForFeeReduction,
         requestIds
       );
   }
@@ -458,9 +450,7 @@ contract LedgityYieldVault is
     // Calculate underlying amount using updated rate
     uint256 withdrawalFee;
     if (address(stakeToken) != address(0))
-      if (
-        stakeToken.balanceOf(caller_) < stakeBalanceForFeeReduction
-      ) {
+      if (stakeToken.balanceOf(caller_) < stakeForFeeReduction) {
         withdrawalFee = _computeWithdrawalFee(shares_, caller_);
         /// @dev These are not new shares since we burn all user shares & withdraw net shares
         _mint(feeRecipient, withdrawalFee);
@@ -494,6 +484,11 @@ contract LedgityYieldVault is
     notRestricted(caller_)
     returns (uint256 netAssets)
   {
+    if (
+      stakeForInstantWithdrawal != 0 &&
+      balanceOf(msg.sender) < stakeForInstantWithdrawal
+    ) revert InsufficientStakeForInstantWithdrawal();
+
     netAssets = _burnSharesTakeFeesOnWithdrawal(caller_, shares_);
 
     // slither-disable-next-line reentrancy-no-eth
@@ -660,7 +655,6 @@ contract LedgityYieldVault is
   )
     public
     override(ERC4626Upgradeable, ILedgityYieldVault)
-    checkInstantWithdrawl
     returns (uint256)
   {
     return
@@ -687,7 +681,6 @@ contract LedgityYieldVault is
   )
     public
     override(ERC4626Upgradeable, ILedgityYieldVault)
-    checkInstantWithdrawl
     returns (uint256)
   {
     return
@@ -880,27 +873,31 @@ contract LedgityYieldVault is
    * @notice Updates vault parameters
    * @param newLToken The new L-Token address
    * @param newStakeToken The new stake token address
-   * @param newStakeBalanceForFeeReduction The new stake balance for fee reduction
+   * @param newStakeForFeeReduction The new stake balance for fee reduction
+   * @param newStakeForInstantWithdrawal The new stake balance for instant withdrawal
    * @param newAaveLendingPool The new Aave lending pool address
    * @dev Only callable by global owner
    */
   function updateVaultParams(
     IERC20 newLToken,
     IERC20 newStakeToken,
-    uint256 newStakeBalanceForFeeReduction,
+    uint256 newStakeForFeeReduction,
+    uint256 newStakeForInstantWithdrawal,
     IAaveLendingPoolV3 newAaveLendingPool
   ) public onlyOwner {
     lToken = newLToken;
 
     stakeToken = newStakeToken;
-    stakeBalanceForFeeReduction = newStakeBalanceForFeeReduction;
+    stakeForFeeReduction = newStakeForFeeReduction;
+    stakeForInstantWithdrawal = newStakeForInstantWithdrawal;
 
     _setupBufferStrategy(newAaveLendingPool);
 
     emit VaultParamsUpdated(
       newLToken,
       newStakeToken,
-      newStakeBalanceForFeeReduction,
+      newStakeForFeeReduction,
+      newStakeForInstantWithdrawal,
       newAaveLendingPool
     );
   }

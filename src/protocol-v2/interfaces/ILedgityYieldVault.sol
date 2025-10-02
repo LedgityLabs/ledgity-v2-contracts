@@ -14,7 +14,8 @@ interface ILedgityYieldVault is ILedgityDataProvider {
     IERC20 asset;
     IERC20 lToken;
     IERC20 stakeToken;
-    uint256 stakeBalanceForFeeReduction;
+    uint256 stakeForFeeReduction;
+    uint256 stakeForInstantWithdrawal;
     address globalOwner;
     address globalPause;
     address globalAccessList;
@@ -49,10 +50,7 @@ interface ILedgityYieldVault is ILedgityDataProvider {
 
   function stakeToken() external view returns (IERC20);
 
-  function stakeBalanceForFeeReduction()
-    external
-    view
-    returns (uint256);
+  function stakeForFeeReduction() external view returns (uint256);
 
   function withdrawalRequests(
     uint256
@@ -154,7 +152,8 @@ interface ILedgityYieldVault is ILedgityDataProvider {
   function updateVaultParams(
     IERC20 newLToken,
     IERC20 newStakeToken,
-    uint256 newStakeBalanceForFeeReduction,
+    uint256 newStakeForFeeReduction,
+    uint256 newStakeForInstantWithdrawal,
     IAaveLendingPoolV3 newAaveLendingPool
   ) external;
 }
