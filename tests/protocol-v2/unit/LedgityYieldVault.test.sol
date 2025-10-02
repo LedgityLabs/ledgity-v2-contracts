@@ -155,7 +155,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         asset: IERC20(address(0)), // Invalid zero address
         lToken: IERC20(address(0)),
         stakeToken: IERC20(address(0)),
-        stakeBalanceForFeeReduction: 0,
+        stakeForFeeReduction: 0,
+        stakeForInstantWithdrawal: 0,
         globalOwner: address(globalOwner),
         globalPause: address(globalPause),
         globalAccessList: address(globalAccessList),
@@ -297,7 +298,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     }
   }
 
-
   // ======== ADMIN FUNCTION TESTS ======== //
 
   function test_updateVaultManagers_success() public {
@@ -360,7 +360,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       vault.updateBufferRate(15000);
     }
   }
-
 
   // ======== PROCESS REQUESTS TESTS ======== //
 
@@ -601,7 +600,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     }
   }
 
-
   function test_updateVaultParams_success() public {
     MockERC20 newLToken = new MockERC20("New L-Token", "NLT", 18);
     MockERC20 newStakeToken = new MockERC20(
@@ -618,12 +616,13 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         IERC20(address(newLToken)),
         IERC20(address(newStakeToken)),
         1000 ether,
+        1000 ether,
         aaveLendingPool
       );
 
       assertEq(address(vault.lToken()), address(newLToken));
       assertEq(address(vault.stakeToken()), address(newStakeToken));
-      assertEq(vault.stakeBalanceForFeeReduction(), 1000 ether);
+      assertEq(vault.stakeForFeeReduction(), 1000 ether);
     }
   }
 
@@ -636,6 +635,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       vault.updateVaultParams(
         IERC20(address(0)),
         IERC20(address(0)),
+        0,
         0,
         aaveLendingPool
       );
@@ -719,8 +719,6 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
       assertLt(vault.balanceOf(testAccount1), initialShares);
     }
   }
-
-
 
   // ======== PROCESS REQUESTS EDGE CASES ======== //
 

@@ -470,7 +470,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     _depositToVault(testAccount1, depositAmount);
 
     // Give user enough stake tokens for fee reduction
-    uint256 stakeRequired = vault.stakeBalanceForFeeReduction();
+    uint256 stakeRequired = vault.stakeForFeeReduction();
     deal(address(vault.stakeToken()), testAccount1, stakeRequired);
 
     uint256 shares = vault.balanceOf(testAccount1);

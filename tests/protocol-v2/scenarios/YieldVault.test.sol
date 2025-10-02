@@ -49,22 +49,20 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e18,
+      args: Args.deposit(100000 * 1e18, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[1] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 50000 * 1e18,
+      args: Args.deposit(50000 * 1e18, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -72,11 +70,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[2] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 30 days,
+      args: Args.timeWarp(30 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -84,11 +81,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[3] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount3,
-      amount: 75000 * 1e18,
+      args: Args.deposit(75000 * 1e18, testAccount3),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -96,11 +92,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[4] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 60 days,
+      args: Args.timeWarp(60 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -108,11 +103,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[5] = ScenarioAction({
       actionType: ActionType.HarvestFees,
       actor: testAccount1,
-      amount: 0,
+      args: Args.none(),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -120,11 +114,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[6] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 50000 * 1e18,
+      args: Args.depositToBuffer(50000 * 1e18),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -132,11 +125,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[7] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 30000 * 1e18,
+      args: Args.withdraw(30000 * 1e18, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -144,11 +136,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[8] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 15 days,
+      args: Args.timeWarp(15 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -156,11 +147,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[9] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 25000 * 1e18,
+      args: Args.deposit(25000 * 1e18, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -232,88 +222,80 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e18,
+      args: Args.deposit(100000 * 1e18, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[1] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 50000 * 1e18,
+      args: Args.depositToBuffer(50000 * 1e18),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[2] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 30000 * 1e18,
+      args: Args.deposit(30000 * 1e18, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[3] = ScenarioAction({
       actionType: ActionType.SkimBuffer,
       actor: liquidityManager,
-      amount: 20000 * 1e18,
+      args: Args.skimBuffer(20000 * 1e18),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[4] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 10000 * 1e18,
+      args: Args.withdraw(10000 * 1e18, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[5] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 15000 * 1e18,
+      args: Args.depositToBuffer(15000 * 1e18),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[6] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount3,
-      amount: 40000 * 1e18,
+      args: Args.deposit(40000 * 1e18, testAccount3),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[7] = ScenarioAction({
       actionType: ActionType.SkimBuffer,
       actor: liquidityManager,
-      amount: 10000 * 1e18,
+      args: Args.skimBuffer(10000 * 1e18),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -341,11 +323,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 0,
+      args: Args.deposit(0, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Revert,
       revertMessage: abi.encodeWithSignature("ZeroAmount()"),
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -363,11 +344,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 50000 * 1e18,
+      args: Args.deposit(50000 * 1e18, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.depositAssets(50000 * 1e18, testAccount2),
       vaultIndex: 0
     });
 
@@ -375,11 +355,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[1] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount2,
-      amount: 10000 * 1e18,
+      args: Args.withdraw(10000 * 1e18, testAccount2, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.withdrawAssets(10000 * 1e18, testAccount2, testAccount2),
       vaultIndex: 0
     });
 
@@ -387,11 +366,10 @@ contract Skip_YieldVault_ScenarioTest is ScenarioEngine {
     actions[2] = ScenarioAction({
       actionType: ActionType.Mint,
       actor: testAccount3,
-      amount: 30000 * 1e18,
+      args: Args.mint(30000 * 1e18, testAccount3),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.mintShares(30000 * 1e18, testAccount3),
       vaultIndex: 0
     });
 
