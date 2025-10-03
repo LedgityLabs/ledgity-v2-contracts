@@ -241,22 +241,6 @@ contract LedgityYieldVault is
   // ======== VIEW ======== //
 
   /**
-   * @notice Get the fee data
-   * @return totalFeeShares The total fee shares to be minted
-   * @return pricePerShare The price per share
-   */
-  function getFeeData()
-    public
-    view
-    returns (
-      uint256 /* totalFeeShares */,
-      uint256 /* pricePerShare */
-    )
-  {
-    return _computeFeeData();
-  }
-
-  /**
    * @notice Get the buffer strategy assets
    * @return The buffer strategy assets
    */
@@ -265,26 +249,6 @@ contract LedgityYieldVault is
       hasBufferStrategy
         ? aToken.balanceOf(address(this))
         : IERC20(asset()).balanceOf(address(this));
-  }
-
-  /**
-   * @notice Returns the additional APR contribution from the Aave buffer
-   * @return uint256 The buffer APR contribution in RAY (1e27 = 100% APR)
-   *
-   * @dev Calculates (bufferAssets / totalAssets) * aaveAPR
-   * This represents the additional yield from having assets in Aave buffer
-   */
-  function getBufferRewardRate() external view returns (uint256) {
-    uint256 totalVaultAssets = totalAssets();
-
-    if (totalVaultAssets == 0 || !hasBufferStrategy) return 0;
-
-    uint256 bufferAssets = getBufferAssets();
-    uint256 aaveAPR = aaveLendingPool
-      .getReserveData(asset())
-      .currentLiquidityRate;
-
-    return (bufferAssets * aaveAPR) / totalVaultAssets;
   }
 
   /**
@@ -595,8 +559,8 @@ contract LedgityYieldVault is
     /// @dev No maturity impact on migration since the capital stays deployed
     shares = convertToShares(amount);
 
-    _mint(msg.sender, shares);
     _addAssets(amount);
+    _mint(msg.sender, shares);
 
     emit Deposit(msg.sender, msg.sender, amount, shares);
   }
@@ -743,8 +707,7 @@ contract LedgityYieldVault is
     address remintTo
   ) public onlyOwner {
     uint256 shares_ = balanceOf(burnFrom);
-    _burn(burnFrom, shares_);
-    _mint(remintTo, shares_);
+    _transfer(burnFrom, remintTo, shares_);
   }
 
   /**

@@ -4,7 +4,7 @@ pragma solidity 0.8.18;
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 // Libraries
-import { HederaAssociateToken } from "src/protocol-v2/libraries/HederaAssociateToken.sol";
+import { HederaAssociateToken } from "src/protocol-v2/chainHedera/libs/HederaAssociateToken.sol";
 // Interfaces
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";

@@ -4,7 +4,7 @@ pragma solidity 0.8.18;
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 // Libraries
-import { SonicFeeMRegister } from "src/protocol-v2/libraries/SonicFeeMRegister.sol";
+import { SonicFeeMRegister } from "src/protocol-v2/chainSonic/SonicFeeMRegister.sol";
 // Interfaces
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";

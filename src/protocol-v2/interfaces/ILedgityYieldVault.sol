@@ -66,8 +66,6 @@ interface ILedgityYieldVault is ILedgityDataProvider {
 
   function getBufferAssets() external view returns (uint256);
 
-  function getBufferRewardRate() external view returns (uint256);
-
   function getWithdrawalRequests(
     bool onlyPending,
     uint256 maxRange

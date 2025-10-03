@@ -40,7 +40,7 @@ abstract contract VaultLiquidityModule is
   // The timestamp of the last fee calculation, used to compute management fees
   uint256 public lastFeeTime;
   // The highest price per share ever reached, performance fees are taken when
-  // the price per share is above this value
+  // the price per share is above this value, always express in 18 decimals
   uint256 public highWaterMark;
 
   // Deployment delay period in days for calculating deposit fees (max 255 days)
@@ -162,7 +162,7 @@ abstract contract VaultLiquidityModule is
       return assets;
     }
 
-    (uint256 feeShares, ) = _computeFeeData();
+    (uint256 feeShares, ) = getFeeData();
 
     shares = assets.mulDiv(supply + feeShares, currentAssets);
   }
@@ -187,7 +187,7 @@ abstract contract VaultLiquidityModule is
       return shares;
     }
 
-    (uint256 feeShares, ) = _computeFeeData();
+    (uint256 feeShares, ) = getFeeData();
 
     assets = shares.mulDiv(currentAssets, supply + feeShares);
   }
@@ -247,8 +247,8 @@ abstract contract VaultLiquidityModule is
    * @return totalFeeShares The total fees
    * @return pricePerShare The price per share
    */
-  function _computeFeeData()
-    internal
+  function getFeeData()
+    public
     view
     returns (uint256 totalFeeShares, uint256 pricePerShare)
   {
@@ -276,11 +276,8 @@ abstract contract VaultLiquidityModule is
     // Additional protection when decimalsOffset is 0 and shares is 0
     if (sharesDenominator == 0) sharesDenominator = 1;
 
-    pricePerShare = (10 ** decimals()).mulDiv(
-      (currentAssets + 1) - managementFeeAssets,
-      sharesDenominator,
-      Math.Rounding.Up
-    );
+    pricePerShare = ((currentAssets + 1) - managementFeeAssets)
+      .mulDiv(1e18, sharesDenominator, Math.Rounding.Up);
 
     uint256 performanceFeeAssets;
     if (highWaterMark < pricePerShare) {
@@ -288,7 +285,7 @@ abstract contract VaultLiquidityModule is
 
       uint256 profit = profitPerShare.mulDiv(
         shares,
-        10 ** decimals(),
+        1e18,
         Math.Rounding.Up
       );
 
@@ -298,8 +295,9 @@ abstract contract VaultLiquidityModule is
         Math.Rounding.Up
       );
 
-      pricePerShare = (10 ** decimals()).mulDiv(
-        currentAssets - (managementFeeAssets + performanceFeeAssets),
+      pricePerShare = (currentAssets -
+        (managementFeeAssets + performanceFeeAssets)).mulDiv(
+          1e18,
         shares + 1,
         Math.Rounding.Up
       );
@@ -372,10 +370,7 @@ abstract contract VaultLiquidityModule is
     uint256 timeElapsed = block.timestamp - lastFeeTime;
     if (timeElapsed == 0) return;
 
-    (
-      uint256 totalFeeShares,
-      uint256 pricePerShare
-    ) = _computeFeeData();
+    (uint256 totalFeeShares, uint256 pricePerShare) = getFeeData();
 
     if (0 < totalFeeShares) {
       _mint(feeRecipient, totalFeeShares);
