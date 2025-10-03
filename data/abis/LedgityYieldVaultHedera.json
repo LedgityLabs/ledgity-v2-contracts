@@ -1,11 +1,6 @@
 [
   {
     "inputs": [],
-    "name": "InsufficientAllowance",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "InsufficientLiquidity",
     "type": "error"
   },
@@ -17,6 +12,11 @@
   {
     "inputs": [],
     "name": "MissingWithdrawalRequestFee",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "MustImplementMintAndBurnFunctions",
     "type": "error"
   },
   {
@@ -224,12 +224,6 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousAdmin",
-        "type": "address"
-      },
       {
         "indexed": true,
         "internalType": "address",
@@ -444,37 +438,6 @@
         "internalType": "uint256",
         "name": "value",
         "type": "uint256"
-      }
-    ],
-    "name": "Transfer",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
       }
     ],
     "name": "Transfer",
@@ -804,24 +767,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "burn",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "burnFrom",
         "type": "address"
       },
@@ -832,24 +777,6 @@
       }
     ],
     "name": "burnAndRemintBlacklistedShares",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "burnFrom",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -903,19 +830,6 @@
       }
     ],
     "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "decimalsOffset",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -1037,12 +951,12 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "totalFeeShares",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "pricePerShare",
         "type": "uint256"
       }
     ],
@@ -1278,19 +1192,6 @@
       }
     ],
     "name": "grantBurnRole",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "grantMintAndBurnRoles",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2277,35 +2178,6 @@
       {
         "internalType": "bool",
         "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
-      }
-    ],
-    "name": "transferAndCall",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "success",
         "type": "bool"
       }
     ],

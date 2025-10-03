@@ -433,19 +433,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "decimalsOffset",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -504,6 +491,24 @@
       }
     ],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFeeData",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "totalFeeShares",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pricePerShare",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {

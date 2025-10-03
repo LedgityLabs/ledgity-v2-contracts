@@ -413,17 +413,10 @@ export const globalAccessListAbi = [
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const globalBlacklistAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -614,48 +607,27 @@ export const globalBlacklistAbi = [
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const globalBlacklistAddress = {
   1: '0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E',
   146: '0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e',
-  195: '0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6',
-  196: '0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6',
   295: '0x5aCA1739b6072f78966e3630a535Febc93CD3c42',
   8453: '0x210482e0B5c29086F733e6Dd44e2C19f32ae1757',
-  31337: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
   42161: '0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350',
-  59140: '0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf',
   59144: '0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350',
-  84532: '0x98002b5c06b44c8769dA3DAe97CA498aB6F97137',
-  421613: '0x1549647606A71B2a79b85AEb54631b8eA2a1939a',
-  11155111: '0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1',
 } as const
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const globalBlacklistConfig = {
   address: globalBlacklistAddress,
@@ -669,17 +641,10 @@ export const globalBlacklistConfig = {
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const globalOwnerAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -847,48 +812,27 @@ export const globalOwnerAbi = [
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const globalOwnerAddress = {
   1: '0x730C21c81F2baaDEB54daD63050D42474a824900',
   146: '0xBbb6f6E3AC59112D90Dcc63dcC27567101450011',
-  195: '0x4717bca6978f1BCAb59b7bc0B6849aba6062834c',
-  196: '0x4717bca6978f1BCAb59b7bc0B6849aba6062834c',
   295: '0x9fbE547e05c34B2c289Ec45D40674c3757190f01',
   8453: '0x2Aff7737dd64390f18e76E39c977b6b0736B5A59',
-  31337: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
   42161: '0xe4Af4573bFc5F04D8b84c61744de8A94059f2462',
-  59140: '0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6',
   59144: '0xe4Af4573bFc5F04D8b84c61744de8A94059f2462',
-  84532: '0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53',
-  421613: '0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350',
-  11155111: '0x91849bAe327965a5Cc7BA970233dBee10C610105',
 } as const
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const globalOwnerConfig = {
   address: globalOwnerAddress,
@@ -902,17 +846,10 @@ export const globalOwnerConfig = {
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const globalPauseAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -1103,48 +1040,27 @@ export const globalPauseAbi = [
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const globalPauseAddress = {
   1: '0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E',
   146: '0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B',
-  195: '0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078',
-  196: '0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078',
   295: '0xCdA3337aA51783A598300746a7D2E11970AE20c5',
   8453: '0x57791De9E18693834b37323D3c90190A8aB3b925',
-  31337: '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9',
   42161: '0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB',
-  59140: '0x4fB551213757619558A93a599a08524e9Dd59C67',
   59144: '0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB',
-  84532: '0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5',
-  421613: '0x06f54B7f27eEC56616b951598BaA3B84D7660AB4',
-  11155111: '0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322',
 } as const
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const globalPauseConfig = {
   address: globalPauseAddress,
@@ -1158,17 +1074,10 @@ export const globalPauseConfig = {
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const ldyStakingAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -1761,48 +1670,27 @@ export const ldyStakingAbi = [
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const ldyStakingAddress = {
   1: '0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e',
   146: '0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA',
-  195: '0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895',
-  196: '0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895',
   295: '0xb6121093403788E40116194B27502CCeAF2BfAB0',
   8453: '0x891611398B53BBAaA3db04c158218c319c87d554',
-  31337: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
   42161: '0x98002b5c06b44c8769dA3DAe97CA498aB6F97137',
-  59140: '0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6',
   59144: '0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1',
-  84532: '0xB5C69197e5D6A52c776384479B529D2d76f9e2De',
-  421613: '0x5BFFC5303719f0dC6050a2D8042936714109985f',
-  11155111: '0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e',
 } as const
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const ldyStakingConfig = {
   address: ldyStakingAddress,
@@ -2662,17 +2550,10 @@ export const lTokenAbi = [
 
 /**
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const lTokenSignalerAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -2837,46 +2718,25 @@ export const lTokenSignalerAbi = [
 
 /**
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const lTokenSignalerAddress = {
   146: '0xF96Af1681a7E926fa694C24D740913c7e860A610',
-  195: '0x011C5B18aBC74A341209b12D1A6fD7B59E423428',
-  196: '0x011C5B18aBC74A341209b12D1A6fD7B59E423428',
   295: '0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc',
   8453: '0x4EeC09DB589C882fbA7C5D03065dfD20912FE877',
-  31337: '0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0',
   42161: '0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1',
-  59140: '0x04a678103bE57c3d81100fe08e43C94e50adC37B',
   59144: '0xBA427517505b14C560854aED003304Fc69cbadfb',
-  84532: '0x7A02c93681450241e97C87a2Decb511b42BB16f5',
-  421613: '0x1dA817E33C0dB209C7b508B79F9dac4480f94522',
-  11155111: '0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3',
 } as const
 
 /**
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const lTokenSignalerConfig = {
   address: lTokenSignalerAddress,
@@ -2888,10 +2748,10 @@ export const lTokenSignalerConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const ledgityYieldVaultAbi = [
-  { type: 'error', inputs: [], name: 'InsufficientAllowance' },
   { type: 'error', inputs: [], name: 'InsufficientLiquidity' },
   { type: 'error', inputs: [], name: 'InsufficientStakeForInstantWithdrawal' },
   { type: 'error', inputs: [], name: 'MissingWithdrawalRequestFee' },
+  { type: 'error', inputs: [], name: 'MustImplementMintAndBurnFunctions' },
   { type: 'error', inputs: [], name: 'NoLTokenSet' },
   { type: 'error', inputs: [], name: 'OnlyLiquidityManager' },
   { type: 'error', inputs: [], name: 'RequestAlreadyProcessed' },
@@ -3052,12 +2912,6 @@ export const ledgityYieldVaultAbi = [
     type: 'event',
     anonymous: false,
     inputs: [
-      {
-        name: 'previousAdmin',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
       {
         name: 'newAdmin',
         internalType: 'address',
@@ -3258,22 +3112,6 @@ export const ledgityYieldVaultAbi = [
         type: 'uint256',
         indexed: false,
       },
-    ],
-    name: 'Transfer',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-      { name: 'data', internalType: 'bytes', type: 'bytes', indexed: false },
     ],
     name: 'Transfer',
   },
@@ -3514,30 +3352,10 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [
-      { name: 'account', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'burn',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
       { name: 'burnFrom', internalType: 'address', type: 'address' },
       { name: 'remintTo', internalType: 'address', type: 'address' },
     ],
     name: 'burnAndRemintBlacklistedShares',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'account', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'burnFrom',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -3561,13 +3379,6 @@ export const ledgityYieldVaultAbi = [
     name: 'decimals',
     outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
     stateMutability: 'pure',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'decimalsOffset',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
-    stateMutability: 'view',
   },
   {
     type: 'function',
@@ -3629,8 +3440,8 @@ export const ledgityYieldVaultAbi = [
     inputs: [],
     name: 'getFeeData',
     outputs: [
-      { name: '', internalType: 'uint256', type: 'uint256' },
-      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: 'totalFeeShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'pricePerShare', internalType: 'uint256', type: 'uint256' },
     ],
     stateMutability: 'view',
   },
@@ -3744,13 +3555,6 @@ export const ledgityYieldVaultAbi = [
     type: 'function',
     inputs: [{ name: 'burner', internalType: 'address', type: 'address' }],
     name: 'grantBurnRole',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'grantMintAndBurnRoles',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -4201,17 +4005,6 @@ export const ledgityYieldVaultAbi = [
     ],
     name: 'transfer',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'transferAndCall',
-    outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
     stateMutability: 'nonpayable',
   },
   {
@@ -5303,17 +5096,10 @@ export const useWatchGlobalAccessListUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklist = /*#__PURE__*/ createUseReadContract({
   abi: globalBlacklistAbi,
@@ -5325,17 +5111,10 @@ export const useReadGlobalBlacklist = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -5349,17 +5128,10 @@ export const useReadGlobalBlacklistGlobalOwner =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistIsBlacklisted =
   /*#__PURE__*/ createUseReadContract({
@@ -5373,17 +5145,10 @@ export const useReadGlobalBlacklistIsBlacklisted =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistOwner = /*#__PURE__*/ createUseReadContract({
   abi: globalBlacklistAbi,
@@ -5396,17 +5161,10 @@ export const useReadGlobalBlacklistOwner = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -5420,17 +5178,10 @@ export const useReadGlobalBlacklistProxiableUuid =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistRenounceOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -5444,17 +5195,10 @@ export const useReadGlobalBlacklistRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useReadGlobalBlacklistTransferOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -5468,17 +5212,10 @@ export const useReadGlobalBlacklistTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklist = /*#__PURE__*/ createUseWriteContract({
   abi: globalBlacklistAbi,
@@ -5490,17 +5227,10 @@ export const useWriteGlobalBlacklist = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklistBlacklist =
   /*#__PURE__*/ createUseWriteContract({
@@ -5514,17 +5244,10 @@ export const useWriteGlobalBlacklistBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklistInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -5538,17 +5261,10 @@ export const useWriteGlobalBlacklistInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklistUnBlacklist =
   /*#__PURE__*/ createUseWriteContract({
@@ -5562,17 +5278,10 @@ export const useWriteGlobalBlacklistUnBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklistUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -5586,17 +5295,10 @@ export const useWriteGlobalBlacklistUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWriteGlobalBlacklistUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -5610,17 +5312,10 @@ export const useWriteGlobalBlacklistUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklist =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5633,17 +5328,10 @@ export const useSimulateGlobalBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklistBlacklist =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5657,17 +5345,10 @@ export const useSimulateGlobalBlacklistBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklistInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5681,17 +5362,10 @@ export const useSimulateGlobalBlacklistInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklistUnBlacklist =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5705,17 +5379,10 @@ export const useSimulateGlobalBlacklistUnBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklistUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5729,17 +5396,10 @@ export const useSimulateGlobalBlacklistUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useSimulateGlobalBlacklistUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -5753,17 +5413,10 @@ export const useSimulateGlobalBlacklistUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5776,17 +5429,10 @@ export const useWatchGlobalBlacklistEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5800,17 +5446,10 @@ export const useWatchGlobalBlacklistAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5824,17 +5463,10 @@ export const useWatchGlobalBlacklistBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistBlacklistedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5848,17 +5480,10 @@ export const useWatchGlobalBlacklistBlacklistedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5872,17 +5497,10 @@ export const useWatchGlobalBlacklistInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5896,17 +5514,10 @@ export const useWatchGlobalBlacklistOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistUnblacklistedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5920,17 +5531,10 @@ export const useWatchGlobalBlacklistUnblacklistedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const useWatchGlobalBlacklistUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -5944,17 +5548,10 @@ export const useWatchGlobalBlacklistUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useReadGlobalOwner = /*#__PURE__*/ createUseReadContract({
   abi: globalOwnerAbi,
@@ -5966,17 +5563,10 @@ export const useReadGlobalOwner = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useReadGlobalOwnerOwner = /*#__PURE__*/ createUseReadContract({
   abi: globalOwnerAbi,
@@ -5989,17 +5579,10 @@ export const useReadGlobalOwnerOwner = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useReadGlobalOwnerPendingOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -6013,17 +5596,10 @@ export const useReadGlobalOwnerPendingOwner =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useReadGlobalOwnerProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -6037,17 +5613,10 @@ export const useReadGlobalOwnerProxiableUuid =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwner = /*#__PURE__*/ createUseWriteContract({
   abi: globalOwnerAbi,
@@ -6059,17 +5628,10 @@ export const useWriteGlobalOwner = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerAcceptOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -6083,17 +5645,10 @@ export const useWriteGlobalOwnerAcceptOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -6107,17 +5662,10 @@ export const useWriteGlobalOwnerInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -6131,17 +5679,10 @@ export const useWriteGlobalOwnerRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -6155,17 +5696,10 @@ export const useWriteGlobalOwnerTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -6179,17 +5713,10 @@ export const useWriteGlobalOwnerUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWriteGlobalOwnerUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -6203,17 +5730,10 @@ export const useWriteGlobalOwnerUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwner = /*#__PURE__*/ createUseSimulateContract({
   abi: globalOwnerAbi,
@@ -6225,17 +5745,10 @@ export const useSimulateGlobalOwner = /*#__PURE__*/ createUseSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerAcceptOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6249,17 +5762,10 @@ export const useSimulateGlobalOwnerAcceptOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6273,17 +5779,10 @@ export const useSimulateGlobalOwnerInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6297,17 +5796,10 @@ export const useSimulateGlobalOwnerRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6321,17 +5813,10 @@ export const useSimulateGlobalOwnerTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6345,17 +5830,10 @@ export const useSimulateGlobalOwnerUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useSimulateGlobalOwnerUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6369,17 +5847,10 @@ export const useSimulateGlobalOwnerUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6392,17 +5863,10 @@ export const useWatchGlobalOwnerEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6416,17 +5880,10 @@ export const useWatchGlobalOwnerAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6440,17 +5897,10 @@ export const useWatchGlobalOwnerBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6464,17 +5914,10 @@ export const useWatchGlobalOwnerInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerOwnershipTransferStartedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6488,17 +5931,10 @@ export const useWatchGlobalOwnerOwnershipTransferStartedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6512,17 +5948,10 @@ export const useWatchGlobalOwnerOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const useWatchGlobalOwnerUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6536,17 +5965,10 @@ export const useWatchGlobalOwnerUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPause = /*#__PURE__*/ createUseReadContract({
   abi: globalPauseAbi,
@@ -6558,17 +5980,10 @@ export const useReadGlobalPause = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPauseGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -6582,17 +5997,10 @@ export const useReadGlobalPauseGlobalOwner =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPauseOwner = /*#__PURE__*/ createUseReadContract({
   abi: globalPauseAbi,
@@ -6605,17 +6013,10 @@ export const useReadGlobalPauseOwner = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPausePaused = /*#__PURE__*/ createUseReadContract({
   abi: globalPauseAbi,
@@ -6628,17 +6029,10 @@ export const useReadGlobalPausePaused = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPauseProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -6652,17 +6046,10 @@ export const useReadGlobalPauseProxiableUuid =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPauseRenounceOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -6676,17 +6063,10 @@ export const useReadGlobalPauseRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useReadGlobalPauseTransferOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -6700,17 +6080,10 @@ export const useReadGlobalPauseTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPause = /*#__PURE__*/ createUseWriteContract({
   abi: globalPauseAbi,
@@ -6722,17 +6095,10 @@ export const useWriteGlobalPause = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPauseInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -6746,17 +6112,10 @@ export const useWriteGlobalPauseInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPausePause = /*#__PURE__*/ createUseWriteContract({
   abi: globalPauseAbi,
@@ -6769,17 +6128,10 @@ export const useWriteGlobalPausePause = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPauseUnpause = /*#__PURE__*/ createUseWriteContract({
   abi: globalPauseAbi,
@@ -6792,17 +6144,10 @@ export const useWriteGlobalPauseUnpause = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPauseUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -6816,17 +6161,10 @@ export const useWriteGlobalPauseUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWriteGlobalPauseUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -6840,17 +6178,10 @@ export const useWriteGlobalPauseUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPause = /*#__PURE__*/ createUseSimulateContract({
   abi: globalPauseAbi,
@@ -6862,17 +6193,10 @@ export const useSimulateGlobalPause = /*#__PURE__*/ createUseSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPauseInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6886,17 +6210,10 @@ export const useSimulateGlobalPauseInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPausePause =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6910,17 +6227,10 @@ export const useSimulateGlobalPausePause =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPauseUnpause =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6934,17 +6244,10 @@ export const useSimulateGlobalPauseUnpause =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPauseUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6958,17 +6261,10 @@ export const useSimulateGlobalPauseUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useSimulateGlobalPauseUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6982,17 +6278,10 @@ export const useSimulateGlobalPauseUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7005,17 +6294,10 @@ export const useWatchGlobalPauseEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7029,17 +6311,10 @@ export const useWatchGlobalPauseAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7053,17 +6328,10 @@ export const useWatchGlobalPauseBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7077,17 +6345,10 @@ export const useWatchGlobalPauseInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7101,17 +6362,10 @@ export const useWatchGlobalPauseOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPausePausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7125,17 +6379,10 @@ export const useWatchGlobalPausePausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7149,17 +6396,10 @@ export const useWatchGlobalPauseUnpausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const useWatchGlobalPauseUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7173,17 +6413,10 @@ export const useWatchGlobalPauseUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStaking = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7195,17 +6428,10 @@ export const useReadLdyStaking = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingMultiplierBasis =
   /*#__PURE__*/ createUseReadContract({
@@ -7219,17 +6445,10 @@ export const useReadLdyStakingMultiplierBasis =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingEarned = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7242,17 +6461,10 @@ export const useReadLdyStakingEarned = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingFinishAt = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7265,17 +6477,10 @@ export const useReadLdyStakingFinishAt = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGetEarnedUser =
   /*#__PURE__*/ createUseReadContract({
@@ -7289,17 +6494,10 @@ export const useReadLdyStakingGetEarnedUser =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGetStakeDurationInfo =
   /*#__PURE__*/ createUseReadContract({
@@ -7313,17 +6511,10 @@ export const useReadLdyStakingGetStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGetUserStakes =
   /*#__PURE__*/ createUseReadContract({
@@ -7337,17 +6528,10 @@ export const useReadLdyStakingGetUserStakes =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGlobalBlacklist =
   /*#__PURE__*/ createUseReadContract({
@@ -7361,17 +6545,10 @@ export const useReadLdyStakingGlobalBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGlobalOwner = /*#__PURE__*/ createUseReadContract(
   {
@@ -7386,17 +6563,10 @@ export const useReadLdyStakingGlobalOwner = /*#__PURE__*/ createUseReadContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingGlobalPause = /*#__PURE__*/ createUseReadContract(
   {
@@ -7411,17 +6581,10 @@ export const useReadLdyStakingGlobalPause = /*#__PURE__*/ createUseReadContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingHighTierAccounts =
   /*#__PURE__*/ createUseReadContract({
@@ -7435,17 +6598,10 @@ export const useReadLdyStakingHighTierAccounts =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingLastTimeRewardApplicable =
   /*#__PURE__*/ createUseReadContract({
@@ -7459,17 +6615,10 @@ export const useReadLdyStakingLastTimeRewardApplicable =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingLastUpdateTime =
   /*#__PURE__*/ createUseReadContract({
@@ -7483,17 +6632,10 @@ export const useReadLdyStakingLastUpdateTime =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingNbHighTierPositions =
   /*#__PURE__*/ createUseReadContract({
@@ -7507,17 +6649,10 @@ export const useReadLdyStakingNbHighTierPositions =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingOwner = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7530,17 +6665,10 @@ export const useReadLdyStakingOwner = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingPaused = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7553,17 +6681,10 @@ export const useReadLdyStakingPaused = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -7577,17 +6698,10 @@ export const useReadLdyStakingProxiableUuid =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingRenounceOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -7601,17 +6715,10 @@ export const useReadLdyStakingRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingRewardPerToken =
   /*#__PURE__*/ createUseReadContract({
@@ -7625,17 +6732,10 @@ export const useReadLdyStakingRewardPerToken =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingRewardPerTokenStored =
   /*#__PURE__*/ createUseReadContract({
@@ -7649,17 +6749,10 @@ export const useReadLdyStakingRewardPerTokenStored =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingRewardRatePerSec =
   /*#__PURE__*/ createUseReadContract({
@@ -7673,17 +6766,10 @@ export const useReadLdyStakingRewardRatePerSec =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingRewardsDuration =
   /*#__PURE__*/ createUseReadContract({
@@ -7697,17 +6783,10 @@ export const useReadLdyStakingRewardsDuration =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingStakeAmountForPerks =
   /*#__PURE__*/ createUseReadContract({
@@ -7721,17 +6800,10 @@ export const useReadLdyStakingStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingStakeDurationForPerks =
   /*#__PURE__*/ createUseReadContract({
@@ -7745,17 +6817,10 @@ export const useReadLdyStakingStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingStakeDurationInfos =
   /*#__PURE__*/ createUseReadContract({
@@ -7769,17 +6834,10 @@ export const useReadLdyStakingStakeDurationInfos =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingStakeRewardToken =
   /*#__PURE__*/ createUseReadContract({
@@ -7793,17 +6851,10 @@ export const useReadLdyStakingStakeRewardToken =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingTierOf = /*#__PURE__*/ createUseReadContract({
   abi: ldyStakingAbi,
@@ -7816,17 +6867,10 @@ export const useReadLdyStakingTierOf = /*#__PURE__*/ createUseReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingTotalRewards =
   /*#__PURE__*/ createUseReadContract({
@@ -7840,17 +6884,10 @@ export const useReadLdyStakingTotalRewards =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingTotalStaked = /*#__PURE__*/ createUseReadContract(
   {
@@ -7865,17 +6902,10 @@ export const useReadLdyStakingTotalStaked = /*#__PURE__*/ createUseReadContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingTotalWeightedStake =
   /*#__PURE__*/ createUseReadContract({
@@ -7889,17 +6919,10 @@ export const useReadLdyStakingTotalWeightedStake =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingTransferOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -7913,17 +6936,10 @@ export const useReadLdyStakingTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useReadLdyStakingUserStakingInfo =
   /*#__PURE__*/ createUseReadContract({
@@ -7937,17 +6953,10 @@ export const useReadLdyStakingUserStakingInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStaking = /*#__PURE__*/ createUseWriteContract({
   abi: ldyStakingAbi,
@@ -7959,17 +6968,10 @@ export const useWriteLdyStaking = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingGetReward = /*#__PURE__*/ createUseWriteContract(
   { abi: ldyStakingAbi, address: ldyStakingAddress, functionName: 'getReward' },
@@ -7980,17 +6982,10 @@ export const useWriteLdyStakingGetReward = /*#__PURE__*/ createUseWriteContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -8004,17 +6999,10 @@ export const useWriteLdyStakingInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingNotifyRewardAmount =
   /*#__PURE__*/ createUseWriteContract({
@@ -8028,17 +7016,10 @@ export const useWriteLdyStakingNotifyRewardAmount =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingPushStakeDurationInfo =
   /*#__PURE__*/ createUseWriteContract({
@@ -8052,17 +7033,10 @@ export const useWriteLdyStakingPushStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -8076,17 +7050,10 @@ export const useWriteLdyStakingRecoverErc20 =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingSetRewardsDuration =
   /*#__PURE__*/ createUseWriteContract({
@@ -8100,17 +7067,10 @@ export const useWriteLdyStakingSetRewardsDuration =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingSetStakeAmountForPerks =
   /*#__PURE__*/ createUseWriteContract({
@@ -8124,17 +7084,10 @@ export const useWriteLdyStakingSetStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingSetStakeDurationForPerks =
   /*#__PURE__*/ createUseWriteContract({
@@ -8148,17 +7101,10 @@ export const useWriteLdyStakingSetStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingStake = /*#__PURE__*/ createUseWriteContract({
   abi: ldyStakingAbi,
@@ -8171,17 +7117,10 @@ export const useWriteLdyStakingStake = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingUnstake = /*#__PURE__*/ createUseWriteContract({
   abi: ldyStakingAbi,
@@ -8194,17 +7133,10 @@ export const useWriteLdyStakingUnstake = /*#__PURE__*/ createUseWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingUpgradeTo = /*#__PURE__*/ createUseWriteContract(
   { abi: ldyStakingAbi, address: ldyStakingAddress, functionName: 'upgradeTo' },
@@ -8215,17 +7147,10 @@ export const useWriteLdyStakingUpgradeTo = /*#__PURE__*/ createUseWriteContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWriteLdyStakingUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -8239,17 +7164,10 @@ export const useWriteLdyStakingUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStaking = /*#__PURE__*/ createUseSimulateContract({
   abi: ldyStakingAbi,
@@ -8261,17 +7179,10 @@ export const useSimulateLdyStaking = /*#__PURE__*/ createUseSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingGetReward =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8285,17 +7196,10 @@ export const useSimulateLdyStakingGetReward =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8309,17 +7213,10 @@ export const useSimulateLdyStakingInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingNotifyRewardAmount =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8333,17 +7230,10 @@ export const useSimulateLdyStakingNotifyRewardAmount =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingPushStakeDurationInfo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8357,17 +7247,10 @@ export const useSimulateLdyStakingPushStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8381,17 +7264,10 @@ export const useSimulateLdyStakingRecoverErc20 =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingSetRewardsDuration =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8405,17 +7281,10 @@ export const useSimulateLdyStakingSetRewardsDuration =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingSetStakeAmountForPerks =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8429,17 +7298,10 @@ export const useSimulateLdyStakingSetStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingSetStakeDurationForPerks =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8453,17 +7315,10 @@ export const useSimulateLdyStakingSetStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingStake =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8477,17 +7332,10 @@ export const useSimulateLdyStakingStake =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingUnstake =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8501,17 +7349,10 @@ export const useSimulateLdyStakingUnstake =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8525,17 +7366,10 @@ export const useSimulateLdyStakingUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useSimulateLdyStakingUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -8549,17 +7383,10 @@ export const useSimulateLdyStakingUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8572,17 +7399,10 @@ export const useWatchLdyStakingEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8596,17 +7416,10 @@ export const useWatchLdyStakingAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8620,17 +7433,10 @@ export const useWatchLdyStakingBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8644,17 +7450,10 @@ export const useWatchLdyStakingInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingNotifiedRewardAmountEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8668,17 +7467,10 @@ export const useWatchLdyStakingNotifiedRewardAmountEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8692,17 +7484,10 @@ export const useWatchLdyStakingOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8716,17 +7501,10 @@ export const useWatchLdyStakingPausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingRewardPaidEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8740,17 +7518,10 @@ export const useWatchLdyStakingRewardPaidEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingStakedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8764,17 +7535,10 @@ export const useWatchLdyStakingStakedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8788,17 +7552,10 @@ export const useWatchLdyStakingUnpausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingUnstakedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -8812,17 +7569,10 @@ export const useWatchLdyStakingUnstakedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const useWatchLdyStakingUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -9827,17 +8577,10 @@ export const useWatchLTokenUpgradedEvent =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignaler = /*#__PURE__*/ createUseReadContract({
   abi: lTokenSignalerAbi,
@@ -9848,17 +8591,10 @@ export const useReadLTokenSignaler = /*#__PURE__*/ createUseReadContract({
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"globalOwner"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignalerGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -9871,17 +8607,10 @@ export const useReadLTokenSignalerGlobalOwner =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"owner"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignalerOwner = /*#__PURE__*/ createUseReadContract({
   abi: lTokenSignalerAbi,
@@ -9893,17 +8622,10 @@ export const useReadLTokenSignalerOwner = /*#__PURE__*/ createUseReadContract({
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"proxiableUUID"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignalerProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -9916,17 +8638,10 @@ export const useReadLTokenSignalerProxiableUuid =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"renounceOwnership"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignalerRenounceOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -9939,17 +8654,10 @@ export const useReadLTokenSignalerRenounceOwnership =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"transferOwnership"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useReadLTokenSignalerTransferOwnership =
   /*#__PURE__*/ createUseReadContract({
@@ -9962,17 +8670,10 @@ export const useReadLTokenSignalerTransferOwnership =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWriteLTokenSignaler = /*#__PURE__*/ createUseWriteContract({
   abi: lTokenSignalerAbi,
@@ -9983,17 +8684,10 @@ export const useWriteLTokenSignaler = /*#__PURE__*/ createUseWriteContract({
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWriteLTokenSignalerInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -10006,17 +8700,10 @@ export const useWriteLTokenSignalerInitialize =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWriteLTokenSignalerSignalLToken =
   /*#__PURE__*/ createUseWriteContract({
@@ -10029,17 +8716,10 @@ export const useWriteLTokenSignalerSignalLToken =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWriteLTokenSignalerUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -10052,17 +8732,10 @@ export const useWriteLTokenSignalerUpgradeTo =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWriteLTokenSignalerUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -10075,17 +8748,10 @@ export const useWriteLTokenSignalerUpgradeToAndCall =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useSimulateLTokenSignaler =
   /*#__PURE__*/ createUseSimulateContract({
@@ -10097,17 +8763,10 @@ export const useSimulateLTokenSignaler =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useSimulateLTokenSignalerInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -10120,17 +8779,10 @@ export const useSimulateLTokenSignalerInitialize =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useSimulateLTokenSignalerSignalLToken =
   /*#__PURE__*/ createUseSimulateContract({
@@ -10143,17 +8795,10 @@ export const useSimulateLTokenSignalerSignalLToken =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useSimulateLTokenSignalerUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -10166,17 +8811,10 @@ export const useSimulateLTokenSignalerUpgradeTo =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useSimulateLTokenSignalerUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -10189,17 +8827,10 @@ export const useSimulateLTokenSignalerUpgradeToAndCall =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10211,17 +8842,10 @@ export const useWatchLTokenSignalerEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"AdminChanged"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10234,17 +8858,10 @@ export const useWatchLTokenSignalerAdminChangedEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10257,17 +8874,10 @@ export const useWatchLTokenSignalerBeaconUpgradedEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Initialized"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10280,17 +8890,10 @@ export const useWatchLTokenSignalerInitializedEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"LTokenSignalEvent"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerLTokenSignalEventEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10303,17 +8906,10 @@ export const useWatchLTokenSignalerLTokenSignalEventEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10326,17 +8922,10 @@ export const useWatchLTokenSignalerOwnershipTransferredEvent =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Upgraded"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const useWatchLTokenSignalerUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -10439,15 +9028,6 @@ export const useReadLedgityYieldVaultDecimals =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'decimals',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decimalsOffset"`
- */
-export const useReadLedgityYieldVaultDecimalsOffset =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'decimalsOffset',
   })
 
 /**
@@ -10888,15 +9468,6 @@ export const useWriteLedgityYieldVaultBurnAndRemintBlacklistedShares =
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"burnFrom"`
- */
-export const useWriteLedgityYieldVaultBurnFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'burnFrom',
-  })
-
-/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
  */
 export const useWriteLedgityYieldVaultDecreaseAllowance =
@@ -10930,15 +9501,6 @@ export const useWriteLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'grantBurnRole',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"grantMintAndBurnRoles"`
- */
-export const useWriteLedgityYieldVaultGrantMintAndBurnRoles =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'grantMintAndBurnRoles',
   })
 
 /**
@@ -11104,15 +9666,6 @@ export const useWriteLedgityYieldVaultTransfer =
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferAndCall"`
- */
-export const useWriteLedgityYieldVaultTransferAndCall =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'transferAndCall',
-  })
-
-/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
  */
 export const useWriteLedgityYieldVaultTransferFrom =
@@ -11245,15 +9798,6 @@ export const useSimulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"burnFrom"`
- */
-export const useSimulateLedgityYieldVaultBurnFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'burnFrom',
-  })
-
-/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
  */
 export const useSimulateLedgityYieldVaultDecreaseAllowance =
@@ -11287,15 +9831,6 @@ export const useSimulateLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'grantBurnRole',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"grantMintAndBurnRoles"`
- */
-export const useSimulateLedgityYieldVaultGrantMintAndBurnRoles =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'grantMintAndBurnRoles',
   })
 
 /**
@@ -11458,15 +9993,6 @@ export const useSimulateLedgityYieldVaultTransfer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transfer',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferAndCall"`
- */
-export const useSimulateLedgityYieldVaultTransferAndCall =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'transferAndCall',
   })
 
 /**
@@ -13109,17 +11635,10 @@ export const watchGlobalAccessListUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklist = /*#__PURE__*/ createReadContract({
   abi: globalBlacklistAbi,
@@ -13131,17 +11650,10 @@ export const readGlobalBlacklist = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: globalBlacklistAbi,
@@ -13154,17 +11666,10 @@ export const readGlobalBlacklistGlobalOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistIsBlacklisted =
   /*#__PURE__*/ createReadContract({
@@ -13178,17 +11683,10 @@ export const readGlobalBlacklistIsBlacklisted =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistOwner = /*#__PURE__*/ createReadContract({
   abi: globalBlacklistAbi,
@@ -13201,17 +11699,10 @@ export const readGlobalBlacklistOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -13225,17 +11716,10 @@ export const readGlobalBlacklistProxiableUuid =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistRenounceOwnership =
   /*#__PURE__*/ createReadContract({
@@ -13249,17 +11733,10 @@ export const readGlobalBlacklistRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const readGlobalBlacklistTransferOwnership =
   /*#__PURE__*/ createReadContract({
@@ -13273,17 +11750,10 @@ export const readGlobalBlacklistTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklist = /*#__PURE__*/ createWriteContract({
   abi: globalBlacklistAbi,
@@ -13295,17 +11765,10 @@ export const writeGlobalBlacklist = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklistBlacklist = /*#__PURE__*/ createWriteContract({
   abi: globalBlacklistAbi,
@@ -13318,17 +11781,10 @@ export const writeGlobalBlacklistBlacklist = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklistInitialize = /*#__PURE__*/ createWriteContract(
   {
@@ -13343,17 +11799,10 @@ export const writeGlobalBlacklistInitialize = /*#__PURE__*/ createWriteContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklistUnBlacklist =
   /*#__PURE__*/ createWriteContract({
@@ -13367,17 +11816,10 @@ export const writeGlobalBlacklistUnBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklistUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: globalBlacklistAbi,
@@ -13390,17 +11832,10 @@ export const writeGlobalBlacklistUpgradeTo = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const writeGlobalBlacklistUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -13414,17 +11849,10 @@ export const writeGlobalBlacklistUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklist = /*#__PURE__*/ createSimulateContract({
   abi: globalBlacklistAbi,
@@ -13436,17 +11864,10 @@ export const simulateGlobalBlacklist = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklistBlacklist =
   /*#__PURE__*/ createSimulateContract({
@@ -13460,17 +11881,10 @@ export const simulateGlobalBlacklistBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklistInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -13484,17 +11898,10 @@ export const simulateGlobalBlacklistInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklistUnBlacklist =
   /*#__PURE__*/ createSimulateContract({
@@ -13508,17 +11915,10 @@ export const simulateGlobalBlacklistUnBlacklist =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklistUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -13532,17 +11932,10 @@ export const simulateGlobalBlacklistUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const simulateGlobalBlacklistUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -13556,17 +11949,10 @@ export const simulateGlobalBlacklistUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistEvent = /*#__PURE__*/ createWatchContractEvent(
   { abi: globalBlacklistAbi, address: globalBlacklistAddress },
@@ -13577,17 +11963,10 @@ export const watchGlobalBlacklistEvent = /*#__PURE__*/ createWatchContractEvent(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13601,17 +11980,10 @@ export const watchGlobalBlacklistAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13625,17 +11997,10 @@ export const watchGlobalBlacklistBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistBlacklistedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13649,17 +12014,10 @@ export const watchGlobalBlacklistBlacklistedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13673,17 +12031,10 @@ export const watchGlobalBlacklistInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13697,17 +12048,10 @@ export const watchGlobalBlacklistOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistUnblacklistedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13721,17 +12065,10 @@ export const watchGlobalBlacklistUnblacklistedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFC71827E981Fe166299736f1A1CCc4f5d3a2597E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xCafa29A5B0Bec43CdEa826eC21D0134E14FCc37e)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x9bD7AF4a9Af603A0f4f53d39Ab2a97Cea7E4A7e6)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5aCA1739b6072f78966e3630a535Febc93CD3c42)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7fbE57dD4Ba76CACBFfBA821EE0B7faa240a11bf)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1549647606A71B2a79b85AEb54631b8eA2a1939a)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xf7d04d50F3EC180173CEFc73EB5427aeFC9f5fF1)
  */
 export const watchGlobalBlacklistUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -13745,17 +12082,10 @@ export const watchGlobalBlacklistUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const readGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: globalOwnerAbi,
@@ -13767,17 +12097,10 @@ export const readGlobalOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const readGlobalOwnerOwner = /*#__PURE__*/ createReadContract({
   abi: globalOwnerAbi,
@@ -13790,17 +12113,10 @@ export const readGlobalOwnerOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const readGlobalOwnerPendingOwner = /*#__PURE__*/ createReadContract({
   abi: globalOwnerAbi,
@@ -13813,17 +12129,10 @@ export const readGlobalOwnerPendingOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const readGlobalOwnerProxiableUuid = /*#__PURE__*/ createReadContract({
   abi: globalOwnerAbi,
@@ -13836,17 +12145,10 @@ export const readGlobalOwnerProxiableUuid = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwner = /*#__PURE__*/ createWriteContract({
   abi: globalOwnerAbi,
@@ -13858,17 +12160,10 @@ export const writeGlobalOwner = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerAcceptOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -13882,17 +12177,10 @@ export const writeGlobalOwnerAcceptOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerInitialize = /*#__PURE__*/ createWriteContract({
   abi: globalOwnerAbi,
@@ -13905,17 +12193,10 @@ export const writeGlobalOwnerInitialize = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -13929,17 +12210,10 @@ export const writeGlobalOwnerRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -13953,17 +12227,10 @@ export const writeGlobalOwnerTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: globalOwnerAbi,
@@ -13976,17 +12243,10 @@ export const writeGlobalOwnerUpgradeTo = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const writeGlobalOwnerUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -14000,17 +12260,10 @@ export const writeGlobalOwnerUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwner = /*#__PURE__*/ createSimulateContract({
   abi: globalOwnerAbi,
@@ -14022,17 +12275,10 @@ export const simulateGlobalOwner = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerAcceptOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -14046,17 +12292,10 @@ export const simulateGlobalOwnerAcceptOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -14070,17 +12309,10 @@ export const simulateGlobalOwnerInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -14094,17 +12326,10 @@ export const simulateGlobalOwnerRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -14118,17 +12343,10 @@ export const simulateGlobalOwnerTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -14142,17 +12360,10 @@ export const simulateGlobalOwnerUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const simulateGlobalOwnerUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -14166,17 +12377,10 @@ export const simulateGlobalOwnerUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: globalOwnerAbi,
@@ -14188,17 +12392,10 @@ export const watchGlobalOwnerEvent = /*#__PURE__*/ createWatchContractEvent({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14212,17 +12409,10 @@ export const watchGlobalOwnerAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14236,17 +12426,10 @@ export const watchGlobalOwnerBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14260,17 +12443,10 @@ export const watchGlobalOwnerInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerOwnershipTransferStartedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14284,17 +12460,10 @@ export const watchGlobalOwnerOwnershipTransferStartedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14308,17 +12477,10 @@ export const watchGlobalOwnerOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x730C21c81F2baaDEB54daD63050D42474a824900)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x4717bca6978f1BCAb59b7bc0B6849aba6062834c)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x9fbE547e05c34B2c289Ec45D40674c3757190f01)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0xDbac01A784fB7E5F1Ae9c8d61f776A2d9d59faB6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xe4Af4573bFc5F04D8b84c61744de8A94059f2462)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xd42B1065Ac03F3965b11ef19ee98b0165A2C4E53)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0xcA55A2394876e7Cf52e99Ab36Fc9151a7d9CF350)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x91849bAe327965a5Cc7BA970233dBee10C610105)
  */
 export const watchGlobalOwnerUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14332,17 +12494,10 @@ export const watchGlobalOwnerUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPause = /*#__PURE__*/ createReadContract({
   abi: globalPauseAbi,
@@ -14354,17 +12509,10 @@ export const readGlobalPause = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPauseGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: globalPauseAbi,
@@ -14377,17 +12525,10 @@ export const readGlobalPauseGlobalOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPauseOwner = /*#__PURE__*/ createReadContract({
   abi: globalPauseAbi,
@@ -14400,17 +12541,10 @@ export const readGlobalPauseOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPausePaused = /*#__PURE__*/ createReadContract({
   abi: globalPauseAbi,
@@ -14423,17 +12557,10 @@ export const readGlobalPausePaused = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPauseProxiableUuid = /*#__PURE__*/ createReadContract({
   abi: globalPauseAbi,
@@ -14446,17 +12573,10 @@ export const readGlobalPauseProxiableUuid = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPauseRenounceOwnership =
   /*#__PURE__*/ createReadContract({
@@ -14470,17 +12590,10 @@ export const readGlobalPauseRenounceOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const readGlobalPauseTransferOwnership =
   /*#__PURE__*/ createReadContract({
@@ -14494,17 +12607,10 @@ export const readGlobalPauseTransferOwnership =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPause = /*#__PURE__*/ createWriteContract({
   abi: globalPauseAbi,
@@ -14516,17 +12622,10 @@ export const writeGlobalPause = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPauseInitialize = /*#__PURE__*/ createWriteContract({
   abi: globalPauseAbi,
@@ -14539,17 +12638,10 @@ export const writeGlobalPauseInitialize = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPausePause = /*#__PURE__*/ createWriteContract({
   abi: globalPauseAbi,
@@ -14562,17 +12654,10 @@ export const writeGlobalPausePause = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPauseUnpause = /*#__PURE__*/ createWriteContract({
   abi: globalPauseAbi,
@@ -14585,17 +12670,10 @@ export const writeGlobalPauseUnpause = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPauseUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: globalPauseAbi,
@@ -14608,17 +12686,10 @@ export const writeGlobalPauseUpgradeTo = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const writeGlobalPauseUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -14632,17 +12703,10 @@ export const writeGlobalPauseUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPause = /*#__PURE__*/ createSimulateContract({
   abi: globalPauseAbi,
@@ -14654,17 +12718,10 @@ export const simulateGlobalPause = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPauseInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -14678,17 +12735,10 @@ export const simulateGlobalPauseInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPausePause = /*#__PURE__*/ createSimulateContract({
   abi: globalPauseAbi,
@@ -14701,17 +12751,10 @@ export const simulateGlobalPausePause = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPauseUnpause = /*#__PURE__*/ createSimulateContract({
   abi: globalPauseAbi,
@@ -14724,17 +12767,10 @@ export const simulateGlobalPauseUnpause = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPauseUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -14748,17 +12784,10 @@ export const simulateGlobalPauseUpgradeTo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const simulateGlobalPauseUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -14772,17 +12801,10 @@ export const simulateGlobalPauseUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: globalPauseAbi,
@@ -14794,17 +12816,10 @@ export const watchGlobalPauseEvent = /*#__PURE__*/ createWatchContractEvent({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14818,17 +12833,10 @@ export const watchGlobalPauseAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14842,17 +12850,10 @@ export const watchGlobalPauseBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14866,17 +12867,10 @@ export const watchGlobalPauseInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14890,17 +12884,10 @@ export const watchGlobalPauseOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPausePausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14914,17 +12901,10 @@ export const watchGlobalPausePausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14938,17 +12918,10 @@ export const watchGlobalPauseUnpausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6f6eB78d4A05Ef3Ec6a0194A552e08f804d46e8E)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x8925A8cFDC8141cb9Bf79Eb95756fA982b4A4e1B)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x30b62e9e4aA50Cab8974433CD1EB1C1C7fc40078)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xCdA3337aA51783A598300746a7D2E11970AE20c5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x57791De9E18693834b37323D3c90190A8aB3b925)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x4fB551213757619558A93a599a08524e9Dd59C67)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xd4D4c68CE70fa88B9E527DD3A4a6d19c5cbdd4dB)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x061b0B71B87Bd4Ff6086011a17589ea08DaA49A5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x06f54B7f27eEC56616b951598BaA3B84D7660AB4)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5Be502B3F0aC0AECC9175C2d9E0BbFb619f48322)
  */
 export const watchGlobalPauseUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -14962,17 +12935,10 @@ export const watchGlobalPauseUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStaking = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -14984,17 +12950,10 @@ export const readLdyStaking = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingMultiplierBasis = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15007,17 +12966,10 @@ export const readLdyStakingMultiplierBasis = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingEarned = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15030,17 +12982,10 @@ export const readLdyStakingEarned = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingFinishAt = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15053,17 +12998,10 @@ export const readLdyStakingFinishAt = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGetEarnedUser = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15076,17 +13014,10 @@ export const readLdyStakingGetEarnedUser = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGetStakeDurationInfo =
   /*#__PURE__*/ createReadContract({
@@ -15100,17 +13031,10 @@ export const readLdyStakingGetStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGetUserStakes = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15123,17 +13047,10 @@ export const readLdyStakingGetUserStakes = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGlobalBlacklist = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15146,17 +13063,10 @@ export const readLdyStakingGlobalBlacklist = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15169,17 +13079,10 @@ export const readLdyStakingGlobalOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingGlobalPause = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15192,17 +13095,10 @@ export const readLdyStakingGlobalPause = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingHighTierAccounts = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15215,17 +13111,10 @@ export const readLdyStakingHighTierAccounts = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingLastTimeRewardApplicable =
   /*#__PURE__*/ createReadContract({
@@ -15239,17 +13128,10 @@ export const readLdyStakingLastTimeRewardApplicable =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingLastUpdateTime = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15262,17 +13144,10 @@ export const readLdyStakingLastUpdateTime = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingNbHighTierPositions =
   /*#__PURE__*/ createReadContract({
@@ -15286,17 +13161,10 @@ export const readLdyStakingNbHighTierPositions =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingOwner = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15309,17 +13177,10 @@ export const readLdyStakingOwner = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingPaused = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15332,17 +13193,10 @@ export const readLdyStakingPaused = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingProxiableUuid = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15355,17 +13209,10 @@ export const readLdyStakingProxiableUuid = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingRenounceOwnership = /*#__PURE__*/ createReadContract(
   {
@@ -15380,17 +13227,10 @@ export const readLdyStakingRenounceOwnership = /*#__PURE__*/ createReadContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingRewardPerToken = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15403,17 +13243,10 @@ export const readLdyStakingRewardPerToken = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingRewardPerTokenStored =
   /*#__PURE__*/ createReadContract({
@@ -15427,17 +13260,10 @@ export const readLdyStakingRewardPerTokenStored =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingRewardRatePerSec = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15450,17 +13276,10 @@ export const readLdyStakingRewardRatePerSec = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingRewardsDuration = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15473,17 +13292,10 @@ export const readLdyStakingRewardsDuration = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingStakeAmountForPerks =
   /*#__PURE__*/ createReadContract({
@@ -15497,17 +13309,10 @@ export const readLdyStakingStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingStakeDurationForPerks =
   /*#__PURE__*/ createReadContract({
@@ -15521,17 +13326,10 @@ export const readLdyStakingStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingStakeDurationInfos =
   /*#__PURE__*/ createReadContract({
@@ -15545,17 +13343,10 @@ export const readLdyStakingStakeDurationInfos =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingStakeRewardToken = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15568,17 +13359,10 @@ export const readLdyStakingStakeRewardToken = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingTierOf = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15591,17 +13375,10 @@ export const readLdyStakingTierOf = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingTotalRewards = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15614,17 +13391,10 @@ export const readLdyStakingTotalRewards = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingTotalStaked = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15637,17 +13407,10 @@ export const readLdyStakingTotalStaked = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingTotalWeightedStake =
   /*#__PURE__*/ createReadContract({
@@ -15661,17 +13424,10 @@ export const readLdyStakingTotalWeightedStake =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingTransferOwnership = /*#__PURE__*/ createReadContract(
   {
@@ -15686,17 +13442,10 @@ export const readLdyStakingTransferOwnership = /*#__PURE__*/ createReadContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const readLdyStakingUserStakingInfo = /*#__PURE__*/ createReadContract({
   abi: ldyStakingAbi,
@@ -15709,17 +13458,10 @@ export const readLdyStakingUserStakingInfo = /*#__PURE__*/ createReadContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStaking = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15731,17 +13473,10 @@ export const writeLdyStaking = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingGetReward = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15754,17 +13489,10 @@ export const writeLdyStakingGetReward = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingInitialize = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15777,17 +13505,10 @@ export const writeLdyStakingInitialize = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingNotifyRewardAmount =
   /*#__PURE__*/ createWriteContract({
@@ -15801,17 +13522,10 @@ export const writeLdyStakingNotifyRewardAmount =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingPushStakeDurationInfo =
   /*#__PURE__*/ createWriteContract({
@@ -15825,17 +13539,10 @@ export const writeLdyStakingPushStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingRecoverErc20 = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15848,17 +13555,10 @@ export const writeLdyStakingRecoverErc20 = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingSetRewardsDuration =
   /*#__PURE__*/ createWriteContract({
@@ -15872,17 +13572,10 @@ export const writeLdyStakingSetRewardsDuration =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingSetStakeAmountForPerks =
   /*#__PURE__*/ createWriteContract({
@@ -15896,17 +13589,10 @@ export const writeLdyStakingSetStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingSetStakeDurationForPerks =
   /*#__PURE__*/ createWriteContract({
@@ -15920,17 +13606,10 @@ export const writeLdyStakingSetStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingStake = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15943,17 +13622,10 @@ export const writeLdyStakingStake = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingUnstake = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15966,17 +13638,10 @@ export const writeLdyStakingUnstake = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: ldyStakingAbi,
@@ -15989,17 +13654,10 @@ export const writeLdyStakingUpgradeTo = /*#__PURE__*/ createWriteContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const writeLdyStakingUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -16013,17 +13671,10 @@ export const writeLdyStakingUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStaking = /*#__PURE__*/ createSimulateContract({
   abi: ldyStakingAbi,
@@ -16035,17 +13686,10 @@ export const simulateLdyStaking = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingGetReward = /*#__PURE__*/ createSimulateContract(
   { abi: ldyStakingAbi, address: ldyStakingAddress, functionName: 'getReward' },
@@ -16056,17 +13700,10 @@ export const simulateLdyStakingGetReward = /*#__PURE__*/ createSimulateContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -16080,17 +13717,10 @@ export const simulateLdyStakingInitialize =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingNotifyRewardAmount =
   /*#__PURE__*/ createSimulateContract({
@@ -16104,17 +13734,10 @@ export const simulateLdyStakingNotifyRewardAmount =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingPushStakeDurationInfo =
   /*#__PURE__*/ createSimulateContract({
@@ -16128,17 +13751,10 @@ export const simulateLdyStakingPushStakeDurationInfo =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -16152,17 +13768,10 @@ export const simulateLdyStakingRecoverErc20 =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingSetRewardsDuration =
   /*#__PURE__*/ createSimulateContract({
@@ -16176,17 +13785,10 @@ export const simulateLdyStakingSetRewardsDuration =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingSetStakeAmountForPerks =
   /*#__PURE__*/ createSimulateContract({
@@ -16200,17 +13802,10 @@ export const simulateLdyStakingSetStakeAmountForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingSetStakeDurationForPerks =
   /*#__PURE__*/ createSimulateContract({
@@ -16224,17 +13819,10 @@ export const simulateLdyStakingSetStakeDurationForPerks =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingStake = /*#__PURE__*/ createSimulateContract({
   abi: ldyStakingAbi,
@@ -16247,17 +13835,10 @@ export const simulateLdyStakingStake = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingUnstake = /*#__PURE__*/ createSimulateContract({
   abi: ldyStakingAbi,
@@ -16270,17 +13851,10 @@ export const simulateLdyStakingUnstake = /*#__PURE__*/ createSimulateContract({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingUpgradeTo = /*#__PURE__*/ createSimulateContract(
   { abi: ldyStakingAbi, address: ldyStakingAddress, functionName: 'upgradeTo' },
@@ -16291,17 +13865,10 @@ export const simulateLdyStakingUpgradeTo = /*#__PURE__*/ createSimulateContract(
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const simulateLdyStakingUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -16315,17 +13882,10 @@ export const simulateLdyStakingUpgradeToAndCall =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: ldyStakingAbi,
@@ -16337,17 +13897,10 @@ export const watchLdyStakingEvent = /*#__PURE__*/ createWatchContractEvent({
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16361,17 +13914,10 @@ export const watchLdyStakingAdminChangedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16385,17 +13931,10 @@ export const watchLdyStakingBeaconUpgradedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16409,17 +13948,10 @@ export const watchLdyStakingInitializedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingNotifiedRewardAmountEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16433,17 +13965,10 @@ export const watchLdyStakingNotifiedRewardAmountEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16457,17 +13982,10 @@ export const watchLdyStakingOwnershipTransferredEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16481,17 +13999,10 @@ export const watchLdyStakingPausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingRewardPaidEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16505,17 +14016,10 @@ export const watchLdyStakingRewardPaidEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingStakedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16529,17 +14033,10 @@ export const watchLdyStakingStakedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16553,17 +14050,10 @@ export const watchLdyStakingUnpausedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingUnstakedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16577,17 +14067,10 @@ export const watchLdyStakingUnstakedEvent =
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2AeDFB927Aa2aE87c220b9071c0A1209786b5C5e)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x51231EB81D7c63C39Ca1C4Fc5801ed7DEF9E05EA)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0xd132b6D2cfACa8B5b9e0bA8004Df6275380fa895)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xb6121093403788E40116194B27502CCeAF2BfAB0)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x891611398B53BBAaA3db04c158218c319c87d554)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x98002b5c06b44c8769dA3DAe97CA498aB6F97137)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x7A78A93dad6A64d0A92C913C008dC79dBf919Fa6)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xB5C69197e5D6A52c776384479B529D2d76f9e2De)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x5BFFC5303719f0dC6050a2D8042936714109985f)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6f5B9DB5b87a9Ecf1a9E23e812799988A4b5B79e)
  */
 export const watchLdyStakingUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -17559,17 +15042,10 @@ export const watchLTokenUpgradedEvent = /*#__PURE__*/ createWatchContractEvent({
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignaler = /*#__PURE__*/ createReadContract({
   abi: lTokenSignalerAbi,
@@ -17580,17 +15056,10 @@ export const readLTokenSignaler = /*#__PURE__*/ createReadContract({
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"globalOwner"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignalerGlobalOwner = /*#__PURE__*/ createReadContract({
   abi: lTokenSignalerAbi,
@@ -17602,17 +15071,10 @@ export const readLTokenSignalerGlobalOwner = /*#__PURE__*/ createReadContract({
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"owner"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignalerOwner = /*#__PURE__*/ createReadContract({
   abi: lTokenSignalerAbi,
@@ -17624,17 +15086,10 @@ export const readLTokenSignalerOwner = /*#__PURE__*/ createReadContract({
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"proxiableUUID"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignalerProxiableUuid = /*#__PURE__*/ createReadContract(
   {
@@ -17648,17 +15103,10 @@ export const readLTokenSignalerProxiableUuid = /*#__PURE__*/ createReadContract(
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"renounceOwnership"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignalerRenounceOwnership =
   /*#__PURE__*/ createReadContract({
@@ -17671,17 +15119,10 @@ export const readLTokenSignalerRenounceOwnership =
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"transferOwnership"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const readLTokenSignalerTransferOwnership =
   /*#__PURE__*/ createReadContract({
@@ -17694,17 +15135,10 @@ export const readLTokenSignalerTransferOwnership =
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const writeLTokenSignaler = /*#__PURE__*/ createWriteContract({
   abi: lTokenSignalerAbi,
@@ -17715,17 +15149,10 @@ export const writeLTokenSignaler = /*#__PURE__*/ createWriteContract({
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const writeLTokenSignalerInitialize = /*#__PURE__*/ createWriteContract({
   abi: lTokenSignalerAbi,
@@ -17737,17 +15164,10 @@ export const writeLTokenSignalerInitialize = /*#__PURE__*/ createWriteContract({
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const writeLTokenSignalerSignalLToken =
   /*#__PURE__*/ createWriteContract({
@@ -17760,17 +15180,10 @@ export const writeLTokenSignalerSignalLToken =
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const writeLTokenSignalerUpgradeTo = /*#__PURE__*/ createWriteContract({
   abi: lTokenSignalerAbi,
@@ -17782,17 +15195,10 @@ export const writeLTokenSignalerUpgradeTo = /*#__PURE__*/ createWriteContract({
  * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const writeLTokenSignalerUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -17805,17 +15211,10 @@ export const writeLTokenSignalerUpgradeToAndCall =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const simulateLTokenSignaler = /*#__PURE__*/ createSimulateContract({
   abi: lTokenSignalerAbi,
@@ -17826,17 +15225,10 @@ export const simulateLTokenSignaler = /*#__PURE__*/ createSimulateContract({
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"initialize"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const simulateLTokenSignalerInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -17849,17 +15241,10 @@ export const simulateLTokenSignalerInitialize =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"signalLToken"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const simulateLTokenSignalerSignalLToken =
   /*#__PURE__*/ createSimulateContract({
@@ -17872,17 +15257,10 @@ export const simulateLTokenSignalerSignalLToken =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeTo"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const simulateLTokenSignalerUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -17895,17 +15273,10 @@ export const simulateLTokenSignalerUpgradeTo =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const simulateLTokenSignalerUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -17918,17 +15289,10 @@ export const simulateLTokenSignalerUpgradeToAndCall =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: lTokenSignalerAbi,
@@ -17939,17 +15303,10 @@ export const watchLTokenSignalerEvent = /*#__PURE__*/ createWatchContractEvent({
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"AdminChanged"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -17962,17 +15319,10 @@ export const watchLTokenSignalerAdminChangedEvent =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -17985,17 +15335,10 @@ export const watchLTokenSignalerBeaconUpgradedEvent =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Initialized"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -18008,17 +15351,10 @@ export const watchLTokenSignalerInitializedEvent =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"LTokenSignalEvent"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerLTokenSignalEventEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -18031,17 +15367,10 @@ export const watchLTokenSignalerLTokenSignalEventEvent =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -18054,17 +15383,10 @@ export const watchLTokenSignalerOwnershipTransferredEvent =
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link lTokenSignalerAbi}__ and `eventName` set to `"Upgraded"`
  *
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xF96Af1681a7E926fa694C24D740913c7e860A610)
- * - [__View Contract on X1 Testnet Ok Link__](https://www.oklink.com/xlayer-test/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
- * - [__View Contract on X Layer Mainnet Ok Link__](https://www.oklink.com/xlayer/address/0x011C5B18aBC74A341209b12D1A6fD7B59E423428)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0xEf2864900bBBeC426B02aBD9A08f97329ebD14bc)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x4EeC09DB589C882fbA7C5D03065dfD20912FE877)
- * -
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x627Ff3485a2e34916a6E1c0D0b350A422F5d89D1)
- * - [__View Contract on Linea Goerli Testnet Etherscan__](https://goerli.lineascan.build/address/0x04a678103bE57c3d81100fe08e43C94e50adC37B)
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xBA427517505b14C560854aED003304Fc69cbadfb)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x7A02c93681450241e97C87a2Decb511b42BB16f5)
- * - [__View Contract on Arbitrum Goerli Arbiscan__](https://goerli.arbiscan.io/address/0x1dA817E33C0dB209C7b508B79F9dac4480f94522)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xd4e65C7DC2c3b837ca8c91dc8541dE314b9188c3)
  */
 export const watchLTokenSignalerUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -18163,15 +15485,6 @@ export const readLedgityYieldVaultDecimals = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
   functionName: 'decimals',
 })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decimalsOffset"`
- */
-export const readLedgityYieldVaultDecimalsOffset =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'decimalsOffset',
-  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"deploymentDelay"`
@@ -18595,13 +15908,6 @@ export const writeLedgityYieldVaultBurnAndRemintBlacklistedShares =
   })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"burnFrom"`
- */
-export const writeLedgityYieldVaultBurnFrom = /*#__PURE__*/ createWriteContract(
-  { abi: ledgityYieldVaultAbi, functionName: 'burnFrom' },
-)
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
  */
 export const writeLedgityYieldVaultDecreaseAllowance =
@@ -18634,15 +15940,6 @@ export const writeLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'grantBurnRole',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"grantMintAndBurnRoles"`
- */
-export const writeLedgityYieldVaultGrantMintAndBurnRoles =
-  /*#__PURE__*/ createWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'grantMintAndBurnRoles',
   })
 
 /**
@@ -18804,15 +16101,6 @@ export const writeLedgityYieldVaultTransfer = /*#__PURE__*/ createWriteContract(
 )
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferAndCall"`
- */
-export const writeLedgityYieldVaultTransferAndCall =
-  /*#__PURE__*/ createWriteContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'transferAndCall',
-  })
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
  */
 export const writeLedgityYieldVaultTransferFrom =
@@ -18944,15 +16232,6 @@ export const simulateLedgityYieldVaultBurnAndRemintBlacklistedShares =
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"burnFrom"`
- */
-export const simulateLedgityYieldVaultBurnFrom =
-  /*#__PURE__*/ createSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'burnFrom',
-  })
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
  */
 export const simulateLedgityYieldVaultDecreaseAllowance =
@@ -18986,15 +16265,6 @@ export const simulateLedgityYieldVaultGrantBurnRole =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'grantBurnRole',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"grantMintAndBurnRoles"`
- */
-export const simulateLedgityYieldVaultGrantMintAndBurnRoles =
-  /*#__PURE__*/ createSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'grantMintAndBurnRoles',
   })
 
 /**
@@ -19157,15 +16427,6 @@ export const simulateLedgityYieldVaultTransfer =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transfer',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"transferAndCall"`
- */
-export const simulateLedgityYieldVaultTransferAndCall =
-  /*#__PURE__*/ createSimulateContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'transferAndCall',
   })
 
 /**

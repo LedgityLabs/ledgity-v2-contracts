@@ -8,6 +8,7 @@
   "scripts": {
     "compile": "hardhat compile && hardhat export --export-all data/deployments.json && npx hardhat extract-abis && wagmi generate",
     "test": "forge test --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_",
+    "test:log": "forge test --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_ -vvvv",
     "test:debug": "forge test --rerun --match-path \"tests/protocol-v2/*\" --no-match-contract Skip_ -vvvv",
     "test:all": "forge test --no-match-contract Skip_",
     "size": "hardhat size-contracts",
