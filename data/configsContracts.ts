@@ -145,6 +145,7 @@ export function getParametersForVault(
 
 const configsContracts: {
   [chainId: string]: {
+    owner: Address;
     feeRecipient: Address;
     stakeForFeeReduction: bigint;
     stakeForInstantWithdrawal: bigint;
@@ -168,25 +169,168 @@ const configsContracts: {
 } = {
   // Ethereum
   [1]: {
-    feeRecipient: "0x0000000000000000000000000000000000000001",
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     vaults: {
       lyUSD: {
-        asset: dependencies["1"].USDC,
+        asset: getTokenAddress(1, "USDC"),
         liquidityBufferRate: toRay(10, 2),
-        liquidityManager: "0x0000000000000000000000000000000000000001",
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: parseEther("0.001"),
+      },
+      lyEUR: {
+        asset: getTokenAddress(1, "EURC"),
+        liquidityBufferRate: toRay(5, 2),
+        liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
+        aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: parseEther("0.001"),
+      },
+    },
+  },
+  // Base
+  [8453]: {
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    stakeForFeeReduction: 0n,
+    stakeForInstantWithdrawal: 0n,
+    vaults: {
+      lyUSD: {
+        asset: getTokenAddress(8453, "USDC"),
+        liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
+      lyEUR: {
+        asset: getTokenAddress(8453, "EURC"),
+        liquidityBufferRate: toRay(5, 2),
+        liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
+        aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
+    },
+  },
+  // Arbitrum
+  [42161]: {
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    stakeForFeeReduction: 0n,
+    stakeForInstantWithdrawal: 0n,
+    vaults: {
+      lyUSD: {
+        asset: getTokenAddress(42161, "USDC"),
+        liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        aaveLendingPool: dependencies[42161].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
+    },
+  },
+  // Hedera
+  [295]: {
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    stakeForFeeReduction: 0n,
+    stakeForInstantWithdrawal: 0n,
+    vaults: {
+      lyUSD: {
+        asset: getTokenAddress(295, "USDC"),
+        liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(5, 2), // 5% APR in RAY
-        managementFeeRate: toRay(0.2, 2), // 0.2% in RAY
-        performanceFeeRate: toRay(2, 2), // 2% in RAY
-        withdrawalFeeRate: toRay(0.05, 2), // 0.05% in RAY
-        withdrawalGasFee: parseEther("0.001"),
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
       },
-      // lyEUR: {},
+    },
+  },
+  // Linea
+  [59144]: {
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    stakeForFeeReduction: 0n,
+    stakeForInstantWithdrawal: 0n,
+    vaults: {
+      lyUSD: {
+        asset: getTokenAddress(59144, "USDC"),
+        liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        aaveLendingPool: dependencies[59144].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
+    },
+  },
+  // Sonic
+  [146]: {
+    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    stakeForFeeReduction: 0n,
+    stakeForInstantWithdrawal: 0n,
+    vaults: {
+      lyUSD: {
+        asset: getTokenAddress(146, "USDC"),
+        liquidityBufferRate: toRay(10, 2),
+        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        aaveLendingPool: dependencies[146].AAVE_LENDING_POOL,
+        //
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        managementFeeRate: 0n, // 0.2% in RAY
+        performanceFeeRate: 0n, // 2% in RAY
+        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
     },
   },
 };

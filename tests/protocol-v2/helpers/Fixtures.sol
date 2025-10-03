@@ -390,6 +390,24 @@ contract Fixtures is Test {
         IAaveLendingPoolV3(
           0x794a61358D6845594F94dc1DB02A252b5b4814aD
         );
+    } else if (block.chainid == 59144) {
+      // Linea
+      return
+        IAaveLendingPoolV3(
+          0xc47b8C00b0f69a36fa203Ffeac0334874574a8Ac
+        );
+    } else if (block.chainid == 8453) {
+      // Base
+      return
+        IAaveLendingPoolV3(
+          0xA238Dd80C259a72e81d7e4664a9801593F98d1c5
+        );
+    } else if (block.chainid == 146) {
+      // Sonic
+      return
+        IAaveLendingPoolV3(
+          0x5362dBb1e601abF3a4c14c22ffEdA64042E5eAA3
+        );
     }
     revert("AaveLendingPool not set");
   }
