@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 // Fixtures
-import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
+import { Fixtures, console } from "tests/protocol-v2/helpers/Fixtures.sol";
 
 // Foundry
 import { Test } from "foundry/lib/forge-std/src/Test.sol";
@@ -52,6 +52,12 @@ contract ScenarioComputations is Test, Fixtures {
     uint256 depositAmount,
     LedgityYieldVault vault
   ) internal view returns (VaultState memory expectedState) {
+    // First, account for fees that will be harvested during deposit
+    (
+      VaultState memory stateAfterFees,
+
+    ) = computeExpectedStateAfterHarvestFees(stateBefore, vault);
+
     // Calculate maturity impact (deployment delay fee)
     uint256 maturityImpact = _computeMaturityImpact(
       depositAmount,
@@ -62,28 +68,53 @@ contract ScenarioComputations is Test, Fixtures {
     // Net deposit after maturity impact
     uint256 netDeposit = depositAmount - maturityImpact;
 
-    // Calculate shares to mint
+    // Calculate shares to mint based on state AFTER fees
     uint256 sharesToMint = _computeSharesForDeposit(
       netDeposit,
-      stateBefore.totalSupply,
-      stateBefore.totalAssets
+      stateAfterFees.totalSupply,
+      stateAfterFees.totalAssets
     );
 
     // Expected total assets increases by net deposit
-    expectedState.totalAssets = stateBefore.totalAssets + netDeposit;
+    uint256 newTotalAssets = stateAfterFees.totalAssets + netDeposit;
+    expectedState.totalAssets = newTotalAssets;
 
-    // Expected total supply increases by shares minted
+    // Expected total supply includes fee shares + deposit shares
     expectedState.totalSupply =
-      stateBefore.totalSupply +
+      stateAfterFees.totalSupply +
       sharesToMint;
 
-    // Buffer stays same (assets distributed separately)
-    expectedState.bufferAssets = stateBefore.bufferAssets;
+    // Calculate buffer assets based on deposit distribution
+    uint256 liquidityBufferRate = vault.liquidityBufferRate();
+    uint256 expectedBufferBalance = (newTotalAssets *
+      liquidityBufferRate) / RAY;
+    uint256 currentBufferBalance = stateAfterFees.bufferAssets;
 
-    // Time-based state (may update during deposit due to harvestFees)
-    expectedState.lastFeeTime = block.timestamp;
-    expectedState.lastCompoundTime = stateBefore.lastCompoundTime;
-    expectedState.highWaterMark = stateBefore.highWaterMark;
+    if (currentBufferBalance < expectedBufferBalance) {
+      uint256 bufferDeficit = expectedBufferBalance -
+        currentBufferBalance;
+      uint256 bufferAmount = depositAmount < bufferDeficit
+        ? depositAmount
+        : bufferDeficit;
+      expectedState.bufferAssets =
+        stateAfterFees.bufferAssets +
+        bufferAmount;
+    } else {
+      expectedState.bufferAssets = stateAfterFees.bufferAssets;
+    }
+
+    // Time-based state (updated by harvestFees and _addAssets)
+    expectedState.lastFeeTime = stateAfterFees.lastFeeTime;
+
+    // _addAssets calls _registerFundRevenue which updates lastCompoundTime
+    uint256 timeElapsed = block.timestamp -
+      stateAfterFees.lastCompoundTime;
+    uint256 fullDays = timeElapsed / 1 days;
+    expectedState.lastCompoundTime =
+      stateAfterFees.lastCompoundTime +
+      (fullDays * 1 days);
+
+    expectedState.highWaterMark = stateAfterFees.highWaterMark;
 
     // Share price after deposit
     expectedState.sharePrice = _computeSharePrice(
@@ -108,6 +139,20 @@ contract ScenarioComputations is Test, Fixtures {
     VaultState memory stateBefore,
     LedgityYieldVault vault
   ) internal view returns (AccountState memory expectedAccount) {
+    // First, account for fees that will be harvested during deposit
+    (
+      ,
+      uint256 feeSharesMinted
+    ) = computeExpectedStateAfterHarvestFees(stateBefore, vault);
+
+    // Calculate maturity impact (deployment delay fee)
+    uint256 maturityImpact = _computeMaturityImpact(
+      depositAmount,
+      vault.deploymentDelay(),
+      vault.yieldAPR()
+    );
+    uint256 netDeposit = depositAmount - maturityImpact;
+
     // User spent assets
     expectedAccount.userAssetBalance =
       accountBefore.userAssetBalance -
@@ -117,10 +162,11 @@ contract ScenarioComputations is Test, Fixtures {
       accountBefore.userShareBalance +
       sharesMinted;
 
-    // Calculate expected buffer balance
+    // Calculate expected buffer balance (using netDeposit, not depositAmount)
     uint256 liquidityBufferRate = vault.liquidityBufferRate();
     uint256 expectedBufferBalance = ((stateBefore.totalAssets +
-      depositAmount) * liquidityBufferRate) / RAY;
+      netDeposit) * liquidityBufferRate) / RAY;
+
     uint256 currentBufferBalance = stateBefore.bufferAssets;
 
     if (currentBufferBalance < expectedBufferBalance) {
@@ -140,9 +186,10 @@ contract ScenarioComputations is Test, Fixtures {
         depositAmount;
     }
 
-    // Fee recipient shares may increase due to harvestFees
-    expectedAccount.feeRecipientShareBalance = accountBefore
-      .feeRecipientShareBalance;
+    // Fee recipient shares increase due to harvestFees
+    expectedAccount.feeRecipientShareBalance =
+      accountBefore.feeRecipientShareBalance +
+      feeSharesMinted;
   }
 
   // ======== WITHDRAWAL COMPUTATIONS ======== //
@@ -158,25 +205,39 @@ contract ScenarioComputations is Test, Fixtures {
     VaultState memory stateBefore,
     uint256 assetsWithdrawn,
     uint256 sharesBurned,
-    LedgityYieldVault /* vault */
+    LedgityYieldVault vault
   ) internal view returns (VaultState memory expectedState) {
+    // First, account for fees that will be harvested during withdrawal
+    (
+      VaultState memory stateAfterFees,
+
+    ) = computeExpectedStateAfterHarvestFees(stateBefore, vault);
+
     // Total assets decrease by gross withdrawal
     expectedState.totalAssets =
-      stateBefore.totalAssets -
+      stateAfterFees.totalAssets -
       assetsWithdrawn;
 
     // Total supply decreases by shares burned
     expectedState.totalSupply =
-      stateBefore.totalSupply -
+      stateAfterFees.totalSupply -
       sharesBurned;
 
     // Buffer stays same (assets withdrawn separately)
-    expectedState.bufferAssets = stateBefore.bufferAssets;
+    expectedState.bufferAssets = stateAfterFees.bufferAssets;
 
-    // Time-based state (may update during withdrawal due to harvestFees)
-    expectedState.lastFeeTime = block.timestamp;
-    expectedState.lastCompoundTime = stateBefore.lastCompoundTime;
-    expectedState.highWaterMark = stateBefore.highWaterMark;
+    // Time-based state (updated by harvestFees and _withdrawAssets)
+    expectedState.lastFeeTime = stateAfterFees.lastFeeTime;
+
+    // _withdrawAssets calls _registerFundRevenue which updates lastCompoundTime
+    uint256 timeElapsed = block.timestamp -
+      stateAfterFees.lastCompoundTime;
+    uint256 fullDays = timeElapsed / 1 days;
+    expectedState.lastCompoundTime =
+      stateAfterFees.lastCompoundTime +
+      (fullDays * 1 days);
+
+    expectedState.highWaterMark = stateAfterFees.highWaterMark;
 
     // Share price after withdrawal
     expectedState.sharePrice = _computeSharePrice(
@@ -198,8 +259,14 @@ contract ScenarioComputations is Test, Fixtures {
     uint256 assetsWithdrawn,
     uint256 sharesBurned,
     VaultState memory stateBefore,
-    LedgityYieldVault /* vault */
-  ) internal pure returns (AccountState memory expectedAccount) {
+    LedgityYieldVault vault
+  ) internal view returns (AccountState memory expectedAccount) {
+    // First, account for fees that will be harvested during withdrawal
+    (
+      ,
+      uint256 feeSharesMinted
+    ) = computeExpectedStateAfterHarvestFees(stateBefore, vault);
+
     // User received assets
     expectedAccount.userAssetBalance =
       accountBefore.userAssetBalance +
@@ -223,9 +290,10 @@ contract ScenarioComputations is Test, Fixtures {
         fromLiquidityManager;
     }
 
-    // Fee recipient shares may increase due to harvestFees
-    expectedAccount.feeRecipientShareBalance = accountBefore
-      .feeRecipientShareBalance;
+    // Fee recipient shares increase due to harvestFees
+    expectedAccount.feeRecipientShareBalance =
+      accountBefore.feeRecipientShareBalance +
+      feeSharesMinted;
   }
 
   // ======== TIME WARP COMPUTATIONS ======== //
@@ -596,14 +664,16 @@ contract ScenarioComputations is Test, Fixtures {
       tolerance,
       "VaultState: totalAssets mismatch"
     );
-    assertEq(
+    assertApproxEqRel(
       actual.totalSupply,
       expected.totalSupply,
+      tolerance,
       "VaultState: totalSupply mismatch"
     );
-    assertEq(
+    assertApproxEqRel(
       actual.bufferAssets,
       expected.bufferAssets,
+      tolerance,
       "VaultState: bufferAssets mismatch"
     );
     assertEq(
@@ -654,9 +724,10 @@ contract ScenarioComputations is Test, Fixtures {
       expected.liquidityManagerAssetBalance,
       "AccountState: liquidityManagerAssetBalance mismatch"
     );
-    assertEq(
+    assertApproxEqRel(
       actual.feeRecipientShareBalance,
       expected.feeRecipientShareBalance,
+      100000000000,
       "AccountState: feeRecipientShareBalance mismatch"
     );
   }

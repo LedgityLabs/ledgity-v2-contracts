@@ -5,6 +5,8 @@ pragma solidity 0.8.18;
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
+// Library
+import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
@@ -14,6 +16,8 @@ import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract VaultComputations_FuzzTest is Test, Fixtures {
+  using Math for uint256;
+
   LedgityYieldVault public vault;
   MockLToken public lToken;
   IERC20 public asset;
@@ -85,41 +89,55 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
   }
 
   function _calculateExpectedFeeShares(
-    uint256 currentAssets,
+    uint256 totalAssets,
     uint256 totalSupply,
     uint256 timeElapsed,
     uint256 managementFeeRate,
     uint256 performanceFeeRate,
     uint256 highWaterMark
-  ) internal view returns (uint256) {
-    uint256 decimalsOffset = 1;
+  ) internal pure returns (uint256 totalFeeShares) {
+    uint256 annualManagementFees = totalAssets.mulDiv(
+      managementFeeRate,
+      RAY,
+      Math.Rounding.Up
+    );
+    uint256 managementFeeAssets = annualManagementFees.mulDiv(
+      timeElapsed,
+      365 days,
+      Math.Rounding.Up
+    );
 
-    uint256 annualManagementFees = (currentAssets *
-      managementFeeRate) / RAY;
-    uint256 managementFeeAssets = (annualManagementFees *
-      timeElapsed) / 365 days;
+    /**
+     * This represents the PPS before performance fee dilution
+     * @dev Add 1 to totalSupply to avoid division by zero
+     */
+    if (totalSupply == 0) totalSupply = 1;
 
-    uint256 sharesDenominator = totalSupply + decimalsOffset;
-    if (sharesDenominator == 0) sharesDenominator = 1;
+    uint256 pricePerShare = ((totalAssets + 1) - managementFeeAssets)
+      .mulDiv(1e18, totalSupply, Math.Rounding.Up);
 
-    uint256 pricePerShareBeforePerfFee = (10 ** vault.decimals() *
-      ((currentAssets + 1) - managementFeeAssets)) /
-      sharesDenominator;
+    uint256 performanceFeeAssets;
+    if (highWaterMark < pricePerShare) {
+      performanceFeeAssets = (pricePerShare - highWaterMark)
+        .mulDiv(totalSupply, 1e18, Math.Rounding.Up)
+        .mulDiv(performanceFeeRate, RAY, Math.Rounding.Up);
 
-    uint256 performanceFeeAssets = 0;
-    if (highWaterMark < pricePerShareBeforePerfFee) {
-      uint256 profitPerShare = pricePerShareBeforePerfFee -
-        highWaterMark;
-      uint256 profit = (profitPerShare * totalSupply) /
-        (10 ** vault.decimals());
-      performanceFeeAssets = (profit * performanceFeeRate) / RAY;
+      pricePerShare = (totalAssets -
+        (managementFeeAssets + performanceFeeAssets)).mulDiv(
+          1e18,
+          totalSupply + 1,
+          Math.Rounding.Up
+        );
     }
 
-    uint256 totalFeeAssets = managementFeeAssets +
-      performanceFeeAssets;
-    return
-      (totalFeeAssets * (totalSupply + decimalsOffset)) /
-      ((currentAssets - totalFeeAssets) + 1);
+    uint256 totalFees = managementFeeAssets + performanceFeeAssets;
+
+    // Compensate for the dilution as a consequence of minting totalSupply as fees
+    totalFeeShares = totalFees.mulDiv(
+      totalSupply,
+      (totalAssets - totalFees) + 1,
+      Math.Rounding.Up
+    );
   }
 
   // ============ BUFFER TESTS ============ //
@@ -155,7 +173,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     if (!vault.hasBufferStrategy()) return;
 
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -225,35 +243,36 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
-    uint256 managementFeeRate = vault.managementFeeRate();
     uint256 lastFeeTime = vault.lastFeeTime();
-    uint256 totalSupplyBefore = vault.totalSupply();
 
     _warpDays(days_);
 
-    uint256 currentAssetsBefore = vault.totalAssets();
     uint256 timeElapsed = block.timestamp - lastFeeTime;
 
-    vault.harvestFees();
+    uint256 assetsAfter = vault.totalAssets();
+    uint256 supplyAfter = vault.totalSupply();
 
-    uint256 finalFeeRecipientShares = vault.balanceOf(feeRecipient);
-    uint256 feeShares = finalFeeRecipientShares -
-      initialFeeRecipientShares;
+    // Calculate expected fees using exact formula from _computeFeeData
+    uint256 expectedFeeShares = _calculateExpectedFeeShares(
+      assetsAfter,
+      supplyAfter,
+      timeElapsed,
+      vault.managementFeeRate(),
+      vault.performanceFeeRate(),
+      vault.highWaterMark()
+    );
 
-    if (feeShares > 0) {
-      uint256 expectedFeeShares = _calculateExpectedFeeShares(
-        currentAssetsBefore,
-        totalSupplyBefore,
-        timeElapsed,
-        managementFeeRate,
-        vault.performanceFeeRate(),
-        vault.highWaterMark()
-      );
+    if (0 < expectedFeeShares) {
+      vault.harvestFees();
+
+      uint256 finalFeeRecipientShares = vault.balanceOf(feeRecipient);
+      uint256 feeShares = finalFeeRecipientShares -
+        initialFeeRecipientShares;
 
       uint256 feeAssets = vault.convertToAssets(feeShares);
       uint256 expectedFeeAssetsValue = vault.convertToAssets(
@@ -273,7 +292,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -301,7 +320,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 30, 365); // Longer periods for meaningful gains
+    days_ = bound(days_, 30, 3 * 365); // Longer periods for meaningful gains
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -330,7 +349,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -367,7 +386,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -382,11 +401,11 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     vault.setTotalAssets(vault.totalAssets() / 2);
 
     uint256 feeRecipientSharesBefore = vault.balanceOf(feeRecipient);
-    uint256 totalSupplyBefore = vault.totalSupply();
+    uint256 supplyBefore = vault.totalSupply();
 
     _warpDays(days_);
 
-    uint256 currentAssetsBefore = vault.totalAssets();
+    uint256 assetsBefore = vault.totalAssets();
 
     vault.harvestFees();
 
@@ -397,8 +416,8 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     // When below high water mark, only management fees should be collected
     if (currentPricePerShare < highWaterMark) {
       uint256 expectedFeeShares = _calculateExpectedFeeShares(
-        currentAssetsBefore,
-        totalSupplyBefore,
+        assetsBefore,
+        supplyBefore,
         block.timestamp - lastFeeTime,
         vault.managementFeeRate(),
         vault.performanceFeeRate(),
@@ -648,7 +667,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 365);
+    days_ = bound(days_, 1, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -683,47 +702,47 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 30, 365); // 30 days to 1 year for meaningful fee collection
+    days_ = bound(days_, 30, 3 * 365); // 30 days to 1 year for meaningful fee collection
 
     _depositToVault(testAccount1, depositAmount);
     _depositToVault(testAccount2, depositAmount);
 
-    uint256 initialTotalAssets = vault.totalAssets();
+    uint256 assetsBefore = vault.totalAssets();
     uint256 initialFeeRecipientShares = vault.balanceOf(feeRecipient);
     uint256 lastFeeTime = vault.lastFeeTime();
-    uint256 totalSupplyBefore = vault.totalSupply();
 
     _warpDays(days_);
 
-    uint256 currentAssetsBefore = vault.totalAssets();
     uint256 timeElapsed = block.timestamp - lastFeeTime;
 
-    vault.harvestFees();
-
-    uint256 finalTotalAssets = vault.totalAssets();
-    uint256 finalFeeRecipientShares = vault.balanceOf(feeRecipient);
-    uint256 feeShares = finalFeeRecipientShares -
-      initialFeeRecipientShares;
+    uint256 assetsAfter = vault.totalAssets();
+    uint256 supplyAfter = vault.totalSupply();
 
     // Verify total assets grew due to APR
     assertGt(
-      finalTotalAssets,
-      initialTotalAssets,
+      assetsAfter,
+      assetsBefore,
       "Total assets should grow over time"
     );
 
-    // Verify fees were collected
-    assertGt(feeShares, 0, "Fees should be collected");
-
     // Calculate expected fees using exact formula from _computeFeeData
     uint256 expectedFeeShares = _calculateExpectedFeeShares(
-      currentAssetsBefore,
-      totalSupplyBefore,
+      assetsAfter,
+      supplyAfter,
       timeElapsed,
       vault.managementFeeRate(),
       vault.performanceFeeRate(),
       vault.highWaterMark()
     );
+
+    vault.harvestFees();
+
+    uint256 finalFeeRecipientShares = vault.balanceOf(feeRecipient);
+    uint256 feeShares = finalFeeRecipientShares -
+      initialFeeRecipientShares;
+
+    // Verify fees were collected
+    assertGt(feeShares, 0, "Fees should be collected");
 
     uint256 actualFeeAssets = vault.convertToAssets(feeShares);
     uint256 expectedFeeAssetsValue = vault.convertToAssets(

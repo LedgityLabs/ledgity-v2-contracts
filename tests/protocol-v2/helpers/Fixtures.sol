@@ -326,7 +326,7 @@ contract Fixtures is Test {
         lToken: lToken_,
         stakeToken: ldyToken,
         stakeForFeeReduction: 1000 * 1e18,
-        stakeForInstantWithdrawal: 1000 * 1e18,
+        stakeForInstantWithdrawal: 0,
         globalOwner: address(globalOwner),
         globalPause: address(globalPause),
         globalAccessList: address(globalAccessList),

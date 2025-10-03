@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 // Foundry
-import { Test } from "foundry/lib/forge-std/src/Test.sol";
+import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { ScenarioComputations } from "tests/protocol-v2/helpers/scenarios/ScenarioComputations.sol";

@@ -9,6 +9,7 @@ optimizer_runs = 100
 evm_version = "cancun"
 ffi = true                             # required by hedera-forking
 allow_internal_expect_revert = true
+show_logs = true
 
 [fuzz]
 runs = 100

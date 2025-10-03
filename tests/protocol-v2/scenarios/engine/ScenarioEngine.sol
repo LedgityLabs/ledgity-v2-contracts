@@ -3,6 +3,8 @@ pragma solidity 0.8.18;
 
 // Foundry
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
+// Library
+import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
 import { ScenarioActions } from "tests/protocol-v2/helpers/scenarios/ScenarioActions.sol";
@@ -82,8 +84,7 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
     string memory scenarioName
   ) internal {
     scenarioStartTime = block.timestamp;
-    console.log("\n=== Scenario:", scenarioName, "===");
-    console.log("Start time:", block.timestamp);
+    console.log("=== Scenario:", scenarioName, "===");
 
     for (uint256 i; i < actions.length; i++) {
       ScenarioAction memory action = actions[i];
@@ -95,8 +96,6 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       _logAction(action);
       _executeAction(action);
     }
-
-    console.log("=== Scenario Complete ===\n");
   }
 
   /**
@@ -111,15 +110,6 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
     for (uint256 i; i < vaultConfigs.length; i++) {
       vaults.push(vaultConfigs[i]);
     }
-
-    if (multiVaultMode) {
-      console.log("\n=== Multi-Vault Mode Enabled ===");
-      console.log("Tracking", vaults.length, "vaults");
-      for (uint256 i; i < vaults.length; i++) {
-        console.log("Vault", i, ":", vaults[i].name);
-      }
-      console.log("==================================\n");
-    }
   }
 
   /**
@@ -129,21 +119,17 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
   function _logAction(ScenarioAction memory action) private view {
     string memory actorName = actorNames[action.actor];
 
+    string memory outcome = action.expected == ExpectedOutcome.Success
+      ? "SUCCEED"
+      : "REVERT";
+
     IERC20 currentAsset = multiVaultMode
       ? vaults[action.vaultIndex].asset
       : asset;
     string memory assetSymbol = IERC20Metadata(address(currentAsset))
       .symbol();
-
-    if (multiVaultMode) {
-      console.log(vaults[action.vaultIndex].name);
-    }
-    string memory outcome = action.expected == ExpectedOutcome.Success
-      ? "SUCCEED"
-      : "REVERT";
-
-    uint8 assetDecimals = IERC20Metadata(address(asset)).decimals();
-    uint8 vaultDecimals = IERC20Metadata(address(vault)).decimals();
+    uint8 assetDecimals = IERC20Metadata(address(currentAsset))
+      .decimals();
 
     // Build single-line log message
     string memory logMessage = "";
@@ -154,16 +140,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.args,
         (uint256, address)
       );
-      string memory amount = string(
-        abi.encodePacked(assets / (10 ** assetDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Deposit by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(assets / (10 ** assetDecimals)),
           " ",
           assetSymbol
         )
@@ -173,15 +156,12 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.args,
         (uint256, address, address)
       );
-      string memory amount = string(
-        abi.encodePacked(assets / (10 ** assetDecimals))
-      );
       logMessage = string(
         abi.encodePacked(
           "Withdraw by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(assets / (10 ** assetDecimals)),
           " ",
           assetSymbol
         )
@@ -193,38 +173,32 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       logMessage = string(
         abi.encodePacked(
           "Time warp for ",
-          timeJump / 1 hours,
+          Strings.toString(timeJump),
           " hours"
         )
       );
     } else if (action.actionType == ActionType.DepositToBuffer) {
       uint256 assets = abi.decode(action.args, (uint256));
-      string memory amount = string(
-        abi.encodePacked(assets / (10 ** assetDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Deposit to buffer by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(assets / (10 ** assetDecimals)),
           " ",
           assetSymbol
         )
       );
     } else if (action.actionType == ActionType.SkimBuffer) {
       uint256 assets = abi.decode(action.args, (uint256));
-      string memory amount = string(
-        abi.encodePacked(assets / (10 ** assetDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Skim buffer by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(assets / (10 ** assetDecimals)),
           " ",
           assetSymbol
         )
@@ -234,16 +208,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.args,
         (uint256, uint256)
       );
-      string memory amount = string(
-        abi.encodePacked(shares / (10 ** vaultDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Request withdrawal by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(shares / 1e18),
           " shares"
         )
       );
@@ -253,16 +224,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       );
     } else if (action.actionType == ActionType.MigrateLToken) {
       uint256 lTokens = abi.decode(action.args, (uint256));
-      string memory amount = string(
-        abi.encodePacked(lTokens / (10 ** assetDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Migrate LToken by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(lTokens / (10 ** assetDecimals)),
           " l-tokens"
         )
       );
@@ -271,9 +239,9 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
       logMessage = string(
         abi.encodePacked(
           "Update APR to ",
-          (newAPR / RAY) * 10,
+          Strings.toString((newAPR / RAY) * 10),
           ".",
-          (newAPR % RAY) / (RAY / 100)
+          Strings.toString((newAPR % RAY) / (RAY / 100))
         )
       );
     } else if (action.actionType == ActionType.Redeem) {
@@ -281,16 +249,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.args,
         (uint256, address, address)
       );
-      string memory amount = string(
-        abi.encodePacked(shares / (10 ** vaultDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Redeem by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(shares / 1e18),
           " shares"
         )
       );
@@ -299,16 +264,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         action.args,
         (uint256, address)
       );
-      string memory amount = string(
-        abi.encodePacked(shares / (10 ** vaultDecimals))
-      );
 
       logMessage = string(
         abi.encodePacked(
           "Mint by ",
           actorName,
           " for ",
-          amount,
+          Strings.toString(shares / 1e18),
           " shares"
         )
       );
@@ -325,13 +287,13 @@ abstract contract ScenarioEngine is Test, Fixtures, ScenarioActions {
         abi.encodePacked(
           logMessage,
           " after ",
-          action.timeWarp / 1 hours,
+          Strings.toString(action.timeWarp),
           " hours"
         )
       );
     }
 
-    console.log(logMessage);
+    console.log(string(abi.encodePacked("-> ", logMessage)));
   }
 
   /**
