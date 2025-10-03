@@ -12,10 +12,11 @@ const deployerFunction: DeployFunction = async ({
     contract: "LTokenHedera",
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
     libraries: {
       APRHistory: aprHistory.address,
     },
-    waitConfirmations: 1,
   });
 };
 

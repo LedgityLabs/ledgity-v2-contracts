@@ -17,6 +17,8 @@ const deployerFunction: DeployFunction = async ({
   const result = await deployments.deploy("LTokenSignaler", {
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
     proxy: {
       proxyContract: "UUPS",
       execute: {
@@ -26,7 +28,6 @@ const deployerFunction: DeployFunction = async ({
         },
       },
     },
-    waitConfirmations: 1,
   });
 
   // Skip signaling tokens if this is the previous deployment

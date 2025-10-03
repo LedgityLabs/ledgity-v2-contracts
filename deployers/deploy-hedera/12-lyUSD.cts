@@ -56,6 +56,8 @@ const deployerFunction: DeployFunction = async ({
     contract: "LedgityYieldVaultHedera",
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    deterministicDeployment: true,
     proxy: {
       proxyContract: "UUPS",
       implementationName: "LedgityYieldVaultHedera_Implementation",
@@ -66,7 +68,6 @@ const deployerFunction: DeployFunction = async ({
         },
       },
     },
-    waitConfirmations: 1,
   });
 
   // Update deployedTokens.json

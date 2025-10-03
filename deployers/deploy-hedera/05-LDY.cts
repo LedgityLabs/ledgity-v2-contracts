@@ -14,6 +14,7 @@ const deployerFunction: DeployFunction = async ({
     contract: "LDY",
     log: true,
     waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
   });
 
   // Update deployedTokens.json

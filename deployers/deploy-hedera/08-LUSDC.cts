@@ -32,6 +32,8 @@ const deployerFunction: DeployFunction = async ({
     contract: "LTokenHedera",
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
     libraries: {
       APRHistory: aprHistory.address,
     },
@@ -54,7 +56,6 @@ const deployerFunction: DeployFunction = async ({
         },
       },
     },
-    waitConfirmations: 1,
   });
 
   // Update deployedTokens.json

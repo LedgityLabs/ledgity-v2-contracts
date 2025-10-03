@@ -11,6 +11,9 @@ const deployerFunction: DeployFunction = async ({
   await deployments.deploy("GlobalAccessList", {
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
+    deterministicDeployment: true,
     proxy: {
       proxyContract: "UUPS",
       execute: {
@@ -20,7 +23,6 @@ const deployerFunction: DeployFunction = async ({
         },
       },
     },
-    waitConfirmations: 1,
   });
 };
 

@@ -11,6 +11,7 @@ const deployerFunction: DeployFunction = async ({
     from: deployer,
     log: true,
     waitConfirmations: 1,
+    deterministicDeployment: true,
   });
 };
 

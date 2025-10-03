@@ -36,6 +36,8 @@ const deployerFunction: DeployFunction = async ({
   await deployments.deploy("LDYStaking", {
     from: deployer,
     log: true,
+    waitConfirmations: 1,
+    skipIfAlreadyDeployed: true,
     proxy: {
       proxyContract: "UUPS",
       execute: {
@@ -53,7 +55,6 @@ const deployerFunction: DeployFunction = async ({
         },
       },
     },
-    waitConfirmations: 1,
   });
 };
 
