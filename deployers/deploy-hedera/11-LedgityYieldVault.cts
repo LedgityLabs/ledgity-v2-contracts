@@ -1,9 +1,9 @@
-import type { DeployFunction } from "hardhat-deploy/dist/types";
+import { DeployFunction } from "hardhat-deploy/dist/types";
 
-const deployerFunction: DeployFunction = async ({
+export default async function deploy({
   getNamedAccounts,
   deployments,
-}) => {
+}: Parameters<DeployFunction>[0]) {
   const { deployer } = await getNamedAccounts();
 
   // Deploy the shared implementation
@@ -13,6 +13,4 @@ const deployerFunction: DeployFunction = async ({
     waitConfirmations: 1,
     deterministicDeployment: true,
   });
-};
-
-export default deployerFunction;
+}

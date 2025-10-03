@@ -9,11 +9,11 @@ const LTOKEN_SYMBOL = "LUSDC";
 const UNDERLYING_TOKEN_SYMBOL = "USDC";
 const IS_HTOKEN = true;
 
-const deployerFunction: DeployFunction = async ({
+export default async function deploy({
   getNamedAccounts,
   deployments,
   getChainId,
-}) => {
+}: Parameters<DeployFunction>[0]) {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
@@ -60,6 +60,4 @@ const deployerFunction: DeployFunction = async ({
 
   // Update deployedTokens.json
   writeTempTokenAddress(chainId, LTOKEN_SYMBOL, result.address);
-};
-
-export default deployerFunction;
+}

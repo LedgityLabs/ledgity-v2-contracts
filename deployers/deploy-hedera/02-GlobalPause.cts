@@ -1,9 +1,9 @@
-import type { DeployFunction } from "hardhat-deploy/dist/types";
+import { DeployFunction } from "hardhat-deploy/dist/types";
 
-const deployerFunction: DeployFunction = async ({
+export default async function deploy({
   getNamedAccounts,
   deployments,
-}) => {
+}: Parameters<DeployFunction>[0]) {
   const { deployer } = await getNamedAccounts();
 
   const globalOwner = await deployments.get("GlobalOwner");
@@ -23,6 +23,4 @@ const deployerFunction: DeployFunction = async ({
       },
     },
   });
-};
-
-export default deployerFunction;
+}

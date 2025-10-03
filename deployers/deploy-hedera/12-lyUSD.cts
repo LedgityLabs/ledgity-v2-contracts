@@ -1,5 +1,5 @@
 import fs from "fs";
-import { type DeployFunction } from "hardhat-deploy/dist/types";
+import { DeployFunction } from "hardhat-deploy/dist/types";
 import { Address } from "viem";
 import {
   getParametersForVault,
@@ -11,11 +11,11 @@ const LTOKEN_SYMBOL = "LUSDC";
 const VAULT_TOKEN_NAME = "Ledgity USD Vault";
 const VAULT_TOKEN_SYMBOL = "lyUSD";
 
-const deployerFunction: DeployFunction = async ({
+export default async function deploy({
   getNamedAccounts,
   deployments,
   getChainId,
-}) => {
+}: Parameters<DeployFunction>[0]) {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
@@ -72,6 +72,4 @@ const deployerFunction: DeployFunction = async ({
 
   // Update deployedTokens.json
   writeTempTokenAddress(chainId, VAULT_TOKEN_SYMBOL, result.address);
-};
-
-export default deployerFunction;
+}

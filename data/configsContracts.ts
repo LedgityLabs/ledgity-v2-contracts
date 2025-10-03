@@ -32,8 +32,8 @@ type VaultLiquidityInitParams = {
 
 const TEMP_TOKENS_FILE = "temp/deployedTokens.json";
 
-function toRay(amount: number, decimals = 0) {
-  // @dev ex: amount 100 = 100% => 2 decimals
+function toRay(amount: number, decimals = 2) {
+  // @dev ex: amount = 100 & decimals = 2 => 100%
   return parseUnits(amount.toString(), 27 - decimals);
 }
 
@@ -176,30 +176,30 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(1, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: parseEther("0.001"),
       },
       lyEUR: {
         asset: getTokenAddress(1, "EURC"),
-        liquidityBufferRate: toRay(5, 2),
+        liquidityBufferRate: toRay(5),
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: parseEther("0.001"),
       },
     },
@@ -213,30 +213,30 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(8453, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
       lyEUR: {
         asset: getTokenAddress(8453, "EURC"),
-        liquidityBufferRate: toRay(5, 2),
+        liquidityBufferRate: toRay(5),
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
     },
@@ -250,16 +250,16 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(42161, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[42161].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
     },
@@ -273,16 +273,16 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(295, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
     },
@@ -296,16 +296,16 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(59144, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[59144].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
     },
@@ -319,16 +319,16 @@ const configsContracts: {
     vaults: {
       lyUSD: {
         asset: getTokenAddress(146, "USDC"),
-        liquidityBufferRate: toRay(10, 2),
+        liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[146].AAVE_LENDING_POOL,
         //
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
-        yieldAPR: toRay(9, 2), // 9% APR in RAY
+        yieldAPR: toRay(9), // 9% APR in RAY
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
-        withdrawalFeeRate: toRay(0.3, 2), // 0.05% in RAY
+        withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
         withdrawalGasFee: 0n,
       },
     },

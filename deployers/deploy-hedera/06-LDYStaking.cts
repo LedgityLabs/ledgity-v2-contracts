@@ -1,12 +1,12 @@
-import type { DeployFunction } from "hardhat-deploy/dist/types";
+import { DeployFunction } from "hardhat-deploy/dist/types";
 import { isAddress, parseUnits, zeroAddress } from "viem";
 import { getTokenAddress } from "../../data/configsContracts";
 
-const deployerFunction: DeployFunction = async ({
+export default async function deploy({
   getNamedAccounts,
   deployments,
   getChainId,
-}) => {
+}: Parameters<DeployFunction>[0]) {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
@@ -56,6 +56,4 @@ const deployerFunction: DeployFunction = async ({
       },
     },
   });
-};
-
-export default deployerFunction;
+}
