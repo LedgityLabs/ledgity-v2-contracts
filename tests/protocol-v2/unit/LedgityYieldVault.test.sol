@@ -169,7 +169,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     IVaultLiquidityModule.VaultLiquidityInitParams
       memory liquidityParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
-          highWaterMark: RAY,
+          highWaterMark: 0,
           deploymentDelay: 1,
           yieldAPR: 5 * RAY,
           managementFeeRate: 200,

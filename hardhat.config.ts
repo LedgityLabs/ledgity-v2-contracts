@@ -21,7 +21,6 @@ colors.enable();
 const {
   HARDHAT_FORK_TARGET,
   DEPLOYER_PK,
-  HEDERA_DEPLOYER_PK,
   MAINNET_RPC_URL,
   MAINNET_FORKING_BLOCK,
   MAINNET_VERIFY_API_KEY,
@@ -46,6 +45,8 @@ const forkTarget = HARDHAT_FORK_TARGET?.toLowerCase();
 if (!forkTarget)
   throw Error("HARDHAT_FORK_TARGET not found in environment variables");
 
+if (!DEPLOYER_PK) throw Error("DEPLOYER_PK not found in environment variables");
+
 // Validation
 if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY))
   throw Error("Mainnet config not found in environment variables");
@@ -67,14 +68,6 @@ if (
 if (!fs.existsSync("temp/deployedTokens.json")) {
   fs.mkdirSync("temp");
   fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
-}
-
-function selectDeployer(chainName: string) {
-  return (
-    (chainName === "hedera" && HEDERA_DEPLOYER_PK) ||
-    DEPLOYER_PK ||
-    utils.keccak256(utils.toUtf8Bytes("dev"))
-  );
 }
 
 // Centralized network configuration
@@ -161,7 +154,6 @@ function makeForkConfig(
     config.forkingBlock === "latest" || !config.forkingBlock
       ? undefined
       : Number(config.forkingBlock);
-  const deployerPrivateKey = selectDeployer(chainName);
 
   console.log(
     "=> Hardhat configured to fork".magenta,
@@ -170,7 +162,7 @@ function makeForkConfig(
       ? `${"at block".magenta} ${config.forkingBlock.cyan}`
       : "",
     "with deployer".magenta,
-    new Wallet(deployerPrivateKey).address.cyan,
+    new Wallet(DEPLOYER_PK as string).address.cyan,
   );
 
   /// @dev Nested structure to be destructured safely in case there is no fork
@@ -192,7 +184,7 @@ function makeForkConfig(
       },
       accounts: [
         {
-          privateKey: deployerPrivateKey,
+          privateKey: DEPLOYER_PK as string,
           balance: utils.parseEther("100000").toString(),
         },
       ],
@@ -211,7 +203,7 @@ const networks = Object.entries(networkConfigs).reduce(
     acc[name] = {
       chainId: data.chainId,
       url: data.rpcUrl,
-      accounts: [selectDeployer(name)],
+      accounts: [DEPLOYER_PK],
       saveDeployments: true,
       deploy: data.deploy,
       verify: {

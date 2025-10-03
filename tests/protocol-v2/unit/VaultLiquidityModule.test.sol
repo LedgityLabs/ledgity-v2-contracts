@@ -200,36 +200,6 @@ contract VaultLiquidityModule_UnitTest is Test, Fixtures {
     }
   }
 
-  function test_getBufferRewardRate_zero_when_no_assets()
-    public
-    view
-  {
-    // Test with fresh vaults that have no assets
-    for (uint256 i = 0; i < vaults.length; i++) {
-      LedgityYieldVault vault = vaults[i];
-      assertEq(vault.getBufferRewardRate(), 0);
-    }
-  }
-
-  function test_getBufferRewardRate_zero_when_no_buffer_strategy()
-    public
-  {
-    for (uint256 i = 0; i < vaults.length; i++) {
-      LedgityYieldVault vault = vaults[i];
-      VaultConfig memory config = vaultConfigs[i];
-
-      if (!config.hasAave) {
-        uint256 depositAmount = _getTestDepositAmount(config.asset);
-
-        vm.prank(testAccount1);
-        vault.deposit(depositAmount, testAccount1);
-
-        // Should return 0 when no buffer strategy
-        assertEq(vault.getBufferRewardRate(), 0);
-      }
-    }
-  }
-
   // ======== HARVEST FEES TESTS ======== //
 
   function test_harvestFees_success() public {

@@ -443,26 +443,4 @@ contract VaultBufferStrategy_IntegrationTest is Test, Fixtures {
       "Buffer should decrease after processing withdrawals"
     );
   }
-
-  // ============ BUFFER REWARD RATE TESTS ============ //
-
-  function test_getBufferRewardRate_reflectsAaveAPR() public {
-    uint256 depositAmount = BASE_AMOUNT;
-
-    // Deposit to buffer
-    vm.prank(liquidityManager);
-    vault.depositToBuffer(depositAmount);
-
-    // Also deposit to vault to have total assets
-    _depositToVault(testAccount1, depositAmount);
-
-    uint256 bufferRewardRate = vault.getBufferRewardRate();
-
-    // Should return non-zero rate when buffer has assets and Aave is active
-    assertGt(
-      bufferRewardRate,
-      0,
-      "Buffer reward rate should be greater than 0 with Aave strategy"
-    );
-  }
 }

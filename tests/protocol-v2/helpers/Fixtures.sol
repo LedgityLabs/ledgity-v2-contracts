@@ -341,7 +341,7 @@ contract Fixtures is Test {
     IVaultLiquidityModule.VaultLiquidityInitParams
       memory vaultLiquidityInitParams = IVaultLiquidityModule
         .VaultLiquidityInitParams({
-          highWaterMark: RAY, // 1:1 ratio
+          highWaterMark: 0, // defaults to 1:1 ratio
           deploymentDelay: 1,
           yieldAPR: (5 * RAY) / 100, // 5% APR in RAY
           managementFeeRate: (2 * RAY) / 1000, // 0.2% in RAY
