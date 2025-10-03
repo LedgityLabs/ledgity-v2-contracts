@@ -3620,13 +3620,6 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [],
-    name: 'getBufferRewardRate',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
     name: 'getCCIPAdmin',
     outputs: [{ name: '', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
@@ -10482,15 +10475,6 @@ export const useReadLedgityYieldVaultGetBufferAssets =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'getBufferAssets',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getBufferRewardRate"`
- */
-export const useReadLedgityYieldVaultGetBufferRewardRate =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getBufferRewardRate',
   })
 
 /**
@@ -18214,15 +18198,6 @@ export const readLedgityYieldVaultGetBufferAssets =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'getBufferAssets',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getBufferRewardRate"`
- */
-export const readLedgityYieldVaultGetBufferRewardRate =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getBufferRewardRate',
   })
 
 /**

@@ -2,14 +2,13 @@ import "hardhat-contract-sizer";
 import "hardhat-deploy";
 import "@nomiclabs/hardhat-ethers";
 import "@nomicfoundation/hardhat-verify";
-import "colors";
 
 // Tasks
 import "./tasks/verify";
 import "./tasks/extract-abis";
 import "./tasks/deploy-mock-ccip-token";
 
-import { utils } from "ethers";
+import { utils, Wallet } from "ethers";
 import { type HardhatUserConfig } from "hardhat/config";
 import { HardhatNetworkUserConfig, HttpNetworkUserConfig } from "hardhat/types";
 import fs from "fs";
@@ -44,10 +43,8 @@ const {
 } = process.env;
 
 const forkTarget = HARDHAT_FORK_TARGET?.toLowerCase();
-const deployerPrivateKey =
-  (forkTarget === "hedera" && HEDERA_DEPLOYER_PK) ||
-  DEPLOYER_PK ||
-  utils.keccak256(utils.toUtf8Bytes("dev"));
+if (!forkTarget)
+  throw Error("HARDHAT_FORK_TARGET not found in environment variables");
 
 // Validation
 if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY))
@@ -72,6 +69,14 @@ if (!fs.existsSync("temp/deployedTokens.json")) {
   fs.writeFileSync("temp/deployedTokens.json", "{}", "utf8");
 }
 
+function selectDeployer(chainName: string) {
+  return (
+    (chainName === "hedera" && HEDERA_DEPLOYER_PK) ||
+    DEPLOYER_PK ||
+    utils.keccak256(utils.toUtf8Bytes("dev"))
+  );
+}
+
 // Centralized network configuration
 interface NetworkConfig {
   chainId: number;
@@ -94,7 +99,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: MAINNET_FORKING_BLOCK || "",
     apiURL: "https://api.etherscan.io/api",
     browserURL: "https://etherscan.io",
-    deploy: ["./contracts/hardhat/deploy-mainnet"],
+    deploy: ["deployers/deploy-mainnet"],
   },
   base: {
     name: "base",
@@ -104,7 +109,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: BASE_FORKING_BLOCK,
     apiURL: "https://api.basescan.org/api",
     browserURL: "https://basescan.org",
-    deploy: ["./contracts/hardhat/deploy-base"],
+    deploy: ["deployers/deploy-base"],
   },
   sonic: {
     name: "sonic",
@@ -114,7 +119,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: SONIC_FORKING_BLOCK,
     apiURL: "https://api.sonicscan.org/api",
     browserURL: "https://sonicscan.org",
-    deploy: ["./contracts/hardhat/deploy-sonic"],
+    deploy: ["deployers/deploy-sonic"],
   },
   hedera: {
     name: "hedera",
@@ -124,7 +129,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: HEDERA_FORKING_BLOCK,
     apiURL: "https://server-verify.hashscan.io",
     browserURL: "https://hashscan.io/mainnet/",
-    deploy: ["./contracts/hardhat/deploy-hedera"],
+    deploy: ["deployers/deploy-hedera"],
   },
   arbitrum: {
     name: "arbitrumOne",
@@ -134,7 +139,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: ARBITRUM_FORKING_BLOCK,
     apiURL: "https://api.arbiscan.io",
     browserURL: "https://arbiscan.io",
-    deploy: ["./contracts/hardhat/deploy-arbitrum"],
+    deploy: ["deployers/deploy-arbitrum"],
   },
   linea: {
     name: "linea",
@@ -148,19 +153,24 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
 };
 
 function makeForkConfig(
-  chainName: string | undefined,
+  chainName: string,
 ): { hardhat: HardhatNetworkUserConfig } | {} {
-  if (!chainName) return {};
-
   const config = networkConfigs[chainName];
+
   const blockNumber =
     config.forkingBlock === "latest" || !config.forkingBlock
       ? undefined
       : Number(config.forkingBlock);
+  const deployerPrivateKey = selectDeployer(chainName);
 
   console.log(
-    `=> Hardhat configured to fork ${HARDHAT_FORK_TARGET}${config.forkingBlock ? ` at block ${config.forkingBlock}` : ""}\n`
-      .magenta,
+    "=> Hardhat configured to fork".magenta,
+    chainName.cyan,
+    config.forkingBlock
+      ? `${"at block".magenta} ${config.forkingBlock.cyan}`
+      : "",
+    "with deployer".magenta,
+    new Wallet(deployerPrivateKey).address.cyan,
   );
 
   /// @dev Nested structure to be destructured safely in case there is no fork
@@ -201,7 +211,7 @@ const networks = Object.entries(networkConfigs).reduce(
     acc[name] = {
       chainId: data.chainId,
       url: data.rpcUrl,
-      accounts: [deployerPrivateKey],
+      accounts: [selectDeployer(name)],
       saveDeployments: true,
       deploy: data.deploy,
       verify: {
@@ -244,8 +254,8 @@ const etherscan = {
 
 const config: HardhatUserConfig = {
   solidity: {
-    compilers: [
-      {
+    overrides: {
+      "src/protocol-v2/LedgityYieldVault.sol": {
         version: "0.8.18",
         settings: {
           optimizer: {
@@ -254,12 +264,14 @@ const config: HardhatUserConfig = {
           },
         },
       },
+    },
+    compilers: [
       {
-        version: "0.8.10",
+        version: "0.8.18",
         settings: {
           optimizer: {
             enabled: true,
-            runs: 1,
+            runs: 100,
           },
         },
       },
