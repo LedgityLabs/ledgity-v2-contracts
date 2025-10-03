@@ -2,7 +2,7 @@ import type { DeployFunction } from "hardhat-deploy/dist/types";
 import {
   getTokenAddress,
   writeTempTokenAddress,
-} from "../../data/configsContracts";
+} from "../../../data/configsContracts";
 
 const LTOKEN_NAME = "Ledgity USDC";
 const LTOKEN_SYMBOL = "LUSDC";

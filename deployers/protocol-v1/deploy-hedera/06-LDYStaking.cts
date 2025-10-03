@@ -1,6 +1,6 @@
 import { DeployFunction } from "hardhat-deploy/dist/types";
 import { isAddress, parseUnits, zeroAddress } from "viem";
-import { getTokenAddress } from "../../data/configsContracts";
+import { getTokenAddress } from "../../../data/configsContracts";
 
 export default async function deploy({
   getNamedAccounts,

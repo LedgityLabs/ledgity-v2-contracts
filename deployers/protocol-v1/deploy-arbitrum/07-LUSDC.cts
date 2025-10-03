@@ -1,5 +1,5 @@
 import { type DeployFunction } from "hardhat-deploy/dist/types";
-import { dependencies } from "../../data/dependencies";
+import { dependencies } from "../../../data/dependencies";
 
 export function deployLToken(
   ltokenName: string,

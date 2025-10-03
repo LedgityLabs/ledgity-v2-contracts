@@ -1,5 +1,5 @@
 import { DeployFunction } from "hardhat-deploy/dist/types";
-import { writeTempTokenAddress } from "../../data/configsContracts";
+import { writeTempTokenAddress } from "../../../data/configsContracts";
 
 export default async function deploy({
   getNamedAccounts,
