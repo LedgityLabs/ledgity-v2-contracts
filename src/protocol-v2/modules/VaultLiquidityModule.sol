@@ -32,8 +32,6 @@ abstract contract VaultLiquidityModule is
 
   // Total assets under management
   uint256 private _totalAssets;
-  // Offset between vault decimals and underlying asset decimals
-  uint8 public decimalsOffset;
 
   // Last timestamp when assets were compounded (only full compounding periods)
   uint256 public lastCompoundTime;
@@ -73,12 +71,11 @@ abstract contract VaultLiquidityModule is
     address asset
   ) internal {
     __ERC4626_init(ERC20Upgradeable(asset));
-    decimalsOffset = 18 - decimals();
 
     // Initialize high water mark at 1 share = 1 asset if not specified
     highWaterMark = params.highWaterMark != 0
       ? params.highWaterMark
-      : 10 ** decimals();
+      : 1e18;
     deploymentDelay = params.deploymentDelay;
     yieldAPR = params.yieldAPR;
 
@@ -89,25 +86,9 @@ abstract contract VaultLiquidityModule is
 
     lastCompoundTime = block.timestamp;
     lastFeeTime = block.timestamp;
-
-    emit APRUpdated(params.yieldAPR, 0);
   }
 
   /** ======== OVERRIDES ======== */
-
-  /**
-   * @dev Get the offset between vault decimals and underlying asset decimals
-   * @return decimalsOffset The offset between vault decimals and underlying asset decimals
-   * @dev In the form of a function to allow parent contracts to call this override
-   */
-  function _decimalsOffset()
-    internal
-    view
-    override(ERC4626Upgradeable)
-    returns (uint8)
-  {
-    return decimalsOffset;
-  }
 
   /**
    * @dev Get total assets for share calculations
@@ -245,7 +226,7 @@ abstract contract VaultLiquidityModule is
    * protocol fees
    * Protocol shares are the fees that go to the protocol
    * @return totalFeeShares The total fees
-   * @return pricePerShare The price per share
+   * @return pricePerShare The price per share (always 18 decimals)
    */
   function getFeeData()
     public
@@ -272,12 +253,10 @@ abstract contract VaultLiquidityModule is
      * This represents the PPS before performance fee dilution
      * @dev Add 1 to shares to avoid division by zero
      */
-    uint256 sharesDenominator = shares + 10 ** _decimalsOffset();
-    // Additional protection when decimalsOffset is 0 and shares is 0
-    if (sharesDenominator == 0) sharesDenominator = 1;
+    if (shares == 0) shares = 1;
 
     pricePerShare = ((currentAssets + 1) - managementFeeAssets)
-      .mulDiv(1e18, sharesDenominator, Math.Rounding.Up);
+      .mulDiv(1e18, shares, Math.Rounding.Up);
 
     uint256 performanceFeeAssets;
     if (highWaterMark < pricePerShare) {
@@ -298,16 +277,16 @@ abstract contract VaultLiquidityModule is
       pricePerShare = (currentAssets -
         (managementFeeAssets + performanceFeeAssets)).mulDiv(
           1e18,
-        shares + 1,
-        Math.Rounding.Up
-      );
+          shares + 1,
+          Math.Rounding.Up
+        );
     }
 
     uint256 totalFees = managementFeeAssets + performanceFeeAssets;
 
     // Compensate for the dilution as a consequence of minting shares as fees
     totalFeeShares = totalFees.mulDiv(
-      shares + 10 ** _decimalsOffset(),
+      shares,
       (currentAssets - totalFees) + 1,
       Math.Rounding.Up
     );

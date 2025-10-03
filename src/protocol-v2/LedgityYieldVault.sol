@@ -238,6 +238,32 @@ contract LedgityYieldVault is
     return 18;
   }
 
+  /**
+   * @notice Handles minting through CCIP cross-chain transfers by taking into account asset rebalance
+   * @param account The account to mint shares to
+   * @param shares The amount of shares to mint
+   */
+  function _handleMint(
+    address account,
+    uint256 shares
+  ) internal override(CCIPTokenModule) {
+    _addAssets(convertToAssets(shares));
+    _mint(account, shares);
+  }
+
+  /**
+   * @notice Handles burning through CCIP cross-chain transfers by taking into account asset rebalance
+   * @param account The account to burn shares from
+   * @param shares The amount of shares to burn
+   */
+  function _handleBurn(
+    address account,
+    uint256 shares
+  ) internal override(CCIPTokenModule) {
+    _withdrawAssets(convertToAssets(shares));
+    _burn(account, shares);
+  }
+
   // ======== VIEW ======== //
 
   /**

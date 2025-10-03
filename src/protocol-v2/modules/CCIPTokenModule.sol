@@ -5,13 +5,12 @@ pragma solidity 0.8.18;
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 // Interfaces
 import { IGetCCIPAdmin } from "@chainlink/contracts-ccip/contracts/interfaces/IGetCCIPAdmin.sol";
-import { IERC677Receiver } from "@chainlink/contracts/src/v0.8/shared/interfaces/IERC677Receiver.sol";
-import { IERC677 } from "@chainlink/contracts/src/v0.8/shared/token/ERC677/IERC677.sol";
 import { IBurnMintERC20 } from "@chainlink/contracts/src/v0.8/shared/token/ERC20/IBurnMintERC20.sol";
 
 // ======== ERRORS ======== //
 
 error ZeroAddress();
+error MustImplementMintAndBurnFunctions();
 error SenderNotMinter(address sender);
 error SenderNotBurner(address sender);
 error SenderNotCCIPAdmin(address sender);
@@ -24,7 +23,7 @@ error InsufficientAllowance();
  *
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
-contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
+contract CCIPTokenModule is IGetCCIPAdmin, ERC20Upgradeable {
   // ======== STORAGE ======== //
   // Role management state
   mapping(address => bool) private _minters;
@@ -40,10 +39,7 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
   event BurnAccessGranted(address indexed burner);
   event MintAccessRevoked(address indexed minter);
   event BurnAccessRevoked(address indexed burner);
-  event CCIPAdminChanged(
-    address indexed previousAdmin,
-    address indexed newAdmin
-  );
+  event CCIPAdminChanged(address indexed newAdmin);
 
   // ======== INITIALIZE ======== //
 
@@ -53,25 +49,37 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
    */
   function __CCIPCompatible_init(address initialCCIPAdmin) internal {
     _ccipAdmin = initialCCIPAdmin;
+
+    // @dev Reverts if child contracts do not implement _handleMint and _handleBurn
+    _handleMint(address(0xdead), 0);
+    _handleBurn(address(0xdead), 0);
+  }
+
+  // ======== VIRTUAL ======== //
+
+  /**
+   * @notice Virtual function that enables handling of asset balance on mint
+   * @dev Reverts to force implementation in child contracts
+   */
+  function _handleMint(
+    address /* account */,
+    uint256 /* amount */
+  ) internal virtual {
+    revert MustImplementMintAndBurnFunctions();
+  }
+
+  /**
+   * @notice Virtual function that enables handling of asset balance on burn
+   * @dev Reverts to force implementation in child contracts
+   */
+  function _handleBurn(
+    address /* account */,
+    uint256 /* amount */
+  ) internal virtual {
+    revert MustImplementMintAndBurnFunctions();
   }
 
   // ======== MODIFIERS ======== //
-
-  /**
-   * @notice Checks if the sender is authorized as a minter
-   */
-  modifier onlyMinter() {
-    if (!isMinter(msg.sender)) revert SenderNotMinter(msg.sender);
-    _;
-  }
-
-  /**
-   * @notice Checks if the sender is authorized as a burner
-   */
-  modifier onlyBurner() {
-    if (!isBurner(msg.sender)) revert SenderNotBurner(msg.sender);
-    _;
-  }
 
   /**
    * @notice Checks if the sender is the CCIP admin
@@ -110,28 +118,6 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
     return _burners[account];
   }
 
-  // ======== TRANSFER & CALL ======== //
-
-  /**
-   * @notice Implementation of ERC677 transferAndCall
-   * @param to Recipient address
-   * @param amount Amount to transfer
-   * @param data Additional data to pass to the receiver
-   * @return success Boolean indicating whether the operation succeeded
-   */
-  function transferAndCall(
-    address to,
-    uint256 amount,
-    bytes memory data
-  ) public returns (bool success) {
-    _transfer(msg.sender, to, amount);
-    emit Transfer(msg.sender, to, amount, data);
-    if (to.code.length > 0) {
-      IERC677Receiver(to).onTokenTransfer(msg.sender, amount, data);
-    }
-    return true;
-  }
-
   // ======== BURN & MINT ======== //
 
   /**
@@ -139,42 +125,24 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
    * @param account Account to mint to
    * @param amount Amount to mint
    */
-  function mint(address account, uint256 amount) external onlyMinter {
-    _mint(account, amount);
+  function mint(address account, uint256 amount) external {
+    if (!isMinter(msg.sender)) revert SenderNotMinter(msg.sender);
+
+    _handleMint(account, amount);
+
+    // @bw need to adjust assets or this will cause price shift
   }
 
   /**
    * @notice Implementation of burns tokens from caller's account
    * @param amount Amount to burn
    */
-  function burn(uint256 amount) public onlyBurner {
-    _burn(msg.sender, amount);
-  }
+  function burn(uint256 amount) public {
+    if (!isBurner(msg.sender)) revert SenderNotBurner(msg.sender);
 
-  /**
-   * @notice Implementation of burns tokens from a specified account
-   * @param account Account to burn from
-   * @param amount Amount to burn
-   */
-  function burn(address account, uint256 amount) public onlyBurner {
-    _burn(account, amount);
-  }
+    _handleBurn(msg.sender, amount);
 
-  /**
-   * @notice Burns tokens from an account using an allowance
-   * @param account Account to burn from
-   * @param amount Amount to burn
-   */
-  function burnFrom(
-    address account,
-    uint256 amount
-  ) public onlyBurner {
-    uint256 currentAllowance = allowance(account, msg.sender);
-    if (currentAllowance < amount) revert InsufficientAllowance();
-
-    // Reduce allowance before burning
-    _approve(account, msg.sender, currentAllowance - amount);
-    _burn(account, amount);
+    // @bw need to adjust assets or this will cause price shift
   }
 
   // ======== ADMIN ======== //
@@ -186,9 +154,8 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
   function setCCIPAdmin(address newAdmin) external onlyCCIPAdmin {
     if (newAdmin == address(0)) revert ZeroAddress();
 
-    address oldAdmin = _ccipAdmin;
     _ccipAdmin = newAdmin;
-    emit CCIPAdminChanged(oldAdmin, newAdmin);
+    emit CCIPAdminChanged(newAdmin);
   }
 
   /**
@@ -225,20 +192,6 @@ contract CCIPTokenModule is IERC677, IGetCCIPAdmin, ERC20Upgradeable {
   function revokeBurnRole(address burner) external onlyCCIPAdmin {
     _burners[burner] = false;
     emit BurnAccessRevoked(burner);
-  }
-
-  /**
-   * @notice Grants both mint and burn roles to an account
-   * @param account The account to grant both roles to
-   */
-  function grantMintAndBurnRoles(
-    address account
-  ) public onlyCCIPAdmin {
-    _minters[account] = true;
-    _burners[account] = true;
-
-    emit MintAccessGranted(account);
-    emit BurnAccessGranted(account);
   }
 
   /**
