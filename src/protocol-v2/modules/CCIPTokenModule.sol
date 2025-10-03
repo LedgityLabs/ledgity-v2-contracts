@@ -50,34 +50,31 @@ contract CCIPTokenModule is IGetCCIPAdmin, ERC20Upgradeable {
   function __CCIPCompatible_init(address initialCCIPAdmin) internal {
     _ccipAdmin = initialCCIPAdmin;
 
-    // @dev Reverts if child contracts do not implement _handleMint and _handleBurn
-    _handleMint(address(0xdead), 0);
-    _handleBurn(address(0xdead), 0);
+    bool successMint = _handleMint(address(0xdead), 0);
+    bool successBurn = _handleBurn(address(0xdead), 0);
+
+    // @dev Revert if child contracts do not implement _handleMint and _handleBurn
+    if (!successMint || !successBurn)
+      revert MustImplementMintAndBurnFunctions();
   }
 
   // ======== VIRTUAL ======== //
 
   /**
    * @notice Virtual function that enables handling of asset balance on mint
-   * @dev Reverts to force implementation in child contracts
    */
   function _handleMint(
     address /* account */,
     uint256 /* amount */
-  ) internal virtual {
-    revert MustImplementMintAndBurnFunctions();
-  }
+  ) internal virtual returns (bool) {}
 
   /**
    * @notice Virtual function that enables handling of asset balance on burn
-   * @dev Reverts to force implementation in child contracts
    */
   function _handleBurn(
     address /* account */,
     uint256 /* amount */
-  ) internal virtual {
-    revert MustImplementMintAndBurnFunctions();
-  }
+  ) internal virtual returns (bool) {}
 
   // ======== MODIFIERS ======== //
 

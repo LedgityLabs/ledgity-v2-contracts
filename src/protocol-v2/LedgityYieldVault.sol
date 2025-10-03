@@ -246,9 +246,12 @@ contract LedgityYieldVault is
   function _handleMint(
     address account,
     uint256 shares
-  ) internal override(CCIPTokenModule) {
+  ) internal override(CCIPTokenModule) returns (bool) {
+    harvestFees();
     _addAssets(convertToAssets(shares));
+
     _mint(account, shares);
+    return true;
   }
 
   /**
@@ -259,9 +262,12 @@ contract LedgityYieldVault is
   function _handleBurn(
     address account,
     uint256 shares
-  ) internal override(CCIPTokenModule) {
+  ) internal override(CCIPTokenModule) returns (bool) {
+    harvestFees();
     _withdrawAssets(convertToAssets(shares));
+
     _burn(account, shares);
+    return true;
   }
 
   // ======== VIEW ======== //
