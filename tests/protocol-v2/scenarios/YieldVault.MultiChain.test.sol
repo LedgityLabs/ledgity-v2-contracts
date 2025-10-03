@@ -77,11 +77,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -89,11 +88,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[1] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -101,11 +99,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[2] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 30 days,
+      args: Args.timeWarp(30 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -113,11 +110,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[3] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 50000 * 1e6,
+      args: Args.deposit(50000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -125,11 +121,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[4] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 50000 * 1e6,
+      args: Args.deposit(50000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -137,11 +132,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[5] = ScenarioAction({
       actionType: ActionType.HarvestFees,
       actor: testAccount1,
-      amount: 0,
+      args: Args.none(),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -159,22 +153,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[1] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -182,11 +174,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[2] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 15 days,
+      args: Args.timeWarp(15 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -194,22 +185,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[3] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 75000 * 1e6,
+      args: Args.deposit(75000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[4] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount3,
-      amount: 50000 * 1e6,
+      args: Args.deposit(50000 * 1e6, testAccount3),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -217,11 +206,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[5] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 20 days,
+      args: Args.timeWarp(20 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -229,11 +217,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[6] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 30000 * 1e6,
+      args: Args.deposit(30000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -241,22 +228,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[7] = ScenarioAction({
       actionType: ActionType.HarvestFees,
       actor: testAccount1,
-      amount: 0,
+      args: Args.none(),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[8] = ScenarioAction({
       actionType: ActionType.HarvestFees,
       actor: testAccount1,
-      amount: 0,
+      args: Args.none(),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -264,11 +249,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[9] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 25 days,
+      args: Args.timeWarp(25 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -276,11 +260,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[10] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 20000 * 1e6,
+      args: Args.withdraw(20000 * 1e6, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -288,11 +271,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[11] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 20000 * 1e6,
+      args: Args.withdraw(20000 * 1e6, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -311,22 +293,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[idx++] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[idx++] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -336,11 +316,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
       actions[idx++] = ScenarioAction({
         actionType: ActionType.TimeWarp,
         actor: testAccount1,
-        amount: 30 days,
+        args: Args.timeWarp(30 days),
         timeWarp: 0,
         expected: ExpectedOutcome.Success,
         revertMessage: "",
-        args: Args.none(),
         vaultIndex: 0
       });
 
@@ -348,11 +327,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
       actions[idx++] = ScenarioAction({
         actionType: ActionType.HarvestFees,
         actor: testAccount1,
-        amount: 0,
+        args: Args.none(),
         timeWarp: 0,
         expected: ExpectedOutcome.Success,
         revertMessage: "",
-        args: Args.none(),
         vaultIndex: 0
       });
 
@@ -361,11 +339,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
         actions[idx++] = ScenarioAction({
           actionType: ActionType.HarvestFees,
           actor: testAccount1,
-          amount: 0,
+          args: Args.none(),
           timeWarp: 0,
           expected: ExpectedOutcome.Success,
           revertMessage: "",
-          args: Args.none(),
           vaultIndex: 1
         });
       }
@@ -409,11 +386,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[idx++] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 50000 * 1e6,
+      args: Args.deposit(50000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -433,11 +409,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
       actions[idx++] = ScenarioAction({
         actionType: ActionType.TimeWarp,
         actor: testAccount1,
-        amount: timeJumps[i],
+        args: Args.timeWarp(timeJumps[i]),
         timeWarp: 0,
         expected: ExpectedOutcome.Success,
         revertMessage: "",
-        args: Args.none(),
         vaultIndex: 0
       });
 
@@ -446,11 +421,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
         actions[idx++] = ScenarioAction({
           actionType: ActionType.Deposit,
           actor: testAccount2,
-          amount: 5000 * 1e6,
+          args: Args.deposit(5000 * 1e6, testAccount2),
           timeWarp: 0,
           expected: ExpectedOutcome.Success,
           revertMessage: "",
-          args: Args.none(),
           vaultIndex: 0
         });
       }
@@ -460,11 +434,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
         actions[idx++] = ScenarioAction({
           actionType: ActionType.HarvestFees,
           actor: testAccount1,
-          amount: 0,
+          args: Args.none(),
           timeWarp: 0,
           expected: ExpectedOutcome.Success,
           revertMessage: "",
-          args: Args.none(),
           vaultIndex: 0
         });
       }
@@ -484,22 +457,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[0] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[1] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount1,
-      amount: 100000 * 1e6,
+      args: Args.deposit(100000 * 1e6, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -507,11 +478,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[2] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 30000 * 1e6,
+      args: Args.depositToBuffer(30000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -519,11 +489,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[3] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 30000 * 1e6,
+      args: Args.depositToBuffer(30000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -531,11 +500,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[4] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 15 days,
+      args: Args.timeWarp(15 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -543,11 +511,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[5] = ScenarioAction({
       actionType: ActionType.SkimBuffer,
       actor: liquidityManager,
-      amount: 10000 * 1e6,
+      args: Args.skimBuffer(10000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -555,11 +522,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[6] = ScenarioAction({
       actionType: ActionType.SkimBuffer,
       actor: liquidityManager,
-      amount: 10000 * 1e6,
+      args: Args.skimBuffer(10000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -567,22 +533,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[7] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 40000 * 1e6,
+      args: Args.deposit(40000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[8] = ScenarioAction({
       actionType: ActionType.Deposit,
       actor: testAccount2,
-      amount: 40000 * 1e6,
+      args: Args.deposit(40000 * 1e6, testAccount2),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -590,11 +554,10 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[9] = ScenarioAction({
       actionType: ActionType.TimeWarp,
       actor: testAccount1,
-      amount: 20 days,
+      args: Args.timeWarp(20 days),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
@@ -602,22 +565,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[10] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 15000 * 1e6,
+      args: Args.withdraw(15000 * 1e6, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[11] = ScenarioAction({
       actionType: ActionType.Withdraw,
       actor: testAccount1,
-      amount: 15000 * 1e6,
+      args: Args.withdraw(15000 * 1e6, testAccount1, testAccount1),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
@@ -625,22 +586,20 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
     actions[12] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 20000 * 1e6,
+      args: Args.depositToBuffer(20000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 0
     });
 
     actions[13] = ScenarioAction({
       actionType: ActionType.DepositToBuffer,
       actor: liquidityManager,
-      amount: 20000 * 1e6,
+      args: Args.depositToBuffer(20000 * 1e6),
       timeWarp: 0,
       expected: ExpectedOutcome.Success,
       revertMessage: "",
-      args: Args.none(),
       vaultIndex: 1
     });
 
