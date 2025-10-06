@@ -71,7 +71,7 @@ abstract contract AdministeredUpgradable is
     globalPause = IGlobalPause(globalPause_);
     globalRestrict = IGlobalAccessList(globalRestrict_);
 
-    transferOwnership(globalOwner.owner());
+    _transferOwnership(globalOwner.owner());
   }
 
   // =========== UPGRADABLE =========== //

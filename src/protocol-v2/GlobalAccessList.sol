@@ -46,11 +46,9 @@ contract GlobalAccessList is
    */
   function initialize(address globalOwner_) external initializer {
     __UUPSUpgradeable_init();
-    __Ownable_init_unchained();
 
     globalOwner = IGlobalOwner(globalOwner_);
-
-    transferOwnership(globalOwner.owner());
+    _transferOwnership(globalOwner.owner());
   }
 
   // =========== OVERRIDES =========== //
