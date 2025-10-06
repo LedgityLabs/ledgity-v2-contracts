@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity 0.8.18;
 
 // Contracts
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
@@ -43,6 +43,8 @@ abstract contract AdministeredUpgradable is
   IGlobalOwner public globalOwner;
   IGlobalPause public globalPause;
   IGlobalAccessList public globalRestrict;
+
+  bool public isPausedLocal;
 
   // =========== CONSTRUCTOR & INITIALIZER =========== //
 
@@ -102,8 +104,29 @@ abstract contract AdministeredUpgradable is
    * from the GlobalPause contract instead.
    * @return Whether the contract is paused or not.
    */
-  function paused() public view override returns (bool) {
-    return globalPause.paused();
+  function paused()
+    public
+    view
+    override(PausableUpgradeable)
+    returns (bool)
+  {
+    return isPausedLocal || globalPause.paused();
+  }
+
+  /**
+   * @notice Pauses the contract.
+   */
+  function pauseLocal() external onlyOwner {
+    isPausedLocal = true;
+    emit Paused(msg.sender);
+  }
+
+  /**
+   * @notice Unpauses the contract.
+   */
+  function unpauseLocal() external onlyOwner {
+    isPausedLocal = false;
+    emit Unpaused(msg.sender);
   }
 
   // =========== RESTRICTIONS =========== //
