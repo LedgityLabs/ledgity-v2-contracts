@@ -92,9 +92,9 @@ contract Fixtures is Test {
   // ======== SETUP FUNCTIONS ======== //
 
   function _selectFork() internal {
-    // Fork network based on HARDHAT_FORK_TARGET environment variable
+    // Fork network based on HARDHAT_DEPLOY_FORK environment variable
     string memory forkTarget = vm.envOr(
-      "HARDHAT_FORK_TARGET",
+      "HARDHAT_DEPLOY_FORK",
       string("mainnet")
     );
 

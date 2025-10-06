@@ -19,7 +19,7 @@ dotenv.config();
 colors.enable();
 
 const {
-  HARDHAT_FORK_TARGET,
+  HARDHAT_DEPLOY_FORK,
   DEPLOYER_PK,
   MAINNET_RPC_URL,
   MAINNET_FORKING_BLOCK,
@@ -41,9 +41,9 @@ const {
   HEDERA_VERIFY_API_KEY,
 } = process.env;
 
-const forkTarget = HARDHAT_FORK_TARGET?.toLowerCase();
+const forkTarget = HARDHAT_DEPLOY_FORK?.toLowerCase();
 if (!forkTarget)
-  throw Error("HARDHAT_FORK_TARGET not found in environment variables");
+  throw Error("HARDHAT_DEPLOY_FORK not found in environment variables");
 
 if (!DEPLOYER_PK) throw Error("DEPLOYER_PK not found in environment variables");
 
@@ -92,7 +92,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: MAINNET_FORKING_BLOCK || "",
     apiURL: "https://api.etherscan.io/api",
     browserURL: "https://etherscan.io",
-    deploy: ["deployers/deploy-mainnet"],
+    deploy: ["deployers/protocol-v2/ethereum"],
   },
   base: {
     name: "base",
@@ -102,7 +102,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: BASE_FORKING_BLOCK,
     apiURL: "https://api.basescan.org/api",
     browserURL: "https://basescan.org",
-    deploy: ["deployers/deploy-base"],
+    deploy: ["deployers/protocol-v2/base"],
   },
   sonic: {
     name: "sonic",
@@ -112,7 +112,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: SONIC_FORKING_BLOCK,
     apiURL: "https://api.sonicscan.org/api",
     browserURL: "https://sonicscan.org",
-    deploy: ["deployers/deploy-sonic"],
+    deploy: ["deployers/protocol-v2/sonic"],
   },
   hedera: {
     name: "hedera",
@@ -122,7 +122,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: HEDERA_FORKING_BLOCK,
     apiURL: "https://server-verify.hashscan.io",
     browserURL: "https://hashscan.io/mainnet/",
-    deploy: ["deployers/deploy-hedera"],
+    deploy: ["deployers/protocol-v2/hedera"],
   },
   arbitrum: {
     name: "arbitrumOne",
@@ -132,7 +132,7 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: ARBITRUM_FORKING_BLOCK,
     apiURL: "https://api.arbiscan.io",
     browserURL: "https://arbiscan.io",
-    deploy: ["deployers/deploy-arbitrum"],
+    deploy: ["deployers/protocol-v2/arbitrum"],
   },
   linea: {
     name: "linea",
@@ -273,7 +273,7 @@ const config: HardhatUserConfig = {
     sources: "./src",
     cache: "./cache",
     artifacts: "./artifacts",
-    deploy: "./deployers/deploy",
+    deploy: "./deployers",
     deployments: "./deployers/deployments",
   },
   namedAccounts: {
