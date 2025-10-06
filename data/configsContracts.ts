@@ -68,6 +68,7 @@ export function writeTempTokenAddress(
 export function getTokenAddress(
   chainId: number | string,
   symbol: string,
+  allowZeroAddress = false,
 ): Address {
   const stringChainId = chainId.toString();
 
@@ -80,11 +81,17 @@ export function getTokenAddress(
   const fromDeployments =
     (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[
       `${symbol}_Proxy`
-    ] || (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[symbol];
+    ]?.address ||
+    (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[symbol]
+      ?.address;
 
   const address = fromTemp || fromDeps || fromDeployments;
 
-  if (!address || !isAddress(address) || address === zeroAddress)
+  if (
+    !address ||
+    !isAddress(address) ||
+    (address === zeroAddress && !allowZeroAddress)
+  )
     throw Error("Token not found");
 
   return address as Address;
@@ -93,9 +100,7 @@ export function getTokenAddress(
 export function getParametersForVault(
   chainId: number,
   name: string,
-  symbol: string,
-  lToken: Address,
-  stakeToken: Address,
+  symbol: "lyUSD" | "lyEUR",
   globalOwner: Address,
   globalPause: Address,
   globalAccessList: Address,
@@ -112,12 +117,14 @@ export function getParametersForVault(
   )
     throw Error("Invalid liquidityManager or feeRecipient");
 
+  const lTokenSymbol = symbol === "lyUSD" ? "LUSDC" : "LEURC";
+
   return [
     {
       name,
       symbol,
-      lToken,
-      stakeToken,
+      lToken: getTokenAddress(chainId, lTokenSymbol, true),
+      stakeToken: getTokenAddress(chainId, "LDY", true),
       globalOwner,
       globalPause,
       globalAccessList,

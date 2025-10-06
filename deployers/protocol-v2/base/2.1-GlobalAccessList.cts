@@ -13,7 +13,6 @@ export default async function deploy({
     log: true,
     waitConfirmations: 1,
     skipIfAlreadyDeployed: true,
-    deterministicDeployment: true,
     proxy: {
       proxyContract: "UUPS",
       execute: {

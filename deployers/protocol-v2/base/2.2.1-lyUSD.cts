@@ -17,11 +17,15 @@ export default async function deploy({
   const chainId = await getChainId();
 
   // Retrieve global contracts
-  const [globalOwner, globalPause, globalAccessList] = await Promise.all(
-    ["GlobalOwner", "GlobalPause", "GlobalAccessList"].map((el) =>
-      deployments.get(el).then((el) => el.address as Address),
-    ),
-  );
+  const [globalOwner, globalPause, globalAccessList, ledgityDataProviderLib] =
+    await Promise.all(
+      [
+        "GlobalOwner",
+        "GlobalPause",
+        "GlobalAccessList",
+        "LedgityDataProvider",
+      ].map((el) => deployments.get(el).then((el) => el.address as Address)),
+    );
 
   const args = getParametersForVault(
     Number(chainId),
@@ -38,13 +42,15 @@ export default async function deploy({
     from: deployer,
     log: true,
     waitConfirmations: 1,
-    deterministicDeployment: true,
+    libraries: {
+      LedgityDataProvider: ledgityDataProviderLib,
+    },
     proxy: {
       proxyContract: "UUPS",
       implementationName: "LedgityYieldVault_Implementation",
       execute: {
         init: {
-          methodName: "initializeAndRegister",
+          methodName: "initialize",
           args,
         },
       },
