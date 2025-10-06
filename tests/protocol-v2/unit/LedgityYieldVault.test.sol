@@ -171,6 +171,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         .VaultLiquidityInitParams({
           highWaterMark: 0,
           deploymentDelay: 1,
+          initialAssetsPerShare: 0, // defaults to 1:1
           yieldAPR: 5 * RAY,
           managementFeeRate: 200,
           performanceFeeRate: 2000,

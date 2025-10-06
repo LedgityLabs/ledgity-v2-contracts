@@ -343,6 +343,7 @@ contract Fixtures is Test {
         .VaultLiquidityInitParams({
           highWaterMark: 0, // defaults to 1:1 ratio
           deploymentDelay: 1,
+          initialAssetsPerShare: 0, // defaults to 1:1
           yieldAPR: (5 * RAY) / 100, // 5% APR in RAY
           managementFeeRate: (2 * RAY) / 1000, // 0.2% in RAY
           performanceFeeRate: (2 * RAY) / 100, // 2% in RAY

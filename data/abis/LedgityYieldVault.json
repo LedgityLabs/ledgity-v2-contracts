@@ -31,6 +31,11 @@
   },
   {
     "inputs": [],
+    "name": "RateAboveHundredPercent",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "RequestAlreadyProcessed",
     "type": "error"
   },
@@ -79,7 +84,7 @@
   },
   {
     "inputs": [],
-    "name": "ZeroAddress",
+    "name": "ZeroAddressCCIPAdmin",
     "type": "error"
   },
   {
@@ -951,7 +956,7 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "totalFeeShares",
+        "name": "feeShares",
         "type": "uint256"
       },
       {
@@ -1354,6 +1359,11 @@
           },
           {
             "internalType": "uint256",
+            "name": "initialAssetsPerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
             "name": "yieldAPR",
             "type": "uint256"
           },
@@ -1421,6 +1431,19 @@
       }
     ],
     "name": "isMinter",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isPausedLocal",
     "outputs": [
       {
         "internalType": "bool",
@@ -1670,6 +1693,13 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pauseLocal",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -2095,6 +2125,13 @@
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpauseLocal",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

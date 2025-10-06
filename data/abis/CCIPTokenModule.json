@@ -34,7 +34,7 @@
   },
   {
     "inputs": [],
-    "name": "ZeroAddress",
+    "name": "ZeroAddressCCIPAdmin",
     "type": "error"
   },
   {

@@ -1,5 +1,10 @@
 [
   {
+    "inputs": [],
+    "name": "RateAboveHundredPercent",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -499,7 +504,7 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "totalFeeShares",
+        "name": "feeShares",
         "type": "uint256"
       },
       {

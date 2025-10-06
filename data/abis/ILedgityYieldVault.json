@@ -377,6 +377,11 @@
           },
           {
             "internalType": "uint256",
+            "name": "initialAssetsPerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
             "name": "yieldAPR",
             "type": "uint256"
           },

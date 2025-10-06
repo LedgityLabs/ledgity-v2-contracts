@@ -21,6 +21,7 @@ type VaultParams = {
 };
 
 type VaultLiquidityInitParams = {
+  initialAssetsPerShare: bigint;
   highWaterMark: bigint;
   yieldAPR: bigint;
   managementFeeRate: bigint;
@@ -85,14 +86,14 @@ export function getTokenAddress(
     (deployedContracts as any)[stringChainId]?.[0]?.contracts?.[symbol]
       ?.address;
 
-  const address = fromTemp || fromDeps || fromDeployments;
+  const address = fromTemp || fromDeps || fromDeployments || zeroAddress;
 
   if (
     !address ||
     !isAddress(address) ||
     (address === zeroAddress && !allowZeroAddress)
   )
-    throw Error("Token not found");
+    throw Error(`Token ${symbol} not found for chain ${chainId}`);
 
   return address as Address;
 }
@@ -117,14 +118,11 @@ export function getParametersForVault(
   )
     throw Error("Invalid liquidityManager or feeRecipient");
 
-  const lTokenSymbol = symbol === "lyUSD" ? "LUSDC" : "LEURC";
-
   return [
     {
       name,
       symbol,
-      lToken: getTokenAddress(chainId, lTokenSymbol, true),
-      stakeToken: getTokenAddress(chainId, "LDY", true),
+      stakeToken: chainConfig.stakeToken,
       globalOwner,
       globalPause,
       globalAccessList,
@@ -133,12 +131,14 @@ export function getParametersForVault(
       stakeForInstantWithdrawal: chainConfig.stakeForInstantWithdrawal,
       feeRecipient: chainConfig.feeRecipient,
       //
+      lToken: vaultConfig.lToken,
       asset: vaultConfig.asset,
       liquidityManager: vaultConfig.liquidityManager,
       liquidityBufferRate: vaultConfig.liquidityBufferRate,
       aaveLendingPool: vaultConfig.aaveLendingPool,
     },
     {
+      initialAssetsPerShare: vaultConfig.initialAssetsPerShare,
       highWaterMark: vaultConfig.highWaterMark,
       deploymentDelay: vaultConfig.deploymentDelay,
       yieldAPR: vaultConfig.yieldAPR,
@@ -156,13 +156,16 @@ const configsContracts: {
     feeRecipient: Address;
     stakeForFeeReduction: bigint;
     stakeForInstantWithdrawal: bigint;
+    stakeToken: Address;
     vaults: {
       [symbol: string]: {
         asset: Address | undefined;
+        lToken: Address;
         liquidityBufferRate: bigint;
         liquidityManager: Address;
         aaveLendingPool: Address;
         //
+        initialAssetsPerShare: bigint;
         highWaterMark: bigint;
         deploymentDelay: number;
         yieldAPR: bigint;
@@ -180,13 +183,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(1, "LDY"),
     vaults: {
       lyUSD: {
         asset: getTokenAddress(1, "USDC"),
+        lToken: getTokenAddress(1, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -197,10 +203,12 @@ const configsContracts: {
       },
       lyEUR: {
         asset: getTokenAddress(1, "EURC"),
+        lToken: getTokenAddress(1, "LEURC", true),
         liquidityBufferRate: toRay(5),
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -217,13 +225,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(8453, "LDY"),
     vaults: {
       lyUSD: {
         asset: getTokenAddress(8453, "USDC"),
+        lToken: getTokenAddress(8453, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -234,10 +245,12 @@ const configsContracts: {
       },
       lyEUR: {
         asset: getTokenAddress(8453, "EURC"),
+        lToken: getTokenAddress(8453, "LEURC", true),
         liquidityBufferRate: toRay(5),
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -254,13 +267,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(42161, "LDY"),
     vaults: {
       lyUSD: {
         asset: getTokenAddress(42161, "USDC"),
+        lToken: getTokenAddress(42161, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[42161].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -277,13 +293,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(295, "LDY"),
     vaults: {
       lyUSD: {
         asset: getTokenAddress(295, "USDC"),
+        lToken: getTokenAddress(295, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -300,13 +319,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(59144, "LDY", true), // No $LDY on Linea
     vaults: {
       lyUSD: {
         asset: getTokenAddress(59144, "USDC"),
+        lToken: getTokenAddress(59144, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[59144].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -323,13 +345,16 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
+    stakeToken: getTokenAddress(146, "LDY"),
     vaults: {
       lyUSD: {
         asset: getTokenAddress(146, "USDC"),
+        lToken: getTokenAddress(146, "LUSDC", true),
         liquidityBufferRate: toRay(10),
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[146].AAVE_LENDING_POOL,
         //
+        initialAssetsPerShare: 0n, // default 1:1 ratio
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY

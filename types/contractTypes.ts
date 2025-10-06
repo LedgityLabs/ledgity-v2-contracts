@@ -2754,6 +2754,7 @@ export const ledgityYieldVaultAbi = [
   { type: 'error', inputs: [], name: 'MustImplementMintAndBurnFunctions' },
   { type: 'error', inputs: [], name: 'NoLTokenSet' },
   { type: 'error', inputs: [], name: 'OnlyLiquidityManager' },
+  { type: 'error', inputs: [], name: 'RateAboveHundredPercent' },
   { type: 'error', inputs: [], name: 'RequestAlreadyProcessed' },
   {
     type: 'error',
@@ -2772,7 +2773,7 @@ export const ledgityYieldVaultAbi = [
   },
   { type: 'error', inputs: [], name: 'UserIsRestricted' },
   { type: 'error', inputs: [], name: 'ZeroAddress' },
-  { type: 'error', inputs: [], name: 'ZeroAddress' },
+  { type: 'error', inputs: [], name: 'ZeroAddressCCIPAdmin' },
   { type: 'error', inputs: [], name: 'ZeroAmount' },
   {
     type: 'event',
@@ -3440,7 +3441,7 @@ export const ledgityYieldVaultAbi = [
     inputs: [],
     name: 'getFeeData',
     outputs: [
-      { name: 'totalFeeShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'feeShares', internalType: 'uint256', type: 'uint256' },
       { name: 'pricePerShare', internalType: 'uint256', type: 'uint256' },
     ],
     stateMutability: 'view',
@@ -3658,6 +3659,11 @@ export const ledgityYieldVaultAbi = [
         type: 'tuple',
         components: [
           { name: 'highWaterMark', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'initialAssetsPerShare',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
           { name: 'yieldAPR', internalType: 'uint256', type: 'uint256' },
           {
             name: 'managementFeeRate',
@@ -3698,6 +3704,13 @@ export const ledgityYieldVaultAbi = [
     type: 'function',
     inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
     name: 'isMinter',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isPausedLocal',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'view',
   },
@@ -3811,6 +3824,13 @@ export const ledgityYieldVaultAbi = [
     name: 'owner',
     outputs: [{ name: '', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
   },
   {
     type: 'function',
@@ -4022,6 +4042,13 @@ export const ledgityYieldVaultAbi = [
     type: 'function',
     inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
     name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpauseLocal',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -9175,6 +9202,15 @@ export const useReadLedgityYieldVaultIsMinter =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const useReadLedgityYieldVaultIsPausedLocal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"lToken"`
  */
 export const useReadLedgityYieldVaultLToken =
@@ -9558,6 +9594,15 @@ export const useWriteLedgityYieldVaultMint =
   })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useWriteLedgityYieldVaultPauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"processRequests"`
  */
 export const useWriteLedgityYieldVaultProcessRequests =
@@ -9681,6 +9726,15 @@ export const useWriteLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useWriteLedgityYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'unpauseLocal',
   })
 
 /**
@@ -9888,6 +9942,15 @@ export const useSimulateLedgityYieldVaultMint =
   })
 
 /**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useSimulateLedgityYieldVaultPauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"processRequests"`
  */
 export const useSimulateLedgityYieldVaultProcessRequests =
@@ -10011,6 +10074,15 @@ export const useSimulateLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useSimulateLedgityYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'unpauseLocal',
   })
 
 /**
@@ -15627,6 +15699,15 @@ export const readLedgityYieldVaultIsMinter = /*#__PURE__*/ createReadContract({
 })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const readLedgityYieldVaultIsPausedLocal =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"lToken"`
  */
 export const readLedgityYieldVaultLToken = /*#__PURE__*/ createReadContract({
@@ -15996,6 +16077,15 @@ export const writeLedgityYieldVaultMint = /*#__PURE__*/ createWriteContract({
 })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const writeLedgityYieldVaultPauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"processRequests"`
  */
 export const writeLedgityYieldVaultProcessRequests =
@@ -16116,6 +16206,15 @@ export const writeLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const writeLedgityYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'unpauseLocal',
   })
 
 /**
@@ -16322,6 +16421,15 @@ export const simulateLedgityYieldVaultMint =
   })
 
 /**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const simulateLedgityYieldVaultPauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"processRequests"`
  */
 export const simulateLedgityYieldVaultProcessRequests =
@@ -16445,6 +16553,15 @@ export const simulateLedgityYieldVaultTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const simulateLedgityYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'unpauseLocal',
   })
 
 /**
