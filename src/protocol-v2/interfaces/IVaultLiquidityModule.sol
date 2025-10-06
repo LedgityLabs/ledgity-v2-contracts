@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity 0.8.18;
 
 interface IVaultLiquidityModule {
   struct VaultLiquidityInitParams {
     uint256 highWaterMark;
+    uint256 initialAssetsPerShare; // Initial assets per share of vault (asset decimals)
     uint256 yieldAPR;
     uint256 managementFeeRate;
     uint256 performanceFeeRate;

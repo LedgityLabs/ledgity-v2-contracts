@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity 0.8.18;
 
 // Contracts
 import { ERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -24,6 +24,10 @@ abstract contract VaultLiquidityModule is
   /** ======== LIBRARIES ======== */
 
   using Math for uint256;
+
+  /** ======== ERRORS ======== */
+
+  error RateAboveHundredPercent();
 
   /** ======== STORAGE ======== */
 
@@ -76,6 +80,13 @@ abstract contract VaultLiquidityModule is
     highWaterMark = params.highWaterMark != 0
       ? params.highWaterMark
       : 1e18;
+    // Set initial virtual reserves for predefined share price (cross-chain alignment)
+    // Creates 1 virtual share at specified price, locks it permanently
+    if (params.initialAssetsPerShare != 0) {
+      _totalAssets = params.initialAssetsPerShare; // e.g., 1.05e6 assets
+      _mint(address(0xdead), 1e18); // 1 share at that price
+    }
+
     deploymentDelay = params.deploymentDelay;
     yieldAPR = params.yieldAPR;
 
@@ -84,7 +95,10 @@ abstract contract VaultLiquidityModule is
     withdrawalFeeRate = params.withdrawalFeeRate;
     withdrawalGasFee = params.withdrawalGasFee;
 
-    lastCompoundTime = block.timestamp;
+    // Align to next UTC day boundary for cross-chain synchronization
+    // Rewards start next full day - safer and simpler than crediting partial days
+    lastCompoundTime = ((block.timestamp / 1 days) + 1) * 1 days;
+    // Fees accrue from actual deployment time (not aligned to day boundary)
     lastFeeTime = block.timestamp;
   }
 
@@ -101,6 +115,9 @@ abstract contract VaultLiquidityModule is
     returns (uint256 currentTotalAssets)
   {
     currentTotalAssets = _totalAssets;
+
+    /// @dev Edge case before start of first compound period at vault initialization
+    if (block.timestamp < lastCompoundTime) return currentTotalAssets;
 
     // Time elapsed since last compound
     uint256 timeElapsed = block.timestamp - lastCompoundTime;
@@ -225,13 +242,13 @@ abstract contract VaultLiquidityModule is
    * Manager shares are the fees that go to the manager, it is the difference between the total fees and the
    * protocol fees
    * Protocol shares are the fees that go to the protocol
-   * @return totalFeeShares The total fees
+   * @return feeShares The total fees
    * @return pricePerShare The price per share (always 18 decimals)
    */
   function getFeeData()
     public
     view
-    returns (uint256 totalFeeShares, uint256 pricePerShare)
+    returns (uint256 feeShares, uint256 pricePerShare)
   {
     uint256 currentAssets = totalAssets();
     uint256 shares = totalSupply();
@@ -285,13 +302,13 @@ abstract contract VaultLiquidityModule is
     uint256 totalFees = managementFeeAssets + performanceFeeAssets;
 
     // Compensate for the dilution as a consequence of minting shares as fees
-    totalFeeShares = totalFees.mulDiv(
+    feeShares = totalFees.mulDiv(
       shares,
       (currentAssets - totalFees) + 1,
       Math.Rounding.Up
     );
 
-    return (totalFeeShares, pricePerShare);
+    return (feeShares, pricePerShare);
   }
 
   /** ======== INTERNAL HELPERS ======== */
@@ -326,6 +343,9 @@ abstract contract VaultLiquidityModule is
   }
 
   function _registerFundRevenue() internal {
+    /// @dev Edge case before start of first compound period at vault initialization
+    if (block.timestamp < lastCompoundTime) return;
+
     uint256 timeElapsed = block.timestamp - lastCompoundTime;
     if (timeElapsed == 0) return;
 
@@ -349,10 +369,10 @@ abstract contract VaultLiquidityModule is
     uint256 timeElapsed = block.timestamp - lastFeeTime;
     if (timeElapsed == 0) return;
 
-    (uint256 totalFeeShares, uint256 pricePerShare) = getFeeData();
+    (uint256 feeShares, uint256 pricePerShare) = getFeeData();
 
-    if (0 < totalFeeShares) {
-      _mint(feeRecipient, totalFeeShares);
+    if (0 < feeShares) {
+      _mint(feeRecipient, feeShares);
       lastFeeTime = block.timestamp;
     }
 
@@ -373,8 +393,8 @@ abstract contract VaultLiquidityModule is
     uint256 oldTotalAssets = totalAssets();
     _totalAssets = newTotalAssets;
 
-    // Reset compound time to current timestamp to avoid double counting
-    lastCompoundTime = block.timestamp;
+    // Reset compound time to next day boundary to maintain cross-chain sync
+    lastCompoundTime = ((block.timestamp / 1 days) + 1) * 1 days;
 
     emit TotalAssetsUpdated(oldTotalAssets, newTotalAssets);
   }
@@ -405,6 +425,12 @@ abstract contract VaultLiquidityModule is
     uint256 performanceRate_,
     uint256 withdrawalRate_
   ) external onlyOwner {
+    if (
+      RAY < managementRate_ ||
+      RAY < performanceRate_ ||
+      RAY < withdrawalRate_
+    ) revert RateAboveHundredPercent();
+
     managementFeeRate = managementRate_;
     performanceFeeRate = performanceRate_;
     withdrawalFeeRate = withdrawalRate_;

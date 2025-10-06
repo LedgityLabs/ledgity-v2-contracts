@@ -172,11 +172,9 @@ contract LedgityYieldVault is
     feeRecipient = params.feeRecipient;
 
     lToken = params.lToken;
-
     stakeToken = params.stakeToken;
     stakeForFeeReduction = params.stakeForFeeReduction;
     stakeForInstantWithdrawal = params.stakeForInstantWithdrawal;
-
     liquidityBufferRate = params.liquidityBufferRate;
 
     _setupBufferStrategy(params.aaveLendingPool);
@@ -431,11 +429,11 @@ contract LedgityYieldVault is
 
   /**
    * @notice Internal function to handle shares conversion and fees on withdrawal
-   * @param caller_ The address that called the withdraw function
+   * @param owner_ The address that called the withdraw function
    * @param shares_ The number of shares to withdraw
    */
   function _burnSharesTakeFeesOnWithdrawal(
-    address caller_,
+    address owner_,
     uint256 shares_
   ) internal returns (uint256 /*netAssets*/) {
     if (shares_ == 0) revert ZeroAmount();
@@ -445,23 +443,26 @@ contract LedgityYieldVault is
 
     // Calculate underlying amount using updated rate
     uint256 withdrawalFee;
-    if (address(stakeToken) != address(0))
-      if (stakeToken.balanceOf(caller_) < stakeForFeeReduction) {
-        withdrawalFee = _computeWithdrawalFee(shares_, caller_);
-        /// @dev These are not new shares since we burn all user shares & withdraw net shares
-        _mint(feeRecipient, withdrawalFee);
+    if (
+      stakeForFeeReduction != 0 &&
+      address(stakeToken) != address(0) &&
+      stakeToken.balanceOf(owner_) < stakeForFeeReduction
+    ) {
+        withdrawalFee = _computeWithdrawalFee(shares_, owner_);
+        /// @dev Transfer fee shares to recipient to avoid dilution
+        _transfer(owner_, feeRecipient, withdrawalFee);
       }
 
     uint256 netShares = shares_ - withdrawalFee;
     uint256 netAssets = convertToAssets(netShares);
 
-    _burn(caller_, shares_);
+    _burn(owner_, netShares);
     _withdrawAssets(netAssets);
 
     return netAssets;
   }
 
-    /**
+  /**
    * @notice Internal function to handle withdraw tokens
    * @param caller_ The address that called the withdraw function
    * @param receiver_ The address to receive the underlying
@@ -480,12 +481,19 @@ contract LedgityYieldVault is
     notRestricted(caller_)
     returns (uint256 netAssets)
   {
+    /// @dev owner and receiver (from/to) restricted status is checked in _beforeTokenTransfer
+
     if (
       stakeForInstantWithdrawal != 0 &&
-      balanceOf(msg.sender) < stakeForInstantWithdrawal
+      address(stakeToken) != address(0) &&
+      stakeToken.balanceOf(caller_) < stakeForInstantWithdrawal
     ) revert InsufficientStakeForInstantWithdrawal();
 
-    netAssets = _burnSharesTakeFeesOnWithdrawal(caller_, shares_);
+    if (caller_ != owner_) {
+      _spendAllowance(owner_, caller_, shares_);
+    }
+
+    netAssets = _burnSharesTakeFeesOnWithdrawal(owner_, shares_);
 
     // slither-disable-next-line reentrancy-no-eth
     _withdrawBuffer(receiver_, netAssets);
@@ -510,6 +518,8 @@ contract LedgityYieldVault is
     notRestricted(caller_)
     returns (uint256 netShares)
   {
+    /// @dev owner and receiver (from/to) restricted status is checked in _beforeTokenTransfer
+
     if (assets_ == 0) revert ZeroAmount();
 
     // Take fees before processing
@@ -549,7 +559,7 @@ contract LedgityYieldVault is
 
     IERC20(asset()).safeTransferFrom(caller_, address(this), assets_);
 
-      // slither-disable-next-line reentrancy-no-eth
+    // slither-disable-next-line reentrancy-no-eth
     if (0 < bufferAmount && hasBufferStrategy) {
       _investBuffer(bufferAmount);
       /// @dev If no buffer strategy, assets stay in contract as underlying
@@ -655,12 +665,12 @@ contract LedgityYieldVault is
   {
     return
       _withdrawFromVault(
-      msg.sender,
-      receiver_,
-      owner_,
-      0,
-      convertToShares(assets_)
-    );
+        msg.sender,
+        receiver_,
+        owner_,
+        0,
+        convertToShares(assets_)
+      );
   }
 
   /**
@@ -695,7 +705,7 @@ contract LedgityYieldVault is
       revert MissingWithdrawalRequestFee();
     // Transfer gas fee to fee recipient
     feeRecipient.transfer(address(this).balance);
- 
+
     uint256 netAssets = _burnSharesTakeFeesOnWithdrawal(
       msg.sender,
       shares
@@ -819,10 +829,10 @@ contract LedgityYieldVault is
       ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestId];
 
-      // Transfer assets to user
-      IERC20(asset()).safeTransfer(request.user, request.amount);
       // Mark as processed
       request.processed = true;
+      // Transfer assets to user
+      IERC20(asset()).safeTransfer(request.user, request.amount);
 
       emit WithdrawalProcessed(
         requestId,
@@ -881,10 +891,10 @@ contract LedgityYieldVault is
     IAaveLendingPoolV3 newAaveLendingPool
   ) public onlyOwner {
     lToken = newLToken;
-
     stakeToken = newStakeToken;
-    stakeForFeeReduction = newStakeForFeeReduction;
-    stakeForInstantWithdrawal = newStakeForInstantWithdrawal;
+
+      stakeForFeeReduction = newStakeForFeeReduction;
+      stakeForInstantWithdrawal = newStakeForInstantWithdrawal;
 
     _setupBufferStrategy(newAaveLendingPool);
 
