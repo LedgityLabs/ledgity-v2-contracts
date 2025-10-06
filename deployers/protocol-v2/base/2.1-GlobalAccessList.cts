@@ -11,7 +11,7 @@ export default async function deploy({
   await deployments.deploy("GlobalAccessList", {
     from: deployer,
     log: true,
-    waitConfirmations: 1,
+    waitConfirmations: 3,
     skipIfAlreadyDeployed: true,
     proxy: {
       proxyContract: "UUPS",

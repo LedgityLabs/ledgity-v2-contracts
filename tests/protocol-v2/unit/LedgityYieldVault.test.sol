@@ -162,7 +162,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
         globalAccessList: address(globalAccessList),
         liquidityManager: liquidityManager,
         feeRecipient: payable(feeRecipient),
-        liquidityBufferRate: 10000,
+        liquidityBufferRate: (10 * RAY) / 100, // 10%
         aaveLendingPool: aaveLendingPool
       });
 
@@ -172,10 +172,10 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
           highWaterMark: 0,
           deploymentDelay: 1,
           initialAssetsPerShare: 0, // defaults to 1:1
-          yieldAPR: 5 * RAY,
-          managementFeeRate: 200,
-          performanceFeeRate: 2000,
-          withdrawalFeeRate: 50,
+          yieldAPR: (5 * RAY) / 100, // 5% APR
+          managementFeeRate: (2 * RAY) / 1000, // 0.2%
+          performanceFeeRate: (2 * RAY) / 100, // 2%
+          withdrawalFeeRate: (5 * RAY) / 10000, // 0.05%
           withdrawalGasFee: 0.001 ether
         });
 
@@ -340,7 +340,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
   }
 
   function test_updateBufferRate_success() public {
-    uint256 newRate = 15000; // 15%
+    uint256 newRate = (15 * RAY) / 100; // 15%
 
     for (uint256 i = 0; i < vaults.length; i++) {
       LedgityYieldVault vault = vaults[i];
@@ -358,7 +358,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
       vm.prank(testAccount1);
       vm.expectRevert();
-      vault.updateBufferRate(15000);
+      vault.updateBufferRate((15 * RAY) / 100);
     }
   }
 

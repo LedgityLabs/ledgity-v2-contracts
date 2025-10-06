@@ -41,13 +41,10 @@ const {
   HEDERA_VERIFY_API_KEY,
 } = process.env;
 
-const forkTarget = HARDHAT_DEPLOY_FORK?.toLowerCase();
-if (!forkTarget)
-  throw Error("HARDHAT_DEPLOY_FORK not found in environment variables");
-
 if (!DEPLOYER_PK) throw Error("DEPLOYER_PK not found in environment variables");
 
-// Validation
+// Fork Validation
+const forkTarget = HARDHAT_DEPLOY_FORK?.toLowerCase();
 if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY))
   throw Error("Mainnet config not found in environment variables");
 if (forkTarget === "base" && (!BASE_RPC_URL || !BASE_VERIFY_API_KEY))
@@ -146,8 +143,10 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
 };
 
 function makeForkConfig(
-  chainName: string,
+  chainName: string | undefined,
 ): { hardhat: HardhatNetworkUserConfig } | {} {
+  if (!chainName) return {};
+
   const config = networkConfigs[chainName];
 
   const blockNumber =
@@ -178,6 +177,7 @@ function makeForkConfig(
       },
       mining: {
         auto: true,
+        interval: 100,
         mempool: {
           order: "fifo",
         },
@@ -245,6 +245,7 @@ const etherscan = {
 };
 
 const config: HardhatUserConfig = {
+  defaultNetwork: "hardhat",
   solidity: {
     overrides: {
       "src/protocol-v2/LedgityYieldVault.sol": {
@@ -286,7 +287,6 @@ const config: HardhatUserConfig = {
     ...networks,
   },
   etherscan,
-  defaultNetwork: "hardhat",
 };
 
 export default config;
