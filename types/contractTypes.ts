@@ -199,6 +199,9 @@ export const genericErc20Abi = [
 // GlobalAccessList
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ */
 export const globalAccessListAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
   { type: 'error', inputs: [], name: 'AccountAlreadyRestricted' },
@@ -405,6 +408,21 @@ export const globalAccessListAbi = [
     stateMutability: 'payable',
   },
 ] as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ */
+export const globalAccessListAddress = {
+  8453: '0x2166480d795f1d185bA940af58B905E3B33104e9',
+} as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ */
+export const globalAccessListConfig = {
+  address: globalAccessListAddress,
+  abi: globalAccessListAbi,
+} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GlobalBlacklist
@@ -4853,268 +4871,368 @@ export const useWatchGenericErc20TransferEvent =
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessList = /*#__PURE__*/ createUseReadContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
 })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListGetRestrictedAccounts =
   /*#__PURE__*/ createUseReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'getRestrictedAccounts',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListIsRestricted =
   /*#__PURE__*/ createUseReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'isRestricted',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListOwner = /*#__PURE__*/ createUseReadContract(
-  { abi: globalAccessListAbi, functionName: 'owner' },
+  {
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+    functionName: 'owner',
+  },
 )
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useReadGlobalAccessListRestrictedAccounts =
   /*#__PURE__*/ createUseReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictedAccounts',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessList = /*#__PURE__*/ createUseWriteContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
 })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictAccount',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'unRestrictAccount',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWriteGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessList =
-  /*#__PURE__*/ createUseSimulateContract({ abi: globalAccessListAbi })
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+  })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictAccount',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'unRestrictAccount',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useSimulateGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({ abi: globalAccessListAbi })
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+  })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListRestrictAccountEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'RestrictAccount',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListUnrestrictAccountEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'UnrestrictAccount',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const useWatchGlobalAccessListUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'Upgraded',
   })
 
@@ -11439,266 +11557,367 @@ export const watchGenericErc20TransferEvent =
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessList = /*#__PURE__*/ createReadContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListGetRestrictedAccounts =
   /*#__PURE__*/ createReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'getRestrictedAccounts',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListGlobalOwner = /*#__PURE__*/ createReadContract(
-  { abi: globalAccessListAbi, functionName: 'globalOwner' },
+  {
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+    functionName: 'globalOwner',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListIsRestricted =
   /*#__PURE__*/ createReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'isRestricted',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListOwner = /*#__PURE__*/ createReadContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
   functionName: 'owner',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListProxiableUuid =
   /*#__PURE__*/ createReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const readGlobalAccessListRestrictedAccounts =
   /*#__PURE__*/ createReadContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictedAccounts',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessList = /*#__PURE__*/ createWriteContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictAccount',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'unRestrictAccount',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListUpgradeTo = /*#__PURE__*/ createWriteContract(
-  { abi: globalAccessListAbi, functionName: 'upgradeTo' },
+  {
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+    functionName: 'upgradeTo',
+  },
 )
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const writeGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessList = /*#__PURE__*/ createSimulateContract({
   abi: globalAccessListAbi,
+  address: globalAccessListAddress,
 })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'restrictAccount',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'unRestrictAccount',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const simulateGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListEvent =
-  /*#__PURE__*/ createWatchContractEvent({ abi: globalAccessListAbi })
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: globalAccessListAbi,
+    address: globalAccessListAddress,
+  })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListRestrictAccountEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'RestrictAccount',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListUnrestrictAccountEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'UnrestrictAccount',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
  */
 export const watchGlobalAccessListUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: globalAccessListAbi,
+    address: globalAccessListAddress,
     eventName: 'Upgraded',
   })
 

@@ -20,23 +20,18 @@ type DeploymentsType = {
 
 /// @dev Contracts whitelist
 const contractList = [
+  // v1
   "GlobalBlacklist",
-  "GlobalAccessList",
   "GlobalOwner",
   "GlobalPause",
   "LDYStaking",
   "LTokenSignaler",
-  //
   "PreMining",
   "LToken",
+  // v2
+  "GlobalAccessList",
   "LedgityYieldVault",
   "GenericERC20",
-  //
-  "GlobalBlacklistSonic",
-  "GlobalOwnerSonic",
-  "GlobalPauseSonic",
-  "LDYStakingSonic",
-  "LTokenSignalerSonic",
 ];
 
 // Read ABIs from contracts/abis directory
@@ -48,6 +43,7 @@ const contractsRaw: ContractType[] = [];
 // First, create contracts from ABI files
 for (const abiFile of abiFiles) {
   const contractName = abiFile.replace(".json", "");
+  console.log("contractName: ", contractName);
 
   if (contractList.length) {
     // Skip if not in whitelist
@@ -85,7 +81,10 @@ for (const chainId in deployedContracts) {
 
   for (const [name, data] of Object.entries(contractsData)) {
     const chainNumber = Number(chainId);
-    const cleanName = name.replace("_Proxy", "");
+    const cleanName = name
+      .replace("_Proxy", "")
+      .replace("Sonic", "")
+      .replace("Hedera", "");
 
     // Find the corresponding contract in our list
     const foundContract = contractsRaw.find(
@@ -122,6 +121,8 @@ const deployments: DeploymentsType = contracts.reduce((acc, contract) => {
   if (contract.address) acc[contract.name] = contract.address;
   return acc;
 }, {} as DeploymentsType);
+
+console.log("deployments:\n", JSON.stringify(deployments, null, 2));
 
 export default defineConfig({
   out: "types/contractTypes.ts",
