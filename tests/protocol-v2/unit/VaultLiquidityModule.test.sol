@@ -325,6 +325,7 @@ contract VaultLiquidityModule_UnitTest is Test, Fixtures {
       LedgityYieldVault vault = vaults[i];
       VaultConfig memory config = vaultConfigs[i];
       uint256 depositAmount = _getTestDepositAmount(config.asset);
+      uint8 decimalsOffset = vault.decimalsOffset();
 
       vm.prank(globalOwner.owner());
       vault.updateDeploymentDelay(newDeploymentDelay);
@@ -337,7 +338,8 @@ contract VaultLiquidityModule_UnitTest is Test, Fixtures {
 
       // With deployment delay > 0, shares should be less than deposit amount
       // (when total supply is 0, normally shares = assets)
-      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 shares = vault.balanceOf(testAccount1) /
+        10 ** decimalsOffset;
       assertLt(shares, depositAmount);
     }
   }

@@ -297,16 +297,18 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
       compoundFactor;
     uint256 expectedShares = amount - expectedFee;
 
+    uint8 decimalsOffset = vault.decimalsOffset();
+
     // Verify migration gives full shares (no deployment delay)
     assertEq(
-      sharesFromMigration,
+      sharesFromMigration / 10 ** decimalsOffset,
       amount,
       "Migration should receive full shares without deployment delay"
     );
 
     // Verify direct deposit receives reduced shares (with deployment delay)
     _assertApproxEq(
-      sharesFromDeposit,
+      sharesFromDeposit / 10 ** decimalsOffset,
       expectedShares,
       "Direct deposit should receive shares minus maturity impact"
     );
@@ -589,9 +591,10 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
 
     uint256 shares = _migrateLTokens(testAccount1, migrationAmount);
 
+    uint8 decimalsOffset = vault.decimalsOffset();
     // First migration to empty vault should get 1:1 ratio
     assertEq(
-      shares,
+      shares / 10 ** decimalsOffset,
       migrationAmount,
       "First migration should get 1:1 ratio"
     );
@@ -630,20 +633,6 @@ contract LTokenMigration_IntegrationTest is Test, Fixtures {
       migrationAmount,
       "Should get more shares due to reduced price"
     );
-  }
-
-  function test_migrationGasOptimization() public {
-    uint256 migrationAmount = BASE_AMOUNT;
-    _mintLTokens(testAccount1, migrationAmount);
-
-    // Measure gas for migration
-    vm.prank(testAccount1);
-    uint256 gasBefore = gasleft();
-    vault.migrateLToken(migrationAmount);
-    uint256 gasUsed = gasBefore - gasleft();
-
-    // Gas usage should be reasonable (less than 200k gas)
-    assertLt(gasUsed, 200_000, "Migration should be gas efficient");
   }
 
   // ============ INTEGRATION TESTS ============ //

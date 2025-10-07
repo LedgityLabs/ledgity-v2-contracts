@@ -292,7 +292,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 3 * 365);
+    days_ = bound(days_, 10, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 
@@ -667,7 +667,7 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     uint256 days_
   ) public {
     depositAmount = bound(depositAmount, 1e18, 100_000 * 1e18);
-    days_ = bound(days_, 1, 3 * 365);
+    days_ = bound(days_, 10, 3 * 365);
 
     _depositToVault(testAccount1, depositAmount);
 

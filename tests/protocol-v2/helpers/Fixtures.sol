@@ -17,6 +17,7 @@ import { LDYStaking } from "src/protocol-v1/LDYStaking.sol";
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 // Libraries
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
+import { Utils } from "tests/protocol-v2/helpers/Utils.sol";
 // Mock Contracts
 import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
@@ -93,9 +94,8 @@ contract Fixtures is Test {
 
   function _selectFork() internal {
     // Fork network based on HARDHAT_DEPLOY_FORK environment variable
-    string memory forkTarget = vm.envOr(
-      "HARDHAT_DEPLOY_FORK",
-      string("mainnet")
+    string memory forkTarget = Utils.toUpperCase(
+      vm.envOr("HARDHAT_DEPLOY_FORK", string("MAINNET"))
     );
 
     string memory rpcUrl;
