@@ -37,6 +37,7 @@ export default async function deploy({
   );
 
   // Deploy the LToken
+  console.log(`\n=> Deploy ${VAULT_TOKEN_SYMBOL}`.cyan);
   const result = await deployments.deploy(VAULT_TOKEN_SYMBOL, {
     contract: "LedgityYieldVault",
     from: deployer,

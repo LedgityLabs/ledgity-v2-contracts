@@ -8,6 +8,7 @@ export default async function deploy({
 
   const globalOwner = await deployments.get("GlobalOwner");
 
+  console.log("\n=> Deploy GlobalOwner".cyan);
   await deployments.deploy("GlobalAccessList", {
     from: deployer,
     log: true,

@@ -7,6 +7,7 @@ export default async function deploy({
   const { deployer } = await getNamedAccounts();
 
   // Deploy the LedgityDataProvider library first
+  console.log("\n=> Deploy LedgityYieldVault.LedgityDataProvider lib".cyan);
   const ledgityDataProviderLib = await deployments.deploy(
     "LedgityDataProvider",
     {
@@ -17,6 +18,7 @@ export default async function deploy({
   );
 
   // Deploy the shared implementation with library linking
+  console.log("=> Deploy LedgityYieldVault".cyan);
   await deployments.deploy("LedgityYieldVault_Implementation", {
     contract: "LedgityYieldVault",
     from: deployer,

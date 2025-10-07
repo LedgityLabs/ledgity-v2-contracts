@@ -19,23 +19,20 @@ dotenv.config();
 colors.enable();
 
 const {
+  ETHERSCAN_API_KEY,
   HARDHAT_DEPLOY_FORK,
   DEPLOYER_PK,
+  //
   MAINNET_RPC_URL,
   MAINNET_FORKING_BLOCK,
-  MAINNET_VERIFY_API_KEY,
   BASE_RPC_URL,
   BASE_FORKING_BLOCK,
-  BASE_VERIFY_API_KEY,
   SONIC_RPC_URL,
   SONIC_FORKING_BLOCK,
-  SONIC_VERIFY_API_KEY,
   LINEASCAN_RPC_URL,
   LINEASCAN_FORKING_BLOCK,
-  LINEASCAN_VERIFY_API_KEY,
   ARBITRUM_RPC_URL,
   ARBITRUM_FORKING_BLOCK,
-  ARBITRUM_VERIFY_API_KEY,
   HEDERA_RPC_URL,
   HEDERA_FORKING_BLOCK,
   HEDERA_VERIFY_API_KEY,
@@ -45,20 +42,17 @@ if (!DEPLOYER_PK) throw Error("DEPLOYER_PK not found in environment variables");
 
 // Fork Validation
 const forkTarget = HARDHAT_DEPLOY_FORK?.toLowerCase();
-if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !MAINNET_VERIFY_API_KEY))
+if (forkTarget === "mainnet" && (!MAINNET_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Mainnet config not found in environment variables");
-if (forkTarget === "base" && (!BASE_RPC_URL || !BASE_VERIFY_API_KEY))
+if (forkTarget === "base" && (!BASE_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Base config not found in environment variables");
-if (forkTarget === "sonic" && (!SONIC_RPC_URL || !SONIC_VERIFY_API_KEY))
+if (forkTarget === "sonic" && (!SONIC_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Sonic config not found in environment variables");
 if (forkTarget === "hedera" && (!HEDERA_RPC_URL || !HEDERA_VERIFY_API_KEY))
   throw Error("Hedera config not found in environment variables");
-if (forkTarget === "linea" && (!LINEASCAN_RPC_URL || !LINEASCAN_VERIFY_API_KEY))
+if (forkTarget === "linea" && (!LINEASCAN_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("LineaScan config not found in environment variables");
-if (
-  forkTarget === "arbitrum" &&
-  (!ARBITRUM_RPC_URL || !ARBITRUM_VERIFY_API_KEY)
-)
+if (forkTarget === "arbitrum" && (!ARBITRUM_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Arbitrum config not found in environment variables");
 
 /// @dev Create the temp file to write token deployments
@@ -80,14 +74,14 @@ interface NetworkConfig {
   isTestnet?: boolean;
 }
 
-const networkConfigs: { [key: string]: NetworkConfig } = {
+export const networkConfigs: { [key: string]: NetworkConfig } = {
   mainnet: {
     name: "mainnet",
     chainId: 1,
     rpcUrl: MAINNET_RPC_URL || "",
-    verifyApiKey: MAINNET_VERIFY_API_KEY || "",
+    verifyApiKey: ETHERSCAN_API_KEY || "",
     forkingBlock: MAINNET_FORKING_BLOCK || "",
-    apiURL: "https://api.etherscan.io/api",
+    apiURL: "https://api.etherscan.io/v2/api?chainid=1",
     browserURL: "https://etherscan.io",
     deploy: ["deployers/protocol-v2/ethereum"],
   },
@@ -95,9 +89,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     name: "base",
     chainId: 8453,
     rpcUrl: BASE_RPC_URL || "",
-    verifyApiKey: BASE_VERIFY_API_KEY || "",
+    verifyApiKey: ETHERSCAN_API_KEY || "",
     forkingBlock: BASE_FORKING_BLOCK,
-    apiURL: "https://api.basescan.org/api",
+    apiURL: "https://api.etherscan.io/v2/api?chainid=8453",
     browserURL: "https://basescan.org",
     deploy: ["deployers/protocol-v2/base"],
   },
@@ -105,9 +99,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     name: "sonic",
     chainId: 146,
     rpcUrl: SONIC_RPC_URL || "",
-    verifyApiKey: SONIC_VERIFY_API_KEY || "",
+    verifyApiKey: ETHERSCAN_API_KEY || "",
     forkingBlock: SONIC_FORKING_BLOCK,
-    apiURL: "https://api.sonicscan.org/api",
+    apiURL: "https://api.etherscan.io/v2/api?chainid=146",
     browserURL: "https://sonicscan.org",
     deploy: ["deployers/protocol-v2/sonic"],
   },
@@ -125,9 +119,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     name: "arbitrumOne",
     chainId: 42161,
     rpcUrl: ARBITRUM_RPC_URL || "",
-    verifyApiKey: ARBITRUM_VERIFY_API_KEY || "",
+    verifyApiKey: ETHERSCAN_API_KEY || "",
     forkingBlock: ARBITRUM_FORKING_BLOCK,
-    apiURL: "https://api.arbiscan.io",
+    apiURL: "https://api.etherscan.io/v2/api?chainid=42161",
     browserURL: "https://arbiscan.io",
     deploy: ["deployers/protocol-v2/arbitrum"],
   },
@@ -135,9 +129,9 @@ const networkConfigs: { [key: string]: NetworkConfig } = {
     name: "linea",
     chainId: 59144,
     rpcUrl: LINEASCAN_RPC_URL || "",
-    verifyApiKey: LINEASCAN_VERIFY_API_KEY || "",
+    verifyApiKey: ETHERSCAN_API_KEY || "",
     forkingBlock: LINEASCAN_FORKING_BLOCK,
-    apiURL: "https://api.lineascan.build/api",
+    apiURL: "https://api.etherscan.io/v2/api?chainid=59144",
     browserURL: "https://lineascan.build",
   },
 };
@@ -218,32 +212,6 @@ const networks = Object.entries(networkConfigs).reduce(
   {},
 );
 
-// Generate etherscan config from networkConfigs
-const etherscan = {
-  apiKey: Object.entries(networkConfigs).reduce(
-    (
-      acc: {
-        [key: string]: string;
-      },
-      [_, data],
-    ) => {
-      acc[data.name] = data.verifyApiKey;
-      return acc;
-    },
-    {},
-  ),
-  customChains: Object.values(networkConfigs)
-    .filter((data) => data.name !== "mainnet")
-    .map((data) => ({
-      network: data.name,
-      chainId: data.chainId,
-      urls: {
-        apiURL: data.apiURL,
-        browserURL: data.browserURL,
-      },
-    })),
-};
-
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   solidity: {
@@ -261,6 +229,15 @@ const config: HardhatUserConfig = {
     compilers: [
       {
         version: "0.8.18",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 100,
+          },
+        },
+      },
+      {
+        version: "0.8.10",
         settings: {
           optimizer: {
             enabled: true,
@@ -286,7 +263,20 @@ const config: HardhatUserConfig = {
     ...makeForkConfig(forkTarget),
     ...networks,
   },
-  etherscan,
+  // Generate etherscan config from networkConfigs
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
+    customChains: Object.values(networkConfigs)
+      .filter((data) => data.name !== "mainnet")
+      .map((data) => ({
+        network: data.name,
+        chainId: data.chainId,
+        urls: {
+          apiURL: data.apiURL,
+          browserURL: data.browserURL,
+        },
+      })),
+  },
 };
 
 export default config;
