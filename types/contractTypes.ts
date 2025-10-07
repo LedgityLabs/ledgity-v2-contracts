@@ -3401,6 +3401,13 @@ export const ledgityYieldVaultAbi = [
   },
   {
     type: 'function',
+    inputs: [],
+    name: 'decimalsOffset',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
     inputs: [
       { name: 'spender', internalType: 'address', type: 'address' },
       { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
@@ -9173,6 +9180,15 @@ export const useReadLedgityYieldVaultDecimals =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decimalsOffset"`
+ */
+export const useReadLedgityYieldVaultDecimalsOffset =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'decimalsOffset',
   })
 
 /**
@@ -15776,6 +15792,15 @@ export const readLedgityYieldVaultDecimals = /*#__PURE__*/ createReadContract({
   abi: ledgityYieldVaultAbi,
   functionName: 'decimals',
 })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"decimalsOffset"`
+ */
+export const readLedgityYieldVaultDecimalsOffset =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'decimalsOffset',
+  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"deploymentDelay"`

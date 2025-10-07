@@ -14,10 +14,10 @@ show_logs = true
 [fuzz]
 runs = 100
 seed = '0xc0ffee' # Seed for reproducibility
-show_logs = true
+# show_logs = true
 
 [invariant]
 runs = 50         # Number of tests to run
 depth = 100       # Number of function calls in each test
 seed = '0xc0ffee' # Seed for reproducibility
-show_logs = true
+# show_logs = true
