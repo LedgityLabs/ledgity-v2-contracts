@@ -34,6 +34,9 @@ abstract contract VaultLiquidityModule is
   // Base rate constant representing 100%
   uint256 public constant RAY = 1e27;
 
+  // Decimal offset for virtual shares (18 - asset decimals), cached at initialization
+  uint8 public decimalsOffset;
+
   // Total assets under management
   uint256 private _totalAssets;
 
@@ -75,6 +78,9 @@ abstract contract VaultLiquidityModule is
     address asset
   ) internal {
     __ERC4626_init(ERC20Upgradeable(asset));
+
+    // Cache decimal offset to avoid repeated calculations
+    decimalsOffset = uint8(18 - ERC20Upgradeable(asset).decimals());
 
     // Initialize high water mark at 1 share = 1 asset if not specified
     highWaterMark = params.highWaterMark != 0
@@ -156,13 +162,12 @@ abstract contract VaultLiquidityModule is
     uint256 supply = totalSupply();
     uint256 currentAssets = totalAssets();
 
-    if (supply == 0 || currentAssets == 0) {
-      return assets;
-    }
-
     (uint256 feeShares, ) = getFeeData();
 
-    shares = assets.mulDiv(supply + feeShares, currentAssets);
+    shares = assets.mulDiv(
+      supply + feeShares + (10 ** decimalsOffset),
+      currentAssets + 1
+    );
   }
 
   /**
@@ -181,13 +186,12 @@ abstract contract VaultLiquidityModule is
     uint256 supply = totalSupply();
     uint256 currentAssets = totalAssets();
 
-    if (supply == 0 || currentAssets == 0) {
-      return shares;
-    }
-
     (uint256 feeShares, ) = getFeeData();
 
-    assets = shares.mulDiv(currentAssets, supply + feeShares);
+    assets = shares.mulDiv(
+      currentAssets + 1,
+      supply + feeShares + (10 ** decimalsOffset)
+    );
   }
 
   /** ======== INTERNAL VIEWS ======== */
