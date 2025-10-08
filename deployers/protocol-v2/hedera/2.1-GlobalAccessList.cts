@@ -4,6 +4,7 @@ export default async function deploy({
   getNamedAccounts,
   deployments,
 }: Parameters<DeployFunction>[0]) {
+  console.log("\n=> Deploy GlobalAccessList".cyan);
   const { deployer } = await getNamedAccounts();
 
   const globalOwner = await deployments.get("GlobalOwner");
@@ -11,9 +12,8 @@ export default async function deploy({
   await deployments.deploy("GlobalAccessList", {
     from: deployer,
     log: true,
-    waitConfirmations: 1,
+    waitConfirmations: 3,
     skipIfAlreadyDeployed: true,
-    deterministicDeployment: true,
     proxy: {
       proxyContract: "UUPS",
       execute: {

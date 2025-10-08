@@ -83,7 +83,7 @@ export const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: MAINNET_FORKING_BLOCK || "",
     apiURL: "https://api.etherscan.io/v2/api?chainid=1",
     browserURL: "https://etherscan.io",
-    deploy: ["deployers/protocol-v2/ethereum"],
+    deploy: ["deployers/protocol-v2/mainnet"],
   },
   base: {
     name: "base",
@@ -133,6 +133,7 @@ export const networkConfigs: { [key: string]: NetworkConfig } = {
     forkingBlock: LINEASCAN_FORKING_BLOCK,
     apiURL: "https://api.etherscan.io/v2/api?chainid=59144",
     browserURL: "https://lineascan.build",
+    deploy: ["deployers/protocol-v2/linea"],
   },
 };
 
@@ -171,7 +172,7 @@ function makeForkConfig(
       },
       mining: {
         auto: true,
-        interval: 100,
+        interval: 1,
         mempool: {
           order: "fifo",
         },

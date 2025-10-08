@@ -4,13 +4,28 @@ export default async function deploy({
   getNamedAccounts,
   deployments,
 }: Parameters<DeployFunction>[0]) {
+  console.log("\n=> Deploy LedgityYieldVault".cyan);
   const { deployer } = await getNamedAccounts();
 
-  // Deploy the shared implementation
-  await deployments.deploy("LedgityYieldVaultHedera", {
+  // Deploy the LedgityDataProvider library first
+  console.log("==> Deploy lib LedgityDataProvider".cyan);
+  const ledgityDataProviderLib = await deployments.deploy(
+    "LedgityDataProvider",
+    {
+      from: deployer,
+      log: true,
+      waitConfirmations: 3,
+    },
+  );
+
+  // Deploy the shared implementation with library linking
+  await deployments.deploy("LedgityYieldVaultHedera_Implementation", {
+    contract: "LedgityYieldVaultHedera",
     from: deployer,
     log: true,
-    waitConfirmations: 1,
-    deterministicDeployment: true,
+    waitConfirmations: 3,
+    libraries: {
+      LedgityDataProvider: ledgityDataProviderLib.address,
+    },
   });
 }
