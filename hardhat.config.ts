@@ -8,10 +8,12 @@ import "./tasks/verify";
 import "./tasks/extract-abis";
 import "./tasks/deploy-mock-ccip-token";
 
+import fs from "fs";
 import { utils, Wallet } from "ethers";
+// Types
 import { type HardhatUserConfig } from "hardhat/config";
 import { HardhatNetworkUserConfig, HttpNetworkUserConfig } from "hardhat/types";
-import fs from "fs";
+import "./types/bigIntString";
 
 import dotenv from "dotenv";
 import colors from "colors";
