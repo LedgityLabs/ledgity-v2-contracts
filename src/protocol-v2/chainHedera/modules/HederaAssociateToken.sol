@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 // Libraries
-import { HederaResponseCodes } from "src/protocol-v2/chainHedera/libs/HederaResponseCodes.sol";
+import { HederaResponseCodes } from "src/protocol-v2/chainHedera/libraries/HederaResponseCodes.sol";
 // Interfaces
 import { IHederaTokenService } from "src/protocol-v2/chainHedera/interfaces/IHederaTokenService.sol";
 
@@ -10,10 +10,10 @@ import { IHederaTokenService } from "src/protocol-v2/chainHedera/interfaces/IHed
  * @title HederaAssociateToken
  * @notice Register a contract on Hedera Token Registry
  */
-library HederaAssociateToken {
+abstract contract HederaAssociateToken {
   error FailedToAssociateTokens();
 
-  function associateToken(address asset) public {
+  function _associateToken(address asset) internal {
     int64 associateResponse = IHederaTokenService(address(0x167))
       .associateToken(address(this), asset);
 

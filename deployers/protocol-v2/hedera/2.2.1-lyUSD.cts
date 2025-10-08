@@ -51,7 +51,7 @@ export default async function deploy({
       implementationName: "LedgityYieldVaultHedera_Implementation",
       execute: {
         init: {
-          methodName: "initialize",
+          methodName: "initializeAndRegister",
           args,
         },
       },

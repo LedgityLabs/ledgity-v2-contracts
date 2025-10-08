@@ -4,7 +4,7 @@ pragma solidity 0.8.18;
 // Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 // Libraries
-import { HederaAssociateToken } from "src/protocol-v2/chainHedera/libs/HederaAssociateToken.sol";
+import { HederaAssociateToken } from "src/protocol-v2/chainHedera/modules/HederaAssociateToken.sol";
 // Interfaces
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
@@ -16,12 +16,15 @@ import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidit
  *
  * @author vBlackwhale (https://github.com/vblackwhale)
  */
-contract LedgityYieldVaultHedera is LedgityYieldVault {
+contract LedgityYieldVaultHedera is
+  LedgityYieldVault,
+  HederaAssociateToken
+{
   function initializeAndRegister(
     VaultParams calldata params,
     VaultLiquidityInitParams calldata vaultLiquidityInitParams
   ) public {
-    HederaAssociateToken.associateToken(address(params.asset));
     LedgityYieldVault.initialize(params, vaultLiquidityInitParams);
+    _associateToken(address(params.asset));
   }
 }
