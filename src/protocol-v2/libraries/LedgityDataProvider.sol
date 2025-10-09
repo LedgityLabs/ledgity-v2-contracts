@@ -151,6 +151,11 @@ library LedgityDataProvider {
   {
     uint256 totalRequests = requests_.length;
 
+    // If there are no requests, return an empty array to avoid underflow on (totalRequests - 1)
+    if (totalRequests == 0) {
+      return new ILedgityDataProvider.WithdrawalRequestRead[](0);
+    }
+
     // Determine search range - start from latest requests
     uint256 searchLimit = maxRange > 0 && maxRange < totalRequests
       ? maxRange
