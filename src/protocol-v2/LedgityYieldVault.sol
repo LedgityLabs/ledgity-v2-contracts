@@ -47,6 +47,7 @@ contract LedgityYieldVault is
   error RequestAlreadyProcessed();
   error InsufficientLiquidity();
   error InsufficientStakeForInstantWithdrawal();
+  error TransferFailed();
 
   // ======== STORAGE ======== //
 
@@ -448,10 +449,10 @@ contract LedgityYieldVault is
       address(stakeToken) != address(0) &&
       stakeToken.balanceOf(owner_) < stakeForFeeReduction
     ) {
-        withdrawalFee = _computeWithdrawalFee(shares_, owner_);
-        /// @dev Transfer fee shares to recipient to avoid dilution
-        _transfer(owner_, feeRecipient, withdrawalFee);
-      }
+      withdrawalFee = _computeWithdrawalFee(shares_, owner_);
+      /// @dev Transfer fee shares to recipient to avoid dilution
+      _transfer(owner_, feeRecipient, withdrawalFee);
+    }
 
     uint256 netShares = shares_ - withdrawalFee;
     uint256 netAssets = convertToAssets(netShares);
@@ -704,7 +705,11 @@ contract LedgityYieldVault is
     if (msg.value < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();
     // Transfer gas fee to fee recipient
-    feeRecipient.transfer(address(this).balance);
+    /// @dev Use call since the fee recipient is a multisig that requires more that enforced 2300 .transfer() gas
+    (bool success, ) = feeRecipient.call{
+      value: address(this).balance
+    }("");
+    if (!success) revert TransferFailed();
 
     uint256 netAssets = _burnSharesTakeFeesOnWithdrawal(
       msg.sender,
@@ -893,8 +898,8 @@ contract LedgityYieldVault is
     lToken = newLToken;
     stakeToken = newStakeToken;
 
-      stakeForFeeReduction = newStakeForFeeReduction;
-      stakeForInstantWithdrawal = newStakeForInstantWithdrawal;
+    stakeForFeeReduction = newStakeForFeeReduction;
+    stakeForInstantWithdrawal = newStakeForInstantWithdrawal;
 
     _setupBufferStrategy(newAaveLendingPool);
 
