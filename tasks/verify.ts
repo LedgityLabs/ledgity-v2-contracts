@@ -147,6 +147,8 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
             ).catch((err: any) => {
               console.log("Proxy verification failed: ", err);
             });
+
+            console.log("=> Proxy verified successfully");
           }
         } else {
           // Verify non-proxy contract
@@ -170,7 +172,7 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
           JSON.stringify(verificationRecords, null, 2),
         );
 
-        console.log(`✅ ${deployment.name} verified successfully`);
+        console.log(`✅ ${deployment.name} verified successfully\n\n`);
       } catch (error: any) {
         if (error.message.includes("already verified")) {
           console.log(`Contract ${deployment.name} is already verified`);
