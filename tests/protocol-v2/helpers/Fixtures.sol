@@ -7,6 +7,8 @@ import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // v2 Contracts
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { GlobalAccessList } from "src/protocol-v2/GlobalAccessList.sol";
+import { StakingPositions } from "src/protocol-v2/staking/StakingPositions.sol";
+import { StakingRewardsDistributor } from "src/protocol-v2/staking/StakingRewardsDistributor.sol";
 // v1 Contracts
 import { GlobalOwner } from "src/protocol-v1/GlobalOwner.sol";
 import { GlobalPause } from "src/protocol-v1/GlobalPause.sol";
@@ -26,6 +28,8 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
+import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
+import { IStakingRewardsDistributor } from "src/protocol-v2/interfaces/IStakingRewardsDistributor.sol";
 
 contract Fixtures is Test {
   // ======== LIBS ======== //
@@ -67,6 +71,10 @@ contract Fixtures is Test {
 
   GenericERC20 internal ldyToken;
   LDYStaking internal ldyStaking;
+
+  // v2 Staking Contracts
+  StakingPositions internal stakingPositions;
+  StakingRewardsDistributor internal stakingRewardsDistributor;
 
   // ======== USERS
 
@@ -165,6 +173,8 @@ contract Fixtures is Test {
     GlobalBlacklist globalBlacklistImpl = new GlobalBlacklist();
     GlobalAccessList globalAccessListImpl = new GlobalAccessList();
     LDYStaking ldyStakingImpl = new LDYStaking();
+    StakingPositions stakingPositionsImpl = new StakingPositions();
+    StakingRewardsDistributor stakingRewardsDistributorImpl = new StakingRewardsDistributor();
 
     // Deploy proxies
     ERC1967Proxy globalOwnerProxy = new ERC1967Proxy(
@@ -187,6 +197,14 @@ contract Fixtures is Test {
       address(ldyStakingImpl),
       ""
     );
+    ERC1967Proxy stakingPositionsProxy = new ERC1967Proxy(
+      address(stakingPositionsImpl),
+      ""
+    );
+    ERC1967Proxy stakingRewardsDistributorProxy = new ERC1967Proxy(
+      address(stakingRewardsDistributorImpl),
+      ""
+    );
 
     globalOwner = GlobalOwner(address(globalOwnerProxy));
     globalPause = GlobalPause(address(globalPauseProxy));
@@ -195,6 +213,10 @@ contract Fixtures is Test {
       address(globalAccessListProxy)
     );
     ldyStaking = LDYStaking(address(ldyStakingProxy));
+    stakingPositions = StakingPositions(address(stakingPositionsProxy));
+    stakingRewardsDistributor = StakingRewardsDistributor(
+      address(stakingRewardsDistributorProxy)
+    );
 
     // Setup labels
     vm.label(address(usdc), "USDC token");
@@ -209,6 +231,8 @@ contract Fixtures is Test {
     vm.label(address(globalBlacklist), "GlobalBlacklist");
     vm.label(address(globalAccessList), "GlobalAccessList");
     vm.label(address(ldyStaking), "LDYStaking");
+    vm.label(address(stakingPositions), "StakingPositions");
+    vm.label(address(stakingRewardsDistributor), "StakingRewardsDistributor");
     //
     vm.label(testAccount1, "Alice");
     vm.label(testAccount2, "Bob");
@@ -241,6 +265,21 @@ contract Fixtures is Test {
       stakingDurationInfos,
       12 * 30 days,
       1000 * 1e18
+    );
+
+    // Initialize v2 staking contracts
+    stakingPositions.initialize(
+      address(ldyToken),
+      address(globalOwner),
+      address(globalPause),
+      address(globalAccessList)
+    );
+
+    stakingRewardsDistributor.initialize(
+      address(stakingPositions),
+      address(globalOwner),
+      address(globalPause),
+      address(globalAccessList)
     );
 
     for (uint256 i; i < users.length; i++) {
