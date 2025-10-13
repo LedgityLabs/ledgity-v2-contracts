@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity 0.8.19;
+pragma solidity 0.8.18;
 
-import { IVotingEscrow } from "../interfaces/IVotingEscrow.sol";
-import { SafeCastLibrary } from "./SafeCastLibrary.sol";
+import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
+import { SafeCastLibrary } from "src/protocol-v2/libraries/SafeCastLibrary.sol";
 
 library BalanceLogicLibrary {
   using SafeCastLibrary for uint256;
@@ -19,7 +19,7 @@ library BalanceLogicLibrary {
   /// @return User point index
   function getPastUserPointIndex(
     mapping(uint256 => uint256) storage _userPointEpoch,
-    mapping(uint256 => IVotingEscrow.UserPoint[1000000000])
+    mapping(uint256 => IStakingPositions.UserPoint[1000000000])
       storage _userPointHistory,
     uint256 _tokenId,
     uint256 _timestamp
@@ -36,9 +36,8 @@ library BalanceLogicLibrary {
     uint256 upper = _userEpoch;
     while (upper > lower) {
       uint256 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
-      IVotingEscrow.UserPoint storage userPoint = _userPointHistory[
-        _tokenId
-      ][center];
+      IStakingPositions.UserPoint
+        storage userPoint = _userPointHistory[_tokenId][center];
       if (userPoint.ts == _timestamp) {
         return center;
       } else if (userPoint.ts < _timestamp) {
@@ -58,7 +57,7 @@ library BalanceLogicLibrary {
   /// @return Global point index
   function getPastGlobalPointIndex(
     uint256 _epoch,
-    mapping(uint256 => IVotingEscrow.GlobalPoint)
+    mapping(uint256 => IStakingPositions.GlobalPoint)
       storage _pointHistory,
     uint256 _timestamp
   ) internal view returns (uint256) {
@@ -72,9 +71,8 @@ library BalanceLogicLibrary {
     uint256 upper = _epoch;
     while (upper > lower) {
       uint256 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
-      IVotingEscrow.GlobalPoint storage globalPoint = _pointHistory[
-        center
-      ];
+      IStakingPositions.GlobalPoint
+        storage globalPoint = _pointHistory[center];
       if (globalPoint.ts == _timestamp) {
         return center;
       } else if (globalPoint.ts < _timestamp) {
@@ -96,7 +94,7 @@ library BalanceLogicLibrary {
   /// @return User voting power
   function balanceOfNFTAt(
     mapping(uint256 => uint256) storage _userPointEpoch,
-    mapping(uint256 => IVotingEscrow.UserPoint[1000000000])
+    mapping(uint256 => IStakingPositions.UserPoint[1000000000])
       storage _userPointHistory,
     uint256 _tokenId,
     uint256 _t
@@ -109,20 +107,17 @@ library BalanceLogicLibrary {
     );
     // epoch 0 is an empty point
     if (_epoch == 0) return 0;
-    IVotingEscrow.UserPoint memory lastPoint = _userPointHistory[
+    IStakingPositions.UserPoint memory lastPoint = _userPointHistory[
       _tokenId
     ][_epoch];
-    if (lastPoint.permanent != 0) {
-      return lastPoint.permanent;
-    } else {
-      lastPoint.bias -=
-        lastPoint.slope *
-        (_t - lastPoint.ts).toInt128();
-      if (lastPoint.bias < 0) {
-        lastPoint.bias = 0;
-      }
-      return lastPoint.bias.toUint256();
+
+    lastPoint.bias -=
+      lastPoint.slope *
+      (_t - lastPoint.ts).toInt128();
+    if (lastPoint.bias < 0) {
+      lastPoint.bias = 0;
     }
+    return lastPoint.bias.toUint256();
   }
 
   /// @notice Calculate total voting power at some point in the past
@@ -133,7 +128,7 @@ library BalanceLogicLibrary {
   /// @return Total voting power at that time
   function supplyAt(
     mapping(uint256 => int128) storage _slopeChanges,
-    mapping(uint256 => IVotingEscrow.GlobalPoint)
+    mapping(uint256 => IStakingPositions.GlobalPoint)
       storage _pointHistory,
     uint256 _epoch,
     uint256 _t
@@ -145,7 +140,9 @@ library BalanceLogicLibrary {
     );
     // epoch 0 is an empty point
     if (epoch_ == 0) return 0;
-    IVotingEscrow.GlobalPoint memory _point = _pointHistory[epoch_];
+    IStakingPositions.GlobalPoint memory _point = _pointHistory[
+      epoch_
+    ];
     int128 bias = _point.bias;
     int128 slope = _point.slope;
     uint256 ts = _point.ts;
@@ -169,6 +166,6 @@ library BalanceLogicLibrary {
     if (bias < 0) {
       bias = 0;
     }
-    return bias.toUint256() + _point.permanentLockBalance;
+    return bias.toUint256();
   }
 }
