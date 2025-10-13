@@ -3,7 +3,7 @@ pragma solidity 0.8.18;
 
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
 
-interface ILedgityRewardsDistributor {
+interface IStakingRewardsDistributor {
   /*//////////////////////////////////////////////////////////////
                                 STRUCTS
     //////////////////////////////////////////////////////////////*/

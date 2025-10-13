@@ -9,12 +9,12 @@ import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.s
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { ILedgityRewardsDistributor } from "src/protocol-v2/interfaces/ILedgityRewardsDistributor.sol";
+import { IStakingRewardsDistributor } from "src/protocol-v2/interfaces/IStakingRewardsDistributor.sol";
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
 
 /**
- * @title Ledgity Rewards Distributor
- * @notice Dual reward system for Ledgity DAO staking
+ * @title Staking Rewards Distributor
+ * @notice Dual reward system for staking
  * @dev Implements two types of rewards:
  *      1. Base rewards: Time-distributed over specified periods
  *      2. Protocol fee rewards: Instantly distributed to current stakers
@@ -23,8 +23,8 @@ import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.
  * @author Ledgity, vBlackwhale (https://github.com/vblackwhale)
  *
  */
-contract LedgityRewardsDistributor is
-  ILedgityRewardsDistributor,
+contract StakingRewardsDistributor is
+  IStakingRewardsDistributor,
   Ownable,
   ReentrancyGuard
 {
@@ -41,35 +41,35 @@ contract LedgityRewardsDistributor is
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   IStakingPositions public immutable staking;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   address public immutable token;
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   uint256 public startTime;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   uint256 public lastTokenTime;
 
   // Base rewards state
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   uint256 public currentPeriodId;
   mapping(uint256 _periodId => BaseRewardPeriod)
     public baseRewardPeriods;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _periodId => mapping(uint256 _week => uint256 _amount))
     public baseRewardsPerWeek;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _weekCursor)
     public baseRewardCursor;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _periodCursor)
     public baseRewardPeriodCursor;
 
   // Protocol fee rewards state
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   uint256 public cumulativeProtocolRewardsPerToken;
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 => uint256) public protocolRewardsPerTokenPaid; // tokenId => last recorded cumulative
 
   /*//////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ contract LedgityRewardsDistributor is
                             VIEW FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   function claimable(
     uint256 tokenId
   )
@@ -107,7 +107,7 @@ contract LedgityRewardsDistributor is
                             ADMIN FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   function depositBaseRewards(
     uint256 amount,
     uint256 duration
@@ -151,7 +151,7 @@ contract LedgityRewardsDistributor is
     );
   }
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   function depositProtocolFees(uint256 amount) external onlyOwner {
     if (amount == 0) revert ZeroAmount();
 
@@ -175,7 +175,7 @@ contract LedgityRewardsDistributor is
                             USER FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   function claim(
     uint256 tokenId
   )
@@ -200,7 +200,7 @@ contract LedgityRewardsDistributor is
     }
   }
 
-  /// @inheritdoc ILedgityRewardsDistributor
+  /// @inheritdoc IStakingRewardsDistributor
   function claimMany(
     uint256[] calldata tokenIds
   ) external nonReentrant returns (bool) {
@@ -245,19 +245,22 @@ contract LedgityRewardsDistributor is
     if (weekCursor >= currentWeek) return 0;
     if (weekCursor < startTime) weekCursor = startTime;
 
-    return _calculateRewardsForPeriods(tokenId, weekCursor, currentWeek);
+    return
+      _calculateRewardsForPeriods(tokenId, weekCursor, currentWeek);
   }
 
-  function _getWeekCursor(uint256 tokenId) internal view returns (uint256) {
+  function _getWeekCursor(
+    uint256 tokenId
+  ) internal view returns (uint256) {
     uint256 weekCursor = baseRewardCursor[tokenId];
-    
+
     // If never claimed, start from token creation
     if (weekCursor == 0) {
       IStakingPositions.UserPoint memory userPoint = staking
         .userPointHistory(tokenId, 1);
       weekCursor = (userPoint.ts / WEEK) * WEEK;
     }
-    
+
     return weekCursor;
   }
 
@@ -322,7 +325,10 @@ contract LedgityRewardsDistributor is
         continue;
       }
 
-      uint256 balance = staking.balanceOfNFTAt(tokenId, week + WEEK - 1);
+      uint256 balance = staking.balanceOfNFTAt(
+        tokenId,
+        week + WEEK - 1
+      );
       uint256 supply = staking.totalSupplyAt(week + WEEK - 1);
 
       if (supply > 0) {
@@ -364,7 +370,7 @@ contract LedgityRewardsDistributor is
     // This prevents skipping periods when we hit the 50-period limit
     uint256 startPeriodId = baseRewardPeriodCursor[tokenId];
     if (startPeriodId == 0) startPeriodId = 1;
-    
+
     uint256 lastProcessedPeriod = Math.min(
       startPeriodId + 49, // Max 50 periods processed
       currentPeriodId
