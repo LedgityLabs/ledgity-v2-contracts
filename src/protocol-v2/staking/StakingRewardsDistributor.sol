@@ -2,7 +2,8 @@
 pragma solidity 0.8.18;
 
 // Contracts
-import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 // Libraries
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -25,7 +26,7 @@ import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.
  */
 contract StakingRewardsDistributor is
   IStakingRewardsDistributor,
-  Ownable,
+  AdministeredUpgradable,
   ReentrancyGuard
 {
   using SafeERC20 for IERC20;
@@ -42,9 +43,9 @@ contract StakingRewardsDistributor is
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingRewardsDistributor
-  IStakingPositions public immutable staking;
+  IStakingPositions public staking;
   /// @inheritdoc IStakingRewardsDistributor
-  address public immutable token;
+  address public token;
 
   /// @inheritdoc IStakingRewardsDistributor
   uint256 public startTime;
@@ -70,13 +71,19 @@ contract StakingRewardsDistributor is
   /// @inheritdoc IStakingRewardsDistributor
   uint256 public cumulativeProtocolRewardsPerToken;
   /// @inheritdoc IStakingRewardsDistributor
-  mapping(uint256 => uint256) public protocolRewardsPerTokenPaid; // tokenId => last recorded cumulative
+  mapping(uint256 _tokenId => uint256 _amount)
+    public protocolRewardsPerTokenPaid;
 
   /*//////////////////////////////////////////////////////////////
-                              CONSTRUCTOR
+                              INITIALIZER
     //////////////////////////////////////////////////////////////*/
 
-  constructor(address staking_, address owner_) {
+  function initialize(
+    address staking_,
+    address globalOwner_,
+    address globalPause_,
+    address globalAccessList_
+  ) public initializer {
     staking = IStakingPositions(staking_);
     token = staking.token();
 
@@ -84,7 +91,11 @@ contract StakingRewardsDistributor is
     startTime = currentWeek;
     lastTokenTime = currentWeek;
 
-    _transferOwnership(owner_);
+    __AdministeredUpgradable_init(
+      globalOwner_,
+      globalPause_,
+      globalAccessList_
+    );
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -181,6 +192,8 @@ contract StakingRewardsDistributor is
   )
     external
     nonReentrant
+    whenNotPaused
+    notRestricted(msg.sender)
     returns (uint256 baseRewards, uint256 protocolRewards)
   {
     // Verify ownership or approval
@@ -203,7 +216,13 @@ contract StakingRewardsDistributor is
   /// @inheritdoc IStakingRewardsDistributor
   function claimMany(
     uint256[] calldata tokenIds
-  ) external nonReentrant returns (bool) {
+  )
+    external
+    nonReentrant
+    whenNotPaused
+    notRestricted(msg.sender)
+    returns (bool)
+  {
     uint256 totalBaseRewards = 0;
     uint256 totalProtocolRewards = 0;
 

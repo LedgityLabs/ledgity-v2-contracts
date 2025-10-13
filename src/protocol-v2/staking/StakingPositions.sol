@@ -2,7 +2,8 @@
 pragma solidity 0.8.18;
 
 // Contracts
-import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 // Libraries
 import { BalanceLogicLibrary } from "src/protocol-v2/libraries/BalanceLogicLibrary.sol";
 import { SafeCastLibrary } from "src/protocol-v2/libraries/SafeCastLibrary.sol";
@@ -29,31 +30,39 @@ import { IERC721Metadata } from "@openzeppelin/contracts/token/ERC721/extensions
 contract StakingPositions is
   IStakingPositions,
   ReentrancyGuard,
-  Ownable
+  AdministeredUpgradable
 {
   using SafeERC20 for IERC20;
   using SafeCastLibrary for uint256;
   using SafeCastLibrary for int128;
+
   /*//////////////////////////////////////////////////////////////
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingPositions
-  address public immutable token;
+  address public token;
   /// @inheritdoc IStakingPositions
   address public artProxy;
 
-  mapping(uint256 => GlobalPoint) internal _pointHistory; // epoch -> unsigned global point
+  mapping(uint256 _epoch => GlobalPoint _globalPoint)
+    internal _pointHistory;
 
   /// @dev Mapping of interface id to bool about whether or not it's supported
-  mapping(bytes4 => bool) internal supportedInterfaces;
+  mapping(bytes4 _interfaceId => bool _supported)
+    internal supportedInterfaces;
 
   /// @inheritdoc IStakingPositions
   uint256 public tokenId;
 
-  /// @param _token `LDY` token address
-  constructor(address _token) {
-    token = _token;
+  /// @param token_ `LDY` token address
+  function initialize(
+    address token_,
+    address globalOwner_,
+    address globalPause_,
+    address globalAccessList_
+  ) public initializer {
+    token = token_;
 
     _pointHistory[0].ts = block.timestamp;
 
@@ -72,6 +81,12 @@ contract StakingPositions is
     emit Transfer(address(0), address(this), tokenId);
     // burn-ish
     emit Transfer(address(this), address(0), tokenId);
+
+    __AdministeredUpgradable_init(
+      globalOwner_,
+      globalPause_,
+      globalAccessList_
+    );
   }
 
   /*///////////////////////////////////////////////////////////////
@@ -176,7 +191,10 @@ contract StakingPositions is
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingPositions
-  function approve(address _approved, uint256 _tokenId) external {
+  function approve(
+    address _approved,
+    uint256 _tokenId
+  ) external whenNotPaused {
     address sender = _msgSender();
     address owner = _ownerOf(_tokenId);
     // Throws if `_tokenId` is not a valid NFT
@@ -197,7 +215,7 @@ contract StakingPositions is
   function setApprovalForAll(
     address _operator,
     bool _approved
-  ) external {
+  ) external whenNotPaused {
     address sender = _msgSender();
     // Throws if `_operator` is the `msg.sender`
     if (_operator == sender) revert SameAddress();
@@ -234,7 +252,7 @@ contract StakingPositions is
     address _from,
     address _to,
     uint256 _tokenId
-  ) external {
+  ) external whenNotPaused notRestricted(_from) notRestricted(_to) {
     _transferFrom(_from, _to, _tokenId, _msgSender());
   }
 
@@ -243,7 +261,7 @@ contract StakingPositions is
     address _from,
     address _to,
     uint256 _tokenId
-  ) external {
+  ) external whenNotPaused notRestricted(_from) notRestricted(_to) {
     safeTransferFrom(_from, _to, _tokenId, "");
   }
 
@@ -264,7 +282,7 @@ contract StakingPositions is
     address _to,
     uint256 _tokenId,
     bytes memory _data
-  ) public {
+  ) public whenNotPaused notRestricted(_from) notRestricted(_to) {
     address sender = _msgSender();
     _transferFrom(_from, _to, _tokenId, sender);
 
@@ -684,7 +702,7 @@ contract StakingPositions is
   }
 
   /// @inheritdoc IStakingPositions
-  function checkpoint() external nonReentrant {
+  function checkpoint() external nonReentrant whenNotPaused {
     _checkpoint(0, LockedBalance(0, 0), LockedBalance(0, 0));
   }
 
@@ -692,7 +710,7 @@ contract StakingPositions is
   function depositFor(
     uint256 _tokenId,
     uint256 _value
-  ) external nonReentrant {
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
     _increaseAmountFor(
       _tokenId,
       _value,
@@ -735,7 +753,13 @@ contract StakingPositions is
   function createLock(
     uint256 _value,
     uint256 _lockDuration
-  ) external nonReentrant returns (uint256) {
+  )
+    external
+    nonReentrant
+    whenNotPaused
+    notRestricted(msg.sender)
+    returns (uint256)
+  {
     return _createLock(_value, _lockDuration, _msgSender());
   }
 
@@ -759,7 +783,7 @@ contract StakingPositions is
   function increaseAmount(
     uint256 _tokenId,
     uint256 _value
-  ) external nonReentrant {
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
     if (!_isApprovedOrOwner(_msgSender(), _tokenId))
       revert NotApprovedOrOwner();
     _increaseAmountFor(
@@ -773,7 +797,7 @@ contract StakingPositions is
   function increaseUnlockTime(
     uint256 _tokenId,
     uint256 _lockDuration
-  ) external nonReentrant {
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
     if (!_isApprovedOrOwner(_msgSender(), _tokenId))
       revert NotApprovedOrOwner();
 
@@ -800,7 +824,9 @@ contract StakingPositions is
   }
 
   /// @inheritdoc IStakingPositions
-  function withdraw(uint256 _tokenId) external nonReentrant {
+  function withdraw(
+    uint256 _tokenId
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
     address sender = _msgSender();
     if (!_isApprovedOrOwner(sender, _tokenId))
       revert NotApprovedOrOwner();
