@@ -30,6 +30,14 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     INCREASE_UNLOCK_TIME
   }
 
+  struct NFTData {
+    uint256 tokenId;
+    LockedBalance locked;
+    uint256 votingPower;
+    uint256 votingPowerAt;
+    address owner;
+  }
+
   error AlreadyVoted();
   error AmountTooBig();
   error ERC721ReceiverRejectedTokens();
@@ -96,6 +104,12 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   /// @dev Current count of token
   function tokenId() external view returns (uint256);
 
+  /// @notice Maximum lock time in seconds
+  function maxTime() external view returns (uint256);
+
+  /// @notice Maximum lock time as int128
+  function iMaxTime() external view returns (int128);
+
   /*///////////////////////////////////////////////////////////////
                              METADATA STORAGE
     //////////////////////////////////////////////////////////////*/
@@ -107,6 +121,9 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   function decimals() external view returns (uint8);
 
   function setArtProxy(address _proxy) external;
+
+  /// @notice Set maximum lock time (owner only)
+  function setMaxTime(uint256 _maxTime) external;
 
   /// @inheritdoc IERC721Metadata
   function tokenURI(
@@ -154,7 +171,7 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   function isApprovedOrOwner(
     address _spender,
     uint256 _tokenId
-  ) external returns (bool);
+  ) external view returns (bool);
 
   /*//////////////////////////////////////////////////////////////
                               ERC721 LOGIC
@@ -220,19 +237,19 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   ) external view returns (int128);
 
   /// @notice Global point history at a given index
-  function pointHistory(
+  function getPointHistory(
     uint256 _loc
   ) external view returns (GlobalPoint memory);
 
   /// @notice Get the LockedBalance (amount, end) of a _tokenId
   /// @param _tokenId .
   /// @return LockedBalance of _tokenId
-  function locked(
+  function getLockedBalance(
     uint256 _tokenId
   ) external view returns (LockedBalance memory);
 
   /// @notice User -> UserPoint[userEpoch]
-  function userPointHistory(
+  function getUserPointHistory(
     uint256 _tokenId,
     uint256 _loc
   ) external view returns (UserPoint memory);
@@ -307,4 +324,20 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   /// @param _t Timestamp to query total voting power
   /// @return Total voting power at given timestamp
   function totalSupplyAt(uint256 _t) external view returns (uint256);
+
+  /// @notice Get all NFT data for a user
+  /// @param _user Address to query NFTs for
+  /// @return Array of NFTData structs containing all user's NFT information
+  function getUserNFTs(address _user) external view returns (NFTData[] memory);
+
+  /// @notice Get total voting power for a user across all their NFTs at current timestamp
+  /// @param _user Address to query total voting power for
+  /// @return Total voting power across all user's NFTs
+  function getUserTotalVotingPower(address _user) external view returns (uint256);
+
+  /// @notice Get total voting power for a user across all their NFTs at a specific timestamp
+  /// @param _user Address to query total voting power for
+  /// @param _t Timestamp to query voting power at
+  /// @return Total voting power across all user's NFTs at given timestamp
+  function getUserTotalVotingPowerAt(address _user, uint256 _t) external view returns (uint256);
 }

@@ -115,74 +115,6 @@ contract StakingRewardsDistributor is
   }
 
   /*//////////////////////////////////////////////////////////////
-                            ADMIN FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
-
-  /// @inheritdoc IStakingRewardsDistributor
-  function depositBaseRewards(
-    uint256 amount,
-    uint256 duration
-  ) external onlyOwner {
-    if (amount == 0) revert ZeroAmount();
-    if (duration == 0) revert ZeroDuration();
-
-    // Transfer tokens from owner
-    IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
-
-    // Create new reward period
-    uint256 periodId = ++currentPeriodId;
-    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
-    uint256 weeklyAmount = amount / duration;
-
-    baseRewardPeriods[periodId] = BaseRewardPeriod({
-      startWeek: currentWeek,
-      endWeek: currentWeek + (duration * WEEK),
-      totalAmount: amount,
-      weeklyAmount: weeklyAmount
-    });
-
-    // Distribute rewards across weeks
-    for (uint256 i = 0; i < duration; i++) {
-      uint256 week = currentWeek + (i * WEEK);
-      baseRewardsPerWeek[periodId][week] = weeklyAmount;
-    }
-
-    // Handle remainder
-    uint256 remainder = amount - (weeklyAmount * duration);
-    if (remainder > 0) {
-      baseRewardsPerWeek[periodId][currentWeek] += remainder;
-    }
-
-    emit BaseRewardsDeposited(
-      periodId,
-      amount,
-      currentWeek,
-      duration,
-      weeklyAmount
-    );
-  }
-
-  /// @inheritdoc IStakingRewardsDistributor
-  function depositProtocolFees(uint256 amount) external onlyOwner {
-    if (amount == 0) revert ZeroAmount();
-
-    // Transfer tokens from owner
-    IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
-
-    // Get current total voting power
-    uint256 totalSupply = staking.totalSupply();
-
-    if (totalSupply > 0) {
-      // Add to cumulative rewards per token
-      cumulativeProtocolRewardsPerToken +=
-        (amount * PRECISION) /
-        totalSupply;
-    }
-
-    emit ProtocolFeesDeposited(amount, block.timestamp, totalSupply);
-  }
-
-  /*//////////////////////////////////////////////////////////////
                             USER FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
@@ -226,7 +158,7 @@ contract StakingRewardsDistributor is
     uint256 totalBaseRewards = 0;
     uint256 totalProtocolRewards = 0;
 
-    for (uint256 i = 0; i < tokenIds.length; i++) {
+    for (uint256 i; i < tokenIds.length; i++) {
       uint256 tokenId = tokenIds[i];
       if (tokenId == 0) break;
 
@@ -276,7 +208,7 @@ contract StakingRewardsDistributor is
     // If never claimed, start from token creation
     if (weekCursor == 0) {
       IStakingPositions.UserPoint memory userPoint = staking
-        .userPointHistory(tokenId, 1);
+        .getUserPointHistory(tokenId, 1);
       weekCursor = (userPoint.ts / WEEK) * WEEK;
     }
 
@@ -423,5 +355,73 @@ contract StakingRewardsDistributor is
     }
 
     return claimableAmount;
+  }
+
+  /*//////////////////////////////////////////////////////////////
+                            ADMIN FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
+
+  /// @inheritdoc IStakingRewardsDistributor
+  function depositBaseRewards(
+    uint256 amount,
+    uint256 duration
+  ) external onlyOwner {
+    if (amount == 0) revert ZeroAmount();
+    if (duration == 0) revert ZeroDuration();
+
+    // Transfer tokens from owner
+    IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
+
+    // Create new reward period
+    uint256 periodId = ++currentPeriodId;
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    uint256 weeklyAmount = amount / duration;
+
+    baseRewardPeriods[periodId] = BaseRewardPeriod({
+      startWeek: currentWeek,
+      endWeek: currentWeek + (duration * WEEK),
+      totalAmount: amount,
+      weeklyAmount: weeklyAmount
+    });
+
+    // Distribute rewards across weeks
+    for (uint256 i; i < duration; i++) {
+      uint256 week = currentWeek + (i * WEEK);
+      baseRewardsPerWeek[periodId][week] = weeklyAmount;
+    }
+
+    // Handle remainder
+    uint256 remainder = amount - (weeklyAmount * duration);
+    if (remainder > 0) {
+      baseRewardsPerWeek[periodId][currentWeek] += remainder;
+    }
+
+    emit BaseRewardsDeposited(
+      periodId,
+      amount,
+      currentWeek,
+      duration,
+      weeklyAmount
+    );
+  }
+
+  /// @inheritdoc IStakingRewardsDistributor
+  function depositProtocolFees(uint256 amount) external onlyOwner {
+    if (amount == 0) revert ZeroAmount();
+
+    // Transfer tokens from owner
+    IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
+
+    // Get current total voting power
+    uint256 totalSupply = staking.totalSupply();
+
+    if (totalSupply > 0) {
+      // Add to cumulative rewards per token
+      cumulativeProtocolRewardsPerToken +=
+        (amount * PRECISION) /
+        totalSupply;
+    }
+
+    emit ProtocolFeesDeposited(amount, block.timestamp, totalSupply);
   }
 }

@@ -17,15 +17,15 @@ import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Rec
 import { IERC721Metadata } from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 /**
- * @title Ledgity DAO Voting NFT
- * @notice voting NFT implementation that escrows ERC-20 tokens in the form of an ERC-721 NFT
- * @notice Votes have a weight depending on time, so that users are committed to the future of (whatever they are voting for)
+ * @title Ledgity Staking Positions
+ * @notice Staking position NFT implementation that escrows ERC-20 tokens in the form of an ERC-721 NFT
+ * @notice Voting power has a weight depending on time, so that users are committed to the future of the protocol
  * @author Modified from Solidly (https://github.com/solidlyexchange/solidly/blob/master/contracts/ve.sol)
  * @author Modified from Curve (https://github.com/curvefi/curve-dao-contracts/blob/master/contracts/VotingEscrow.vy)
  * @author Modified from Velodrome (https://github.com/velodrome-finance/contracts/blob/main/contracts/VotingEscrow.sol)
  * @author Ledgity, vBlackwhale (https://github.com/vblackwhale)
  *
- * @dev Vote weight decays linearly over time. Lock time cannot be more than `MAXTIME` (4 years).
+ * @dev Vote weight decays linearly over time. Lock time cannot be more than `maxTime` (configurable, default 4 years).
  */
 contract StakingPositions is
   IStakingPositions,
@@ -37,23 +37,60 @@ contract StakingPositions is
   using SafeCastLibrary for int128;
 
   /*//////////////////////////////////////////////////////////////
-                               CONSTRUCTOR
+                                CONSTANTS
+    //////////////////////////////////////////////////////////////*/
+
+  uint256 internal constant WEEK = 1 weeks;
+  string public constant name = "Ledgity Staking Positions";
+  string public constant symbol = "lsNFT";
+  uint8 public constant decimals = 18;
+
+  /*//////////////////////////////////////////////////////////////
+                                STORAGE
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingPositions
   address public token;
   /// @inheritdoc IStakingPositions
   address public artProxy;
-
-  mapping(uint256 _epoch => GlobalPoint _globalPoint)
-    internal _pointHistory;
-
-  /// @dev Mapping of interface id to bool about whether or not it's supported
-  mapping(bytes4 _interfaceId => bool _supported)
-    internal supportedInterfaces;
-
   /// @inheritdoc IStakingPositions
   uint256 public tokenId;
+  /// @inheritdoc IStakingPositions
+  uint256 public epoch;
+  /// @inheritdoc IStakingPositions
+  uint256 public supply;
+  /// @notice Maximum lock time in seconds (configurable by owner)
+  uint256 public maxTime = 4 * 365 * 86400;
+  /// @notice Maximum lock time as int128 for calculations
+  int128 public iMaxTime = 4 * 365 * 86400;
+
+  mapping(uint256 epoch => GlobalPoint globalPoint)
+    internal pointHistory;
+  mapping(bytes4 interfaceId => bool supported)
+    internal supportedInterfaces;
+  mapping(uint256 tokenId => address owner) internal idToOwner;
+  mapping(address owner => uint256 count)
+    internal ownerToNFTokenCount;
+  mapping(uint256 tokenId => address approved) internal idToApprovals;
+  mapping(address owner => mapping(address operator => bool approved))
+    internal ownerToOperators;
+  mapping(uint256 tokenId => uint256 blockNumber)
+    internal ownershipChange;
+  /// @inheritdoc IStakingPositions
+  mapping(address owner => mapping(uint256 index => uint256 tokenId))
+    public ownerToNFTokenIdList;
+  mapping(uint256 tokenId => uint256 index)
+    internal tokenToOwnerIndex;
+  mapping(uint256 tokenId => LockedBalance balance) internal locked;
+  mapping(uint256 tokenId => UserPoint[1000000000] points)
+    internal userPointHistory;
+  mapping(uint256 tokenId => uint256 epoch) public userPointEpoch;
+  /// @inheritdoc IStakingPositions
+  mapping(uint256 timestamp => int128 change) public slopeChanges;
+
+  /*//////////////////////////////////////////////////////////////
+                               INITIALIZER
+    //////////////////////////////////////////////////////////////*/
 
   /// @param token_ `LDY` token address
   function initialize(
@@ -64,7 +101,7 @@ contract StakingPositions is
   ) public initializer {
     token = token_;
 
-    _pointHistory[0].ts = block.timestamp;
+    pointHistory[0].ts = block.timestamp;
 
     /// @dev ERC165 interface ID of ERC165
     supportedInterfaces[0x01ffc9a7] = true;
@@ -89,65 +126,27 @@ contract StakingPositions is
     );
   }
 
-  /*///////////////////////////////////////////////////////////////
-                             METADATA STORAGE
+  /*//////////////////////////////////////////////////////////////
+                              READ FUNCTIONS
     //////////////////////////////////////////////////////////////*/
-
-  string public constant name = "Ledgity Vote NFT";
-  string public constant symbol = "lvNFT";
-  uint8 public constant decimals = 18;
-
-  function setArtProxy(address _proxy) external onlyOwner {
-    artProxy = _proxy;
-    emit BatchMetadataUpdate(0, type(uint256).max);
-  }
 
   /// @inheritdoc IStakingPositions
   function tokenURI(
     uint256 _tokenId
   ) external view returns (string memory) {
-    if (_ownerOf(_tokenId) == address(0)) revert NonExistentToken();
+    if (idToOwner[_tokenId] == address(0)) revert NonExistentToken();
     return IERC721Metadata(artProxy).tokenURI(_tokenId);
   }
 
-  /*//////////////////////////////////////////////////////////////
-                      ERC721 BALANCE/OWNER STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-  /// @dev Mapping from NFT ID to the address that owns it.
-  mapping(uint256 => address) internal idToOwner;
-
-  /// @dev Mapping from owner address to count of his tokens.
-  mapping(address => uint256) internal ownerToNFTokenCount;
-
-  function _ownerOf(
-    uint256 _tokenId
-  ) internal view returns (address) {
-    return idToOwner[_tokenId];
-  }
-
   /// @inheritdoc IStakingPositions
-  function ownerOf(uint256 _tokenId) external view returns (address) {
-    return _ownerOf(_tokenId);
+  function ownerOf(uint256 _tokenId) public view returns (address) {
+    return idToOwner[_tokenId];
   }
 
   /// @inheritdoc IStakingPositions
   function balanceOf(address _owner) external view returns (uint256) {
     return ownerToNFTokenCount[_owner];
   }
-
-  /*//////////////////////////////////////////////////////////////
-                         ERC721 APPROVAL STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-  /// @dev Mapping from NFT ID to approved address.
-  mapping(uint256 => address) internal idToApprovals;
-
-  /// @dev Mapping from owner address to mapping of operator addresses.
-  mapping(address => mapping(address => bool))
-    internal ownerToOperators;
-
-  mapping(uint256 => uint256) internal ownershipChange;
 
   /// @inheritdoc IStakingPositions
   function getApproved(
@@ -168,15 +167,8 @@ contract StakingPositions is
   function isApprovedOrOwner(
     address _spender,
     uint256 _tokenId
-  ) external view returns (bool) {
-    return _isApprovedOrOwner(_spender, _tokenId);
-  }
-
-  function _isApprovedOrOwner(
-    address _spender,
-    uint256 _tokenId
-  ) internal view returns (bool) {
-    address owner = _ownerOf(_tokenId);
+  ) public view returns (bool) {
+    address owner = idToOwner[_tokenId];
     bool spenderIsOwner = owner == _spender;
     bool spenderIsApproved = _spender == idToApprovals[_tokenId];
     bool spenderIsApprovedForAll = (ownerToOperators[owner])[
@@ -186,8 +178,137 @@ contract StakingPositions is
       spenderIsOwner || spenderIsApproved || spenderIsApprovedForAll;
   }
 
+  /// @inheritdoc IStakingPositions
+  function supportsInterface(
+    bytes4 _interfaceID
+  ) external view returns (bool) {
+    return supportedInterfaces[_interfaceID];
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getLockedBalance(
+    uint256 _tokenId
+  ) external view returns (LockedBalance memory) {
+    return locked[_tokenId];
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getUserPointHistory(
+    uint256 _tokenId,
+    uint256 _loc
+  ) external view returns (UserPoint memory) {
+    return userPointHistory[_tokenId][_loc];
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getPointHistory(
+    uint256 _loc
+  ) external view returns (GlobalPoint memory) {
+    return pointHistory[_loc];
+  }
+
+  /// @inheritdoc IStakingPositions
+  function balanceOfNFT(
+    uint256 _tokenId
+  ) public view returns (uint256) {
+    if (ownershipChange[_tokenId] == block.number) return 0;
+    return balanceOfNFTAt(_tokenId, block.timestamp);
+  }
+
+  /// @inheritdoc IStakingPositions
+  function balanceOfNFTAt(
+    uint256 _tokenId,
+    uint256 _t
+  ) public view returns (uint256) {
+    return
+      BalanceLogicLibrary.balanceOfNFTAt(
+        userPointEpoch,
+        userPointHistory,
+        _tokenId,
+        _t
+      );
+  }
+
+  /// @inheritdoc IStakingPositions
+  function totalSupply() external view returns (uint256) {
+    return totalSupplyAt(block.timestamp);
+  }
+
+  /// @inheritdoc IStakingPositions
+  function totalSupplyAt(
+    uint256 _timestamp
+  ) public view returns (uint256) {
+    return
+      BalanceLogicLibrary.supplyAt(
+        slopeChanges,
+        pointHistory,
+        epoch,
+        _timestamp
+      );
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getUserNFTs(
+    address _user
+  ) external view returns (IStakingPositions.NFTData[] memory) {
+    uint256 userBalance = ownerToNFTokenCount[_user];
+    IStakingPositions.NFTData[]
+      memory nftData = new IStakingPositions.NFTData[](userBalance);
+
+    for (uint256 i; i < userBalance; i++) {
+      uint256 currentTokenId = ownerToNFTokenIdList[_user][i];
+      nftData[i] = IStakingPositions.NFTData({
+        tokenId: currentTokenId,
+        locked: locked[currentTokenId],
+        votingPower: balanceOfNFT(currentTokenId),
+        votingPowerAt: block.timestamp,
+        owner: _user
+      });
+    }
+
+    return nftData;
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getUserTotalVotingPower(
+    address _user
+  ) external view returns (uint256) {
+    return getUserTotalVotingPowerAt(_user, block.timestamp);
+  }
+
+  /// @inheritdoc IStakingPositions
+  function getUserTotalVotingPowerAt(
+    address _user,
+    uint256 _t
+  ) public view returns (uint256) {
+    uint256 userBalance = ownerToNFTokenCount[_user];
+    uint256 totalVotingPower = 0;
+
+    for (uint256 i; i < userBalance; i++) {
+      uint256 currentTokenId = ownerToNFTokenIdList[_user][i];
+      totalVotingPower += balanceOfNFTAt(currentTokenId, _t);
+    }
+
+    return totalVotingPower;
+  }
+
   /*//////////////////////////////////////////////////////////////
-                              ERC721 LOGIC
+                              READ INTERNAL
+    //////////////////////////////////////////////////////////////*/
+
+  function _isContract(address account) internal view returns (bool) {
+    // This method relies on extcodesize, which returns 0 for contracts in
+    // construction, since the code is only stored at the end of the
+    // constructor execution.
+    uint256 size;
+    assembly {
+      size := extcodesize(account)
+    }
+    return size > 0;
+  }
+
+  /*//////////////////////////////////////////////////////////////
+                              NFT FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingPositions
@@ -196,13 +317,13 @@ contract StakingPositions is
     uint256 _tokenId
   ) external whenNotPaused {
     address sender = _msgSender();
-    address owner = _ownerOf(_tokenId);
+    address owner = idToOwner[_tokenId];
     // Throws if `_tokenId` is not a valid NFT
     if (owner == address(0)) revert ZeroAddress();
     // Throws if `_approved` is the current owner
     if (owner == _approved) revert SameAddress();
     // Check requirements
-    bool senderIsOwner = (_ownerOf(_tokenId) == sender);
+    bool senderIsOwner = (idToOwner[_tokenId] == sender);
     bool senderIsApprovedForAll = (ownerToOperators[owner])[sender];
     if (!senderIsOwner && !senderIsApprovedForAll)
       revert NotApprovedOrOwner();
@@ -225,28 +346,6 @@ contract StakingPositions is
 
   /* TRANSFER FUNCTIONS */
 
-  function _transferFrom(
-    address _from,
-    address _to,
-    uint256 _tokenId,
-    address _sender
-  ) internal {
-    // Check requirements
-    if (!_isApprovedOrOwner(_sender, _tokenId))
-      revert NotApprovedOrOwner();
-    // Clear approval. Throws if `_from` is not the current owner
-    if (_ownerOf(_tokenId) != _from) revert NotOwner();
-    delete idToApprovals[_tokenId];
-    // Remove NFT. Throws if `_tokenId` is not a valid NFT
-    _removeTokenFrom(_from, _tokenId);
-    // Add NFT
-    _addTokenTo(_to, _tokenId);
-    // Set the block of ownership transfer (for Flash NFT protection)
-    ownershipChange[_tokenId] = block.number;
-    // Log the transfer
-    emit Transfer(_from, _to, _tokenId);
-  }
-
   /// @inheritdoc IStakingPositions
   function transferFrom(
     address _from,
@@ -263,17 +362,6 @@ contract StakingPositions is
     uint256 _tokenId
   ) external whenNotPaused notRestricted(_from) notRestricted(_to) {
     safeTransferFrom(_from, _to, _tokenId, "");
-  }
-
-  function _isContract(address account) internal view returns (bool) {
-    // This method relies on extcodesize, which returns 0 for contracts in
-    // construction, since the code is only stored at the end of the
-    // constructor execution.
-    uint256 size;
-    assembly {
-      size := extcodesize(account)
-    }
-    return size > 0;
   }
 
   /// @inheritdoc IStakingPositions
@@ -314,26 +402,139 @@ contract StakingPositions is
   }
 
   /*//////////////////////////////////////////////////////////////
-                              ERC165 LOGIC
+                              POSITION FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
   /// @inheritdoc IStakingPositions
-  function supportsInterface(
-    bytes4 _interfaceID
-  ) external view returns (bool) {
-    return supportedInterfaces[_interfaceID];
+  function checkpoint() external nonReentrant whenNotPaused {
+    _checkpoint(0, LockedBalance(0, 0), LockedBalance(0, 0));
+  }
+
+  /// @inheritdoc IStakingPositions
+  function depositFor(
+    uint256 _tokenId,
+    uint256 _value
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
+    _increaseAmountFor(
+      _tokenId,
+      _value,
+      DepositType.DEPOSIT_FOR_TYPE
+    );
+  }
+
+  /// @inheritdoc IStakingPositions
+  function createLock(
+    uint256 _value,
+    uint256 _lockDuration
+  )
+    external
+    nonReentrant
+    whenNotPaused
+    notRestricted(msg.sender)
+    returns (uint256)
+  {
+    return _createLock(_value, _lockDuration, _msgSender());
+  }
+
+  /// @inheritdoc IStakingPositions
+  function increaseAmount(
+    uint256 _tokenId,
+    uint256 _value
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
+    if (!isApprovedOrOwner(_msgSender(), _tokenId))
+      revert NotApprovedOrOwner();
+    _increaseAmountFor(
+      _tokenId,
+      _value,
+      DepositType.INCREASE_LOCK_AMOUNT
+    );
+  }
+
+  /// @inheritdoc IStakingPositions
+  function increaseUnlockTime(
+    uint256 _tokenId,
+    uint256 _lockDuration
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
+    if (!isApprovedOrOwner(_msgSender(), _tokenId))
+      revert NotApprovedOrOwner();
+
+    LockedBalance memory oldLocked = locked[_tokenId];
+
+    uint256 unlockTime = ((block.timestamp + _lockDuration) / WEEK) *
+      WEEK; // Locktime is rounded down to weeks
+
+    if (oldLocked.end <= block.timestamp) revert LockExpired();
+    if (oldLocked.amount <= 0) revert NoLockFound();
+    if (unlockTime <= oldLocked.end) revert LockDurationNotInFuture();
+    if (unlockTime > block.timestamp + maxTime)
+      revert LockDurationTooLong();
+
+    _depositFor(
+      _tokenId,
+      0,
+      unlockTime,
+      oldLocked,
+      DepositType.INCREASE_UNLOCK_TIME
+    );
+
+    emit MetadataUpdate(_tokenId);
+  }
+
+  /// @inheritdoc IStakingPositions
+  function withdraw(
+    uint256 _tokenId
+  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
+    address sender = _msgSender();
+    if (!isApprovedOrOwner(sender, _tokenId))
+      revert NotApprovedOrOwner();
+
+    LockedBalance memory oldLocked = locked[_tokenId];
+
+    if (block.timestamp < oldLocked.end) revert LockNotExpired();
+    uint256 value = oldLocked.amount.toUint256();
+
+    // Burn the NFT
+    _burn(_tokenId);
+    locked[_tokenId] = LockedBalance(0, 0);
+    uint256 supplyBefore = supply;
+    supply = supplyBefore - value;
+
+    // oldLocked can have either expired <= timestamp or zero end
+    // oldLocked has only 0 end
+    // Both can have >= 0 amount
+    _checkpoint(_tokenId, oldLocked, LockedBalance(0, 0));
+
+    IERC20(token).safeTransfer(sender, value);
+
+    emit Withdraw(sender, _tokenId, value, block.timestamp);
+    emit Supply(supplyBefore, supplyBefore - value);
   }
 
   /*//////////////////////////////////////////////////////////////
-                        INTERNAL MINT/BURN LOGIC
+                              NFT INTERNAL FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-  /// @inheritdoc IStakingPositions
-  mapping(address => mapping(uint256 => uint256))
-    public ownerToNFTokenIdList;
-
-  /// @dev Mapping from NFT ID to index of owner
-  mapping(uint256 => uint256) internal tokenToOwnerIndex;
+  function _transferFrom(
+    address _from,
+    address _to,
+    uint256 _tokenId,
+    address _sender
+  ) internal {
+    // Check requirements
+    if (!isApprovedOrOwner(_sender, _tokenId))
+      revert NotApprovedOrOwner();
+    // Clear approval. Throws if `_from` is not the current owner
+    if (idToOwner[_tokenId] != _from) revert NotOwner();
+    delete idToApprovals[_tokenId];
+    // Remove NFT. Throws if `_tokenId` is not a valid NFT
+    _removeTokenFrom(_from, _tokenId);
+    // Add NFT
+    _addTokenTo(_to, _tokenId);
+    // Set the block of ownership transfer (for Flash NFT protection)
+    ownershipChange[_tokenId] = block.number;
+    // Log the transfer
+    emit Transfer(_from, _to, _tokenId);
+  }
 
   /// @dev Add a NFT to an index mapping to a given address
   /// @param _to address of the receiver
@@ -352,7 +553,7 @@ contract StakingPositions is
   ///      Throws if `_tokenId` is owned by someone.
   function _addTokenTo(address _to, uint256 _tokenId) internal {
     // Throws if `_tokenId` is owned by someone
-    assert(_ownerOf(_tokenId) == address(0));
+    assert(idToOwner[_tokenId] == address(0));
     // Change the owner
     idToOwner[_tokenId] = _to;
     // Update owner token index tracking
@@ -419,7 +620,7 @@ contract StakingPositions is
     uint256 _tokenId
   ) internal {
     // Throws if `_from` is not the current owner
-    assert(_ownerOf(_tokenId) == _from);
+    assert(idToOwner[_tokenId] == _from);
     // Change the owner
     idToOwner[_tokenId] = address(0);
     // Update owner token index tracking
@@ -431,9 +632,9 @@ contract StakingPositions is
   /// @dev Must be called prior to updating `LockedBalance`
   function _burn(uint256 _tokenId) internal {
     address sender = _msgSender();
-    if (!_isApprovedOrOwner(sender, _tokenId))
+    if (!isApprovedOrOwner(sender, _tokenId))
       revert NotApprovedOrOwner();
-    address owner = _ownerOf(_tokenId);
+    address owner = idToOwner[_tokenId];
 
     // Clear approval
     delete idToApprovals[_tokenId];
@@ -443,49 +644,7 @@ contract StakingPositions is
   }
 
   /*//////////////////////////////////////////////////////////////
-                             ESCROW STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-  uint256 internal constant WEEK = 1 weeks;
-  uint256 internal constant MAXTIME = 4 * 365 * 86400;
-  int128 internal constant iMAXTIME = 4 * 365 * 86400;
-
-  /// @inheritdoc IStakingPositions
-  uint256 public epoch;
-  /// @inheritdoc IStakingPositions
-  uint256 public supply;
-
-  mapping(uint256 => LockedBalance) internal _locked;
-  mapping(uint256 => UserPoint[1000000000])
-    internal _userPointHistory;
-  mapping(uint256 => uint256) public userPointEpoch;
-  /// @inheritdoc IStakingPositions
-  mapping(uint256 => int128) public slopeChanges;
-
-  /// @inheritdoc IStakingPositions
-  function locked(
-    uint256 _tokenId
-  ) external view returns (LockedBalance memory) {
-    return _locked[_tokenId];
-  }
-
-  /// @inheritdoc IStakingPositions
-  function userPointHistory(
-    uint256 _tokenId,
-    uint256 _loc
-  ) external view returns (UserPoint memory) {
-    return _userPointHistory[_tokenId][_loc];
-  }
-
-  /// @inheritdoc IStakingPositions
-  function pointHistory(
-    uint256 _loc
-  ) external view returns (GlobalPoint memory) {
-    return _pointHistory[_loc];
-  }
-
-  /*//////////////////////////////////////////////////////////////
-                              ESCROW LOGIC
+                             POSITION INTERNAL FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
   /// @notice Record global and per-user data to checkpoints. Used by VotingEscrow system.
@@ -507,13 +666,13 @@ contract StakingPositions is
       // Calculate slopes and biases
       // Kept at zero when they have to
       if (_oldLocked.end > block.timestamp && _oldLocked.amount > 0) {
-        uOld.slope = _oldLocked.amount / iMAXTIME;
+        uOld.slope = _oldLocked.amount / iMaxTime;
         uOld.bias =
           uOld.slope *
           (_oldLocked.end - block.timestamp).toInt128();
       }
       if (_newLocked.end > block.timestamp && _newLocked.amount > 0) {
-        uNew.slope = _newLocked.amount / iMAXTIME;
+        uNew.slope = _newLocked.amount / iMaxTime;
         uNew.bias =
           uNew.slope *
           (_newLocked.end - block.timestamp).toInt128();
@@ -538,7 +697,7 @@ contract StakingPositions is
       ts: block.timestamp
     });
     if (_epoch > 0) {
-      lastPoint = _pointHistory[_epoch];
+      lastPoint = pointHistory[_epoch];
     }
     uint256 lastCheckpoint = lastPoint.ts;
     // If last point is already recorded in this block, slope=0
@@ -547,7 +706,7 @@ contract StakingPositions is
     // Go over weeks to fill history and calculate what the current point is
     {
       uint256 t_i = (lastCheckpoint / WEEK) * WEEK;
-      for (uint256 i = 0; i < 255; ++i) {
+      for (uint256 i; i < 255; ++i) {
         // Hopefully it won't happen that this won't get used in 5 years!
         // If it does, users will be able to withdraw but vote weight will be broken
         t_i += WEEK; // Initial value of t_i is always larger than the ts of the last point
@@ -575,7 +734,7 @@ contract StakingPositions is
         if (t_i == block.timestamp) {
           break;
         } else {
-          _pointHistory[_epoch] = lastPoint;
+          pointHistory[_epoch] = lastPoint;
         }
       }
     }
@@ -601,14 +760,14 @@ contract StakingPositions is
     // No missing global checkpoints, but timestamp != block.timestamp. Create new checkpoint.
     // No missing global checkpoints, but timestamp == block.timestamp. Overwrite last checkpoint.
     if (
-      _epoch != 1 && _pointHistory[_epoch - 1].ts == block.timestamp
+      _epoch != 1 && pointHistory[_epoch - 1].ts == block.timestamp
     ) {
       // _epoch = epoch + 1, so we do not increment epoch
-      _pointHistory[_epoch - 1] = lastPoint;
+      pointHistory[_epoch - 1] = lastPoint;
     } else {
       // more than one global point may have been written, so we update epoch
       epoch = _epoch;
-      _pointHistory[_epoch] = lastPoint;
+      pointHistory[_epoch] = lastPoint;
     }
 
     if (_tokenId != 0) {
@@ -639,12 +798,12 @@ contract StakingPositions is
       uint256 userEpoch = userPointEpoch[_tokenId];
       if (
         userEpoch != 0 &&
-        _userPointHistory[_tokenId][userEpoch].ts == block.timestamp
+        userPointHistory[_tokenId][userEpoch].ts == block.timestamp
       ) {
-        _userPointHistory[_tokenId][userEpoch] = uNew;
+        userPointHistory[_tokenId][userEpoch] = uNew;
       } else {
         userPointEpoch[_tokenId] = ++userEpoch;
-        _userPointHistory[_tokenId][userEpoch] = uNew;
+        userPointHistory[_tokenId][userEpoch] = uNew;
       }
     }
   }
@@ -677,7 +836,7 @@ contract StakingPositions is
     if (_unlockTime != 0) {
       newLocked.end = _unlockTime;
     }
-    _locked[_tokenId] = newLocked;
+    locked[_tokenId] = newLocked;
 
     // Possibilities:
     // Both _oldLocked.end could be current or expired (>/< block.timestamp)
@@ -701,23 +860,6 @@ contract StakingPositions is
     emit Supply(supplyBefore, supplyBefore + _value);
   }
 
-  /// @inheritdoc IStakingPositions
-  function checkpoint() external nonReentrant whenNotPaused {
-    _checkpoint(0, LockedBalance(0, 0), LockedBalance(0, 0));
-  }
-
-  /// @inheritdoc IStakingPositions
-  function depositFor(
-    uint256 _tokenId,
-    uint256 _value
-  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    _increaseAmountFor(
-      _tokenId,
-      _value,
-      DepositType.DEPOSIT_FOR_TYPE
-    );
-  }
-
   /// @dev Deposit `_value` tokens for `_to` and lock for `_lockDuration`
   /// @param _value Amount to deposit
   /// @param _lockDuration Number of seconds to lock tokens for (rounded down to nearest week)
@@ -733,7 +875,7 @@ contract StakingPositions is
     if (_value == 0) revert ZeroAmount();
     if (unlockTime <= block.timestamp)
       revert LockDurationNotInFuture();
-    if (unlockTime > block.timestamp + MAXTIME)
+    if (unlockTime > block.timestamp + maxTime)
       revert LockDurationTooLong();
 
     uint256 _tokenId = ++tokenId;
@@ -743,24 +885,10 @@ contract StakingPositions is
       _tokenId,
       _value,
       unlockTime,
-      _locked[_tokenId],
+      locked[_tokenId],
       DepositType.CREATE_LOCK_TYPE
     );
     return _tokenId;
-  }
-
-  /// @inheritdoc IStakingPositions
-  function createLock(
-    uint256 _value,
-    uint256 _lockDuration
-  )
-    external
-    nonReentrant
-    whenNotPaused
-    notRestricted(msg.sender)
-    returns (uint256)
-  {
-    return _createLock(_value, _lockDuration, _msgSender());
   }
 
   function _increaseAmountFor(
@@ -768,7 +896,7 @@ contract StakingPositions is
     uint256 _value,
     DepositType _depositType
   ) internal {
-    LockedBalance memory oldLocked = _locked[_tokenId];
+    LockedBalance memory oldLocked = locked[_tokenId];
 
     if (_value == 0) revert ZeroAmount();
     if (oldLocked.amount <= 0) revert NoLockFound();
@@ -779,134 +907,18 @@ contract StakingPositions is
     emit MetadataUpdate(_tokenId);
   }
 
-  /// @inheritdoc IStakingPositions
-  function increaseAmount(
-    uint256 _tokenId,
-    uint256 _value
-  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    if (!_isApprovedOrOwner(_msgSender(), _tokenId))
-      revert NotApprovedOrOwner();
-    _increaseAmountFor(
-      _tokenId,
-      _value,
-      DepositType.INCREASE_LOCK_AMOUNT
-    );
-  }
-
-  /// @inheritdoc IStakingPositions
-  function increaseUnlockTime(
-    uint256 _tokenId,
-    uint256 _lockDuration
-  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    if (!_isApprovedOrOwner(_msgSender(), _tokenId))
-      revert NotApprovedOrOwner();
-
-    LockedBalance memory oldLocked = _locked[_tokenId];
-
-    uint256 unlockTime = ((block.timestamp + _lockDuration) / WEEK) *
-      WEEK; // Locktime is rounded down to weeks
-
-    if (oldLocked.end <= block.timestamp) revert LockExpired();
-    if (oldLocked.amount <= 0) revert NoLockFound();
-    if (unlockTime <= oldLocked.end) revert LockDurationNotInFuture();
-    if (unlockTime > block.timestamp + MAXTIME)
-      revert LockDurationTooLong();
-
-    _depositFor(
-      _tokenId,
-      0,
-      unlockTime,
-      oldLocked,
-      DepositType.INCREASE_UNLOCK_TIME
-    );
-
-    emit MetadataUpdate(_tokenId);
-  }
-
-  /// @inheritdoc IStakingPositions
-  function withdraw(
-    uint256 _tokenId
-  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    address sender = _msgSender();
-    if (!_isApprovedOrOwner(sender, _tokenId))
-      revert NotApprovedOrOwner();
-
-    LockedBalance memory oldLocked = _locked[_tokenId];
-
-    if (block.timestamp < oldLocked.end) revert LockNotExpired();
-    uint256 value = oldLocked.amount.toUint256();
-
-    // Burn the NFT
-    _burn(_tokenId);
-    _locked[_tokenId] = LockedBalance(0, 0);
-    uint256 supplyBefore = supply;
-    supply = supplyBefore - value;
-
-    // oldLocked can have either expired <= timestamp or zero end
-    // oldLocked has only 0 end
-    // Both can have >= 0 amount
-    _checkpoint(_tokenId, oldLocked, LockedBalance(0, 0));
-
-    IERC20(token).safeTransfer(sender, value);
-
-    emit Withdraw(sender, _tokenId, value, block.timestamp);
-    emit Supply(supplyBefore, supplyBefore - value);
-  }
-
-  /*///////////////////////////////////////////////////////////////
-                           GAUGE VOTING STORAGE
+  /*//////////////////////////////////////////////////////////////
+                              OWNER/ADMIN FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-  function _balanceOfNFTAt(
-    uint256 _tokenId,
-    uint256 _t
-  ) internal view returns (uint256) {
-    return
-      BalanceLogicLibrary.balanceOfNFTAt(
-        userPointEpoch,
-        _userPointHistory,
-        _tokenId,
-        _t
-      );
-  }
-
-  function _supplyAt(
-    uint256 _timestamp
-  ) internal view returns (uint256) {
-    return
-      BalanceLogicLibrary.supplyAt(
-        slopeChanges,
-        _pointHistory,
-        epoch,
-        _timestamp
-      );
-  }
-
   /// @inheritdoc IStakingPositions
-  function balanceOfNFT(
-    uint256 _tokenId
-  ) public view returns (uint256) {
-    if (ownershipChange[_tokenId] == block.number) return 0;
-    return _balanceOfNFTAt(_tokenId, block.timestamp);
+  function setArtProxy(address _proxy) external onlyOwner {
+    artProxy = _proxy;
+    emit BatchMetadataUpdate(0, type(uint256).max);
   }
 
-  /// @inheritdoc IStakingPositions
-  function balanceOfNFTAt(
-    uint256 _tokenId,
-    uint256 _t
-  ) external view returns (uint256) {
-    return _balanceOfNFTAt(_tokenId, _t);
-  }
-
-  /// @inheritdoc IStakingPositions
-  function totalSupply() external view returns (uint256) {
-    return _supplyAt(block.timestamp);
-  }
-
-  /// @inheritdoc IStakingPositions
-  function totalSupplyAt(
-    uint256 _timestamp
-  ) external view returns (uint256) {
-    return _supplyAt(_timestamp);
+  function setMaxTime(uint256 _maxTime) external onlyOwner {
+    maxTime = _maxTime;
+    iMaxTime = int128(uint128(_maxTime));
   }
 }
