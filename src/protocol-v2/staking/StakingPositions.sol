@@ -92,6 +92,10 @@ contract StakingPositions is
                                INITIALIZER
     //////////////////////////////////////////////////////////////*/
 
+  constructor() {
+    _disableInitializers();
+  }
+
   /// @param token_ `LDY` token address
   function initialize(
     address token_,

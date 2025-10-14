@@ -78,6 +78,10 @@ contract StakingRewardsDistributor is
                               INITIALIZER
     //////////////////////////////////////////////////////////////*/
 
+  constructor() {
+    _disableInitializers();
+  }
+
   function initialize(
     address staking_,
     address globalOwner_,
