@@ -1,0 +1,24 @@
+{
+  "merkleRoot": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+  "generatedAt": "2024-01-31T12:00:00.000Z",
+  "periodStart": "2024-01-01T00:00:00.000Z",
+  "periodEnd": "2024-01-31T00:00:00.000Z",
+  "totalRewards": "15000000000000000000000",
+  "totalAccounts": 2,
+  "accountRewards": [
+    {
+      "index": 0,
+      "account": "0x1234567890123456789012345678901234567890",
+      "amount": "5000000000000000000000",
+      "claimed": false
+    },
+    {
+      "index": 1,
+      "account": "0x2345678901234567890123456789012345678901",
+      "amount": "10000000000000000000000",
+      "claimed": true,
+      "claimedAt": "2024-02-01T10:30:00.000Z",
+      "claimedTxHash": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    }
+  ]
+}

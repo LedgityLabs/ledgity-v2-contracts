@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2024-01-01T00:00:00.000Z",
+  "eligibleAccounts": [
+    {
+      "address": "0x1234567890123456789012345678901234567890",
+      "averageBalance": "5000000000000000000000",
+      "minBalance": "4500000000000000000000",
+      "maxBalance": "5500000000000000000000",
+      "daysAboveThreshold": 28,
+      "totalDays": 30
+    },
+    {
+      "address": "0x2345678901234567890123456789012345678901",
+      "averageBalance": "10000000000000000000000",
+      "minBalance": "9000000000000000000000",
+      "maxBalance": "11000000000000000000000",
+      "daysAboveThreshold": 30,
+      "totalDays": 30
+    }
+  ],
+  "summary": {
+    "totalAddresses": 150,
+    "eligibleAddresses": 2,
+    "periodStart": "2024-01-01T00:00:00.000Z",
+    "periodEnd": "2024-01-31T00:00:00.000Z",
+    "trackingPeriodDays": 30,
+    "minBalanceThreshold": "1000.0",
+    "thresholdPercentageRequired": 80
+  }
+}
