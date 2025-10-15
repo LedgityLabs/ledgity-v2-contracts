@@ -131,7 +131,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
 
     assertEq(tokenId, 1);
     assertEq(stakingPositions.ownerOf(tokenId), testAccount1);
-    assertEq(stakingPositions.balanceOf(testAccount1), 1);
+    assertEq(stakingPositions.balanceOfAccountNFT(testAccount1), 1);
     assertEq(stakingPositions.supply(), amount);
 
     IStakingPositions.LockedBalance memory locked = stakingPositions
@@ -195,7 +195,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
 
     assertEq(tokenId1, 1);
     assertEq(tokenId2, 2);
-    assertEq(stakingPositions.balanceOf(testAccount1), 2);
+    assertEq(stakingPositions.balanceOfAccountNFT(testAccount1), 2);
     assertEq(stakingPositions.supply(), TEST_AMOUNT * 2);
   }
 
@@ -387,7 +387,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     address owner = stakingPositions.ownerOf(tokenId);
     assertEq(owner, address(0));
 
-    assertEq(stakingPositions.balanceOf(testAccount1), 0);
+    assertEq(stakingPositions.balanceOfAccountNFT(testAccount1), 0);
     assertEq(stakingPositions.supply(), 0);
     assertEq(ldyToken.balanceOf(testAccount1), initialBalance);
   }
@@ -513,8 +513,8 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     vm.stopPrank();
 
     assertEq(stakingPositions.ownerOf(tokenId), testAccount3);
-    assertEq(stakingPositions.balanceOf(testAccount1), 0);
-    assertEq(stakingPositions.balanceOf(testAccount3), 1);
+    assertEq(stakingPositions.balanceOfAccountNFT(testAccount1), 0);
+    assertEq(stakingPositions.balanceOfAccountNFT(testAccount3), 1);
     assertEq(stakingPositions.getApproved(tokenId), address(0)); // Approval cleared
   }
 

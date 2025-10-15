@@ -145,9 +145,11 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     uint256 tokenId
   ) external view returns (address owner);
 
-  /// @inheritdoc IERC721
-  function balanceOf(
-    address owner
+  /// @notice Get the balance of a user's veNFTs, replaces the ERC721 balanceOf function
+  /// @param _owner .
+  /// @return balance of _owner
+  function balanceOfAccountNFT(
+    address _owner
   ) external view returns (uint256 balance);
 
   /*//////////////////////////////////////////////////////////////
@@ -223,6 +225,11 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
 
   /// @notice Total count of epochs witnessed since contract creation
   function epoch() external view returns (uint256);
+
+  /// @notice Total amount of voting power of a user across all veNFTs
+  function balanceOf(
+    address owner
+  ) external view returns (uint256 balance);
 
   /// @notice Total amount of token() deposited
   function supply() external view returns (uint256);

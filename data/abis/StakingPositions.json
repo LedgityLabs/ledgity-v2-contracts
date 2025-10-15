@@ -570,6 +570,25 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOfAccountNFT",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
@@ -595,7 +614,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_t",
+        "name": "_timestamp",
         "type": "uint256"
       }
     ],
@@ -739,7 +758,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_loc",
+        "name": "_epoch",
         "type": "uint256"
       }
     ],
@@ -838,7 +857,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_loc",
+        "name": "_epoch",
         "type": "uint256"
       }
     ],
@@ -898,7 +917,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_t",
+        "name": "_timestamp",
         "type": "uint256"
       }
     ],

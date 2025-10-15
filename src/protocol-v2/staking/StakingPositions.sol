@@ -152,6 +152,13 @@ contract StakingPositions is
 
   /// @inheritdoc IStakingPositions
   function balanceOf(address _owner) external view returns (uint256) {
+    return getUserTotalVotingPowerAt(_owner, block.timestamp);
+  }
+
+  /// @inheritdoc IStakingPositions
+  function balanceOfAccountNFT(
+    address _owner
+  ) external view returns (uint256) {
     return ownerToNFTokenCount[_owner];
   }
 
@@ -202,16 +209,16 @@ contract StakingPositions is
   /// @inheritdoc IStakingPositions
   function getUserPointHistory(
     uint256 _tokenId,
-    uint256 _loc
+    uint256 _epoch
   ) external view returns (UserPoint memory) {
-    return userPointHistory[_tokenId][_loc];
+    return userPointHistory[_tokenId][_epoch];
   }
 
   /// @inheritdoc IStakingPositions
   function getPointHistory(
-    uint256 _loc
+    uint256 _epoch
   ) external view returns (GlobalPoint memory) {
-    return pointHistory[_loc];
+    return pointHistory[_epoch];
   }
 
   /// @inheritdoc IStakingPositions
@@ -225,14 +232,14 @@ contract StakingPositions is
   /// @inheritdoc IStakingPositions
   function balanceOfNFTAt(
     uint256 _tokenId,
-    uint256 _t
+    uint256 _timestamp
   ) public view returns (uint256) {
     return
       BalanceLogicLibrary.balanceOfNFTAt(
         userPointEpoch,
         userPointHistory,
         _tokenId,
-        _t
+        _timestamp
       );
   }
 
@@ -286,14 +293,14 @@ contract StakingPositions is
   /// @inheritdoc IStakingPositions
   function getUserTotalVotingPowerAt(
     address _user,
-    uint256 _t
+    uint256 _timestamp
   ) public view returns (uint256) {
     uint256 userBalance = ownerToNFTokenCount[_user];
     uint256 totalVotingPower = 0;
 
     for (uint256 i; i < userBalance; i++) {
       uint256 currentTokenId = ownerToNFTokenIdList[_user][i];
-      totalVotingPower += balanceOfNFTAt(currentTokenId, _t);
+      totalVotingPower += balanceOfNFTAt(currentTokenId, _timestamp);
     }
 
     return totalVotingPower;

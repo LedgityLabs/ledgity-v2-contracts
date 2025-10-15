@@ -5299,6 +5299,13 @@ export const stakingPositionsAbi = [
   },
   {
     type: 'function',
+    inputs: [{ name: '_owner', internalType: 'address', type: 'address' }],
+    name: 'balanceOfAccountNFT',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
     inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
     name: 'balanceOfNFT',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
@@ -5308,7 +5315,7 @@ export const stakingPositionsAbi = [
     type: 'function',
     inputs: [
       { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
-      { name: '_t', internalType: 'uint256', type: 'uint256' },
+      { name: '_timestamp', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'balanceOfNFTAt',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
@@ -5381,7 +5388,7 @@ export const stakingPositionsAbi = [
   },
   {
     type: 'function',
-    inputs: [{ name: '_loc', internalType: 'uint256', type: 'uint256' }],
+    inputs: [{ name: '_epoch', internalType: 'uint256', type: 'uint256' }],
     name: 'getPointHistory',
     outputs: [
       {
@@ -5429,7 +5436,7 @@ export const stakingPositionsAbi = [
     type: 'function',
     inputs: [
       { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
-      { name: '_loc', internalType: 'uint256', type: 'uint256' },
+      { name: '_epoch', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'getUserPointHistory',
     outputs: [
@@ -5457,7 +5464,7 @@ export const stakingPositionsAbi = [
     type: 'function',
     inputs: [
       { name: '_user', internalType: 'address', type: 'address' },
-      { name: '_t', internalType: 'uint256', type: 'uint256' },
+      { name: '_timestamp', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'getUserTotalVotingPowerAt',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
@@ -13426,6 +13433,15 @@ export const useReadStakingPositionsBalanceOf =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
     functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ */
+export const useReadStakingPositionsBalanceOfAccountNft =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsAbi,
+    functionName: 'balanceOfAccountNFT',
   })
 
 /**
@@ -21767,6 +21783,15 @@ export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
   functionName: 'balanceOf',
 })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ */
+export const readStakingPositionsBalanceOfAccountNft =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsAbi,
+    functionName: 'balanceOfAccountNFT',
+  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
