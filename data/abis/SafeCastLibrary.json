@@ -1,0 +1,12 @@
+[
+  {
+    "inputs": [],
+    "name": "SafeCastOverflow",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "SafeCastUnderflow",
+    "type": "error"
+  }
+]

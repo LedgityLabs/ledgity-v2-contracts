@@ -1,6 +1,11 @@
 [
   {
     "inputs": [],
+    "name": "FailedToAssociateTokens",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "InsufficientLiquidity",
     "type": "error"
   },
@@ -70,6 +75,11 @@
       }
     ],
     "name": "SenderNotMinter",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TransferFailed",
     "type": "error"
   },
   {

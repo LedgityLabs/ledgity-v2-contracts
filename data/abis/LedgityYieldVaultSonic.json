@@ -74,6 +74,11 @@
   },
   {
     "inputs": [],
+    "name": "TransferFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "UserIsRestricted",
     "type": "error"
   },

@@ -32,6 +32,9 @@ const contractList = [
   "GlobalAccessList",
   "LedgityYieldVault",
   "GenericERC20",
+  "StakingPositions",
+  "StakingRewardsDistributor",
+  "CouncilMerkleDistributor",
 ];
 
 // Read ABIs from contracts/abis directory
