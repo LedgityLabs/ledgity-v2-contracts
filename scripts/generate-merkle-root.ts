@@ -19,7 +19,7 @@ import {
 const REWARD_TOKEN_ADDRESS: Address = "0x..."; // Replace with reward token address (e.g., LDY token)
 const TOTAL_REWARD_AMOUNT = parseEther("10000"); // Total tokens to distribute for this period
 
-// Distributor Configuration  
+// Distributor Configuration
 const DISTRIBUTOR_ADDRESS: Address = "0x..."; // Replace with CouncilMerkleDistributor contract address
 
 // File Configuration
@@ -87,7 +87,7 @@ async function generateMerkleRoot(): Promise<{
 }> {
   console.log("🌳 Starting merkle root generation...");
 
-  const dataDir = join(__dirname, "..", "data");
+  const dataDir = join(__dirname, "..", "data", "merkletree");
   const eligibleAccountsPath = join(dataDir, ELIGIBLE_ACCOUNTS_FILE);
   const outputPath = join(dataDir, OUTPUT_FILE);
 

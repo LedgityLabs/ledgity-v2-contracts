@@ -1,10 +1,5 @@
 import { zeroAddress } from "viem";
-import {
-  getContract,
-  parseEther,
-  formatEther,
-  Address,
-} from "viem";
+import { getContract, parseEther, formatEther, Address } from "viem";
 import { writeFileSync } from "fs";
 import { join } from "path";
 import { createPublicClient, http } from "viem";
@@ -21,7 +16,7 @@ import { stakingPositionsAbi } from "../types/contractTypes";
 const STAKING_POSITIONS_ADDRESS: Address = "0x..."; // Replace with actual StakingPositions contract address
 const START_BLOCK = 0n; // Replace with the block number to start tracking from
 
-// Tracking Period Configuration  
+// Tracking Period Configuration
 const TRACKING_PERIOD_DAYS = 30; // Number of days to track balances
 const SAMPLES_PER_DAY = 4; // How many times per day to sample balances (every 6 hours)
 
@@ -111,9 +106,7 @@ async function trackStakingBalances(): Promise<void> {
     `📊 Tracking from block ${START_BLOCK} (${new Date(startTimestamp * 1000).toISOString()})`,
   );
   console.log(`📊 Period: ${TRACKING_PERIOD_DAYS} days`);
-  console.log(
-    `📊 Min threshold: ${formatEther(MIN_BALANCE_THRESHOLD)} tokens`,
-  );
+  console.log(`📊 Min threshold: ${formatEther(MIN_BALANCE_THRESHOLD)} tokens`);
 
   // Track all unique addresses that have owned NFTs
   let allAddresses: string[] = [];
@@ -146,11 +139,13 @@ async function trackStakingBalances(): Promise<void> {
 
     // Remove from previous owner
     if (from !== zeroAddress) {
-      const ownerEntry = ownerTokens.find(ot => ot.owner === from);
+      const ownerEntry = ownerTokens.find((ot) => ot.owner === from);
       if (ownerEntry) {
-        ownerEntry.tokenIds = ownerEntry.tokenIds.filter(id => id !== tokenIdNum);
+        ownerEntry.tokenIds = ownerEntry.tokenIds.filter(
+          (id) => id !== tokenIdNum,
+        );
         if (ownerEntry.tokenIds.length === 0) {
-          ownerTokens = ownerTokens.filter(ot => ot.owner !== from);
+          ownerTokens = ownerTokens.filter((ot) => ot.owner !== from);
         }
       }
     }
@@ -158,7 +153,9 @@ async function trackStakingBalances(): Promise<void> {
     // Add to new owner
     if (to !== zeroAddress) {
       // Set token ownership
-      const existingOwnership = tokenOwnership.find(to => to.tokenId === tokenIdNum);
+      const existingOwnership = tokenOwnership.find(
+        (to) => to.tokenId === tokenIdNum,
+      );
       if (existingOwnership) {
         existingOwnership.owner = to;
       } else {
@@ -166,7 +163,7 @@ async function trackStakingBalances(): Promise<void> {
       }
 
       // Add token to owner
-      let ownerEntry = ownerTokens.find(ot => ot.owner === to);
+      let ownerEntry = ownerTokens.find((ot) => ot.owner === to);
       if (!ownerEntry) {
         ownerEntry = { owner: to, tokenIds: [] };
         ownerTokens.push(ownerEntry);
@@ -181,7 +178,7 @@ async function trackStakingBalances(): Promise<void> {
       }
     } else {
       // Remove token ownership
-      tokenOwnership = tokenOwnership.filter(to => to.tokenId !== tokenIdNum);
+      tokenOwnership = tokenOwnership.filter((to) => to.tokenId !== tokenIdNum);
     }
   }
 
@@ -206,7 +203,7 @@ async function trackStakingBalances(): Promise<void> {
     );
 
     for (const address of allAddresses) {
-      const ownerEntry = ownerTokens.find(ot => ot.owner === address);
+      const ownerEntry = ownerTokens.find((ot) => ot.owner === address);
       if (!ownerEntry || ownerEntry.tokenIds.length === 0) continue;
 
       let totalVotingPower = 0n;
@@ -282,10 +279,10 @@ async function trackStakingBalances(): Promise<void> {
   console.log(`✅ Found ${eligibleAccounts.length} eligible accounts`);
 
   // Save results
-  const outputPath = join(__dirname, "..", "data", OUTPUT_FILE);
+  const outputPath = join(__dirname, "..", "data", "merkletree", OUTPUT_FILE);
   const outputData = {
     generatedAt: new Date().toISOString(),
-    eligibleAccounts: eligibleAccounts.map(acc => ({
+    eligibleAccounts: eligibleAccounts.map((acc) => ({
       ...acc,
       averageBalance: acc.averageBalance.toString(),
       minBalance: acc.minBalance.toString(),
