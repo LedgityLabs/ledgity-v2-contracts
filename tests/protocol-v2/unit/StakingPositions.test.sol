@@ -221,7 +221,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
       tokenId,
       IStakingPositions.DepositType.INCREASE_LOCK_AMOUNT,
       additionalAmount,
-      0, // unlock time unchanged
+      ((block.timestamp + TEST_LOCK_DURATION) / WEEK) * WEEK,
       block.timestamp
     );
 
@@ -355,15 +355,18 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     //////////////////////////////////////////////////////////////*/
 
   function test_Withdraw_Success() public {
+    uint256 initialBalance = ldyToken.balanceOf(testAccount1);
+
     vm.prank(testAccount1);
     uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, WEEK);
-
-    uint256 initialBalance = ldyToken.balanceOf(testAccount1);
 
     // Fast forward past lock expiry
     vm.warp(block.timestamp + WEEK + 1);
 
     vm.startPrank(testAccount1);
+
+    vm.expectEmit(true, true, true, true);
+    emit Transfer(testAccount1, address(0), tokenId);
 
     vm.expectEmit(true, true, true, true);
     emit Withdraw(
@@ -376,16 +379,13 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     vm.expectEmit(true, true, true, true);
     emit Supply(TEST_AMOUNT, 0);
 
-    vm.expectEmit(true, true, true, true);
-    emit Transfer(testAccount1, address(0), tokenId);
-
     stakingPositions.withdraw(tokenId);
 
     vm.stopPrank();
 
     // Check NFT is burned
-    vm.expectRevert();
-    stakingPositions.ownerOf(tokenId);
+    address owner = stakingPositions.ownerOf(tokenId);
+    assertEq(owner, address(0));
 
     assertEq(stakingPositions.balanceOf(testAccount1), 0);
     assertEq(stakingPositions.supply(), 0);
@@ -427,8 +427,8 @@ contract StakingPositions_UnitTest is Test, Fixtures {
       testAccount2,
       tokenId,
       IStakingPositions.DepositType.DEPOSIT_FOR_TYPE,
-      TEST_AMOUNT + depositAmount,
-      block.timestamp + TEST_LOCK_DURATION,
+      depositAmount,
+      ((block.timestamp + TEST_LOCK_DURATION) / WEEK) * WEEK,
       block.timestamp
     );
 
