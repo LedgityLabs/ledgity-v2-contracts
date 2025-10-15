@@ -12,7 +12,7 @@ import { ICouncilMerkleDistributor } from "src/protocol-v2/interfaces/IMerkleDis
 import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
 // Libraries
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import { Merkle } from "lib/murky/src/Merkle.sol";
+import { Merkle } from "foundry/lib/murky/src/Merkle.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -26,17 +26,23 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   bytes32 public constant TEST_ROOT = bytes32(keccak256("TEST_ROOT"));
 
   event Claimed(uint256 index, address account, uint256 amount);
-  event MerkleRootUpdated(bytes32 indexed oldRoot, bytes32 indexed newRoot);
+  event MerkleRootUpdated(
+    bytes32 indexed oldRoot,
+    bytes32 indexed newRoot
+  );
 
   function setUp() public {
     _setUp();
     _setupDistributor();
     _setupUsers();
-    
+
     merkle = new Merkle();
   }
 
   function _setupDistributor() internal {
+    // Create reward token first
+    rewardToken = new MockERC20("Reward Token", "RWD", 18);
+    
     // Deploy implementation
     distributorImpl = new CouncilMerkleDistributor();
 
@@ -47,7 +53,7 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
       TEST_ROOT,
       address(globalOwner),
       address(globalPause),
-      address(globalRestrict)
+      address(globalAccessList)
     );
 
     ERC1967Proxy proxy = new ERC1967Proxy(
@@ -59,11 +65,9 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   }
 
   function _setupUsers() internal {
-    rewardToken = new MockERC20("Reward Token", "RWD", 18);
-    
     // Mint tokens to distributor for rewards
     rewardToken.mint(address(distributor), REWARD_AMOUNT * 10);
-    
+
     // Mint tokens to owner for testing
     rewardToken.mint(address(globalOwner), REWARD_AMOUNT);
   }
@@ -75,7 +79,8 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_Initialize() public view {
     assertEq(distributor.token(), address(rewardToken));
     assertEq(distributor.merkleRoot(), TEST_ROOT);
-    assertEq(distributor.owner(), address(globalOwner));
+    // The owner should be the actual owner from globalOwner, which is the test contract
+    assertEq(distributor.owner(), address(this));
   }
 
   function test_Initialize_RevertIfAlreadyInitialized() public {
@@ -85,7 +90,7 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
       TEST_ROOT,
       address(globalOwner),
       address(globalPause),
-      address(globalRestrict)
+      address(globalAccessList)
     );
   }
 
@@ -96,18 +101,22 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_Claim_Success() public {
     // Create merkle tree data
     bytes32[] memory data = new bytes32[](3);
-    data[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
-    data[1] = keccak256(abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18)));
-    data[2] = keccak256(abi.encodePacked(uint256(2), testAccount3, uint256(300 * 1e18)));
+    data[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18))
+    );
+    data[2] = keccak256(
+      abi.encodePacked(uint256(2), testAccount3, uint256(300 * 1e18))
+    );
 
     bytes32 root = merkle.getRoot(data);
-    
+
     // Update merkle root
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     // Get proof for testAccount1
     bytes32[] memory proof = merkle.getProof(data, 0);
@@ -120,21 +129,27 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
 
     distributor.claim(0, testAccount1, claimAmount, proof);
 
-    assertEq(rewardToken.balanceOf(testAccount1), balanceBefore + claimAmount);
+    assertEq(
+      rewardToken.balanceOf(testAccount1),
+      balanceBefore + claimAmount
+    );
     assertTrue(distributor.isClaimed(0));
   }
 
   function test_Claim_RevertAlreadyClaimed() public {
-    // Setup merkle tree
-    bytes32[] memory data = new bytes32[](1);
-    data[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
+    // Setup merkle tree with multiple entries to avoid single leaf issue
+    bytes32[] memory data = new bytes32[](2);
+    data[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18))
+    );
     bytes32 root = merkle.getRoot(data);
-    
-    vm.startPrank(address(globalOwner));
+
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     bytes32[] memory proof = merkle.getProof(data, 0);
     uint256 claimAmount = 100 * 1e18;
@@ -150,15 +165,17 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_Claim_RevertInvalidProof() public {
     // Setup merkle tree
     bytes32[] memory data = new bytes32[](2);
-    data[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
-    data[1] = keccak256(abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18)));
+    data[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18))
+    );
     bytes32 root = merkle.getRoot(data);
-    
-    vm.startPrank(address(globalOwner));
+
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     // Get proof for wrong index
     bytes32[] memory wrongProof = merkle.getProof(data, 1);
@@ -169,7 +186,6 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   }
 
   function test_Claim_RevertWhenPaused() public {
-    vm.prank(address(globalOwner));
     distributor.pauseLocal();
 
     bytes32[] memory emptyProof = new bytes32[](0);
@@ -180,8 +196,7 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
 
   function test_Claim_RevertWhenRestricted() public {
     // Restrict testAccount1
-    vm.prank(address(globalOwner));
-    globalRestrict.restrict(testAccount1);
+    globalAccessList.restrictAccount(testAccount1);
 
     bytes32[] memory emptyProof = new bytes32[](0);
 
@@ -197,14 +212,12 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
     bytes32 newRoot = bytes32(keccak256("NEW_ROOT"));
     bytes32 oldRoot = distributor.merkleRoot();
 
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
 
     vm.expectEmit(true, true, true, true);
     emit MerkleRootUpdated(oldRoot, newRoot);
 
     distributor.updateMerkleRoot(newRoot);
-    vm.stopPrank();
 
     assertEq(distributor.merkleRoot(), newRoot);
   }
@@ -221,10 +234,10 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_UpdateMerkleRoot_RevertNotPaused() public {
     bytes32 newRoot = bytes32(keccak256("NEW_ROOT"));
 
-    vm.startPrank(address(globalOwner));
-    vm.expectRevert(CouncilMerkleDistributor.CannotUpdateRootWhenNotPaused.selector);
+    vm.expectRevert(
+      CouncilMerkleDistributor.CannotUpdateRootWhenNotPaused.selector
+    );
     distributor.updateMerkleRoot(newRoot);
-    vm.stopPrank();
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -239,16 +252,19 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   }
 
   function test_IsClaimed_ReturnsTrueAfterClaim() public {
-    // Setup and claim
-    bytes32[] memory data = new bytes32[](1);
-    data[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
+    // Setup and claim with multiple entries
+    bytes32[] memory data = new bytes32[](2);
+    data[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18))
+    );
     bytes32 root = merkle.getRoot(data);
-    
-    vm.startPrank(address(globalOwner));
+
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     bytes32[] memory proof = merkle.getProof(data, 0);
     distributor.claim(0, testAccount1, 100 * 1e18, proof);
@@ -264,17 +280,21 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_Integration_MultipleClaimsFromSameRoot() public {
     // Create merkle tree with multiple claims
     bytes32[] memory data = new bytes32[](3);
-    data[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
-    data[1] = keccak256(abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18)));
-    data[2] = keccak256(abi.encodePacked(uint256(2), testAccount3, uint256(300 * 1e18)));
+    data[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(200 * 1e18))
+    );
+    data[2] = keccak256(
+      abi.encodePacked(uint256(2), testAccount3, uint256(300 * 1e18))
+    );
 
     bytes32 root = merkle.getRoot(data);
-    
-    vm.startPrank(address(globalOwner));
+
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     // Claim for all three accounts
     bytes32[] memory proof1 = merkle.getProof(data, 0);
@@ -289,9 +309,18 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
     distributor.claim(1, testAccount2, 200 * 1e18, proof2);
     distributor.claim(2, testAccount3, 300 * 1e18, proof3);
 
-    assertEq(rewardToken.balanceOf(testAccount1), balance1Before + 100 * 1e18);
-    assertEq(rewardToken.balanceOf(testAccount2), balance2Before + 200 * 1e18);
-    assertEq(rewardToken.balanceOf(testAccount3), balance3Before + 300 * 1e18);
+    assertEq(
+      rewardToken.balanceOf(testAccount1),
+      balance1Before + 100 * 1e18
+    );
+    assertEq(
+      rewardToken.balanceOf(testAccount2),
+      balance2Before + 200 * 1e18
+    );
+    assertEq(
+      rewardToken.balanceOf(testAccount3),
+      balance3Before + 300 * 1e18
+    );
 
     assertTrue(distributor.isClaimed(0));
     assertTrue(distributor.isClaimed(1));
@@ -301,15 +330,17 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
   function test_Integration_RootUpdateCombinesRewards() public {
     // First period rewards
     bytes32[] memory data1 = new bytes32[](2);
-    data1[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18)));
-    data1[1] = keccak256(abi.encodePacked(uint256(1), testAccount2, uint256(150 * 1e18)));
+    data1[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(100 * 1e18))
+    );
+    data1[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(150 * 1e18))
+    );
     bytes32 root1 = merkle.getRoot(data1);
 
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root1);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     // Claim first period
     bytes32[] memory proof1 = merkle.getProof(data1, 0);
@@ -317,15 +348,17 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
 
     // Second period - combined rewards (simulate off-chain combination)
     bytes32[] memory data2 = new bytes32[](2);
-    data2[0] = keccak256(abi.encodePacked(uint256(0), testAccount1, uint256(250 * 1e18))); // 100 + 150 combined
-    data2[1] = keccak256(abi.encodePacked(uint256(1), testAccount2, uint256(300 * 1e18))); // 150 + 150 combined
+    data2[0] = keccak256(
+      abi.encodePacked(uint256(0), testAccount1, uint256(250 * 1e18))
+    ); // 100 + 150 combined
+    data2[1] = keccak256(
+      abi.encodePacked(uint256(1), testAccount2, uint256(300 * 1e18))
+    ); // 150 + 150 combined
     bytes32 root2 = merkle.getRoot(data2);
 
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root2);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     // Note: In real implementation, the new root would account for already claimed amounts
     // This test demonstrates the root update functionality
@@ -345,16 +378,15 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
     vm.assume(amount > 0 && amount <= REWARD_AMOUNT);
     index = bound(index, 0, 1000);
 
-    // Create single claim merkle tree
-    bytes32[] memory data = new bytes32[](1);
+    // Create merkle tree with multiple entries to avoid single leaf issue
+    bytes32[] memory data = new bytes32[](2);
     data[0] = keccak256(abi.encodePacked(index, account, amount));
+    data[1] = keccak256(abi.encodePacked(index + 1, testAccount1, uint256(50 * 1e18)));
     bytes32 root = merkle.getRoot(data);
 
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     bytes32[] memory proof = merkle.getProof(data, 0);
     uint256 balanceBefore = rewardToken.balanceOf(account);
@@ -367,20 +399,23 @@ contract CouncilMerkleDistributor_UnitTest is Test, Fixtures {
 
   function testFuzz_IsClaimed_BitmapStorage(uint256 index) public {
     index = bound(index, 0, 10000);
-    
+
     // Should be false initially
     assertFalse(distributor.isClaimed(index));
-    
-    // Create and execute a claim for this index
-    bytes32[] memory data = new bytes32[](1);
-    data[0] = keccak256(abi.encodePacked(index, testAccount1, uint256(100 * 1e18)));
+
+    // Create and execute a claim for this index with multiple entries
+    bytes32[] memory data = new bytes32[](2);
+    data[0] = keccak256(
+      abi.encodePacked(index, testAccount1, uint256(100 * 1e18))
+    );
+    data[1] = keccak256(
+      abi.encodePacked(index + 1, testAccount2, uint256(200 * 1e18))
+    );
     bytes32 root = merkle.getRoot(data);
 
-    vm.startPrank(address(globalOwner));
     distributor.pauseLocal();
     distributor.updateMerkleRoot(root);
     distributor.unpauseLocal();
-    vm.stopPrank();
 
     bytes32[] memory proof = merkle.getProof(data, 0);
     distributor.claim(index, testAccount1, 100 * 1e18, proof);

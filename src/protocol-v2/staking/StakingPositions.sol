@@ -99,10 +99,13 @@ contract StakingPositions is
   /// @param token_ `LDY` token address
   function initialize(
     address token_,
+    uint256 maxTime_,
     address globalOwner_,
     address globalPause_,
     address globalAccessList_
   ) public initializer {
+    maxTime = maxTime_;
+    iMaxTime = int128(uint128(maxTime_));
     token = token_;
 
     pointHistory[0].ts = block.timestamp;
@@ -470,7 +473,7 @@ contract StakingPositions is
     if (oldLocked.end <= block.timestamp) revert LockExpired();
     if (oldLocked.amount <= 0) revert NoLockFound();
     if (unlockTime <= oldLocked.end) revert LockDurationNotInFuture();
-    if (unlockTime > block.timestamp + maxTime)
+    if (block.timestamp + maxTime < unlockTime)
       revert LockDurationTooLong();
 
     _depositFor(
@@ -879,7 +882,7 @@ contract StakingPositions is
     if (_value == 0) revert ZeroAmount();
     if (unlockTime <= block.timestamp)
       revert LockDurationNotInFuture();
-    if (unlockTime > block.timestamp + maxTime)
+    if (block.timestamp + maxTime < unlockTime)
       revert LockDurationTooLong();
 
     uint256 _tokenId = ++tokenId;

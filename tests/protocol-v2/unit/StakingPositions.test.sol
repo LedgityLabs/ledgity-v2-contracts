@@ -17,9 +17,6 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 contract StakingPositions_UnitTest is Test, Fixtures {
-  StakingPositions public stakingPositions;
-  MockERC20 public stakingToken;
-
   event Approval(
     address indexed owner,
     address indexed approved,
@@ -32,7 +29,6 @@ contract StakingPositions_UnitTest is Test, Fixtures {
   );
 
   uint256 public constant WEEK = 7 * 86400;
-  uint256 public constant MAX_TIME = 4 * 365 * 86400; // 4 years
   uint256 public constant TEST_AMOUNT = 1000 * 1e18;
   uint256 public constant TEST_LOCK_DURATION = 52 * WEEK; // 1 year
 
@@ -59,42 +55,16 @@ contract StakingPositions_UnitTest is Test, Fixtures {
 
   function setUp() public {
     _setUp();
-    _deployStakingPositions();
     _setupUsers();
-  }
-
-  function _deployStakingPositions() internal {
-    // Create staking token
-    stakingToken = new MockERC20("Ledgity Token", "LDY", 18);
-
-    // Deploy StakingPositions implementation
-    StakingPositions stakingImpl = new StakingPositions();
-
-    // Deploy proxy
-    bytes memory initData = abi.encodeWithSelector(
-      StakingPositions.initialize.selector,
-      address(stakingToken),
-      address(globalOwner),
-      address(globalPause),
-      address(globalAccessList)
-    );
-
-    ERC1967Proxy proxy = new ERC1967Proxy(
-      address(stakingImpl),
-      initData
-    );
-    stakingPositions = StakingPositions(address(proxy));
   }
 
   function _setupUsers() internal {
     // Mint tokens to test users
     for (uint256 i = 0; i < users.length; i++) {
-      stakingToken.mint(users[i], INITIAL_BALANCE);
+      deal(address(ldyToken), users[i], INITIAL_BALANCE);
+
       vm.prank(users[i]);
-      stakingToken.approve(
-        address(stakingPositions),
-        type(uint256).max
-      );
+      ldyToken.approve(address(stakingPositions), type(uint256).max);
     }
   }
 
@@ -103,11 +73,11 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     //////////////////////////////////////////////////////////////*/
 
   function test_Initialize() public view {
-    assertEq(stakingPositions.token(), address(stakingToken));
+    assertEq(stakingPositions.token(), address(ldyToken));
     assertEq(stakingPositions.name(), "Ledgity Staking Positions");
     assertEq(stakingPositions.symbol(), "lsNFT");
     assertEq(stakingPositions.decimals(), 18);
-    assertEq(stakingPositions.maxTime(), MAX_TIME);
+    assertEq(stakingPositions.maxTime(), MAX_STAKE_TIME);
     assertEq(stakingPositions.tokenId(), 0);
     assertEq(stakingPositions.epoch(), 0);
     assertEq(stakingPositions.supply(), 0);
@@ -200,7 +170,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     vm.startPrank(testAccount1);
 
     vm.expectRevert(IStakingPositions.LockDurationTooLong.selector);
-    stakingPositions.createLock(TEST_AMOUNT, MAX_TIME + 1);
+    stakingPositions.createLock(TEST_AMOUNT, MAX_STAKE_TIME + 1);
 
     vm.stopPrank();
   }
@@ -384,7 +354,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     vm.prank(testAccount1);
     uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, WEEK);
 
-    uint256 initialBalance = stakingToken.balanceOf(testAccount1);
+    uint256 initialBalance = ldyToken.balanceOf(testAccount1);
 
     // Fast forward past lock expiry
     vm.warp(block.timestamp + WEEK + 1);
@@ -415,7 +385,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
 
     assertEq(stakingPositions.balanceOf(testAccount1), 0);
     assertEq(stakingPositions.supply(), 0);
-    assertEq(stakingToken.balanceOf(testAccount1), initialBalance);
+    assertEq(ldyToken.balanceOf(testAccount1), initialBalance);
   }
 
   function test_Withdraw_RevertLockNotExpired() public {
@@ -595,19 +565,13 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     assertEq(stakingPositions.totalSupply(), 0);
 
     vm.prank(testAccount1);
-    uint256 tokenId1 = stakingPositions.createLock(
-      TEST_AMOUNT,
-      TEST_LOCK_DURATION
-    );
+    stakingPositions.createLock(TEST_AMOUNT, TEST_LOCK_DURATION);
 
     uint256 totalSupplyAfterFirst = stakingPositions.totalSupply();
     assertGt(totalSupplyAfterFirst, 0);
 
     vm.prank(testAccount2);
-    uint256 tokenId2 = stakingPositions.createLock(
-      TEST_AMOUNT,
-      TEST_LOCK_DURATION
-    );
+    stakingPositions.createLock(TEST_AMOUNT, TEST_LOCK_DURATION);
 
     uint256 totalSupplyAfterSecond = stakingPositions.totalSupply();
     assertGt(totalSupplyAfterSecond, totalSupplyAfterFirst);
@@ -679,7 +643,7 @@ contract StakingPositions_UnitTest is Test, Fixtures {
   function test_SetMaxTime_Success() public {
     uint256 newMaxTime = 2 * 365 * 86400; // 2 years
 
-    vm.prank(address(globalOwner));
+    vm.prank(address(globalOwner.owner()));
     stakingPositions.setMaxTime(newMaxTime);
 
     assertEq(stakingPositions.maxTime(), newMaxTime);
@@ -701,10 +665,19 @@ contract StakingPositions_UnitTest is Test, Fixtures {
   function test_SetArtProxy_Success() public {
     address newArtProxy = address(0x123);
 
-    vm.prank(address(globalOwner));
+    vm.prank(globalOwner.owner());
     stakingPositions.setArtProxy(newArtProxy);
 
     assertEq(stakingPositions.artProxy(), newArtProxy);
+  }
+
+  function test_SetArtProxy_RevertNotOwner() public {
+    vm.startPrank(testAccount1);
+
+    vm.expectRevert();
+    stakingPositions.setArtProxy(address(0x123));
+
+    vm.stopPrank();
   }
 
   /*//////////////////////////////////////////////////////////////

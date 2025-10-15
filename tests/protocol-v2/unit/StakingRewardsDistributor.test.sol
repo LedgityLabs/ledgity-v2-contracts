@@ -18,12 +18,7 @@ import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
-  StakingPositions public stakingPositions;
-  StakingRewardsDistributor public rewardsDistributor;
-  MockERC20 public stakingToken;
-
   uint256 public constant WEEK = 7 * 86400;
-  uint256 public constant MAX_TIME = 4 * 365 * 86400; // 4 years
   uint256 public constant TEST_AMOUNT = 1000 * 1e18;
   uint256 public constant TEST_LOCK_DURATION = 52 * WEEK; // 1 year
   uint256 public constant REWARD_AMOUNT = 100 * 1e18;
@@ -60,19 +55,16 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   function _setupUsers() internal {
     // Mint tokens to test users and owner
     for (uint256 i = 0; i < users.length; i++) {
-      stakingToken.mint(users[i], INITIAL_BALANCE);
+      deal(address(ldyToken), users[i], INITIAL_BALANCE);
       vm.prank(users[i]);
-      stakingToken.approve(
-        address(stakingPositions),
-        type(uint256).max
-      );
+      ldyToken.approve(address(stakingPositions), type(uint256).max);
     }
 
     // Mint tokens to owner for rewards
-    stakingToken.mint(address(globalOwner), INITIAL_BALANCE);
-    vm.prank(address(globalOwner));
-    stakingToken.approve(
-      address(rewardsDistributor),
+    deal(address(ldyToken), address(globalOwner), INITIAL_BALANCE);
+    vm.prank(globalOwner.owner());
+    ldyToken.approve(
+      address(stakingRewardsDistributor),
       type(uint256).max
     );
   }
@@ -83,19 +75,19 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
   function test_Initialize() public view {
     assertEq(
-      address(rewardsDistributor.staking()),
+      address(stakingRewardsDistributor.staking()),
       address(stakingPositions)
     );
-    assertEq(rewardsDistributor.token(), address(stakingToken));
-    assertEq(rewardsDistributor.currentPeriodId(), 0);
+    assertEq(stakingRewardsDistributor.token(), address(ldyToken));
+    assertEq(stakingRewardsDistributor.currentPeriodId(), 0);
     assertEq(
-      rewardsDistributor.cumulativeProtocolRewardsPerToken(),
+      stakingRewardsDistributor.cumulativeProtocolRewardsPerToken(),
       0
     );
 
     uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
-    assertEq(rewardsDistributor.startTime(), currentWeek);
-    assertEq(rewardsDistributor.lastTokenTime(), currentWeek);
+    assertEq(stakingRewardsDistributor.startTime(), currentWeek);
+    assertEq(stakingRewardsDistributor.lastTokenTime(), currentWeek);
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -119,17 +111,17 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
       weeklyAmount
     );
 
-    rewardsDistributor.depositBaseRewards(amount, duration);
+    stakingRewardsDistributor.depositBaseRewards(amount, duration);
 
     vm.stopPrank();
 
-    assertEq(rewardsDistributor.currentPeriodId(), 1);
+    assertEq(stakingRewardsDistributor.currentPeriodId(), 1);
 
     // Check weekly rewards are set correctly
     for (uint256 i = 0; i < duration; i++) {
       uint256 week = currentWeek + (i * WEEK);
       assertEq(
-        rewardsDistributor.baseRewardsPerWeek(1, week),
+        stakingRewardsDistributor.baseRewardsPerWeek(1, week),
         weeklyAmount
       );
     }
@@ -138,7 +130,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 remainder = amount - (weeklyAmount * duration);
     if (remainder > 0) {
       assertEq(
-        rewardsDistributor.baseRewardsPerWeek(1, currentWeek),
+        stakingRewardsDistributor.baseRewardsPerWeek(1, currentWeek),
         weeklyAmount + remainder
       );
     }
@@ -148,7 +140,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.startPrank(address(globalOwner));
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroAmount.selector);
-    rewardsDistributor.depositBaseRewards(0, 4);
+    stakingRewardsDistributor.depositBaseRewards(0, 4);
 
     vm.stopPrank();
   }
@@ -157,7 +149,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.startPrank(address(globalOwner));
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroDuration.selector);
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 0);
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 0);
 
     vm.stopPrank();
   }
@@ -166,7 +158,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.startPrank(testAccount1);
 
     vm.expectRevert();
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
 
     vm.stopPrank();
   }
@@ -183,8 +175,11 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 rewardAmount = REWARD_AMOUNT;
     uint256 duration = 2; // 2 weeks
 
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(rewardAmount, duration);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(
+      rewardAmount,
+      duration
+    );
 
     // Fast forward 1 week
     vm.warp(block.timestamp + WEEK);
@@ -195,7 +190,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claim(tokenId);
+    ) = stakingRewardsDistributor.claim(tokenId);
 
     vm.stopPrank();
 
@@ -205,7 +200,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     // Check that cursor is updated
     uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
     assertEq(
-      rewardsDistributor.baseRewardCursor(tokenId),
+      stakingRewardsDistributor.baseRewardCursor(tokenId),
       currentWeek
     );
   }
@@ -219,15 +214,14 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     );
 
     // Deposit first period
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
 
     // Fast forward 1 week
     vm.warp(block.timestamp + WEEK);
 
     // Deposit second period
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
 
     // Fast forward another week
     vm.warp(block.timestamp + WEEK);
@@ -238,7 +232,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claim(tokenId);
+    ) = stakingRewardsDistributor.claim(tokenId);
 
     vm.stopPrank();
 
@@ -261,18 +255,22 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     );
 
     // Deposit base rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
 
     // Fast forward 1 week
     vm.warp(block.timestamp + WEEK);
 
     // Claim rewards for both
     vm.prank(testAccount1);
-    (uint256 baseRewards1, ) = rewardsDistributor.claim(tokenId1);
+    (uint256 baseRewards1, ) = stakingRewardsDistributor.claim(
+      tokenId1
+    );
 
     vm.prank(testAccount2);
-    (uint256 baseRewards2, ) = rewardsDistributor.claim(tokenId2);
+    (uint256 baseRewards2, ) = stakingRewardsDistributor.claim(
+      tokenId2
+    );
 
     // User2 should get approximately twice the rewards (due to 2x stake)
     assertGt(baseRewards2, baseRewards1);
@@ -286,10 +284,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   function test_DepositProtocolFees_Success() public {
     // Create staking position first to have total supply > 0
     vm.prank(testAccount1);
-    uint256 tokenId = stakingPositions.createLock(
-      TEST_AMOUNT,
-      TEST_LOCK_DURATION
-    );
+    stakingPositions.createLock(TEST_AMOUNT, TEST_LOCK_DURATION);
 
     uint256 feeAmount = REWARD_AMOUNT;
     uint256 totalSupply = stakingPositions.totalSupply();
@@ -303,14 +298,14 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
       totalSupply
     );
 
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     vm.stopPrank();
 
     uint256 expectedRewardsPerToken = (feeAmount * PRECISION) /
       totalSupply;
     assertEq(
-      rewardsDistributor.cumulativeProtocolRewardsPerToken(),
+      stakingRewardsDistributor.cumulativeProtocolRewardsPerToken(),
       expectedRewardsPerToken
     );
   }
@@ -322,12 +317,12 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.startPrank(address(globalOwner));
 
     // Should not revert but also not update cumulative rewards
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     vm.stopPrank();
 
     assertEq(
-      rewardsDistributor.cumulativeProtocolRewardsPerToken(),
+      stakingRewardsDistributor.cumulativeProtocolRewardsPerToken(),
       0
     );
   }
@@ -336,7 +331,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.startPrank(address(globalOwner));
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroAmount.selector);
-    rewardsDistributor.depositProtocolFees(0);
+    stakingRewardsDistributor.depositProtocolFees(0);
 
     vm.stopPrank();
   }
@@ -351,8 +346,8 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
     // Deposit protocol fees
     uint256 feeAmount = REWARD_AMOUNT;
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     // Claim rewards
     vm.startPrank(testAccount1);
@@ -360,7 +355,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claim(tokenId);
+    ) = stakingRewardsDistributor.claim(tokenId);
 
     vm.stopPrank();
 
@@ -387,15 +382,19 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
     // Deposit protocol fees
     uint256 feeAmount = REWARD_AMOUNT;
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     // Claim rewards for both
     vm.prank(testAccount1);
-    (, uint256 protocolRewards1) = rewardsDistributor.claim(tokenId1);
+    (, uint256 protocolRewards1) = stakingRewardsDistributor.claim(
+      tokenId1
+    );
 
     vm.prank(testAccount2);
-    (, uint256 protocolRewards2) = rewardsDistributor.claim(tokenId2);
+    (, uint256 protocolRewards2) = stakingRewardsDistributor.claim(
+      tokenId2
+    );
 
     // User2 should get approximately twice the rewards
     assertGt(protocolRewards2, protocolRewards1);
@@ -409,8 +408,8 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   function test_ProtocolRewards_OnlyForCurrentStakers() public {
     // Deposit protocol fees before any staking
     uint256 feeAmount = REWARD_AMOUNT;
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     // Create staking position after fees deposited
     vm.prank(testAccount1);
@@ -421,17 +420,21 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
     // Claim rewards - should get nothing from the first deposit
     vm.prank(testAccount1);
-    (, uint256 protocolRewards) = rewardsDistributor.claim(tokenId);
+    (, uint256 protocolRewards) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     assertEq(protocolRewards, 0);
 
     // Deposit more fees after staking
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(feeAmount);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(feeAmount);
 
     // Now should be able to claim
     vm.prank(testAccount1);
-    (, uint256 protocolRewards2) = rewardsDistributor.claim(tokenId);
+    (, uint256 protocolRewards2) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     assertGt(protocolRewards2, 0);
   }
@@ -452,7 +455,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.expectRevert(
       IStakingRewardsDistributor.NotApprovedOrOwner.selector
     );
-    rewardsDistributor.claim(tokenId);
+    stakingRewardsDistributor.claim(tokenId);
 
     vm.stopPrank();
   }
@@ -469,16 +472,15 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     stakingPositions.approve(testAccount2, tokenId);
 
     // Deposit some rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
 
     // testAccount2 should be able to claim
     vm.startPrank(testAccount2);
 
-    (
-      uint256 baseRewards,
-      uint256 protocolRewards
-    ) = rewardsDistributor.claim(tokenId);
+    (, uint256 protocolRewards) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     vm.stopPrank();
 
@@ -500,21 +502,21 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.stopPrank();
 
     // Deposit rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
 
     // Claim for multiple tokens
     uint256[] memory tokenIds = new uint256[](2);
     tokenIds[0] = tokenId1;
     tokenIds[1] = tokenId2;
 
-    uint256 initialBalance = stakingToken.balanceOf(testAccount1);
+    uint256 initialBalance = ldyToken.balanceOf(testAccount1);
 
     vm.prank(testAccount1);
-    bool success = rewardsDistributor.claimMany(tokenIds);
+    bool success = stakingRewardsDistributor.claimMany(tokenIds);
 
     assertTrue(success);
-    assertGt(stakingToken.balanceOf(testAccount1), initialBalance);
+    assertGt(ldyToken.balanceOf(testAccount1), initialBalance);
   }
 
   function test_ClaimMany_PartialOwnership() public {
@@ -548,7 +550,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.expectRevert(
       IStakingRewardsDistributor.NotApprovedOrOwner.selector
     );
-    rewardsDistributor.claimMany(tokenIds);
+    stakingRewardsDistributor.claimMany(tokenIds);
 
     vm.stopPrank();
   }
@@ -566,11 +568,11 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     );
 
     // Deposit both types of rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 2);
 
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
 
     // Fast forward 1 week
     vm.warp(block.timestamp + WEEK);
@@ -579,17 +581,17 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claimable(tokenId);
+    ) = stakingRewardsDistributor.claimable(tokenId);
 
     assertGt(baseRewards, 0);
     assertGt(protocolRewards, 0);
   }
 
-  function test_Claimable_ZeroForNonExistentToken() public {
+  function test_Claimable_ZeroForNonExistentToken() public view {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claimable(999);
+    ) = stakingRewardsDistributor.claimable(999);
 
     assertEq(baseRewards, 0);
     assertEq(protocolRewards, 0);
@@ -614,33 +616,33 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     );
 
     // Deposit base rewards for 4 weeks
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
 
     // Fast forward 2 weeks and deposit protocol fees
     vm.warp(block.timestamp + 2 * WEEK);
 
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
 
     // Fast forward another 2 weeks
     vm.warp(block.timestamp + 2 * WEEK);
 
     // Claim rewards for both users
-    uint256 balance1Before = stakingToken.balanceOf(testAccount1);
-    uint256 balance2Before = stakingToken.balanceOf(testAccount2);
+    uint256 balance1Before = ldyToken.balanceOf(testAccount1);
+    uint256 balance2Before = ldyToken.balanceOf(testAccount2);
 
     vm.prank(testAccount1);
     (
       uint256 baseRewards1,
       uint256 protocolRewards1
-    ) = rewardsDistributor.claim(tokenId1);
+    ) = stakingRewardsDistributor.claim(tokenId1);
 
     vm.prank(testAccount2);
     (
       uint256 baseRewards2,
       uint256 protocolRewards2
-    ) = rewardsDistributor.claim(tokenId2);
+    ) = stakingRewardsDistributor.claim(tokenId2);
 
     // Check that rewards were distributed
     assertGt(baseRewards1, 0);
@@ -650,11 +652,11 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
     // Check that tokens were transferred
     assertEq(
-      stakingToken.balanceOf(testAccount1),
+      ldyToken.balanceOf(testAccount1),
       balance1Before + baseRewards1 + protocolRewards1
     );
     assertEq(
-      stakingToken.balanceOf(testAccount2),
+      ldyToken.balanceOf(testAccount2),
       balance2Before + baseRewards2 + protocolRewards2
     );
 
@@ -671,8 +673,8 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, WEEK);
 
     // Deposit base rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
 
     // Fast forward past lock expiry
     vm.warp(block.timestamp + 2 * WEEK);
@@ -682,7 +684,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     (
       uint256 baseRewards,
       uint256 protocolRewards
-    ) = rewardsDistributor.claim(tokenId);
+    ) = stakingRewardsDistributor.claim(tokenId);
 
     assertGt(baseRewards, 0);
     assertEq(protocolRewards, 0); // No protocol fees deposited
@@ -697,20 +699,24 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     );
 
     // Deposit base rewards
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 4);
 
     // Fast forward 1 week and claim
     vm.warp(block.timestamp + WEEK);
 
     vm.prank(testAccount1);
-    (uint256 baseRewards1, ) = rewardsDistributor.claim(tokenId);
+    (uint256 baseRewards1, ) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     // Fast forward another week and claim again
     vm.warp(block.timestamp + WEEK);
 
     vm.prank(testAccount1);
-    (uint256 baseRewards2, ) = rewardsDistributor.claim(tokenId);
+    (uint256 baseRewards2, ) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     // Both claims should yield rewards
     assertGt(baseRewards1, 0);
@@ -733,12 +739,14 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.warp(block.timestamp + WEEK + 1);
 
     // Deposit protocol fees
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
 
     // Try to claim - should get 0 protocol rewards due to 0 voting power
     vm.prank(testAccount1);
-    (, uint256 protocolRewards) = rewardsDistributor.claim(tokenId);
+    (, uint256 protocolRewards) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     assertEq(protocolRewards, 0);
   }
@@ -753,14 +761,19 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
 
     // Create many small reward periods (test gas limits)
     for (uint256 i = 0; i < 10; i++) {
-      vm.prank(address(globalOwner));
-      rewardsDistributor.depositBaseRewards(REWARD_AMOUNT / 10, 1);
+      vm.prank(globalOwner.owner());
+      stakingRewardsDistributor.depositBaseRewards(
+        REWARD_AMOUNT / 10,
+        1
+      );
       vm.warp(block.timestamp + WEEK);
     }
 
     // Should be able to claim without running out of gas
     vm.prank(testAccount1);
-    (uint256 baseRewards, ) = rewardsDistributor.claim(tokenId);
+    (uint256 baseRewards, ) = stakingRewardsDistributor.claim(
+      tokenId
+    );
 
     assertGt(baseRewards, 0);
   }
@@ -772,24 +785,27 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 expectedWeeklyAmount = amount / duration; // 333
     uint256 expectedRemainder = amount % duration; // 1
 
-    vm.prank(address(globalOwner));
-    rewardsDistributor.depositBaseRewards(amount, duration);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(amount, duration);
 
     uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
 
     // First week should have weekly amount + remainder
     assertEq(
-      rewardsDistributor.baseRewardsPerWeek(1, currentWeek),
+      stakingRewardsDistributor.baseRewardsPerWeek(1, currentWeek),
       expectedWeeklyAmount + expectedRemainder
     );
 
     // Other weeks should have just weekly amount
     assertEq(
-      rewardsDistributor.baseRewardsPerWeek(1, currentWeek + WEEK),
+      stakingRewardsDistributor.baseRewardsPerWeek(
+        1,
+        currentWeek + WEEK
+      ),
       expectedWeeklyAmount
     );
     assertEq(
-      rewardsDistributor.baseRewardsPerWeek(
+      stakingRewardsDistributor.baseRewardsPerWeek(
         1,
         currentWeek + 2 * WEEK
       ),

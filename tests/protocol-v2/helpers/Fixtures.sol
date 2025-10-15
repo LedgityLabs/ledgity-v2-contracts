@@ -39,6 +39,7 @@ contract Fixtures is Test {
 
   uint256 internal constant INITIAL_BALANCE = 1_000_000 ether;
   uint256 internal constant RAY = 1e27;
+  uint256 public constant MAX_STAKE_TIME = 4 * 365 * 86400; // 4 years
 
   // ======== STORAGE ======== //
   uint256 private checkpointSnapshotInitial;
@@ -213,7 +214,9 @@ contract Fixtures is Test {
       address(globalAccessListProxy)
     );
     ldyStaking = LDYStaking(address(ldyStakingProxy));
-    stakingPositions = StakingPositions(address(stakingPositionsProxy));
+    stakingPositions = StakingPositions(
+      address(stakingPositionsProxy)
+    );
     stakingRewardsDistributor = StakingRewardsDistributor(
       address(stakingRewardsDistributorProxy)
     );
@@ -232,7 +235,10 @@ contract Fixtures is Test {
     vm.label(address(globalAccessList), "GlobalAccessList");
     vm.label(address(ldyStaking), "LDYStaking");
     vm.label(address(stakingPositions), "StakingPositions");
-    vm.label(address(stakingRewardsDistributor), "StakingRewardsDistributor");
+    vm.label(
+      address(stakingRewardsDistributor),
+      "StakingRewardsDistributor"
+    );
     //
     vm.label(testAccount1, "Alice");
     vm.label(testAccount2, "Bob");
@@ -270,6 +276,7 @@ contract Fixtures is Test {
     // Initialize v2 staking contracts
     stakingPositions.initialize(
       address(ldyToken),
+      MAX_STAKE_TIME,
       address(globalOwner),
       address(globalPause),
       address(globalAccessList)
