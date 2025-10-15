@@ -7,7 +7,7 @@ export default async function deploy({
   deployments,
   getChainId,
 }: Parameters<DeployFunction>[0]) {
-  console.log("\n=> Deploy StakingPositions".cyan);
+  console.log("\n=> Deploy CouncilMerkleDistributor".cyan);
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
@@ -18,11 +18,11 @@ export default async function deploy({
     ),
   );
 
-  const { stakeToken, maxLockDurationSeconds } = getGeneralChainConfig(
+  const { stakeToken, initialMerkleRoot } = getGeneralChainConfig(
     Number(chainId),
   );
 
-  await deployments.deploy("StakingPositions", {
+  await deployments.deploy("CouncilMerkleDistributor", {
     from: deployer,
     log: true,
     waitConfirmations: 3,
@@ -34,7 +34,7 @@ export default async function deploy({
           methodName: "initialize",
           args: [
             stakeToken,
-            maxLockDurationSeconds,
+            initialMerkleRoot,
             globalOwner,
             globalPause,
             globalAccessList,

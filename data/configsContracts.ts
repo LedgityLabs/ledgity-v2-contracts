@@ -32,6 +32,9 @@ type VaultLiquidityInitParams = {
 };
 
 const TEMP_TOKENS_FILE = "temp/deployedTokens.json";
+const FOUR_YEARS_IN_SECONDS = BigInt(4 * 365 * 24 * 60 * 60);
+const EMPTY_MERKLE_ROOT =
+  "0x0000000000000000000000000000000000000000000000000000000000000000";
 
 function toRay(amount: number, decimals = 2) {
   // @dev ex: amount = 100 & decimals = 2 => 100%
@@ -98,6 +101,14 @@ export function getTokenAddress(
   return address as Address;
 }
 
+export function getGeneralChainConfig(chainId: number) {
+  const chainConfig = configsContracts[chainId];
+
+  if (!chainConfig) throw Error("Chain not found");
+
+  return chainConfig;
+}
+
 export function getParametersForVault(
   chainId: number,
   name: string,
@@ -157,6 +168,8 @@ const configsContracts: {
     stakeForFeeReduction: bigint;
     stakeForInstantWithdrawal: bigint;
     stakeToken: Address;
+    maxLockDurationSeconds: bigint;
+    initialMerkleRoot: string;
     vaults: {
       [symbol: string]: {
         asset: Address | undefined;
@@ -184,6 +197,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(1, "LDY"),
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(1, "USDC"),
@@ -226,6 +241,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(8453, "LDY"),
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(8453, "USDC"),
@@ -268,6 +285,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(42161, "LDY"),
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(42161, "USDC"),
@@ -294,6 +313,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(295, "LDY"),
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(295, "USDC"),
@@ -320,6 +341,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(59144, "LDY", true), // No $LDY on Linea
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(59144, "USDC"),
@@ -346,6 +369,8 @@ const configsContracts: {
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(146, "LDY"),
+    maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
+    initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
       lyUSD: {
         asset: getTokenAddress(146, "USDC"),
