@@ -213,7 +213,7 @@ contract StakingRewardsDistributor is
     if (weekCursor == 0) {
       IStakingPositions.UserPoint memory userPoint = staking
         .getUserPointHistory(tokenId, 1);
-      weekCursor = (userPoint.ts / WEEK) * WEEK;
+      weekCursor = (userPoint.timestamp / WEEK) * WEEK;
     }
 
     return weekCursor;

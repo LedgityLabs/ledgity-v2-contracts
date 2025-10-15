@@ -170,7 +170,11 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     vm.startPrank(testAccount1);
 
     vm.expectRevert(IStakingPositions.LockDurationTooLong.selector);
-    stakingPositions.createLock(TEST_AMOUNT, MAX_STAKE_TIME + 1);
+    // Since it is rounded down we need to add a week in excess
+    stakingPositions.createLock(
+      TEST_AMOUNT,
+      MAX_STAKE_TIME + WEEK + 1
+    );
 
     vm.stopPrank();
   }
@@ -423,8 +427,8 @@ contract StakingPositions_UnitTest is Test, Fixtures {
       testAccount2,
       tokenId,
       IStakingPositions.DepositType.DEPOSIT_FOR_TYPE,
-      depositAmount,
-      0,
+      TEST_AMOUNT + depositAmount,
+      block.timestamp + TEST_LOCK_DURATION,
       block.timestamp
     );
 

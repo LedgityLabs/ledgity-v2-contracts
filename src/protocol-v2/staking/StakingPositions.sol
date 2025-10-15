@@ -108,7 +108,7 @@ contract StakingPositions is
     iMaxTime = int128(uint128(maxTime_));
     token = token_;
 
-    pointHistory[0].ts = block.timestamp;
+    pointHistory[0].timestamp = block.timestamp;
 
     /// @dev ERC165 interface ID of ERC165
     supportedInterfaces[0x01ffc9a7] = true;
@@ -701,12 +701,12 @@ contract StakingPositions is
     GlobalPoint memory lastPoint = GlobalPoint({
       bias: 0,
       slope: 0,
-      ts: block.timestamp
+      timestamp: block.timestamp
     });
     if (_epoch > 0) {
       lastPoint = pointHistory[_epoch];
     }
-    uint256 lastCheckpoint = lastPoint.ts;
+    uint256 lastCheckpoint = lastPoint.timestamp;
     // If last point is already recorded in this block, slope=0
     // But that's ok b/c we know the block in such case
 
@@ -716,7 +716,7 @@ contract StakingPositions is
       for (uint256 i; i < 255; ++i) {
         // Hopefully it won't happen that this won't get used in 5 years!
         // If it does, users will be able to withdraw but vote weight will be broken
-        t_i += WEEK; // Initial value of t_i is always larger than the ts of the last point
+        t_i += WEEK; // Initial value of t_i is always larger than the timestamp of the last point
         int128 d_slope = 0;
         if (t_i > block.timestamp) {
           t_i = block.timestamp;
@@ -736,7 +736,7 @@ contract StakingPositions is
           lastPoint.slope = 0;
         }
         lastCheckpoint = t_i;
-        lastPoint.ts = t_i;
+        lastPoint.timestamp = t_i;
         _epoch += 1;
         if (t_i == block.timestamp) {
           break;
@@ -767,7 +767,8 @@ contract StakingPositions is
     // No missing global checkpoints, but timestamp != block.timestamp. Create new checkpoint.
     // No missing global checkpoints, but timestamp == block.timestamp. Overwrite last checkpoint.
     if (
-      _epoch != 1 && pointHistory[_epoch - 1].ts == block.timestamp
+      _epoch != 1 &&
+      pointHistory[_epoch - 1].timestamp == block.timestamp
     ) {
       // _epoch = epoch + 1, so we do not increment epoch
       pointHistory[_epoch - 1] = lastPoint;
@@ -801,11 +802,12 @@ contract StakingPositions is
       // If timestamp of last user point is the same, overwrite the last user point
       // Else record the new user point into history
       // Exclude epoch 0
-      uNew.ts = block.timestamp;
+      uNew.timestamp = block.timestamp;
       uint256 userEpoch = userPointEpoch[_tokenId];
       if (
         userEpoch != 0 &&
-        userPointHistory[_tokenId][userEpoch].ts == block.timestamp
+        userPointHistory[_tokenId][userEpoch].timestamp ==
+        block.timestamp
       ) {
         userPointHistory[_tokenId][userEpoch] = uNew;
       } else {

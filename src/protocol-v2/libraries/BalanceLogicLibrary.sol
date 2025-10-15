@@ -27,10 +27,12 @@ library BalanceLogicLibrary {
     uint256 _userEpoch = _userPointEpoch[_tokenId];
     if (_userEpoch == 0) return 0;
     // First check most recent balance
-    if (_userPointHistory[_tokenId][_userEpoch].ts <= _timestamp)
-      return (_userEpoch);
+    if (
+      _userPointHistory[_tokenId][_userEpoch].timestamp <= _timestamp
+    ) return (_userEpoch);
     // Next check implicit zero balance
-    if (_userPointHistory[_tokenId][1].ts > _timestamp) return 0;
+    if (_userPointHistory[_tokenId][1].timestamp > _timestamp)
+      return 0;
 
     uint256 lower = 0;
     uint256 upper = _userEpoch;
@@ -38,9 +40,9 @@ library BalanceLogicLibrary {
       uint256 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
       IStakingPositions.UserPoint
         storage userPoint = _userPointHistory[_tokenId][center];
-      if (userPoint.ts == _timestamp) {
+      if (userPoint.timestamp == _timestamp) {
         return center;
-      } else if (userPoint.ts < _timestamp) {
+      } else if (userPoint.timestamp < _timestamp) {
         lower = center;
       } else {
         upper = center - 1;
@@ -63,9 +65,10 @@ library BalanceLogicLibrary {
   ) internal view returns (uint256) {
     if (_epoch == 0) return 0;
     // First check most recent balance
-    if (_pointHistory[_epoch].ts <= _timestamp) return (_epoch);
+    if (_pointHistory[_epoch].timestamp <= _timestamp)
+      return (_epoch);
     // Next check implicit zero balance
-    if (_pointHistory[1].ts > _timestamp) return 0;
+    if (_pointHistory[1].timestamp > _timestamp) return 0;
 
     uint256 lower = 0;
     uint256 upper = _epoch;
@@ -73,9 +76,9 @@ library BalanceLogicLibrary {
       uint256 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
       IStakingPositions.GlobalPoint
         storage globalPoint = _pointHistory[center];
-      if (globalPoint.ts == _timestamp) {
+      if (globalPoint.timestamp == _timestamp) {
         return center;
-      } else if (globalPoint.ts < _timestamp) {
+      } else if (globalPoint.timestamp < _timestamp) {
         lower = center;
       } else {
         upper = center - 1;
@@ -113,7 +116,7 @@ library BalanceLogicLibrary {
 
     lastPoint.bias -=
       lastPoint.slope *
-      (_t - lastPoint.ts).toInt128();
+      (_t - lastPoint.timestamp).toInt128();
     if (lastPoint.bias < 0) {
       lastPoint.bias = 0;
     }
@@ -145,8 +148,8 @@ library BalanceLogicLibrary {
     ];
     int128 bias = _point.bias;
     int128 slope = _point.slope;
-    uint256 ts = _point.ts;
-    uint256 t_i = (ts / WEEK) * WEEK;
+    uint256 timestamp = _point.timestamp;
+    uint256 t_i = (timestamp / WEEK) * WEEK;
     for (uint256 i = 0; i < 255; ++i) {
       t_i += WEEK;
       int128 dSlope = 0;
@@ -155,12 +158,12 @@ library BalanceLogicLibrary {
       } else {
         dSlope = _slopeChanges[t_i];
       }
-      bias -= slope * (t_i - ts).toInt128();
+      bias -= slope * (t_i - timestamp).toInt128();
       if (t_i == _t) {
         break;
       }
       slope += dSlope;
-      ts = t_i;
+      timestamp = t_i;
     }
 
     if (bias < 0) {

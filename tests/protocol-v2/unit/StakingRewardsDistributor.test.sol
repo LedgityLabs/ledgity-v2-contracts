@@ -60,8 +60,8 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
       ldyToken.approve(address(stakingPositions), type(uint256).max);
     }
 
-    // Mint tokens to owner for rewards
-    deal(address(ldyToken), address(globalOwner), INITIAL_BALANCE);
+    // Mint tokens to the actual owner (not the globalOwner contract) for rewards
+    deal(address(ldyToken), globalOwner.owner(), INITIAL_BALANCE);
     vm.prank(globalOwner.owner());
     ldyToken.approve(
       address(stakingRewardsDistributor),
@@ -100,7 +100,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 weeklyAmount = amount / duration;
     uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
 
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     vm.expectEmit(true, true, true, true);
     emit BaseRewardsDeposited(
@@ -137,7 +137,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   }
 
   function test_DepositBaseRewards_RevertZeroAmount() public {
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroAmount.selector);
     stakingRewardsDistributor.depositBaseRewards(0, 4);
@@ -146,7 +146,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   }
 
   function test_DepositBaseRewards_RevertZeroDuration() public {
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroDuration.selector);
     stakingRewardsDistributor.depositBaseRewards(REWARD_AMOUNT, 0);
@@ -289,7 +289,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 feeAmount = REWARD_AMOUNT;
     uint256 totalSupply = stakingPositions.totalSupply();
 
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     vm.expectEmit(true, true, true, true);
     emit ProtocolFeesDeposited(
@@ -314,7 +314,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     // No staking positions created, so total supply is 0
     uint256 feeAmount = REWARD_AMOUNT;
 
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     // Should not revert but also not update cumulative rewards
     stakingRewardsDistributor.depositProtocolFees(feeAmount);
@@ -328,7 +328,7 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   }
 
   function test_DepositProtocolFees_RevertZeroAmount() public {
-    vm.startPrank(address(globalOwner));
+    vm.startPrank(globalOwner.owner());
 
     vm.expectRevert(IStakingRewardsDistributor.ZeroAmount.selector);
     stakingRewardsDistributor.depositProtocolFees(0);

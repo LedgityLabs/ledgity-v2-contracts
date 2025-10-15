@@ -14,13 +14,13 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   struct UserPoint {
     int128 bias;
     int128 slope; // # -dweight / dt
-    uint256 ts;
+    uint256 timestamp;
   }
 
   struct GlobalPoint {
     int128 bias;
     int128 slope; // # -dweight / dt
-    uint256 ts;
+    uint256 timestamp;
   }
 
   enum DepositType {
@@ -79,18 +79,18 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   error ZeroBalance();
 
   event Deposit(
-    address indexed provider,
+    address indexed from,
     uint256 indexed tokenId,
     DepositType indexed depositType,
     uint256 value,
     uint256 locktime,
-    uint256 ts
+    uint256 timestamp
   );
   event Withdraw(
-    address indexed provider,
+    address indexed from,
     uint256 indexed tokenId,
     uint256 value,
-    uint256 ts
+    uint256 timestamp
   );
 
   event Supply(uint256 prevSupply, uint256 supply);
@@ -328,16 +328,23 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   /// @notice Get all NFT data for a user
   /// @param _user Address to query NFTs for
   /// @return Array of NFTData structs containing all user's NFT information
-  function getUserNFTs(address _user) external view returns (NFTData[] memory);
+  function getUserNFTs(
+    address _user
+  ) external view returns (NFTData[] memory);
 
   /// @notice Get total voting power for a user across all their NFTs at current timestamp
   /// @param _user Address to query total voting power for
   /// @return Total voting power across all user's NFTs
-  function getUserTotalVotingPower(address _user) external view returns (uint256);
+  function getUserTotalVotingPower(
+    address _user
+  ) external view returns (uint256);
 
   /// @notice Get total voting power for a user across all their NFTs at a specific timestamp
   /// @param _user Address to query total voting power for
   /// @param _t Timestamp to query voting power at
   /// @return Total voting power across all user's NFTs at given timestamp
-  function getUserTotalVotingPowerAt(address _user, uint256 _t) external view returns (uint256);
+  function getUserTotalVotingPowerAt(
+    address _user,
+    uint256 _t
+  ) external view returns (uint256);
 }

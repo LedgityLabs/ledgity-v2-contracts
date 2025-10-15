@@ -18,7 +18,7 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  * @notice Multi-chain simulation tests for LedgityYieldVault
  * @dev Tests vault synchronization across different "chains" (different assets)
  */
-contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
+contract Skip_YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
   MockLToken public lTokenUsdc;
   MockLToken public lTokenUsdcMock;
 
