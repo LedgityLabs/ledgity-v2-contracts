@@ -22,11 +22,37 @@ export default async function deploy({
     Number(chainId),
   );
 
+  // Deploy the SafeCastLibrary library first
+  console.log("==> Deploy lib SafeCastLibrary".cyan);
+  const SafeCastLibraryLib = await deployments.deploy("SafeCastLibrary", {
+    from: deployer,
+    log: true,
+    waitConfirmations: 3,
+  });
+
+  // Deploy the BalanceLogicLibrary library first
+  console.log("==> Deploy lib BalanceLogicLibrary".cyan);
+  const BalanceLogicLibraryLib = await deployments.deploy(
+    "BalanceLogicLibrary",
+    {
+      from: deployer,
+      log: true,
+      waitConfirmations: 3,
+      libraries: {
+        SafeCastLibrary: SafeCastLibraryLib.address,
+      },
+    },
+  );
+
   await deployments.deploy("StakingPositions", {
     from: deployer,
     log: true,
     waitConfirmations: 3,
     skipIfAlreadyDeployed: true,
+    libraries: {
+      SafeCastLibrary: SafeCastLibraryLib.address,
+      BalanceLogicLibrary: BalanceLogicLibraryLib.address,
+    },
     proxy: {
       proxyContract: "UUPS",
       execute: {
