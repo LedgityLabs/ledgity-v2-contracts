@@ -7,6 +7,7 @@ import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgr
 // Libraries
 import { BalanceLogicLibrary } from "src/protocol-v2/libraries/BalanceLogicLibrary.sol";
 import { SafeCastLibrary } from "src/protocol-v2/libraries/SafeCastLibrary.sol";
+// Extensions
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";

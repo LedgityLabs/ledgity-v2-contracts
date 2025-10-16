@@ -4,7 +4,7 @@ pragma solidity 0.8.18;
 // Contracts
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
-// Libraries
+// Extensions
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";

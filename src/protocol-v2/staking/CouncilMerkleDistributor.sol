@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
-// Libraries
+// Extensions
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { MerkleProof } from "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 // Modules
-import { AdministeredUpgradable } from "../modules/AdministeredUpgradable.sol";
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { ICouncilMerkleDistributor } from "../interfaces/IMerkleDistributor.sol";
+import { ICouncilMerkleDistributor } from "src/protocol-v2/interfaces/IMerkleDistributor.sol";
 
 /**
  * @title CouncilMerkleDistributor

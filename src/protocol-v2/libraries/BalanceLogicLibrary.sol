@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity 0.8.18;
 
-import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
+// Libraries
 import { SafeCastLibrary } from "src/protocol-v2/libraries/SafeCastLibrary.sol";
+// Interfaces
+import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
 
 library BalanceLogicLibrary {
   using SafeCastLibrary for uint256;
