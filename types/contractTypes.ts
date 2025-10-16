@@ -16,6 +16,9 @@ import {
 // CouncilMerkleDistributor
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ */
 export const councilMerkleDistributorAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
   { type: 'error', inputs: [], name: 'AlreadyClaimed' },
@@ -332,6 +335,21 @@ export const councilMerkleDistributorAbi = [
     stateMutability: 'payable',
   },
 ] as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ */
+export const councilMerkleDistributorAddress = {
+  8453: '0x236Ae676CB5b107fa0cC545B181Bc9166494b180',
+} as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ */
+export const councilMerkleDistributorConfig = {
+  address: councilMerkleDistributorAddress,
+  abi: councilMerkleDistributorAbi,
+} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GenericERC20
@@ -4952,6 +4970,9 @@ export const preMiningConfig = {
 // StakingPositions
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
+ */
 export const stakingPositionsAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
   { type: 'error', inputs: [], name: 'AlreadyVoted' },
@@ -5810,10 +5831,28 @@ export const stakingPositionsAbi = [
   },
 ] as const
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
+ */
+export const stakingPositionsAddress = {
+  8453: '0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370',
+} as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
+ */
+export const stakingPositionsConfig = {
+  address: stakingPositionsAddress,
+  abi: stakingPositionsAbi,
+} as const
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // StakingRewardsDistributor
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
+ */
 export const stakingRewardsDistributorAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
   { type: 'error', inputs: [], name: 'InvalidTokenId' },
@@ -6302,384 +6341,534 @@ export const stakingRewardsDistributorAbi = [
   },
 ] as const
 
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
+ */
+export const stakingRewardsDistributorAddress = {
+  8453: '0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e',
+} as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
+ */
+export const stakingRewardsDistributorConfig = {
+  address: stakingRewardsDistributorAddress,
+  abi: stakingRewardsDistributorAbi,
+} as const
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // React
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributor =
-  /*#__PURE__*/ createUseReadContract({ abi: councilMerkleDistributorAbi })
+  /*#__PURE__*/ createUseReadContract({
+    abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalPause =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalPause',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorIsClaimed =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'isClaimed',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"merkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorMerkleRoot =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'merkleRoot',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'owner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorPaused =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'paused',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorToken =
   /*#__PURE__*/ createUseReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'token',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributor =
-  /*#__PURE__*/ createUseWriteContract({ abi: councilMerkleDistributorAbi })
+  /*#__PURE__*/ createUseWriteContract({
+    abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'updateMerkleRoot',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributor =
-  /*#__PURE__*/ createUseSimulateContract({ abi: councilMerkleDistributorAbi })
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'updateMerkleRoot',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Claimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Claimed',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"MerkleRootUpdated"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorMerkleRootUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'MerkleRootUpdated',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Upgraded',
   })
 
@@ -13412,1378 +13601,1865 @@ export const useWatchPreMiningUnpausedEvent =
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
 })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsArtProxy =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'artProxy',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsBalanceOf =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOf',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfAccountNFT',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfNFT',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfNFTAt',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsDecimals =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'decimals',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
-  { abi: stakingPositionsAbi, functionName: 'epoch' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'epoch',
+  },
 )
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetApproved =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getApproved',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getLockedBalance',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetPointHistory =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getPointHistory',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetUserNfTs =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserNFTs',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserPointHistory',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserTotalVotingPower',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserTotalVotingPowerAt',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGlobalPause =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'globalPause',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsIMaxTime =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'iMaxTime',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isApprovedForAll',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isApprovedOrOwner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsMaxTime =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'maxTime',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'name',
 })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
-  { abi: stakingPositionsAbi, functionName: 'owner' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'owner',
+  },
 )
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsOwnerOf =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'ownerOf',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'ownerToNFTokenIdList',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsPaused =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'paused',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsSlopeChanges =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'slopeChanges',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'supply',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsSupportsInterface =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'supportsInterface',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsSymbol =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'symbol',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
-  { abi: stakingPositionsAbi, functionName: 'token' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'token',
+  },
 )
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsTokenId =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'tokenId',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsTokenUri =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'tokenURI',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsTotalSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'totalSupply',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'totalSupplyAt',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useReadStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'userPointEpoch',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
 })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsApprove =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'approve',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'checkpoint',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsCreateLock =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'createLock',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsDepositFor =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'depositFor',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseAmount',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseUnlockTime',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'safeTransferFrom',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setApprovalForAll',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setArtProxy',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setMaxTime',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferFrom',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWriteStakingPositionsWithdraw =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'withdraw',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositions =
-  /*#__PURE__*/ createUseSimulateContract({ abi: stakingPositionsAbi })
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+  })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsApprove =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'approve',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'checkpoint',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsCreateLock =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'createLock',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsDepositFor =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'depositFor',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseAmount',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseUnlockTime',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'safeTransferFrom',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setApprovalForAll',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setArtProxy',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setMaxTime',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferFrom',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useSimulateStakingPositionsWithdraw =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'withdraw',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({ abi: stakingPositionsAbi })
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+  })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Approval',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'ApprovalForAll',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'BatchMetadataUpdate',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsDepositEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Deposit',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'MetadataUpdate',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Supply',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Transfer',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Upgraded',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const useWatchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Withdraw',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributor =
-  /*#__PURE__*/ createUseReadContract({ abi: stakingRewardsDistributorAbi })
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorWeek =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'WEEK',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardCursor',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardPeriodCursor',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardPeriods',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardsPerWeek',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimable',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'cumulativeProtocolRewardsPerToken',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'currentPeriodId',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalPause',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'lastTokenTime',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorOwner =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'owner',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorPaused =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'paused',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'protocolRewardsPerTokenPaid',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorStaking =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'staking',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'startTime',
   })
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useReadStakingRewardsDistributorToken =
   /*#__PURE__*/ createUseReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'token',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributor =
-  /*#__PURE__*/ createUseWriteContract({ abi: stakingRewardsDistributorAbi })
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimMany',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositBaseRewards',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositProtocolFees',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWriteStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributor =
-  /*#__PURE__*/ createUseSimulateContract({ abi: stakingRewardsDistributorAbi })
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimMany',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositBaseRewards',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositProtocolFees',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useSimulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BaseRewardsClaimed',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BaseRewardsDeposited',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'ProtocolFeesDeposited',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'ProtocolRewardsClaimed',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const useWatchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Upgraded',
   })
 
@@ -14793,378 +15469,511 @@ export const useWatchStakingRewardsDistributorUpgradedEvent =
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributor = /*#__PURE__*/ createReadContract({
   abi: councilMerkleDistributorAbi,
+  address: councilMerkleDistributorAddress,
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalOwner =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalPause =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalPause',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalRestrict =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorIsClaimed =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'isClaimed',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorIsPausedLocal =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"merkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorMerkleRoot =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'merkleRoot',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorOwner =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'owner',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorPaused =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'paused',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorProxiableUuid =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorToken =
   /*#__PURE__*/ createReadContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'token',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributor = /*#__PURE__*/ createWriteContract({
   abi: councilMerkleDistributorAbi,
+  address: councilMerkleDistributorAddress,
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'updateMerkleRoot',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributor =
-  /*#__PURE__*/ createSimulateContract({ abi: councilMerkleDistributorAbi })
+  /*#__PURE__*/ createSimulateContract({
+    abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
+  })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'updateMerkleRoot',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorEvent =
-  /*#__PURE__*/ createWatchContractEvent({ abi: councilMerkleDistributorAbi })
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
+  })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Claimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Claimed',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"MerkleRootUpdated"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorMerkleRootUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'MerkleRootUpdated',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: councilMerkleDistributorAbi,
+    address: councilMerkleDistributorAddress,
     eventName: 'Upgraded',
   })
 
@@ -21763,1356 +22572,1850 @@ export const watchPreMiningUnpausedEvent =
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositions = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'artProxy',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'balanceOf',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfAccountNFT',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfNFT',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'balanceOfNFTAt',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'decimals',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'epoch',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
-  { abi: stakingPositionsAbi, functionName: 'getApproved' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'getApproved',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getLockedBalance',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetPointHistory =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getPointHistory',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
-  { abi: stakingPositionsAbi, functionName: 'getUserNFTs' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'getUserNFTs',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserPointHistory',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserTotalVotingPower',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'getUserTotalVotingPowerAt',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
-  { abi: stakingPositionsAbi, functionName: 'globalOwner' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'globalOwner',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
-  { abi: stakingPositionsAbi, functionName: 'globalPause' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'globalPause',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'iMaxTime',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isApprovedForAll',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isApprovedOrOwner',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'maxTime',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'name',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'owner',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'ownerOf',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'ownerToNFTokenIdList',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'paused',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsProxiableUuid =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsSlopeChanges =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'slopeChanges',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'supply',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsSupportsInterface =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'supportsInterface',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'symbol',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'token',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'tokenId',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'tokenURI',
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
-  { abi: stakingPositionsAbi, functionName: 'totalSupply' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'totalSupply',
+  },
 )
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'totalSupplyAt',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const readStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createReadContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'userPointEpoch',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'approve',
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsCheckpoint =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'checkpoint',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsCreateLock =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'createLock',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsDepositFor =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'depositFor',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseAmount',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseUnlockTime',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsPauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'safeTransferFrom',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setApprovalForAll',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsSetArtProxy =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setArtProxy',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsSetMaxTime =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setMaxTime',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsTransferFrom =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferFrom',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
-  { abi: stakingPositionsAbi, functionName: 'upgradeTo' },
+  {
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+    functionName: 'upgradeTo',
+  },
 )
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
   functionName: 'withdraw',
 })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
   abi: stakingPositionsAbi,
+  address: stakingPositionsAddress,
 })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsApprove =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'approve',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'checkpoint',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsCreateLock =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'createLock',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsDepositFor =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'depositFor',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseAmount',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'increaseUnlockTime',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'safeTransferFrom',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setApprovalForAll',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setArtProxy',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'setMaxTime',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferFrom',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const simulateStakingPositionsWithdraw =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     functionName: 'withdraw',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsEvent =
-  /*#__PURE__*/ createWatchContractEvent({ abi: stakingPositionsAbi })
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
+  })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Approval',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'ApprovalForAll',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'BatchMetadataUpdate',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsDepositEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Deposit',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'MetadataUpdate',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Supply',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsTransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Transfer',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Upgraded',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370)
  */
 export const watchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingPositionsAbi,
+    address: stakingPositionsAddress,
     eventName: 'Withdraw',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributor = /*#__PURE__*/ createReadContract({
   abi: stakingRewardsDistributorAbi,
+  address: stakingRewardsDistributorAddress,
 })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorWeek =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'WEEK',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardCursor',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardPeriodCursor',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardPeriods',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'baseRewardsPerWeek',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimable',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'cumulativeProtocolRewardsPerToken',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'currentPeriodId',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalOwner',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalPause',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'globalRestrict',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'isPausedLocal',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'lastTokenTime',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorOwner =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'owner',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorPaused =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'paused',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'protocolRewardsPerTokenPaid',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'proxiableUUID',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorStaking =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'staking',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'startTime',
   })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const readStakingRewardsDistributorToken =
   /*#__PURE__*/ createReadContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'token',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributor = /*#__PURE__*/ createWriteContract(
-  { abi: stakingRewardsDistributorAbi },
+  {
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  },
 )
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorClaim =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimMany',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositBaseRewards',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositProtocolFees',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const writeStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributor =
-  /*#__PURE__*/ createSimulateContract({ abi: stakingRewardsDistributorAbi })
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claim',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'claimMany',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositBaseRewards',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'depositProtocolFees',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'initialize',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'pauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'recoverERC20',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'renounceOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'transferOwnership',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'unpauseLocal',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeTo',
   })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const simulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     functionName: 'upgradeToAndCall',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorEvent =
-  /*#__PURE__*/ createWatchContractEvent({ abi: stakingRewardsDistributorAbi })
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
+  })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'AdminChanged',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BaseRewardsClaimed',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BaseRewardsDeposited',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'BeaconUpgraded',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Initialized',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'OwnershipTransferred',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Paused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'ProtocolFeesDeposited',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'ProtocolRewardsClaimed',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Unpaused',
   })
 
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e)
  */
 export const watchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
+    address: stakingRewardsDistributorAddress,
     eventName: 'Upgraded',
   })
