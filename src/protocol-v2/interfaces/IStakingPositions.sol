@@ -38,45 +38,19 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     address owner;
   }
 
-  error AlreadyVoted();
-  error AmountTooBig();
+  error NonExistentToken();
+  error ZeroAddress();
+  error SameAddress();
+  error NotApprovedOrOwner();
   error ERC721ReceiverRejectedTokens();
   error ERC721TransferToNonERC721ReceiverImplementer();
-  error InvalidNonce();
-  error InvalidSignature();
-  error InvalidSignatureS();
-  error InvalidManagedNFTId();
+  error LockExpired();
+  error NoLockFound();
   error LockDurationNotInFuture();
   error LockDurationTooLong();
-  error LockExpired();
   error LockNotExpired();
-  error NoLockFound();
-  error NonExistentToken();
-  error NotApprovedOrOwner();
-  error NotDistributor();
-  error NotEmergencyCouncilOrGovernor();
-  error NotGovernor();
-  error NotGovernorOrManager();
-  error NotManagedNFT();
-  error NotManagedOrNormalNFT();
-  error NotLockedNFT();
-  error NotNormalNFT();
-  error NotPermanentLock();
   error NotOwner();
-  error NotTeam();
-  error NotVoter();
-  error OwnershipChange();
-  error PermanentLock();
-  error SameAddress();
-  error SameNFT();
-  error SameState();
-  error SplitNoOwner();
-  error SplitNotAllowed();
-  error SignatureExpired();
-  error TooManyTokenIDs();
-  error ZeroAddress();
   error ZeroAmount();
-  error ZeroBalance();
 
   event Deposit(
     address indexed from,
@@ -226,11 +200,6 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   /// @notice Total count of epochs witnessed since contract creation
   function epoch() external view returns (uint256);
 
-  /// @notice Total amount of voting power of a user across all veNFTs
-  function balanceOf(
-    address owner
-  ) external view returns (uint256 balance);
-
   /// @notice Total amount of token() deposited
   function supply() external view returns (uint256);
 
@@ -306,6 +275,12 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
                            GAUGE VOTING STORAGE
     //////////////////////////////////////////////////////////////*/
 
+  /// @notice Total amount of voting power of a user across all veNFTs
+  /// @dev Same as getUserTotalVotingPower
+  function balanceOf(
+    address owner
+  ) external view returns (uint256 balance);
+
   /// @notice Get the voting power for _tokenId at the current timestamp
   /// @dev Returns 0 if called in the same block as a transfer.
   /// @param _tokenId .
@@ -342,6 +317,7 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   /// @notice Get total voting power for a user across all their NFTs at current timestamp
   /// @param _user Address to query total voting power for
   /// @return Total voting power across all user's NFTs
+  /// @dev Same as balanceOf
   function getUserTotalVotingPower(
     address _user
   ) external view returns (uint256);

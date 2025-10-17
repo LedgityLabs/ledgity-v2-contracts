@@ -150,6 +150,23 @@ contract StakingRewardsDistributor is
   }
 
   /// @inheritdoc IStakingRewardsDistributor
+  function claimOnWithdrawal(
+    uint256 tokenId,
+    address to
+  ) external nonReentrant whenNotPaused notRestricted(to) {
+    // Verify access control
+    if (msg.sender != address(staking)) revert OnlyStakingPositions();
+
+    // Claim all rewards
+    uint256 totalRewards = _claimBaseRewards(tokenId) +
+      _claimProtocolRewards(tokenId);
+
+    if (totalRewards > 0) {
+      IERC20(token).safeTransfer(to, totalRewards);
+    }
+  }
+
+  /// @inheritdoc IStakingRewardsDistributor
   function claimMany(
     uint256[] calldata tokenIds
   )
@@ -364,6 +381,15 @@ contract StakingRewardsDistributor is
   /*//////////////////////////////////////////////////////////////
                             ADMIN FUNCTIONS
     //////////////////////////////////////////////////////////////*/
+
+  /// @inheritdoc IStakingRewardsDistributor
+  function updateAddresses(
+    address staking_,
+    address token_
+  ) external onlyOwner {
+    staking = IStakingPositions(staking_);
+    token = token_;
+  }
 
   /// @inheritdoc IStakingRewardsDistributor
   function depositBaseRewards(

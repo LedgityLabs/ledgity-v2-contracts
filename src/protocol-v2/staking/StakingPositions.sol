@@ -13,6 +13,7 @@ import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 // Interfaces
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
+import { IStakingRewardsDistributor } from "src/protocol-v2/interfaces/IStakingRewardsDistributor.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import { IERC721Metadata } from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
@@ -52,6 +53,8 @@ contract StakingPositions is
 
   /// @inheritdoc IStakingPositions
   address public token;
+
+  address public rewardsDistributor;
   /// @inheritdoc IStakingPositions
   address public artProxy;
   /// @inheritdoc IStakingPositions
@@ -100,6 +103,7 @@ contract StakingPositions is
   /// @param token_ `LDY` token address
   function initialize(
     address token_,
+    address rewardsDistributor_,
     uint256 maxTime_,
     address globalOwner_,
     address globalPause_,
@@ -108,6 +112,7 @@ contract StakingPositions is
     maxTime = maxTime_;
     iMaxTime = int128(uint128(maxTime_));
     token = token_;
+    rewardsDistributor = rewardsDistributor_;
 
     pointHistory[0].timestamp = block.timestamp;
 
@@ -331,15 +336,16 @@ contract StakingPositions is
     address _approved,
     uint256 _tokenId
   ) external whenNotPaused {
-    address sender = _msgSender();
     address owner = idToOwner[_tokenId];
     // Throws if `_tokenId` is not a valid NFT
     if (owner == address(0)) revert ZeroAddress();
     // Throws if `_approved` is the current owner
     if (owner == _approved) revert SameAddress();
     // Check requirements
-    bool senderIsOwner = (idToOwner[_tokenId] == sender);
-    bool senderIsApprovedForAll = (ownerToOperators[owner])[sender];
+    bool senderIsOwner = (idToOwner[_tokenId] == msg.sender);
+    bool senderIsApprovedForAll = (ownerToOperators[owner])[
+      msg.sender
+    ];
     if (!senderIsOwner && !senderIsApprovedForAll)
       revert NotApprovedOrOwner();
     // Set the approval
@@ -352,11 +358,10 @@ contract StakingPositions is
     address _operator,
     bool _approved
   ) external whenNotPaused {
-    address sender = _msgSender();
     // Throws if `_operator` is the `msg.sender`
-    if (_operator == sender) revert SameAddress();
-    ownerToOperators[sender][_operator] = _approved;
-    emit ApprovalForAll(sender, _operator, _approved);
+    if (_operator == msg.sender) revert SameAddress();
+    ownerToOperators[msg.sender][_operator] = _approved;
+    emit ApprovalForAll(msg.sender, _operator, _approved);
   }
 
   /* TRANSFER FUNCTIONS */
@@ -367,7 +372,7 @@ contract StakingPositions is
     address _to,
     uint256 _tokenId
   ) external whenNotPaused notRestricted(_from) notRestricted(_to) {
-    _transferFrom(_from, _to, _tokenId, _msgSender());
+    _transferFrom(_from, _to, _tokenId, msg.sender);
   }
 
   /// @inheritdoc IStakingPositions
@@ -386,14 +391,13 @@ contract StakingPositions is
     uint256 _tokenId,
     bytes memory _data
   ) public whenNotPaused notRestricted(_from) notRestricted(_to) {
-    address sender = _msgSender();
-    _transferFrom(_from, _to, _tokenId, sender);
+    _transferFrom(_from, _to, _tokenId, msg.sender);
 
     if (_isContract(_to)) {
       // Throws if transfer destination is a contract which does not implement 'onERC721Received'
       try
         IERC721Receiver(_to).onERC721Received(
-          sender,
+          msg.sender,
           _from,
           _tokenId,
           _data
@@ -448,7 +452,7 @@ contract StakingPositions is
     notRestricted(msg.sender)
     returns (uint256)
   {
-    return _createLock(_value, _lockDuration, _msgSender());
+    return _createLock(_value, _lockDuration, msg.sender);
   }
 
   /// @inheritdoc IStakingPositions
@@ -456,7 +460,7 @@ contract StakingPositions is
     uint256 _tokenId,
     uint256 _value
   ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    if (!isApprovedOrOwner(_msgSender(), _tokenId))
+    if (!isApprovedOrOwner(msg.sender, _tokenId))
       revert NotApprovedOrOwner();
     _increaseAmountFor(
       _tokenId,
@@ -470,7 +474,7 @@ contract StakingPositions is
     uint256 _tokenId,
     uint256 _lockDuration
   ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    if (!isApprovedOrOwner(_msgSender(), _tokenId))
+    if (!isApprovedOrOwner(msg.sender, _tokenId))
       revert NotApprovedOrOwner();
 
     LockedBalance memory oldLocked = locked[_tokenId];
@@ -499,14 +503,19 @@ contract StakingPositions is
   function withdraw(
     uint256 _tokenId
   ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
-    address sender = _msgSender();
-    if (!isApprovedOrOwner(sender, _tokenId))
+    if (!isApprovedOrOwner(msg.sender, _tokenId))
       revert NotApprovedOrOwner();
 
     LockedBalance memory oldLocked = locked[_tokenId];
 
     if (block.timestamp < oldLocked.end) revert LockNotExpired();
     uint256 value = oldLocked.amount.toUint256();
+
+    // Claim potential rewards before the token is burned
+    IStakingRewardsDistributor(rewardsDistributor).claimOnWithdrawal(
+      _tokenId,
+      msg.sender
+    );
 
     // Burn the NFT
     _burn(_tokenId);
@@ -519,9 +528,9 @@ contract StakingPositions is
     // Both can have >= 0 amount
     _checkpoint(_tokenId, oldLocked, LockedBalance(0, 0));
 
-    IERC20(token).safeTransfer(sender, value);
+    IERC20(token).safeTransfer(msg.sender, value);
 
-    emit Withdraw(sender, _tokenId, value, block.timestamp);
+    emit Withdraw(msg.sender, _tokenId, value, block.timestamp);
     emit Supply(supplyBefore, supplyBefore - value);
   }
 
@@ -646,8 +655,7 @@ contract StakingPositions is
 
   /// @dev Must be called prior to updating `LockedBalance`
   function _burn(uint256 _tokenId) internal {
-    address sender = _msgSender();
-    if (!isApprovedOrOwner(sender, _tokenId))
+    if (!isApprovedOrOwner(msg.sender, _tokenId))
       revert NotApprovedOrOwner();
     address owner = idToOwner[_tokenId];
 
@@ -861,13 +869,16 @@ contract StakingPositions is
     // newLocked.end > block.timestamp (always)
     _checkpoint(_tokenId, _oldLocked, newLocked);
 
-    address from = _msgSender();
     if (_value != 0) {
-      IERC20(token).safeTransferFrom(from, address(this), _value);
+      IERC20(token).safeTransferFrom(
+        msg.sender,
+        address(this),
+        _value
+      );
     }
 
     emit Deposit(
-      from,
+      msg.sender,
       _tokenId,
       _depositType,
       _value,

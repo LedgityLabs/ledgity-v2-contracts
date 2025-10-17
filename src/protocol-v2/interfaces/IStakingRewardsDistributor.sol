@@ -54,6 +54,7 @@ interface IStakingRewardsDistributor {
   error ZeroDuration();
   error InvalidTokenId();
   error NotApprovedOrOwner();
+  error OnlyStakingPositions();
 
   /*//////////////////////////////////////////////////////////////
                             VIEW FUNCTIONS
@@ -125,6 +126,11 @@ interface IStakingRewardsDistributor {
   /// @param amount Amount of protocol fee tokens to distribute
   function depositProtocolFees(uint256 amount) external;
 
+  /// @notice Update the addresses of the staking and token contracts
+  /// @param staking_ Address of the staking contract
+  /// @param token_ Address of the token contract
+  function updateAddresses(address staking_, address token_) external;
+
   /*//////////////////////////////////////////////////////////////
                             USER FUNCTIONS
     //////////////////////////////////////////////////////////////*/
@@ -136,6 +142,11 @@ interface IStakingRewardsDistributor {
   function claim(
     uint256 tokenId
   ) external returns (uint256 baseRewards, uint256 protocolRewards);
+
+  /// @notice Claim all available rewards for a tokenId on withdrawal
+  /// @param tokenId The NFT tokenId to claim rewards for
+  /// @param to Address to receive the rewards
+  function claimOnWithdrawal(uint256 tokenId, address to) external;
 
   /// @notice Claim rewards for multiple tokenIds
   /// @param tokenIds Array of tokenIds to claim for
