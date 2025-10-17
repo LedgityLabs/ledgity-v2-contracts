@@ -16,6 +16,11 @@
   },
   {
     "inputs": [],
+    "name": "OnlyStakingPositions",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "ZeroAmount",
     "type": "error"
   },
@@ -247,6 +252,24 @@
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "claimOnWithdrawal",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
     "name": "claimable",
@@ -391,6 +414,24 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "staking_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "token_",
+        "type": "address"
+      }
+    ],
+    "name": "updateAddresses",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

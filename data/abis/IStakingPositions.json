@@ -1,42 +1,12 @@
 [
   {
     "inputs": [],
-    "name": "AlreadyVoted",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "AmountTooBig",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "ERC721ReceiverRejectedTokens",
     "type": "error"
   },
   {
     "inputs": [],
     "name": "ERC721TransferToNonERC721ReceiverImplementer",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidManagedNFTId",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidNonce",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidSignature",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidSignatureS",
     "type": "error"
   },
   {
@@ -76,107 +46,12 @@
   },
   {
     "inputs": [],
-    "name": "NotDistributor",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotEmergencyCouncilOrGovernor",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotGovernor",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotGovernorOrManager",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotLockedNFT",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotManagedNFT",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotManagedOrNormalNFT",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotNormalNFT",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "NotOwner",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "NotPermanentLock",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotTeam",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotVoter",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OwnershipChange",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "PermanentLock",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "SameAddress",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SameNFT",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SameState",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SignatureExpired",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SplitNoOwner",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SplitNotAllowed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "TooManyTokenIDs",
     "type": "error"
   },
   {
@@ -187,11 +62,6 @@
   {
     "inputs": [],
     "name": "ZeroAmount",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "ZeroBalance",
     "type": "error"
   },
   {

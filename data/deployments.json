@@ -43491,7 +43491,7 @@
           ]
         },
         "StakingPositions": {
-          "address": "0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370",
+          "address": "0x7ce9957464eCaC16AE448DD312225292306F577b",
           "abi": [
             {
               "anonymous": false,
@@ -43548,42 +43548,12 @@
             },
             {
               "inputs": [],
-              "name": "AlreadyVoted",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "AmountTooBig",
-              "type": "error"
-            },
-            {
-              "inputs": [],
               "name": "ERC721ReceiverRejectedTokens",
               "type": "error"
             },
             {
               "inputs": [],
               "name": "ERC721TransferToNonERC721ReceiverImplementer",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidManagedNFTId",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidNonce",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidSignature",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidSignatureS",
               "type": "error"
             },
             {
@@ -43623,72 +43593,7 @@
             },
             {
               "inputs": [],
-              "name": "NotDistributor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotEmergencyCouncilOrGovernor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotGovernor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotGovernorOrManager",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotLockedNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotManagedNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotManagedOrNormalNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotNormalNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
               "name": "NotOwner",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotPermanentLock",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotTeam",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotVoter",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "OwnershipChange",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "PermanentLock",
               "type": "error"
             },
             {
@@ -43708,36 +43613,6 @@
             },
             {
               "inputs": [],
-              "name": "SameNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SameState",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SignatureExpired",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SplitNoOwner",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SplitNotAllowed",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "TooManyTokenIDs",
-              "type": "error"
-            },
-            {
-              "inputs": [],
               "name": "UserIsRestricted",
               "type": "error"
             },
@@ -43749,11 +43624,6 @@
             {
               "inputs": [],
               "name": "ZeroAmount",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "ZeroBalance",
               "type": "error"
             },
             {
@@ -44525,6 +44395,11 @@
                   "type": "address"
                 },
                 {
+                  "internalType": "address",
+                  "name": "rewardsDistributor_",
+                  "type": "address"
+                },
+                {
                   "internalType": "uint256",
                   "name": "maxTime_",
                   "type": "uint256"
@@ -44749,6 +44624,19 @@
               "name": "renounceOwnership",
               "outputs": [],
               "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "rewardsDistributor",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
               "type": "function"
             },
             {
@@ -45112,22 +45000,12 @@
           ]
         },
         "StakingPositions_Implementation": {
-          "address": "0x034B0392536e703873C6dB32A5d257d68F03e442",
+          "address": "0x97CA5d733062915c78dD8B2f95EAD0A113d379d6",
           "abi": [
             {
               "inputs": [],
               "stateMutability": "nonpayable",
               "type": "constructor"
-            },
-            {
-              "inputs": [],
-              "name": "AlreadyVoted",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "AmountTooBig",
-              "type": "error"
             },
             {
               "inputs": [],
@@ -45137,26 +45015,6 @@
             {
               "inputs": [],
               "name": "ERC721TransferToNonERC721ReceiverImplementer",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidManagedNFTId",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidNonce",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidSignature",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "InvalidSignatureS",
               "type": "error"
             },
             {
@@ -45196,72 +45054,7 @@
             },
             {
               "inputs": [],
-              "name": "NotDistributor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotEmergencyCouncilOrGovernor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotGovernor",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotGovernorOrManager",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotLockedNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotManagedNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotManagedOrNormalNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotNormalNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
               "name": "NotOwner",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotPermanentLock",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotTeam",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "NotVoter",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "OwnershipChange",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "PermanentLock",
               "type": "error"
             },
             {
@@ -45281,36 +45074,6 @@
             },
             {
               "inputs": [],
-              "name": "SameNFT",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SameState",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SignatureExpired",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SplitNoOwner",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "SplitNotAllowed",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "TooManyTokenIDs",
-              "type": "error"
-            },
-            {
-              "inputs": [],
               "name": "UserIsRestricted",
               "type": "error"
             },
@@ -45322,11 +45085,6 @@
             {
               "inputs": [],
               "name": "ZeroAmount",
-              "type": "error"
-            },
-            {
-              "inputs": [],
-              "name": "ZeroBalance",
               "type": "error"
             },
             {
@@ -46143,6 +45901,11 @@
                   "type": "address"
                 },
                 {
+                  "internalType": "address",
+                  "name": "rewardsDistributor_",
+                  "type": "address"
+                },
+                {
                   "internalType": "uint256",
                   "name": "maxTime_",
                   "type": "uint256"
@@ -46367,6 +46130,19 @@
               "name": "renounceOwnership",
               "outputs": [],
               "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "rewardsDistributor",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
               "type": "function"
             },
             {
@@ -46714,7 +46490,7 @@
           ]
         },
         "StakingPositions_Proxy": {
-          "address": "0xdE1Cd85C7a5d07449cA343b63D0dCb5236028370",
+          "address": "0x7ce9957464eCaC16AE448DD312225292306F577b",
           "abi": [
             {
               "inputs": [
@@ -46788,7 +46564,7 @@
           ]
         },
         "StakingRewardsDistributor": {
-          "address": "0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e",
+          "address": "0x4340b97E82D048f7743B68e0e71CE27ce4307528",
           "abi": [
             {
               "anonymous": false,
@@ -46860,6 +46636,11 @@
             },
             {
               "inputs": [],
+              "name": "OnlyStakingPositions",
+              "type": "error"
+            },
+            {
+              "inputs": [],
               "name": "UserIsRestricted",
               "type": "error"
             },
@@ -47201,6 +46982,24 @@
                   "internalType": "uint256",
                   "name": "tokenId",
                   "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                }
+              ],
+              "name": "claimOnWithdrawal",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "tokenId",
+                  "type": "uint256"
                 }
               ],
               "name": "claimable",
@@ -47522,6 +47321,24 @@
               "inputs": [
                 {
                   "internalType": "address",
+                  "name": "staking_",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "token_",
+                  "type": "address"
+                }
+              ],
+              "name": "updateAddresses",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
                   "name": "newImplementation",
                   "type": "address"
                 }
@@ -47568,7 +47385,7 @@
           ]
         },
         "StakingRewardsDistributor_Implementation": {
-          "address": "0x3c958Eb9df9EC554fD394C5C66E0D339AccA7a15",
+          "address": "0x7143e7C89c540f81588454f6b5a3c0Ec2E128d4F",
           "abi": [
             {
               "inputs": [],
@@ -47588,6 +47405,11 @@
             {
               "inputs": [],
               "name": "NotOwner",
+              "type": "error"
+            },
+            {
+              "inputs": [],
+              "name": "OnlyStakingPositions",
               "type": "error"
             },
             {
@@ -47978,6 +47800,24 @@
                   "internalType": "uint256",
                   "name": "tokenId",
                   "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                }
+              ],
+              "name": "claimOnWithdrawal",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "tokenId",
+                  "type": "uint256"
                 }
               ],
               "name": "claimable",
@@ -48299,6 +48139,24 @@
               "inputs": [
                 {
                   "internalType": "address",
+                  "name": "staking_",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "token_",
+                  "type": "address"
+                }
+              ],
+              "name": "updateAddresses",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
                   "name": "newImplementation",
                   "type": "address"
                 }
@@ -48329,7 +48187,7 @@
           ]
         },
         "StakingRewardsDistributor_Proxy": {
-          "address": "0xa86D9B0d020B9EaF29d5B5AaE143E9e81ff83e8e",
+          "address": "0x4340b97E82D048f7743B68e0e71CE27ce4307528",
           "abi": [
             {
               "inputs": [

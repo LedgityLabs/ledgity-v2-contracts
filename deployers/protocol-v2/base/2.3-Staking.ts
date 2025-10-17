@@ -1,11 +1,22 @@
 import { DeployFunction } from "hardhat-deploy/dist/types";
-import { Address } from "viem";
+import {
+  Address,
+  getContractAddress,
+  PublicClient,
+  createPublicClient,
+  http,
+} from "viem";
+import { base } from "viem/chains";
 import { getGeneralChainConfig } from "../../../data/configsContracts";
+
+/// @dev Update the chain depending on the target of deploy script
+const network = base;
 
 export default async function deploy({
   getNamedAccounts,
   deployments,
   getChainId,
+  config,
 }: Parameters<DeployFunction>[0]) {
   console.log("\n=> Deploy StakingPositions".cyan);
   const { deployer } = await getNamedAccounts();
@@ -28,6 +39,7 @@ export default async function deploy({
     from: deployer,
     log: true,
     waitConfirmations: 3,
+    skipIfAlreadyDeployed: true,
   });
 
   // Deploy the BalanceLogicLibrary library first
@@ -38,11 +50,37 @@ export default async function deploy({
       from: deployer,
       log: true,
       waitConfirmations: 3,
+      skipIfAlreadyDeployed: true,
       libraries: {
         SafeCastLibrary: SafeCastLibraryLib.address,
       },
     },
   );
+
+  // ===== PRECOMPUTE REWARDS DISTRIBUTOR ADDRESS ===== //
+
+  if (network.id != Number(chainId))
+    throw Error("Chain ID mismatch, check configured viem Chain");
+
+  const nonce = await createPublicClient({
+    chain: network,
+    transport: http(network.rpcUrls.default.http[0]),
+  }).getTransactionCount({
+    address: deployer as Address,
+  });
+
+  const rewardsDistributorAddress = getContractAddress({
+    opcode: "CREATE",
+    from: deployer as Address,
+    nonce: BigInt(nonce) + 3n,
+  });
+
+  console.log(
+    "-> Precomputed RewardsDistributor Proxy address: ".yellow,
+    rewardsDistributorAddress,
+  );
+
+  // ================================================== //
 
   await deployments.deploy("StakingPositions", {
     from: deployer,
@@ -60,6 +98,7 @@ export default async function deploy({
           methodName: "initialize",
           args: [
             stakeToken,
+            rewardsDistributorAddress,
             maxLockDurationSeconds,
             globalOwner,
             globalPause,

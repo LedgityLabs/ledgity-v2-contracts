@@ -19,7 +19,7 @@ export default async function deploy({
       ].map((el) => deployments.get(el).then((el) => el.address as Address)),
     );
 
-  await deployments.deploy("StakingRewardsDistributor", {
+  const deployed = await deployments.deploy("StakingRewardsDistributor", {
     from: deployer,
     log: true,
     waitConfirmations: 3,
@@ -34,4 +34,9 @@ export default async function deploy({
       },
     },
   });
+
+  console.log(
+    "-> Deployed StakingRewardsDistributor Proxy address: ".yellow,
+    deployed.address,
+  );
 }
