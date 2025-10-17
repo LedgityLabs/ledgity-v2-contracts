@@ -276,6 +276,7 @@ contract Fixtures is Test {
     // Initialize v2 staking contracts
     stakingPositions.initialize(
       address(ldyToken),
+      address(stakingRewardsDistributor),
       MAX_STAKE_TIME,
       address(globalOwner),
       address(globalPause),
