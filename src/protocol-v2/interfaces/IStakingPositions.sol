@@ -69,6 +69,8 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
 
   event Supply(uint256 prevSupply, uint256 supply);
 
+  event BreakerActivated();
+
   /// @notice Address of token (VELO) used to create a veNFT
   function token() external view returns (address);
 
@@ -93,11 +95,6 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   function symbol() external view returns (string memory);
 
   function decimals() external view returns (uint8);
-
-  function setArtProxy(address _proxy) external;
-
-  /// @notice Set maximum lock time (owner only)
-  function setMaxTime(uint256 _maxTime) external;
 
   /// @inheritdoc IERC721Metadata
   function tokenURI(
@@ -330,4 +327,17 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     address _user,
     uint256 _t
   ) external view returns (uint256);
+
+  /*///////////////////////////////////////////////////////////////
+                             ADMIN FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
+
+  /// @notice Set art proxy (owner only)
+  function setArtProxy(address _proxy) external;
+
+  /// @notice Set maximum lock time (owner only)
+  function setMaxTime(uint256 _maxTime) external;
+
+  /// @notice Unlock all veNFTs (owner only)
+  function unlockAll() external;
 }

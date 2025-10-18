@@ -67,6 +67,8 @@ contract StakingPositions is
   uint256 public maxTime = 4 * 365 * 86400;
   /// @notice Maximum lock time as int128 for calculations
   int128 public iMaxTime = 4 * 365 * 86400;
+  /// @notice Breaker to allow owner to unlock all positions
+  bool public breaker;
 
   mapping(uint256 epoch => GlobalPoint globalPoint)
     internal pointHistory;
@@ -508,7 +510,8 @@ contract StakingPositions is
 
     LockedBalance memory oldLocked = locked[_tokenId];
 
-    if (block.timestamp < oldLocked.end) revert LockNotExpired();
+    if (block.timestamp < oldLocked.end && !breaker)
+      revert LockNotExpired();
     uint256 value = oldLocked.amount.toUint256();
 
     // Claim potential rewards before the token is burned
@@ -945,8 +948,15 @@ contract StakingPositions is
     emit BatchMetadataUpdate(0, type(uint256).max);
   }
 
+  /// @inheritdoc IStakingPositions
   function setMaxTime(uint256 _maxTime) external onlyOwner {
     maxTime = _maxTime;
     iMaxTime = int128(uint128(_maxTime));
+  }
+
+  /// @inheritdoc IStakingPositions
+  function unlockAll() external onlyOwner {
+    breaker = true;
+    emit BreakerActivated();
   }
 }
