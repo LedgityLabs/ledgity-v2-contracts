@@ -135,6 +135,12 @@
   },
   {
     "anonymous": false,
+    "inputs": [],
+    "name": "BreakerActivated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
     "inputs": [
       {
         "indexed": true,
@@ -1100,6 +1106,13 @@
       }
     ],
     "name": "transferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unlockAll",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

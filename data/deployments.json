@@ -43491,7 +43491,7 @@
           ]
         },
         "StakingPositions": {
-          "address": "0x7ce9957464eCaC16AE448DD312225292306F577b",
+          "address": "0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88",
           "abi": [
             {
               "anonymous": false,
@@ -43693,6 +43693,12 @@
                 }
               ],
               "name": "BatchMetadataUpdate",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "BreakerActivated",
               "type": "event"
             },
             {
@@ -43991,6 +43997,19 @@
                   "internalType": "uint256",
                   "name": "",
                   "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "breaker",
+              "outputs": [
+                {
+                  "internalType": "bool",
+                  "name": "",
+                  "type": "bool"
                 }
               ],
               "stateMutability": "view",
@@ -44907,6 +44926,13 @@
                 }
               ],
               "name": "transferOwnership",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "unlockAll",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -45000,7 +45026,7 @@
           ]
         },
         "StakingPositions_Implementation": {
-          "address": "0x97CA5d733062915c78dD8B2f95EAD0A113d379d6",
+          "address": "0x54B36dc68c3eDb568ee471148463da7B84Ef79eA",
           "abi": [
             {
               "inputs": [],
@@ -45186,6 +45212,12 @@
                 }
               ],
               "name": "BeaconUpgraded",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [],
+              "name": "BreakerActivated",
               "type": "event"
             },
             {
@@ -45497,6 +45529,19 @@
                   "internalType": "uint256",
                   "name": "",
                   "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "breaker",
+              "outputs": [
+                {
+                  "internalType": "bool",
+                  "name": "",
+                  "type": "bool"
                 }
               ],
               "stateMutability": "view",
@@ -46419,6 +46464,13 @@
             },
             {
               "inputs": [],
+              "name": "unlockAll",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
               "name": "unpauseLocal",
               "outputs": [],
               "stateMutability": "nonpayable",
@@ -46490,7 +46542,7 @@
           ]
         },
         "StakingPositions_Proxy": {
-          "address": "0x7ce9957464eCaC16AE448DD312225292306F577b",
+          "address": "0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88",
           "abi": [
             {
               "inputs": [
@@ -46564,7 +46616,7 @@
           ]
         },
         "StakingRewardsDistributor": {
-          "address": "0x4340b97E82D048f7743B68e0e71CE27ce4307528",
+          "address": "0x2ab82B69aB88e6174425234c4da50b2EdFC217c1",
           "abi": [
             {
               "anonymous": false,
@@ -47385,7 +47437,7 @@
           ]
         },
         "StakingRewardsDistributor_Implementation": {
-          "address": "0x7143e7C89c540f81588454f6b5a3c0Ec2E128d4F",
+          "address": "0x6EBbfF8451724995458a95ba41F4DebbC1fD37c2",
           "abi": [
             {
               "inputs": [],
@@ -48187,7 +48239,7 @@
           ]
         },
         "StakingRewardsDistributor_Proxy": {
-          "address": "0x4340b97E82D048f7743B68e0e71CE27ce4307528",
+          "address": "0x2ab82B69aB88e6174425234c4da50b2EdFC217c1",
           "abi": [
             {
               "inputs": [
