@@ -308,8 +308,8 @@ const configsContracts: {
   },
   // Hedera
   [295]: {
-    owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
-    feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
+    owner: "0x000000000000000000000000000000000099304e",
+    feeRecipient: "0x000000000000000000000000000000000099304e",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
     stakeToken: getTokenAddress(295, "LDY"),
@@ -320,7 +320,7 @@ const configsContracts: {
         asset: getTokenAddress(295, "USDC"),
         lToken: getTokenAddress(295, "LUSDC", true),
         liquidityBufferRate: toRay(10),
-        liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
+        liquidityManager: "0x0000000000000000000000000000000000993039",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
         initialAssetsPerShare: 0n, // default 1:1 ratio
