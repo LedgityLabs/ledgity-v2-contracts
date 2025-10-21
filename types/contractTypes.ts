@@ -17,7 +17,8 @@ import {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const councilMerkleDistributorAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -337,14 +338,17 @@ export const councilMerkleDistributorAbi = [
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const councilMerkleDistributorAddress = {
+  295: '0x5bb6643E0cA641830ae29A8267484f08C063c0b0',
   8453: '0x236Ae676CB5b107fa0cC545B181Bc9166494b180',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const councilMerkleDistributorConfig = {
   address: councilMerkleDistributorAddress,
@@ -4971,7 +4975,8 @@ export const preMiningConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const stakingPositionsAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -5829,14 +5834,17 @@ export const stakingPositionsAbi = [
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const stakingPositionsAddress = {
+  295: '0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD',
   8453: '0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const stakingPositionsConfig = {
   address: stakingPositionsAddress,
@@ -5848,7 +5856,8 @@ export const stakingPositionsConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const stakingRewardsDistributorAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -6360,14 +6369,17 @@ export const stakingRewardsDistributorAbi = [
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const stakingRewardsDistributorAddress = {
+  295: '0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411',
   8453: '0x2ab82B69aB88e6174425234c4da50b2EdFC217c1',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const stakingRewardsDistributorConfig = {
   address: stakingRewardsDistributorAddress,
@@ -6381,7 +6393,8 @@ export const stakingRewardsDistributorConfig = {
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributor =
   /*#__PURE__*/ createUseReadContract({
@@ -6392,7 +6405,8 @@ export const useReadCouncilMerkleDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -6404,7 +6418,8 @@ export const useReadCouncilMerkleDistributorGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalPause =
   /*#__PURE__*/ createUseReadContract({
@@ -6416,7 +6431,8 @@ export const useReadCouncilMerkleDistributorGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
@@ -6428,7 +6444,8 @@ export const useReadCouncilMerkleDistributorGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorIsClaimed =
   /*#__PURE__*/ createUseReadContract({
@@ -6440,7 +6457,8 @@ export const useReadCouncilMerkleDistributorIsClaimed =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
@@ -6452,7 +6470,8 @@ export const useReadCouncilMerkleDistributorIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"merkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorMerkleRoot =
   /*#__PURE__*/ createUseReadContract({
@@ -6464,7 +6483,8 @@ export const useReadCouncilMerkleDistributorMerkleRoot =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -6476,7 +6496,8 @@ export const useReadCouncilMerkleDistributorOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorPaused =
   /*#__PURE__*/ createUseReadContract({
@@ -6488,7 +6509,8 @@ export const useReadCouncilMerkleDistributorPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -6500,7 +6522,8 @@ export const useReadCouncilMerkleDistributorProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useReadCouncilMerkleDistributorToken =
   /*#__PURE__*/ createUseReadContract({
@@ -6512,7 +6535,8 @@ export const useReadCouncilMerkleDistributorToken =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributor =
   /*#__PURE__*/ createUseWriteContract({
@@ -6523,7 +6547,8 @@ export const useWriteCouncilMerkleDistributor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createUseWriteContract({
@@ -6535,7 +6560,8 @@ export const useWriteCouncilMerkleDistributorClaim =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -6547,7 +6573,8 @@ export const useWriteCouncilMerkleDistributorInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -6559,7 +6586,8 @@ export const useWriteCouncilMerkleDistributorPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -6571,7 +6599,8 @@ export const useWriteCouncilMerkleDistributorRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -6583,7 +6612,8 @@ export const useWriteCouncilMerkleDistributorRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -6595,7 +6625,8 @@ export const useWriteCouncilMerkleDistributorTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -6607,7 +6638,8 @@ export const useWriteCouncilMerkleDistributorUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createUseWriteContract({
@@ -6619,7 +6651,8 @@ export const useWriteCouncilMerkleDistributorUpdateMerkleRoot =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -6631,7 +6664,8 @@ export const useWriteCouncilMerkleDistributorUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWriteCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -6643,7 +6677,8 @@ export const useWriteCouncilMerkleDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributor =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6654,7 +6689,8 @@ export const useSimulateCouncilMerkleDistributor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6666,7 +6702,8 @@ export const useSimulateCouncilMerkleDistributorClaim =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6678,7 +6715,8 @@ export const useSimulateCouncilMerkleDistributorInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6690,7 +6728,8 @@ export const useSimulateCouncilMerkleDistributorPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6702,7 +6741,8 @@ export const useSimulateCouncilMerkleDistributorRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6714,7 +6754,8 @@ export const useSimulateCouncilMerkleDistributorRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6726,7 +6767,8 @@ export const useSimulateCouncilMerkleDistributorTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6738,7 +6780,8 @@ export const useSimulateCouncilMerkleDistributorUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6750,7 +6793,8 @@ export const useSimulateCouncilMerkleDistributorUpdateMerkleRoot =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6762,7 +6806,8 @@ export const useSimulateCouncilMerkleDistributorUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useSimulateCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -6774,7 +6819,8 @@ export const useSimulateCouncilMerkleDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6785,7 +6831,8 @@ export const useWatchCouncilMerkleDistributorEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6797,7 +6844,8 @@ export const useWatchCouncilMerkleDistributorAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6809,7 +6857,8 @@ export const useWatchCouncilMerkleDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Claimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6821,7 +6870,8 @@ export const useWatchCouncilMerkleDistributorClaimedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6833,7 +6883,8 @@ export const useWatchCouncilMerkleDistributorInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"MerkleRootUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorMerkleRootUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6845,7 +6896,8 @@ export const useWatchCouncilMerkleDistributorMerkleRootUpdatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6857,7 +6909,8 @@ export const useWatchCouncilMerkleDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6869,7 +6922,8 @@ export const useWatchCouncilMerkleDistributorPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -6881,7 +6935,8 @@ export const useWatchCouncilMerkleDistributorUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const useWatchCouncilMerkleDistributorUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -13620,7 +13675,8 @@ export const useWatchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
@@ -13630,7 +13686,8 @@ export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsArtProxy =
   /*#__PURE__*/ createUseReadContract({
@@ -13642,7 +13699,8 @@ export const useReadStakingPositionsArtProxy =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsBalanceOf =
   /*#__PURE__*/ createUseReadContract({
@@ -13654,7 +13712,8 @@ export const useReadStakingPositionsBalanceOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createUseReadContract({
@@ -13666,7 +13725,8 @@ export const useReadStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createUseReadContract({
@@ -13678,7 +13738,8 @@ export const useReadStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createUseReadContract({
@@ -13690,7 +13751,8 @@ export const useReadStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsBreaker =
   /*#__PURE__*/ createUseReadContract({
@@ -13702,7 +13764,8 @@ export const useReadStakingPositionsBreaker =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsDecimals =
   /*#__PURE__*/ createUseReadContract({
@@ -13714,7 +13777,8 @@ export const useReadStakingPositionsDecimals =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
   {
@@ -13727,7 +13791,8 @@ export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetApproved =
   /*#__PURE__*/ createUseReadContract({
@@ -13739,7 +13804,8 @@ export const useReadStakingPositionsGetApproved =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createUseReadContract({
@@ -13751,7 +13817,8 @@ export const useReadStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetPointHistory =
   /*#__PURE__*/ createUseReadContract({
@@ -13763,7 +13830,8 @@ export const useReadStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetUserNfTs =
   /*#__PURE__*/ createUseReadContract({
@@ -13775,7 +13843,8 @@ export const useReadStakingPositionsGetUserNfTs =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createUseReadContract({
@@ -13787,7 +13856,8 @@ export const useReadStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createUseReadContract({
@@ -13799,7 +13869,8 @@ export const useReadStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createUseReadContract({
@@ -13811,7 +13882,8 @@ export const useReadStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -13823,7 +13895,8 @@ export const useReadStakingPositionsGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGlobalPause =
   /*#__PURE__*/ createUseReadContract({
@@ -13835,7 +13908,8 @@ export const useReadStakingPositionsGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
@@ -13847,7 +13921,8 @@ export const useReadStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsIMaxTime =
   /*#__PURE__*/ createUseReadContract({
@@ -13859,7 +13934,8 @@ export const useReadStakingPositionsIMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createUseReadContract({
@@ -13871,7 +13947,8 @@ export const useReadStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -13883,7 +13960,8 @@ export const useReadStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
@@ -13895,7 +13973,8 @@ export const useReadStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsMaxTime =
   /*#__PURE__*/ createUseReadContract({
@@ -13907,7 +13986,8 @@ export const useReadStakingPositionsMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
@@ -13918,7 +13998,8 @@ export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
   {
@@ -13931,7 +14012,8 @@ export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsOwnerOf =
   /*#__PURE__*/ createUseReadContract({
@@ -13943,7 +14025,8 @@ export const useReadStakingPositionsOwnerOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createUseReadContract({
@@ -13955,7 +14038,8 @@ export const useReadStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsPaused =
   /*#__PURE__*/ createUseReadContract({
@@ -13967,7 +14051,8 @@ export const useReadStakingPositionsPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -13979,7 +14064,8 @@ export const useReadStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsRewardsDistributor =
   /*#__PURE__*/ createUseReadContract({
@@ -13991,7 +14077,8 @@ export const useReadStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsSlopeChanges =
   /*#__PURE__*/ createUseReadContract({
@@ -14003,7 +14090,8 @@ export const useReadStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsSupply =
   /*#__PURE__*/ createUseReadContract({
@@ -14015,7 +14103,8 @@ export const useReadStakingPositionsSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsSupportsInterface =
   /*#__PURE__*/ createUseReadContract({
@@ -14027,7 +14116,8 @@ export const useReadStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsSymbol =
   /*#__PURE__*/ createUseReadContract({
@@ -14039,7 +14129,8 @@ export const useReadStakingPositionsSymbol =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
   {
@@ -14052,7 +14143,8 @@ export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsTokenId =
   /*#__PURE__*/ createUseReadContract({
@@ -14064,7 +14156,8 @@ export const useReadStakingPositionsTokenId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsTokenUri =
   /*#__PURE__*/ createUseReadContract({
@@ -14076,7 +14169,8 @@ export const useReadStakingPositionsTokenUri =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsTotalSupply =
   /*#__PURE__*/ createUseReadContract({
@@ -14088,7 +14182,8 @@ export const useReadStakingPositionsTotalSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createUseReadContract({
@@ -14100,7 +14195,8 @@ export const useReadStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useReadStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createUseReadContract({
@@ -14112,7 +14208,8 @@ export const useReadStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
   abi: stakingPositionsAbi,
@@ -14122,7 +14219,8 @@ export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsApprove =
   /*#__PURE__*/ createUseWriteContract({
@@ -14134,7 +14232,8 @@ export const useWriteStakingPositionsApprove =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseWriteContract({
@@ -14146,7 +14245,8 @@ export const useWriteStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsCreateLock =
   /*#__PURE__*/ createUseWriteContract({
@@ -14158,7 +14258,8 @@ export const useWriteStakingPositionsCreateLock =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsDepositFor =
   /*#__PURE__*/ createUseWriteContract({
@@ -14170,7 +14271,8 @@ export const useWriteStakingPositionsDepositFor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseWriteContract({
@@ -14182,7 +14284,8 @@ export const useWriteStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseWriteContract({
@@ -14194,7 +14297,8 @@ export const useWriteStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -14206,7 +14310,8 @@ export const useWriteStakingPositionsInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -14218,7 +14323,8 @@ export const useWriteStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -14230,7 +14336,8 @@ export const useWriteStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -14242,7 +14349,8 @@ export const useWriteStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
@@ -14254,7 +14362,8 @@ export const useWriteStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseWriteContract({
@@ -14266,7 +14375,8 @@ export const useWriteStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseWriteContract({
@@ -14278,7 +14388,8 @@ export const useWriteStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseWriteContract({
@@ -14290,7 +14401,8 @@ export const useWriteStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
@@ -14302,7 +14414,8 @@ export const useWriteStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -14314,7 +14427,8 @@ export const useWriteStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsUnlockAll =
   /*#__PURE__*/ createUseWriteContract({
@@ -14326,7 +14440,8 @@ export const useWriteStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -14338,7 +14453,8 @@ export const useWriteStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -14350,7 +14466,8 @@ export const useWriteStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -14362,7 +14479,8 @@ export const useWriteStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWriteStakingPositionsWithdraw =
   /*#__PURE__*/ createUseWriteContract({
@@ -14374,7 +14492,8 @@ export const useWriteStakingPositionsWithdraw =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositions =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14385,7 +14504,8 @@ export const useSimulateStakingPositions =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsApprove =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14397,7 +14517,8 @@ export const useSimulateStakingPositionsApprove =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14409,7 +14530,8 @@ export const useSimulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsCreateLock =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14421,7 +14543,8 @@ export const useSimulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsDepositFor =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14433,7 +14556,8 @@ export const useSimulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14445,7 +14569,8 @@ export const useSimulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14457,7 +14582,8 @@ export const useSimulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14469,7 +14595,8 @@ export const useSimulateStakingPositionsInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14481,7 +14608,8 @@ export const useSimulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14493,7 +14621,8 @@ export const useSimulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14505,7 +14634,8 @@ export const useSimulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14517,7 +14647,8 @@ export const useSimulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14529,7 +14660,8 @@ export const useSimulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14541,7 +14673,8 @@ export const useSimulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14553,7 +14686,8 @@ export const useSimulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14565,7 +14699,8 @@ export const useSimulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14577,7 +14712,8 @@ export const useSimulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsUnlockAll =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14589,7 +14725,8 @@ export const useSimulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14601,7 +14738,8 @@ export const useSimulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14613,7 +14751,8 @@ export const useSimulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14625,7 +14764,8 @@ export const useSimulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useSimulateStakingPositionsWithdraw =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14637,7 +14777,8 @@ export const useSimulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14648,7 +14789,8 @@ export const useWatchStakingPositionsEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14660,7 +14802,8 @@ export const useWatchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14672,7 +14815,8 @@ export const useWatchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14684,7 +14828,8 @@ export const useWatchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14696,7 +14841,8 @@ export const useWatchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14708,7 +14854,8 @@ export const useWatchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsBreakerActivatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14720,7 +14867,8 @@ export const useWatchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsDepositEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14732,7 +14880,8 @@ export const useWatchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14744,7 +14893,8 @@ export const useWatchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14756,7 +14906,8 @@ export const useWatchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14768,7 +14919,8 @@ export const useWatchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14780,7 +14932,8 @@ export const useWatchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14792,7 +14945,8 @@ export const useWatchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14804,7 +14958,8 @@ export const useWatchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14816,7 +14971,8 @@ export const useWatchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14828,7 +14984,8 @@ export const useWatchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const useWatchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14840,7 +14997,8 @@ export const useWatchStakingPositionsWithdrawEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributor =
   /*#__PURE__*/ createUseReadContract({
@@ -14851,7 +15009,8 @@ export const useReadStakingRewardsDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorWeek =
   /*#__PURE__*/ createUseReadContract({
@@ -14863,7 +15022,8 @@ export const useReadStakingRewardsDistributorWeek =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createUseReadContract({
@@ -14875,7 +15035,8 @@ export const useReadStakingRewardsDistributorBaseRewardCursor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createUseReadContract({
@@ -14887,7 +15048,8 @@ export const useReadStakingRewardsDistributorBaseRewardPeriodCursor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createUseReadContract({
@@ -14899,7 +15061,8 @@ export const useReadStakingRewardsDistributorBaseRewardPeriods =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createUseReadContract({
@@ -14911,7 +15074,8 @@ export const useReadStakingRewardsDistributorBaseRewardsPerWeek =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createUseReadContract({
@@ -14923,7 +15087,8 @@ export const useReadStakingRewardsDistributorClaimable =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createUseReadContract({
@@ -14935,7 +15100,8 @@ export const useReadStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createUseReadContract({
@@ -14947,7 +15113,8 @@ export const useReadStakingRewardsDistributorCurrentPeriodId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -14959,7 +15126,8 @@ export const useReadStakingRewardsDistributorGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createUseReadContract({
@@ -14971,7 +15139,8 @@ export const useReadStakingRewardsDistributorGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
@@ -14983,7 +15152,8 @@ export const useReadStakingRewardsDistributorGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
@@ -14995,7 +15165,8 @@ export const useReadStakingRewardsDistributorIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createUseReadContract({
@@ -15007,7 +15178,8 @@ export const useReadStakingRewardsDistributorLastTokenTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -15019,7 +15191,8 @@ export const useReadStakingRewardsDistributorOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorPaused =
   /*#__PURE__*/ createUseReadContract({
@@ -15031,7 +15204,8 @@ export const useReadStakingRewardsDistributorPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createUseReadContract({
@@ -15043,7 +15217,8 @@ export const useReadStakingRewardsDistributorProtocolRewardsPerTokenPaid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -15055,7 +15230,8 @@ export const useReadStakingRewardsDistributorProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorStaking =
   /*#__PURE__*/ createUseReadContract({
@@ -15067,7 +15243,8 @@ export const useReadStakingRewardsDistributorStaking =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createUseReadContract({
@@ -15079,7 +15256,8 @@ export const useReadStakingRewardsDistributorStartTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useReadStakingRewardsDistributorToken =
   /*#__PURE__*/ createUseReadContract({
@@ -15091,7 +15269,8 @@ export const useReadStakingRewardsDistributorToken =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributor =
   /*#__PURE__*/ createUseWriteContract({
@@ -15102,7 +15281,8 @@ export const useWriteStakingRewardsDistributor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseWriteContract({
@@ -15114,7 +15294,8 @@ export const useWriteStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseWriteContract({
@@ -15126,7 +15307,8 @@ export const useWriteStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15138,7 +15320,8 @@ export const useWriteStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseWriteContract({
@@ -15150,7 +15333,8 @@ export const useWriteStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseWriteContract({
@@ -15162,7 +15346,8 @@ export const useWriteStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -15174,7 +15359,8 @@ export const useWriteStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15186,7 +15372,8 @@ export const useWriteStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -15198,7 +15385,8 @@ export const useWriteStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -15210,7 +15398,8 @@ export const useWriteStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -15222,7 +15411,8 @@ export const useWriteStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15234,7 +15424,8 @@ export const useWriteStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createUseWriteContract({
@@ -15246,7 +15437,8 @@ export const useWriteStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -15258,7 +15450,8 @@ export const useWriteStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWriteStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -15270,7 +15463,8 @@ export const useWriteStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributor =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15281,7 +15475,8 @@ export const useSimulateStakingRewardsDistributor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15293,7 +15488,8 @@ export const useSimulateStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15305,7 +15501,8 @@ export const useSimulateStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15317,7 +15514,8 @@ export const useSimulateStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15329,7 +15527,8 @@ export const useSimulateStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15341,7 +15540,8 @@ export const useSimulateStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15353,7 +15553,8 @@ export const useSimulateStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15365,7 +15566,8 @@ export const useSimulateStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15377,7 +15579,8 @@ export const useSimulateStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15389,7 +15592,8 @@ export const useSimulateStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15401,7 +15605,8 @@ export const useSimulateStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15413,7 +15618,8 @@ export const useSimulateStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15425,7 +15631,8 @@ export const useSimulateStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15437,7 +15644,8 @@ export const useSimulateStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useSimulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15449,7 +15657,8 @@ export const useSimulateStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15460,7 +15669,8 @@ export const useWatchStakingRewardsDistributorEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15472,7 +15682,8 @@ export const useWatchStakingRewardsDistributorAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15484,7 +15695,8 @@ export const useWatchStakingRewardsDistributorBaseRewardsClaimedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15496,7 +15708,8 @@ export const useWatchStakingRewardsDistributorBaseRewardsDepositedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15508,7 +15721,8 @@ export const useWatchStakingRewardsDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15520,7 +15734,8 @@ export const useWatchStakingRewardsDistributorInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15532,7 +15747,8 @@ export const useWatchStakingRewardsDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15544,7 +15760,8 @@ export const useWatchStakingRewardsDistributorPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15556,7 +15773,8 @@ export const useWatchStakingRewardsDistributorProtocolFeesDepositedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15568,7 +15786,8 @@ export const useWatchStakingRewardsDistributorProtocolRewardsClaimedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15580,7 +15799,8 @@ export const useWatchStakingRewardsDistributorUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const useWatchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15596,7 +15816,8 @@ export const useWatchStakingRewardsDistributorUpgradedEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributor = /*#__PURE__*/ createReadContract({
   abi: councilMerkleDistributorAbi,
@@ -15606,7 +15827,8 @@ export const readCouncilMerkleDistributor = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalOwner =
   /*#__PURE__*/ createReadContract({
@@ -15618,7 +15840,8 @@ export const readCouncilMerkleDistributorGlobalOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalPause =
   /*#__PURE__*/ createReadContract({
@@ -15630,7 +15853,8 @@ export const readCouncilMerkleDistributorGlobalPause =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorGlobalRestrict =
   /*#__PURE__*/ createReadContract({
@@ -15642,7 +15866,8 @@ export const readCouncilMerkleDistributorGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorIsClaimed =
   /*#__PURE__*/ createReadContract({
@@ -15654,7 +15879,8 @@ export const readCouncilMerkleDistributorIsClaimed =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorIsPausedLocal =
   /*#__PURE__*/ createReadContract({
@@ -15666,7 +15892,8 @@ export const readCouncilMerkleDistributorIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"merkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorMerkleRoot =
   /*#__PURE__*/ createReadContract({
@@ -15678,7 +15905,8 @@ export const readCouncilMerkleDistributorMerkleRoot =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorOwner =
   /*#__PURE__*/ createReadContract({
@@ -15690,7 +15918,8 @@ export const readCouncilMerkleDistributorOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorPaused =
   /*#__PURE__*/ createReadContract({
@@ -15702,7 +15931,8 @@ export const readCouncilMerkleDistributorPaused =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -15714,7 +15944,8 @@ export const readCouncilMerkleDistributorProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const readCouncilMerkleDistributorToken =
   /*#__PURE__*/ createReadContract({
@@ -15726,7 +15957,8 @@ export const readCouncilMerkleDistributorToken =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributor = /*#__PURE__*/ createWriteContract({
   abi: councilMerkleDistributorAbi,
@@ -15736,7 +15968,8 @@ export const writeCouncilMerkleDistributor = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createWriteContract({
@@ -15748,7 +15981,8 @@ export const writeCouncilMerkleDistributorClaim =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -15760,7 +15994,8 @@ export const writeCouncilMerkleDistributorInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -15772,7 +16007,8 @@ export const writeCouncilMerkleDistributorPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
@@ -15784,7 +16020,8 @@ export const writeCouncilMerkleDistributorRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -15796,7 +16033,8 @@ export const writeCouncilMerkleDistributorRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -15808,7 +16046,8 @@ export const writeCouncilMerkleDistributorTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -15820,7 +16059,8 @@ export const writeCouncilMerkleDistributorUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createWriteContract({
@@ -15832,7 +16072,8 @@ export const writeCouncilMerkleDistributorUpdateMerkleRoot =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createWriteContract({
@@ -15844,7 +16085,8 @@ export const writeCouncilMerkleDistributorUpgradeTo =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const writeCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -15856,7 +16098,8 @@ export const writeCouncilMerkleDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributor =
   /*#__PURE__*/ createSimulateContract({
@@ -15867,7 +16110,8 @@ export const simulateCouncilMerkleDistributor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorClaim =
   /*#__PURE__*/ createSimulateContract({
@@ -15879,7 +16123,8 @@ export const simulateCouncilMerkleDistributorClaim =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -15891,7 +16136,8 @@ export const simulateCouncilMerkleDistributorInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorPauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -15903,7 +16149,8 @@ export const simulateCouncilMerkleDistributorPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -15915,7 +16162,8 @@ export const simulateCouncilMerkleDistributorRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -15927,7 +16175,8 @@ export const simulateCouncilMerkleDistributorRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -15939,7 +16188,8 @@ export const simulateCouncilMerkleDistributorTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -15951,7 +16201,8 @@ export const simulateCouncilMerkleDistributorUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"updateMerkleRoot"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpdateMerkleRoot =
   /*#__PURE__*/ createSimulateContract({
@@ -15963,7 +16214,8 @@ export const simulateCouncilMerkleDistributorUpdateMerkleRoot =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -15975,7 +16227,8 @@ export const simulateCouncilMerkleDistributorUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const simulateCouncilMerkleDistributorUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -15987,7 +16240,8 @@ export const simulateCouncilMerkleDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -15998,7 +16252,8 @@ export const watchCouncilMerkleDistributorEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16010,7 +16265,8 @@ export const watchCouncilMerkleDistributorAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16022,7 +16278,8 @@ export const watchCouncilMerkleDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Claimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16034,7 +16291,8 @@ export const watchCouncilMerkleDistributorClaimedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16046,7 +16304,8 @@ export const watchCouncilMerkleDistributorInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"MerkleRootUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorMerkleRootUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16058,7 +16317,8 @@ export const watchCouncilMerkleDistributorMerkleRootUpdatedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16070,7 +16330,8 @@ export const watchCouncilMerkleDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16082,7 +16343,8 @@ export const watchCouncilMerkleDistributorPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16094,7 +16356,8 @@ export const watchCouncilMerkleDistributorUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link councilMerkleDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x5bb6643E0cA641830ae29A8267484f08C063c0b0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x236Ae676CB5b107fa0cC545B181Bc9166494b180)
  */
 export const watchCouncilMerkleDistributorUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -22699,7 +22962,8 @@ export const watchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositions = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22709,7 +22973,8 @@ export const readStakingPositions = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22720,7 +22985,8 @@ export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22731,7 +22997,8 @@ export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createReadContract({
@@ -22743,7 +23010,8 @@ export const readStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createReadContract({
@@ -22755,7 +23023,8 @@ export const readStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createReadContract({
@@ -22767,7 +23036,8 @@ export const readStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsBreaker = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22778,7 +23048,8 @@ export const readStakingPositionsBreaker = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22789,7 +23060,8 @@ export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22800,7 +23072,8 @@ export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
   {
@@ -22813,7 +23086,8 @@ export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createReadContract({
@@ -22825,7 +23099,8 @@ export const readStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetPointHistory =
   /*#__PURE__*/ createReadContract({
@@ -22837,7 +23112,8 @@ export const readStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
   {
@@ -22850,7 +23126,8 @@ export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createReadContract({
@@ -22862,7 +23139,8 @@ export const readStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createReadContract({
@@ -22874,7 +23152,8 @@ export const readStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createReadContract({
@@ -22886,7 +23165,8 @@ export const readStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
   {
@@ -22899,7 +23179,8 @@ export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
   {
@@ -22912,7 +23193,8 @@ export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createReadContract({
@@ -22924,7 +23206,8 @@ export const readStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22935,7 +23218,8 @@ export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createReadContract({
@@ -22947,7 +23231,8 @@ export const readStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createReadContract({
@@ -22959,7 +23244,8 @@ export const readStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createReadContract({
@@ -22971,7 +23257,8 @@ export const readStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22982,7 +23269,8 @@ export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22993,7 +23281,8 @@ export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23004,7 +23293,8 @@ export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23015,7 +23305,8 @@ export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createReadContract({
@@ -23027,7 +23318,8 @@ export const readStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23038,7 +23330,8 @@ export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -23050,7 +23343,8 @@ export const readStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsRewardsDistributor =
   /*#__PURE__*/ createReadContract({
@@ -23062,7 +23356,8 @@ export const readStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsSlopeChanges =
   /*#__PURE__*/ createReadContract({
@@ -23074,7 +23369,8 @@ export const readStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23085,7 +23381,8 @@ export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsSupportsInterface =
   /*#__PURE__*/ createReadContract({
@@ -23097,7 +23394,8 @@ export const readStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23108,7 +23406,8 @@ export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23119,7 +23418,8 @@ export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23130,7 +23430,8 @@ export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23141,7 +23442,8 @@ export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
   {
@@ -23154,7 +23456,8 @@ export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createReadContract({
@@ -23166,7 +23469,8 @@ export const readStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const readStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createReadContract({
@@ -23178,7 +23482,8 @@ export const readStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23188,7 +23493,8 @@ export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23199,7 +23505,8 @@ export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsCheckpoint =
   /*#__PURE__*/ createWriteContract({
@@ -23211,7 +23518,8 @@ export const writeStakingPositionsCheckpoint =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsCreateLock =
   /*#__PURE__*/ createWriteContract({
@@ -23223,7 +23531,8 @@ export const writeStakingPositionsCreateLock =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsDepositFor =
   /*#__PURE__*/ createWriteContract({
@@ -23235,7 +23544,8 @@ export const writeStakingPositionsDepositFor =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createWriteContract({
@@ -23247,7 +23557,8 @@ export const writeStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createWriteContract({
@@ -23259,7 +23570,8 @@ export const writeStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -23271,7 +23583,8 @@ export const writeStakingPositionsInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsPauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -23283,7 +23596,8 @@ export const writeStakingPositionsPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
@@ -23295,7 +23609,8 @@ export const writeStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -23307,7 +23622,8 @@ export const writeStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createWriteContract({
@@ -23319,7 +23635,8 @@ export const writeStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createWriteContract({
@@ -23331,7 +23648,8 @@ export const writeStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsSetArtProxy =
   /*#__PURE__*/ createWriteContract({
@@ -23343,7 +23661,8 @@ export const writeStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsSetMaxTime =
   /*#__PURE__*/ createWriteContract({
@@ -23355,7 +23674,8 @@ export const writeStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsTransferFrom =
   /*#__PURE__*/ createWriteContract({
@@ -23367,7 +23687,8 @@ export const writeStakingPositionsTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -23379,7 +23700,8 @@ export const writeStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsUnlockAll = /*#__PURE__*/ createWriteContract(
   {
@@ -23392,7 +23714,8 @@ export const writeStakingPositionsUnlockAll = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -23404,7 +23727,8 @@ export const writeStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
   {
@@ -23417,7 +23741,8 @@ export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -23429,7 +23754,8 @@ export const writeStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23440,7 +23766,8 @@ export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
   abi: stakingPositionsAbi,
@@ -23450,7 +23777,8 @@ export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsApprove =
   /*#__PURE__*/ createSimulateContract({
@@ -23462,7 +23790,8 @@ export const simulateStakingPositionsApprove =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createSimulateContract({
@@ -23474,7 +23803,8 @@ export const simulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsCreateLock =
   /*#__PURE__*/ createSimulateContract({
@@ -23486,7 +23816,8 @@ export const simulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsDepositFor =
   /*#__PURE__*/ createSimulateContract({
@@ -23498,7 +23829,8 @@ export const simulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createSimulateContract({
@@ -23510,7 +23842,8 @@ export const simulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createSimulateContract({
@@ -23522,7 +23855,8 @@ export const simulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -23534,7 +23868,8 @@ export const simulateStakingPositionsInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -23546,7 +23881,8 @@ export const simulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -23558,7 +23894,8 @@ export const simulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -23570,7 +23907,8 @@ export const simulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createSimulateContract({
@@ -23582,7 +23920,8 @@ export const simulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createSimulateContract({
@@ -23594,7 +23933,8 @@ export const simulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createSimulateContract({
@@ -23606,7 +23946,8 @@ export const simulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createSimulateContract({
@@ -23618,7 +23959,8 @@ export const simulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createSimulateContract({
@@ -23630,7 +23972,8 @@ export const simulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -23642,7 +23985,8 @@ export const simulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsUnlockAll =
   /*#__PURE__*/ createSimulateContract({
@@ -23654,7 +23998,8 @@ export const simulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -23666,7 +24011,8 @@ export const simulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -23678,7 +24024,8 @@ export const simulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -23690,7 +24037,8 @@ export const simulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const simulateStakingPositionsWithdraw =
   /*#__PURE__*/ createSimulateContract({
@@ -23702,7 +24050,8 @@ export const simulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23713,7 +24062,8 @@ export const watchStakingPositionsEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23725,7 +24075,8 @@ export const watchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23737,7 +24088,8 @@ export const watchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23749,7 +24101,8 @@ export const watchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23761,7 +24114,8 @@ export const watchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23773,7 +24127,8 @@ export const watchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsBreakerActivatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23785,7 +24140,8 @@ export const watchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsDepositEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23797,7 +24153,8 @@ export const watchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23809,7 +24166,8 @@ export const watchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23821,7 +24179,8 @@ export const watchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23833,7 +24192,8 @@ export const watchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23845,7 +24205,8 @@ export const watchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23857,7 +24218,8 @@ export const watchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsTransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23869,7 +24231,8 @@ export const watchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23881,7 +24244,8 @@ export const watchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23893,7 +24257,8 @@ export const watchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x37EEf1059C974b1142a706a4090Dbebd0ba6C2bD)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
  */
 export const watchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23905,7 +24270,8 @@ export const watchStakingPositionsWithdrawEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributor = /*#__PURE__*/ createReadContract({
   abi: stakingRewardsDistributorAbi,
@@ -23915,7 +24281,8 @@ export const readStakingRewardsDistributor = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorWeek =
   /*#__PURE__*/ createReadContract({
@@ -23927,7 +24294,8 @@ export const readStakingRewardsDistributorWeek =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createReadContract({
@@ -23939,7 +24307,8 @@ export const readStakingRewardsDistributorBaseRewardCursor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createReadContract({
@@ -23951,7 +24320,8 @@ export const readStakingRewardsDistributorBaseRewardPeriodCursor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createReadContract({
@@ -23963,7 +24333,8 @@ export const readStakingRewardsDistributorBaseRewardPeriods =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createReadContract({
@@ -23975,7 +24346,8 @@ export const readStakingRewardsDistributorBaseRewardsPerWeek =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createReadContract({
@@ -23987,7 +24359,8 @@ export const readStakingRewardsDistributorClaimable =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createReadContract({
@@ -23999,7 +24372,8 @@ export const readStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createReadContract({
@@ -24011,7 +24385,8 @@ export const readStakingRewardsDistributorCurrentPeriodId =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createReadContract({
@@ -24023,7 +24398,8 @@ export const readStakingRewardsDistributorGlobalOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createReadContract({
@@ -24035,7 +24411,8 @@ export const readStakingRewardsDistributorGlobalPause =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createReadContract({
@@ -24047,7 +24424,8 @@ export const readStakingRewardsDistributorGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createReadContract({
@@ -24059,7 +24437,8 @@ export const readStakingRewardsDistributorIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createReadContract({
@@ -24071,7 +24450,8 @@ export const readStakingRewardsDistributorLastTokenTime =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorOwner =
   /*#__PURE__*/ createReadContract({
@@ -24083,7 +24463,8 @@ export const readStakingRewardsDistributorOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorPaused =
   /*#__PURE__*/ createReadContract({
@@ -24095,7 +24476,8 @@ export const readStakingRewardsDistributorPaused =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createReadContract({
@@ -24107,7 +24489,8 @@ export const readStakingRewardsDistributorProtocolRewardsPerTokenPaid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -24119,7 +24502,8 @@ export const readStakingRewardsDistributorProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorStaking =
   /*#__PURE__*/ createReadContract({
@@ -24131,7 +24515,8 @@ export const readStakingRewardsDistributorStaking =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createReadContract({
@@ -24143,7 +24528,8 @@ export const readStakingRewardsDistributorStartTime =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const readStakingRewardsDistributorToken =
   /*#__PURE__*/ createReadContract({
@@ -24155,7 +24541,8 @@ export const readStakingRewardsDistributorToken =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributor = /*#__PURE__*/ createWriteContract(
   {
@@ -24167,7 +24554,8 @@ export const writeStakingRewardsDistributor = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorClaim =
   /*#__PURE__*/ createWriteContract({
@@ -24179,7 +24567,8 @@ export const writeStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createWriteContract({
@@ -24191,7 +24580,8 @@ export const writeStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createWriteContract({
@@ -24203,7 +24593,8 @@ export const writeStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createWriteContract({
@@ -24215,7 +24606,8 @@ export const writeStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createWriteContract({
@@ -24227,7 +24619,8 @@ export const writeStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -24239,7 +24632,8 @@ export const writeStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -24251,7 +24645,8 @@ export const writeStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
@@ -24263,7 +24658,8 @@ export const writeStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -24275,7 +24671,8 @@ export const writeStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -24287,7 +24684,8 @@ export const writeStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -24299,7 +24697,8 @@ export const writeStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createWriteContract({
@@ -24311,7 +24710,8 @@ export const writeStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createWriteContract({
@@ -24323,7 +24723,8 @@ export const writeStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const writeStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -24335,7 +24736,8 @@ export const writeStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributor =
   /*#__PURE__*/ createSimulateContract({
@@ -24346,7 +24748,8 @@ export const simulateStakingRewardsDistributor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createSimulateContract({
@@ -24358,7 +24761,8 @@ export const simulateStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createSimulateContract({
@@ -24370,7 +24774,8 @@ export const simulateStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createSimulateContract({
@@ -24382,7 +24787,8 @@ export const simulateStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createSimulateContract({
@@ -24394,7 +24800,8 @@ export const simulateStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createSimulateContract({
@@ -24406,7 +24813,8 @@ export const simulateStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -24418,7 +24826,8 @@ export const simulateStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -24430,7 +24839,8 @@ export const simulateStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -24442,7 +24852,8 @@ export const simulateStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -24454,7 +24865,8 @@ export const simulateStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -24466,7 +24878,8 @@ export const simulateStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -24478,7 +24891,8 @@ export const simulateStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createSimulateContract({
@@ -24490,7 +24904,8 @@ export const simulateStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -24502,7 +24917,8 @@ export const simulateStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const simulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -24514,7 +24930,8 @@ export const simulateStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24525,7 +24942,8 @@ export const watchStakingRewardsDistributorEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24537,7 +24955,8 @@ export const watchStakingRewardsDistributorAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24549,7 +24968,8 @@ export const watchStakingRewardsDistributorBaseRewardsClaimedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24561,7 +24981,8 @@ export const watchStakingRewardsDistributorBaseRewardsDepositedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24573,7 +24994,8 @@ export const watchStakingRewardsDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24585,7 +25007,8 @@ export const watchStakingRewardsDistributorInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24597,7 +25020,8 @@ export const watchStakingRewardsDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24609,7 +25033,8 @@ export const watchStakingRewardsDistributorPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24621,7 +25046,8 @@ export const watchStakingRewardsDistributorProtocolFeesDepositedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24633,7 +25059,8 @@ export const watchStakingRewardsDistributorProtocolRewardsClaimedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24645,7 +25072,8 @@ export const watchStakingRewardsDistributorUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
  */
 export const watchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({

@@ -20,7 +20,7 @@
     "deploy-fork:arbitrum": "cross-env HARDHAT_DEPLOY_FORK=arbitrum hardhat deploy --network hardhat",
     "deploy-fork:linea": "cross-env HARDHAT_DEPLOY_FORK=linea hardhat deploy --network hardhat",
     "deploy-fork:base": "cross-env HARDHAT_DEPLOY_FORK=base hardhat deploy --network hardhat",
-    "deploy-fork:hedera": "Error: does not work because of flawed HTS simulation libs",
+    "deploy-fork:hedera": ">>> Error: does not work because of flawed HTS simulation libs!!!",
     "deploy:mainnet": "hardhat deploy --network mainnet",
     "deploy:arbitrum": "hardhat deploy --network arbitrum",
     "deploy:linea": "hardhat deploy --network linea",
