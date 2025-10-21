@@ -19824,7 +19824,7 @@
           "abi": []
         },
         "LedgityYieldVaultHedera_Implementation": {
-          "address": "0xF1F9e5D806B6131FbC92bC165eC562175Ba6f257",
+          "address": "0x21Af86E34F77e38b0d46F6cd398efA88A1796857",
           "abi": [
             {
               "inputs": [],
@@ -27204,7 +27204,7 @@
           ]
         },
         "lyUSD": {
-          "address": "0x7b25b4Cde2666e31780BDB0a3ab8568be423060B",
+          "address": "0x102C86AC5b680149c34d6a8037692639263EAbb9",
           "abi": [
             {
               "anonymous": false,
@@ -29771,7 +29771,7 @@
           ]
         },
         "lyUSD_Proxy": {
-          "address": "0x7b25b4Cde2666e31780BDB0a3ab8568be423060B",
+          "address": "0x102C86AC5b680149c34d6a8037692639263EAbb9",
           "abi": [
             {
               "inputs": [
