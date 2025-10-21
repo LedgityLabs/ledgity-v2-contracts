@@ -28,7 +28,7 @@ export default async function deploy({
       ].map((el) => deployments.get(el).then((el) => el.address as Address)),
     );
 
-  const args = getParametersForVault(
+  const args = await getParametersForVault(
     Number(chainId),
     VAULT_TOKEN_NAME,
     VAULT_TOKEN_SYMBOL,
@@ -36,6 +36,7 @@ export default async function deploy({
     globalPause,
     globalAccessList,
   );
+  console.log("args: ", args);
 
   // Deploy the LToken
   const result = await deployments.deploy(VAULT_TOKEN_SYMBOL, {

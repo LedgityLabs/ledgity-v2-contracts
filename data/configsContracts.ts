@@ -1,7 +1,16 @@
 import fs from "fs";
-import { Address, parseEther, parseUnits, zeroAddress, isAddress } from "viem";
+import {
+  Address,
+  parseEther,
+  parseUnits,
+  zeroAddress,
+  isAddress,
+  createPublicClient,
+  http,
+} from "viem";
 import { dependencies } from "./dependencies";
 import deployedContracts from "./deployments.json";
+import { base } from "viem/chains";
 
 type VaultParams = {
   name: string;
@@ -69,6 +78,32 @@ export function writeTempTokenAddress(
   );
 }
 
+export async function getReferenceBaseAssetsPerShare(
+  symbol: "lyUSD" | "lyEUR",
+): Promise<bigint> {
+  const client = createPublicClient({
+    chain: base,
+    transport: http(base.rpcUrls.default.http[0]),
+  });
+
+  const result = await client.readContract({
+    abi: [
+      {
+        type: "function",
+        inputs: [{ name: "shares", internalType: "uint256", type: "uint256" }],
+        name: "convertToAssets",
+        outputs: [{ name: "assets", internalType: "uint256", type: "uint256" }],
+        stateMutability: "view",
+      },
+    ],
+    address: getTokenAddress(8453, symbol),
+    functionName: "convertToAssets",
+    args: [10n ** 18n],
+  });
+
+  return result;
+}
+
 export function getTokenAddress(
   chainId: number | string,
   symbol: string,
@@ -109,14 +144,14 @@ export function getGeneralChainConfig(chainId: number) {
   return chainConfig;
 }
 
-export function getParametersForVault(
+export async function getParametersForVault(
   chainId: number,
   name: string,
   symbol: "lyUSD" | "lyEUR",
   globalOwner: Address,
   globalPause: Address,
   globalAccessList: Address,
-): [VaultParams, VaultLiquidityInitParams] {
+): Promise<[VaultParams, VaultLiquidityInitParams]> {
   const chainConfig = configsContracts[chainId];
   const vaultConfig = chainConfig?.vaults?.[symbol];
 
@@ -128,6 +163,12 @@ export function getParametersForVault(
     chainConfig.feeRecipient === zeroAddress
   )
     throw Error("Invalid liquidityManager or feeRecipient");
+
+  const referenceBaseAssetsPerShare =
+    await getReferenceBaseAssetsPerShare(symbol);
+  const initialAssetsPerShare =
+    vaultConfig.initialAssetsPerShare || referenceBaseAssetsPerShare;
+  console.log("=> Initial Share Price: ", initialAssetsPerShare);
 
   return [
     {
@@ -149,7 +190,7 @@ export function getParametersForVault(
       aaveLendingPool: vaultConfig.aaveLendingPool,
     },
     {
-      initialAssetsPerShare: vaultConfig.initialAssetsPerShare,
+      initialAssetsPerShare,
       highWaterMark: vaultConfig.highWaterMark,
       deploymentDelay: vaultConfig.deploymentDelay,
       yieldAPR: vaultConfig.yieldAPR,
@@ -207,7 +248,7 @@ const configsContracts: {
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -223,7 +264,7 @@ const configsContracts: {
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[1].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -251,7 +292,7 @@ const configsContracts: {
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -267,7 +308,7 @@ const configsContracts: {
         liquidityManager: "0xF25a516CAF56895032b3f3eE842b45462Ff491c3",
         aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -295,7 +336,7 @@ const configsContracts: {
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[42161].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -323,7 +364,7 @@ const configsContracts: {
         liquidityManager: "0x0000000000000000000000000000000000993039",
         aaveLendingPool: "0x0000000000000000000000000000000000000000",
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -351,7 +392,7 @@ const configsContracts: {
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[59144].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
@@ -379,7 +420,7 @@ const configsContracts: {
         liquidityManager: "0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac",
         aaveLendingPool: dependencies[146].AAVE_LENDING_POOL,
         //
-        initialAssetsPerShare: 0n, // default 1:1 ratio
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
         highWaterMark: 0n, // default 1:1 ratio
         deploymentDelay: 1, // days
         yieldAPR: toRay(9), // 9% APR in RAY
