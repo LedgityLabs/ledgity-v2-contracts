@@ -543,8 +543,12 @@ export const genericErc20Abi = [
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const globalAccessListAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -754,17 +758,29 @@ export const globalAccessListAbi = [
 ] as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const globalAccessListAddress = {
+  1: '0x210482e0B5c29086F733e6Dd44e2C19f32ae1757',
+  146: '0x13e62b8113590C46b273abe35Bd86d4C7856E955',
   295: '0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a',
   8453: '0x2166480d795f1d185bA940af58B905E3B33104e9',
+  42161: '0xc2503094BBcd67600319153f95C9b846BaC4a66B',
+  59144: '0x2Aff7737dd64390f18e76E39c977b6b0736B5A59',
 } as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const globalAccessListConfig = {
   address: globalAccessListAddress,
@@ -4556,6 +4572,1561 @@ export const ledgityYieldVaultAbi = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LedgityYieldVaultSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const ledgityYieldVaultSonicAbi = [
+  { type: 'error', inputs: [], name: 'InsufficientLiquidity' },
+  { type: 'error', inputs: [], name: 'InsufficientStakeForInstantWithdrawal' },
+  { type: 'error', inputs: [], name: 'MissingWithdrawalRequestFee' },
+  { type: 'error', inputs: [], name: 'MustImplementMintAndBurnFunctions' },
+  { type: 'error', inputs: [], name: 'NoLTokenSet' },
+  { type: 'error', inputs: [], name: 'OnlyLiquidityManager' },
+  { type: 'error', inputs: [], name: 'RateAboveHundredPercent' },
+  { type: 'error', inputs: [], name: 'RequestAlreadyProcessed' },
+  {
+    type: 'error',
+    inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
+    name: 'SenderNotBurner',
+  },
+  {
+    type: 'error',
+    inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
+    name: 'SenderNotCCIPAdmin',
+  },
+  {
+    type: 'error',
+    inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
+    name: 'SenderNotMinter',
+  },
+  { type: 'error', inputs: [], name: 'TransferFailed' },
+  { type: 'error', inputs: [], name: 'UserIsRestricted' },
+  { type: 'error', inputs: [], name: 'ZeroAddress' },
+  { type: 'error', inputs: [], name: 'ZeroAddressCCIPAdmin' },
+  { type: 'error', inputs: [], name: 'ZeroAmount' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'newAPR',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'oldAPR',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'APRUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'withdrawalFee',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'AccountWithdrawalFeeSet',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Approval',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'bufferRate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'BufferRateUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'burner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BurnAccessGranted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'burner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BurnAccessRevoked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'CCIPAdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldDelay',
+        internalType: 'uint8',
+        type: 'uint8',
+        indexed: false,
+      },
+      {
+        name: 'newDelay',
+        internalType: 'uint8',
+        type: 'uint8',
+        indexed: false,
+      },
+    ],
+    name: 'DeploymentDelayUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Deposit',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'managementFeeRate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'performanceRate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'withdrawalRate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'FeeRatesUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'minter',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'MintAccessGranted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'minter',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'MintAccessRevoked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'newRate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newAPR',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'RateCheckpointUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldTotalAssets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newTotalAssets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'TotalAssetsUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'liquidityManager',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'feeRecipient',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'VaultManagersUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'newLToken',
+        internalType: 'contract IERC20',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newStakeToken',
+        internalType: 'contract IERC20',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newStakeForFeeReduction',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newStakeForInstantWithdrawal',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newAaveLendingPool',
+        internalType: 'contract IAaveLendingPoolV3',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'VaultParamsUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'receiver',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Withdraw',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'requestId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'WithdrawalProcessed',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'requestId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'WithdrawalRequested',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'RAY',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'aToken',
+    outputs: [{ name: '', internalType: 'contract IERC20', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'aaveLendingPool',
+    outputs: [
+      {
+        name: '',
+        internalType: 'contract IAaveLendingPoolV3',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'accountWithdrawalFee',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+    ],
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'asset',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'burn',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'burnFrom', internalType: 'address', type: 'address' },
+      { name: 'remintTo', internalType: 'address', type: 'address' },
+    ],
+    name: 'burnAndRemintBlacklistedShares',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'convertToAssets',
+    outputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'convertToShares',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimalsOffset',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'decreaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'deploymentDelay',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'deposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'depositToBuffer',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'feeRecipient',
+    outputs: [{ name: '', internalType: 'address payable', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getBufferAssets',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getCCIPAdmin',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getFeeData',
+    outputs: [
+      { name: 'feeShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'pricePerShare', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address' },
+      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
+      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getUserWithdrawalRequests',
+    outputs: [
+      {
+        name: 'requests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getWithdrawalRequestCount',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
+      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getWithdrawalRequests',
+    outputs: [
+      {
+        name: 'requests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'requestIds', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'getWithdrawalRequestsByIds',
+    outputs: [
+      {
+        name: 'requests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalPause', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalRestrict',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalAccessList', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'burner', internalType: 'address', type: 'address' }],
+    name: 'grantBurnRole',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'minter', internalType: 'address', type: 'address' }],
+    name: 'grantMintRole',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'harvestFees',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'hasBufferStrategy',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'highWaterMark',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'params',
+        internalType: 'struct ILedgityYieldVault.VaultParams',
+        type: 'tuple',
+        components: [
+          { name: 'name', internalType: 'string', type: 'string' },
+          { name: 'symbol', internalType: 'string', type: 'string' },
+          { name: 'asset', internalType: 'contract IERC20', type: 'address' },
+          { name: 'lToken', internalType: 'contract IERC20', type: 'address' },
+          {
+            name: 'stakeToken',
+            internalType: 'contract IERC20',
+            type: 'address',
+          },
+          {
+            name: 'stakeForFeeReduction',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'stakeForInstantWithdrawal',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'globalOwner', internalType: 'address', type: 'address' },
+          { name: 'globalPause', internalType: 'address', type: 'address' },
+          {
+            name: 'globalAccessList',
+            internalType: 'address',
+            type: 'address',
+          },
+          {
+            name: 'liquidityManager',
+            internalType: 'address',
+            type: 'address',
+          },
+          {
+            name: 'feeRecipient',
+            internalType: 'address payable',
+            type: 'address',
+          },
+          {
+            name: 'liquidityBufferRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'aaveLendingPool',
+            internalType: 'contract IAaveLendingPoolV3',
+            type: 'address',
+          },
+        ],
+      },
+      {
+        name: 'vaultLiquidityInitParams',
+        internalType: 'struct IVaultLiquidityModule.VaultLiquidityInitParams',
+        type: 'tuple',
+        components: [
+          { name: 'highWaterMark', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'initialAssetsPerShare',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'yieldAPR', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'managementFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'performanceFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'withdrawalFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'withdrawalGasFee',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'deploymentDelay', internalType: 'uint8', type: 'uint8' },
+        ],
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'params',
+        internalType: 'struct ILedgityYieldVault.VaultParams',
+        type: 'tuple',
+        components: [
+          { name: 'name', internalType: 'string', type: 'string' },
+          { name: 'symbol', internalType: 'string', type: 'string' },
+          { name: 'asset', internalType: 'contract IERC20', type: 'address' },
+          { name: 'lToken', internalType: 'contract IERC20', type: 'address' },
+          {
+            name: 'stakeToken',
+            internalType: 'contract IERC20',
+            type: 'address',
+          },
+          {
+            name: 'stakeForFeeReduction',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'stakeForInstantWithdrawal',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'globalOwner', internalType: 'address', type: 'address' },
+          { name: 'globalPause', internalType: 'address', type: 'address' },
+          {
+            name: 'globalAccessList',
+            internalType: 'address',
+            type: 'address',
+          },
+          {
+            name: 'liquidityManager',
+            internalType: 'address',
+            type: 'address',
+          },
+          {
+            name: 'feeRecipient',
+            internalType: 'address payable',
+            type: 'address',
+          },
+          {
+            name: 'liquidityBufferRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'aaveLendingPool',
+            internalType: 'contract IAaveLendingPoolV3',
+            type: 'address',
+          },
+        ],
+      },
+      {
+        name: 'vaultLiquidityInitParams',
+        internalType: 'struct IVaultLiquidityModule.VaultLiquidityInitParams',
+        type: 'tuple',
+        components: [
+          { name: 'highWaterMark', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'initialAssetsPerShare',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'yieldAPR', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'managementFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'performanceFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'withdrawalFeeRate',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'withdrawalGasFee',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'deploymentDelay', internalType: 'uint8', type: 'uint8' },
+        ],
+      },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'isBurner',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'isMinter',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isPausedLocal',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lToken',
+    outputs: [{ name: '', internalType: 'contract IERC20', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastCompoundTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastFeeTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'liquidityBufferRate',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'liquidityManager',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'managementFeeRate',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'maxDeposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'maxMint',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'maxRedeem',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'maxWithdraw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'migrateLToken',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'mint',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'shares', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'mint',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'name',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'performanceFeeRate',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewDeposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewMint',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewRedeem',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewWithdraw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'requestIds', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: 'addAssets', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'processRequests',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'shares_', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver_', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'redeem',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'requestWithdrawal',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'burner', internalType: 'address', type: 'address' }],
+    name: 'revokeBurnRole',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'minter', internalType: 'address', type: 'address' }],
+    name: 'revokeMintRole',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'withdrawalFee', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setAccountWithdrawalFee',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newAdmin', internalType: 'address', type: 'address' }],
+    name: 'setCCIPAdmin',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newTotalAssets', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setTotalAssets',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'skimBuffer',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeForFeeReduction',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeForInstantWithdrawal',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeToken',
+    outputs: [{ name: '', internalType: 'contract IERC20', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'symbol',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalAssets',
+    outputs: [
+      { name: 'currentTotalAssets', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newAPR', internalType: 'uint256', type: 'uint256' }],
+    name: 'updateAPR',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'bufferRate', internalType: 'uint256', type: 'uint256' }],
+    name: 'updateBufferRate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newDeploymentDelay', internalType: 'uint8', type: 'uint8' },
+    ],
+    name: 'updateDeploymentDelay',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'managementRate_', internalType: 'uint256', type: 'uint256' },
+      { name: 'performanceRate_', internalType: 'uint256', type: 'uint256' },
+      { name: 'withdrawalRate_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'updateFeeRates',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newLiquidityManager', internalType: 'address', type: 'address' },
+      {
+        name: 'newFeeRecipient',
+        internalType: 'address payable',
+        type: 'address',
+      },
+    ],
+    name: 'updateVaultManagers',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newLToken', internalType: 'contract IERC20', type: 'address' },
+      {
+        name: 'newStakeToken',
+        internalType: 'contract IERC20',
+        type: 'address',
+      },
+      {
+        name: 'newStakeForFeeReduction',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'newStakeForInstantWithdrawal',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'newAaveLendingPool',
+        internalType: 'contract IAaveLendingPoolV3',
+        type: 'address',
+      },
+    ],
+    name: 'updateVaultParams',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets_', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver_', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'withdraw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'withdrawalFeeRate',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'withdrawalGasFee',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'withdrawalRequests',
+    outputs: [
+      { name: 'user', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+      { name: 'processed', internalType: 'bool', type: 'bool' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'yieldAPR',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+] as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PreMining
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4963,8 +6534,12 @@ export const preMiningConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const stakingPositionsAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -5822,17 +7397,29 @@ export const stakingPositionsAbi = [
 ] as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const stakingPositionsAddress = {
+  1: '0x902982C0C405091894FF82b3b51F180f99f75144',
+  146: '0xbea9Da36D218079ad6dEe79C447E33d57618B05d',
   295: '0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300',
   8453: '0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88',
+  42161: '0x6E83612c73f124127d49eA642c392FF4d9eAFd5b',
+  59144: '0x891611398B53BBAaA3db04c158218c319c87d554',
 } as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const stakingPositionsConfig = {
   address: stakingPositionsAddress,
@@ -5840,12 +7427,888 @@ export const stakingPositionsConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// StakingPositionsSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const stakingPositionsSonicAbi = [
+  { type: 'error', inputs: [], name: 'ERC721ReceiverRejectedTokens' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'ERC721TransferToNonERC721ReceiverImplementer',
+  },
+  { type: 'error', inputs: [], name: 'LockDurationNotInFuture' },
+  { type: 'error', inputs: [], name: 'LockDurationTooLong' },
+  { type: 'error', inputs: [], name: 'LockExpired' },
+  { type: 'error', inputs: [], name: 'LockNotExpired' },
+  { type: 'error', inputs: [], name: 'NoLockFound' },
+  { type: 'error', inputs: [], name: 'NonExistentToken' },
+  { type: 'error', inputs: [], name: 'NotApprovedOrOwner' },
+  { type: 'error', inputs: [], name: 'NotOwner' },
+  { type: 'error', inputs: [], name: 'SafeCastOverflow' },
+  { type: 'error', inputs: [], name: 'SafeCastUnderflow' },
+  { type: 'error', inputs: [], name: 'SameAddress' },
+  { type: 'error', inputs: [], name: 'UserIsRestricted' },
+  { type: 'error', inputs: [], name: 'ZeroAddress' },
+  { type: 'error', inputs: [], name: 'ZeroAmount' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'approved',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+    ],
+    name: 'Approval',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'operator',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      { name: 'approved', internalType: 'bool', type: 'bool', indexed: false },
+    ],
+    name: 'ApprovalForAll',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: '_fromTokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: '_toTokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'BatchMetadataUpdate',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  { type: 'event', anonymous: false, inputs: [], name: 'BreakerActivated' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'depositType',
+        internalType: 'enum IStakingPositions.DepositType',
+        type: 'uint8',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'locktime',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'timestamp',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Deposit',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: '_tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'MetadataUpdate',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'prevSupply',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'supply',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Supply',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'timestamp',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Withdraw',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_approved', internalType: 'address', type: 'address' },
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'artProxy',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_owner', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_owner', internalType: 'address', type: 'address' }],
+    name: 'balanceOfAccountNFT',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'balanceOfNFT',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_timestamp', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'balanceOfNFTAt',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'breaker',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'checkpoint',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_value', internalType: 'uint256', type: 'uint256' },
+      { name: '_lockDuration', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'createLock',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_value', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'depositFor',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'epoch',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getApproved',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getLockedBalance',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct IStakingPositions.LockedBalance',
+        type: 'tuple',
+        components: [
+          { name: 'amount', internalType: 'int128', type: 'int128' },
+          { name: 'end', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_epoch', internalType: 'uint256', type: 'uint256' }],
+    name: 'getPointHistory',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct IStakingPositions.GlobalPoint',
+        type: 'tuple',
+        components: [
+          { name: 'bias', internalType: 'int128', type: 'int128' },
+          { name: 'slope', internalType: 'int128', type: 'int128' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_user', internalType: 'address', type: 'address' }],
+    name: 'getUserNFTs',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct IStakingPositions.NFTData[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'locked',
+            internalType: 'struct IStakingPositions.LockedBalance',
+            type: 'tuple',
+            components: [
+              { name: 'amount', internalType: 'int128', type: 'int128' },
+              { name: 'end', internalType: 'uint256', type: 'uint256' },
+            ],
+          },
+          { name: 'votingPower', internalType: 'uint256', type: 'uint256' },
+          { name: 'votingPowerAt', internalType: 'uint256', type: 'uint256' },
+          { name: 'owner', internalType: 'address', type: 'address' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_epoch', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getUserPointHistory',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct IStakingPositions.UserPoint',
+        type: 'tuple',
+        components: [
+          { name: 'bias', internalType: 'int128', type: 'int128' },
+          { name: 'slope', internalType: 'int128', type: 'int128' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_user', internalType: 'address', type: 'address' }],
+    name: 'getUserTotalVotingPower',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_user', internalType: 'address', type: 'address' },
+      { name: '_timestamp', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getUserTotalVotingPowerAt',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalPause', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalRestrict',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalAccessList', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'iMaxTime',
+    outputs: [{ name: '', internalType: 'int128', type: 'int128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_value', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAmount',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_lockDuration', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseUnlockTime',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token_', internalType: 'address', type: 'address' },
+      { name: 'rewardsDistributor_', internalType: 'address', type: 'address' },
+      { name: 'maxTime_', internalType: 'uint256', type: 'uint256' },
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalAccessList_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token_', internalType: 'address', type: 'address' },
+      { name: 'rewardsDistributor_', internalType: 'address', type: 'address' },
+      { name: 'maxTime_', internalType: 'uint256', type: 'uint256' },
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalAccessList_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_owner', internalType: 'address', type: 'address' },
+      { name: '_operator', internalType: 'address', type: 'address' },
+    ],
+    name: 'isApprovedForAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_spender', internalType: 'address', type: 'address' },
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'isApprovedOrOwner',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isPausedLocal',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'maxTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'name',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'ownerOf',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'index', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'ownerToNFTokenIdList',
+    outputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardsDistributor',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_from', internalType: 'address', type: 'address' },
+      { name: '_to', internalType: 'address', type: 'address' },
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'safeTransferFrom',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_from', internalType: 'address', type: 'address' },
+      { name: '_to', internalType: 'address', type: 'address' },
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: '_data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'safeTransferFrom',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_operator', internalType: 'address', type: 'address' },
+      { name: '_approved', internalType: 'bool', type: 'bool' },
+    ],
+    name: 'setApprovalForAll',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_proxy', internalType: 'address', type: 'address' }],
+    name: 'setArtProxy',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_maxTime', internalType: 'uint256', type: 'uint256' }],
+    name: 'setMaxTime',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'timestamp', internalType: 'uint256', type: 'uint256' }],
+    name: 'slopeChanges',
+    outputs: [{ name: 'change', internalType: 'int128', type: 'int128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'supply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_interfaceID', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'supportsInterface',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'symbol',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'token',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'tokenId',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'tokenURI',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_timestamp', internalType: 'uint256', type: 'uint256' }],
+    name: 'totalSupplyAt',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_from', internalType: 'address', type: 'address' },
+      { name: '_to', internalType: 'address', type: 'address' },
+      { name: '_tokenId', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unlockAll',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'userPointEpoch',
+    outputs: [{ name: 'epoch', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'withdraw',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+] as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // StakingRewardsDistributor
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const stakingRewardsDistributorAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
@@ -6357,22 +8820,558 @@ export const stakingRewardsDistributorAbi = [
 ] as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const stakingRewardsDistributorAddress = {
+  1: '0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF',
+  146: '0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63',
   295: '0x883108311b43871be1e590C1ab0979e1e72B1DF5',
   8453: '0x2ab82B69aB88e6174425234c4da50b2EdFC217c1',
+  42161: '0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300',
+  59144: '0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4',
 } as const
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const stakingRewardsDistributorConfig = {
   address: stakingRewardsDistributorAddress,
   abi: stakingRewardsDistributorAbi,
 } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// StakingRewardsDistributorSonic
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const stakingRewardsDistributorSonicAbi = [
+  { type: 'error', inputs: [], name: 'InvalidTokenId' },
+  { type: 'error', inputs: [], name: 'NotApprovedOrOwner' },
+  { type: 'error', inputs: [], name: 'NotOwner' },
+  { type: 'error', inputs: [], name: 'OnlyStakingPositions' },
+  { type: 'error', inputs: [], name: 'UserIsRestricted' },
+  { type: 'error', inputs: [], name: 'ZeroAmount' },
+  { type: 'error', inputs: [], name: 'ZeroDuration' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'fromWeek',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'toWeek',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'BaseRewardsClaimed',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'periodId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'startWeek',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'duration',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'weeklyAmount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'BaseRewardsDeposited',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'timestamp',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'totalSupply',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'ProtocolFeesDeposited',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'tokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'ProtocolRewardsClaimed',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'WEEK',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'baseRewardCursor',
+    outputs: [
+      { name: '_weekCursor', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'baseRewardPeriodCursor',
+    outputs: [
+      { name: '_periodCursor', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_periodId', internalType: 'uint256', type: 'uint256' }],
+    name: 'baseRewardPeriods',
+    outputs: [
+      { name: 'startWeek', internalType: 'uint256', type: 'uint256' },
+      { name: 'endWeek', internalType: 'uint256', type: 'uint256' },
+      { name: 'totalAmount', internalType: 'uint256', type: 'uint256' },
+      { name: 'weeklyAmount', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_periodId', internalType: 'uint256', type: 'uint256' },
+      { name: '_week', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'baseRewardsPerWeek',
+    outputs: [{ name: '_amount', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'claim',
+    outputs: [
+      { name: 'baseRewards', internalType: 'uint256', type: 'uint256' },
+      { name: 'protocolRewards', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenIds', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'claimMany',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'to', internalType: 'address', type: 'address' },
+    ],
+    name: 'claimOnWithdrawal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'claimable',
+    outputs: [
+      { name: 'baseRewards', internalType: 'uint256', type: 'uint256' },
+      { name: 'protocolRewards', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'cumulativeProtocolRewardsPerToken',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'currentPeriodId',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'duration', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'depositBaseRewards',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'depositProtocolFees',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalPause', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalRestrict',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalAccessList', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'staking_', internalType: 'address', type: 'address' },
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalAccessList_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'staking_', internalType: 'address', type: 'address' },
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalAccessList_', internalType: 'address', type: 'address' },
+    ],
+    name: 'initializeAndRegister',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isPausedLocal',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastTokenTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_tokenId', internalType: 'uint256', type: 'uint256' }],
+    name: 'protocolRewardsPerTokenPaid',
+    outputs: [{ name: '_amount', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'staking',
+    outputs: [
+      { name: '', internalType: 'contract IStakingPositions', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'startTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'token',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'staking_', internalType: 'address', type: 'address' },
+      { name: 'token_', internalType: 'address', type: 'address' },
+    ],
+    name: 'updateAddresses',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // React
@@ -7186,8 +10185,12 @@ export const useWatchGenericErc20TransferEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessList = /*#__PURE__*/ createUseReadContract({
   abi: globalAccessListAbi,
@@ -7197,8 +10200,12 @@ export const useReadGlobalAccessList = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListGetRestrictedAccounts =
   /*#__PURE__*/ createUseReadContract({
@@ -7210,8 +10217,12 @@ export const useReadGlobalAccessListGetRestrictedAccounts =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -7223,8 +10234,12 @@ export const useReadGlobalAccessListGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListIsRestricted =
   /*#__PURE__*/ createUseReadContract({
@@ -7236,8 +10251,12 @@ export const useReadGlobalAccessListIsRestricted =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListOwner = /*#__PURE__*/ createUseReadContract(
   {
@@ -7250,8 +10269,12 @@ export const useReadGlobalAccessListOwner = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -7263,8 +10286,12 @@ export const useReadGlobalAccessListProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useReadGlobalAccessListRestrictedAccounts =
   /*#__PURE__*/ createUseReadContract({
@@ -7276,8 +10303,12 @@ export const useReadGlobalAccessListRestrictedAccounts =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessList = /*#__PURE__*/ createUseWriteContract({
   abi: globalAccessListAbi,
@@ -7287,8 +10318,12 @@ export const useWriteGlobalAccessList = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -7300,8 +10335,12 @@ export const useWriteGlobalAccessListInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -7313,8 +10352,12 @@ export const useWriteGlobalAccessListRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createUseWriteContract({
@@ -7326,8 +10369,12 @@ export const useWriteGlobalAccessListRestrictAccount =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -7339,8 +10386,12 @@ export const useWriteGlobalAccessListTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createUseWriteContract({
@@ -7352,8 +10403,12 @@ export const useWriteGlobalAccessListUnRestrictAccount =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -7365,8 +10420,12 @@ export const useWriteGlobalAccessListUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWriteGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -7378,8 +10437,12 @@ export const useWriteGlobalAccessListUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessList =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7390,8 +10453,12 @@ export const useSimulateGlobalAccessList =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7403,8 +10470,12 @@ export const useSimulateGlobalAccessListInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7416,8 +10487,12 @@ export const useSimulateGlobalAccessListRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7429,8 +10504,12 @@ export const useSimulateGlobalAccessListRestrictAccount =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7442,8 +10521,12 @@ export const useSimulateGlobalAccessListTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7455,8 +10538,12 @@ export const useSimulateGlobalAccessListUnRestrictAccount =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7468,8 +10555,12 @@ export const useSimulateGlobalAccessListUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useSimulateGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -7481,8 +10572,12 @@ export const useSimulateGlobalAccessListUpgradeToAndCall =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7493,8 +10588,12 @@ export const useWatchGlobalAccessListEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7506,8 +10605,12 @@ export const useWatchGlobalAccessListAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7519,8 +10622,12 @@ export const useWatchGlobalAccessListBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7532,8 +10639,12 @@ export const useWatchGlobalAccessListInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7545,8 +10656,12 @@ export const useWatchGlobalAccessListOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListRestrictAccountEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7558,8 +10673,12 @@ export const useWatchGlobalAccessListRestrictAccountEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListUnrestrictAccountEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -7571,8 +10690,12 @@ export const useWatchGlobalAccessListUnrestrictAccountEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const useWatchGlobalAccessListUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -12768,6 +15891,1488 @@ export const useWatchLedgityYieldVaultWithdrawalRequestedEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const useReadLedgityYieldVaultSonic =
+  /*#__PURE__*/ createUseReadContract({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"RAY"`
+ */
+export const useReadLedgityYieldVaultSonicRay =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'RAY',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"aToken"`
+ */
+export const useReadLedgityYieldVaultSonicAToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'aToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"aaveLendingPool"`
+ */
+export const useReadLedgityYieldVaultSonicAaveLendingPool =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'aaveLendingPool',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"accountWithdrawalFee"`
+ */
+export const useReadLedgityYieldVaultSonicAccountWithdrawalFee =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'accountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"allowance"`
+ */
+export const useReadLedgityYieldVaultSonicAllowance =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'allowance',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"asset"`
+ */
+export const useReadLedgityYieldVaultSonicAsset =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'asset',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"balanceOf"`
+ */
+export const useReadLedgityYieldVaultSonicBalanceOf =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"convertToAssets"`
+ */
+export const useReadLedgityYieldVaultSonicConvertToAssets =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'convertToAssets',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"convertToShares"`
+ */
+export const useReadLedgityYieldVaultSonicConvertToShares =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'convertToShares',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decimals"`
+ */
+export const useReadLedgityYieldVaultSonicDecimals =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decimalsOffset"`
+ */
+export const useReadLedgityYieldVaultSonicDecimalsOffset =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decimalsOffset',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deploymentDelay"`
+ */
+export const useReadLedgityYieldVaultSonicDeploymentDelay =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deploymentDelay',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"feeRecipient"`
+ */
+export const useReadLedgityYieldVaultSonicFeeRecipient =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'feeRecipient',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getBufferAssets"`
+ */
+export const useReadLedgityYieldVaultSonicGetBufferAssets =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getBufferAssets',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getCCIPAdmin"`
+ */
+export const useReadLedgityYieldVaultSonicGetCcipAdmin =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getFeeData"`
+ */
+export const useReadLedgityYieldVaultSonicGetFeeData =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getFeeData',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
+ */
+export const useReadLedgityYieldVaultSonicGetUserWithdrawalRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getUserWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
+ */
+export const useReadLedgityYieldVaultSonicGetWithdrawalRequestCount =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequestCount',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequests"`
+ */
+export const useReadLedgityYieldVaultSonicGetWithdrawalRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
+ */
+export const useReadLedgityYieldVaultSonicGetWithdrawalRequestsByIds =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequestsByIds',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const useReadLedgityYieldVaultSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const useReadLedgityYieldVaultSonicGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const useReadLedgityYieldVaultSonicGlobalRestrict =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"hasBufferStrategy"`
+ */
+export const useReadLedgityYieldVaultSonicHasBufferStrategy =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'hasBufferStrategy',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"highWaterMark"`
+ */
+export const useReadLedgityYieldVaultSonicHighWaterMark =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'highWaterMark',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isBurner"`
+ */
+export const useReadLedgityYieldVaultSonicIsBurner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isBurner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isMinter"`
+ */
+export const useReadLedgityYieldVaultSonicIsMinter =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isMinter',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const useReadLedgityYieldVaultSonicIsPausedLocal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lToken"`
+ */
+export const useReadLedgityYieldVaultSonicLToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lastCompoundTime"`
+ */
+export const useReadLedgityYieldVaultSonicLastCompoundTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lastCompoundTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lastFeeTime"`
+ */
+export const useReadLedgityYieldVaultSonicLastFeeTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lastFeeTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"liquidityBufferRate"`
+ */
+export const useReadLedgityYieldVaultSonicLiquidityBufferRate =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'liquidityBufferRate',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"liquidityManager"`
+ */
+export const useReadLedgityYieldVaultSonicLiquidityManager =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'liquidityManager',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"managementFeeRate"`
+ */
+export const useReadLedgityYieldVaultSonicManagementFeeRate =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'managementFeeRate',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxDeposit"`
+ */
+export const useReadLedgityYieldVaultSonicMaxDeposit =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxDeposit',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxMint"`
+ */
+export const useReadLedgityYieldVaultSonicMaxMint =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxMint',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxRedeem"`
+ */
+export const useReadLedgityYieldVaultSonicMaxRedeem =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxRedeem',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxWithdraw"`
+ */
+export const useReadLedgityYieldVaultSonicMaxWithdraw =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"name"`
+ */
+export const useReadLedgityYieldVaultSonicName =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'name',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const useReadLedgityYieldVaultSonicOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const useReadLedgityYieldVaultSonicPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"performanceFeeRate"`
+ */
+export const useReadLedgityYieldVaultSonicPerformanceFeeRate =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'performanceFeeRate',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewDeposit"`
+ */
+export const useReadLedgityYieldVaultSonicPreviewDeposit =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewDeposit',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewMint"`
+ */
+export const useReadLedgityYieldVaultSonicPreviewMint =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewMint',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewRedeem"`
+ */
+export const useReadLedgityYieldVaultSonicPreviewRedeem =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewRedeem',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewWithdraw"`
+ */
+export const useReadLedgityYieldVaultSonicPreviewWithdraw =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewWithdraw',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const useReadLedgityYieldVaultSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeForFeeReduction"`
+ */
+export const useReadLedgityYieldVaultSonicStakeForFeeReduction =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeForFeeReduction',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeForInstantWithdrawal"`
+ */
+export const useReadLedgityYieldVaultSonicStakeForInstantWithdrawal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeForInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeToken"`
+ */
+export const useReadLedgityYieldVaultSonicStakeToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"symbol"`
+ */
+export const useReadLedgityYieldVaultSonicSymbol =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'symbol',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"totalAssets"`
+ */
+export const useReadLedgityYieldVaultSonicTotalAssets =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'totalAssets',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"totalSupply"`
+ */
+export const useReadLedgityYieldVaultSonicTotalSupply =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalFeeRate"`
+ */
+export const useReadLedgityYieldVaultSonicWithdrawalFeeRate =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalFeeRate',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalGasFee"`
+ */
+export const useReadLedgityYieldVaultSonicWithdrawalGasFee =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalGasFee',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalRequests"`
+ */
+export const useReadLedgityYieldVaultSonicWithdrawalRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"yieldAPR"`
+ */
+export const useReadLedgityYieldVaultSonicYieldApr =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'yieldAPR',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const useWriteLedgityYieldVaultSonic =
+  /*#__PURE__*/ createUseWriteContract({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const useWriteLedgityYieldVaultSonicApprove =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burn"`
+ */
+export const useWriteLedgityYieldVaultSonicBurn =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burn',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burnAndRemintBlacklistedShares"`
+ */
+export const useWriteLedgityYieldVaultSonicBurnAndRemintBlacklistedShares =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burnAndRemintBlacklistedShares',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const useWriteLedgityYieldVaultSonicDecreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deposit"`
+ */
+export const useWriteLedgityYieldVaultSonicDeposit =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"depositToBuffer"`
+ */
+export const useWriteLedgityYieldVaultSonicDepositToBuffer =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'depositToBuffer',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantBurnRole"`
+ */
+export const useWriteLedgityYieldVaultSonicGrantBurnRole =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantBurnRole',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantMintRole"`
+ */
+export const useWriteLedgityYieldVaultSonicGrantMintRole =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantMintRole',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"harvestFees"`
+ */
+export const useWriteLedgityYieldVaultSonicHarvestFees =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'harvestFees',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const useWriteLedgityYieldVaultSonicIncreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useWriteLedgityYieldVaultSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useWriteLedgityYieldVaultSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const useWriteLedgityYieldVaultSonicMigrateLToken =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'migrateLToken',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"mint"`
+ */
+export const useWriteLedgityYieldVaultSonicMint =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useWriteLedgityYieldVaultSonicPauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"processRequests"`
+ */
+export const useWriteLedgityYieldVaultSonicProcessRequests =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'processRequests',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useWriteLedgityYieldVaultSonicRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"redeem"`
+ */
+export const useWriteLedgityYieldVaultSonicRedeem =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useWriteLedgityYieldVaultSonicRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"requestWithdrawal"`
+ */
+export const useWriteLedgityYieldVaultSonicRequestWithdrawal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'requestWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeBurnRole"`
+ */
+export const useWriteLedgityYieldVaultSonicRevokeBurnRole =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeBurnRole',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeMintRole"`
+ */
+export const useWriteLedgityYieldVaultSonicRevokeMintRole =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeMintRole',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const useWriteLedgityYieldVaultSonicSetAccountWithdrawalFee =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setCCIPAdmin"`
+ */
+export const useWriteLedgityYieldVaultSonicSetCcipAdmin =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setTotalAssets"`
+ */
+export const useWriteLedgityYieldVaultSonicSetTotalAssets =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setTotalAssets',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"skimBuffer"`
+ */
+export const useWriteLedgityYieldVaultSonicSkimBuffer =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'skimBuffer',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transfer"`
+ */
+export const useWriteLedgityYieldVaultSonicTransfer =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const useWriteLedgityYieldVaultSonicTransferFrom =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useWriteLedgityYieldVaultSonicTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useWriteLedgityYieldVaultSonicUnpauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateAPR"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateApr =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateAPR',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateBufferRate"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateBufferRate =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateBufferRate',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateDeploymentDelay"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateDeploymentDelay =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateDeploymentDelay',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateFeeRates"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateFeeRates =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateFeeRates',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateVaultManagers =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultManagers',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultParams"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateVaultParams =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultParams',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useWriteLedgityYieldVaultSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useWriteLedgityYieldVaultSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const useWriteLedgityYieldVaultSonicWithdraw =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const useSimulateLedgityYieldVaultSonic =
+  /*#__PURE__*/ createUseSimulateContract({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const useSimulateLedgityYieldVaultSonicApprove =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burn"`
+ */
+export const useSimulateLedgityYieldVaultSonicBurn =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burn',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burnAndRemintBlacklistedShares"`
+ */
+export const useSimulateLedgityYieldVaultSonicBurnAndRemintBlacklistedShares =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burnAndRemintBlacklistedShares',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const useSimulateLedgityYieldVaultSonicDecreaseAllowance =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deposit"`
+ */
+export const useSimulateLedgityYieldVaultSonicDeposit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"depositToBuffer"`
+ */
+export const useSimulateLedgityYieldVaultSonicDepositToBuffer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'depositToBuffer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantBurnRole"`
+ */
+export const useSimulateLedgityYieldVaultSonicGrantBurnRole =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantBurnRole',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantMintRole"`
+ */
+export const useSimulateLedgityYieldVaultSonicGrantMintRole =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantMintRole',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"harvestFees"`
+ */
+export const useSimulateLedgityYieldVaultSonicHarvestFees =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'harvestFees',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const useSimulateLedgityYieldVaultSonicIncreaseAllowance =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useSimulateLedgityYieldVaultSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useSimulateLedgityYieldVaultSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const useSimulateLedgityYieldVaultSonicMigrateLToken =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'migrateLToken',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"mint"`
+ */
+export const useSimulateLedgityYieldVaultSonicMint =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useSimulateLedgityYieldVaultSonicPauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"processRequests"`
+ */
+export const useSimulateLedgityYieldVaultSonicProcessRequests =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'processRequests',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useSimulateLedgityYieldVaultSonicRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"redeem"`
+ */
+export const useSimulateLedgityYieldVaultSonicRedeem =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useSimulateLedgityYieldVaultSonicRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"requestWithdrawal"`
+ */
+export const useSimulateLedgityYieldVaultSonicRequestWithdrawal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'requestWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeBurnRole"`
+ */
+export const useSimulateLedgityYieldVaultSonicRevokeBurnRole =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeBurnRole',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeMintRole"`
+ */
+export const useSimulateLedgityYieldVaultSonicRevokeMintRole =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeMintRole',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const useSimulateLedgityYieldVaultSonicSetAccountWithdrawalFee =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setCCIPAdmin"`
+ */
+export const useSimulateLedgityYieldVaultSonicSetCcipAdmin =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setTotalAssets"`
+ */
+export const useSimulateLedgityYieldVaultSonicSetTotalAssets =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setTotalAssets',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"skimBuffer"`
+ */
+export const useSimulateLedgityYieldVaultSonicSkimBuffer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'skimBuffer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transfer"`
+ */
+export const useSimulateLedgityYieldVaultSonicTransfer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const useSimulateLedgityYieldVaultSonicTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useSimulateLedgityYieldVaultSonicTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useSimulateLedgityYieldVaultSonicUnpauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateAPR"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateApr =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateAPR',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateBufferRate"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateBufferRate =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateBufferRate',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateDeploymentDelay"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateDeploymentDelay =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateDeploymentDelay',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateFeeRates"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateFeeRates =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateFeeRates',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateVaultManagers =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultManagers',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultParams"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateVaultParams =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultParams',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const useSimulateLedgityYieldVaultSonicWithdraw =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const useWatchLedgityYieldVaultSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"APRUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicAprUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'APRUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"AccountWithdrawalFeeSet"`
+ */
+export const useWatchLedgityYieldVaultSonicAccountWithdrawalFeeSetEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'AccountWithdrawalFeeSet',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const useWatchLedgityYieldVaultSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Approval"`
+ */
+export const useWatchLedgityYieldVaultSonicApprovalEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const useWatchLedgityYieldVaultSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BufferRateUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicBufferRateUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BufferRateUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BurnAccessGranted"`
+ */
+export const useWatchLedgityYieldVaultSonicBurnAccessGrantedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BurnAccessGranted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BurnAccessRevoked"`
+ */
+export const useWatchLedgityYieldVaultSonicBurnAccessRevokedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BurnAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"CCIPAdminChanged"`
+ */
+export const useWatchLedgityYieldVaultSonicCcipAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'CCIPAdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"DeploymentDelayUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicDeploymentDelayUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'DeploymentDelayUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Deposit"`
+ */
+export const useWatchLedgityYieldVaultSonicDepositEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"FeeRatesUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicFeeRatesUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const useWatchLedgityYieldVaultSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"MintAccessGranted"`
+ */
+export const useWatchLedgityYieldVaultSonicMintAccessGrantedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'MintAccessGranted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"MintAccessRevoked"`
+ */
+export const useWatchLedgityYieldVaultSonicMintAccessRevokedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'MintAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const useWatchLedgityYieldVaultSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const useWatchLedgityYieldVaultSonicPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"RateCheckpointUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicRateCheckpointUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'RateCheckpointUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"TotalAssetsUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicTotalAssetsUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'TotalAssetsUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Transfer"`
+ */
+export const useWatchLedgityYieldVaultSonicTransferEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const useWatchLedgityYieldVaultSonicUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const useWatchLedgityYieldVaultSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"VaultManagersUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicVaultManagersUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'VaultManagersUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"VaultParamsUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicVaultParamsUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'VaultParamsUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Withdraw"`
+ */
+export const useWatchLedgityYieldVaultSonicWithdrawEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Withdraw',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"WithdrawalProcessed"`
+ */
+export const useWatchLedgityYieldVaultSonicWithdrawalProcessedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'WithdrawalProcessed',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"WithdrawalRequested"`
+ */
+export const useWatchLedgityYieldVaultSonicWithdrawalRequestedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'WithdrawalRequested',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link preMiningAbi}__
  *
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x9d7AEDefE90B880c5a9Bed4FcBd3faD0ea5AA06c)
@@ -13543,8 +18148,12 @@ export const useWatchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
@@ -13554,8 +18163,12 @@ export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsArtProxy =
   /*#__PURE__*/ createUseReadContract({
@@ -13567,8 +18180,12 @@ export const useReadStakingPositionsArtProxy =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsBalanceOf =
   /*#__PURE__*/ createUseReadContract({
@@ -13580,8 +18197,12 @@ export const useReadStakingPositionsBalanceOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createUseReadContract({
@@ -13593,8 +18214,12 @@ export const useReadStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createUseReadContract({
@@ -13606,8 +18231,12 @@ export const useReadStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createUseReadContract({
@@ -13619,8 +18248,12 @@ export const useReadStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsBreaker =
   /*#__PURE__*/ createUseReadContract({
@@ -13632,8 +18265,12 @@ export const useReadStakingPositionsBreaker =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsDecimals =
   /*#__PURE__*/ createUseReadContract({
@@ -13645,8 +18282,12 @@ export const useReadStakingPositionsDecimals =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
   {
@@ -13659,8 +18300,12 @@ export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetApproved =
   /*#__PURE__*/ createUseReadContract({
@@ -13672,8 +18317,12 @@ export const useReadStakingPositionsGetApproved =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createUseReadContract({
@@ -13685,8 +18334,12 @@ export const useReadStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetPointHistory =
   /*#__PURE__*/ createUseReadContract({
@@ -13698,8 +18351,12 @@ export const useReadStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetUserNfTs =
   /*#__PURE__*/ createUseReadContract({
@@ -13711,8 +18368,12 @@ export const useReadStakingPositionsGetUserNfTs =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createUseReadContract({
@@ -13724,8 +18385,12 @@ export const useReadStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createUseReadContract({
@@ -13737,8 +18402,12 @@ export const useReadStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createUseReadContract({
@@ -13750,8 +18419,12 @@ export const useReadStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -13763,8 +18436,12 @@ export const useReadStakingPositionsGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGlobalPause =
   /*#__PURE__*/ createUseReadContract({
@@ -13776,8 +18453,12 @@ export const useReadStakingPositionsGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
@@ -13789,8 +18470,12 @@ export const useReadStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsIMaxTime =
   /*#__PURE__*/ createUseReadContract({
@@ -13802,8 +18487,12 @@ export const useReadStakingPositionsIMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createUseReadContract({
@@ -13815,8 +18504,12 @@ export const useReadStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -13828,8 +18521,12 @@ export const useReadStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
@@ -13841,8 +18538,12 @@ export const useReadStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsMaxTime =
   /*#__PURE__*/ createUseReadContract({
@@ -13854,8 +18555,12 @@ export const useReadStakingPositionsMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
   abi: stakingPositionsAbi,
@@ -13866,8 +18571,12 @@ export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
   {
@@ -13880,8 +18589,12 @@ export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsOwnerOf =
   /*#__PURE__*/ createUseReadContract({
@@ -13893,8 +18606,12 @@ export const useReadStakingPositionsOwnerOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createUseReadContract({
@@ -13906,8 +18623,12 @@ export const useReadStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsPaused =
   /*#__PURE__*/ createUseReadContract({
@@ -13919,8 +18640,12 @@ export const useReadStakingPositionsPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -13932,8 +18657,12 @@ export const useReadStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsRewardsDistributor =
   /*#__PURE__*/ createUseReadContract({
@@ -13945,8 +18674,12 @@ export const useReadStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsSlopeChanges =
   /*#__PURE__*/ createUseReadContract({
@@ -13958,8 +18691,12 @@ export const useReadStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsSupply =
   /*#__PURE__*/ createUseReadContract({
@@ -13971,8 +18708,12 @@ export const useReadStakingPositionsSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsSupportsInterface =
   /*#__PURE__*/ createUseReadContract({
@@ -13984,8 +18725,12 @@ export const useReadStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsSymbol =
   /*#__PURE__*/ createUseReadContract({
@@ -13997,8 +18742,12 @@ export const useReadStakingPositionsSymbol =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
   {
@@ -14011,8 +18760,12 @@ export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsTokenId =
   /*#__PURE__*/ createUseReadContract({
@@ -14024,8 +18777,12 @@ export const useReadStakingPositionsTokenId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsTokenUri =
   /*#__PURE__*/ createUseReadContract({
@@ -14037,8 +18794,12 @@ export const useReadStakingPositionsTokenUri =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsTotalSupply =
   /*#__PURE__*/ createUseReadContract({
@@ -14050,8 +18811,12 @@ export const useReadStakingPositionsTotalSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createUseReadContract({
@@ -14063,8 +18828,12 @@ export const useReadStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useReadStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createUseReadContract({
@@ -14076,8 +18845,12 @@ export const useReadStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
   abi: stakingPositionsAbi,
@@ -14087,8 +18860,12 @@ export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsApprove =
   /*#__PURE__*/ createUseWriteContract({
@@ -14100,8 +18877,12 @@ export const useWriteStakingPositionsApprove =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseWriteContract({
@@ -14113,8 +18894,12 @@ export const useWriteStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsCreateLock =
   /*#__PURE__*/ createUseWriteContract({
@@ -14126,8 +18911,12 @@ export const useWriteStakingPositionsCreateLock =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsDepositFor =
   /*#__PURE__*/ createUseWriteContract({
@@ -14139,8 +18928,12 @@ export const useWriteStakingPositionsDepositFor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseWriteContract({
@@ -14152,8 +18945,12 @@ export const useWriteStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseWriteContract({
@@ -14165,8 +18962,12 @@ export const useWriteStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -14178,8 +18979,12 @@ export const useWriteStakingPositionsInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -14191,8 +18996,12 @@ export const useWriteStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -14204,8 +19013,12 @@ export const useWriteStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -14217,8 +19030,12 @@ export const useWriteStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
@@ -14230,8 +19047,12 @@ export const useWriteStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseWriteContract({
@@ -14243,8 +19064,12 @@ export const useWriteStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseWriteContract({
@@ -14256,8 +19081,12 @@ export const useWriteStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseWriteContract({
@@ -14269,8 +19098,12 @@ export const useWriteStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
@@ -14282,8 +19115,12 @@ export const useWriteStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -14295,8 +19132,12 @@ export const useWriteStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsUnlockAll =
   /*#__PURE__*/ createUseWriteContract({
@@ -14308,8 +19149,12 @@ export const useWriteStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -14321,8 +19166,12 @@ export const useWriteStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -14334,8 +19183,12 @@ export const useWriteStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -14347,8 +19200,12 @@ export const useWriteStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWriteStakingPositionsWithdraw =
   /*#__PURE__*/ createUseWriteContract({
@@ -14360,8 +19217,12 @@ export const useWriteStakingPositionsWithdraw =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositions =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14372,8 +19233,12 @@ export const useSimulateStakingPositions =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsApprove =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14385,8 +19250,12 @@ export const useSimulateStakingPositionsApprove =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14398,8 +19267,12 @@ export const useSimulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsCreateLock =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14411,8 +19284,12 @@ export const useSimulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsDepositFor =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14424,8 +19301,12 @@ export const useSimulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14437,8 +19318,12 @@ export const useSimulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14450,8 +19335,12 @@ export const useSimulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14463,8 +19352,12 @@ export const useSimulateStakingPositionsInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14476,8 +19369,12 @@ export const useSimulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14489,8 +19386,12 @@ export const useSimulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14502,8 +19403,12 @@ export const useSimulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14515,8 +19420,12 @@ export const useSimulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14528,8 +19437,12 @@ export const useSimulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14541,8 +19454,12 @@ export const useSimulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14554,8 +19471,12 @@ export const useSimulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14567,8 +19488,12 @@ export const useSimulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14580,8 +19505,12 @@ export const useSimulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsUnlockAll =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14593,8 +19522,12 @@ export const useSimulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14606,8 +19539,12 @@ export const useSimulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14619,8 +19556,12 @@ export const useSimulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14632,8 +19573,12 @@ export const useSimulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useSimulateStakingPositionsWithdraw =
   /*#__PURE__*/ createUseSimulateContract({
@@ -14645,8 +19590,12 @@ export const useSimulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14657,8 +19606,12 @@ export const useWatchStakingPositionsEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14670,8 +19623,12 @@ export const useWatchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14683,8 +19640,12 @@ export const useWatchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14696,8 +19657,12 @@ export const useWatchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14709,8 +19674,12 @@ export const useWatchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14722,8 +19691,12 @@ export const useWatchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsBreakerActivatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14735,8 +19708,12 @@ export const useWatchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsDepositEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14748,8 +19725,12 @@ export const useWatchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14761,8 +19742,12 @@ export const useWatchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14774,8 +19759,12 @@ export const useWatchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14787,8 +19776,12 @@ export const useWatchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14800,8 +19793,12 @@ export const useWatchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14813,8 +19810,12 @@ export const useWatchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14826,8 +19827,12 @@ export const useWatchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14839,8 +19844,12 @@ export const useWatchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14852,8 +19861,12 @@ export const useWatchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const useWatchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -14863,10 +19876,939 @@ export const useWatchStakingPositionsWithdrawEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const useReadStakingPositionsSonic = /*#__PURE__*/ createUseReadContract(
+  { abi: stakingPositionsSonicAbi },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"artProxy"`
+ */
+export const useReadStakingPositionsSonicArtProxy =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'artProxy',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOf"`
+ */
+export const useReadStakingPositionsSonicBalanceOf =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ */
+export const useReadStakingPositionsSonicBalanceOfAccountNft =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfAccountNFT',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfNFT"`
+ */
+export const useReadStakingPositionsSonicBalanceOfNft =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfNFT',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfNFTAt"`
+ */
+export const useReadStakingPositionsSonicBalanceOfNftAt =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfNFTAt',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"breaker"`
+ */
+export const useReadStakingPositionsSonicBreaker =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'breaker',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"decimals"`
+ */
+export const useReadStakingPositionsSonicDecimals =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"epoch"`
+ */
+export const useReadStakingPositionsSonicEpoch =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'epoch',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getApproved"`
+ */
+export const useReadStakingPositionsSonicGetApproved =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getApproved',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getLockedBalance"`
+ */
+export const useReadStakingPositionsSonicGetLockedBalance =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getLockedBalance',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getPointHistory"`
+ */
+export const useReadStakingPositionsSonicGetPointHistory =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getPointHistory',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserNFTs"`
+ */
+export const useReadStakingPositionsSonicGetUserNfTs =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserNFTs',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserPointHistory"`
+ */
+export const useReadStakingPositionsSonicGetUserPointHistory =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserPointHistory',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
+ */
+export const useReadStakingPositionsSonicGetUserTotalVotingPower =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserTotalVotingPower',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
+ */
+export const useReadStakingPositionsSonicGetUserTotalVotingPowerAt =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserTotalVotingPowerAt',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const useReadStakingPositionsSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const useReadStakingPositionsSonicGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const useReadStakingPositionsSonicGlobalRestrict =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"iMaxTime"`
+ */
+export const useReadStakingPositionsSonicIMaxTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'iMaxTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isApprovedForAll"`
+ */
+export const useReadStakingPositionsSonicIsApprovedForAll =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isApprovedForAll',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isApprovedOrOwner"`
+ */
+export const useReadStakingPositionsSonicIsApprovedOrOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isApprovedOrOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const useReadStakingPositionsSonicIsPausedLocal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"maxTime"`
+ */
+export const useReadStakingPositionsSonicMaxTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'maxTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"name"`
+ */
+export const useReadStakingPositionsSonicName =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'name',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const useReadStakingPositionsSonicOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"ownerOf"`
+ */
+export const useReadStakingPositionsSonicOwnerOf =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'ownerOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
+ */
+export const useReadStakingPositionsSonicOwnerToNfTokenIdList =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'ownerToNFTokenIdList',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const useReadStakingPositionsSonicPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const useReadStakingPositionsSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"rewardsDistributor"`
+ */
+export const useReadStakingPositionsSonicRewardsDistributor =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'rewardsDistributor',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"slopeChanges"`
+ */
+export const useReadStakingPositionsSonicSlopeChanges =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'slopeChanges',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"supply"`
+ */
+export const useReadStakingPositionsSonicSupply =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'supply',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"supportsInterface"`
+ */
+export const useReadStakingPositionsSonicSupportsInterface =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'supportsInterface',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"symbol"`
+ */
+export const useReadStakingPositionsSonicSymbol =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'symbol',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"token"`
+ */
+export const useReadStakingPositionsSonicToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'token',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"tokenId"`
+ */
+export const useReadStakingPositionsSonicTokenId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'tokenId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"tokenURI"`
+ */
+export const useReadStakingPositionsSonicTokenUri =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'tokenURI',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"totalSupply"`
+ */
+export const useReadStakingPositionsSonicTotalSupply =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"totalSupplyAt"`
+ */
+export const useReadStakingPositionsSonicTotalSupplyAt =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'totalSupplyAt',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"userPointEpoch"`
+ */
+export const useReadStakingPositionsSonicUserPointEpoch =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'userPointEpoch',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const useWriteStakingPositionsSonic =
+  /*#__PURE__*/ createUseWriteContract({ abi: stakingPositionsSonicAbi })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const useWriteStakingPositionsSonicApprove =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"checkpoint"`
+ */
+export const useWriteStakingPositionsSonicCheckpoint =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'checkpoint',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"createLock"`
+ */
+export const useWriteStakingPositionsSonicCreateLock =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'createLock',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"depositFor"`
+ */
+export const useWriteStakingPositionsSonicDepositFor =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'depositFor',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseAmount"`
+ */
+export const useWriteStakingPositionsSonicIncreaseAmount =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseAmount',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ */
+export const useWriteStakingPositionsSonicIncreaseUnlockTime =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseUnlockTime',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useWriteStakingPositionsSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useWriteStakingPositionsSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useWriteStakingPositionsSonicPauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useWriteStakingPositionsSonicRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useWriteStakingPositionsSonicRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"safeTransferFrom"`
+ */
+export const useWriteStakingPositionsSonicSafeTransferFrom =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'safeTransferFrom',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setApprovalForAll"`
+ */
+export const useWriteStakingPositionsSonicSetApprovalForAll =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setArtProxy"`
+ */
+export const useWriteStakingPositionsSonicSetArtProxy =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setArtProxy',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setMaxTime"`
+ */
+export const useWriteStakingPositionsSonicSetMaxTime =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setMaxTime',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const useWriteStakingPositionsSonicTransferFrom =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useWriteStakingPositionsSonicTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unlockAll"`
+ */
+export const useWriteStakingPositionsSonicUnlockAll =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unlockAll',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useWriteStakingPositionsSonicUnpauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useWriteStakingPositionsSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useWriteStakingPositionsSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const useWriteStakingPositionsSonicWithdraw =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const useSimulateStakingPositionsSonic =
+  /*#__PURE__*/ createUseSimulateContract({ abi: stakingPositionsSonicAbi })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const useSimulateStakingPositionsSonicApprove =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"checkpoint"`
+ */
+export const useSimulateStakingPositionsSonicCheckpoint =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'checkpoint',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"createLock"`
+ */
+export const useSimulateStakingPositionsSonicCreateLock =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'createLock',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"depositFor"`
+ */
+export const useSimulateStakingPositionsSonicDepositFor =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'depositFor',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseAmount"`
+ */
+export const useSimulateStakingPositionsSonicIncreaseAmount =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseAmount',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ */
+export const useSimulateStakingPositionsSonicIncreaseUnlockTime =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseUnlockTime',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useSimulateStakingPositionsSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useSimulateStakingPositionsSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useSimulateStakingPositionsSonicPauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useSimulateStakingPositionsSonicRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useSimulateStakingPositionsSonicRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"safeTransferFrom"`
+ */
+export const useSimulateStakingPositionsSonicSafeTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'safeTransferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setApprovalForAll"`
+ */
+export const useSimulateStakingPositionsSonicSetApprovalForAll =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setArtProxy"`
+ */
+export const useSimulateStakingPositionsSonicSetArtProxy =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setArtProxy',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setMaxTime"`
+ */
+export const useSimulateStakingPositionsSonicSetMaxTime =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setMaxTime',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const useSimulateStakingPositionsSonicTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useSimulateStakingPositionsSonicTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unlockAll"`
+ */
+export const useSimulateStakingPositionsSonicUnlockAll =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unlockAll',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useSimulateStakingPositionsSonicUnpauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useSimulateStakingPositionsSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useSimulateStakingPositionsSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const useSimulateStakingPositionsSonicWithdraw =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const useWatchStakingPositionsSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: stakingPositionsSonicAbi })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const useWatchStakingPositionsSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Approval"`
+ */
+export const useWatchStakingPositionsSonicApprovalEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"ApprovalForAll"`
+ */
+export const useWatchStakingPositionsSonicApprovalForAllEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'ApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
+ */
+export const useWatchStakingPositionsSonicBatchMetadataUpdateEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BatchMetadataUpdate',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const useWatchStakingPositionsSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BreakerActivated"`
+ */
+export const useWatchStakingPositionsSonicBreakerActivatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BreakerActivated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Deposit"`
+ */
+export const useWatchStakingPositionsSonicDepositEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const useWatchStakingPositionsSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"MetadataUpdate"`
+ */
+export const useWatchStakingPositionsSonicMetadataUpdateEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'MetadataUpdate',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const useWatchStakingPositionsSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const useWatchStakingPositionsSonicPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Supply"`
+ */
+export const useWatchStakingPositionsSonicSupplyEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Supply',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Transfer"`
+ */
+export const useWatchStakingPositionsSonicTransferEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const useWatchStakingPositionsSonicUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const useWatchStakingPositionsSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Withdraw"`
+ */
+export const useWatchStakingPositionsSonicWithdrawEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Withdraw',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributor =
   /*#__PURE__*/ createUseReadContract({
@@ -14877,8 +20819,12 @@ export const useReadStakingRewardsDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorWeek =
   /*#__PURE__*/ createUseReadContract({
@@ -14890,8 +20836,12 @@ export const useReadStakingRewardsDistributorWeek =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createUseReadContract({
@@ -14903,8 +20853,12 @@ export const useReadStakingRewardsDistributorBaseRewardCursor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createUseReadContract({
@@ -14916,8 +20870,12 @@ export const useReadStakingRewardsDistributorBaseRewardPeriodCursor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createUseReadContract({
@@ -14929,8 +20887,12 @@ export const useReadStakingRewardsDistributorBaseRewardPeriods =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createUseReadContract({
@@ -14942,8 +20904,12 @@ export const useReadStakingRewardsDistributorBaseRewardsPerWeek =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createUseReadContract({
@@ -14955,8 +20921,12 @@ export const useReadStakingRewardsDistributorClaimable =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createUseReadContract({
@@ -14968,8 +20938,12 @@ export const useReadStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createUseReadContract({
@@ -14981,8 +20955,12 @@ export const useReadStakingRewardsDistributorCurrentPeriodId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -14994,8 +20972,12 @@ export const useReadStakingRewardsDistributorGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createUseReadContract({
@@ -15007,8 +20989,12 @@ export const useReadStakingRewardsDistributorGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createUseReadContract({
@@ -15020,8 +21006,12 @@ export const useReadStakingRewardsDistributorGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createUseReadContract({
@@ -15033,8 +21023,12 @@ export const useReadStakingRewardsDistributorIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createUseReadContract({
@@ -15046,8 +21040,12 @@ export const useReadStakingRewardsDistributorLastTokenTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorOwner =
   /*#__PURE__*/ createUseReadContract({
@@ -15059,8 +21057,12 @@ export const useReadStakingRewardsDistributorOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorPaused =
   /*#__PURE__*/ createUseReadContract({
@@ -15072,8 +21074,12 @@ export const useReadStakingRewardsDistributorPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createUseReadContract({
@@ -15085,8 +21091,12 @@ export const useReadStakingRewardsDistributorProtocolRewardsPerTokenPaid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createUseReadContract({
@@ -15098,8 +21108,12 @@ export const useReadStakingRewardsDistributorProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorStaking =
   /*#__PURE__*/ createUseReadContract({
@@ -15111,8 +21125,12 @@ export const useReadStakingRewardsDistributorStaking =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createUseReadContract({
@@ -15124,8 +21142,12 @@ export const useReadStakingRewardsDistributorStartTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useReadStakingRewardsDistributorToken =
   /*#__PURE__*/ createUseReadContract({
@@ -15137,8 +21159,12 @@ export const useReadStakingRewardsDistributorToken =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributor =
   /*#__PURE__*/ createUseWriteContract({
@@ -15149,8 +21175,12 @@ export const useWriteStakingRewardsDistributor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseWriteContract({
@@ -15162,8 +21192,12 @@ export const useWriteStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseWriteContract({
@@ -15175,8 +21209,12 @@ export const useWriteStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15188,8 +21226,12 @@ export const useWriteStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseWriteContract({
@@ -15201,8 +21243,12 @@ export const useWriteStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseWriteContract({
@@ -15214,8 +21260,12 @@ export const useWriteStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseWriteContract({
@@ -15227,8 +21277,12 @@ export const useWriteStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15240,8 +21294,12 @@ export const useWriteStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseWriteContract({
@@ -15253,8 +21311,12 @@ export const useWriteStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -15266,8 +21328,12 @@ export const useWriteStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -15279,8 +21345,12 @@ export const useWriteStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseWriteContract({
@@ -15292,8 +21362,12 @@ export const useWriteStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createUseWriteContract({
@@ -15305,8 +21379,12 @@ export const useWriteStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseWriteContract({
@@ -15318,8 +21396,12 @@ export const useWriteStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWriteStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseWriteContract({
@@ -15331,8 +21413,12 @@ export const useWriteStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributor =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15343,8 +21429,12 @@ export const useSimulateStakingRewardsDistributor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15356,8 +21446,12 @@ export const useSimulateStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15369,8 +21463,12 @@ export const useSimulateStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15382,8 +21480,12 @@ export const useSimulateStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15395,8 +21497,12 @@ export const useSimulateStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15408,8 +21514,12 @@ export const useSimulateStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15421,8 +21531,12 @@ export const useSimulateStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15434,8 +21548,12 @@ export const useSimulateStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15447,8 +21565,12 @@ export const useSimulateStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15460,8 +21582,12 @@ export const useSimulateStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15473,8 +21599,12 @@ export const useSimulateStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15486,8 +21616,12 @@ export const useSimulateStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15499,8 +21633,12 @@ export const useSimulateStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15512,8 +21650,12 @@ export const useSimulateStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useSimulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createUseSimulateContract({
@@ -15525,8 +21667,12 @@ export const useSimulateStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15537,8 +21683,12 @@ export const useWatchStakingRewardsDistributorEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15550,8 +21700,12 @@ export const useWatchStakingRewardsDistributorAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15563,8 +21717,12 @@ export const useWatchStakingRewardsDistributorBaseRewardsClaimedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15576,8 +21734,12 @@ export const useWatchStakingRewardsDistributorBaseRewardsDepositedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15589,8 +21751,12 @@ export const useWatchStakingRewardsDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15602,8 +21768,12 @@ export const useWatchStakingRewardsDistributorInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15615,8 +21785,12 @@ export const useWatchStakingRewardsDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15628,8 +21802,12 @@ export const useWatchStakingRewardsDistributorPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15641,8 +21819,12 @@ export const useWatchStakingRewardsDistributorProtocolFeesDepositedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15654,8 +21836,12 @@ export const useWatchStakingRewardsDistributorProtocolRewardsClaimedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -15667,13 +21853,598 @@ export const useWatchStakingRewardsDistributorUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const useWatchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
     address: stakingRewardsDistributorAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const useReadStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"WEEK"`
+ */
+export const useReadStakingRewardsDistributorSonicWeek =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'WEEK',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardCursor"`
+ */
+export const useReadStakingRewardsDistributorSonicBaseRewardCursor =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardCursor',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
+ */
+export const useReadStakingRewardsDistributorSonicBaseRewardPeriodCursor =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardPeriodCursor',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardPeriods"`
+ */
+export const useReadStakingRewardsDistributorSonicBaseRewardPeriods =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardPeriods',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
+ */
+export const useReadStakingRewardsDistributorSonicBaseRewardsPerWeek =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardsPerWeek',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimable"`
+ */
+export const useReadStakingRewardsDistributorSonicClaimable =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimable',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
+ */
+export const useReadStakingRewardsDistributorSonicCumulativeProtocolRewardsPerToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'cumulativeProtocolRewardsPerToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"currentPeriodId"`
+ */
+export const useReadStakingRewardsDistributorSonicCurrentPeriodId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'currentPeriodId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const useReadStakingRewardsDistributorSonicGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const useReadStakingRewardsDistributorSonicGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const useReadStakingRewardsDistributorSonicGlobalRestrict =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const useReadStakingRewardsDistributorSonicIsPausedLocal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"lastTokenTime"`
+ */
+export const useReadStakingRewardsDistributorSonicLastTokenTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'lastTokenTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const useReadStakingRewardsDistributorSonicOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const useReadStakingRewardsDistributorSonicPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
+ */
+export const useReadStakingRewardsDistributorSonicProtocolRewardsPerTokenPaid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'protocolRewardsPerTokenPaid',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const useReadStakingRewardsDistributorSonicProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"staking"`
+ */
+export const useReadStakingRewardsDistributorSonicStaking =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'staking',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"startTime"`
+ */
+export const useReadStakingRewardsDistributorSonicStartTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'startTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"token"`
+ */
+export const useReadStakingRewardsDistributorSonicToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'token',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const useWriteStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claim"`
+ */
+export const useWriteStakingRewardsDistributorSonicClaim =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimMany"`
+ */
+export const useWriteStakingRewardsDistributorSonicClaimMany =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimMany',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimOnWithdrawal"`
+ */
+export const useWriteStakingRewardsDistributorSonicClaimOnWithdrawal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimOnWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositBaseRewards"`
+ */
+export const useWriteStakingRewardsDistributorSonicDepositBaseRewards =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositBaseRewards',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositProtocolFees"`
+ */
+export const useWriteStakingRewardsDistributorSonicDepositProtocolFees =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositProtocolFees',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useWriteStakingRewardsDistributorSonicInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useWriteStakingRewardsDistributorSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useWriteStakingRewardsDistributorSonicPauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useWriteStakingRewardsDistributorSonicRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useWriteStakingRewardsDistributorSonicRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useWriteStakingRewardsDistributorSonicTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useWriteStakingRewardsDistributorSonicUnpauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"updateAddresses"`
+ */
+export const useWriteStakingRewardsDistributorSonicUpdateAddresses =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'updateAddresses',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useWriteStakingRewardsDistributorSonicUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useWriteStakingRewardsDistributorSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const useSimulateStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claim"`
+ */
+export const useSimulateStakingRewardsDistributorSonicClaim =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimMany"`
+ */
+export const useSimulateStakingRewardsDistributorSonicClaimMany =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimMany',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimOnWithdrawal"`
+ */
+export const useSimulateStakingRewardsDistributorSonicClaimOnWithdrawal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimOnWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositBaseRewards"`
+ */
+export const useSimulateStakingRewardsDistributorSonicDepositBaseRewards =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositBaseRewards',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositProtocolFees"`
+ */
+export const useSimulateStakingRewardsDistributorSonicDepositProtocolFees =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositProtocolFees',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const useSimulateStakingRewardsDistributorSonicInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const useSimulateStakingRewardsDistributorSonicInitializeAndRegister =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const useSimulateStakingRewardsDistributorSonicPauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const useSimulateStakingRewardsDistributorSonicRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const useSimulateStakingRewardsDistributorSonicRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const useSimulateStakingRewardsDistributorSonicTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const useSimulateStakingRewardsDistributorSonicUnpauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"updateAddresses"`
+ */
+export const useSimulateStakingRewardsDistributorSonicUpdateAddresses =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'updateAddresses',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const useSimulateStakingRewardsDistributorSonicUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const useSimulateStakingRewardsDistributorSonicUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const useWatchStakingRewardsDistributorSonicEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const useWatchStakingRewardsDistributorSonicAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
+ */
+export const useWatchStakingRewardsDistributorSonicBaseRewardsClaimedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BaseRewardsClaimed',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
+ */
+export const useWatchStakingRewardsDistributorSonicBaseRewardsDepositedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BaseRewardsDeposited',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const useWatchStakingRewardsDistributorSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const useWatchStakingRewardsDistributorSonicInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const useWatchStakingRewardsDistributorSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const useWatchStakingRewardsDistributorSonicPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
+ */
+export const useWatchStakingRewardsDistributorSonicProtocolFeesDepositedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'ProtocolFeesDeposited',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
+ */
+export const useWatchStakingRewardsDistributorSonicProtocolRewardsClaimedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'ProtocolRewardsClaimed',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const useWatchStakingRewardsDistributorSonicUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const useWatchStakingRewardsDistributorSonicUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
     eventName: 'Upgraded',
   })
 
@@ -16482,8 +23253,12 @@ export const watchGenericErc20TransferEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessList = /*#__PURE__*/ createReadContract({
   abi: globalAccessListAbi,
@@ -16493,8 +23268,12 @@ export const readGlobalAccessList = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"getRestrictedAccounts"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListGetRestrictedAccounts =
   /*#__PURE__*/ createReadContract({
@@ -16506,8 +23285,12 @@ export const readGlobalAccessListGetRestrictedAccounts =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListGlobalOwner = /*#__PURE__*/ createReadContract(
   {
@@ -16520,8 +23303,12 @@ export const readGlobalAccessListGlobalOwner = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"isRestricted"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListIsRestricted =
   /*#__PURE__*/ createReadContract({
@@ -16533,8 +23320,12 @@ export const readGlobalAccessListIsRestricted =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListOwner = /*#__PURE__*/ createReadContract({
   abi: globalAccessListAbi,
@@ -16545,8 +23336,12 @@ export const readGlobalAccessListOwner = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -16558,8 +23353,12 @@ export const readGlobalAccessListProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictedAccounts"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const readGlobalAccessListRestrictedAccounts =
   /*#__PURE__*/ createReadContract({
@@ -16571,8 +23370,12 @@ export const readGlobalAccessListRestrictedAccounts =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessList = /*#__PURE__*/ createWriteContract({
   abi: globalAccessListAbi,
@@ -16582,8 +23385,12 @@ export const writeGlobalAccessList = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -16595,8 +23402,12 @@ export const writeGlobalAccessListInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -16608,8 +23419,12 @@ export const writeGlobalAccessListRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createWriteContract({
@@ -16621,8 +23436,12 @@ export const writeGlobalAccessListRestrictAccount =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -16634,8 +23453,12 @@ export const writeGlobalAccessListTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createWriteContract({
@@ -16647,8 +23470,12 @@ export const writeGlobalAccessListUnRestrictAccount =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListUpgradeTo = /*#__PURE__*/ createWriteContract(
   {
@@ -16661,8 +23488,12 @@ export const writeGlobalAccessListUpgradeTo = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const writeGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -16674,8 +23505,12 @@ export const writeGlobalAccessListUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessList = /*#__PURE__*/ createSimulateContract({
   abi: globalAccessListAbi,
@@ -16685,8 +23520,12 @@ export const simulateGlobalAccessList = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -16698,8 +23537,12 @@ export const simulateGlobalAccessListInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -16711,8 +23554,12 @@ export const simulateGlobalAccessListRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"restrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListRestrictAccount =
   /*#__PURE__*/ createSimulateContract({
@@ -16724,8 +23571,12 @@ export const simulateGlobalAccessListRestrictAccount =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -16737,8 +23588,12 @@ export const simulateGlobalAccessListTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"unRestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListUnRestrictAccount =
   /*#__PURE__*/ createSimulateContract({
@@ -16750,8 +23605,12 @@ export const simulateGlobalAccessListUnRestrictAccount =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -16763,8 +23622,12 @@ export const simulateGlobalAccessListUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link globalAccessListAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const simulateGlobalAccessListUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -16776,8 +23639,12 @@ export const simulateGlobalAccessListUpgradeToAndCall =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16788,8 +23655,12 @@ export const watchGlobalAccessListEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16801,8 +23672,12 @@ export const watchGlobalAccessListAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16814,8 +23689,12 @@ export const watchGlobalAccessListBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16827,8 +23706,12 @@ export const watchGlobalAccessListInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16840,8 +23723,12 @@ export const watchGlobalAccessListOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"RestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListRestrictAccountEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16853,8 +23740,12 @@ export const watchGlobalAccessListRestrictAccountEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"UnrestrictAccount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListUnrestrictAccountEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -16866,8 +23757,12 @@ export const watchGlobalAccessListUnrestrictAccountEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link globalAccessListAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x210482e0B5c29086F733e6Dd44e2C19f32ae1757)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x13e62b8113590C46b273abe35Bd86d4C7856E955)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2166480d795f1d185bA940af58B905E3B33104e9)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xc2503094BBcd67600319153f95C9b846BaC4a66B)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x2Aff7737dd64390f18e76E39c977b6b0736B5A59)
  */
 export const watchGlobalAccessListUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -21958,6 +28853,1484 @@ export const watchLedgityYieldVaultWithdrawalRequestedEvent =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const readLedgityYieldVaultSonic = /*#__PURE__*/ createReadContract({
+  abi: ledgityYieldVaultSonicAbi,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"RAY"`
+ */
+export const readLedgityYieldVaultSonicRay = /*#__PURE__*/ createReadContract({
+  abi: ledgityYieldVaultSonicAbi,
+  functionName: 'RAY',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"aToken"`
+ */
+export const readLedgityYieldVaultSonicAToken =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'aToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"aaveLendingPool"`
+ */
+export const readLedgityYieldVaultSonicAaveLendingPool =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'aaveLendingPool',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"accountWithdrawalFee"`
+ */
+export const readLedgityYieldVaultSonicAccountWithdrawalFee =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'accountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"allowance"`
+ */
+export const readLedgityYieldVaultSonicAllowance =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'allowance',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"asset"`
+ */
+export const readLedgityYieldVaultSonicAsset = /*#__PURE__*/ createReadContract(
+  { abi: ledgityYieldVaultSonicAbi, functionName: 'asset' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"balanceOf"`
+ */
+export const readLedgityYieldVaultSonicBalanceOf =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"convertToAssets"`
+ */
+export const readLedgityYieldVaultSonicConvertToAssets =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'convertToAssets',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"convertToShares"`
+ */
+export const readLedgityYieldVaultSonicConvertToShares =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'convertToShares',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decimals"`
+ */
+export const readLedgityYieldVaultSonicDecimals =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decimalsOffset"`
+ */
+export const readLedgityYieldVaultSonicDecimalsOffset =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decimalsOffset',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deploymentDelay"`
+ */
+export const readLedgityYieldVaultSonicDeploymentDelay =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deploymentDelay',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"feeRecipient"`
+ */
+export const readLedgityYieldVaultSonicFeeRecipient =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'feeRecipient',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getBufferAssets"`
+ */
+export const readLedgityYieldVaultSonicGetBufferAssets =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getBufferAssets',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getCCIPAdmin"`
+ */
+export const readLedgityYieldVaultSonicGetCcipAdmin =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getFeeData"`
+ */
+export const readLedgityYieldVaultSonicGetFeeData =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getFeeData',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
+ */
+export const readLedgityYieldVaultSonicGetUserWithdrawalRequests =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getUserWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
+ */
+export const readLedgityYieldVaultSonicGetWithdrawalRequestCount =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequestCount',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequests"`
+ */
+export const readLedgityYieldVaultSonicGetWithdrawalRequests =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
+ */
+export const readLedgityYieldVaultSonicGetWithdrawalRequestsByIds =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'getWithdrawalRequestsByIds',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const readLedgityYieldVaultSonicGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const readLedgityYieldVaultSonicGlobalPause =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const readLedgityYieldVaultSonicGlobalRestrict =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"hasBufferStrategy"`
+ */
+export const readLedgityYieldVaultSonicHasBufferStrategy =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'hasBufferStrategy',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"highWaterMark"`
+ */
+export const readLedgityYieldVaultSonicHighWaterMark =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'highWaterMark',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isBurner"`
+ */
+export const readLedgityYieldVaultSonicIsBurner =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isBurner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isMinter"`
+ */
+export const readLedgityYieldVaultSonicIsMinter =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isMinter',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const readLedgityYieldVaultSonicIsPausedLocal =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lToken"`
+ */
+export const readLedgityYieldVaultSonicLToken =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lastCompoundTime"`
+ */
+export const readLedgityYieldVaultSonicLastCompoundTime =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lastCompoundTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"lastFeeTime"`
+ */
+export const readLedgityYieldVaultSonicLastFeeTime =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'lastFeeTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"liquidityBufferRate"`
+ */
+export const readLedgityYieldVaultSonicLiquidityBufferRate =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'liquidityBufferRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"liquidityManager"`
+ */
+export const readLedgityYieldVaultSonicLiquidityManager =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'liquidityManager',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"managementFeeRate"`
+ */
+export const readLedgityYieldVaultSonicManagementFeeRate =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'managementFeeRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxDeposit"`
+ */
+export const readLedgityYieldVaultSonicMaxDeposit =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxDeposit',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxMint"`
+ */
+export const readLedgityYieldVaultSonicMaxMint =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxMint',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxRedeem"`
+ */
+export const readLedgityYieldVaultSonicMaxRedeem =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxRedeem',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"maxWithdraw"`
+ */
+export const readLedgityYieldVaultSonicMaxWithdraw =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"name"`
+ */
+export const readLedgityYieldVaultSonicName = /*#__PURE__*/ createReadContract({
+  abi: ledgityYieldVaultSonicAbi,
+  functionName: 'name',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const readLedgityYieldVaultSonicOwner = /*#__PURE__*/ createReadContract(
+  { abi: ledgityYieldVaultSonicAbi, functionName: 'owner' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const readLedgityYieldVaultSonicPaused =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"performanceFeeRate"`
+ */
+export const readLedgityYieldVaultSonicPerformanceFeeRate =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'performanceFeeRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewDeposit"`
+ */
+export const readLedgityYieldVaultSonicPreviewDeposit =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewDeposit',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewMint"`
+ */
+export const readLedgityYieldVaultSonicPreviewMint =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewMint',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewRedeem"`
+ */
+export const readLedgityYieldVaultSonicPreviewRedeem =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewRedeem',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"previewWithdraw"`
+ */
+export const readLedgityYieldVaultSonicPreviewWithdraw =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'previewWithdraw',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const readLedgityYieldVaultSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeForFeeReduction"`
+ */
+export const readLedgityYieldVaultSonicStakeForFeeReduction =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeForFeeReduction',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeForInstantWithdrawal"`
+ */
+export const readLedgityYieldVaultSonicStakeForInstantWithdrawal =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeForInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"stakeToken"`
+ */
+export const readLedgityYieldVaultSonicStakeToken =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'stakeToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"symbol"`
+ */
+export const readLedgityYieldVaultSonicSymbol =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'symbol',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"totalAssets"`
+ */
+export const readLedgityYieldVaultSonicTotalAssets =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'totalAssets',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"totalSupply"`
+ */
+export const readLedgityYieldVaultSonicTotalSupply =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalFeeRate"`
+ */
+export const readLedgityYieldVaultSonicWithdrawalFeeRate =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalFeeRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalGasFee"`
+ */
+export const readLedgityYieldVaultSonicWithdrawalGasFee =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalGasFee',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdrawalRequests"`
+ */
+export const readLedgityYieldVaultSonicWithdrawalRequests =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"yieldAPR"`
+ */
+export const readLedgityYieldVaultSonicYieldApr =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'yieldAPR',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const writeLedgityYieldVaultSonic = /*#__PURE__*/ createWriteContract({
+  abi: ledgityYieldVaultSonicAbi,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const writeLedgityYieldVaultSonicApprove =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burn"`
+ */
+export const writeLedgityYieldVaultSonicBurn =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burn',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burnAndRemintBlacklistedShares"`
+ */
+export const writeLedgityYieldVaultSonicBurnAndRemintBlacklistedShares =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burnAndRemintBlacklistedShares',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const writeLedgityYieldVaultSonicDecreaseAllowance =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deposit"`
+ */
+export const writeLedgityYieldVaultSonicDeposit =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"depositToBuffer"`
+ */
+export const writeLedgityYieldVaultSonicDepositToBuffer =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'depositToBuffer',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantBurnRole"`
+ */
+export const writeLedgityYieldVaultSonicGrantBurnRole =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantBurnRole',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantMintRole"`
+ */
+export const writeLedgityYieldVaultSonicGrantMintRole =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantMintRole',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"harvestFees"`
+ */
+export const writeLedgityYieldVaultSonicHarvestFees =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'harvestFees',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const writeLedgityYieldVaultSonicIncreaseAllowance =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const writeLedgityYieldVaultSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const writeLedgityYieldVaultSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const writeLedgityYieldVaultSonicMigrateLToken =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'migrateLToken',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"mint"`
+ */
+export const writeLedgityYieldVaultSonicMint =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const writeLedgityYieldVaultSonicPauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"processRequests"`
+ */
+export const writeLedgityYieldVaultSonicProcessRequests =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'processRequests',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const writeLedgityYieldVaultSonicRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"redeem"`
+ */
+export const writeLedgityYieldVaultSonicRedeem =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const writeLedgityYieldVaultSonicRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"requestWithdrawal"`
+ */
+export const writeLedgityYieldVaultSonicRequestWithdrawal =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'requestWithdrawal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeBurnRole"`
+ */
+export const writeLedgityYieldVaultSonicRevokeBurnRole =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeBurnRole',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeMintRole"`
+ */
+export const writeLedgityYieldVaultSonicRevokeMintRole =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeMintRole',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const writeLedgityYieldVaultSonicSetAccountWithdrawalFee =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setCCIPAdmin"`
+ */
+export const writeLedgityYieldVaultSonicSetCcipAdmin =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setTotalAssets"`
+ */
+export const writeLedgityYieldVaultSonicSetTotalAssets =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setTotalAssets',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"skimBuffer"`
+ */
+export const writeLedgityYieldVaultSonicSkimBuffer =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'skimBuffer',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transfer"`
+ */
+export const writeLedgityYieldVaultSonicTransfer =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const writeLedgityYieldVaultSonicTransferFrom =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const writeLedgityYieldVaultSonicTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const writeLedgityYieldVaultSonicUnpauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateAPR"`
+ */
+export const writeLedgityYieldVaultSonicUpdateApr =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateAPR',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateBufferRate"`
+ */
+export const writeLedgityYieldVaultSonicUpdateBufferRate =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateBufferRate',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateDeploymentDelay"`
+ */
+export const writeLedgityYieldVaultSonicUpdateDeploymentDelay =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateDeploymentDelay',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateFeeRates"`
+ */
+export const writeLedgityYieldVaultSonicUpdateFeeRates =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateFeeRates',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
+ */
+export const writeLedgityYieldVaultSonicUpdateVaultManagers =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultManagers',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultParams"`
+ */
+export const writeLedgityYieldVaultSonicUpdateVaultParams =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultParams',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const writeLedgityYieldVaultSonicUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const writeLedgityYieldVaultSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const writeLedgityYieldVaultSonicWithdraw =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const simulateLedgityYieldVaultSonic =
+  /*#__PURE__*/ createSimulateContract({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const simulateLedgityYieldVaultSonicApprove =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burn"`
+ */
+export const simulateLedgityYieldVaultSonicBurn =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burn',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"burnAndRemintBlacklistedShares"`
+ */
+export const simulateLedgityYieldVaultSonicBurnAndRemintBlacklistedShares =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'burnAndRemintBlacklistedShares',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const simulateLedgityYieldVaultSonicDecreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"deposit"`
+ */
+export const simulateLedgityYieldVaultSonicDeposit =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"depositToBuffer"`
+ */
+export const simulateLedgityYieldVaultSonicDepositToBuffer =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'depositToBuffer',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantBurnRole"`
+ */
+export const simulateLedgityYieldVaultSonicGrantBurnRole =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantBurnRole',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"grantMintRole"`
+ */
+export const simulateLedgityYieldVaultSonicGrantMintRole =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'grantMintRole',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"harvestFees"`
+ */
+export const simulateLedgityYieldVaultSonicHarvestFees =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'harvestFees',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const simulateLedgityYieldVaultSonicIncreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const simulateLedgityYieldVaultSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const simulateLedgityYieldVaultSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const simulateLedgityYieldVaultSonicMigrateLToken =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'migrateLToken',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"mint"`
+ */
+export const simulateLedgityYieldVaultSonicMint =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const simulateLedgityYieldVaultSonicPauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"processRequests"`
+ */
+export const simulateLedgityYieldVaultSonicProcessRequests =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'processRequests',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const simulateLedgityYieldVaultSonicRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"redeem"`
+ */
+export const simulateLedgityYieldVaultSonicRedeem =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const simulateLedgityYieldVaultSonicRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"requestWithdrawal"`
+ */
+export const simulateLedgityYieldVaultSonicRequestWithdrawal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'requestWithdrawal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeBurnRole"`
+ */
+export const simulateLedgityYieldVaultSonicRevokeBurnRole =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeBurnRole',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"revokeMintRole"`
+ */
+export const simulateLedgityYieldVaultSonicRevokeMintRole =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'revokeMintRole',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setAccountWithdrawalFee"`
+ */
+export const simulateLedgityYieldVaultSonicSetAccountWithdrawalFee =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setAccountWithdrawalFee',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setCCIPAdmin"`
+ */
+export const simulateLedgityYieldVaultSonicSetCcipAdmin =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setCCIPAdmin',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"setTotalAssets"`
+ */
+export const simulateLedgityYieldVaultSonicSetTotalAssets =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'setTotalAssets',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"skimBuffer"`
+ */
+export const simulateLedgityYieldVaultSonicSkimBuffer =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'skimBuffer',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transfer"`
+ */
+export const simulateLedgityYieldVaultSonicTransfer =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const simulateLedgityYieldVaultSonicTransferFrom =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const simulateLedgityYieldVaultSonicTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const simulateLedgityYieldVaultSonicUnpauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateAPR"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateApr =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateAPR',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateBufferRate"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateBufferRate =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateBufferRate',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateDeploymentDelay"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateDeploymentDelay =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateDeploymentDelay',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateFeeRates"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateFeeRates =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateFeeRates',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateVaultManagers =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultManagers',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultParams"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateVaultParams =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateVaultParams',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const simulateLedgityYieldVaultSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const simulateLedgityYieldVaultSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const simulateLedgityYieldVaultSonicWithdraw =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__
+ */
+export const watchLedgityYieldVaultSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({ abi: ledgityYieldVaultSonicAbi })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"APRUpdated"`
+ */
+export const watchLedgityYieldVaultSonicAprUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'APRUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"AccountWithdrawalFeeSet"`
+ */
+export const watchLedgityYieldVaultSonicAccountWithdrawalFeeSetEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'AccountWithdrawalFeeSet',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const watchLedgityYieldVaultSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Approval"`
+ */
+export const watchLedgityYieldVaultSonicApprovalEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const watchLedgityYieldVaultSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BufferRateUpdated"`
+ */
+export const watchLedgityYieldVaultSonicBufferRateUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BufferRateUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BurnAccessGranted"`
+ */
+export const watchLedgityYieldVaultSonicBurnAccessGrantedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BurnAccessGranted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"BurnAccessRevoked"`
+ */
+export const watchLedgityYieldVaultSonicBurnAccessRevokedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'BurnAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"CCIPAdminChanged"`
+ */
+export const watchLedgityYieldVaultSonicCcipAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'CCIPAdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"DeploymentDelayUpdated"`
+ */
+export const watchLedgityYieldVaultSonicDeploymentDelayUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'DeploymentDelayUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Deposit"`
+ */
+export const watchLedgityYieldVaultSonicDepositEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"FeeRatesUpdated"`
+ */
+export const watchLedgityYieldVaultSonicFeeRatesUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const watchLedgityYieldVaultSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"MintAccessGranted"`
+ */
+export const watchLedgityYieldVaultSonicMintAccessGrantedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'MintAccessGranted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"MintAccessRevoked"`
+ */
+export const watchLedgityYieldVaultSonicMintAccessRevokedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'MintAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const watchLedgityYieldVaultSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const watchLedgityYieldVaultSonicPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"RateCheckpointUpdated"`
+ */
+export const watchLedgityYieldVaultSonicRateCheckpointUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'RateCheckpointUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"TotalAssetsUpdated"`
+ */
+export const watchLedgityYieldVaultSonicTotalAssetsUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'TotalAssetsUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Transfer"`
+ */
+export const watchLedgityYieldVaultSonicTransferEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const watchLedgityYieldVaultSonicUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const watchLedgityYieldVaultSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"VaultManagersUpdated"`
+ */
+export const watchLedgityYieldVaultSonicVaultManagersUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'VaultManagersUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"VaultParamsUpdated"`
+ */
+export const watchLedgityYieldVaultSonicVaultParamsUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'VaultParamsUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"Withdraw"`
+ */
+export const watchLedgityYieldVaultSonicWithdrawEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'Withdraw',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"WithdrawalProcessed"`
+ */
+export const watchLedgityYieldVaultSonicWithdrawalProcessedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'WithdrawalProcessed',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"WithdrawalRequested"`
+ */
+export const watchLedgityYieldVaultSonicWithdrawalRequestedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'WithdrawalRequested',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link preMiningAbi}__
  *
  * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x9d7AEDefE90B880c5a9Bed4FcBd3faD0ea5AA06c)
@@ -22710,8 +31083,12 @@ export const watchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositions = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22721,8 +31098,12 @@ export const readStakingPositions = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22733,8 +31114,12 @@ export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22745,8 +31130,12 @@ export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsBalanceOfAccountNft =
   /*#__PURE__*/ createReadContract({
@@ -22758,8 +31147,12 @@ export const readStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsBalanceOfNft =
   /*#__PURE__*/ createReadContract({
@@ -22771,8 +31164,12 @@ export const readStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsBalanceOfNftAt =
   /*#__PURE__*/ createReadContract({
@@ -22784,8 +31181,12 @@ export const readStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsBreaker = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22796,8 +31197,12 @@ export const readStakingPositionsBreaker = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22808,8 +31213,12 @@ export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22820,8 +31229,12 @@ export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
   {
@@ -22834,8 +31247,12 @@ export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetLockedBalance =
   /*#__PURE__*/ createReadContract({
@@ -22847,8 +31264,12 @@ export const readStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetPointHistory =
   /*#__PURE__*/ createReadContract({
@@ -22860,8 +31281,12 @@ export const readStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
   {
@@ -22874,8 +31299,12 @@ export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetUserPointHistory =
   /*#__PURE__*/ createReadContract({
@@ -22887,8 +31316,12 @@ export const readStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetUserTotalVotingPower =
   /*#__PURE__*/ createReadContract({
@@ -22900,8 +31333,12 @@ export const readStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGetUserTotalVotingPowerAt =
   /*#__PURE__*/ createReadContract({
@@ -22913,8 +31350,12 @@ export const readStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
   {
@@ -22927,8 +31368,12 @@ export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
   {
@@ -22941,8 +31386,12 @@ export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsGlobalRestrict =
   /*#__PURE__*/ createReadContract({
@@ -22954,8 +31403,12 @@ export const readStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -22966,8 +31419,12 @@ export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsIsApprovedForAll =
   /*#__PURE__*/ createReadContract({
@@ -22979,8 +31436,12 @@ export const readStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsIsApprovedOrOwner =
   /*#__PURE__*/ createReadContract({
@@ -22992,8 +31453,12 @@ export const readStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsIsPausedLocal =
   /*#__PURE__*/ createReadContract({
@@ -23005,8 +31470,12 @@ export const readStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23017,8 +31486,12 @@ export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23029,8 +31502,12 @@ export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23041,8 +31518,12 @@ export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23053,8 +31534,12 @@ export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsOwnerToNfTokenIdList =
   /*#__PURE__*/ createReadContract({
@@ -23066,8 +31551,12 @@ export const readStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23078,8 +31567,12 @@ export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -23091,8 +31584,12 @@ export const readStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsRewardsDistributor =
   /*#__PURE__*/ createReadContract({
@@ -23104,8 +31601,12 @@ export const readStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsSlopeChanges =
   /*#__PURE__*/ createReadContract({
@@ -23117,8 +31618,12 @@ export const readStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23129,8 +31634,12 @@ export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsSupportsInterface =
   /*#__PURE__*/ createReadContract({
@@ -23142,8 +31651,12 @@ export const readStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23154,8 +31667,12 @@ export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23166,8 +31683,12 @@ export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23178,8 +31699,12 @@ export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
   abi: stakingPositionsAbi,
@@ -23190,8 +31715,12 @@ export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
   {
@@ -23204,8 +31733,12 @@ export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsTotalSupplyAt =
   /*#__PURE__*/ createReadContract({
@@ -23217,8 +31750,12 @@ export const readStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const readStakingPositionsUserPointEpoch =
   /*#__PURE__*/ createReadContract({
@@ -23230,8 +31767,12 @@ export const readStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23241,8 +31782,12 @@ export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23253,8 +31798,12 @@ export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsCheckpoint =
   /*#__PURE__*/ createWriteContract({
@@ -23266,8 +31815,12 @@ export const writeStakingPositionsCheckpoint =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsCreateLock =
   /*#__PURE__*/ createWriteContract({
@@ -23279,8 +31832,12 @@ export const writeStakingPositionsCreateLock =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsDepositFor =
   /*#__PURE__*/ createWriteContract({
@@ -23292,8 +31849,12 @@ export const writeStakingPositionsDepositFor =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createWriteContract({
@@ -23305,8 +31866,12 @@ export const writeStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createWriteContract({
@@ -23318,8 +31883,12 @@ export const writeStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -23331,8 +31900,12 @@ export const writeStakingPositionsInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsPauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -23344,8 +31917,12 @@ export const writeStakingPositionsPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
@@ -23357,8 +31934,12 @@ export const writeStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -23370,8 +31951,12 @@ export const writeStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createWriteContract({
@@ -23383,8 +31968,12 @@ export const writeStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createWriteContract({
@@ -23396,8 +31985,12 @@ export const writeStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsSetArtProxy =
   /*#__PURE__*/ createWriteContract({
@@ -23409,8 +32002,12 @@ export const writeStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsSetMaxTime =
   /*#__PURE__*/ createWriteContract({
@@ -23422,8 +32019,12 @@ export const writeStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsTransferFrom =
   /*#__PURE__*/ createWriteContract({
@@ -23435,8 +32036,12 @@ export const writeStakingPositionsTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -23448,8 +32053,12 @@ export const writeStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsUnlockAll = /*#__PURE__*/ createWriteContract(
   {
@@ -23462,8 +32071,12 @@ export const writeStakingPositionsUnlockAll = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -23475,8 +32088,12 @@ export const writeStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
   {
@@ -23489,8 +32106,12 @@ export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -23502,8 +32123,12 @@ export const writeStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
   abi: stakingPositionsAbi,
@@ -23514,8 +32139,12 @@ export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
   abi: stakingPositionsAbi,
@@ -23525,8 +32154,12 @@ export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsApprove =
   /*#__PURE__*/ createSimulateContract({
@@ -23538,8 +32171,12 @@ export const simulateStakingPositionsApprove =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsCheckpoint =
   /*#__PURE__*/ createSimulateContract({
@@ -23551,8 +32188,12 @@ export const simulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsCreateLock =
   /*#__PURE__*/ createSimulateContract({
@@ -23564,8 +32205,12 @@ export const simulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsDepositFor =
   /*#__PURE__*/ createSimulateContract({
@@ -23577,8 +32222,12 @@ export const simulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsIncreaseAmount =
   /*#__PURE__*/ createSimulateContract({
@@ -23590,8 +32239,12 @@ export const simulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsIncreaseUnlockTime =
   /*#__PURE__*/ createSimulateContract({
@@ -23603,8 +32256,12 @@ export const simulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -23616,8 +32273,12 @@ export const simulateStakingPositionsInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsPauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -23629,8 +32290,12 @@ export const simulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -23642,8 +32307,12 @@ export const simulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -23655,8 +32324,12 @@ export const simulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsSafeTransferFrom =
   /*#__PURE__*/ createSimulateContract({
@@ -23668,8 +32341,12 @@ export const simulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsSetApprovalForAll =
   /*#__PURE__*/ createSimulateContract({
@@ -23681,8 +32358,12 @@ export const simulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsSetArtProxy =
   /*#__PURE__*/ createSimulateContract({
@@ -23694,8 +32375,12 @@ export const simulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsSetMaxTime =
   /*#__PURE__*/ createSimulateContract({
@@ -23707,8 +32392,12 @@ export const simulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsTransferFrom =
   /*#__PURE__*/ createSimulateContract({
@@ -23720,8 +32409,12 @@ export const simulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -23733,8 +32426,12 @@ export const simulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsUnlockAll =
   /*#__PURE__*/ createSimulateContract({
@@ -23746,8 +32443,12 @@ export const simulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -23759,8 +32460,12 @@ export const simulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -23772,8 +32477,12 @@ export const simulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -23785,8 +32494,12 @@ export const simulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const simulateStakingPositionsWithdraw =
   /*#__PURE__*/ createSimulateContract({
@@ -23798,8 +32511,12 @@ export const simulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23810,8 +32527,12 @@ export const watchStakingPositionsEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23823,8 +32544,12 @@ export const watchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23836,8 +32561,12 @@ export const watchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsApprovalForAllEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23849,8 +32578,12 @@ export const watchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsBatchMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23862,8 +32595,12 @@ export const watchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23875,8 +32612,12 @@ export const watchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsBreakerActivatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23888,8 +32629,12 @@ export const watchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsDepositEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23901,8 +32646,12 @@ export const watchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23914,8 +32663,12 @@ export const watchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsMetadataUpdateEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23927,8 +32680,12 @@ export const watchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23940,8 +32697,12 @@ export const watchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23953,8 +32714,12 @@ export const watchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsSupplyEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23966,8 +32731,12 @@ export const watchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsTransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23979,8 +32748,12 @@ export const watchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -23992,8 +32765,12 @@ export const watchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24005,8 +32782,12 @@ export const watchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0xbea9Da36D218079ad6dEe79C447E33d57618B05d)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6E83612c73f124127d49eA642c392FF4d9eAFd5b)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x891611398B53BBAaA3db04c158218c319c87d554)
  */
 export const watchStakingPositionsWithdrawEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24016,10 +32797,930 @@ export const watchStakingPositionsWithdrawEvent =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const readStakingPositionsSonic = /*#__PURE__*/ createReadContract({
+  abi: stakingPositionsSonicAbi,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"artProxy"`
+ */
+export const readStakingPositionsSonicArtProxy =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'artProxy',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOf"`
+ */
+export const readStakingPositionsSonicBalanceOf =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
+ */
+export const readStakingPositionsSonicBalanceOfAccountNft =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfAccountNFT',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfNFT"`
+ */
+export const readStakingPositionsSonicBalanceOfNft =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfNFT',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"balanceOfNFTAt"`
+ */
+export const readStakingPositionsSonicBalanceOfNftAt =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'balanceOfNFTAt',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"breaker"`
+ */
+export const readStakingPositionsSonicBreaker =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'breaker',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"decimals"`
+ */
+export const readStakingPositionsSonicDecimals =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"epoch"`
+ */
+export const readStakingPositionsSonicEpoch = /*#__PURE__*/ createReadContract({
+  abi: stakingPositionsSonicAbi,
+  functionName: 'epoch',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getApproved"`
+ */
+export const readStakingPositionsSonicGetApproved =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getApproved',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getLockedBalance"`
+ */
+export const readStakingPositionsSonicGetLockedBalance =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getLockedBalance',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getPointHistory"`
+ */
+export const readStakingPositionsSonicGetPointHistory =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getPointHistory',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserNFTs"`
+ */
+export const readStakingPositionsSonicGetUserNfTs =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserNFTs',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserPointHistory"`
+ */
+export const readStakingPositionsSonicGetUserPointHistory =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserPointHistory',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
+ */
+export const readStakingPositionsSonicGetUserTotalVotingPower =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserTotalVotingPower',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
+ */
+export const readStakingPositionsSonicGetUserTotalVotingPowerAt =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'getUserTotalVotingPowerAt',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const readStakingPositionsSonicGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const readStakingPositionsSonicGlobalPause =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const readStakingPositionsSonicGlobalRestrict =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"iMaxTime"`
+ */
+export const readStakingPositionsSonicIMaxTime =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'iMaxTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isApprovedForAll"`
+ */
+export const readStakingPositionsSonicIsApprovedForAll =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isApprovedForAll',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isApprovedOrOwner"`
+ */
+export const readStakingPositionsSonicIsApprovedOrOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isApprovedOrOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const readStakingPositionsSonicIsPausedLocal =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"maxTime"`
+ */
+export const readStakingPositionsSonicMaxTime =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'maxTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"name"`
+ */
+export const readStakingPositionsSonicName = /*#__PURE__*/ createReadContract({
+  abi: stakingPositionsSonicAbi,
+  functionName: 'name',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const readStakingPositionsSonicOwner = /*#__PURE__*/ createReadContract({
+  abi: stakingPositionsSonicAbi,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"ownerOf"`
+ */
+export const readStakingPositionsSonicOwnerOf =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'ownerOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
+ */
+export const readStakingPositionsSonicOwnerToNfTokenIdList =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'ownerToNFTokenIdList',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const readStakingPositionsSonicPaused = /*#__PURE__*/ createReadContract(
+  { abi: stakingPositionsSonicAbi, functionName: 'paused' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const readStakingPositionsSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"rewardsDistributor"`
+ */
+export const readStakingPositionsSonicRewardsDistributor =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'rewardsDistributor',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"slopeChanges"`
+ */
+export const readStakingPositionsSonicSlopeChanges =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'slopeChanges',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"supply"`
+ */
+export const readStakingPositionsSonicSupply = /*#__PURE__*/ createReadContract(
+  { abi: stakingPositionsSonicAbi, functionName: 'supply' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"supportsInterface"`
+ */
+export const readStakingPositionsSonicSupportsInterface =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'supportsInterface',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"symbol"`
+ */
+export const readStakingPositionsSonicSymbol = /*#__PURE__*/ createReadContract(
+  { abi: stakingPositionsSonicAbi, functionName: 'symbol' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"token"`
+ */
+export const readStakingPositionsSonicToken = /*#__PURE__*/ createReadContract({
+  abi: stakingPositionsSonicAbi,
+  functionName: 'token',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"tokenId"`
+ */
+export const readStakingPositionsSonicTokenId =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'tokenId',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"tokenURI"`
+ */
+export const readStakingPositionsSonicTokenUri =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'tokenURI',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"totalSupply"`
+ */
+export const readStakingPositionsSonicTotalSupply =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"totalSupplyAt"`
+ */
+export const readStakingPositionsSonicTotalSupplyAt =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'totalSupplyAt',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"userPointEpoch"`
+ */
+export const readStakingPositionsSonicUserPointEpoch =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'userPointEpoch',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const writeStakingPositionsSonic = /*#__PURE__*/ createWriteContract({
+  abi: stakingPositionsSonicAbi,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const writeStakingPositionsSonicApprove =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"checkpoint"`
+ */
+export const writeStakingPositionsSonicCheckpoint =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'checkpoint',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"createLock"`
+ */
+export const writeStakingPositionsSonicCreateLock =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'createLock',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"depositFor"`
+ */
+export const writeStakingPositionsSonicDepositFor =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'depositFor',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseAmount"`
+ */
+export const writeStakingPositionsSonicIncreaseAmount =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseAmount',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ */
+export const writeStakingPositionsSonicIncreaseUnlockTime =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseUnlockTime',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const writeStakingPositionsSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const writeStakingPositionsSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const writeStakingPositionsSonicPauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const writeStakingPositionsSonicRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const writeStakingPositionsSonicRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"safeTransferFrom"`
+ */
+export const writeStakingPositionsSonicSafeTransferFrom =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'safeTransferFrom',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setApprovalForAll"`
+ */
+export const writeStakingPositionsSonicSetApprovalForAll =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setArtProxy"`
+ */
+export const writeStakingPositionsSonicSetArtProxy =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setArtProxy',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setMaxTime"`
+ */
+export const writeStakingPositionsSonicSetMaxTime =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setMaxTime',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const writeStakingPositionsSonicTransferFrom =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const writeStakingPositionsSonicTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unlockAll"`
+ */
+export const writeStakingPositionsSonicUnlockAll =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unlockAll',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const writeStakingPositionsSonicUnpauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const writeStakingPositionsSonicUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const writeStakingPositionsSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const writeStakingPositionsSonicWithdraw =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const simulateStakingPositionsSonic =
+  /*#__PURE__*/ createSimulateContract({ abi: stakingPositionsSonicAbi })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"approve"`
+ */
+export const simulateStakingPositionsSonicApprove =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"checkpoint"`
+ */
+export const simulateStakingPositionsSonicCheckpoint =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'checkpoint',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"createLock"`
+ */
+export const simulateStakingPositionsSonicCreateLock =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'createLock',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"depositFor"`
+ */
+export const simulateStakingPositionsSonicDepositFor =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'depositFor',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseAmount"`
+ */
+export const simulateStakingPositionsSonicIncreaseAmount =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseAmount',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"increaseUnlockTime"`
+ */
+export const simulateStakingPositionsSonicIncreaseUnlockTime =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'increaseUnlockTime',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const simulateStakingPositionsSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const simulateStakingPositionsSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const simulateStakingPositionsSonicPauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const simulateStakingPositionsSonicRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const simulateStakingPositionsSonicRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"safeTransferFrom"`
+ */
+export const simulateStakingPositionsSonicSafeTransferFrom =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'safeTransferFrom',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setApprovalForAll"`
+ */
+export const simulateStakingPositionsSonicSetApprovalForAll =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setArtProxy"`
+ */
+export const simulateStakingPositionsSonicSetArtProxy =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setArtProxy',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"setMaxTime"`
+ */
+export const simulateStakingPositionsSonicSetMaxTime =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'setMaxTime',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const simulateStakingPositionsSonicTransferFrom =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const simulateStakingPositionsSonicTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unlockAll"`
+ */
+export const simulateStakingPositionsSonicUnlockAll =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unlockAll',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const simulateStakingPositionsSonicUnpauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const simulateStakingPositionsSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const simulateStakingPositionsSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `functionName` set to `"withdraw"`
+ */
+export const simulateStakingPositionsSonicWithdraw =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingPositionsSonicAbi,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__
+ */
+export const watchStakingPositionsSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({ abi: stakingPositionsSonicAbi })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const watchStakingPositionsSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Approval"`
+ */
+export const watchStakingPositionsSonicApprovalEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"ApprovalForAll"`
+ */
+export const watchStakingPositionsSonicApprovalForAllEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'ApprovalForAll',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
+ */
+export const watchStakingPositionsSonicBatchMetadataUpdateEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BatchMetadataUpdate',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const watchStakingPositionsSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"BreakerActivated"`
+ */
+export const watchStakingPositionsSonicBreakerActivatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'BreakerActivated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Deposit"`
+ */
+export const watchStakingPositionsSonicDepositEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const watchStakingPositionsSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"MetadataUpdate"`
+ */
+export const watchStakingPositionsSonicMetadataUpdateEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'MetadataUpdate',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const watchStakingPositionsSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const watchStakingPositionsSonicPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Supply"`
+ */
+export const watchStakingPositionsSonicSupplyEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Supply',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Transfer"`
+ */
+export const watchStakingPositionsSonicTransferEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const watchStakingPositionsSonicUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const watchStakingPositionsSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsSonicAbi}__ and `eventName` set to `"Withdraw"`
+ */
+export const watchStakingPositionsSonicWithdrawEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingPositionsSonicAbi,
+    eventName: 'Withdraw',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributor = /*#__PURE__*/ createReadContract({
   abi: stakingRewardsDistributorAbi,
@@ -24029,8 +33730,12 @@ export const readStakingRewardsDistributor = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"WEEK"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorWeek =
   /*#__PURE__*/ createReadContract({
@@ -24042,8 +33747,12 @@ export const readStakingRewardsDistributorWeek =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardCursor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorBaseRewardCursor =
   /*#__PURE__*/ createReadContract({
@@ -24055,8 +33764,12 @@ export const readStakingRewardsDistributorBaseRewardCursor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorBaseRewardPeriodCursor =
   /*#__PURE__*/ createReadContract({
@@ -24068,8 +33781,12 @@ export const readStakingRewardsDistributorBaseRewardPeriodCursor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardPeriods"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorBaseRewardPeriods =
   /*#__PURE__*/ createReadContract({
@@ -24081,8 +33798,12 @@ export const readStakingRewardsDistributorBaseRewardPeriods =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorBaseRewardsPerWeek =
   /*#__PURE__*/ createReadContract({
@@ -24094,8 +33815,12 @@ export const readStakingRewardsDistributorBaseRewardsPerWeek =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimable"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorClaimable =
   /*#__PURE__*/ createReadContract({
@@ -24107,8 +33832,12 @@ export const readStakingRewardsDistributorClaimable =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
   /*#__PURE__*/ createReadContract({
@@ -24120,8 +33849,12 @@ export const readStakingRewardsDistributorCumulativeProtocolRewardsPerToken =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"currentPeriodId"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorCurrentPeriodId =
   /*#__PURE__*/ createReadContract({
@@ -24133,8 +33866,12 @@ export const readStakingRewardsDistributorCurrentPeriodId =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalOwner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorGlobalOwner =
   /*#__PURE__*/ createReadContract({
@@ -24146,8 +33883,12 @@ export const readStakingRewardsDistributorGlobalOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalPause"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorGlobalPause =
   /*#__PURE__*/ createReadContract({
@@ -24159,8 +33900,12 @@ export const readStakingRewardsDistributorGlobalPause =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"globalRestrict"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorGlobalRestrict =
   /*#__PURE__*/ createReadContract({
@@ -24172,8 +33917,12 @@ export const readStakingRewardsDistributorGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"isPausedLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorIsPausedLocal =
   /*#__PURE__*/ createReadContract({
@@ -24185,8 +33934,12 @@ export const readStakingRewardsDistributorIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"lastTokenTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorLastTokenTime =
   /*#__PURE__*/ createReadContract({
@@ -24198,8 +33951,12 @@ export const readStakingRewardsDistributorLastTokenTime =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"owner"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorOwner =
   /*#__PURE__*/ createReadContract({
@@ -24211,8 +33968,12 @@ export const readStakingRewardsDistributorOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorPaused =
   /*#__PURE__*/ createReadContract({
@@ -24224,8 +33985,12 @@ export const readStakingRewardsDistributorPaused =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorProtocolRewardsPerTokenPaid =
   /*#__PURE__*/ createReadContract({
@@ -24237,8 +34002,12 @@ export const readStakingRewardsDistributorProtocolRewardsPerTokenPaid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"proxiableUUID"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorProxiableUuid =
   /*#__PURE__*/ createReadContract({
@@ -24250,8 +34019,12 @@ export const readStakingRewardsDistributorProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"staking"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorStaking =
   /*#__PURE__*/ createReadContract({
@@ -24263,8 +34036,12 @@ export const readStakingRewardsDistributorStaking =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"startTime"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorStartTime =
   /*#__PURE__*/ createReadContract({
@@ -24276,8 +34053,12 @@ export const readStakingRewardsDistributorStartTime =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"token"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const readStakingRewardsDistributorToken =
   /*#__PURE__*/ createReadContract({
@@ -24289,8 +34070,12 @@ export const readStakingRewardsDistributorToken =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributor = /*#__PURE__*/ createWriteContract(
   {
@@ -24302,8 +34087,12 @@ export const writeStakingRewardsDistributor = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorClaim =
   /*#__PURE__*/ createWriteContract({
@@ -24315,8 +34104,12 @@ export const writeStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createWriteContract({
@@ -24328,8 +34121,12 @@ export const writeStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createWriteContract({
@@ -24341,8 +34138,12 @@ export const writeStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createWriteContract({
@@ -24354,8 +34155,12 @@ export const writeStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createWriteContract({
@@ -24367,8 +34172,12 @@ export const writeStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createWriteContract({
@@ -24380,8 +34189,12 @@ export const writeStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -24393,8 +34206,12 @@ export const writeStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createWriteContract({
@@ -24406,8 +34223,12 @@ export const writeStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -24419,8 +34240,12 @@ export const writeStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createWriteContract({
@@ -24432,8 +34257,12 @@ export const writeStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createWriteContract({
@@ -24445,8 +34274,12 @@ export const writeStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createWriteContract({
@@ -24458,8 +34291,12 @@ export const writeStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createWriteContract({
@@ -24471,8 +34308,12 @@ export const writeStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const writeStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createWriteContract({
@@ -24484,8 +34325,12 @@ export const writeStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributor =
   /*#__PURE__*/ createSimulateContract({
@@ -24496,8 +34341,12 @@ export const simulateStakingRewardsDistributor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claim"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorClaim =
   /*#__PURE__*/ createSimulateContract({
@@ -24509,8 +34358,12 @@ export const simulateStakingRewardsDistributorClaim =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimMany"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorClaimMany =
   /*#__PURE__*/ createSimulateContract({
@@ -24522,8 +34375,12 @@ export const simulateStakingRewardsDistributorClaimMany =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"claimOnWithdrawal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorClaimOnWithdrawal =
   /*#__PURE__*/ createSimulateContract({
@@ -24535,8 +34392,12 @@ export const simulateStakingRewardsDistributorClaimOnWithdrawal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositBaseRewards"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorDepositBaseRewards =
   /*#__PURE__*/ createSimulateContract({
@@ -24548,8 +34409,12 @@ export const simulateStakingRewardsDistributorDepositBaseRewards =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"depositProtocolFees"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorDepositProtocolFees =
   /*#__PURE__*/ createSimulateContract({
@@ -24561,8 +34426,12 @@ export const simulateStakingRewardsDistributorDepositProtocolFees =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"initialize"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorInitialize =
   /*#__PURE__*/ createSimulateContract({
@@ -24574,8 +34443,12 @@ export const simulateStakingRewardsDistributorInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"pauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorPauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -24587,8 +34460,12 @@ export const simulateStakingRewardsDistributorPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"recoverERC20"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorRecoverErc20 =
   /*#__PURE__*/ createSimulateContract({
@@ -24600,8 +34477,12 @@ export const simulateStakingRewardsDistributorRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"renounceOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -24613,8 +34494,12 @@ export const simulateStakingRewardsDistributorRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"transferOwnership"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
@@ -24626,8 +34511,12 @@ export const simulateStakingRewardsDistributorTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"unpauseLocal"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorUnpauseLocal =
   /*#__PURE__*/ createSimulateContract({
@@ -24639,8 +34528,12 @@ export const simulateStakingRewardsDistributorUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"updateAddresses"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorUpdateAddresses =
   /*#__PURE__*/ createSimulateContract({
@@ -24652,8 +34545,12 @@ export const simulateStakingRewardsDistributorUpdateAddresses =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeTo"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorUpgradeTo =
   /*#__PURE__*/ createSimulateContract({
@@ -24665,8 +34562,12 @@ export const simulateStakingRewardsDistributorUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const simulateStakingRewardsDistributorUpgradeToAndCall =
   /*#__PURE__*/ createSimulateContract({
@@ -24678,8 +34579,12 @@ export const simulateStakingRewardsDistributorUpgradeToAndCall =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24690,8 +34595,12 @@ export const watchStakingRewardsDistributorEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"AdminChanged"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorAdminChangedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24703,8 +34612,12 @@ export const watchStakingRewardsDistributorAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorBaseRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24716,8 +34629,12 @@ export const watchStakingRewardsDistributorBaseRewardsClaimedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorBaseRewardsDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24729,8 +34646,12 @@ export const watchStakingRewardsDistributorBaseRewardsDepositedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorBeaconUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24742,8 +34663,12 @@ export const watchStakingRewardsDistributorBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Initialized"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorInitializedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24755,8 +34680,12 @@ export const watchStakingRewardsDistributorInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24768,8 +34697,12 @@ export const watchStakingRewardsDistributorOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Paused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorPausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24781,8 +34714,12 @@ export const watchStakingRewardsDistributorPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorProtocolFeesDepositedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24794,8 +34731,12 @@ export const watchStakingRewardsDistributorProtocolFeesDepositedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorProtocolRewardsClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24807,8 +34748,12 @@ export const watchStakingRewardsDistributorProtocolRewardsClaimedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Unpaused"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorUnpausedEvent =
   /*#__PURE__*/ createWatchContractEvent({
@@ -24820,12 +34765,593 @@ export const watchStakingRewardsDistributorUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorAbi}__ and `eventName` set to `"Upgraded"`
  *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x68f3C6526A778f4D0E29CA905d9bBfC7636c2A63)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x883108311b43871be1e590C1ab0979e1e72B1DF5)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x2ab82B69aB88e6174425234c4da50b2EdFC217c1)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4)
  */
 export const watchStakingRewardsDistributorUpgradedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: stakingRewardsDistributorAbi,
     address: stakingRewardsDistributorAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const readStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createReadContract({ abi: stakingRewardsDistributorSonicAbi })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"WEEK"`
+ */
+export const readStakingRewardsDistributorSonicWeek =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'WEEK',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardCursor"`
+ */
+export const readStakingRewardsDistributorSonicBaseRewardCursor =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardCursor',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardPeriodCursor"`
+ */
+export const readStakingRewardsDistributorSonicBaseRewardPeriodCursor =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardPeriodCursor',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardPeriods"`
+ */
+export const readStakingRewardsDistributorSonicBaseRewardPeriods =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardPeriods',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"baseRewardsPerWeek"`
+ */
+export const readStakingRewardsDistributorSonicBaseRewardsPerWeek =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'baseRewardsPerWeek',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimable"`
+ */
+export const readStakingRewardsDistributorSonicClaimable =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimable',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"cumulativeProtocolRewardsPerToken"`
+ */
+export const readStakingRewardsDistributorSonicCumulativeProtocolRewardsPerToken =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'cumulativeProtocolRewardsPerToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"currentPeriodId"`
+ */
+export const readStakingRewardsDistributorSonicCurrentPeriodId =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'currentPeriodId',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalOwner"`
+ */
+export const readStakingRewardsDistributorSonicGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalPause"`
+ */
+export const readStakingRewardsDistributorSonicGlobalPause =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"globalRestrict"`
+ */
+export const readStakingRewardsDistributorSonicGlobalRestrict =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"isPausedLocal"`
+ */
+export const readStakingRewardsDistributorSonicIsPausedLocal =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"lastTokenTime"`
+ */
+export const readStakingRewardsDistributorSonicLastTokenTime =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'lastTokenTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"owner"`
+ */
+export const readStakingRewardsDistributorSonicOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"paused"`
+ */
+export const readStakingRewardsDistributorSonicPaused =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"protocolRewardsPerTokenPaid"`
+ */
+export const readStakingRewardsDistributorSonicProtocolRewardsPerTokenPaid =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'protocolRewardsPerTokenPaid',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const readStakingRewardsDistributorSonicProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"staking"`
+ */
+export const readStakingRewardsDistributorSonicStaking =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'staking',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"startTime"`
+ */
+export const readStakingRewardsDistributorSonicStartTime =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'startTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"token"`
+ */
+export const readStakingRewardsDistributorSonicToken =
+  /*#__PURE__*/ createReadContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'token',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const writeStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createWriteContract({ abi: stakingRewardsDistributorSonicAbi })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claim"`
+ */
+export const writeStakingRewardsDistributorSonicClaim =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimMany"`
+ */
+export const writeStakingRewardsDistributorSonicClaimMany =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimMany',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimOnWithdrawal"`
+ */
+export const writeStakingRewardsDistributorSonicClaimOnWithdrawal =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimOnWithdrawal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositBaseRewards"`
+ */
+export const writeStakingRewardsDistributorSonicDepositBaseRewards =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositBaseRewards',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositProtocolFees"`
+ */
+export const writeStakingRewardsDistributorSonicDepositProtocolFees =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositProtocolFees',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const writeStakingRewardsDistributorSonicInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const writeStakingRewardsDistributorSonicInitializeAndRegister =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const writeStakingRewardsDistributorSonicPauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const writeStakingRewardsDistributorSonicRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const writeStakingRewardsDistributorSonicRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const writeStakingRewardsDistributorSonicTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const writeStakingRewardsDistributorSonicUnpauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"updateAddresses"`
+ */
+export const writeStakingRewardsDistributorSonicUpdateAddresses =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'updateAddresses',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const writeStakingRewardsDistributorSonicUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const writeStakingRewardsDistributorSonicUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const simulateStakingRewardsDistributorSonic =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claim"`
+ */
+export const simulateStakingRewardsDistributorSonicClaim =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimMany"`
+ */
+export const simulateStakingRewardsDistributorSonicClaimMany =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimMany',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"claimOnWithdrawal"`
+ */
+export const simulateStakingRewardsDistributorSonicClaimOnWithdrawal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'claimOnWithdrawal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositBaseRewards"`
+ */
+export const simulateStakingRewardsDistributorSonicDepositBaseRewards =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositBaseRewards',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"depositProtocolFees"`
+ */
+export const simulateStakingRewardsDistributorSonicDepositProtocolFees =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'depositProtocolFees',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initialize"`
+ */
+export const simulateStakingRewardsDistributorSonicInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"initializeAndRegister"`
+ */
+export const simulateStakingRewardsDistributorSonicInitializeAndRegister =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'initializeAndRegister',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"pauseLocal"`
+ */
+export const simulateStakingRewardsDistributorSonicPauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"recoverERC20"`
+ */
+export const simulateStakingRewardsDistributorSonicRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"renounceOwnership"`
+ */
+export const simulateStakingRewardsDistributorSonicRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"transferOwnership"`
+ */
+export const simulateStakingRewardsDistributorSonicTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"unpauseLocal"`
+ */
+export const simulateStakingRewardsDistributorSonicUnpauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"updateAddresses"`
+ */
+export const simulateStakingRewardsDistributorSonicUpdateAddresses =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'updateAddresses',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeTo"`
+ */
+export const simulateStakingRewardsDistributorSonicUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ */
+export const simulateStakingRewardsDistributorSonicUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: stakingRewardsDistributorSonicAbi,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__
+ */
+export const watchStakingRewardsDistributorSonicEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"AdminChanged"`
+ */
+export const watchStakingRewardsDistributorSonicAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BaseRewardsClaimed"`
+ */
+export const watchStakingRewardsDistributorSonicBaseRewardsClaimedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BaseRewardsClaimed',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BaseRewardsDeposited"`
+ */
+export const watchStakingRewardsDistributorSonicBaseRewardsDepositedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BaseRewardsDeposited',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ */
+export const watchStakingRewardsDistributorSonicBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const watchStakingRewardsDistributorSonicInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ */
+export const watchStakingRewardsDistributorSonicOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Paused"`
+ */
+export const watchStakingRewardsDistributorSonicPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"ProtocolFeesDeposited"`
+ */
+export const watchStakingRewardsDistributorSonicProtocolFeesDepositedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'ProtocolFeesDeposited',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"ProtocolRewardsClaimed"`
+ */
+export const watchStakingRewardsDistributorSonicProtocolRewardsClaimedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'ProtocolRewardsClaimed',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Unpaused"`
+ */
+export const watchStakingRewardsDistributorSonicUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingRewardsDistributorSonicAbi}__ and `eventName` set to `"Upgraded"`
+ */
+export const watchStakingRewardsDistributorSonicUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: stakingRewardsDistributorSonicAbi,
     eventName: 'Upgraded',
   })

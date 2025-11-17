@@ -1,0 +1,54 @@
+{
+  "address": "0xe8500A284C144165E94C3ddc9Ec3bD290a17cD00",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "SafeCastOverflow",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "SafeCastUnderflow",
+      "type": "error"
+    }
+  ],
+  "transactionHash": "0x35df7ff087149ea978d290f0d8a65d0175d0da2a18fafec7e5cdf38599b909b9",
+  "receipt": {
+    "to": null,
+    "from": "0x117B4B046ad3B7f152A688dc9E5461c53B512dAC",
+    "contractAddress": "0xe8500A284C144165E94C3ddc9Ec3bD290a17cD00",
+    "transactionIndex": 3,
+    "gasUsed": "72227",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x52a9a05538d04472f2e49684d4e6672978329878b2b7619f562fae4f3140c8de",
+    "transactionHash": "0x35df7ff087149ea978d290f0d8a65d0175d0da2a18fafec7e5cdf38599b909b9",
+    "logs": [],
+    "blockNumber": 55584868,
+    "cumulativeGasUsed": "713543",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "9641aa62b3dcffd9f81f4cb4989361b7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"SafeCastOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SafeCastUnderflow\",\"type\":\"error\"}],\"devdoc\":{\"author\":\"velodrome.finance\",\"kind\":\"dev\",\"methods\":{},\"title\":\"SafeCast Library\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Safely convert unsigned and signed integers without overflow / underflow\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/protocol-v2/libraries/SafeCastLibrary.sol\":\"SafeCastLibrary\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":100},\"remappings\":[]},\"sources\":{\"src/protocol-v2/libraries/SafeCastLibrary.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\r\\npragma solidity 0.8.18;\\r\\n\\r\\n/// @title SafeCast Library\\r\\n/// @author velodrome.finance\\r\\n/// @notice Safely convert unsigned and signed integers without overflow / underflow\\r\\nlibrary SafeCastLibrary {\\r\\n  error SafeCastOverflow();\\r\\n  error SafeCastUnderflow();\\r\\n\\r\\n  /// @dev Safely convert uint256 to int128\\r\\n  function toInt128(uint256 value) internal pure returns (int128) {\\r\\n    if (value > uint128(type(int128).max)) revert SafeCastOverflow();\\r\\n    return int128(uint128(value));\\r\\n  }\\r\\n\\r\\n  /// @dev Safely convert int128 to uint256\\r\\n  function toUint256(int128 value) internal pure returns (uint256) {\\r\\n    if (value < 0) revert SafeCastUnderflow();\\r\\n    return uint256(int256(value));\\r\\n  }\\r\\n}\\r\\n\",\"keccak256\":\"0x6d5e6bfd798cb9cbc092b10afe8fa786391e36147b7f2cd7ee1092f3d88257d9\",\"license\":\"BUSL-1.1\"}},\"version\":1}",
+  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220ce4dff29b5ffd09f5f2470e594061e6de5325981f0a80c84715abe8249ceee7e64736f6c63430008120033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220ce4dff29b5ffd09f5f2470e594061e6de5325981f0a80c84715abe8249ceee7e64736f6c63430008120033",
+  "devdoc": {
+    "author": "velodrome.finance",
+    "kind": "dev",
+    "methods": {},
+    "title": "SafeCast Library",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Safely convert unsigned and signed integers without overflow / underflow",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}
