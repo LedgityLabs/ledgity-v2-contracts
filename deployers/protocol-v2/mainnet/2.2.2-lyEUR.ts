@@ -42,7 +42,7 @@ export default async function deploy({
     contract: "LedgityYieldVault",
     from: deployer,
     log: true,
-    waitConfirmations: 3,
+    waitConfirmations: 2,
     libraries: {
       LedgityDataProvider: ledgityDataProviderLib,
     },

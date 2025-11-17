@@ -76,7 +76,7 @@ export default async function deploy({
   });
 
   console.log(
-    "-> Precomputed RewardsDistributor Proxy address: ".yellow,
+    "-> Precomputed StakingRewardsDistributor Proxy address: ".yellow,
     rewardsDistributorAddress,
   );
 

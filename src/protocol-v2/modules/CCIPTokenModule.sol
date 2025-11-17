@@ -126,8 +126,6 @@ contract CCIPTokenModule is IGetCCIPAdmin, ERC20Upgradeable {
     if (!isMinter(msg.sender)) revert SenderNotMinter(msg.sender);
 
     _handleMint(account, amount);
-
-    // @bw need to adjust assets or this will cause price shift
   }
 
   /**
@@ -138,8 +136,6 @@ contract CCIPTokenModule is IGetCCIPAdmin, ERC20Upgradeable {
     if (!isBurner(msg.sender)) revert SenderNotBurner(msg.sender);
 
     _handleBurn(msg.sender, amount);
-
-    // @bw need to adjust assets or this will cause price shift
   }
 
   // ======== ADMIN ======== //

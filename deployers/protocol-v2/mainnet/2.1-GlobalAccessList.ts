@@ -6,6 +6,7 @@ export default async function deploy({
 }: Parameters<DeployFunction>[0]) {
   console.log("\n=> Deploy GlobalAccessList".cyan);
   const { deployer } = await getNamedAccounts();
+  console.log("deployer: ", deployer);
 
   const globalOwner = await deployments.get("GlobalOwner");
 

@@ -36,13 +36,14 @@ export default async function deploy({
     globalPause,
     globalAccessList,
   );
+ 
 
   // Deploy the LToken
   const result = await deployments.deploy(VAULT_TOKEN_SYMBOL, {
     contract: "LedgityYieldVault",
     from: deployer,
     log: true,
-    waitConfirmations: 3,
+    waitConfirmations: 2,
     libraries: {
       LedgityDataProvider: ledgityDataProviderLib,
     },

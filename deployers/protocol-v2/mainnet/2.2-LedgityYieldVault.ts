@@ -14,7 +14,7 @@ export default async function deploy({
     {
       from: deployer,
       log: true,
-      waitConfirmations: 3,
+      waitConfirmations: 2,
     },
   );
 
@@ -23,7 +23,8 @@ export default async function deploy({
     contract: "LedgityYieldVault",
     from: deployer,
     log: true,
-    waitConfirmations: 3,
+    waitConfirmations: 2,
+    gasLimit: 6_000_000,
     libraries: {
       LedgityDataProvider: ledgityDataProviderLib.address,
     },
