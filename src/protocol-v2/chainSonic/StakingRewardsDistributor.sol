@@ -25,7 +25,8 @@ contract StakingRewardsDistributorSonic is StakingRewardsDistributor {
     address globalPause_,
     address globalAccessList_
   ) public {
-    SonicFeeMRegister.registerContract();
+    /// @dev FeeM registration was under maintenance during deploy
+    // SonicFeeMRegister.registerContract();
     StakingRewardsDistributor.initialize(
       staking_,
       globalOwner_,

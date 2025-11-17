@@ -24,7 +24,7 @@ export default async function deploy({
 
   // Retrieve global contracts
   const [globalOwner, globalPause, globalAccessList] = await Promise.all(
-    ["GlobalOwner", "GlobalPause", "GlobalAccessList"].map((el) =>
+    ["GlobalOwnerSonic", "GlobalPauseSonic", "GlobalAccessList"].map((el) =>
       deployments.get(el).then((el) => el.address as Address),
     ),
   );

@@ -21,8 +21,8 @@ export default async function deploy({
   const [globalOwner, globalPause, globalAccessList, ledgityDataProviderLib] =
     await Promise.all(
       [
-        "GlobalOwner",
-        "GlobalPause",
+        "GlobalOwnerSonic",
+        "GlobalPauseSonic",
         "GlobalAccessList",
         "LedgityDataProvider",
       ].map((el) => deployments.get(el).then((el) => el.address as Address)),
@@ -39,7 +39,7 @@ export default async function deploy({
 
   // Deploy the LToken
   const result = await deployments.deploy(VAULT_TOKEN_SYMBOL, {
-    contract: "LedgityYieldVault",
+    contract: "LedgityYieldVaultSonic",
     from: deployer,
     log: true,
     waitConfirmations: 3,
@@ -48,10 +48,10 @@ export default async function deploy({
     },
     proxy: {
       proxyContract: "UUPS",
-      implementationName: "LedgityYieldVault_Implementation",
+      implementationName: "LedgityYieldVaultSonic_Implementation",
       execute: {
         init: {
-          methodName: "initialize",
+          methodName: "initializeAndRegister",
           args,
         },
       },

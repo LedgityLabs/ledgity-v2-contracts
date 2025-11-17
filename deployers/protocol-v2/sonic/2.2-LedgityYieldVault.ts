@@ -19,7 +19,7 @@ export default async function deploy({
   );
 
   // Deploy the shared implementation with library linking
-  await deployments.deploy("LedgityYieldVault_Implementation", {
+  await deployments.deploy("LedgityYieldVaultSonic_Implementation", {
     contract: "LedgityYieldVaultSonic",
     from: deployer,
     log: true,

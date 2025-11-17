@@ -12,10 +12,10 @@ export default async function deploy({
   const [globalOwner, globalPause, globalAccessList, staking] =
     await Promise.all(
       [
-        "GlobalOwner",
-        "GlobalPause",
+        "GlobalOwnerSonic",
+        "GlobalPauseSonic",
         "GlobalAccessList",
-        "StakingPositions",
+        "StakingPositionsSonic",
       ].map((el) => deployments.get(el).then((el) => el.address as Address)),
     );
 

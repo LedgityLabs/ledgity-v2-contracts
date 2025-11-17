@@ -21,7 +21,8 @@ contract LedgityYieldVaultSonic is LedgityYieldVault {
     VaultParams calldata params,
     VaultLiquidityInitParams calldata vaultLiquidityInitParams
   ) public {
-    SonicFeeMRegister.registerContract();
+    /// @dev FeeM registration was under maintenance during deploy
+    // SonicFeeMRegister.registerContract();
     LedgityYieldVault.initialize(params, vaultLiquidityInitParams);
   }
 }

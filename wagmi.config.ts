@@ -35,6 +35,9 @@ const contractList = [
   "StakingPositions",
   "StakingRewardsDistributor",
   "CouncilMerkleDistributor",
+  "LedgityYieldVaultSonic",
+  "StakingPositionsSonic",
+  "StakingRewardsDistributorSonic",
 ];
 
 // Read ABIs from contracts/abis directory
@@ -75,7 +78,7 @@ for (const abiFile of abiFiles) {
 
 // Then, populate addresses from deployments
 for (const chainId in deployedContracts) {
-  const contractsData = deployedContracts[chainId][0].contracts;
+  const contractsData = (deployedContracts as any)[chainId][0].contracts;
 
   if (!contractsData) {
     console.log("No contracts found for chainId: ", chainId);

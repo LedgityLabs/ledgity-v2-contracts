@@ -27,7 +27,8 @@ contract StakingPositionsSonic is StakingPositions {
     address globalPause_,
     address globalAccessList_
   ) public {
-    SonicFeeMRegister.registerContract();
+    /// @dev FeeM registration was under maintenance during deploy
+    // SonicFeeMRegister.registerContract();
     StakingPositions.initialize(
       token_,
       rewardsDistributor_,
