@@ -3371,6 +3371,25 @@ export const ledgityYieldVaultAbi = [
     type: 'event',
     anonymous: false,
     inputs: [
+      {
+        name: 'oldHighWaterMark',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newHighWaterMark',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'HighWaterMarkUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
       { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
     ],
     name: 'Initialized',
@@ -4466,6 +4485,15 @@ export const ledgityYieldVaultAbi = [
   {
     type: 'function',
     inputs: [
+      { name: 'newHighWaterMark', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'updateHighWaterMark',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
       { name: 'newLiquidityManager', internalType: 'address', type: 'address' },
       {
         name: 'newFeeRecipient',
@@ -4825,6 +4853,25 @@ export const ledgityYieldVaultSonicAbi = [
       },
     ],
     name: 'FeeRatesUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldHighWaterMark',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newHighWaterMark',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'HighWaterMarkUpdated',
   },
   {
     type: 'event',
@@ -6015,6 +6062,15 @@ export const ledgityYieldVaultSonicAbi = [
       { name: 'withdrawalRate_', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'updateFeeRates',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newHighWaterMark', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'updateHighWaterMark',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -15249,6 +15305,15 @@ export const useWriteLedgityYieldVaultUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const useWriteLedgityYieldVaultUpdateHighWaterMark =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const useWriteLedgityYieldVaultUpdateVaultManagers =
@@ -15597,6 +15662,15 @@ export const useSimulateLedgityYieldVaultUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const useSimulateLedgityYieldVaultUpdateHighWaterMark =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const useSimulateLedgityYieldVaultUpdateVaultManagers =
@@ -15753,6 +15827,15 @@ export const useWatchLedgityYieldVaultFeeRatesUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"HighWaterMarkUpdated"`
+ */
+export const useWatchLedgityYieldVaultHighWaterMarkUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'HighWaterMarkUpdated',
   })
 
 /**
@@ -16722,6 +16805,15 @@ export const useWriteLedgityYieldVaultSonicUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const useWriteLedgityYieldVaultSonicUpdateHighWaterMark =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const useWriteLedgityYieldVaultSonicUpdateVaultManagers =
@@ -17079,6 +17171,15 @@ export const useSimulateLedgityYieldVaultSonicUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const useSimulateLedgityYieldVaultSonicUpdateHighWaterMark =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const useSimulateLedgityYieldVaultSonicUpdateVaultManagers =
@@ -17235,6 +17336,15 @@ export const useWatchLedgityYieldVaultSonicFeeRatesUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultSonicAbi,
     eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"HighWaterMarkUpdated"`
+ */
+export const useWatchLedgityYieldVaultSonicHighWaterMarkUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'HighWaterMarkUpdated',
   })
 
 /**
@@ -28212,6 +28322,15 @@ export const writeLedgityYieldVaultUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const writeLedgityYieldVaultUpdateHighWaterMark =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const writeLedgityYieldVaultUpdateVaultManagers =
@@ -28559,6 +28678,15 @@ export const simulateLedgityYieldVaultUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const simulateLedgityYieldVaultUpdateHighWaterMark =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const simulateLedgityYieldVaultUpdateVaultManagers =
@@ -28715,6 +28843,15 @@ export const watchLedgityYieldVaultFeeRatesUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"HighWaterMarkUpdated"`
+ */
+export const watchLedgityYieldVaultHighWaterMarkUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'HighWaterMarkUpdated',
   })
 
 /**
@@ -29680,6 +29817,15 @@ export const writeLedgityYieldVaultSonicUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const writeLedgityYieldVaultSonicUpdateHighWaterMark =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const writeLedgityYieldVaultSonicUpdateVaultManagers =
@@ -30037,6 +30183,15 @@ export const simulateLedgityYieldVaultSonicUpdateFeeRates =
   })
 
 /**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateHighWaterMark"`
+ */
+export const simulateLedgityYieldVaultSonicUpdateHighWaterMark =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultSonicAbi,
+    functionName: 'updateHighWaterMark',
+  })
+
+/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `functionName` set to `"updateVaultManagers"`
  */
 export const simulateLedgityYieldVaultSonicUpdateVaultManagers =
@@ -30193,6 +30348,15 @@ export const watchLedgityYieldVaultSonicFeeRatesUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultSonicAbi,
     eventName: 'FeeRatesUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultSonicAbi}__ and `eventName` set to `"HighWaterMarkUpdated"`
+ */
+export const watchLedgityYieldVaultSonicHighWaterMarkUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultSonicAbi,
+    eventName: 'HighWaterMarkUpdated',
   })
 
 /**

@@ -37,6 +37,11 @@ interface IVaultLiquidityModule {
 
   event DeploymentDelayUpdated(uint8 oldDelay, uint8 newDelay);
 
+  event HighWaterMarkUpdated(
+    uint256 oldHighWaterMark,
+    uint256 newHighWaterMark
+  );
+
   /** ======== FUNCTIONS ======== */
 
   function RAY() external view returns (uint256);
@@ -92,4 +97,6 @@ interface IVaultLiquidityModule {
   ) external;
 
   function updateDeploymentDelay(uint8 newDeploymentDelay) external;
+
+  function updateHighWaterMark(uint256 newHighWaterMark) external;
 }

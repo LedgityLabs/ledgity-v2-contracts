@@ -147,6 +147,25 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "oldHighWaterMark",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newHighWaterMark",
+        "type": "uint256"
+      }
+    ],
+    "name": "HighWaterMarkUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
         "internalType": "uint8",
         "name": "version",
         "type": "uint8"
@@ -1037,6 +1056,19 @@
       }
     ],
     "name": "updateFeeRates",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newHighWaterMark",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateHighWaterMark",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

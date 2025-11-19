@@ -85,7 +85,7 @@ abstract contract VaultLiquidityModule is
     // Initialize high water mark at 1 share = 1 asset if not specified
     highWaterMark = params.highWaterMark != 0
       ? params.highWaterMark
-      : 1e18;
+      : 10 ** (18 - decimalsOffset);
     // Set initial virtual reserves for predefined share price (cross-chain alignment)
     // Creates 1 virtual share at specified price, locks it permanently
     if (params.initialAssetsPerShare != 0) {
@@ -471,5 +471,18 @@ abstract contract VaultLiquidityModule is
     deploymentDelay = newDeploymentDelay;
 
     emit DeploymentDelayUpdated(oldDelay, newDeploymentDelay);
+  }
+
+  /**
+   * @notice Update the high water mark for performance fee calculations
+   * @param newHighWaterMark The new high water mark (in 18 decimals)
+   */
+  function updateHighWaterMark(
+    uint256 newHighWaterMark
+  ) external onlyOwner {
+    uint256 oldHighWaterMark = highWaterMark;
+    highWaterMark = newHighWaterMark;
+
+    emit HighWaterMarkUpdated(oldHighWaterMark, newHighWaterMark);
   }
 }
