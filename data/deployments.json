@@ -4431,7 +4431,7 @@
           "abi": []
         },
         "LedgityYieldVault_Implementation": {
-          "address": "0x94ed3CF3afF9439F91Fcea79d0a3473159B03ED1",
+          "address": "0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411",
           "abi": [
             {
               "inputs": [],
@@ -4751,6 +4751,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -6646,6 +6665,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -12022,6 +12054,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -13897,6 +13948,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -14526,6 +14590,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -16401,6 +16484,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -27200,7 +27296,7 @@
           "abi": []
         },
         "LedgityYieldVaultSonic_Implementation": {
-          "address": "0x22C32D67257d55c32d83C743e31Da208d39Ba165",
+          "address": "0x3Afcd7A95bffDE892F1f4670583B9d0911951F64",
           "abi": [
             {
               "inputs": [],
@@ -27520,6 +27616,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -29547,6 +29662,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -38527,6 +38655,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -40534,6 +40681,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -43688,7 +43848,7 @@
           "abi": []
         },
         "LedgityYieldVaultHedera_Implementation": {
-          "address": "0x21Af86E34F77e38b0d46F6cd398efA88A1796857",
+          "address": "0x17C925Ee24da3bfc7E1C85e765ACe0d6aEC1Bb37",
           "abi": [
             {
               "inputs": [],
@@ -44013,6 +44173,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -46040,6 +46219,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -51421,6 +51613,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -53428,6 +53639,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -66019,7 +66243,7 @@
           "abi": []
         },
         "LedgityYieldVault_Implementation": {
-          "address": "0xf9EeCe93F43aBd5a2287DF083C8C510da7a9B56f",
+          "address": "0x76f1f8859A37c32d0764898F7f0B1585ed983f00",
           "abi": [
             {
               "inputs": [],
@@ -66339,6 +66563,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -68234,6 +68477,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -73610,6 +73866,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -75485,6 +75760,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -76114,6 +76402,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -77989,6 +78296,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -86038,7 +86358,7 @@
           "abi": []
         },
         "LedgityYieldVault_Implementation": {
-          "address": "0x0A1Ba9Ff031DCE2f0C228B572154Fb367E0DF98a",
+          "address": "0x5bAF90214294338838faD1AbdB7b928922660933",
           "abi": [
             {
               "inputs": [],
@@ -86358,6 +86678,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -88253,6 +88592,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -94228,6 +94580,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -96103,6 +96474,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -102260,7 +102644,7 @@
           "abi": []
         },
         "LedgityYieldVault_Implementation": {
-          "address": "0x57791De9E18693834b37323D3c90190A8aB3b925",
+          "address": "0x20968165B7d2cDF33aF632aAB3e0539848d44BC8",
           "abi": [
             {
               "inputs": [],
@@ -102580,6 +102964,25 @@
                 }
               ],
               "name": "FeeRatesUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
               "type": "event"
             },
             {
@@ -104475,6 +104878,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
@@ -110450,6 +110866,25 @@
               "inputs": [
                 {
                   "indexed": false,
+                  "internalType": "uint256",
+                  "name": "oldHighWaterMark",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "HighWaterMarkUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
                   "internalType": "uint8",
                   "name": "version",
                   "type": "uint8"
@@ -112325,6 +112760,19 @@
                 }
               ],
               "name": "updateFeeRates",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "newHighWaterMark",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateHighWaterMark",
               "outputs": [],
               "stateMutability": "nonpayable",
               "type": "function"
