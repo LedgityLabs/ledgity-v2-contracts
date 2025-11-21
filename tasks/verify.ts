@@ -95,13 +95,13 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
 
         if (addressChanged) {
           console.log(
-            `\n🔄 Address changed for ${deployment.name}: ${existingRecord.address} -> ${deployment.address}`,
+            `\n🔍 Address changed for ${deployment.name}: ${existingRecord.address} -> ${deployment.address}`,
           );
         }
 
         if (implChanged) {
           console.log(
-            `\n🔄 Implementation changed for ${deployment.name}: ${existingRecord.implementation} -> ${deployment.implementation}`,
+            `\n🔍 Implementation changed for ${deployment.name}: ${existingRecord.implementation} -> ${deployment.implementation}`,
           );
         }
 
