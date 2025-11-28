@@ -40,7 +40,7 @@ const {
   HEDERA_VERIFY_API_KEY,
 } = process.env;
 
-if (!DEPLOYER_PK) throw Error("DEPLOYER_PK not found in environment variables");
+const deployerPrivateKey = DEPLOYER_PK || utils.keccak256("deployer");
 
 // Fork Validation
 const forkTarget = HARDHAT_DEPLOY_FORK?.toLowerCase();
@@ -158,7 +158,7 @@ function makeForkConfig(
       ? `${"at block".magenta} ${config.forkingBlock.cyan}`
       : "",
     "with deployer".magenta,
-    new Wallet(DEPLOYER_PK as string).address.cyan,
+    new Wallet(deployerPrivateKey).address.cyan,
   );
 
   /// @dev Nested structure to be destructured safely in case there is no fork
@@ -181,7 +181,7 @@ function makeForkConfig(
       },
       accounts: [
         {
-          privateKey: DEPLOYER_PK as string,
+          privateKey: deployerPrivateKey,
           balance: utils.parseEther("100000").toString(),
         },
       ],
@@ -200,7 +200,7 @@ const networks = Object.entries(networkConfigs).reduce(
     acc[name] = {
       chainId: data.chainId,
       url: data.rpcUrl,
-      accounts: [DEPLOYER_PK],
+      accounts: [deployerPrivateKey],
       saveDeployments: true,
       deploy: data.deploy,
       verify: {

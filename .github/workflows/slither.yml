@@ -3,6 +3,7 @@ on: [push]
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    environment: actions-env
     steps:
       - uses: actions/checkout@v4
       - uses: crytic/slither-action@v0.3.1
