@@ -8,6 +8,9 @@ export default async function deploy({
   getChainId,
 }: Parameters<DeployFunction>[0]) {
   console.log("\n=> Deploy CouncilMerkleDistributor".cyan);
+  console.log("CouncilMerkleDistributor deployement disabled for now".yellow);
+  return; // @dev Disabled for now
+
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
