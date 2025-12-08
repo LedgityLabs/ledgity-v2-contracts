@@ -919,6 +919,12 @@ contract StakingPositions is
       locked[_tokenId],
       DepositType.CREATE_LOCK_TYPE
     );
+
+    // Notify rewards distributor of new lock creation
+    IStakingRewardsDistributor(rewardsDistributor).onLockCreated(
+      _tokenId
+    );
+
     return _tokenId;
   }
 

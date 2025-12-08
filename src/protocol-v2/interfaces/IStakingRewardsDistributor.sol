@@ -110,6 +110,13 @@ interface IStakingRewardsDistributor {
     view
     returns (uint256 baseRewards, uint256 protocolRewards);
 
+  /// @notice Returns pending base rewards for the current incomplete week (not yet claimable)
+  /// @param tokenId The NFT token ID
+  /// @return pendingRewards Estimated rewards for the current week (will be claimable after week ends)
+  function pendingBaseRewards(
+    uint256 tokenId
+  ) external view returns (uint256 pendingRewards);
+
   /*//////////////////////////////////////////////////////////////
                             ADMIN FUNCTIONS
     //////////////////////////////////////////////////////////////*/
@@ -154,4 +161,12 @@ interface IStakingRewardsDistributor {
   function claimMany(
     uint256[] calldata tokenIds
   ) external returns (bool success);
+
+  /*//////////////////////////////////////////////////////////////
+                          CALLBACK FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
+
+  /// @notice Called by StakingPositions when a new lock is created
+  /// @param tokenId The NFT tokenId that was created
+  function onLockCreated(uint256 tokenId) external;
 }

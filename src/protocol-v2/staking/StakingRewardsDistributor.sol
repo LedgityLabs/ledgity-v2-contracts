@@ -118,6 +118,44 @@ contract StakingRewardsDistributor is
     protocolRewards = _claimableProtocolRewards(tokenId);
   }
 
+  /// @inheritdoc IStakingRewardsDistributor
+  function pendingBaseRewards(
+    uint256 tokenId
+  ) external view returns (uint256 pendingRewards) {
+    uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
+    if (maxUserEpoch == 0) return 0;
+
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+
+    for (
+      uint256 periodId = 1;
+      periodId <= currentPeriodId;
+      periodId++
+    ) {
+      BaseRewardPeriod memory period = baseRewardPeriods[periodId];
+
+      if (
+        currentWeek < period.startWeek ||
+        currentWeek >= period.endWeek
+      ) continue;
+
+      uint256 weeklyReward = baseRewardsPerWeek[periodId][
+        currentWeek
+      ];
+      if (weeklyReward == 0) continue;
+
+      uint256 balance = staking.balanceOfNFTAt(
+        tokenId,
+        block.timestamp
+      );
+      uint256 supply = staking.totalSupplyAt(block.timestamp);
+
+      if (supply > 0) {
+        pendingRewards += (balance * weeklyReward) / supply;
+      }
+    }
+  }
+
   /*//////////////////////////////////////////////////////////////
                             USER FUNCTIONS
     //////////////////////////////////////////////////////////////*/
@@ -318,7 +356,11 @@ contract StakingRewardsDistributor is
     uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
     if (maxUserEpoch == 0) return 0;
 
-    uint256 currentBalance = staking.balanceOfNFT(tokenId);
+    // Use balanceOfNFTAt to bypass double vote protection
+    uint256 currentBalance = staking.balanceOfNFTAt(
+      tokenId,
+      block.timestamp
+    );
     uint256 rewardsPerTokenPaid = protocolRewardsPerTokenPaid[
       tokenId
     ];
@@ -376,6 +418,19 @@ contract StakingRewardsDistributor is
     }
 
     return claimableAmount;
+  }
+
+  /*//////////////////////////////////////////////////////////////
+                          CALLBACK FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
+
+  /// @inheritdoc IStakingRewardsDistributor
+  function onLockCreated(uint256 tokenId) external {
+    if (msg.sender != address(staking)) revert OnlyStakingPositions();
+
+    protocolRewardsPerTokenPaid[
+      tokenId
+    ] = cumulativeProtocolRewardsPerToken;
   }
 
   /*//////////////////////////////////////////////////////////////
