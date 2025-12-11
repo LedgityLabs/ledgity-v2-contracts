@@ -13,12 +13,12 @@ import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC
 import { IKrystalVault } from "src/protocol-v2/krystal/IKrystalVault.sol";
 
 /**
- * @title ExternalYieldVault
+ * @title KrystalYieldVault
  * @notice ERC-4626 wrapper for Krystal vault, routing deposits and withdrawals
  * @dev Acts as an intermediary between users and the Krystal vault, providing
  *      a standard ERC-4626 interface for compatibility with DeFi protocols.
  */
-contract ExternalYieldVault is
+contract KrystalYieldVault is
   ERC4626Upgradeable,
   AdministeredUpgradable
 {
@@ -45,7 +45,7 @@ contract ExternalYieldVault is
   // =========== STORAGE =========== //
 
   IKrystalVault public krystalVault;
-  uint256 public slippageTolerance; // In basis points (10000 = 100%)
+  uint256 public slippageToleranceDefault; // In basis points (10000 = 100%)
 
   uint256 public constant BASIS_POINTS = 10000;
 
@@ -84,7 +84,7 @@ contract ExternalYieldVault is
     );
 
     krystalVault = IKrystalVault(krystalVault_);
-    slippageTolerance = slippageTolerance_;
+    slippageToleranceDefault = slippageTolerance_;
 
     // Approve Krystal vault to spend underlying asset
     asset_.approve(krystalVault_, type(uint256).max);
@@ -109,7 +109,7 @@ contract ExternalYieldVault is
   }
 
   /**
-   * @notice Deposits assets into the Krystal vault
+   * @notice Deposits assets into the Krystal vault (ERC4626 standard, uses default slippage)
    * @param assets Amount of underlying assets to deposit
    * @param receiver Address to receive the vault shares
    * @return shares Amount of vault shares minted
@@ -125,6 +125,38 @@ contract ExternalYieldVault is
     notRestricted(receiver)
     returns (uint256 shares)
   {
+    return _deposit(assets, receiver, slippageToleranceDefault);
+  }
+
+  /**
+   * @notice Deposits assets with custom slippage tolerance
+   * @param assets Amount of underlying assets to deposit
+   * @param receiver Address to receive the vault shares
+   * @param slippageTolerance_ Custom slippage tolerance in basis points
+   * @return shares Amount of vault shares minted
+   */
+  function depositWithSlippage(
+    uint256 assets,
+    address receiver,
+    uint256 slippageTolerance_
+  )
+    public
+    whenNotPaused
+    notRestricted(msg.sender)
+    notRestricted(receiver)
+    returns (uint256 shares)
+  {
+    return _deposit(assets, receiver, slippageTolerance_);
+  }
+
+  /**
+   * @notice Internal deposit implementation
+   */
+  function _deposit(
+    uint256 assets,
+    address receiver,
+    uint256 slippageTolerance_
+  ) internal returns (uint256 shares) {
     if (assets == 0) revert ZeroAmount();
 
     // Transfer assets from sender
@@ -137,7 +169,7 @@ contract ExternalYieldVault is
     // Calculate minimum shares with slippage
     uint256 expectedKrystalShares = _previewKrystalDeposit(assets);
     uint256 minKrystalShares = expectedKrystalShares.mulDiv(
-      BASIS_POINTS - slippageTolerance,
+      BASIS_POINTS - slippageTolerance_,
       BASIS_POINTS
     );
 
@@ -204,7 +236,7 @@ contract ExternalYieldVault is
   }
 
   /**
-   * @notice Withdraws assets from the Krystal vault
+   * @notice Withdraws assets from the Krystal vault (ERC4626 standard, uses default slippage)
    * @param assets Amount of underlying assets to withdraw
    * @param receiver Address to receive the assets
    * @param owner_ Address that owns the vault shares
@@ -222,6 +254,42 @@ contract ExternalYieldVault is
     notRestricted(receiver)
     returns (uint256 shares)
   {
+    return
+      _withdraw(assets, receiver, owner_, slippageToleranceDefault);
+  }
+
+  /**
+   * @notice Withdraws assets with custom slippage tolerance
+   * @param assets Amount of underlying assets to withdraw
+   * @param receiver Address to receive the assets
+   * @param owner_ Address that owns the vault shares
+   * @param slippageTolerance_ Custom slippage tolerance in basis points
+   * @return shares Amount of vault shares burned
+   */
+  function withdrawWithSlippage(
+    uint256 assets,
+    address receiver,
+    address owner_,
+    uint256 slippageTolerance_
+  )
+    public
+    whenNotPaused
+    notRestricted(msg.sender)
+    notRestricted(receiver)
+    returns (uint256 shares)
+  {
+    return _withdraw(assets, receiver, owner_, slippageTolerance_);
+  }
+
+  /**
+   * @notice Internal withdraw implementation
+   */
+  function _withdraw(
+    uint256 assets,
+    address receiver,
+    address owner_,
+    uint256 slippageTolerance_
+  ) internal returns (uint256 shares) {
     if (assets == 0) revert ZeroAmount();
 
     // Calculate shares needed
@@ -237,7 +305,7 @@ contract ExternalYieldVault is
 
     // Calculate minimum return with slippage
     uint256 minReturn = assets.mulDiv(
-      BASIS_POINTS - slippageTolerance,
+      BASIS_POINTS - slippageTolerance_,
       BASIS_POINTS
     );
 
@@ -261,7 +329,7 @@ contract ExternalYieldVault is
   }
 
   /**
-   * @notice Redeems vault shares for underlying assets
+   * @notice Redeems vault shares for underlying assets (ERC4626 standard, uses default slippage)
    * @param shares Amount of vault shares to redeem
    * @param receiver Address to receive the assets
    * @param owner_ Address that owns the vault shares
@@ -279,6 +347,42 @@ contract ExternalYieldVault is
     notRestricted(receiver)
     returns (uint256 assets)
   {
+    return
+      _redeem(shares, receiver, owner_, slippageToleranceDefault);
+  }
+
+  /**
+   * @notice Redeems vault shares with custom slippage tolerance
+   * @param shares Amount of vault shares to redeem
+   * @param receiver Address to receive the assets
+   * @param owner_ Address that owns the vault shares
+   * @param slippageTolerance_ Custom slippage tolerance in basis points
+   * @return assets Amount of underlying assets received
+   */
+  function redeemWithSlippage(
+    uint256 shares,
+    address receiver,
+    address owner_,
+    uint256 slippageTolerance_
+  )
+    public
+    whenNotPaused
+    notRestricted(msg.sender)
+    notRestricted(receiver)
+    returns (uint256 assets)
+  {
+    return _redeem(shares, receiver, owner_, slippageTolerance_);
+  }
+
+  /**
+   * @notice Internal redeem implementation
+   */
+  function _redeem(
+    uint256 shares,
+    address receiver,
+    address owner_,
+    uint256 slippageTolerance_
+  ) internal returns (uint256 assets) {
     if (shares == 0) revert ZeroAmount();
 
     // Handle allowance if caller is not owner
@@ -292,7 +396,7 @@ contract ExternalYieldVault is
     // Calculate expected assets and minimum with slippage
     uint256 expectedAssets = _previewKrystalRedeem(shares);
     uint256 minReturn = expectedAssets.mulDiv(
-      BASIS_POINTS - slippageTolerance,
+      BASIS_POINTS - slippageTolerance_,
       BASIS_POINTS
     );
 
@@ -480,14 +584,14 @@ contract ExternalYieldVault is
   }
 
   /**
-   * @notice Updates the slippage tolerance
+   * @notice Updates the default slippage tolerance
    * @param newSlippageTolerance The new slippage tolerance in basis points
    */
-  function setSlippageTolerance(
+  function setDefaultSlippageTolerance(
     uint256 newSlippageTolerance
   ) external onlyOwner {
-    uint256 oldTolerance = slippageTolerance;
-    slippageTolerance = newSlippageTolerance;
+    uint256 oldTolerance = slippageToleranceDefault;
+    slippageToleranceDefault = newSlippageTolerance;
     emit SlippageToleranceUpdated(oldTolerance, newSlippageTolerance);
   }
 

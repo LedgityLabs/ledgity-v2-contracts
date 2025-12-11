@@ -214,7 +214,6 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
       address(impl),
       abi.encodeWithSelector(
         ExternalYieldVault.initialize.selector,
-        IERC20Upgradeable(address(asset)),
         address(krystalVault),
         "Krystal USDC Vault",
         "kUSDC",
@@ -243,32 +242,12 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
   function test_initialization() public view {
     assertEq(address(vault.asset()), address(asset));
     assertEq(address(vault.krystalVault()), address(krystalVault));
-    assertEq(vault.slippageTolerance(), SLIPPAGE_TOLERANCE);
+    assertEq(vault.slippageToleranceDefault(), SLIPPAGE_TOLERANCE);
     assertEq(vault.BASIS_POINTS(), BASIS_POINTS);
     assertEq(vault.totalSupply(), 0);
     assertEq(vault.totalAssets(), 0);
     assertEq(vault.name(), "Krystal USDC Vault");
     assertEq(vault.symbol(), "kUSDC");
-  }
-
-  function test_initialization_zeroAsset_reverts() public {
-    ExternalYieldVault impl = new ExternalYieldVault();
-
-    vm.expectRevert(ExternalYieldVault.ZeroAddress.selector);
-    new ERC1967Proxy(
-      address(impl),
-      abi.encodeWithSelector(
-        ExternalYieldVault.initialize.selector,
-        IERC20Upgradeable(address(0)),
-        address(krystalVault),
-        "Test",
-        "T",
-        address(globalOwner),
-        address(globalPause),
-        address(globalAccessList),
-        SLIPPAGE_TOLERANCE
-      )
-    );
   }
 
   function test_initialization_zeroKrystalVault_reverts() public {
@@ -279,7 +258,6 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
       address(impl),
       abi.encodeWithSelector(
         ExternalYieldVault.initialize.selector,
-        IERC20Upgradeable(address(asset)),
         address(0),
         "Test",
         "T",
@@ -708,19 +686,19 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
     vault.setKrystalVault(address(0x123));
   }
 
-  function test_setSlippageTolerance_success() public {
+  function test_setDefaultSlippageTolerance_success() public {
     uint256 newTolerance = 200; // 2%
 
     vm.prank(globalOwner.owner());
-    vault.setSlippageTolerance(newTolerance);
+    vault.setDefaultSlippageTolerance(newTolerance);
 
-    assertEq(vault.slippageTolerance(), newTolerance);
+    assertEq(vault.slippageToleranceDefault(), newTolerance);
   }
 
-  function test_setSlippageTolerance_onlyOwner() public {
+  function test_setDefaultSlippageTolerance_onlyOwner() public {
     vm.prank(testAccount1);
     vm.expectRevert();
-    vault.setSlippageTolerance(200);
+    vault.setDefaultSlippageTolerance(200);
   }
 
   // ======== ACCESS CONTROL TESTS ======== //
