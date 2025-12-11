@@ -532,24 +532,6 @@ contract KrystalYieldVault is
   }
 
   /**
-   * @notice Preview Krystal vault withdraw (shares needed for assets)
-   */
-  function _previewKrystalWithdraw(
-    uint256 assets
-  ) internal view returns (uint256) {
-    uint256 krystalTotalSupply = krystalVault.totalSupply();
-    uint256 krystalTotalValue = krystalVault.getTotalValue();
-
-    if (krystalTotalValue == 0) return 0;
-    return
-      assets.mulDiv(
-        krystalTotalSupply,
-        krystalTotalValue,
-        Math.Rounding.Up
-      );
-  }
-
-  /**
    * @notice Preview Krystal vault redeem (assets for shares)
    */
   function _previewKrystalRedeem(
