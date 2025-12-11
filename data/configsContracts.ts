@@ -432,3 +432,41 @@ const configsContracts: {
     },
   },
 };
+
+const newvaults = {
+  base: "0x76f1f8859A37c32d0764898F7f0B1585ed983f00",
+  arbitrum: "0x5bAF90214294338838faD1AbdB7b928922660933",
+  hedera: "0x17C925Ee24da3bfc7E1C85e765ACe0d6aEC1Bb37",
+  linea: "0x20968165B7d2cDF33aF632aAB3e0539848d44BC8",
+  mainnet: "0x6fFc9A91E8c87FBE3744cEB6A134537c6A21b411",
+  sonic: "0x3Afcd7A95bffDE892F1f4670583B9d0911951F64",
+};
+
+// ARBITRUM
+// "StakingPositions"  0x883108311b43871be1e590C1ab0979e1e72B1DF5
+// "StakingRewardsDistributor"  0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483
+
+// BASE
+// "StakingPositions"  0x4CAEE650C47462457eCa0D3411B8b633d828Fd2a
+// "StakingRewardsDistributor"  0xB5f8754DD9cE92950872F033093043f0c0F9a384
+
+// ETHEREUM
+// "StakingPositions"  0xF2663B722E0FaCcC6fB2743AB8CB30B1d8d93649
+// "StakingRewardsDistributor"  0xa87d32a42f208f428C186C4dbf6DE9D3F93dBa6f
+
+// await fetch("https://api.krystal.app/all/v1/vaults/1/0x2f59e0aa5fce7898620f65621ab0f8e2bd308448", {
+//     "credentials": "omit",
+//     "headers": {
+//         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0",
+//         "Accept": "application/json, text/plain, */*",
+//         "Accept-Language": "en,en-US;q=0.8,fr;q=0.5,fr-FR;q=0.3",
+//         "Alt-Used": "api.krystal.app",
+//         "Sec-Fetch-Dest": "empty",
+//         "Sec-Fetch-Mode": "cors",
+//         "Sec-Fetch-Site": "same-site",
+//         "Priority": "u=4"
+//     },
+//     "referrer": "https://defi.krystal.app/",
+//     "method": "GET",
+//     "mode": "cors"
+// });

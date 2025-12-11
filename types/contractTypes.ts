@@ -1445,6 +1445,712 @@ export const globalPauseConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// KrystalYieldVault
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const krystalYieldVaultAbi = [
+  { type: 'error', inputs: [], name: 'InsufficientShares' },
+  { type: 'error', inputs: [], name: 'UserIsRestricted' },
+  { type: 'error', inputs: [], name: 'ZeroAddress' },
+  { type: 'error', inputs: [], name: 'ZeroAmount' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Approval',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Deposit',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldVault',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newVault',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'KrystalVaultUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldTolerance',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newTolerance',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'SlippageToleranceUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'receiver',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Withdraw',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'BASIS_POINTS',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+    ],
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'asset',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'convertToAssets',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'convertToShares',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'decreaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'deposit',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'slippageTolerance_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'depositWithSlippage',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalOwner', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalPause', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalRestrict',
+    outputs: [
+      { name: '', internalType: 'contract IGlobalAccessList', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'krystalVault_', internalType: 'address', type: 'address' },
+      { name: 'name_', internalType: 'string', type: 'string' },
+      { name: 'symbol_', internalType: 'string', type: 'string' },
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalAccessList_', internalType: 'address', type: 'address' },
+      {
+        name: 'slippageToleranceDefault_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isPausedLocal',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'krystalVault',
+    outputs: [
+      { name: '', internalType: 'contract IKrystalVault', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'maxDeposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'maxMint',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner_', internalType: 'address', type: 'address' }],
+    name: 'maxRedeem',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner_', internalType: 'address', type: 'address' }],
+    name: 'maxWithdraw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'shares', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'mint',
+    outputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'name',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewDeposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewMint',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewRedeem',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    name: 'previewWithdraw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'shares', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'redeem',
+    outputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'shares', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+      { name: 'slippageTolerance_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'redeemWithSlippage',
+    outputs: [{ name: 'assets', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'newSlippageTolerance',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'setDefaultSlippageTolerance',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newKrystalVault', internalType: 'address', type: 'address' },
+    ],
+    name: 'setKrystalVault',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'slippageToleranceDefault',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'symbol',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalAssets',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpauseLocal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+    ],
+    name: 'withdraw',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'assets', internalType: 'uint256', type: 'uint256' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'owner_', internalType: 'address', type: 'address' },
+      { name: 'slippageTolerance_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'withdrawWithSlippage',
+    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+] as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const krystalYieldVaultAddress = {
+  1: '0x06ff95BD22769e4C7067b571d92918b066aB145b',
+} as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const krystalYieldVaultConfig = {
+  address: krystalYieldVaultAddress,
+  abi: krystalYieldVaultAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LDYStaking
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -12080,6 +12786,1069 @@ export const useWatchGlobalPauseUpgradedEvent =
     abi: globalPauseAbi,
     address: globalPauseAddress,
     eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVault = /*#__PURE__*/ createUseReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"BASIS_POINTS"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultBasisPoints =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'BASIS_POINTS',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"allowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultAllowance =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'allowance',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"asset"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultAsset =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'asset',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"balanceOf"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultBalanceOf =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'balanceOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"convertToAssets"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultConvertToAssets =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'convertToAssets',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"convertToShares"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultConvertToShares =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'convertToShares',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decimals"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultDecimals =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'decimals',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultGlobalRestrict =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultIsPausedLocal =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"krystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultKrystalVault =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'krystalVault',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxDeposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultMaxDeposit =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxDeposit',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxMint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultMaxMint =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxMint',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxRedeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultMaxRedeem =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxRedeem',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxWithdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultMaxWithdraw =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"name"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultName = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'name',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewDeposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultPreviewDeposit =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewDeposit',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewMint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultPreviewMint =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewMint',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewRedeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultPreviewRedeem =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewRedeem',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewWithdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultPreviewWithdraw =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewWithdraw',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"slippageToleranceDefault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultSlippageToleranceDefault =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'slippageToleranceDefault',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"symbol"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultSymbol =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'symbol',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"totalAssets"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultTotalAssets =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'totalAssets',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useReadKrystalYieldVaultTotalSupply =
+  /*#__PURE__*/ createUseReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVault = /*#__PURE__*/ createUseWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultApprove =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultDecreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultDeposit =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"depositWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultDepositWithSlippage =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'depositWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"increaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultIncreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultMint =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultPauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultRedeem =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeemWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultRedeemWithSlippage =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeemWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setDefaultSlippageTolerance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultSetDefaultSlippageTolerance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setDefaultSlippageTolerance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setKrystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultSetKrystalVault =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setKrystalVault',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultTransfer =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultTransferFrom =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultWithdraw =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdrawWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWriteKrystalYieldVaultWithdrawWithSlippage =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdrawWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVault =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultApprove =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultDecreaseAllowance =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultDeposit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"depositWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultDepositWithSlippage =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'depositWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"increaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultIncreaseAllowance =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultMint =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultPauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultRedeem =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeemWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultRedeemWithSlippage =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeemWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setDefaultSlippageTolerance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultSetDefaultSlippageTolerance =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setDefaultSlippageTolerance',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setKrystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultSetKrystalVault =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setKrystalVault',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultTransfer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultWithdraw =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdrawWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useSimulateKrystalYieldVaultWithdrawWithSlippage =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdrawWithSlippage',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Approval"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultApprovalEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultDepositEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"KrystalVaultUpdated"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultKrystalVaultUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'KrystalVaultUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"SlippageToleranceUpdated"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultSlippageToleranceUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'SlippageToleranceUpdated',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultTransferEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const useWatchKrystalYieldVaultWithdrawEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Withdraw',
   })
 
 /**
@@ -25262,6 +27031,1056 @@ export const watchGlobalPauseUpgradedEvent =
     abi: globalPauseAbi,
     address: globalPauseAddress,
     eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVault = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"BASIS_POINTS"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultBasisPoints =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'BASIS_POINTS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"allowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultAllowance = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'allowance',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"asset"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultAsset = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'asset',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"balanceOf"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultBalanceOf = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'balanceOf',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"convertToAssets"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultConvertToAssets =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'convertToAssets',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"convertToShares"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultConvertToShares =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'convertToShares',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decimals"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultDecimals = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'decimals',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultGlobalPause =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"globalRestrict"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultGlobalRestrict =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'globalRestrict',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"isPausedLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultIsPausedLocal =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'isPausedLocal',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"krystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultKrystalVault =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'krystalVault',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxDeposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultMaxDeposit = /*#__PURE__*/ createReadContract(
+  {
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxDeposit',
+  },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxMint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultMaxMint = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'maxMint',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxRedeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultMaxRedeem = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'maxRedeem',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"maxWithdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultMaxWithdraw =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"name"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultName = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'name',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultOwner = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultPaused = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'paused',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewDeposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultPreviewDeposit =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewDeposit',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewMint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultPreviewMint =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewMint',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewRedeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultPreviewRedeem =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewRedeem',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"previewWithdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultPreviewWithdraw =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'previewWithdraw',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"slippageToleranceDefault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultSlippageToleranceDefault =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'slippageToleranceDefault',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"symbol"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultSymbol = /*#__PURE__*/ createReadContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'symbol',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"totalAssets"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultTotalAssets =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'totalAssets',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const readKrystalYieldVaultTotalSupply =
+  /*#__PURE__*/ createReadContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'totalSupply',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVault = /*#__PURE__*/ createWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultApprove = /*#__PURE__*/ createWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'approve',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultDecreaseAllowance =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultDeposit = /*#__PURE__*/ createWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'deposit',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"depositWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultDepositWithSlippage =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'depositWithSlippage',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"increaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultIncreaseAllowance =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultMint = /*#__PURE__*/ createWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'mint',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultPauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultRedeem = /*#__PURE__*/ createWriteContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+  functionName: 'redeem',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeemWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultRedeemWithSlippage =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeemWithSlippage',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultRenounceOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setDefaultSlippageTolerance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultSetDefaultSlippageTolerance =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setDefaultSlippageTolerance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setKrystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultSetKrystalVault =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setKrystalVault',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultTransfer = /*#__PURE__*/ createWriteContract(
+  {
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transfer',
+  },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultTransferFrom =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultTransferOwnership =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultWithdraw = /*#__PURE__*/ createWriteContract(
+  {
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdraw',
+  },
+)
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdrawWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const writeKrystalYieldVaultWithdrawWithSlippage =
+  /*#__PURE__*/ createWriteContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdrawWithSlippage',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVault = /*#__PURE__*/ createSimulateContract({
+  abi: krystalYieldVaultAbi,
+  address: krystalYieldVaultAddress,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultApprove =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"decreaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultDecreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultDeposit =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'deposit',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"depositWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultDepositWithSlippage =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'depositWithSlippage',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"increaseAllowance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultIncreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"initialize"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultMint =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'mint',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"pauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultPauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'pauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeem"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultRedeem =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeem',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"redeemWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultRedeemWithSlippage =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'redeemWithSlippage',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultRenounceOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setDefaultSlippageTolerance"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultSetDefaultSlippageTolerance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setDefaultSlippageTolerance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"setKrystalVault"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultSetKrystalVault =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'setKrystalVault',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultTransfer =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultTransferFrom =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultTransferOwnership =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"unpauseLocal"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultUnpauseLocal =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'unpauseLocal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultWithdraw =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdraw',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `functionName` set to `"withdrawWithSlippage"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const simulateKrystalYieldVaultWithdrawWithSlippage =
+  /*#__PURE__*/ createSimulateContract({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    functionName: 'withdrawWithSlippage',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Approval"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultApprovalEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Deposit"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultDepositEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Deposit',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"KrystalVaultUpdated"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultKrystalVaultUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'KrystalVaultUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"SlippageToleranceUpdated"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultSlippageToleranceUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'SlippageToleranceUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultTransferEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Upgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link krystalYieldVaultAbi}__ and `eventName` set to `"Withdraw"`
+ *
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x06ff95BD22769e4C7067b571d92918b066aB145b)
+ */
+export const watchKrystalYieldVaultWithdrawEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: krystalYieldVaultAbi,
+    address: krystalYieldVaultAddress,
+    eventName: 'Withdraw',
   })
 
 /**

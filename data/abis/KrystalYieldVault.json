@@ -565,11 +565,6 @@
   {
     "inputs": [
       {
-        "internalType": "contract IERC20Upgradeable",
-        "name": "asset_",
-        "type": "address"
-      },
-      {
         "internalType": "address",
         "name": "krystalVault_",
         "type": "address"
@@ -596,12 +591,12 @@
       },
       {
         "internalType": "address",
-        "name": "globalRestrict_",
+        "name": "globalAccessList_",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "slippageTolerance_",
+        "name": "slippageToleranceDefault_",
         "type": "uint256"
       }
     ],
