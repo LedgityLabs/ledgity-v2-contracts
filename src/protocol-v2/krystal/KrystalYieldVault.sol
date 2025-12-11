@@ -53,41 +53,46 @@ contract KrystalYieldVault is
 
   /**
    * @notice Initializes the external yield vault
-   * @param asset_ The underlying asset (principal token)
    * @param krystalVault_ The Krystal vault address
    * @param name_ The vault share token name
    * @param symbol_ The vault share token symbol
    * @param globalOwner_ The global owner contract address
    * @param globalPause_ The global pause contract address
-   * @param globalRestrict_ The global restrict contract address
-   * @param slippageTolerance_ Initial slippage tolerance in basis points
+   * @param globalAccessList_ The global restrict contract address
+   * @param slippageToleranceDefault_ Initial slippage tolerance in basis points
    */
   function initialize(
-    IERC20Upgradeable asset_,
     address krystalVault_,
     string calldata name_,
     string calldata symbol_,
     address globalOwner_,
     address globalPause_,
-    address globalRestrict_,
-    uint256 slippageTolerance_
+    address globalAccessList_,
+    uint256 slippageToleranceDefault_
   ) external initializer {
-    if (address(asset_) == address(0)) revert ZeroAddress();
     if (krystalVault_ == address(0)) revert ZeroAddress();
 
-    __ERC4626_init(asset_);
+    // Get principal token from Krystal vault config
+    (, , , address principalToken, , ) = IKrystalVault(krystalVault_)
+      .getVaultConfig();
+    if (principalToken == address(0)) revert ZeroAddress();
+
+    __ERC4626_init(IERC20Upgradeable(principalToken));
     __ERC20_init(name_, symbol_);
     __AdministeredUpgradable_init(
       globalOwner_,
       globalPause_,
-      globalRestrict_
+      globalAccessList_
     );
 
     krystalVault = IKrystalVault(krystalVault_);
-    slippageToleranceDefault = slippageTolerance_;
+    slippageToleranceDefault = slippageToleranceDefault_;
 
     // Approve Krystal vault to spend underlying asset
-    asset_.approve(krystalVault_, type(uint256).max);
+    IERC20Upgradeable(principalToken).approve(
+      krystalVault_,
+      type(uint256).max
+    );
   }
 
   // =========== ERC-4626 OVERRIDES =========== //
