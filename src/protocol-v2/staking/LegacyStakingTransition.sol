@@ -138,12 +138,27 @@ contract LegacyStakingTransition is
   );
 
   /**
+   * @notice Emitted when early withdrawals are toggled.
+   * @param enabled Whether early withdrawals are now enabled.
+   */
+  event EarlyWithdrawalsToggled(bool enabled);
+
+  /**
+   * @notice Emitted when admin withdraws undistributed rewards.
+   * @param amount Amount of undistributed rewards withdrawn.
+   */
+  event UndistributedRewardsWithdrawn(uint256 amount);
+
+  /**
    * @notice Holds a mapping an addresse's number of highest staking tier positions.
    * @dev This is notably used to allow PreMining contracts to benefit from 0%
    * withdrawal fees in L-Tokens contracts, when accounts unlock their funds.
    */
   mapping(address account_ => uint256 nbPositions_)
     public nbHighTierPositions;
+
+  /// @notice Whether early withdrawals are enabled (bypasses lock period).
+  bool public earlyWithdrawalsEnabled;
 
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
@@ -254,7 +269,8 @@ contract LegacyStakingTransition is
       "Invalid stakeIndex"
     );
     require(
-      block.timestamp >=
+      earlyWithdrawalsEnabled ||
+        block.timestamp >=
         userStakingInfo[_msgSender()][stakeIndex].unStakeAt,
       "Cannot unstake during staking period"
     );
@@ -366,6 +382,43 @@ contract LegacyStakingTransition is
     StakeDurationInfo memory durationInfo
   ) external onlyOwner {
     stakeDurationInfos.push(durationInfo);
+  }
+
+  /**
+   * @notice Toggle early withdrawals on/off.
+   * @dev Only callable by owner.
+   * @param enabled Whether early withdrawals should be enabled.
+   */
+  function setEarlyWithdrawalsEnabled(
+    bool enabled
+  ) external onlyOwner {
+    earlyWithdrawalsEnabled = enabled;
+    emit EarlyWithdrawalsToggled(enabled);
+  }
+
+  /**
+   * @notice Withdraw undistributed rewards from the contract.
+   * @dev Only callable by owner. Calculates rewards that haven't been distributed yet
+   *      based on remaining time in the reward period.
+   */
+  function withdrawUndistributedRewards() external onlyOwner {
+    _updateReward(address(0), 0);
+
+    uint256 undistributed = 0;
+
+    // Calculate remaining rewards based on time left in distribution period
+    if (block.timestamp < finishAt && rewardRatePerSec > 0) {
+      undistributed = (finishAt - block.timestamp) * rewardRatePerSec;
+    }
+
+    require(undistributed > 0, "No undistributed rewards");
+
+    // Reset reward rate and finish time
+    rewardRatePerSec = 0;
+    finishAt = block.timestamp;
+
+    stakeRewardToken.safeTransfer(_msgSender(), undistributed);
+    emit UndistributedRewardsWithdrawn(undistributed);
   }
 
   /**
