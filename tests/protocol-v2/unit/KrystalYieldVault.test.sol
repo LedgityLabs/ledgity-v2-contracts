@@ -5,7 +5,7 @@ pragma solidity 0.8.18;
 import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 
 // Contracts
-import { ExternalYieldVault } from "src/protocol-v2/krystal/KrystalYieldVault.sol";
+import { KrystalYieldVault } from "src/protocol-v2/krystal/KrystalYieldVault.sol";
 import { IKrystalVault, AssetLib } from "src/protocol-v2/krystal/IKrystalVault.sol";
 // Libraries
 import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
@@ -188,7 +188,7 @@ contract MockKrystalVault is IKrystalVault {
 }
 
 contract KrystalYieldVault_UnitTest is Test, Fixtures {
-  ExternalYieldVault public vault;
+  KrystalYieldVault public vault;
   MockKrystalVault public krystalVault;
   MockERC20 public asset;
 
@@ -208,12 +208,12 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
     // Create mock Krystal vault
     krystalVault = new MockKrystalVault(address(asset));
 
-    // Deploy ExternalYieldVault
-    ExternalYieldVault impl = new ExternalYieldVault();
+    // Deploy KrystalYieldVault
+    KrystalYieldVault impl = new KrystalYieldVault();
     ERC1967Proxy proxy = new ERC1967Proxy(
       address(impl),
       abi.encodeWithSelector(
-        ExternalYieldVault.initialize.selector,
+        KrystalYieldVault.initialize.selector,
         address(krystalVault),
         "Krystal USDC Vault",
         "kUSDC",
@@ -223,7 +223,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
         SLIPPAGE_TOLERANCE
       )
     );
-    vault = ExternalYieldVault(address(proxy));
+    vault = KrystalYieldVault(address(proxy));
 
     // Setup test accounts with assets
     for (uint256 i = 0; i < users.length; i++) {
@@ -232,7 +232,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
       asset.approve(address(vault), type(uint256).max);
     }
 
-    vm.label(address(vault), "ExternalYieldVault");
+    vm.label(address(vault), "KrystalYieldVault");
     vm.label(address(krystalVault), "MockKrystalVault");
     vm.label(address(asset), "TestAsset");
   }
@@ -251,13 +251,13 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
   }
 
   function test_initialization_zeroKrystalVault_reverts() public {
-    ExternalYieldVault impl = new ExternalYieldVault();
+    KrystalYieldVault impl = new KrystalYieldVault();
 
-    vm.expectRevert(ExternalYieldVault.ZeroAddress.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAddress.selector);
     new ERC1967Proxy(
       address(impl),
       abi.encodeWithSelector(
-        ExternalYieldVault.initialize.selector,
+        KrystalYieldVault.initialize.selector,
         address(0),
         "Test",
         "T",
@@ -306,7 +306,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
 
   function test_deposit_zeroAmount_reverts() public {
     vm.prank(testAccount1);
-    vm.expectRevert(ExternalYieldVault.ZeroAmount.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAmount.selector);
     vault.deposit(0, testAccount1);
   }
 
@@ -363,7 +363,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
 
   function test_mint_zeroShares_reverts() public {
     vm.prank(testAccount1);
-    vm.expectRevert(ExternalYieldVault.ZeroAmount.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAmount.selector);
     vault.mint(0, testAccount1);
   }
 
@@ -404,7 +404,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
     vault.deposit(TEST_DEPOSIT_AMOUNT, testAccount1);
 
     vm.prank(testAccount1);
-    vm.expectRevert(ExternalYieldVault.ZeroAmount.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAmount.selector);
     vault.withdraw(0, testAccount1, testAccount1);
   }
 
@@ -447,7 +447,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
     vault.deposit(TEST_DEPOSIT_AMOUNT, testAccount1);
 
     vm.prank(testAccount1);
-    vm.expectRevert(ExternalYieldVault.ZeroAmount.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAmount.selector);
     vault.redeem(0, testAccount1, testAccount1);
   }
 
@@ -676,7 +676,7 @@ contract KrystalYieldVault_UnitTest is Test, Fixtures {
 
   function test_setKrystalVault_zeroAddress_reverts() public {
     vm.prank(globalOwner.owner());
-    vm.expectRevert(ExternalYieldVault.ZeroAddress.selector);
+    vm.expectRevert(KrystalYieldVault.ZeroAddress.selector);
     vault.setKrystalVault(address(0));
   }
 
