@@ -6889,6 +6889,666 @@ export const ledgityYieldVaultSonicAbi = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LegacyStakingTransition
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const legacyStakingTransitionAbi = [
+  { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newAdmin',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'beacon',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'enabled', internalType: 'bool', type: 'bool', indexed: false },
+    ],
+    name: 'EarlyWithdrawalsToggled',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'rewardAmount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'rewardPerSec',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'NotifiedRewardAmount',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'reward',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'RewardPaid',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Staked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'UndistributedRewardsWithdrawn',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'stakeIndex',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'amount',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Unstaked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'implementation',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Upgraded',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'MULTIPLIER_BASIS',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'earlyWithdrawalsEnabled',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'stakeIndex', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'earned',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'finishAt',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'getEarnedUser',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'stakeIndex', internalType: 'uint256', type: 'uint256' }],
+    name: 'getReward',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'index', internalType: 'uint256', type: 'uint256' }],
+    name: 'getStakeDurationInfo',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct LegacyStakingTransition.StakeDurationInfo',
+        type: 'tuple',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'getUserStakes',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct LegacyStakingTransition.StakingInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'stakedAmount', internalType: 'uint256', type: 'uint256' },
+          { name: 'unStakeAt', internalType: 'uint256', type: 'uint256' },
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'rewardPerTokenPaid',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'rewards', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalBlacklist',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'globalPause',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account_', internalType: 'address', type: 'address' }],
+    name: 'highTierAccounts',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'globalOwner_', internalType: 'address', type: 'address' },
+      { name: 'globalPause_', internalType: 'address', type: 'address' },
+      { name: 'globalBlacklist_', internalType: 'address', type: 'address' },
+      { name: 'stakeRewardToken_', internalType: 'address', type: 'address' },
+      {
+        name: 'stakeDurationInfos_',
+        internalType: 'struct LegacyStakingTransition.StakeDurationInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+      {
+        name: 'stakeDurationForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'stakeAmountForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastTimeRewardApplicable',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'lastUpdateTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account_', internalType: 'address', type: 'address' }],
+    name: 'nbHighTierPositions',
+    outputs: [
+      { name: 'nbPositions_', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    name: 'notifyRewardAmount',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'durationInfo',
+        internalType: 'struct LegacyStakingTransition.StakeDurationInfo',
+        type: 'tuple',
+        components: [
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    name: 'pushStakeDurationInfo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenAddress', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'recoverERC20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardPerToken',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardPerTokenStored',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardRatePerSec',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'rewardsDuration',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'enabled', internalType: 'bool', type: 'bool' }],
+    name: 'setEarlyWithdrawalsEnabled',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'duration', internalType: 'uint256', type: 'uint256' }],
+    name: 'setRewardsDuration',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'stakeAmountForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStakeAmountForPerks',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'stakeDurationForPerks_',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStakeDurationForPerks',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'stakeDurationIndex', internalType: 'uint8', type: 'uint8' },
+    ],
+    name: 'stake',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeAmountForPerks',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeDurationForPerks',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'stakeDurationInfos',
+    outputs: [
+      { name: 'duration', internalType: 'uint256', type: 'uint256' },
+      { name: 'multiplier', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'stakeRewardToken',
+    outputs: [
+      { name: '', internalType: 'contract IERC20Upgradeable', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'tierOf',
+    outputs: [{ name: 'tier', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalRewards',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalStaked',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalWeightedStake',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'stakeIndex', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'unstake',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+    ],
+    name: 'upgradeTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'userStakingInfo',
+    outputs: [
+      { name: 'stakedAmount', internalType: 'uint256', type: 'uint256' },
+      { name: 'unStakeAt', internalType: 'uint256', type: 'uint256' },
+      { name: 'duration', internalType: 'uint256', type: 'uint256' },
+      { name: 'rewardPerTokenPaid', internalType: 'uint256', type: 'uint256' },
+      { name: 'rewards', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'withdrawUndistributedRewards',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+] as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const legacyStakingTransitionAddress = {
+  1: '0xB05c6239212F125677A7F78b4A3EA39535e18Da2',
+  8453: '0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0',
+  42161: '0x8b39bB59e30C5716f556376C032BE30Ea073a381',
+} as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const legacyStakingTransitionConfig = {
+  address: legacyStakingTransitionAddress,
+  abi: legacyStakingTransitionAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PreMining
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19281,6 +19941,1080 @@ export const useWatchLedgityYieldVaultSonicWithdrawalRequestedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultSonicAbi,
     eventName: 'WithdrawalRequested',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransition =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"MULTIPLIER_BASIS"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionMultiplierBasis =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'MULTIPLIER_BASIS',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"earlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'earlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"earned"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionEarned =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'earned',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"finishAt"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionFinishAt =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'finishAt',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getEarnedUser"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGetEarnedUser =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getEarnedUser',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGetStakeDurationInfo =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getUserStakes"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGetUserStakes =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getUserStakes',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalBlacklist"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGlobalBlacklist =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalBlacklist',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGlobalOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionGlobalPause =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"highTierAccounts"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionHighTierAccounts =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'highTierAccounts',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"lastTimeRewardApplicable"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionLastTimeRewardApplicable =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'lastTimeRewardApplicable',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"lastUpdateTime"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionLastUpdateTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'lastUpdateTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"nbHighTierPositions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionNbHighTierPositions =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'nbHighTierPositions',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"paused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionPaused =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionProxiableUuid =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionRenounceOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardPerToken"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionRewardPerToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardPerToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardPerTokenStored"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionRewardPerTokenStored =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardPerTokenStored',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardRatePerSec"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionRewardRatePerSec =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardRatePerSec',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionRewardsDuration =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionStakeAmountForPerks =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionStakeDurationForPerks =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeDurationInfos"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionStakeDurationInfos =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeDurationInfos',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeRewardToken"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionStakeRewardToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeRewardToken',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"tierOf"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionTierOf =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'tierOf',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionTotalRewards =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalRewards',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalStaked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionTotalStaked =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalStaked',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalWeightedStake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionTotalWeightedStake =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalWeightedStake',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionTransferOwnership =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"userStakingInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useReadLegacyStakingTransitionUserStakingInfo =
+  /*#__PURE__*/ createUseReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'userStakingInfo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransition =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getReward"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionGetReward =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionInitialize =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionNotifyRewardAmount =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionPushStakeDurationInfo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionRecoverErc20 =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setEarlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionSetEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setEarlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionSetRewardsDuration =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionSetStakeAmountForPerks =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionSetStakeDurationForPerks =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionStake =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"unstake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionUnstake =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionUpgradeTo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionUpgradeToAndCall =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"withdrawUndistributedRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWriteLegacyStakingTransitionWithdrawUndistributedRewards =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'withdrawUndistributedRewards',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransition =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getReward"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionGetReward =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionInitialize =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionNotifyRewardAmount =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionPushStakeDurationInfo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionRecoverErc20 =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setEarlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionSetEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setEarlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionSetRewardsDuration =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionSetStakeAmountForPerks =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionSetStakeDurationForPerks =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionStake =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"unstake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionUnstake =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionUpgradeTo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionUpgradeToAndCall =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"withdrawUndistributedRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useSimulateLegacyStakingTransitionWithdrawUndistributedRewards =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'withdrawUndistributedRewards',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionAdminChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionBeaconUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"EarlyWithdrawalsToggled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionEarlyWithdrawalsToggledEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'EarlyWithdrawalsToggled',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionInitializedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"NotifiedRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionNotifiedRewardAmountEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'NotifiedRewardAmount',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Paused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"RewardPaid"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionRewardPaidEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'RewardPaid',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Staked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionStakedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Staked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"UndistributedRewardsWithdrawn"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionUndistributedRewardsWithdrawnEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'UndistributedRewardsWithdrawn',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Unstaked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionUnstakedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Unstaked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const useWatchLegacyStakingTransitionUpgradedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Upgraded',
   })
 
 /**
@@ -33421,6 +35155,1078 @@ export const watchLedgityYieldVaultSonicWithdrawalRequestedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultSonicAbi,
     eventName: 'WithdrawalRequested',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransition = /*#__PURE__*/ createReadContract({
+  abi: legacyStakingTransitionAbi,
+  address: legacyStakingTransitionAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"MULTIPLIER_BASIS"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionMultiplierBasis =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'MULTIPLIER_BASIS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"earlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'earlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"earned"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionEarned =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'earned',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"finishAt"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionFinishAt =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'finishAt',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getEarnedUser"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGetEarnedUser =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getEarnedUser',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGetStakeDurationInfo =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getUserStakes"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGetUserStakes =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getUserStakes',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalBlacklist"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGlobalBlacklist =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalBlacklist',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalOwner"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGlobalOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalOwner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"globalPause"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionGlobalPause =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'globalPause',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"highTierAccounts"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionHighTierAccounts =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'highTierAccounts',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"lastTimeRewardApplicable"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionLastTimeRewardApplicable =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'lastTimeRewardApplicable',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"lastUpdateTime"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionLastUpdateTime =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'lastUpdateTime',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"nbHighTierPositions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionNbHighTierPositions =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'nbHighTierPositions',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"paused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionPaused =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'paused',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionProxiableUuid =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'proxiableUUID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionRenounceOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardPerToken"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionRewardPerToken =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardPerToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardPerTokenStored"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionRewardPerTokenStored =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardPerTokenStored',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardRatePerSec"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionRewardRatePerSec =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardRatePerSec',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"rewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionRewardsDuration =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'rewardsDuration',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionStakeAmountForPerks =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionStakeDurationForPerks =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeDurationInfos"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionStakeDurationInfos =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeDurationInfos',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stakeRewardToken"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionStakeRewardToken =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stakeRewardToken',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"tierOf"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionTierOf =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'tierOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionTotalRewards =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalRewards',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalStaked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionTotalStaked =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalStaked',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"totalWeightedStake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionTotalWeightedStake =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'totalWeightedStake',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionTransferOwnership =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"userStakingInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const readLegacyStakingTransitionUserStakingInfo =
+  /*#__PURE__*/ createReadContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'userStakingInfo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransition = /*#__PURE__*/ createWriteContract({
+  abi: legacyStakingTransitionAbi,
+  address: legacyStakingTransitionAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getReward"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionGetReward =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionInitialize =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionNotifyRewardAmount =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionPushStakeDurationInfo =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionRecoverErc20 =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setEarlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionSetEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setEarlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionSetRewardsDuration =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionSetStakeAmountForPerks =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionSetStakeDurationForPerks =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionStake =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"unstake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionUnstake =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionUpgradeTo =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionUpgradeToAndCall =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"withdrawUndistributedRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const writeLegacyStakingTransitionWithdrawUndistributedRewards =
+  /*#__PURE__*/ createWriteContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'withdrawUndistributedRewards',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransition =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"getReward"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionGetReward =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'getReward',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"initialize"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionInitialize =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'initialize',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"notifyRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionNotifyRewardAmount =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'notifyRewardAmount',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"pushStakeDurationInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionPushStakeDurationInfo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'pushStakeDurationInfo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"recoverERC20"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionRecoverErc20 =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'recoverERC20',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setEarlyWithdrawalsEnabled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionSetEarlyWithdrawalsEnabled =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setEarlyWithdrawalsEnabled',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setRewardsDuration"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionSetRewardsDuration =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setRewardsDuration',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeAmountForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionSetStakeAmountForPerks =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeAmountForPerks',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"setStakeDurationForPerks"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionSetStakeDurationForPerks =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'setStakeDurationForPerks',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"stake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionStake =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'stake',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"unstake"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionUnstake =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'unstake',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeTo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionUpgradeTo =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeTo',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"upgradeToAndCall"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionUpgradeToAndCall =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'upgradeToAndCall',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `functionName` set to `"withdrawUndistributedRewards"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const simulateLegacyStakingTransitionWithdrawUndistributedRewards =
+  /*#__PURE__*/ createSimulateContract({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    functionName: 'withdrawUndistributedRewards',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"AdminChanged"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionAdminChangedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'AdminChanged',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"BeaconUpgraded"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionBeaconUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'BeaconUpgraded',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"EarlyWithdrawalsToggled"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionEarlyWithdrawalsToggledEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'EarlyWithdrawalsToggled',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"NotifiedRewardAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionNotifiedRewardAmountEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'NotifiedRewardAmount',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionOwnershipTransferredEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Paused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionPausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"RewardPaid"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionRewardPaidEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'RewardPaid',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Staked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionStakedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Staked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"UndistributedRewardsWithdrawn"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionUndistributedRewardsWithdrawnEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'UndistributedRewardsWithdrawn',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionUnpausedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Unstaked"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionUnstakedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Unstaked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link legacyStakingTransitionAbi}__ and `eventName` set to `"Upgraded"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xB05c6239212F125677A7F78b4A3EA39535e18Da2)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xD70b76d7E4c0bB81bAd0e3918f8D32241e4FBAB0)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x8b39bB59e30C5716f556376C032BE30Ea073a381)
+ */
+export const watchLegacyStakingTransitionUpgradedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: legacyStakingTransitionAbi,
+    address: legacyStakingTransitionAddress,
+    eventName: 'Upgraded',
   })
 
 /**

@@ -39,6 +39,7 @@ const contractList = [
   "StakingPositionsSonic",
   "StakingRewardsDistributorSonic",
   "KrystalYieldVault",
+  "LegacyStakingTransition",
 ];
 
 // Read ABIs from contracts/abis directory
