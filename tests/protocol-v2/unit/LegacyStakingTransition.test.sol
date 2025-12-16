@@ -352,6 +352,107 @@ contract LegacyStakingTransition_UnitTest is Test {
     );
   }
 
+  function test_WithdrawUndistributedRewards_DoesNotLockStakes()
+    public
+  {
+    // Setup rewards duration and notify rewards
+    legacyStaking.setRewardsDuration(30 days);
+
+    // Multiple users stake with no lock
+    vm.prank(testAccount1);
+    legacyStaking.stake(TEST_AMOUNT, 0);
+
+    vm.prank(testAccount2);
+    legacyStaking.stake(TEST_AMOUNT * 2, 0);
+
+    // Notify reward amount
+    legacyStaking.notifyRewardAmount(REWARD_AMOUNT);
+
+    // Fast forward 15 days (halfway through rewards period)
+    vm.warp(block.timestamp + 15 days);
+
+    // Check earned rewards for both users
+    uint256 earned1 = legacyStaking.earned(testAccount1, 0);
+    uint256 earned2 = legacyStaking.earned(testAccount2, 0);
+    assertGt(earned1, 0);
+    assertGt(earned2, 0);
+
+    // Owner withdraws undistributed rewards (remaining ~50%)
+    uint256 ownerBalanceBefore = ldyToken.balanceOf(owner);
+    legacyStaking.withdrawUndistributedRewards();
+    uint256 withdrawn = ldyToken.balanceOf(owner) -
+      ownerBalanceBefore;
+    assertGt(withdrawn, 0);
+
+    // Fast forward past rewards period
+    vm.warp(block.timestamp + 16 days);
+
+    // First user unstakes - should receive principal + earned rewards
+    uint256 balance1Before = ldyToken.balanceOf(testAccount1);
+    vm.prank(testAccount1);
+    legacyStaking.unstake(TEST_AMOUNT, 0);
+    uint256 received1 = ldyToken.balanceOf(testAccount1) -
+      balance1Before;
+    assertEq(received1, TEST_AMOUNT + earned1);
+
+    // Second user unstakes - should also receive principal + earned rewards
+    uint256 balance2Before = ldyToken.balanceOf(testAccount2);
+    vm.prank(testAccount2);
+    legacyStaking.unstake(TEST_AMOUNT * 2, 0);
+    uint256 received2 = ldyToken.balanceOf(testAccount2) -
+      balance2Before;
+    assertEq(received2, TEST_AMOUNT * 2 + earned2);
+
+    // Verify total accounting: withdrawn + user rewards should equal REWARD_AMOUNT
+    assertApproxEqRel(
+      withdrawn + earned1 + earned2,
+      REWARD_AMOUNT,
+      0.01e18
+    );
+  }
+
+  function test_WithdrawUndistributedRewards_MultipleUsersCanExitAfterWithdrawal()
+    public
+  {
+    // Setup rewards with 30 day lock period
+    legacyStaking.setRewardsDuration(30 days);
+
+    // Three users stake with 30 day lock
+    vm.prank(testAccount1);
+    legacyStaking.stake(TEST_AMOUNT, 1);
+
+    vm.prank(testAccount2);
+    legacyStaking.stake(TEST_AMOUNT * 2, 1);
+
+    vm.prank(owner);
+    legacyStaking.stake(TEST_AMOUNT / 2, 1);
+
+    // Notify reward amount
+    legacyStaking.notifyRewardAmount(REWARD_AMOUNT);
+
+    // Fast forward 10 days
+    vm.warp(block.timestamp + 10 days);
+
+    // Owner withdraws undistributed rewards
+    legacyStaking.withdrawUndistributedRewards();
+
+    // Fast forward past lock period (20 more days)
+    vm.warp(block.timestamp + 21 days);
+
+    // All users should be able to unstake without issues
+    vm.prank(testAccount1);
+    legacyStaking.unstake(TEST_AMOUNT, 0);
+
+    vm.prank(testAccount2);
+    legacyStaking.unstake(TEST_AMOUNT * 2, 0);
+
+    vm.prank(owner);
+    legacyStaking.unstake(TEST_AMOUNT / 2, 0);
+
+    // Verify all stakes are cleared
+    assertEq(legacyStaking.totalStaked(), 0);
+  }
+
   /*//////////////////////////////////////////////////////////////
                     STORAGE LAYOUT SAFETY TESTS
   //////////////////////////////////////////////////////////////*/
