@@ -42,9 +42,16 @@ interface IVaultLiquidityModule {
     uint256 newHighWaterMark
   );
 
+  event WithdrawalGasFeeUpdated(
+    uint256 oldGasFee,
+    uint256 newGasFee
+  );
+
   /** ======== FUNCTIONS ======== */
 
   function RAY() external view returns (uint256);
+
+  function decimalsOffset() external view returns (uint8);
 
   function lastCompoundTime() external view returns (uint256);
 
@@ -81,6 +88,11 @@ interface IVaultLiquidityModule {
     uint256 shares
   ) external view returns (uint256 assets);
 
+  function getFeeData()
+    external
+    view
+    returns (uint256 feeShares, uint256 pricePerShare);
+
   function setTotalAssets(uint256 newTotalAssets) external;
 
   function updateAPR(uint256 newAPR) external;
@@ -99,4 +111,6 @@ interface IVaultLiquidityModule {
   function updateDeploymentDelay(uint8 newDeploymentDelay) external;
 
   function updateHighWaterMark(uint256 newHighWaterMark) external;
+
+  function updateWithdrawalGasFee(uint256 newWithdrawalGasFee) external;
 }

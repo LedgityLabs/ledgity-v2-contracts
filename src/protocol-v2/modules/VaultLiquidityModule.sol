@@ -485,4 +485,17 @@ abstract contract VaultLiquidityModule is
 
     emit HighWaterMarkUpdated(oldHighWaterMark, newHighWaterMark);
   }
+
+  /**
+   * @notice Update the gas fee required for withdrawal requests
+   * @param newWithdrawalGasFee The new gas fee amount in wei
+   */
+  function updateWithdrawalGasFee(
+    uint256 newWithdrawalGasFee
+  ) external onlyOwner {
+    uint256 oldGasFee = withdrawalGasFee;
+    withdrawalGasFee = newWithdrawalGasFee;
+
+    emit WithdrawalGasFeeUpdated(oldGasFee, newWithdrawalGasFee);
+  }
 }
