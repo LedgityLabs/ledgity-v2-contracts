@@ -702,14 +702,9 @@ contract LedgityYieldVault is
   function requestWithdrawal(
     uint256 shares
   ) public payable whenNotPaused notRestricted(msg.sender) {
-    if (msg.value < withdrawalGasFee)
+    uint256 ethAttached = msg.value;
+    if (ethAttached < withdrawalGasFee)
       revert MissingWithdrawalRequestFee();
-    // Transfer gas fee to fee recipient
-    /// @dev Use call since the fee recipient is a multisig that requires more that enforced 2300 .transfer() gas
-    (bool success, ) = feeRecipient.call{
-      value: address(this).balance
-    }("");
-    if (!success) revert TransferFailed();
 
     uint256 netAssets = _burnSharesTakeFeesOnWithdrawal(
       msg.sender,
@@ -731,6 +726,13 @@ contract LedgityYieldVault is
       msg.sender,
       shares
     );
+
+    // Forward only ETH from this call (same pattern as LToken.requestWithdrawal). Sending
+    // address(this).balance would sweep unrelated ETH stuck on the vault (selfdestruct,
+    // coinbase, etc.) and mis-attribute it to this user fee payment.
+    /// @dev Use call since the fee recipient may be a contract that needs more than 2300 gas
+    (bool success, ) = feeRecipient.call{ value: ethAttached }("");
+    if (!success) revert TransferFailed();
   }
 
   /**

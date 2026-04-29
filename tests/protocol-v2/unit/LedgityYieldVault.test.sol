@@ -299,6 +299,33 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     }
   }
 
+  /// @dev Fee must be only msg.value, not the vault entire ETH balance (e.g. forced ETH via vm.deal / selfdestruct).
+  function test_requestWithdrawal_forwardsOnlyMsgValueForGasFee() public {
+    LedgityYieldVault vault = vaults[0];
+    VaultConfig memory config = vaultConfigs[0];
+    uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+    vm.prank(testAccount1);
+    vault.deposit(depositAmount, testAccount1);
+
+    uint256 shares = vault.balanceOf(testAccount1);
+    uint256 gasFee = vault.withdrawalGasFee();
+
+    uint256 strayWei = 5 ether;
+    vm.deal(address(vault), strayWei);
+
+    uint256 recipientBefore = feeRecipient.balance;
+
+    vm.prank(testAccount1);
+    vault.requestWithdrawal{ value: gasFee }(shares);
+
+    assertEq(
+      feeRecipient.balance - recipientBefore,
+      gasFee,
+      "fee recipient should receive only the attached payment, not stray vault ETH"
+    );
+  }
+
   // ======== ADMIN FUNCTION TESTS ======== //
 
   function test_updateVaultManagers_success() public {
