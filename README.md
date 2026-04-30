@@ -1,7 +1,7 @@
 <!-- Banner -->
 
 <div align="center">
-  <img src="./data/assets/ledgity-logo-light.svg" alt="Ledgity Yield" height="60" />
+  <img src="./data/assets/ledgity-logo-light.svg" alt="Ledgity Finance" height="60" />
 </div>
  
 
@@ -32,9 +32,9 @@
   </p>
 </div>
 
-# 🏦 Ledgity Yield Smart Contracts v2
+# 🏦 Ledgity Finance Smart Contracts v2
 
-**Ledgity Yield Smart Contracts** power a **Revolutionary DeFi Yield Platform** providing stable, predictable yields for stablecoins through overcollateralized recurring revenue streams and institutional-grade yield opportunities. Built with security-first principles and modular architecture.
+**Ledgity Finance Smart Contracts** are the on-chain foundation for next-generation financial infrastructure, transforming stablecoins into programmable savings products through transparent, RWA-backed yield strategies and security-first smart contract architecture.
 
 <h2 align="center">🌐 Supported Networks</h2>
 
@@ -88,7 +88,7 @@ npm run compile
 
 ## 🏗️ Smart Contract Architecture
 
-The Ledgity Yield protocol is built with cutting-edge smart contract technologies and security-first principles:
+The Ledgity Finance protocol is built with cutting-edge smart contract technologies and security-first principles:
 
 ### Development Stack
 - **Solidity 0.8.18**: Latest Solidity with advanced features
@@ -106,7 +106,7 @@ The Ledgity Yield protocol is built with cutting-edge smart contract technologie
 
 ## 🌟 **Core Smart Contract Features**
 
-**Ledgity Yield Smart Contracts** provide the foundational infrastructure for stable, predictable yields through innovative overcollateralized recurring revenue streams.
+**Ledgity Finance Smart Contracts** provide the foundational infrastructure for stable, predictable yields through transparent, RWA-backed yield strategies.
 
 <div align="center">
   <table>
@@ -234,7 +234,7 @@ ledgity-v2-contracts/
 
 ## 🧪 Testing Framework
 
-The Ledgity Yield smart contracts use **Foundry** for comprehensive testing with advanced features:
+The Ledgity Finance smart contracts use **Foundry** for comprehensive testing with advanced features:
 
 ### **Test Categories**
 - **Unit Tests**: Individual contract function testing
@@ -393,5 +393,5 @@ Copyright 2024 Ledgity Labs
 </div>
 
 <div align="center">
-  <img src="./data/assets/opengraph-image.jpg" alt="Ledgity Yield" width="100%" />
+  <img src="./data/assets/opengraph-image.jpg" alt="Ledgity Finance" width="100%" />
 </div>
