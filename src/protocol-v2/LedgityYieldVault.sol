@@ -45,6 +45,7 @@ contract LedgityYieldVault is
   error OnlyLiquidityManager();
   error MissingWithdrawalRequestFee();
   error RequestAlreadyProcessed();
+  error DuplicateRequestId();
   error InsufficientLiquidity();
   error InsufficientStakeForInstantWithdrawal();
   error TransferFailed();
@@ -809,8 +810,13 @@ contract LedgityYieldVault is
     // Calculate total assets needed for selected requests
     uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
+      uint256 requestId = requestIds[i];
+      for (uint256 j; j < i; j++) {
+        if (requestId == requestIds[j]) revert DuplicateRequestId();
+      }
+
       ILedgityDataProvider.WithdrawalRequest
-        storage request = withdrawalRequests[requestIds[i]];
+        storage request = withdrawalRequests[requestId];
 
       if (request.processed) revert RequestAlreadyProcessed();
 

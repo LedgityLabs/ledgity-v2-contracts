@@ -790,6 +790,37 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
     }
   }
 
+  function test_processRequests_duplicate_request_ids_reverts() public {
+    for (uint256 i = 0; i < vaults.length; i++) {
+      LedgityYieldVault vault = vaults[i];
+      VaultConfig memory config = vaultConfigs[i];
+      uint256 depositAmount = _getTestDepositAmount(config.asset);
+
+      // Create a withdrawal request
+      vm.prank(testAccount1);
+      vault.deposit(depositAmount, testAccount1);
+
+      uint256 shares = vault.balanceOf(testAccount1);
+      uint256 gasFee = vault.withdrawalGasFee();
+
+      vm.prank(testAccount1);
+      vault.requestWithdrawal{ value: gasFee }(shares);
+
+      // Add sufficient liquidity
+      deal(address(config.asset), liquidityManager, depositAmount);
+      vm.prank(liquidityManager);
+      vault.depositToBuffer(depositAmount);
+
+      uint256[] memory requestIds = new uint256[](2);
+      requestIds[0] = 0;
+      requestIds[1] = 0;
+
+      vm.prank(liquidityManager);
+      vm.expectRevert(LedgityYieldVault.DuplicateRequestId.selector);
+      vault.processRequests(requestIds, 0);
+    }
+  }
+
   function test_processRequests_with_added_liquidity_only() public {
     for (uint256 i = 0; i < vaults.length; i++) {
       LedgityYieldVault vault = vaults[i];
