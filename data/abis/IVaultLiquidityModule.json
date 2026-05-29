@@ -139,6 +139,25 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldGasFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newGasFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "WithdrawalGasFeeUpdated",
+    "type": "event"
+  },
+  {
     "inputs": [],
     "name": "RAY",
     "outputs": [
@@ -210,12 +229,43 @@
   },
   {
     "inputs": [],
+    "name": "decimalsOffset",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "deploymentDelay",
     "outputs": [
       {
         "internalType": "uint8",
         "name": "",
         "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFeeData",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "feeShares",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pricePerShare",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -388,6 +438,19 @@
       }
     ],
     "name": "updateHighWaterMark",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newWithdrawalGasFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateWithdrawalGasFee",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

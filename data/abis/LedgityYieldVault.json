@@ -595,6 +595,25 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldGasFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newGasFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "WithdrawalGasFeeUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "uint256",
         "name": "requestId",
@@ -2295,6 +2314,19 @@
       }
     ],
     "name": "updateVaultParams",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newWithdrawalGasFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateWithdrawalGasFee",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
