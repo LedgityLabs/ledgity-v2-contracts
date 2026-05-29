@@ -101,7 +101,7 @@ contract FixedTermInvestmentVault is
   bool private _withdrawalRequestsDisabled;
 
   // The vault type identifier
-  uint8 public vaultType = 2;
+  uint8 public vaultType;
 
   // ======== EVENTS ======== //
 
@@ -203,6 +203,8 @@ contract FixedTermInvestmentVault is
     liquidityBufferRate = params.liquidityBufferRate;
 
     _setupBufferStrategy(params.aaveLendingPool);
+
+    vaultType = 2;
   }
 
   // ======== MODIFIERS ======== //
