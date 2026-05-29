@@ -1,16 +1,17 @@
 import fs from "fs";
 import {
   Address,
+  createPublicClient,
+  http,
+  isAddress,
   parseEther,
   parseUnits,
   zeroAddress,
-  isAddress,
-  createPublicClient,
-  http,
 } from "viem";
+import { base } from "viem/chains";
+import { apyToRayApr } from "../functions/helpers";
 import { dependencies } from "./dependencies";
 import deployedContracts from "./deployments.json";
-import { base } from "viem/chains";
 
 type VaultParams = {
   name: string;
@@ -79,7 +80,7 @@ export function writeTempTokenAddress(
 }
 
 export async function getReferenceBaseAssetsPerShare(
-  symbol: "lyUSD" | "lyEUR",
+  symbol: "lyUSD" | "lyEUR" | "lyREI",
 ): Promise<bigint> {
   const client = createPublicClient({
     chain: base,
@@ -147,7 +148,7 @@ export function getGeneralChainConfig(chainId: number) {
 export async function getParametersForVault(
   chainId: number,
   name: string,
-  symbol: "lyUSD" | "lyEUR",
+  symbol: "lyUSD" | "lyEUR" | "lyREI",
   globalOwner: Address,
   globalPause: Address,
   globalAccessList: Address,
@@ -279,8 +280,8 @@ const configsContracts: {
   [8453]: {
     owner: "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
-    stakeForFeeReduction: 0n,
-    stakeForInstantWithdrawal: 0n,
+    stakeForFeeReduction: parseUnits("50000", 18),
+    stakeForInstantWithdrawal: parseUnits("50000", 18),
     stakeToken: getTokenAddress(8453, "LDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
@@ -315,6 +316,22 @@ const configsContracts: {
         managementFeeRate: 0n, // 0.2% in RAY
         performanceFeeRate: 0n, // 2% in RAY
         withdrawalFeeRate: toRay(0.3), // 0.05% in RAY
+        withdrawalGasFee: 0n,
+      },
+      lyREI: {
+        asset: getTokenAddress(8453, "EURC"),
+        lToken: zeroAddress,
+        liquidityBufferRate: 0n,
+        liquidityManager: "0x8407D5A7953BE41676EC3ff4a600a8E040D53eef",
+        aaveLendingPool: dependencies[8453].AAVE_LENDING_POOL,
+        //
+        initialAssetsPerShare: 0n, // defaults to fetching Base vault price
+        highWaterMark: 0n, // default 1:1 ratio
+        deploymentDelay: 1, // days
+        yieldAPR: apyToRayApr(15), // 15% APR in RAY
+        managementFeeRate: 0n, // 0% in RAY
+        performanceFeeRate: 0n, // 0% in RAY
+        withdrawalFeeRate: 0n, // 0% in RAY
         withdrawalGasFee: 0n,
       },
     },
