@@ -1,30 +1,29 @@
 import { DeployFunction } from "hardhat-deploy/dist/types";
+import { Address } from "viem";
 
 export default async function deploy({
   getNamedAccounts,
   deployments,
 }: Parameters<DeployFunction>[0]) {
-  console.log("\n=> Deploy LedgityYieldVault".cyan);
+  console.log("\n=> Deploy FixedTermInvestmentVault".cyan);
   const { deployer } = await getNamedAccounts();
 
-  // Deploy the LedgityDataProvider library first
-  console.log("==> Deploy lib LedgityDataProvider".cyan);
-  const ledgityDataProviderLib = await deployments.deploy(
-    "LedgityDataProvider",
-    {
+  // Retrieve or deploy LedgityDataProvider library
+  const ledgityDataProviderLib =
+    (await deployments.get("LedgityDataProvider")) ||
+    (await deployments.deploy("LedgityDataProvider", {
       from: deployer,
       log: true,
       waitConfirmations: 3,
-    },
-  );
+    }));
 
   // Deploy the shared implementation with library linking
-  await deployments.deploy("LedgityYieldVault_Implementation", {
-    contract: "LedgityYieldVault",
+  await deployments.deploy("FixedTermInvestmentVault_Implementation", {
+    contract: "FixedTermInvestmentVault",
     from: deployer,
     log: true,
     waitConfirmations: 3,
-    // skipIfAlreadyDeployed: true,
+    skipIfAlreadyDeployed: true,
     libraries: {
       LedgityDataProvider: ledgityDataProviderLib.address,
     },

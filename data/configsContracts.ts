@@ -172,7 +172,7 @@ export async function getParametersForVault(
     await getReferenceBaseAssetsPerShare(symbol);
   const initialAssetsPerShare =
     vaultConfig.initialAssetsPerShare || referenceBaseAssetsPerShare;
-  console.log("=> Initial Share Price: ", initialAssetsPerShare);
+  console.log("=> Initial Share Price: ", initialAssetsPerShare, "(0 = 1:1)");
 
   return [
     {
