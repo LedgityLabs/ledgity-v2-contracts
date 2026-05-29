@@ -27,27 +27,25 @@ const contractList = [
   "FixedTermInvestmentVault",
 ];
 
-type ContractMap = {
-  [name: string]: {
-    abi: any;
-    address: { [chainId: number]: `0x${string}` };
-  };
-};
-
 console.log(
   "\n=> Generating typing for: ",
   JSON.stringify(contractList, null, 2),
   "\n",
 );
 
-const contractMap: ContractMap = {};
+const contractMap: {
+  [name: string]: {
+    abi: any;
+    address: { [chainId: number]: `0x${string}` };
+  };
+} = {};
 
 for (const chainId in deployedContracts) {
   const contractsData = (deployedContracts as any)[chainId][0]?.contracts;
   if (!contractsData) continue;
 
   for (const [name, data] of Object.entries(contractsData)) {
-    const cleanName = name.replace("_Proxy", "");
+    const cleanName = name.replace("_Proxy", "").replace("_Implementation", "");
     if (!contractList.includes(cleanName)) continue;
 
     const chainNumber = Number(chainId);
