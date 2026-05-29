@@ -13,7 +13,6 @@ import { GlobalPause } from "src/protocol-v1/GlobalPause.sol";
 import { GlobalAccessList } from "src/protocol-v2/GlobalAccessList.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
