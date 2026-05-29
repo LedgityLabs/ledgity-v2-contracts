@@ -1,6 +1,8 @@
 import { defineConfig, type Config } from "@wagmi/cli";
 import { hardhat, react, actions } from "@wagmi/cli/plugins";
 import deployedContracts from "./data/deployments.json";
+// Abis
+import GenericERC20Abi from "./data/abis/GenericERC20.json";
 
 /// @dev Contracts whitelist
 const contractList = [
@@ -11,20 +13,20 @@ const contractList = [
   "LDYStaking",
   "LTokenSignaler",
   "PreMining",
-  "LToken",
   // v2
   "GlobalAccessList",
-  "LedgityYieldVault",
-  "GenericERC20",
   "StakingPositions",
   "StakingRewardsDistributor",
   "CouncilMerkleDistributor",
-  "LedgityYieldVaultSonic",
   "StakingPositionsSonic",
   "StakingRewardsDistributorSonic",
   "KrystalYieldVault",
   "LegacyStakingTransition",
-  "FixedTermInvestmentVault",
+  // implementations
+  "LToken_Implementation",
+  "LedgityYieldVault_Implementation",
+  "LedgityYieldVaultSonic_Implementation",
+  "FixedTermInvestmentVault_Implementation",
 ];
 
 console.log(
@@ -38,20 +40,31 @@ const contractMap: {
     abi: any;
     address: { [chainId: number]: `0x${string}` };
   };
-} = {};
+} = {
+  GenericERC20: {
+    abi: GenericERC20Abi,
+    address: {},
+  },
+};
 
 for (const chainId in deployedContracts) {
   const contractsData = (deployedContracts as any)[chainId][0]?.contracts;
   if (!contractsData) continue;
 
   for (const [name, data] of Object.entries(contractsData)) {
-    const cleanName = name.replace("_Proxy", "").replace("_Implementation", "");
-    if (!contractList.includes(cleanName)) continue;
+    const baseContractName = name.replace("_Proxy", "").replace("Sonic", "");
+    if (!contractList.includes(baseContractName)) continue;
 
+    // Normalize Sonic & implementation contracts
+    const cleanName = name.replace("_Implementation", "").replace("Sonic", "");
     const chainNumber = Number(chainId);
     if (!contractMap[cleanName]) {
       contractMap[cleanName] = { abi: (data as any).abi, address: {} };
     }
+
+    // Skip implementation addresses as we use proxy for calls
+    if (name.includes("_Implementation")) continue;
+
     contractMap[cleanName].address[chainNumber] = (data as any).address;
   }
 }
