@@ -56,7 +56,10 @@ for (const chainId in deployedContracts) {
     if (!contractList.includes(baseContractName)) continue;
 
     // Normalize Sonic & implementation contracts
-    const cleanName = name.replace("_Implementation", "").replace("Sonic", "");
+    const cleanName = name
+      .replace("_Implementation", "")
+      .replace("_Proxy", "")
+      .replace("Sonic", "");
     const chainNumber = Number(chainId);
     if (!contractMap[cleanName]) {
       contractMap[cleanName] = { abi: (data as any).abi, address: {} };
