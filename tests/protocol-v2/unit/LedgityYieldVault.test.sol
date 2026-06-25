@@ -20,6 +20,14 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 
 contract LedgityYieldVault_UnitTest is Test, Fixtures {
+  event WithdrawalRequested(
+    uint256 indexed requestId,
+    address indexed user,
+    uint256 shares,
+    uint256 assets,
+    uint256 feeShares
+  );
+
   // Test vault configurations
   struct VaultConfig {
     IERC20 asset;
@@ -148,8 +156,8 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
   }
 
   function test_initialization_zeroAddress_reverts() public {
-    ILedgityYieldVault.VaultParams memory invalidParams = ILedgityYieldVault
-      .VaultParams({
+    ILedgityYieldVault.VaultParams
+      memory invalidParams = ILedgityYieldVault.VaultParams({
         name: "Test Vault",
         symbol: "TV",
         asset: IERC20(address(0)), // Invalid zero address
@@ -258,13 +266,44 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
       uint256 shares = vault.balanceOf(testAccount1);
       uint256 gasFee = vault.withdrawalGasFee();
+      uint256 expectedFee = _expectedWithdrawalFee(
+        vault,
+        shares,
+        testAccount1
+      );
+      uint256 expectedAssets = vault.convertToAssets(
+        shares - expectedFee
+      );
 
       vm.prank(testAccount1);
+      vm.expectEmit(true, true, false, true, address(vault));
+      emit WithdrawalRequested(
+        0,
+        testAccount1,
+        shares,
+        expectedAssets,
+        expectedFee
+      );
       vault.requestWithdrawal{ value: gasFee }(shares);
 
       assertEq(vault.balanceOf(testAccount1), 0);
       assertEq(vault.getWithdrawalRequestCount(), 1);
     }
+  }
+
+  function _expectedWithdrawalFee(
+    LedgityYieldVault vault,
+    uint256 shares,
+    address account
+  ) private view returns (uint256) {
+    if (
+      vault.stakeForFeeReduction() == 0 ||
+      address(vault.stakeToken()) == address(0) ||
+      vault.stakeToken().balanceOf(account) >=
+      vault.stakeForFeeReduction()
+    ) return 0;
+
+    return ((shares * vault.withdrawalFeeRate()) + RAY - 1) / RAY;
   }
 
   function test_requestWithdrawal_insufficientGasFee_reverts()

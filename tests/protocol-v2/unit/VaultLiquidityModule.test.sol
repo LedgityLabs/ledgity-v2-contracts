@@ -17,6 +17,11 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 
 contract VaultLiquidityModule_UnitTest is Test, Fixtures {
+  event HighWaterMarkUpdated(
+    uint256 oldHighWaterMark,
+    uint256 newHighWaterMark
+  );
+
   // Test vault configurations
   struct VaultConfig {
     IERC20 asset;
@@ -369,6 +374,15 @@ contract VaultLiquidityModule_UnitTest is Test, Fixtures {
 
       // Warp time forward
       vm.warp(block.timestamp + 1 days);
+
+      (, uint256 expectedHighWaterMark) = vault.getFeeData();
+      if (oldHighWaterMark < expectedHighWaterMark) {
+        vm.expectEmit(false, false, false, true, address(vault));
+        emit HighWaterMarkUpdated(
+          oldHighWaterMark,
+          expectedHighWaterMark
+        );
+      }
 
       vault.harvestFees();
 

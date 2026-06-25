@@ -39,6 +39,13 @@ contract FixedTermMockERC20 is ERC20 {
 }
 
 contract FixedTermInvestmentVault_Test is Test {
+  event WithdrawalRequestCancelled(
+    uint256 indexed requestId,
+    address indexed user,
+    uint256 assets,
+    uint256 shares
+  );
+
   uint256 private constant RAY = 1e27;
   uint256 private constant INITIAL_BALANCE = 1_000_000 ether;
   uint256 private constant CAPACITY = 1_000 ether;
@@ -377,7 +384,17 @@ contract FixedTermInvestmentVault_Test is Test {
     vault.requestWithdrawal(aliceShares);
 
     assertEq(vault.balanceOf(alice), 0);
+    uint256 expectedCancelledAssets = vault.convertToAssets(
+      aliceShares
+    );
 
+    vm.expectEmit(true, true, false, true, address(vault));
+    emit WithdrawalRequestCancelled(
+      0,
+      alice,
+      expectedCancelledAssets,
+      aliceShares
+    );
     vault.updateWithdrawalRequestsEnabled(false);
 
     ILedgityDataProvider.WithdrawalRequestRead[]
