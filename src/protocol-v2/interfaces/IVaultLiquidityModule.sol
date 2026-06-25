@@ -42,10 +42,7 @@ interface IVaultLiquidityModule {
     uint256 newHighWaterMark
   );
 
-  event WithdrawalGasFeeUpdated(
-    uint256 oldGasFee,
-    uint256 newGasFee
-  );
+  event WithdrawalGasFeeUpdated(uint256 oldGasFee, uint256 newGasFee);
 
   /** ======== FUNCTIONS ======== */
 
@@ -112,5 +109,7 @@ interface IVaultLiquidityModule {
 
   function updateHighWaterMark(uint256 newHighWaterMark) external;
 
-  function updateWithdrawalGasFee(uint256 newWithdrawalGasFee) external;
+  function updateWithdrawalGasFee(
+    uint256 newWithdrawalGasFee
+  ) external;
 }

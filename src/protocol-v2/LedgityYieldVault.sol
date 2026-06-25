@@ -85,12 +85,16 @@ contract LedgityYieldVault is
    * Emitted when a user requests a withdrawal
    * @param requestId Unique identifier for the withdrawal request
    * @param user Address of the user requesting withdrawal
-   * @param shares Amount of shares being withdrawn
+   * @param shares Gross amount of shares submitted by the user
+   * @param assets Net amount of assets reserved for the request
+   * @param feeShares Amount of shares paid as withdrawal fee
    */
   event WithdrawalRequested(
     uint256 indexed requestId,
     address indexed user,
-    uint256 shares
+    uint256 shares,
+    uint256 assets,
+    uint256 feeShares
   );
 
   /**
@@ -436,14 +440,13 @@ contract LedgityYieldVault is
   function _burnSharesTakeFeesOnWithdrawal(
     address owner_,
     uint256 shares_
-  ) internal returns (uint256 /*netAssets*/) {
+  ) internal returns (uint256 netAssets, uint256 withdrawalFee) {
     if (shares_ == 0) revert ZeroAmount();
 
     // Take fees before processing
     harvestFees();
 
     // Calculate underlying amount using updated rate
-    uint256 withdrawalFee;
     if (
       stakeForFeeReduction != 0 &&
       address(stakeToken) != address(0) &&
@@ -455,12 +458,10 @@ contract LedgityYieldVault is
     }
 
     uint256 netShares = shares_ - withdrawalFee;
-    uint256 netAssets = convertToAssets(netShares);
+    netAssets = convertToAssets(netShares);
 
     _burn(owner_, netShares);
     _withdrawAssets(netAssets);
-
-    return netAssets;
   }
 
   /**
@@ -494,7 +495,7 @@ contract LedgityYieldVault is
       _spendAllowance(owner_, caller_, shares_);
     }
 
-    netAssets = _burnSharesTakeFeesOnWithdrawal(owner_, shares_);
+    (netAssets, ) = _burnSharesTakeFeesOnWithdrawal(owner_, shares_);
 
     // slither-disable-next-line reentrancy-no-eth
     _withdrawBuffer(receiver_, netAssets);
@@ -711,10 +712,10 @@ contract LedgityYieldVault is
     }("");
     if (!success) revert TransferFailed();
 
-    uint256 netAssets = _burnSharesTakeFeesOnWithdrawal(
-      msg.sender,
-      shares
-    );
+    (
+      uint256 netAssets,
+      uint256 withdrawalFee
+    ) = _burnSharesTakeFeesOnWithdrawal(msg.sender, shares);
 
     // Create withdrawal request
     withdrawalRequests.push(
@@ -729,7 +730,9 @@ contract LedgityYieldVault is
     emit WithdrawalRequested(
       withdrawalRequests.length - 1,
       msg.sender,
-      shares
+      shares,
+      netAssets,
+      withdrawalFee
     );
   }
 

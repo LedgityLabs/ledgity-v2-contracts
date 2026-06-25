@@ -374,13 +374,17 @@ abstract contract VaultLiquidityModule is
     if (timeElapsed == 0) return;
 
     (uint256 feeShares, uint256 pricePerShare) = getFeeData();
+    uint256 oldHighWaterMark = highWaterMark;
 
     if (0 < feeShares) {
       _mint(feeRecipient, feeShares);
       lastFeeTime = block.timestamp;
     }
 
-    if (highWaterMark < pricePerShare) highWaterMark = pricePerShare;
+    if (highWaterMark < pricePerShare) {
+      highWaterMark = pricePerShare;
+      emit HighWaterMarkUpdated(oldHighWaterMark, highWaterMark);
+    }
 
     /// @dev This call should always return early but we call it for safety
     _registerFundRevenue();
