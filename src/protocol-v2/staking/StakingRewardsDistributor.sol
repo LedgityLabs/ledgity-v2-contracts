@@ -31,6 +31,11 @@ contract StakingRewardsDistributor is
 {
   using SafeERC20 for IERC20;
 
+  struct ProtocolRewardCheckpoint {
+    uint256 timestamp;
+    uint256 cumulativeRewardsPerToken;
+  }
+
   /*//////////////////////////////////////////////////////////////
                                 CONSTANTS
     //////////////////////////////////////////////////////////////*/
@@ -73,6 +78,11 @@ contract StakingRewardsDistributor is
   /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _amount)
     public protocolRewardsPerTokenPaid;
+  mapping(uint256 _tokenId => uint256 _amount)
+    public accruedProtocolRewards;
+  mapping(uint256 _tokenId => uint256 _checkpointCursor)
+    public protocolRewardCursor;
+  ProtocolRewardCheckpoint[] private protocolRewardCheckpoints;
 
   /*//////////////////////////////////////////////////////////////
                               INITIALIZER
@@ -353,22 +363,12 @@ contract StakingRewardsDistributor is
   function _claimableProtocolRewards(
     uint256 tokenId
   ) internal view returns (uint256) {
-    uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
-    if (maxUserEpoch == 0) return 0;
+    (
+      uint256 checkpointRewards,
+      ,
+    ) = _calculateProtocolRewards(tokenId);
 
-    // Use balanceOfNFTAt to bypass double vote protection
-    uint256 currentBalance = staking.balanceOfNFTAt(
-      tokenId,
-      block.timestamp
-    );
-    uint256 rewardsPerTokenPaid = protocolRewardsPerTokenPaid[
-      tokenId
-    ];
-
-    return
-      (currentBalance *
-        (cumulativeProtocolRewardsPerToken - rewardsPerTokenPaid)) /
-      PRECISION;
+    return accruedProtocolRewards[tokenId] + checkpointRewards;
   }
 
   function _claimBaseRewards(
@@ -406,18 +406,75 @@ contract StakingRewardsDistributor is
   function _claimProtocolRewards(
     uint256 tokenId
   ) internal returns (uint256) {
-    uint256 claimableAmount = _claimableProtocolRewards(tokenId);
+    _accrueProtocolRewards(tokenId);
+
+    uint256 claimableAmount = accruedProtocolRewards[tokenId];
 
     if (claimableAmount > 0) {
-      // Update the paid amount
-      protocolRewardsPerTokenPaid[
-        tokenId
-      ] = cumulativeProtocolRewardsPerToken;
+      accruedProtocolRewards[tokenId] = 0;
 
       emit ProtocolRewardsClaimed(tokenId, claimableAmount);
     }
 
     return claimableAmount;
+  }
+
+  function _calculateProtocolRewards(
+    uint256 tokenId
+  )
+    internal
+    view
+    returns (
+      uint256 rewards,
+      uint256 nextCursor,
+      uint256 rewardsPerTokenPaid
+    )
+  {
+    nextCursor = protocolRewardCursor[tokenId];
+    rewardsPerTokenPaid = protocolRewardsPerTokenPaid[tokenId];
+
+    uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
+    if (maxUserEpoch == 0) return (0, nextCursor, rewardsPerTokenPaid);
+
+    while (nextCursor < protocolRewardCheckpoints.length) {
+      ProtocolRewardCheckpoint
+        memory checkpoint = protocolRewardCheckpoints[nextCursor];
+
+      if (checkpoint.cumulativeRewardsPerToken > rewardsPerTokenPaid) {
+        uint256 balance = staking.balanceOfNFTAt(
+          tokenId,
+          checkpoint.timestamp
+        );
+        rewards +=
+          (balance *
+            (checkpoint.cumulativeRewardsPerToken -
+              rewardsPerTokenPaid)) /
+          PRECISION;
+        rewardsPerTokenPaid = checkpoint.cumulativeRewardsPerToken;
+      }
+
+      nextCursor++;
+    }
+  }
+
+  function _accrueProtocolRewards(
+    uint256 tokenId
+  ) internal returns (uint256 accruedAmount) {
+    uint256 nextCursor;
+    uint256 rewardsPerTokenPaid;
+    (
+      accruedAmount,
+      nextCursor,
+      rewardsPerTokenPaid
+    ) = _calculateProtocolRewards(tokenId);
+
+    if (accruedAmount > 0) {
+      accruedProtocolRewards[tokenId] += accruedAmount;
+    }
+    if (nextCursor != protocolRewardCursor[tokenId]) {
+      protocolRewardCursor[tokenId] = nextCursor;
+      protocolRewardsPerTokenPaid[tokenId] = rewardsPerTokenPaid;
+    }
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -431,6 +488,14 @@ contract StakingRewardsDistributor is
     protocolRewardsPerTokenPaid[
       tokenId
     ] = cumulativeProtocolRewardsPerToken;
+    protocolRewardCursor[tokenId] = protocolRewardCheckpoints.length;
+  }
+
+  /// @inheritdoc IStakingRewardsDistributor
+  function onBalanceChange(uint256 tokenId) external {
+    if (msg.sender != address(staking)) revert OnlyStakingPositions();
+
+    _accrueProtocolRewards(tokenId);
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -505,6 +570,12 @@ contract StakingRewardsDistributor is
       cumulativeProtocolRewardsPerToken +=
         (amount * PRECISION) /
         totalSupply;
+      protocolRewardCheckpoints.push(
+        ProtocolRewardCheckpoint({
+          timestamp: block.timestamp,
+          cumulativeRewardsPerToken: cumulativeProtocolRewardsPerToken
+        })
+      );
     }
 
     emit ProtocolFeesDeposited(amount, block.timestamp, totalSupply);

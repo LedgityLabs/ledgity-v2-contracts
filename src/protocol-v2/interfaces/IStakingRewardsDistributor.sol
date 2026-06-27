@@ -169,4 +169,8 @@ interface IStakingRewardsDistributor {
   /// @notice Called by StakingPositions when a new lock is created
   /// @param tokenId The NFT tokenId that was created
   function onLockCreated(uint256 tokenId) external;
+
+  /// @notice Called by StakingPositions before a lock balance changes
+  /// @param tokenId The NFT tokenId whose voting power is about to change
+  function onBalanceChange(uint256 tokenId) external;
 }

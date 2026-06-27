@@ -490,6 +490,10 @@ contract StakingPositions is
     if (block.timestamp + maxTime < unlockTime)
       revert LockDurationTooLong();
 
+    IStakingRewardsDistributor(rewardsDistributor).onBalanceChange(
+      _tokenId
+    );
+
     _depositFor(
       _tokenId,
       0,
@@ -938,6 +942,10 @@ contract StakingPositions is
     if (_value == 0) revert ZeroAmount();
     if (oldLocked.amount <= 0) revert NoLockFound();
     if (oldLocked.end <= block.timestamp) revert LockExpired();
+
+    IStakingRewardsDistributor(rewardsDistributor).onBalanceChange(
+      _tokenId
+    );
 
     _depositFor(_tokenId, _value, 0, oldLocked, _depositType);
 

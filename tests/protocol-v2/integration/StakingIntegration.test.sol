@@ -406,6 +406,124 @@ contract StakingIntegration_Test is Test, Fixtures {
     assertGt(baseRewards, 0);
   }
 
+  function test_Integration_ProtocolRewardsDoNotOverclaimAfterIncreaseAmount()
+    public
+  {
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      1 ether,
+      TEST_LOCK_DURATION
+    );
+
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+
+    (, uint256 fairProtocolRewards) = stakingRewardsDistributor
+      .claimable(tokenId);
+
+    vm.prank(testAccount1);
+    stakingPositions.increaseAmount(tokenId, TEST_AMOUNT);
+
+    vm.prank(testAccount1);
+    (, uint256 protocolRewards) = stakingRewardsDistributor.claim(
+      tokenId
+    );
+
+    assertEq(protocolRewards, fairProtocolRewards);
+  }
+
+  function test_Integration_ProtocolRewardsRemainClaimableAfterExpiry()
+    public
+  {
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, WEEK);
+
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+
+    IStakingPositions.LockedBalance
+      memory locked = stakingPositions.getLockedBalance(tokenId);
+    vm.warp(locked.end);
+
+    uint256 balanceBefore = ldyToken.balanceOf(testAccount1);
+
+    vm.prank(testAccount1);
+    stakingPositions.withdraw(tokenId);
+
+    assertApproxEqAbs(
+      ldyToken.balanceOf(testAccount1),
+      balanceBefore + TEST_AMOUNT + REWARD_AMOUNT,
+      1
+    );
+  }
+
+  function test_Integration_UUPSUpgradePreservesStakingRewardState()
+    public
+  {
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      1 ether,
+      TEST_LOCK_DURATION
+    );
+
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositProtocolFees(REWARD_AMOUNT);
+
+    (
+      uint256 baseRewardsBefore,
+      uint256 fairProtocolRewards
+    ) = stakingRewardsDistributor.claimable(tokenId);
+    IStakingPositions.LockedBalance
+      memory lockedBefore = stakingPositions.getLockedBalance(tokenId);
+    uint256 cumulativeRewardsBefore = stakingRewardsDistributor
+      .cumulativeProtocolRewardsPerToken();
+
+    StakingRewardsDistributor newRewardsImpl = new StakingRewardsDistributor();
+    StakingPositions newPositionsImpl = new StakingPositions();
+
+    vm.startPrank(globalOwner.owner());
+    stakingRewardsDistributor.upgradeTo(address(newRewardsImpl));
+    stakingPositions.upgradeTo(address(newPositionsImpl));
+    vm.stopPrank();
+
+    assertEq(
+      address(stakingRewardsDistributor.staking()),
+      address(stakingPositions)
+    );
+    assertEq(stakingRewardsDistributor.token(), address(ldyToken));
+    assertEq(
+      stakingRewardsDistributor.cumulativeProtocolRewardsPerToken(),
+      cumulativeRewardsBefore
+    );
+    assertEq(
+      stakingPositions.rewardsDistributor(),
+      address(stakingRewardsDistributor)
+    );
+    assertEq(stakingPositions.ownerOf(tokenId), testAccount1);
+
+    IStakingPositions.LockedBalance
+      memory lockedAfter = stakingPositions.getLockedBalance(tokenId);
+    assertEq(lockedAfter.amount, lockedBefore.amount);
+    assertEq(lockedAfter.end, lockedBefore.end);
+
+    (
+      uint256 baseRewardsAfter,
+      uint256 protocolRewardsAfter
+    ) = stakingRewardsDistributor.claimable(tokenId);
+    assertEq(baseRewardsAfter, baseRewardsBefore);
+    assertEq(protocolRewardsAfter, fairProtocolRewards);
+
+    vm.prank(testAccount1);
+    stakingPositions.increaseAmount(tokenId, TEST_AMOUNT);
+
+    vm.prank(testAccount1);
+    (, uint256 protocolRewards) = stakingRewardsDistributor.claim(
+      tokenId
+    );
+
+    assertEq(protocolRewards, fairProtocolRewards);
+  }
+
   function test_Integration_ProtocolRewardsOnlyForCurrentStakers() public {
     // Deposit protocol fees before any staking
     uint256 feeAmount = REWARD_AMOUNT;
