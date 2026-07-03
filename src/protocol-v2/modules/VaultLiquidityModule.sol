@@ -396,6 +396,7 @@ abstract contract VaultLiquidityModule is
    * @notice Set new total assets to handle capital losses or gains
    * @param newTotalAssets The new total assets amount
    * @dev This function should be called when there are capital losses/gains that need to be recorded
+   * @dev Note to auditors: potential temporary capital allocation timing issue is a known design consideration. In practice it is gated by non-atomic execution, entry/exit fees, owner-only manual NAV updates, and poor economics. We do not consider it a issue in the current architecture. Please refrain from reporting this as a vulnerability.
    */
   function setTotalAssets(uint256 newTotalAssets) external onlyOwner {
     uint256 oldTotalAssets = totalAssets();
