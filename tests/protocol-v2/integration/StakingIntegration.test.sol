@@ -457,6 +457,46 @@ contract StakingIntegration_Test is Test, Fixtures {
     );
   }
 
+  function test_Integration_BaseRewardsCursorResumesAfterWeekLimit()
+    public
+  {
+    uint256 duration = 60;
+    uint256 rewardAmount = duration * 1e18;
+    uint256 startWeek = (block.timestamp / WEEK) * WEEK;
+
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      80 * WEEK
+    );
+
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(
+      rewardAmount,
+      duration
+    );
+
+    vm.warp(block.timestamp + duration * WEEK);
+
+    vm.prank(testAccount1);
+    (uint256 firstClaim, ) = stakingRewardsDistributor.claim(tokenId);
+
+    assertEq(firstClaim, 50 * 1e18);
+    assertEq(
+      stakingRewardsDistributor.baseRewardCursor(tokenId),
+      startWeek + 50 * WEEK
+    );
+
+    vm.prank(testAccount1);
+    (uint256 secondClaim, ) = stakingRewardsDistributor.claim(tokenId);
+
+    assertEq(secondClaim, 10 * 1e18);
+    assertEq(
+      stakingRewardsDistributor.baseRewardCursor(tokenId),
+      startWeek + duration * WEEK
+    );
+  }
+
   function test_Integration_UUPSUpgradePreservesStakingRewardState()
     public
   {

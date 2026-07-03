@@ -42,6 +42,7 @@ contract StakingRewardsDistributor is
 
   uint256 public constant WEEK = 7 * 86400;
   uint256 private constant PRECISION = 1e18;
+  uint256 private constant MAX_BASE_REWARD_WEEKS = 50;
 
   /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -336,7 +337,7 @@ contract StakingRewardsDistributor is
     uint256 weekCount = 0;
     for (
       uint256 week = periodStart;
-      week < periodEnd && weekCount < 50;
+      week < periodEnd && weekCount < MAX_BASE_REWARD_WEEKS;
       week += WEEK
     ) {
       uint256 weeklyReward = baseRewardsPerWeek[periodId][week];
@@ -374,11 +375,27 @@ contract StakingRewardsDistributor is
   function _claimBaseRewards(
     uint256 tokenId
   ) internal returns (uint256) {
-    uint256 claimableAmount = _claimableBaseRewards(tokenId);
+    uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
+    if (maxUserEpoch == 0) return 0;
 
     // Update cursors based on what was actually processed
+    uint256 weekCursor = _getWeekCursor(tokenId);
     uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
-    baseRewardCursor[tokenId] = currentWeek;
+    if (weekCursor >= currentWeek) return 0;
+    if (weekCursor < startTime) weekCursor = startTime;
+
+    uint256 claimableAmount = _calculateRewardsForPeriods(
+      tokenId,
+      weekCursor,
+      currentWeek
+    );
+    uint256 nextWeekCursor = currentWeek;
+    uint256 maxProcessedWeek = weekCursor +
+      (MAX_BASE_REWARD_WEEKS * WEEK);
+    if (maxProcessedWeek < currentWeek) {
+      nextWeekCursor = maxProcessedWeek;
+    }
+    baseRewardCursor[tokenId] = nextWeekCursor;
 
     // Only update period cursor to the last period we could fully process
     // This prevents skipping periods when we hit the 50-period limit
