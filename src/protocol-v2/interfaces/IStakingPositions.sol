@@ -30,6 +30,15 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     INCREASE_UNLOCK_TIME
   }
 
+  enum PositionCheckpointType {
+    DEPOSIT_FOR_TYPE,
+    CREATE_LOCK_TYPE,
+    INCREASE_LOCK_AMOUNT,
+    INCREASE_UNLOCK_TIME,
+    TRANSFER,
+    WITHDRAW
+  }
+
   struct NFTData {
     uint256 tokenId;
     LockedBalance locked;
@@ -64,6 +73,18 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
     address indexed from,
     uint256 indexed tokenId,
     uint256 value,
+    uint256 timestamp
+  );
+
+  event StakingPositionCheckpoint(
+    address indexed owner,
+    uint256 indexed tokenId,
+    PositionCheckpointType indexed action,
+    uint256 lockedAmount,
+    uint256 unlockTime,
+    uint256 positionVotingPower,
+    uint256 totalLockedSupply,
+    uint256 totalVotingPower,
     uint256 timestamp
   );
 

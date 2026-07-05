@@ -30,7 +30,8 @@ interface IStakingRewardsDistributor {
   event ProtocolFeesDeposited(
     uint256 amount,
     uint256 timestamp,
-    uint256 totalSupply
+    uint256 totalSupply,
+    uint256 cumulativeProtocolRewardsPerToken
   );
 
   event BaseRewardsClaimed(
@@ -43,6 +44,27 @@ interface IStakingRewardsDistributor {
   event ProtocolRewardsClaimed(
     uint256 indexed tokenId,
     uint256 amount
+  );
+
+  event StakingRewardsClaimed(
+    address indexed owner,
+    address indexed recipient,
+    uint256 indexed tokenId,
+    uint256 baseRewards,
+    uint256 protocolRewards,
+    uint256 timestamp
+  );
+
+  event StakingRewardsCheckpoint(
+    address indexed owner,
+    uint256 indexed tokenId,
+    uint256 accruedProtocolRewards,
+    uint256 baseRewardCursor,
+    uint256 baseRewardPeriodCursor,
+    uint256 protocolRewardCursor,
+    uint256 protocolRewardsPerTokenPaid,
+    uint256 cumulativeProtocolRewardsPerToken,
+    uint256 timestamp
   );
 
   /*//////////////////////////////////////////////////////////////

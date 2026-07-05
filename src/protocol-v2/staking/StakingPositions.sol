@@ -539,6 +539,11 @@ contract StakingPositions is
 
     emit Withdraw(msg.sender, _tokenId, value, block.timestamp);
     emit Supply(supplyBefore, supplyBefore - value);
+    _emitStakingPositionCheckpoint(
+      msg.sender,
+      _tokenId,
+      PositionCheckpointType.WITHDRAW
+    );
   }
 
   /*//////////////////////////////////////////////////////////////
@@ -565,6 +570,11 @@ contract StakingPositions is
     ownershipChange[_tokenId] = block.number;
     // Log the transfer
     emit Transfer(_from, _to, _tokenId);
+    _emitStakingPositionCheckpoint(
+      _to,
+      _tokenId,
+      PositionCheckpointType.TRANSFER
+    );
   }
 
   /// @dev Add a NFT to an index mapping to a given address
@@ -840,6 +850,29 @@ contract StakingPositions is
     }
   }
 
+  function _emitStakingPositionCheckpoint(
+    address _owner,
+    uint256 _tokenId,
+    PositionCheckpointType _action
+  ) internal {
+    LockedBalance memory lockedBalance = locked[_tokenId];
+    uint256 lockedAmount = lockedBalance.amount > 0
+      ? lockedBalance.amount.toUint256()
+      : 0;
+
+    emit StakingPositionCheckpoint(
+      _owner,
+      _tokenId,
+      _action,
+      lockedAmount,
+      lockedBalance.end,
+      balanceOfNFTAt(_tokenId, block.timestamp),
+      supply,
+      totalSupplyAt(block.timestamp),
+      block.timestamp
+    );
+  }
+
   /// @notice Deposit and lock tokens for a user
   /// @param _tokenId NFT that holds lock
   /// @param _value Amount to deposit
@@ -893,6 +926,11 @@ contract StakingPositions is
       block.timestamp
     );
     emit Supply(supplyBefore, supplyBefore + _value);
+    _emitStakingPositionCheckpoint(
+      idToOwner[_tokenId],
+      _tokenId,
+      PositionCheckpointType(uint8(_depositType))
+    );
   }
 
   /// @dev Deposit `_value` tokens for `_to` and lock for `_lockDuration`
