@@ -128,6 +128,21 @@ contract FixedTermInvestmentVault is
     uint256 shares
   );
 
+  event MaxDepositCapacityUpdated(
+    uint256 oldMaxDepositCapacity,
+    uint256 newMaxDepositCapacity
+  );
+
+  event OperationEndDateUpdated(
+    uint256 oldOperationEndDate,
+    uint256 newOperationEndDate
+  );
+
+  event WithdrawalRequestsEnabledUpdated(
+    bool oldEnabled,
+    bool newEnabled
+  );
+
   /**
    * Emitted when a withdrawal request is processed and fulfilled
    * @param requestId Unique identifier for the processed request
@@ -817,7 +832,13 @@ contract FixedTermInvestmentVault is
   function updateMaxDepositCapacity(
     uint256 maxDepositCapacity_
   ) external onlyOwner {
+    uint256 oldMaxDepositCapacity = maxDepositCapacity;
     maxDepositCapacity = maxDepositCapacity_;
+
+    emit MaxDepositCapacityUpdated(
+      oldMaxDepositCapacity,
+      maxDepositCapacity_
+    );
   }
 
   /**
@@ -829,7 +850,13 @@ contract FixedTermInvestmentVault is
   function updateOperationEndDate(
     uint256 operationEndDate_
   ) external onlyOwner {
+    uint256 oldOperationEndDate = operationEndDate;
     operationEndDate = operationEndDate_;
+
+    emit OperationEndDateUpdated(
+      oldOperationEndDate,
+      operationEndDate_
+    );
   }
 
   /**
@@ -841,7 +868,10 @@ contract FixedTermInvestmentVault is
   function updateWithdrawalRequestsEnabled(
     bool enabled
   ) external onlyOwner {
+    bool oldEnabled = withdrawalRequestsEnabled();
     _withdrawalRequestsDisabled = !enabled;
+
+    emit WithdrawalRequestsEnabledUpdated(oldEnabled, enabled);
 
     if (!enabled) {
       for (uint256 i; i < withdrawalRequests.length; i++) {

@@ -39,11 +39,34 @@ contract FixedTermMockERC20 is ERC20 {
 }
 
 contract FixedTermInvestmentVault_Test is Test {
+  event WithdrawalRequested(
+    uint256 indexed requestId,
+    address indexed user,
+    uint256 shares,
+    uint256 assets,
+    uint256 feeShares
+  );
+
   event WithdrawalRequestCancelled(
     uint256 indexed requestId,
     address indexed user,
     uint256 assets,
     uint256 shares
+  );
+
+  event MaxDepositCapacityUpdated(
+    uint256 oldMaxDepositCapacity,
+    uint256 newMaxDepositCapacity
+  );
+
+  event OperationEndDateUpdated(
+    uint256 oldOperationEndDate,
+    uint256 newOperationEndDate
+  );
+
+  event WithdrawalRequestsEnabledUpdated(
+    bool oldEnabled,
+    bool newEnabled
   );
 
   uint256 private constant RAY = 1e27;
@@ -270,6 +293,26 @@ contract FixedTermInvestmentVault_Test is Test {
     vault.updateOperationEndDate(block.timestamp + ONE_WEEK);
   }
 
+  function test_adminUpdatesEmitFixedTermConfigEvents() public {
+    vm.expectEmit(false, false, false, true, address(vault));
+    emit MaxDepositCapacityUpdated(CAPACITY, CAPACITY + 1);
+    vault.updateMaxDepositCapacity(CAPACITY + 1);
+
+    uint256 oldOperationEndDate = vault.operationEndDate();
+    uint256 newOperationEndDate = oldOperationEndDate + ONE_WEEK;
+
+    vm.expectEmit(false, false, false, true, address(vault));
+    emit OperationEndDateUpdated(
+      oldOperationEndDate,
+      newOperationEndDate
+    );
+    vault.updateOperationEndDate(newOperationEndDate);
+
+    vm.expectEmit(false, false, false, true, address(vault));
+    emit WithdrawalRequestsEnabledUpdated(true, false);
+    vault.updateWithdrawalRequestsEnabled(false);
+  }
+
   function test_onlyAdminCanUpdateWithdrawalRequestSwitch() public {
     vm.expectRevert();
     vm.prank(alice);
@@ -321,6 +364,8 @@ contract FixedTermInvestmentVault_Test is Test {
 
     uint256 shares = vault.balanceOf(alice);
 
+    vm.expectEmit(true, true, false, true, address(vault));
+    emit WithdrawalRequested(0, alice, shares, 100 ether, 0);
     vm.prank(alice);
     vault.requestWithdrawal(shares);
 
