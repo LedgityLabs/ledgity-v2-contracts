@@ -8,11 +8,7 @@ import {
 } from "viem";
 import { mainnet } from "viem/chains";
 import { getGeneralChainConfig } from "../../../data/configsContracts";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const { MAINNET_RPC_URL } = process.env;
+import { ethers } from "hardhat";
 
 /// @dev Update the chain depending on the target of deploy script
 const network = mainnet;
@@ -67,12 +63,7 @@ export default async function deploy({
   if (network.id != Number(chainId))
     throw Error("Chain ID mismatch, check configured viem Chain");
 
-  const nonce = await createPublicClient({
-    chain: network,
-    transport: http(MAINNET_RPC_URL || network.rpcUrls.default.http[0]),
-  }).getTransactionCount({
-    address: deployer as Address,
-  });
+  const nonce = await ethers.provider.getTransactionCount(deployer);
 
   const rewardsDistributorAddress = getContractAddress({
     opcode: "CREATE",

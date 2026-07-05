@@ -8,6 +8,7 @@ import {
 } from "viem";
 import { linea } from "viem/chains";
 import { getGeneralChainConfig } from "../../../data/configsContracts";
+import { ethers } from "hardhat";
 
 /// @dev Update the chain depending on the target of deploy script
 const network = linea;
@@ -62,12 +63,7 @@ export default async function deploy({
   if (network.id != Number(chainId))
     throw Error("Chain ID mismatch, check configured viem Chain");
 
-  const nonce = await createPublicClient({
-    chain: network,
-    transport: http(network.rpcUrls.default.http[0]),
-  }).getTransactionCount({
-    address: deployer as Address,
-  });
+  const nonce = await ethers.provider.getTransactionCount(deployer);
 
   const rewardsDistributorAddress = getContractAddress({
     opcode: "CREATE",
