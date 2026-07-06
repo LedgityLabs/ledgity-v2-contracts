@@ -15,6 +15,56 @@ type VerificationRecord = {
   };
 };
 
+const KNOWN_CONTRACT_NAMES: Record<string, string> = {
+  SafeCastLibrary:
+    "src/protocol-v2/libraries/SafeCastLibrary.sol:SafeCastLibrary",
+};
+
+const INITIALIZED_EVENT_TOPIC =
+  "0x7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb3847402498";
+const DISABLED_INITIALIZERS_DATA =
+  "0x00000000000000000000000000000000000000000000000000000000000000ff";
+
+function getFullyQualifiedContractName(deployment: any): string | undefined {
+  const knownContractName = KNOWN_CONTRACT_NAMES[deployment.name];
+  if (knownContractName) return knownContractName;
+
+  if (!deployment.metadata) return undefined;
+
+  try {
+    const metadata = JSON.parse(deployment.metadata);
+    const compilationTarget = metadata.settings?.compilationTarget;
+    const [target] = Object.entries(compilationTarget || {});
+    if (!target) return undefined;
+
+    const [sourceName, contractName] = target;
+    if (typeof contractName !== "string") return undefined;
+
+    return `${sourceName}:${contractName}`;
+  } catch {
+    return undefined;
+  }
+}
+
+function isProxyContract(deployment: any, contract?: string): boolean {
+  const logs = deployment.receipt?.logs;
+  if (!Array.isArray(logs) || logs.length !== 1) return false;
+
+  const log = logs[0];
+  const topic = log?.topics?.[0];
+  const data = log?.data;
+
+  const isImplementationDeployment =
+    typeof topic === "string" &&
+    typeof data === "string" &&
+    topic.toLowerCase() === INITIALIZED_EVENT_TOPIC &&
+    data.toLowerCase() === DISABLED_INITIALIZERS_DATA;
+  return (
+    contract?.endsWith(":ERC1967Proxy") ||
+    (!!deployment.implementation && !isImplementationDeployment)
+  );
+}
+
 task("verify-deploys", "Verifies all contracts from the latest deployment")
   .addOptionalParam("chain", "Network to verify contracts on")
   .setAction(async (taskArgs, hre: HardhatRuntimeEnvironment) => {
@@ -67,19 +117,28 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
     // Verify each contract
     for (const deployment of deployments) {
       console.log("Constructor arguments: ", deployment.args);
+      const contract = getFullyQualifiedContractName(deployment);
+      const verificationAddress =
+        !isProxyContract(deployment, contract) &&
+        deployment.receipt?.contractAddress
+          ? deployment.receipt.contractAddress
+          : deployment.address;
+      const implAddress = isProxyContract(deployment, contract)
+        ? deployment.implementation
+        : undefined;
 
       try {
         // Skip if no implementation (not a contract, just an artifact)
-        if (!deployment.address) continue;
+        if (!verificationAddress) continue;
 
         // Check if contract needs verification (new deployment or address changed)
         const existingRecord = verificationRecords[network][deployment.name];
         const addressChanged =
-          existingRecord && existingRecord.address !== deployment.address;
+          existingRecord && existingRecord.address !== verificationAddress;
         const implChanged =
           existingRecord &&
-          deployment.implementation &&
-          existingRecord.implementation !== deployment.implementation;
+          implAddress &&
+          existingRecord.implementation !== implAddress;
 
         if (
           existingRecord &&
@@ -88,27 +147,26 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
           !implChanged
         ) {
           console.log(
-            `\n⏭️  Skipping ${deployment.name} - already verified at ${deployment.address}`,
+            `\n⏭️  Skipping ${deployment.name} - already verified at ${verificationAddress}`,
           );
           continue;
         }
 
         if (addressChanged) {
           console.log(
-            `\n🔍 Address changed for ${deployment.name}: ${existingRecord.address} -> ${deployment.address}`,
+            `\n🔍 Address changed for ${deployment.name}: ${existingRecord.address} -> ${verificationAddress}`,
           );
         }
 
         if (implChanged) {
           console.log(
-            `\n🔍 Implementation changed for ${deployment.name}: ${existingRecord.implementation} -> ${deployment.implementation}`,
+            `\n🔍 Implementation changed for ${deployment.name}: ${existingRecord.implementation} -> ${implAddress}`,
           );
         }
 
-        console.log(`\nVerifying ${deployment.name} at ${deployment.address}`);
+        console.log(`\nVerifying ${deployment.name} at ${verificationAddress}`);
 
         // For proxies, we need to verify the implementation
-        const implAddress = deployment.implementation;
         if (implAddress) {
           console.log(
             `Contract is a proxy, verifying implementation at ${implAddress}`,
@@ -122,7 +180,7 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
 
           // Verify proxy
           await hre.run("verify:verify", {
-            address: deployment.address,
+            address: verificationAddress,
             constructorArguments: deployment.args || [],
           });
 
@@ -140,7 +198,7 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  address: deployment.address,
+                  address: verificationAddress,
                   expectedimplementation: implAddress,
                 }),
               },
@@ -152,15 +210,21 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
           }
         } else {
           // Verify non-proxy contract
-          await hre.run("verify:verify", {
-            address: deployment.address,
+          const verifyArgs: any = {
+            address: verificationAddress,
             constructorArguments: deployment.args || [],
-          });
+          };
+
+          if (contract) {
+            verifyArgs.contract = contract;
+          }
+
+          await hre.run("verify:verify", verifyArgs);
         }
 
         // Update verification record
         verificationRecords[network][deployment.name] = {
-          address: deployment.address,
+          address: verificationAddress,
           implementation: implAddress,
           verifiedAt: new Date().toISOString(),
           status: "verified",
@@ -179,8 +243,8 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
 
           // Update verification record
           verificationRecords[network][deployment.name] = {
-            address: deployment.address,
-            implementation: deployment.implementation,
+            address: verificationAddress,
+            implementation: implAddress,
             verifiedAt: new Date().toISOString(),
             status: "verified",
           };
@@ -195,8 +259,8 @@ task("verify-deploys", "Verifies all contracts from the latest deployment")
 
           // Update verification record as failed
           verificationRecords[network][deployment.name] = {
-            address: deployment.address,
-            implementation: deployment.implementation,
+            address: verificationAddress,
+            implementation: implAddress,
             verifiedAt: new Date().toISOString(),
             status: "failed",
           };
