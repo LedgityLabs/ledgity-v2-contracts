@@ -5,10 +5,10 @@ import { Test } from "foundry/lib/forge-std/src/Test.sol";
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
 import { LedgityYieldVault } from "src/protocol-v2/LedgityYieldVault.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
-import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { ERC1967Proxy } from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 /// @dev Simulated V2 — adds one new storage slot and new functions to verify
 ///      that upgrading to a new implementation is storage-safe.
@@ -27,13 +27,52 @@ contract LedgityYieldVaultV2Mock is LedgityYieldVault {
 contract LedgityYieldVault_UpgradeTest is Test, Fixtures {
   LedgityYieldVault vault;
 
-  uint256 constant DEPOSIT = 1_000 * 1e6; // 1000 USDC (6 decimals)
+  uint256 constant DEPOSIT = 1 ether; // 1 WETH (18 decimals)
+
+  /// @dev Creates a WETH vault with zero fees so initialization never hits the
+  ///      empty-vault edge cases in getFeeData (managementFeeRate=performanceFeeRate=0
+  ///      means no underflow risk, matching a freshly-configured production vault).
+  function _deployTestVault() internal returns (LedgityYieldVault) {
+    LedgityYieldVault impl = new LedgityYieldVault();
+    ERC1967Proxy proxy = new ERC1967Proxy(address(impl), "");
+    LedgityYieldVault vault_ = LedgityYieldVault(address(proxy));
+
+    vault_.initialize(
+      ILedgityYieldVault.VaultParams({
+        name: "Test WETH Vault",
+        symbol: "tvWETH",
+        asset: weth,
+        lToken: IERC20(address(0)),
+        stakeToken: IERC20(address(0)),
+        stakeForFeeReduction: 0,
+        stakeForInstantWithdrawal: 0,
+        globalOwner: address(globalOwner),
+        globalPause: address(globalPause),
+        globalAccessList: address(globalAccessList),
+        liquidityManager: liquidityManager,
+        feeRecipient: payable(feeRecipient),
+        liquidityBufferRate: (10 * RAY) / 100,
+        aaveLendingPool: IAaveLendingPoolV3(address(0))
+      }),
+      IVaultLiquidityModule.VaultLiquidityInitParams({
+        highWaterMark: 0,
+        deploymentDelay: 0,
+        initialAssetsPerShare: 0,
+        yieldAPR: (5 * RAY) / 100,
+        managementFeeRate: 0,
+        performanceFeeRate: 0,
+        withdrawalFeeRate: 0,
+        withdrawalGasFee: 0
+      })
+    );
+
+    return vault_;
+  }
 
   function setUp() public {
     _setUp();
-    // Use no-Aave USDC vault to keep upgrade test self-contained
-    vault = _createVaultWithConfig(usdc, IERC20(address(0)), false);
-    _setupApprovalsForVault(vault, usdc);
+    vault = _deployTestVault();
+    _setupApprovalsForVault(vault, weth);
   }
 
   function _upgradeToV2()
@@ -64,7 +103,7 @@ contract LedgityYieldVault_UpgradeTest is Test, Fixtures {
       .VaultParams({
         name: "Hacked",
         symbol: "HACK",
-        asset: usdc,
+        asset: weth,
         lToken: IERC20(address(0)),
         stakeToken: IERC20(address(0)),
         stakeForFeeReduction: 0,
@@ -213,7 +252,7 @@ contract LedgityYieldVault_UpgradeTest is Test, Fixtures {
 
     uint256 shares = vault.balanceOf(testAccount1);
     vm.prank(testAccount1);
-    vault.requestWithdrawal{ value: 0.001 ether }(shares);
+    vault.requestWithdrawal{ value: 0 }(shares);
 
     uint256 preCount = vault.getWithdrawalRequestCount();
     (
@@ -266,7 +305,7 @@ contract LedgityYieldVault_UpgradeTest is Test, Fixtures {
     uint256 preCount = vault.getWithdrawalRequestCount();
 
     vm.prank(testAccount1);
-    vault.requestWithdrawal{ value: 0.001 ether }(shares);
+    vault.requestWithdrawal{ value: 0 }(shares);
 
     assertEq(
       vault.getWithdrawalRequestCount(),
@@ -282,26 +321,26 @@ contract LedgityYieldVault_UpgradeTest is Test, Fixtures {
 
     uint256 shares = vault.balanceOf(testAccount1);
     vm.prank(testAccount1);
-    vault.requestWithdrawal{ value: 0.001 ether }(shares);
+    vault.requestWithdrawal{ value: 0 }(shares);
 
     (, uint256 requestedAmount, , ) = vault.withdrawalRequests(0);
 
     _upgradeToV2();
 
-    // Fund LM with enough USDC to cover the request
-    deal(address(usdc), liquidityManager, requestedAmount);
+    // Fund LM with enough WETH to cover the request
+    deal(address(weth), liquidityManager, requestedAmount);
 
     uint256[] memory ids = new uint256[](1);
     ids[0] = 0;
-    uint256 preUserBalance = usdc.balanceOf(testAccount1);
+    uint256 preUserBalance = weth.balanceOf(testAccount1);
 
     vm.prank(liquidityManager);
     vault.processRequests(ids, requestedAmount);
 
     assertGt(
-      usdc.balanceOf(testAccount1),
+      weth.balanceOf(testAccount1),
       preUserBalance,
-      "user received USDC"
+      "user received WETH"
     );
     (, , , bool processed) = vault.withdrawalRequests(0);
     assertTrue(processed, "request marked processed");
