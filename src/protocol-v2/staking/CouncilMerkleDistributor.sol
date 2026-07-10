@@ -43,8 +43,11 @@ contract CouncilMerkleDistributor is
   /// @notice The merkle root of the merkle tree containing account balances available to claim
   bytes32 public override merkleRoot;
 
-  /// @notice Bitmap tracking claimed rewards by index
-  mapping(uint256 => uint256) private claimedBitMap;
+  /// @notice Incremented on every root update so the bitmap is implicitly reset
+  uint256 private _claimEpoch;
+
+  /// @notice Bitmap tracking claimed rewards by index, scoped to the current claim epoch
+  mapping(uint256 => mapping(uint256 => uint256)) private claimedBitMap;
 
   // ======== INITIALIZER ======== //
 
@@ -85,7 +88,7 @@ contract CouncilMerkleDistributor is
   ) public view override returns (bool) {
     uint256 claimedWordIndex = index / 256;
     uint256 claimedBitIndex = index % 256;
-    uint256 claimedWord = claimedBitMap[claimedWordIndex];
+    uint256 claimedWord = claimedBitMap[_claimEpoch][claimedWordIndex];
     uint256 mask = (1 << claimedBitIndex);
     return claimedWord & mask == mask;
   }
@@ -115,8 +118,8 @@ contract CouncilMerkleDistributor is
     // Mark it claimed and send the token.
     uint256 claimedWordIndex = index / 256;
     uint256 claimedBitIndex = index % 256;
-    claimedBitMap[claimedWordIndex] =
-      claimedBitMap[claimedWordIndex] |
+    claimedBitMap[_claimEpoch][claimedWordIndex] =
+      claimedBitMap[_claimEpoch][claimedWordIndex] |
       (1 << claimedBitIndex);
 
     IERC20(token).safeTransfer(account, amount);
@@ -136,6 +139,7 @@ contract CouncilMerkleDistributor is
 
     bytes32 oldRoot = merkleRoot;
     merkleRoot = newMerkleRoot;
+    _claimEpoch++;
 
     emit MerkleRootUpdated(oldRoot, newMerkleRoot);
   }

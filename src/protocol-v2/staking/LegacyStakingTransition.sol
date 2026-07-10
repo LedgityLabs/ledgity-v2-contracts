@@ -492,7 +492,7 @@ contract LegacyStakingTransition is
    * @return Current reward per token.
    */
   function rewardPerToken() public view returns (uint256) {
-    if (totalStaked == 0) {
+    if (totalWeightedStake == 0) {
       return rewardPerTokenStored;
     }
 
