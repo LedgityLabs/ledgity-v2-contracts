@@ -655,6 +655,25 @@ export const fixedTermInvestmentVaultAbi = [
     anonymous: false,
     inputs: [
       {
+        name: 'oldMaxDepositCapacity',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newMaxDepositCapacity',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'MaxDepositCapacityUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
         name: 'minter',
         internalType: 'address',
         type: 'address',
@@ -675,6 +694,25 @@ export const fixedTermInvestmentVaultAbi = [
       },
     ],
     name: 'MintAccessRevoked',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldOperationEndDate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newOperationEndDate',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'OperationEndDateUpdated',
   },
   {
     type: 'event',
@@ -931,13 +969,70 @@ export const fixedTermInvestmentVaultAbi = [
       },
       { name: 'user', internalType: 'address', type: 'address', indexed: true },
       {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
         name: 'shares',
         internalType: 'uint256',
         type: 'uint256',
         indexed: false,
       },
     ],
+    name: 'WithdrawalRequestCancelled',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'requestId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      { name: 'user', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'feeShares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
     name: 'WithdrawalRequested',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldEnabled',
+        internalType: 'bool',
+        type: 'bool',
+        indexed: false,
+      },
+      {
+        name: 'newEnabled',
+        internalType: 'bool',
+        type: 'bool',
+        indexed: false,
+      },
+    ],
+    name: 'WithdrawalRequestsEnabledUpdated',
   },
   {
     type: 'function',
@@ -8062,7 +8157,7 @@ export const preMiningConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -8934,7 +9029,7 @@ export const stakingPositionsAbi = [
 ] as const
 
 /**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -8942,7 +9037,7 @@ export const stakingPositionsAbi = [
  * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0xcc1beF907DCe6c073332A75086708F53BDe4f6f0)
  */
 export const stakingPositionsAddress = {
-  1: '0x902982C0C405091894FF82b3b51F180f99f75144',
+  1: '0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483',
   146: '0x613904B9a1Af4450FD34655d123EEb0944888b21',
   295: '0x058A726CCa0a6235370262A802Ea126A2ECdBDF1',
   8453: '0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88',
@@ -8951,7 +9046,7 @@ export const stakingPositionsAddress = {
 } as const
 
 /**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -11601,6 +11696,15 @@ export const useWatchFixedTermInvestmentVaultInitializedEvent =
   })
 
 /**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"MaxDepositCapacityUpdated"`
+ */
+export const useWatchFixedTermInvestmentVaultMaxDepositCapacityUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'MaxDepositCapacityUpdated',
+  })
+
+/**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"MintAccessGranted"`
  */
 export const useWatchFixedTermInvestmentVaultMintAccessGrantedEvent =
@@ -11616,6 +11720,15 @@ export const useWatchFixedTermInvestmentVaultMintAccessRevokedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: fixedTermInvestmentVaultAbi,
     eventName: 'MintAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"OperationEndDateUpdated"`
+ */
+export const useWatchFixedTermInvestmentVaultOperationEndDateUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'OperationEndDateUpdated',
   })
 
 /**
@@ -11727,12 +11840,30 @@ export const useWatchFixedTermInvestmentVaultWithdrawalProcessedEvent =
   })
 
 /**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequestCancelled"`
+ */
+export const useWatchFixedTermInvestmentVaultWithdrawalRequestCancelledEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'WithdrawalRequestCancelled',
+  })
+
+/**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequested"`
  */
 export const useWatchFixedTermInvestmentVaultWithdrawalRequestedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: fixedTermInvestmentVaultAbi,
     eventName: 'WithdrawalRequested',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequestsEnabledUpdated"`
+ */
+export const useWatchFixedTermInvestmentVaultWithdrawalRequestsEnabledUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'WithdrawalRequestsEnabledUpdated',
   })
 
 /**
@@ -20713,7 +20844,7 @@ export const useWatchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20728,7 +20859,7 @@ export const useReadStakingPositions = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20745,7 +20876,7 @@ export const useReadStakingPositionsArtProxy =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20762,7 +20893,7 @@ export const useReadStakingPositionsBalanceOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20779,7 +20910,7 @@ export const useReadStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20796,7 +20927,7 @@ export const useReadStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20813,7 +20944,7 @@ export const useReadStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20830,7 +20961,7 @@ export const useReadStakingPositionsBreaker =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20847,7 +20978,7 @@ export const useReadStakingPositionsDecimals =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20865,7 +20996,7 @@ export const useReadStakingPositionsEpoch = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20882,7 +21013,7 @@ export const useReadStakingPositionsGetApproved =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20899,7 +21030,7 @@ export const useReadStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20916,7 +21047,7 @@ export const useReadStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20933,7 +21064,7 @@ export const useReadStakingPositionsGetUserNfTs =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20950,7 +21081,7 @@ export const useReadStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20967,7 +21098,7 @@ export const useReadStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -20984,7 +21115,7 @@ export const useReadStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21001,7 +21132,7 @@ export const useReadStakingPositionsGlobalOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21018,7 +21149,7 @@ export const useReadStakingPositionsGlobalPause =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21035,7 +21166,7 @@ export const useReadStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21052,7 +21183,7 @@ export const useReadStakingPositionsIMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21069,7 +21200,7 @@ export const useReadStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21086,7 +21217,7 @@ export const useReadStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21103,7 +21234,7 @@ export const useReadStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21120,7 +21251,7 @@ export const useReadStakingPositionsMaxTime =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21136,7 +21267,7 @@ export const useReadStakingPositionsName = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21154,7 +21285,7 @@ export const useReadStakingPositionsOwner = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21171,7 +21302,7 @@ export const useReadStakingPositionsOwnerOf =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21188,7 +21319,7 @@ export const useReadStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21205,7 +21336,7 @@ export const useReadStakingPositionsPaused =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21222,7 +21353,7 @@ export const useReadStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21239,7 +21370,7 @@ export const useReadStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21256,7 +21387,7 @@ export const useReadStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21273,7 +21404,7 @@ export const useReadStakingPositionsSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21290,7 +21421,7 @@ export const useReadStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21307,7 +21438,7 @@ export const useReadStakingPositionsSymbol =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21325,7 +21456,7 @@ export const useReadStakingPositionsToken = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21342,7 +21473,7 @@ export const useReadStakingPositionsTokenId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21359,7 +21490,7 @@ export const useReadStakingPositionsTokenUri =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21376,7 +21507,7 @@ export const useReadStakingPositionsTotalSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21393,7 +21524,7 @@ export const useReadStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21410,7 +21541,7 @@ export const useReadStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21425,7 +21556,7 @@ export const useWriteStakingPositions = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21442,7 +21573,7 @@ export const useWriteStakingPositionsApprove =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21459,7 +21590,7 @@ export const useWriteStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21476,7 +21607,7 @@ export const useWriteStakingPositionsCreateLock =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21493,7 +21624,7 @@ export const useWriteStakingPositionsDepositFor =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21510,7 +21641,7 @@ export const useWriteStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21527,7 +21658,7 @@ export const useWriteStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21544,7 +21675,7 @@ export const useWriteStakingPositionsInitialize =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21561,7 +21692,7 @@ export const useWriteStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21578,7 +21709,7 @@ export const useWriteStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21595,7 +21726,7 @@ export const useWriteStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21612,7 +21743,7 @@ export const useWriteStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21629,7 +21760,7 @@ export const useWriteStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21646,7 +21777,7 @@ export const useWriteStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21663,7 +21794,7 @@ export const useWriteStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21680,7 +21811,7 @@ export const useWriteStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21697,7 +21828,7 @@ export const useWriteStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21714,7 +21845,7 @@ export const useWriteStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21731,7 +21862,7 @@ export const useWriteStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21748,7 +21879,7 @@ export const useWriteStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21765,7 +21896,7 @@ export const useWriteStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21782,7 +21913,7 @@ export const useWriteStakingPositionsWithdraw =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21798,7 +21929,7 @@ export const useSimulateStakingPositions =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21815,7 +21946,7 @@ export const useSimulateStakingPositionsApprove =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21832,7 +21963,7 @@ export const useSimulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21849,7 +21980,7 @@ export const useSimulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21866,7 +21997,7 @@ export const useSimulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21883,7 +22014,7 @@ export const useSimulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21900,7 +22031,7 @@ export const useSimulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21917,7 +22048,7 @@ export const useSimulateStakingPositionsInitialize =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21934,7 +22065,7 @@ export const useSimulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21951,7 +22082,7 @@ export const useSimulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21968,7 +22099,7 @@ export const useSimulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -21985,7 +22116,7 @@ export const useSimulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22002,7 +22133,7 @@ export const useSimulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22019,7 +22150,7 @@ export const useSimulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22036,7 +22167,7 @@ export const useSimulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22053,7 +22184,7 @@ export const useSimulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22070,7 +22201,7 @@ export const useSimulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22087,7 +22218,7 @@ export const useSimulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22104,7 +22235,7 @@ export const useSimulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22121,7 +22252,7 @@ export const useSimulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22138,7 +22269,7 @@ export const useSimulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22155,7 +22286,7 @@ export const useSimulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22171,7 +22302,7 @@ export const useWatchStakingPositionsEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22188,7 +22319,7 @@ export const useWatchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22205,7 +22336,7 @@ export const useWatchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22222,7 +22353,7 @@ export const useWatchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22239,7 +22370,7 @@ export const useWatchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22256,7 +22387,7 @@ export const useWatchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22273,7 +22404,7 @@ export const useWatchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22290,7 +22421,7 @@ export const useWatchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22307,7 +22438,7 @@ export const useWatchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22324,7 +22455,7 @@ export const useWatchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22341,7 +22472,7 @@ export const useWatchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22358,7 +22489,7 @@ export const useWatchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22375,7 +22506,7 @@ export const useWatchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22392,7 +22523,7 @@ export const useWatchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22409,7 +22540,7 @@ export const useWatchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -22426,7 +22557,7 @@ export const useWatchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -25616,6 +25747,15 @@ export const watchFixedTermInvestmentVaultInitializedEvent =
   })
 
 /**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"MaxDepositCapacityUpdated"`
+ */
+export const watchFixedTermInvestmentVaultMaxDepositCapacityUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'MaxDepositCapacityUpdated',
+  })
+
+/**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"MintAccessGranted"`
  */
 export const watchFixedTermInvestmentVaultMintAccessGrantedEvent =
@@ -25631,6 +25771,15 @@ export const watchFixedTermInvestmentVaultMintAccessRevokedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: fixedTermInvestmentVaultAbi,
     eventName: 'MintAccessRevoked',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"OperationEndDateUpdated"`
+ */
+export const watchFixedTermInvestmentVaultOperationEndDateUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'OperationEndDateUpdated',
   })
 
 /**
@@ -25742,12 +25891,30 @@ export const watchFixedTermInvestmentVaultWithdrawalProcessedEvent =
   })
 
 /**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequestCancelled"`
+ */
+export const watchFixedTermInvestmentVaultWithdrawalRequestCancelledEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'WithdrawalRequestCancelled',
+  })
+
+/**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequested"`
  */
 export const watchFixedTermInvestmentVaultWithdrawalRequestedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: fixedTermInvestmentVaultAbi,
     eventName: 'WithdrawalRequested',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `eventName` set to `"WithdrawalRequestsEnabledUpdated"`
+ */
+export const watchFixedTermInvestmentVaultWithdrawalRequestsEnabledUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: fixedTermInvestmentVaultAbi,
+    eventName: 'WithdrawalRequestsEnabledUpdated',
   })
 
 /**
@@ -34578,7 +34745,7 @@ export const watchPreMiningUnpausedEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34593,7 +34760,7 @@ export const readStakingPositions = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"artProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34609,7 +34776,7 @@ export const readStakingPositionsArtProxy = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOf"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34625,7 +34792,7 @@ export const readStakingPositionsBalanceOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfAccountNFT"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34642,7 +34809,7 @@ export const readStakingPositionsBalanceOfAccountNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFT"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34659,7 +34826,7 @@ export const readStakingPositionsBalanceOfNft =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"balanceOfNFTAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34676,7 +34843,7 @@ export const readStakingPositionsBalanceOfNftAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"breaker"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34692,7 +34859,7 @@ export const readStakingPositionsBreaker = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"decimals"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34708,7 +34875,7 @@ export const readStakingPositionsDecimals = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"epoch"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34724,7 +34891,7 @@ export const readStakingPositionsEpoch = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getApproved"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34742,7 +34909,7 @@ export const readStakingPositionsGetApproved = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getLockedBalance"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34759,7 +34926,7 @@ export const readStakingPositionsGetLockedBalance =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getPointHistory"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34776,7 +34943,7 @@ export const readStakingPositionsGetPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserNFTs"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34794,7 +34961,7 @@ export const readStakingPositionsGetUserNfTs = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserPointHistory"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34811,7 +34978,7 @@ export const readStakingPositionsGetUserPointHistory =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPower"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34828,7 +34995,7 @@ export const readStakingPositionsGetUserTotalVotingPower =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"getUserTotalVotingPowerAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34845,7 +35012,7 @@ export const readStakingPositionsGetUserTotalVotingPowerAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalOwner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34863,7 +35030,7 @@ export const readStakingPositionsGlobalOwner = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalPause"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34881,7 +35048,7 @@ export const readStakingPositionsGlobalPause = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"globalRestrict"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34898,7 +35065,7 @@ export const readStakingPositionsGlobalRestrict =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"iMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34914,7 +35081,7 @@ export const readStakingPositionsIMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34931,7 +35098,7 @@ export const readStakingPositionsIsApprovedForAll =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isApprovedOrOwner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34948,7 +35115,7 @@ export const readStakingPositionsIsApprovedOrOwner =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"isPausedLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34965,7 +35132,7 @@ export const readStakingPositionsIsPausedLocal =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"maxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34981,7 +35148,7 @@ export const readStakingPositionsMaxTime = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"name"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -34997,7 +35164,7 @@ export const readStakingPositionsName = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"owner"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35013,7 +35180,7 @@ export const readStakingPositionsOwner = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerOf"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35029,7 +35196,7 @@ export const readStakingPositionsOwnerOf = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"ownerToNFTokenIdList"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35046,7 +35213,7 @@ export const readStakingPositionsOwnerToNfTokenIdList =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"paused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35062,7 +35229,7 @@ export const readStakingPositionsPaused = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35079,7 +35246,7 @@ export const readStakingPositionsProxiableUuid =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"rewardsDistributor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35096,7 +35263,7 @@ export const readStakingPositionsRewardsDistributor =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"slopeChanges"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35113,7 +35280,7 @@ export const readStakingPositionsSlopeChanges =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35129,7 +35296,7 @@ export const readStakingPositionsSupply = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"supportsInterface"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35146,7 +35313,7 @@ export const readStakingPositionsSupportsInterface =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"symbol"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35162,7 +35329,7 @@ export const readStakingPositionsSymbol = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"token"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35178,7 +35345,7 @@ export const readStakingPositionsToken = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenId"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35194,7 +35361,7 @@ export const readStakingPositionsTokenId = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"tokenURI"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35210,7 +35377,7 @@ export const readStakingPositionsTokenUri = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35228,7 +35395,7 @@ export const readStakingPositionsTotalSupply = /*#__PURE__*/ createReadContract(
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"totalSupplyAt"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35245,7 +35412,7 @@ export const readStakingPositionsTotalSupplyAt =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"userPointEpoch"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35262,7 +35429,7 @@ export const readStakingPositionsUserPointEpoch =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35277,7 +35444,7 @@ export const writeStakingPositions = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35293,7 +35460,7 @@ export const writeStakingPositionsApprove = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35310,7 +35477,7 @@ export const writeStakingPositionsCheckpoint =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35327,7 +35494,7 @@ export const writeStakingPositionsCreateLock =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35344,7 +35511,7 @@ export const writeStakingPositionsDepositFor =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35361,7 +35528,7 @@ export const writeStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35378,7 +35545,7 @@ export const writeStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35395,7 +35562,7 @@ export const writeStakingPositionsInitialize =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35412,7 +35579,7 @@ export const writeStakingPositionsPauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35429,7 +35596,7 @@ export const writeStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35446,7 +35613,7 @@ export const writeStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35463,7 +35630,7 @@ export const writeStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35480,7 +35647,7 @@ export const writeStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35497,7 +35664,7 @@ export const writeStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35514,7 +35681,7 @@ export const writeStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35531,7 +35698,7 @@ export const writeStakingPositionsTransferFrom =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35548,7 +35715,7 @@ export const writeStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35566,7 +35733,7 @@ export const writeStakingPositionsUnlockAll = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35583,7 +35750,7 @@ export const writeStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35601,7 +35768,7 @@ export const writeStakingPositionsUpgradeTo = /*#__PURE__*/ createWriteContract(
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35618,7 +35785,7 @@ export const writeStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35634,7 +35801,7 @@ export const writeStakingPositionsWithdraw = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35649,7 +35816,7 @@ export const simulateStakingPositions = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"approve"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35666,7 +35833,7 @@ export const simulateStakingPositionsApprove =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"checkpoint"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35683,7 +35850,7 @@ export const simulateStakingPositionsCheckpoint =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"createLock"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35700,7 +35867,7 @@ export const simulateStakingPositionsCreateLock =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"depositFor"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35717,7 +35884,7 @@ export const simulateStakingPositionsDepositFor =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseAmount"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35734,7 +35901,7 @@ export const simulateStakingPositionsIncreaseAmount =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"increaseUnlockTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35751,7 +35918,7 @@ export const simulateStakingPositionsIncreaseUnlockTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"initialize"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35768,7 +35935,7 @@ export const simulateStakingPositionsInitialize =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"pauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35785,7 +35952,7 @@ export const simulateStakingPositionsPauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"recoverERC20"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35802,7 +35969,7 @@ export const simulateStakingPositionsRecoverErc20 =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35819,7 +35986,7 @@ export const simulateStakingPositionsRenounceOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"safeTransferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35836,7 +36003,7 @@ export const simulateStakingPositionsSafeTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35853,7 +36020,7 @@ export const simulateStakingPositionsSetApprovalForAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setArtProxy"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35870,7 +36037,7 @@ export const simulateStakingPositionsSetArtProxy =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"setMaxTime"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35887,7 +36054,7 @@ export const simulateStakingPositionsSetMaxTime =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferFrom"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35904,7 +36071,7 @@ export const simulateStakingPositionsTransferFrom =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35921,7 +36088,7 @@ export const simulateStakingPositionsTransferOwnership =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unlockAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35938,7 +36105,7 @@ export const simulateStakingPositionsUnlockAll =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"unpauseLocal"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35955,7 +36122,7 @@ export const simulateStakingPositionsUnpauseLocal =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeTo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35972,7 +36139,7 @@ export const simulateStakingPositionsUpgradeTo =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"upgradeToAndCall"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -35989,7 +36156,7 @@ export const simulateStakingPositionsUpgradeToAndCall =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link stakingPositionsAbi}__ and `functionName` set to `"withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36006,7 +36173,7 @@ export const simulateStakingPositionsWithdraw =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36022,7 +36189,7 @@ export const watchStakingPositionsEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"AdminChanged"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36039,7 +36206,7 @@ export const watchStakingPositionsAdminChangedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BeaconUpgraded"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36056,7 +36223,7 @@ export const watchStakingPositionsBeaconUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Upgraded"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36073,7 +36240,7 @@ export const watchStakingPositionsUpgradedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Approval"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36090,7 +36257,7 @@ export const watchStakingPositionsApprovalEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"ApprovalForAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36107,7 +36274,7 @@ export const watchStakingPositionsApprovalForAllEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BatchMetadataUpdate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36124,7 +36291,7 @@ export const watchStakingPositionsBatchMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"BreakerActivated"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36141,7 +36308,7 @@ export const watchStakingPositionsBreakerActivatedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Deposit"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36158,7 +36325,7 @@ export const watchStakingPositionsDepositEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Initialized"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36175,7 +36342,7 @@ export const watchStakingPositionsInitializedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"MetadataUpdate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36192,7 +36359,7 @@ export const watchStakingPositionsMetadataUpdateEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36209,7 +36376,7 @@ export const watchStakingPositionsOwnershipTransferredEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Paused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36226,7 +36393,7 @@ export const watchStakingPositionsPausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Supply"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36243,7 +36410,7 @@ export const watchStakingPositionsSupplyEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Transfer"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36260,7 +36427,7 @@ export const watchStakingPositionsTransferEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Unpaused"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
@@ -36277,7 +36444,7 @@ export const watchStakingPositionsUnpausedEvent =
 /**
  * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link stakingPositionsAbi}__ and `eventName` set to `"Withdraw"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x902982C0C405091894FF82b3b51F180f99f75144)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xeb4b058bf032e1ed61aa1feca332a8b8b96f7483)
  * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x613904B9a1Af4450FD34655d123EEb0944888b21)
  * - [__View Contract on Hedera Mainnet Hashscan__](https://hashscan.io/mainnet/address/0x058A726CCa0a6235370262A802Ea126A2ECdBDF1)
  * - [__View Contract on Base Basescan__](https://basescan.org/address/0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88)
