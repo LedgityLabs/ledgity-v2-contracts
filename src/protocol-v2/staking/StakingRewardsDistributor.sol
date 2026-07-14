@@ -81,6 +81,8 @@ contract StakingRewardsDistributor is
   /// @inheritdoc IStakingRewardsDistributor
   uint256 public cumulativeProtocolRewardsPerToken;
   /// @inheritdoc IStakingRewardsDistributor
+  uint256 public pendingProtocolFees;
+  /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _amount)
     public protocolRewardsPerTokenPaid;
   mapping(uint256 _tokenId => uint256 _amount)
@@ -649,27 +651,29 @@ contract StakingRewardsDistributor is
   function depositProtocolFees(uint256 amount) external onlyOwner {
     if (amount == 0) revert ZeroAmount();
 
-    // Transfer tokens from owner
     IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
 
-    // Get current total voting power
     uint256 totalSupply = staking.totalSupply();
-
-    if (totalSupply > 0) {
-      // Add to cumulative rewards per token
-      cumulativeProtocolRewardsPerToken +=
-        (amount * PRECISION) /
-        totalSupply;
-      protocolRewardCheckpoints.push(
-        ProtocolRewardCheckpoint({
-          timestamp: block.timestamp,
-          cumulativeRewardsPerToken: cumulativeProtocolRewardsPerToken
-        })
-      );
+    if (totalSupply == 0) {
+      pendingProtocolFees += amount;
+      emit ProtocolFeesDeposited(amount, block.timestamp, 0, cumulativeProtocolRewardsPerToken);
+      return;
     }
 
+    // Flush any fees accumulated while there were no stakers
+    uint256 distribute = amount + pendingProtocolFees;
+    if (pendingProtocolFees > 0) pendingProtocolFees = 0;
+
+    cumulativeProtocolRewardsPerToken += (distribute * PRECISION) / totalSupply;
+    protocolRewardCheckpoints.push(
+      ProtocolRewardCheckpoint({
+        timestamp: block.timestamp,
+        cumulativeRewardsPerToken: cumulativeProtocolRewardsPerToken
+      })
+    );
+
     emit ProtocolFeesDeposited(
-      amount,
+      distribute,
       block.timestamp,
       totalSupply,
       cumulativeProtocolRewardsPerToken

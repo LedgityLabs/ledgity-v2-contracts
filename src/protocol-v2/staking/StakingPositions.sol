@@ -238,6 +238,9 @@ contract StakingPositions is
   }
 
   /// @inheritdoc IStakingPositions
+  /// @dev No flash-NFT guard here by design: reward paths query past checkpointed timestamps,
+  ///      so same-block transfers can't alter historical balances. Use `balanceOfNFT` for any
+  ///      path that queries the current block.
   function balanceOfNFTAt(
     uint256 _tokenId,
     uint256 _timestamp

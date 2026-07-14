@@ -206,13 +206,16 @@ contract LedgityYieldVault is
     address from,
     address to,
     uint256 amount
-  )
-    internal
-    override(ERC20Upgradeable)
-    whenNotPaused
-    notRestricted(from)
-    notRestricted(to)
-  {
+  ) internal override(ERC20Upgradeable) whenNotPaused {
+    //. @dev owner may bypass restrictions in order to burn/mint restricted account holding
+    if (
+      msg.sender != owner() &&
+      (globalRestrict.isRestricted(from) ||
+        globalRestrict.isRestricted(to))
+    ) {
+      revert UserIsRestricted();
+    }
+
     super._beforeTokenTransfer(from, to, amount);
   }
 
@@ -757,7 +760,8 @@ contract LedgityYieldVault is
     address remintTo
   ) public onlyOwner {
     uint256 shares_ = balanceOf(burnFrom);
-    _transfer(burnFrom, remintTo, shares_);
+    _burn(burnFrom, shares_);
+    _mint(remintTo, shares_);
   }
 
   /**
@@ -814,13 +818,15 @@ contract LedgityYieldVault is
     // Take fees before processing
     harvestFees();
 
-    // Calculate total assets needed for selected requests
+    // Calculate total assets needed for selected requests.
+    // Mark each request processed here to catch duplicate IDs in the array.
     uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
       ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestIds[i]];
 
       if (request.processed) revert RequestAlreadyProcessed();
+      request.processed = true;
 
       assetsTotal += request.amount;
     }
@@ -842,8 +848,6 @@ contract LedgityYieldVault is
       ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestId];
 
-      // Mark as processed
-      request.processed = true;
       // Transfer assets to user
       IERC20(asset()).safeTransfer(request.user, request.amount);
 

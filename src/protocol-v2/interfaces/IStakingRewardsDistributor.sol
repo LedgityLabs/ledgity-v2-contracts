@@ -119,6 +119,9 @@ interface IStakingRewardsDistributor {
     view
     returns (uint256);
 
+  /// @notice Protocol fees deposited while no stakers existed, pending distribution
+  function pendingProtocolFees() external view returns (uint256);
+
   /// @notice Last recorded cumulative rewards per token for each NFT
   function protocolRewardsPerTokenPaid(
     uint256 tokenId

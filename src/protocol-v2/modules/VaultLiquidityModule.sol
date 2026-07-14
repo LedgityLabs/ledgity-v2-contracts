@@ -276,6 +276,7 @@ abstract contract VaultLiquidityModule is
      */
     if (shares == 0) shares = 1;
 
+    // @dev Underflow impossible: managementFeeAssets < currentAssets at any sane fee rate.
     pricePerShare = ((currentAssets + 1) - managementFeeAssets)
       .mulDiv(1e18, shares, Math.Rounding.Up);
 

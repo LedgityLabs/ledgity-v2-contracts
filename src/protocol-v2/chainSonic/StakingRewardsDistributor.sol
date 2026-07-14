@@ -19,6 +19,7 @@ import { SonicFeeMRegister } from "src/protocol-v2/chainSonic/SonicFeeMRegister.
  * @notice This contract extends StakingRewardsDistributor and adds Sonic FeeM registration functionality
  */
 contract StakingRewardsDistributorSonic is StakingRewardsDistributor {
+  /// @dev Re-init is blocked by OZ's `initializer` modifier on the parent `initialize()`.
   function initializeAndRegister(
     address staking_,
     address globalOwner_,

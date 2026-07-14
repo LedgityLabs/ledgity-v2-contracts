@@ -254,13 +254,15 @@ contract FixedTermInvestmentVault is
     address from,
     address to,
     uint256 amount
-  )
-    internal
-    override(ERC20Upgradeable)
-    whenNotPaused
-    notRestricted(from)
-    notRestricted(to)
-  {
+  ) internal override(ERC20Upgradeable) whenNotPaused {
+    if (
+      msg.sender != owner() &&
+      (globalRestrict.isRestricted(from) ||
+        globalRestrict.isRestricted(to))
+    ) {
+      revert UserIsRestricted();
+    }
+
     super._beforeTokenTransfer(from, to, amount);
   }
 
@@ -864,6 +866,7 @@ contract FixedTermInvestmentVault is
    * @param enabled True to accept new requests, false to block them.
    * @dev Disabling also cancels all pending requests. If the request array is too large to
    *      process in one transaction, use `cancelPendingWithdrawalRequests` with selected ids.
+   * @dev Loop DoS is an operator concern: `cancelPendingWithdrawalRequests` is the escape hatch.
    */
   function updateWithdrawalRequestsEnabled(
     bool enabled
@@ -907,7 +910,8 @@ contract FixedTermInvestmentVault is
     address remintTo
   ) public onlyOwner {
     uint256 shares_ = balanceOf(burnFrom);
-    _transfer(burnFrom, remintTo, shares_);
+    _burn(burnFrom, shares_);
+    _mint(remintTo, shares_);
   }
 
   /**
@@ -964,13 +968,15 @@ contract FixedTermInvestmentVault is
     // Take fees before processing
     harvestFees();
 
-    // Calculate total assets needed for selected requests
+    // Calculate total assets needed for selected requests.
+    // Mark each request processed here to catch duplicate IDs in the array.
     uint256 assetsTotal;
     for (uint256 i; i < requestIds.length; i++) {
       ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestIds[i]];
 
       if (request.processed) revert RequestAlreadyProcessed();
+      request.processed = true;
 
       assetsTotal += request.amount;
     }
@@ -992,8 +998,6 @@ contract FixedTermInvestmentVault is
       ILedgityDataProvider.WithdrawalRequest
         storage request = withdrawalRequests[requestId];
 
-      // Mark as processed
-      request.processed = true;
       // Transfer assets to user
       IERC20(asset()).safeTransfer(request.user, request.amount);
 

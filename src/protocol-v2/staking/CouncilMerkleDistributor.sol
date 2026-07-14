@@ -28,6 +28,7 @@ contract CouncilMerkleDistributor is
 
   /// @notice Thrown when attempting to claim an already claimed reward
   error AlreadyClaimed();
+  error UnauthorizedClaimer();
 
   /// @notice Thrown when the provided merkle proof is invalid
   error InvalidProof();
@@ -106,6 +107,7 @@ contract CouncilMerkleDistributor is
     uint256 amount,
     bytes32[] calldata merkleProof
   ) public virtual override whenNotPaused notRestricted(account) {
+    if (msg.sender != account) revert UnauthorizedClaimer();
     if (isClaimed(index)) revert AlreadyClaimed();
 
     // Verify the merkle proof.
