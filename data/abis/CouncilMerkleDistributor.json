@@ -21,6 +21,11 @@
   },
   {
     "inputs": [],
+    "name": "UnauthorizedClaimer",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "UserIsRestricted",
     "type": "error"
   },
