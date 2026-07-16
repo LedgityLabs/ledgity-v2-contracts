@@ -702,6 +702,7 @@ contract LedgityYieldVault is
    * @notice Request a withdrawal that will be processed asynchronously
    * @param shares Amount of vault shares to withdraw
    * @dev Requires gas fee payment and burns shares immediately
+   * @dev Sending the full ETH balance is intended behaviour.
    */
   function requestWithdrawal(
     uint256 shares

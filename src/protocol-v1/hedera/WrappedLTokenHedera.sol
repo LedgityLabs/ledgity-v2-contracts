@@ -16,7 +16,7 @@ import { HederaResponseCodes } from "./lib/HederaResponseCodes.sol";
 // Interfaces
 import { IERC4626 } from "../interfaces/IERC4626.sol";
 import { IWrappedLTokenHedera } from "./interfaces/IWrappedLTokenHedera.sol";
-import { ILTokenHedera } from "./interfaces/ILTokenHedera.sol"; 
+import { ILTokenHedera } from "./interfaces/ILTokenHedera.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IHederaTokenService } from "./lib/IHederaTokenService.sol";
 
@@ -636,8 +636,7 @@ contract WrappedLTokenHedera is
 
   /**
    * @notice Recovers a specified amount of a given token address.
-   * @dev This override of RecoverableUpgradeable.recoverERC20() prevents the recovered
-   * token from being the underlying token.
+   * @dev This override of RecoverableUpgradeable.recoverERC20()
    * @inheritdoc RecoverableUpgradeable
    */
   function recoverERC20(

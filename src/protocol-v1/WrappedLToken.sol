@@ -625,8 +625,7 @@ contract WrappedLToken is
 
   /**
    * @notice Recovers a specified amount of a given token address.
-   * @dev This override of RecoverableUpgradeable.recoverERC20() prevents the recovered
-   * token from being the underlying token.
+   * @dev This override of RecoverableUpgradeable.recoverERC20()
    * @inheritdoc RecoverableUpgradeable
    */
   function recoverERC20(

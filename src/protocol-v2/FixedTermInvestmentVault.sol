@@ -770,6 +770,7 @@ contract FixedTermInvestmentVault is
    * @param shares Amount of vault shares to withdraw
    * @dev Requires gas fee payment and burns shares immediately. Requests remain available
    *      after the operation end date if the owner leaves them enabled.
+   * @dev Sending the full ETH balance is intended behaviour.
    */
   function requestWithdrawal(
     uint256 shares
