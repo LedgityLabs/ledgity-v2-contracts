@@ -241,7 +241,7 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
-    stakeToken: getTokenAddress(1, "LDY"),
+    stakeToken: getTokenAddress(1, "veLDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
@@ -285,7 +285,7 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: parseUnits("50000", 18),
     stakeForInstantWithdrawal: parseUnits("50000", 18),
-    stakeToken: getTokenAddress(8453, "LDY"),
+    stakeToken: getTokenAddress(8453, "veLDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
@@ -345,7 +345,7 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
-    stakeToken: getTokenAddress(42161, "LDY"),
+    stakeToken: getTokenAddress(42161, "veLDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
@@ -373,7 +373,7 @@ const configsContracts: {
     feeRecipient: "0x000000000000000000000000000000000099304e",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
-    stakeToken: getTokenAddress(295, "LDY"),
+    stakeToken: getTokenAddress(295, "veLDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
@@ -401,7 +401,7 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
-    stakeToken: getTokenAddress(59144, "LDY", true), // No $LDY on Linea
+    stakeToken: getTokenAddress(59144, "veLDY", true), // No $LDY on Linea
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {
@@ -429,7 +429,7 @@ const configsContracts: {
     feeRecipient: "0x22F74606AC919A4CA912Ad787A9bf1093902f692",
     stakeForFeeReduction: 0n,
     stakeForInstantWithdrawal: 0n,
-    stakeToken: getTokenAddress(146, "LDY"),
+    stakeToken: getTokenAddress(146, "veLDY"),
     maxLockDurationSeconds: FOUR_YEARS_IN_SECONDS,
     initialMerkleRoot: EMPTY_MERKLE_ROOT,
     vaults: {

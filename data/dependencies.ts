@@ -3,6 +3,7 @@ import { Address } from "viem";
 export const dependencies: {
   [chainId: string]: {
     LDY?: Address;
+    veLDY?: Address;
     USDC?: Address;
     EURC?: Address;
     AAVE_LENDING_POOL: Address;
@@ -11,6 +12,7 @@ export const dependencies: {
   // Ethereum Mainnet
   "1": {
     LDY: "0x482dF7483a52496F4C65AB499966dfcdf4DDFDbc",
+    veLDY: "0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483",
     USDC: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
     EURC: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c",
     AAVE_LENDING_POOL: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
@@ -18,6 +20,7 @@ export const dependencies: {
   // Base
   "8453": {
     LDY: "0x055d20a70eFd45aB839Ae1A39603D0cFDBDd8a13",
+    veLDY: "0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88",
     USDC: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
     EURC: "0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42",
     AAVE_LENDING_POOL: "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5",
@@ -25,12 +28,14 @@ export const dependencies: {
   // Arbitrum One
   "42161": {
     LDY: "0x999FAF0AF2fF109938eeFE6A7BF91CA56f0D07e1",
+    veLDY: "0x6E83612c73f124127d49eA642c392FF4d9eAFd5b",
     USDC: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
     AAVE_LENDING_POOL: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
   },
   // Sonic
   "146": {
     LDY: "0x9cFBf905a444B5c871f0B447e137e8Ce7EeD0BCE",
+    veLDY: "0x613904B9a1Af4450FD34655d123EEb0944888b21",
     USDC: "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
     EURC: "0xe715cbA7B5cCb33790ceBFF1436809d36cb17E57", // bridged
     AAVE_LENDING_POOL: "0x5362dBb1e601abF3a4c14c22ffEdA64042E5eAA3",
