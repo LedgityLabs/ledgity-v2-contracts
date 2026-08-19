@@ -53,7 +53,7 @@ contract Fixtures is Test {
     "ARBITRUM",
     "HEDERA",
     "SONIC",
-    "LINEASCAN"
+    "LINEA"
   ];
   LDYStaking.StakeDurationInfo[] private stakingDurationInfos;
   uint256[] private durations = [0, 1, 6, 12, 24, 36];

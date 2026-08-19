@@ -31,8 +31,8 @@ const {
   BASE_FORKING_BLOCK,
   SONIC_RPC_URL,
   SONIC_FORKING_BLOCK,
-  LINEASCAN_RPC_URL,
-  LINEASCAN_FORKING_BLOCK,
+  LINEA_RPC_URL,
+  LINEA_FORKING_BLOCK,
   ARBITRUM_RPC_URL,
   ARBITRUM_FORKING_BLOCK,
   HEDERA_RPC_URL,
@@ -52,7 +52,7 @@ if (forkTarget === "sonic" && (!SONIC_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Sonic config not found in environment variables");
 if (forkTarget === "hedera" && (!HEDERA_RPC_URL || !HEDERA_VERIFY_API_KEY))
   throw Error("Hedera config not found in environment variables");
-if (forkTarget === "linea" && (!LINEASCAN_RPC_URL || !ETHERSCAN_API_KEY))
+if (forkTarget === "linea" && (!LINEA_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("LineaScan config not found in environment variables");
 if (forkTarget === "arbitrum" && (!ARBITRUM_RPC_URL || !ETHERSCAN_API_KEY))
   throw Error("Arbitrum config not found in environment variables");
@@ -130,9 +130,9 @@ export const networkConfigs: { [key: string]: NetworkConfig } = {
   linea: {
     name: "linea",
     chainId: 59144,
-    rpcUrl: LINEASCAN_RPC_URL || "",
+    rpcUrl: LINEA_RPC_URL || "",
     verifyApiKey: ETHERSCAN_API_KEY || "",
-    forkingBlock: LINEASCAN_FORKING_BLOCK,
+    forkingBlock: LINEA_FORKING_BLOCK,
     apiURL: "https://api.etherscan.io/v2/api?chainid=59144",
     browserURL: "https://lineascan.build",
     deploy: ["deployers/protocol-v2/linea"],
