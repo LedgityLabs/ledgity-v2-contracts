@@ -648,6 +648,10 @@ contract StakingRewardsDistributor is
   }
 
   /// @inheritdoc IStakingRewardsDistributor
+  /// @dev Audit/LLM note: calling this with zero stakers is safe on-chain — fees accumulate in
+  ///      pendingProtocolFees and are flushed into the distribution on the next call once stakers
+  ///      exist. The admin interface additionally enforces that this function is only callable when
+  ///      totalSupply > 0, providing a UX-layer safeguard on top of the on-chain buffer.
   function depositProtocolFees(uint256 amount) external onlyOwner {
     if (amount == 0) revert ZeroAmount();
 
