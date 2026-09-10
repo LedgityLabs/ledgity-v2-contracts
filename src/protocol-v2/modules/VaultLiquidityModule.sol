@@ -276,7 +276,6 @@ abstract contract VaultLiquidityModule is
      */
     if (shares == 0) shares = 1;
 
-    // @dev Underflow impossible: managementFeeAssets < currentAssets at any sane fee rate.
     pricePerShare = ((currentAssets + 1) - managementFeeAssets)
       .mulDiv(1e18, shares, Math.Rounding.Up);
 
@@ -379,8 +378,8 @@ abstract contract VaultLiquidityModule is
 
     if (0 < feeShares) {
       _mint(feeRecipient, feeShares);
-      lastFeeTime = block.timestamp;
     }
+    lastFeeTime = block.timestamp;
 
     if (highWaterMark < pricePerShare) {
       highWaterMark = pricePerShare;
@@ -443,6 +442,11 @@ abstract contract VaultLiquidityModule is
       RAY < performanceRate_ ||
       RAY < withdrawalRate_
     ) revert RateAboveHundredPercent();
+
+    // Start newly-enabled management fees from now instead of retroactively charging a zero-fee period.
+    if (managementFeeRate == 0 && managementRate_ != 0) {
+      lastFeeTime = block.timestamp;
+    }
 
     managementFeeRate = managementRate_;
     performanceFeeRate = performanceRate_;
