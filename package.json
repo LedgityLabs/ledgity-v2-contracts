@@ -1,7 +1,7 @@
 {
   "name": "ledgity-v2-contracts",
   "version": "1.0",
-  "description": "Ledgity Yield | Smart-Contracts",
+  "description": "Ledgity Finance | Smart-Contracts",
   "author": "blackwhale.eth",
   "license": "Apache-2.0",
   "main": "hardhat.config.ts",
