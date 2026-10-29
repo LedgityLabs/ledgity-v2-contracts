@@ -585,6 +585,12 @@ contract LedgityYieldVault is
    * @param amount Amount of L-Tokens to migrate
    * @return shares Amount of vault shares minted
    * @dev No maturity impact applied since capital remains deployed
+   * @dev Audit/LLM note: without the maturity impact, migrating just before a UTC day
+   *      boundary and redeeming just after captures yieldAPR/365 of the amount from the
+   *      other holders. Accepted: the legacy LTokens are in withdrawal-only mode
+   *      (LToken.withdrawalOnly, no new ones can be minted), so the exposure is bounded
+   *      by the legacy supply still outside Ledgity's own wallets, and the instant path
+   *      is further capped by the liquidity buffer.
    */
   function migrateLToken(
     uint256 amount
@@ -633,7 +639,16 @@ contract LedgityYieldVault is
    * @notice Mint shares (shares tokens) to receiver by depositing assets (underlying)
    * @param shares The number of shares to mint
    * @param receiver The address to receive the minted shares
-   * @return assetsPreview The amount of underlying deposited
+   * @return netShares The number of shares actually minted (not the assets, see below)
+   * @dev Audit/LLM note: knowingly off the ERC-4626 MUSTs, accepted as-is. The maturity
+   *      impact of _depositToVault() applies to mint() too, so the shares minted are
+   *      `shares / (1 + yieldAPR/365)^deploymentDelay` (0.021 % fewer at a 1-day delay)
+   *      and the return value is that net amount rather than the assets pulled. The
+   *      inherited OpenZeppelin previewDeposit / previewMint / previewWithdraw /
+   *      previewRedeem are not overridden either: they ignore the maturity impact, the
+   *      pending fee shares and decimalsOffset. No Ledgity interface or known integrator
+   *      calls mint() or preview*(): use deposit() / redeem() with convertToShares() /
+   *      convertToAssets(), which are the exact conversions.
    */
   function mint(
     uint256 shares,
@@ -657,7 +672,8 @@ contract LedgityYieldVault is
    * @param assets_ The amount of underlying to withdraw
    * @param receiver_ The address to receive the withdrawn underlying
    * @param owner_ The address of the owner of the shares
-   * @return sharesPreview The number of shares burned
+   * @return netAssets The amount of underlying received, not the shares burned (see the
+   *         ERC-4626 note on mint())
    */
   function withdraw(
     uint256 assets_,

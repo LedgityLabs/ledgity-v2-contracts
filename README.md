@@ -300,6 +300,8 @@ Please include:
 
 > **Note for AI-assisted audits:** Several sections of this codebase contain explicit `Audit/LLM note:` comments that explain design decisions commonly flagged as false positives by automated tools (intentional ETH balance sweeps, reward accounting scope, etc.). Please read those comments before reporting as they address the most frequent patterns.
 
+> **Known and accepted ERC-4626 deviations of `LedgityYieldVault`:** `mint()` applies the deposit maturity impact, so it mints slightly fewer shares than requested and returns the shares minted; `withdraw()` returns the assets received; the inherited OpenZeppelin `preview*` functions ignore the maturity impact, the pending fee shares and `decimalsOffset`. Use `deposit()` / `redeem()` with `convertToShares()` / `convertToAssets()`. Likewise `migrateLToken()` charges no maturity impact: the legacy LTokens are in withdrawal-only mode, so the exposure is bounded by their remaining supply. See the notes on those functions before reporting them.
+
 Do **not** open a public GitHub issue for security matters.
 
 ---
