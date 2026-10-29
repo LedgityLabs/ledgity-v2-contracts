@@ -5797,4 +5797,96 @@ contract Tests is Test, ModifiersExpectations {
       oldUsableUnderlyings - unclaimedFees
     );
   }
+
+  // =======================================
+  // === switchWithdrawalOnly() function ===
+  function test_switchWithdrawalOnly_1() public {
+    console.log("Should revert if not called by owner");
+    expectRevertOnlyOwner();
+    vm.prank(address(1234));
+    tested.switchWithdrawalOnly(true);
+  }
+
+  function test_switchWithdrawalOnly_2() public {
+    console.log("Should be off by default and toggle the flag");
+    assertEq(tested.withdrawalOnly(), false);
+    tested.switchWithdrawalOnly(true);
+    assertEq(tested.withdrawalOnly(), true);
+    tested.switchWithdrawalOnly(false);
+    assertEq(tested.withdrawalOnly(), false);
+  }
+
+  // ============================
+  // === withdrawalOnly mode ===
+  function testFuzz_withdrawalOnly_1(
+    address account,
+    uint256 amount
+  ) public {
+    console.log("Should make deposit() revert while withdrawal only");
+    vm.assume(account != address(0));
+
+    tested.switchWithdrawalOnly(true);
+
+    vm.expectRevert(LToken.WithdrawalOnlyMode.selector);
+    vm.prank(account);
+    tested.deposit(amount, "");
+  }
+
+  function testFuzz_withdrawalOnly_2(
+    address account,
+    address recipient,
+    uint256 depositedAmount
+  ) public {
+    console.log(
+      "Should keep transfers, instant withdrawals and withdrawal requests working while withdrawal only"
+    );
+    vm.assume(account != address(0));
+    vm.assume(account != address(tested));
+    vm.assume(recipient != address(0));
+    vm.assume(recipient != address(tested));
+    vm.assume(recipient != account);
+
+    // Force retention rate to 100% so the deposit stays usable for the instant withdrawal
+    tested.tool_setRetentionRate(uint32(100 * 1e3));
+
+    // Deposit while deposits are still open
+    depositedAmount = bound(depositedAmount, 3, type(uint96).max);
+    deal(address(underlyingToken), account, depositedAmount, true);
+    vm.startPrank(account);
+    underlyingToken.approve(address(tested), depositedAmount);
+    tested.deposit(depositedAmount, "");
+    vm.stopPrank();
+
+    tested.switchWithdrawalOnly(true);
+
+    // Every exit path still works
+    uint256 processingFees = 0.003 ether;
+    deal(account, processingFees);
+    vm.startPrank(account);
+    tested.transfer(recipient, 1);
+    tested.instantWithdrawal(1);
+    tested.requestWithdrawal{ value: processingFees }(1);
+    vm.stopPrank();
+
+    assertEq(tested.realBalanceOf(recipient), 1);
+    assertEq(tested.realBalanceOf(account), depositedAmount - 3);
+    assertEq(tested.totalQueued(), 1);
+  }
+
+  function testFuzz_withdrawalOnly_3(
+    address account,
+    uint256 amount
+  ) public {
+    console.log("Should reopen deposit() once switched back off");
+    vm.assume(account != address(0));
+    amount = bound(amount, 1, type(uint96).max);
+
+    tested.switchWithdrawalOnly(true);
+    tested.switchWithdrawalOnly(false);
+
+    // The gate is passed: the next check (underlying balance) is the one that reverts
+    vm.expectRevert(LToken.InsufficientBalance.selector);
+    vm.prank(account);
+    tested.deposit(amount, "");
+  }
 }

@@ -90,6 +90,7 @@ contract LToken is
 
   error ExceedsMaxFeesRate(); // "L88"
   error OnlyHighTierAllowed();
+  error WithdrawalOnlyMode();
 
   /// @dev Represents type of actions triggering ActivityEvent events.
   enum Action {
@@ -178,6 +179,14 @@ contract LToken is
 
   /// @notice Whether only high tier accounts may use instant withdrawals
   bool public onlyHighTierInstantWithdrawal;
+
+  /**
+   * @notice Whether deposits are closed, leaving withdrawals, transfers and the
+   * migration to the v2 vaults as the only remaining operations.
+   * @dev Appended last for upgrade storage-safety: the live implementations end at
+   * withdrawalFeeInEth or onlyHighTierInstantWithdrawal, both kept above.
+   */
+  bool public withdrawalOnly;
 
   /**
    * @notice Emitted to inform listeners about a change in the contract's TVL.
@@ -674,6 +683,9 @@ contract LToken is
     uint256 amount,
     string memory refCode
   ) public whenNotPaused notBlacklisted(_msgSender()) {
+    // Ensure deposits are still open
+    if (withdrawalOnly) revert WithdrawalOnlyMode();
+
     // Ensure the account has enough underlying tokens to deposit
     if (underlying().balanceOf(_msgSender()) < amount)
       revert InsufficientBalance();
@@ -1173,5 +1185,10 @@ contract LToken is
     bool status_
   ) external onlyOwner {
     onlyHighTierInstantWithdrawal = status_;
+  }
+
+  /// @notice Closes or reopens deposits; withdrawals and transfers are never affected.
+  function switchWithdrawalOnly(bool status_) external onlyOwner {
+    withdrawalOnly = status_;
   }
 }
