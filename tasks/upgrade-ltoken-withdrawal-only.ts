@@ -64,6 +64,9 @@ task(
   );
   console.log("==> Deployer".cyan, deployer);
 
+  // A custom task does not compile by itself: without this the stale artifacts get deployed
+  await hre.run("compile");
+
   // 1. New implementation, linked to the APRHistory library like the original deployment
   const isSonic = chainId === 146;
   let aprHistoryAddress: string;
@@ -89,6 +92,16 @@ task(
     },
   );
   console.log("==> New implementation".cyan, implementation.address);
+
+  // Never write a batch towards an implementation without the withdrawal-only switch
+  const deployedCode = await ethers.provider.getCode(implementation.address);
+  const switchSelector = new ethers.utils.Interface(LTOKEN_ABI)
+    .getSighash("switchWithdrawalOnly")
+    .slice(2);
+  if (!deployedCode.includes(`63${switchSelector}`))
+    throw Error(
+      `${implementation.address} has no switchWithdrawalOnly(bool): stale artifact deployed, nothing written`,
+    );
 
   // 2. Legacy LTokens, read from the live vaults, and their Safe owner
   const lTokenInterface = new ethers.utils.Interface(LTOKEN_ABI);
