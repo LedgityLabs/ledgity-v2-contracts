@@ -7,6 +7,7 @@ import "@nomicfoundation/hardhat-verify";
 import "./tasks/verify";
 import "./tasks/extract-abis";
 import "./tasks/deploy-mock-ccip-token";
+import "./tasks/upgrade-ltoken-withdrawal-only";
 
 import fs from "fs";
 import { utils, Wallet } from "ethers";
