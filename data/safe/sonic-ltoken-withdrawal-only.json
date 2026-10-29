@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "146",
+  "createdAt": 1793282396171,
+  "meta": {
+    "name": "Legacy LTokens: withdrawal only (sonic)",
+    "description": "Upgrade each legacy v1 LToken to the withdrawal-only implementation, then close deposits. Withdrawals, transfers and the migration to the v2 vaults stay open.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xD7cCABfBEfE332C9784FF3debeBdDbc787E75e69",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000009718c86eb1ace37d5a600b9dadc6914db7c97361",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xD7cCABfBEfE332C9784FF3debeBdDbc787E75e69",
+      "value": "0",
+      "data": "0x1a67c5900000000000000000000000000000000000000000000000000000000000000001",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
