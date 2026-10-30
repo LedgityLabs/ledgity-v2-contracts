@@ -8,6 +8,7 @@ import "./tasks/verify";
 import "./tasks/extract-abis";
 import "./tasks/deploy-mock-ccip-token";
 import "./tasks/upgrade-ltoken-withdrawal-only";
+import "./tasks/upgrade-staking-rewards-fix";
 
 import fs from "fs";
 import { utils, Wallet } from "ethers";
