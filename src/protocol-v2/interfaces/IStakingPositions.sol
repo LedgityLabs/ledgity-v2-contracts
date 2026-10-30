@@ -60,6 +60,7 @@ interface IStakingPositions is IERC4906, IERC721Metadata {
   error LockNotExpired();
   error NotOwner();
   error ZeroAmount();
+  error InvalidMaxTime();
 
   event Deposit(
     address indexed from,

@@ -709,7 +709,10 @@ contract StakingPositions is
       // Calculate slopes and biases
       // Kept at zero when they have to
       if (_oldLocked.end > block.timestamp && _oldLocked.amount > 0) {
-        uOld.slope = _oldLocked.amount / iMaxTime;
+        // Reuse the slope recorded at the last checkpoint: it is the one scheduled in
+        // slopeChanges, so cancelling it stays exact even if maxTime changed since
+        uOld.slope = userPointHistory[_tokenId][userPointEpoch[_tokenId]]
+          .slope;
         uOld.bias =
           uOld.slope *
           (_oldLocked.end - block.timestamp).toInt128();
@@ -1005,6 +1008,9 @@ contract StakingPositions is
 
   /// @inheritdoc IStakingPositions
   function setMaxTime(uint256 _maxTime) external onlyOwner {
+    // Zero would make every new lock divide by zero
+    if (_maxTime == 0 || uint256(int256(type(int128).max)) < _maxTime)
+      revert InvalidMaxTime();
     maxTime = _maxTime;
     iMaxTime = int128(uint128(_maxTime));
   }

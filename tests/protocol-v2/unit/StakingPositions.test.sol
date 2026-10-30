@@ -657,6 +657,74 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     );
   }
 
+  function test_SetMaxTime_RevertZero() public {
+    vm.prank(address(globalOwner.owner()));
+    vm.expectRevert(IStakingPositions.InvalidMaxTime.selector);
+    stakingPositions.setMaxTime(0);
+  }
+
+  /// @dev Sum of the voting power of the given tokens at a timestamp
+  function _sumBalances(
+    uint256[3] memory tokenIds,
+    uint256 timestamp
+  ) internal view returns (uint256 sum) {
+    for (uint256 i; i < tokenIds.length; i++) {
+      sum += stakingPositions.balanceOfNFTAt(tokenIds[i], timestamp);
+    }
+  }
+
+  function test_SetMaxTime_KeepsTotalSupplyConsistent() public {
+    // Locks taken before and after a maxTime change, then changed again (amount, duration)
+    uint256[3] memory tokenIds;
+    vm.prank(testAccount1);
+    tokenIds[0] = stakingPositions.createLock(
+      TEST_AMOUNT,
+      3 * 52 * WEEK
+    );
+
+    vm.prank(address(globalOwner.owner()));
+    stakingPositions.setMaxTime(2 * 365 * 86400);
+
+    vm.prank(testAccount2);
+    tokenIds[1] = stakingPositions.createLock(
+      2 * TEST_AMOUNT,
+      52 * WEEK
+    );
+    vm.warp(block.timestamp + 3 * WEEK);
+
+    vm.prank(testAccount1);
+    stakingPositions.increaseAmount(tokenIds[0], TEST_AMOUNT);
+    vm.prank(testAccount2);
+    stakingPositions.increaseUnlockTime(tokenIds[1], 80 * WEEK);
+
+    vm.prank(address(globalOwner.owner()));
+    stakingPositions.setMaxTime(4 * 365 * 86400);
+    vm.prank(testAccount3);
+    tokenIds[2] = stakingPositions.createLock(TEST_AMOUNT, 10 * WEEK);
+
+    // Total voting power keeps matching the positions, now and as every lock decays out
+    uint256[5] memory offsets = [
+      uint256(0),
+      20 * WEEK,
+      60 * WEEK,
+      120 * WEEK,
+      200 * WEEK
+    ];
+    for (uint256 i; i < offsets.length; i++) {
+      vm.warp(
+        block.timestamp + (i == 0 ? 0 : offsets[i] - offsets[i - 1])
+      );
+      stakingPositions.checkpoint();
+      assertApproxEqAbs(
+        stakingPositions.totalSupply(),
+        _sumBalances(tokenIds, block.timestamp),
+        1e9,
+        "total voting power drifted from the positions"
+      );
+    }
+    assertEq(stakingPositions.totalSupply(), 0);
+  }
+
   function test_SetMaxTime_RevertNotOwner() public {
     vm.startPrank(testAccount1);
 
