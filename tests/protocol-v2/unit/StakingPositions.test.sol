@@ -725,6 +725,25 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     assertEq(stakingPositions.totalSupply(), 0);
   }
 
+  function test_Gas_CheckpointAfterYearsIdle() public {
+    // No checkpoint for 5 years: the next lock walks the full 255-week loop of global history
+    vm.prank(testAccount1);
+    stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    vm.warp(block.timestamp + 260 * WEEK);
+
+    vm.prank(testAccount2);
+    uint256 gasBefore = gasleft();
+    stakingPositions.createLock(TEST_AMOUNT, 52 * WEEK);
+    uint256 used = gasBefore - gasleft();
+    emit log_named_uint("createLock gas after 5 idle years", used);
+    // EIP-7825 (Fusaka, Dec 2025): no transaction may use more than 2^24 gas
+    assertLt(
+      used,
+      16_777_216,
+      "checkpoint above the per-transaction gas cap"
+    );
+  }
+
   function test_SetMaxTime_RevertNotOwner() public {
     vm.startPrank(testAccount1);
 

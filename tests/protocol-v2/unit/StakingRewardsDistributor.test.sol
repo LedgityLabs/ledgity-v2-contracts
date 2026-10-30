@@ -382,6 +382,49 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     assertApproxEqRel(paid, 90 * 1e18, 1e12);
   }
 
+  function test_KnownLimitation_WithdrawAfterLongGapPaysOneWindowOnly() public {
+    // A sole staker never claims, then withdraws 104 weeks later: withdraw() pays one
+    // claim window (50 weeks) and burns the position, the remaining weeks stay unclaimable
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, 104 * WEEK);
+    vm.warp(block.timestamp + WEEK);
+    uint256 weekly = 10 * 1e18;
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(weekly * 100, 100);
+
+    vm.warp(block.timestamp + 104 * WEEK);
+    uint256 before = ldyToken.balanceOf(testAccount1);
+    vm.prank(testAccount1);
+    stakingPositions.withdraw(tokenId);
+    uint256 rewards = ldyToken.balanceOf(testAccount1) - before - TEST_AMOUNT;
+
+    // At most one 50-week window paid out of about 100 weeks owed
+    assertLe(rewards, 50 * weekly, "more than one window paid");
+    emit log_named_uint("rewards paid on withdrawal (LDY)", rewards / 1e18);
+    emit log_named_uint("rewards left unclaimable (LDY)", ldyToken.balanceOf(address(stakingRewardsDistributor)) / 1e18);
+  }
+
+  function test_Gas_WorstCaseClaim() public {
+    // 30 overlapping periods and a 50-week window: the heaviest claim the code allows
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    vm.prank(testAccount2);
+    stakingPositions.createLock(TEST_AMOUNT, 3 * 52 * WEEK);
+    for (uint256 i; i < 30; i++) {
+      vm.prank(globalOwner.owner());
+      stakingRewardsDistributor.depositBaseRewards(60 * 1e18, 60);
+    }
+    vm.warp(block.timestamp + 60 * WEEK);
+
+    vm.prank(testAccount1);
+    uint256 gasBefore = gasleft();
+    stakingRewardsDistributor.claim(tokenId);
+    uint256 used = gasBefore - gasleft();
+    emit log_named_uint("worst-case claim gas", used);
+    // EIP-7825 (Fusaka, Dec 2025): no transaction may use more than 2^24 gas
+    assertLt(used, 16_777_216, "claim above the per-transaction gas cap");
+  }
+
   function test_EdgeCase_RewardRemainder() public {
     // Test that remainder is properly handled when amount doesn't divide evenly
     uint256 amount = 1000; // Amount that doesn't divide evenly by 3

@@ -302,4 +302,282 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
       );
     }
   }
+
+  // ======== REPLAY: OLD vs NEW vs INDEPENDENT MODEL ======== //
+
+  struct RunResult {
+    uint256[] basePaid;
+    uint256[] protocolPaid;
+    uint256[] principalBack;
+    uint256 reverts;
+    uint256 protocolDeposited;
+  }
+
+  /// @dev First week a token is still owed, read without any of the distributor's cursor logic
+  function _firstUnpaidWeek(
+    uint256 tokenId
+  ) internal view returns (uint256 week) {
+    week = distributor.baseRewardCursor(tokenId);
+    if (week == 0)
+      week =
+        (staking.getUserPointHistory(tokenId, 1).timestamp / WEEK) *
+        WEEK;
+    if (week < distributor.startTime())
+      week = distributor.startTime();
+  }
+
+  /// @dev Independent model: every week from `fromWeek` to `toWeek`, every period summed, one
+  ///      floor per week. No cursor, no 50-week window, no period skipping.
+  function _modelBaseRewards(
+    uint256 tokenId,
+    uint256 fromWeek,
+    uint256 toWeek
+  ) internal view returns (uint256 total) {
+    uint256 periods = distributor.currentPeriodId();
+    for (uint256 week = fromWeek; week < toWeek; week += WEEK) {
+      uint256 weekly;
+      for (uint256 p = 1; p <= periods; p++)
+        weekly += distributor.baseRewardsPerWeek(p, week);
+      if (weekly == 0) continue;
+      uint256 supply = staking.totalSupplyAt(week + WEEK - 1);
+      if (supply == 0) continue;
+      total +=
+        (staking.balanceOfNFTAt(tokenId, week + WEEK - 1) * weekly) /
+        supply;
+    }
+  }
+
+  function _tryClaim(uint256 tokenId, RunResult memory r) internal {
+    address owner = staking.ownerOf(tokenId);
+    if (owner == address(0)) return;
+    vm.prank(owner);
+    (bool ok, bytes memory ret) = address(distributor).call(
+      abi.encodeCall(distributor.claim, (tokenId))
+    );
+    if (!ok) {
+      r.reverts++;
+      return;
+    }
+    (uint256 base, uint256 protocol) = abi.decode(
+      ret,
+      (uint256, uint256)
+    );
+    r.basePaid[tokenId] += base;
+    r.protocolPaid[tokenId] += protocol;
+  }
+
+  /// @dev Claims everything first (recorded), so the withdrawal returns principal only
+  function _tryWithdraw(
+    uint256 tokenId,
+    RunResult memory r
+  ) internal {
+    address owner = staking.ownerOf(tokenId);
+    if (owner == address(0)) return;
+    for (uint256 i; i < 10; i++) {
+      uint256 cursorBefore = distributor.baseRewardCursor(tokenId);
+      _tryClaim(tokenId, r);
+      if (distributor.baseRewardCursor(tokenId) == cursorBefore)
+        break;
+    }
+    uint256 before = ldy.balanceOf(owner);
+    vm.prank(owner);
+    (bool ok, ) = address(staking).call(
+      abi.encodeCall(staking.withdraw, (tokenId))
+    );
+    if (!ok) {
+      r.reverts++;
+      return;
+    }
+    r.principalBack[tokenId] = ldy.balanceOf(owner) - before;
+  }
+
+  /// @dev One seeded schedule: irregular weeks, random claims, fee deposits, withdrawals
+  ///      once a lock ends, until every lock has ended and every period is over
+  function _replay(
+    bool upgraded,
+    uint256 seed,
+    uint256 endTime,
+    bool withSleepers
+  ) internal returns (RunResult memory r) {
+    if (upgraded) _upgrade();
+    uint256 lastId = staking.tokenId();
+    r.basePaid = new uint256[](lastId + 1);
+    r.protocolPaid = new uint256[](lastId + 1);
+    r.principalBack = new uint256[](lastId + 1);
+
+    address safe = staking.owner();
+    deal(address(ldy), safe, ldy.balanceOf(safe) + 1_000_000 ether);
+    vm.prank(safe);
+    ldy.approve(address(distributor), type(uint256).max);
+
+    uint256 rng = seed;
+    while (block.timestamp < endTime) {
+      rng = uint256(keccak256(abi.encode(rng)));
+      vm.warp(
+        block.timestamp +
+          (1 + (rng % 9)) *
+          WEEK +
+          ((rng >> 8) % 3 days)
+      );
+
+      if ((rng >> 16) % 5 == 0 && staking.totalSupply() > 0) {
+        vm.prank(safe);
+        distributor.depositProtocolFees(1000 ether);
+        r.protocolDeposited += 1000 ether;
+      }
+
+      for (uint256 id = 1; id <= lastId; id++) {
+        if (staking.ownerOf(id) == address(0)) continue;
+        uint256 dice = uint256(keccak256(abi.encode(rng, id))) % 10;
+        // A sleeper never claims before its lock ends: gaps of more than 50 weeks
+        bool sleeper = withSleepers &&
+          uint256(keccak256(abi.encode(seed, id))) % 3 == 0;
+        if (
+          block.timestamp >= staking.getLockedBalance(id).end &&
+          dice < 3
+        ) _tryWithdraw(id, r);
+        else if (dice < 4 && !sleeper) _tryClaim(id, r);
+      }
+
+      if (upgraded) {
+        // Solvency at every step: what is claimable now never exceeds what is held
+        uint256 owed;
+        for (uint256 id = 1; id <= lastId; id++) {
+          if (staking.ownerOf(id) == address(0)) continue;
+          (uint256 base, uint256 protocol) = distributor.claimable(
+            id
+          );
+          owed += base + protocol;
+        }
+        assertLe(
+          owed,
+          ldy.balanceOf(address(distributor)),
+          "insolvent during replay"
+        );
+      }
+    }
+
+    // Everyone left claims and withdraws
+    for (uint256 id = 1; id <= lastId; id++) _tryWithdraw(id, r);
+  }
+
+  function test_replay_newMatchesModel_oldDiffersOnlyWhereBuggy()
+    public
+  {
+    _replayAndCompare(0xC0FFEE, false);
+  }
+
+  function test_replay_withSleepers_newMatchesModel() public {
+    _replayAndCompare(0xBEEF, true);
+  }
+
+  function _replayAndCompare(
+    uint256 seed,
+    bool withSleepers
+  ) internal {
+    uint256 lastId = staking.tokenId();
+    uint256 programEnd;
+    for (uint256 p = 1; p <= distributor.currentPeriodId(); p++) {
+      (, uint256 endWeek, , ) = distributor.baseRewardPeriods(p);
+      if (endWeek > programEnd) programEnd = endWeek;
+    }
+    uint256 endTime = programEnd;
+    for (uint256 id = 1; id <= lastId; id++) {
+      uint256 end = staking.getLockedBalance(id).end;
+      if (end > endTime) endTime = end;
+    }
+    endTime += 2 * WEEK;
+
+    // What each live position is still owed until the end of the program
+    uint256[] memory model = new uint256[](lastId + 1);
+    uint256[] memory locked = new uint256[](lastId + 1);
+    for (uint256 id = 1; id <= lastId; id++) {
+      if (staking.ownerOf(id) == address(0)) continue;
+      model[id] = _modelBaseRewards(
+        id,
+        _firstUnpaidWeek(id),
+        programEnd
+      );
+      locked[id] = uint256(
+        int256(staking.getLockedBalance(id).amount)
+      );
+    }
+
+    uint256 snapshot = vm.snapshotState();
+    RunResult memory oldRun = _replay(
+      false,
+      seed,
+      endTime,
+      withSleepers
+    );
+    vm.revertToState(snapshot);
+    RunResult memory newRun = _replay(
+      true,
+      seed,
+      endTime,
+      withSleepers
+    );
+
+    assertEq(
+      newRun.reverts,
+      0,
+      "a claim or withdrawal reverted after the upgrade"
+    );
+    uint256 affected;
+    for (uint256 id = 1; id <= lastId; id++) {
+      if (locked[id] == 0) continue;
+      assertEq(
+        newRun.basePaid[id],
+        model[id],
+        string.concat(
+          "new code differs from the model, token ",
+          vm.toString(id)
+        )
+      );
+      assertEq(
+        newRun.principalBack[id],
+        locked[id],
+        string.concat("principal, token ", vm.toString(id))
+      );
+      if (oldRun.basePaid[id] != model[id]) {
+        uint256 delta = oldRun.basePaid[id] > model[id]
+          ? oldRun.basePaid[id] - model[id]
+          : model[id] - oldRun.basePaid[id];
+        // The old code rounds down once per period and week, the model once per week:
+        // up to a wei per period and week below the model is rounding, not a bug
+        bool rounding = oldRun.basePaid[id] < model[id] &&
+          delta <= 52 * distributor.currentPeriodId();
+        if (!rounding) affected++;
+        string
+          memory kind = "under-paid: skipped weeks of a running period";
+        if (rounding) kind = "rounding only";
+        else if (oldRun.basePaid[id] > model[id])
+          kind = "over-paid: weeks paid twice";
+        emit log_named_string(
+          string.concat("old code, token ", vm.toString(id)),
+          string.concat(
+            "paid ",
+            vm.toString(oldRun.basePaid[id]),
+            " owed ",
+            vm.toString(model[id]),
+            " (",
+            kind,
+            ")"
+          )
+        );
+      } else {
+        // Untouched by the bugs: the protocol fees paid must be identical too
+        assertEq(
+          newRun.protocolPaid[id],
+          oldRun.protocolPaid[id],
+          string.concat("protocol rewards, token ", vm.toString(id))
+        );
+      }
+    }
+    emit log_named_uint(
+      "positions the old code pays wrongly",
+      affected
+    );
+    emit log_named_uint("old code reverted calls", oldRun.reverts);
+  }
 }
