@@ -48,10 +48,12 @@ const FIX_MARKERS: Record<string, string[]> = {
   "src/protocol-v2/staking/StakingPositions.sol": [
     "Reuse the slope recorded at the last checkpoint",
     "revert InvalidMaxTime()",
+    "Record the global history up to now first",
   ],
   "src/protocol-v2/staking/StakingRewardsDistributor.sol": [
     "_baseRewardOpenPeriodCursor",
     "Appended after the deployed layout",
+    "Claim every 50-week window still owed",
   ],
 };
 

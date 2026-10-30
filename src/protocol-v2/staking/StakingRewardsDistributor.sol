@@ -226,8 +226,19 @@ contract StakingRewardsDistributor is
     // Verify access control
     if (msg.sender != address(staking)) revert OnlyStakingPositions();
 
-    // Claim all rewards
-    uint256 baseRewards = _claimBaseRewards(tokenId);
+    // Claim every 50-week window still owed: the position is burned right after, a week left
+    // unclaimed here would be lost. Weeks from the lock end on pay this position nothing, so
+    // the loop stops there, or at the current week for an early (breaker) withdrawal.
+    uint256 lastWeek = (block.timestamp / WEEK) * WEEK;
+    uint256 lockEnd = staking.getLockedBalance(tokenId).end;
+    if (lockEnd < lastWeek) lastWeek = lockEnd;
+    uint256 baseRewards;
+    for (;;) {
+      uint256 cursorBefore = baseRewardCursor[tokenId];
+      baseRewards += _claimBaseRewards(tokenId);
+      uint256 cursorAfter = baseRewardCursor[tokenId];
+      if (lastWeek <= cursorAfter || cursorAfter == cursorBefore) break;
+    }
     uint256 protocolRewards = _claimProtocolRewards(tokenId);
     uint256 totalRewards = baseRewards + protocolRewards;
 

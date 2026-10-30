@@ -163,7 +163,6 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.stopPrank();
   }
 
-
   /*//////////////////////////////////////////////////////////////
                             PROTOCOL FEE REWARDS TESTS
     //////////////////////////////////////////////////////////////*/
@@ -212,8 +211,6 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.stopPrank();
   }
 
-
-
   /*//////////////////////////////////////////////////////////////
                         UNIT TESTS FOR ACCESS CONTROL
     //////////////////////////////////////////////////////////////*/
@@ -231,7 +228,9 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.stopPrank();
   }
 
-  function test_ClaimOnWithdrawal_RevertNotStakingPositionsEvenAsOwner() public {
+  function test_ClaimOnWithdrawal_RevertNotStakingPositionsEvenAsOwner()
+    public
+  {
     // Test that even the owner cannot bypass access control
     vm.startPrank(globalOwner.owner());
 
@@ -243,7 +242,9 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     vm.stopPrank();
   }
 
-  function test_ClaimOnWithdrawal_RevertNotStakingPositionsEvenAsDeployer() public {
+  function test_ClaimOnWithdrawal_RevertNotStakingPositionsEvenAsDeployer()
+    public
+  {
     // Test that even the deployer cannot bypass access control
     vm.expectRevert(
       IStakingRewardsDistributor.OnlyStakingPositions.selector
@@ -267,11 +268,9 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     assertEq(protocolRewards, 0);
   }
 
-
   /*//////////////////////////////////////////////////////////////
                             EDGE CASE TESTS
     //////////////////////////////////////////////////////////////*/
-
 
   /// @dev Claims until the token's week cursor reaches the current week, as a user would
   function _claimAll(
@@ -283,8 +282,10 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
       vm.prank(user);
       (uint256 base, ) = stakingRewardsDistributor.claim(tokenId);
       total += base;
-      if (stakingRewardsDistributor.baseRewardCursor(tokenId) >= currentWeek)
-        break;
+      if (
+        stakingRewardsDistributor.baseRewardCursor(tokenId) >=
+        currentWeek
+      ) break;
     }
   }
 
@@ -320,7 +321,9 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     assertEq(claimableBase, 0);
   }
 
-  function test_BaseRewards_OverlappingPeriodsBothPaidInFull() public {
+  function test_BaseRewards_OverlappingPeriodsBothPaidInFull()
+    public
+  {
     vm.prank(testAccount1);
     uint256 tokenId = stakingPositions.createLock(
       TEST_AMOUNT,
@@ -349,7 +352,10 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     assertLe(paid, amount1 + amount2);
     assertApproxEqRel(paid, amount1 + amount2, 1e12);
     // Both periods ended: the cursor moved past them
-    assertEq(stakingRewardsDistributor.baseRewardPeriodCursor(tokenId), 3);
+    assertEq(
+      stakingRewardsDistributor.baseRewardPeriodCursor(tokenId),
+      3
+    );
   }
 
   function test_BaseRewards_TwoStakersNeverOverpaid() public {
@@ -382,11 +388,14 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     assertApproxEqRel(paid, 90 * 1e18, 1e12);
   }
 
-  function test_KnownLimitation_WithdrawAfterLongGapPaysOneWindowOnly() public {
-    // A sole staker never claims, then withdraws 104 weeks later: withdraw() pays one
-    // claim window (50 weeks) and burns the position, the remaining weeks stay unclaimable
+  function test_Withdraw_AfterLongGapPaysEveryWeekOwed() public {
+    // A sole staker never claims, then withdraws 104 weeks later: the position is burned,
+    // so the withdrawal must pay every one of the ~100 weeks owed, not one 50-week window
     vm.prank(testAccount1);
-    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, 104 * WEEK);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      104 * WEEK
+    );
     vm.warp(block.timestamp + WEEK);
     uint256 weekly = 10 * 1e18;
     vm.prank(globalOwner.owner());
@@ -396,18 +405,166 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 before = ldyToken.balanceOf(testAccount1);
     vm.prank(testAccount1);
     stakingPositions.withdraw(tokenId);
-    uint256 rewards = ldyToken.balanceOf(testAccount1) - before - TEST_AMOUNT;
+    uint256 rewards = ldyToken.balanceOf(testAccount1) -
+      before -
+      TEST_AMOUNT;
 
-    // At most one 50-week window paid out of about 100 weeks owed
-    assertLe(rewards, 50 * weekly, "more than one window paid");
-    emit log_named_uint("rewards paid on withdrawal (LDY)", rewards / 1e18);
-    emit log_named_uint("rewards left unclaimable (LDY)", ldyToken.balanceOf(address(stakingRewardsDistributor)) / 1e18);
+    assertLe(rewards, 100 * weekly, "paid more than distributed");
+    assertApproxEqRel(rewards, 100 * weekly, 1e12);
+    assertLt(
+      ldyToken.balanceOf(address(stakingRewardsDistributor)),
+      1e6,
+      "rewards left unclaimable"
+    );
+  }
+
+  function test_Withdraw_LongAfterExpiryStopsAtTheLockEnd() public {
+    // Withdrawal years after the lock ended: the weeks after the end pay nothing to this
+    // position, the loop must not walk them (gas) and must not pay them
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      20 * WEEK
+    );
+    vm.prank(testAccount2);
+    stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(200 * 1e18, 200);
+
+    vm.warp(block.timestamp + 3 * 52 * WEEK);
+    uint256 before = ldyToken.balanceOf(testAccount1);
+    vm.prank(testAccount1);
+    uint256 gasBefore = gasleft();
+    stakingPositions.withdraw(tokenId);
+    uint256 used = gasBefore - gasleft();
+    uint256 rewards = ldyToken.balanceOf(testAccount1) -
+      before -
+      TEST_AMOUNT;
+
+    // Only the ~20 weeks of the lock earned anything, shared with the other staker
+    assertLt(rewards, 20 * 1e18, "paid weeks after the lock end");
+    assertGt(rewards, 0);
+    emit log_named_uint(
+      "withdrawal gas 3 years after a 20-week lock",
+      used
+    );
+  }
+
+  function test_Gas_WithdrawalTooHeavyHasAnEscapeRoute() public {
+    // 20 overlapping periods over a 4-year lock never claimed: even if one withdrawal were
+    // to exceed the gas cap, claiming window by window first keeps every call under it
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+    vm.prank(testAccount2);
+    stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    for (uint256 i; i < 20; i++) {
+      vm.prank(globalOwner.owner());
+      stakingRewardsDistributor.depositBaseRewards(208 * 1e18, 208);
+    }
+    vm.warp(block.timestamp + 4 * 52 * WEEK + WEEK);
+
+    uint256 snapshot = vm.snapshotState();
+    vm.prank(testAccount1);
+    uint256 gasBefore = gasleft();
+    stakingPositions.withdraw(tokenId);
+    emit log_named_uint(
+      "direct withdrawal gas, 20 periods",
+      gasBefore - gasleft()
+    );
+    vm.revertToState(snapshot);
+
+    // Escape route: a global checkpoint, claims of one window each, then the withdrawal
+    gasBefore = gasleft();
+    stakingPositions.checkpoint();
+    assertLt(gasBefore - gasleft(), 16_777_216, "checkpoint");
+    for (uint256 i; i < 6; i++) {
+      vm.prank(testAccount1);
+      gasBefore = gasleft();
+      stakingRewardsDistributor.claim(tokenId);
+      assertLt(gasBefore - gasleft(), 16_777_216, "claim");
+    }
+    vm.prank(testAccount1);
+    gasBefore = gasleft();
+    stakingPositions.withdraw(tokenId);
+    uint256 used = gasBefore - gasleft();
+    emit log_named_uint("withdrawal gas after claiming first", used);
+    assertLt(used, 16_777_216, "withdrawal after claims");
+  }
+
+  function test_Gas_ClaimAfterYearsIdleHasAnEscapeRoute() public {
+    // Nothing touched the staking for ~5 years: a claim walks the global history for every
+    // week of its window; the public checkpoint() records that history once, first
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(260 * 1e18, 260);
+    vm.warp(block.timestamp + 255 * WEEK);
+
+    uint256 snapshot = vm.snapshotState();
+    vm.prank(testAccount1);
+    uint256 gasBefore = gasleft();
+    stakingRewardsDistributor.claim(tokenId);
+    emit log_named_uint(
+      "claim gas after 255 idle weeks, no checkpoint",
+      gasBefore - gasleft()
+    );
+    vm.revertToState(snapshot);
+
+    gasBefore = gasleft();
+    stakingPositions.checkpoint();
+    uint256 checkpointGas = gasBefore - gasleft();
+    vm.prank(testAccount1);
+    gasBefore = gasleft();
+    stakingRewardsDistributor.claim(tokenId);
+    uint256 claimGas = gasBefore - gasleft();
+    emit log_named_uint("checkpoint gas", checkpointGas);
+    emit log_named_uint("claim gas after the checkpoint", claimGas);
+    assertLt(checkpointGas, 16_777_216);
+    assertLt(claimGas, 16_777_216);
+  }
+
+  function test_Gas_WorstCaseWithdrawal() public {
+    // A 4-year lock never claimed and 10 overlapping periods over all of it: the heaviest
+    // withdrawal the code allows (5 claim windows)
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+    vm.prank(testAccount2);
+    stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    for (uint256 i; i < 10; i++) {
+      vm.prank(globalOwner.owner());
+      stakingRewardsDistributor.depositBaseRewards(208 * 1e18, 208);
+    }
+    vm.warp(block.timestamp + 4 * 52 * WEEK + WEEK);
+
+    vm.prank(testAccount1);
+    uint256 gasBefore = gasleft();
+    stakingPositions.withdraw(tokenId);
+    uint256 used = gasBefore - gasleft();
+    emit log_named_uint("worst-case withdrawal gas", used);
+    // EIP-7825 (Fusaka, Dec 2025): no transaction may use more than 2^24 gas
+    assertLt(
+      used,
+      16_777_216,
+      "withdrawal above the per-transaction gas cap"
+    );
   }
 
   function test_Gas_WorstCaseClaim() public {
     // 30 overlapping periods and a 50-week window: the heaviest claim the code allows
     vm.prank(testAccount1);
-    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, 4 * 52 * WEEK);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
     vm.prank(testAccount2);
     stakingPositions.createLock(TEST_AMOUNT, 3 * 52 * WEEK);
     for (uint256 i; i < 30; i++) {
@@ -422,7 +579,11 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     uint256 used = gasBefore - gasleft();
     emit log_named_uint("worst-case claim gas", used);
     // EIP-7825 (Fusaka, Dec 2025): no transaction may use more than 2^24 gas
-    assertLt(used, 16_777_216, "claim above the per-transaction gas cap");
+    assertLt(
+      used,
+      16_777_216,
+      "claim above the per-transaction gas cap"
+    );
   }
 
   function test_EdgeCase_RewardRemainder() public {

@@ -521,6 +521,11 @@ contract StakingPositions is
       revert LockNotExpired();
     uint256 value = oldLocked.amount.toUint256();
 
+    // Record the global history up to now first: the rewards claimed below read the total
+    // voting power of every week owed, which otherwise walks from the last checkpoint each
+    // time and can exceed the transaction gas cap after a long quiet period
+    _checkpoint(0, LockedBalance(0, 0), LockedBalance(0, 0));
+
     // Claim potential rewards before the token is burned
     IStakingRewardsDistributor(rewardsDistributor).claimOnWithdrawal(
       _tokenId,
