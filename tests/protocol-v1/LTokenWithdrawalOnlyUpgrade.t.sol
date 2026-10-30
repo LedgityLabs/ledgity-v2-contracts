@@ -27,8 +27,11 @@ import { LedgityYieldVault } from "../../src/protocol-v2/LedgityYieldVault.sol";
  */
 contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
   struct ChainSetup {
+    // Legacy LTokens migrated by `vaults` (same index)
     address[] lTokens;
     address[] vaults;
+    // Legacy LTokens no vault points to: only closed, nothing to migrate
+    address[] unlinkedLTokens;
     address holder;
     bool isSonic;
   }
@@ -62,6 +65,8 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
     0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
 
   ChainSetup setup_;
+  // Every legacy LToken of the chain, linked to a vault or not
+  address[] allLTokens;
   address newImplementation;
 
   function setUp() public {
@@ -91,11 +96,19 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
       _fork("SONIC");
       setup_.lTokens.push(0xD7cCABfBEfE332C9784FF3debeBdDbc787E75e69); // LUSDC
       setup_.vaults.push(0x65f75c675Cc76474662DfBF7B6e8683764223001); // lyUSD
+      setup_.unlinkedLTokens.push(
+        0x88dC8674339731A12a08624f455Fd41Fe2d6DC82
+      ); // LEURC
       setup_.holder = 0xE7616e98d2506E571E8f6E38e7Bfd0b55642ACac;
       setup_.isSonic = true;
     } else {
       revert(string.concat("Unsupported fork target: ", fork));
     }
+
+    for (uint256 i; i < setup_.lTokens.length; i++)
+      allLTokens.push(setup_.lTokens[i]);
+    for (uint256 i; i < setup_.unlinkedLTokens.length; i++)
+      allLTokens.push(setup_.unlinkedLTokens[i]);
 
     newImplementation = setup_.isSonic
       ? address(new LTokenSonic())
@@ -216,16 +229,16 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
   // ======== TESTS ======== //
 
   function test_upgrade_onlyOwner() public {
-    for (uint256 i; i < setup_.lTokens.length; i++) {
+    for (uint256 i; i < allLTokens.length; i++) {
       vm.expectRevert(bytes("Ownable: caller is not the owner"));
       vm.prank(address(0xBAD));
-      UUPSUpgradeable(setup_.lTokens[i]).upgradeTo(newImplementation);
+      UUPSUpgradeable(allLTokens[i]).upgradeTo(newImplementation);
     }
   }
 
   function test_upgrade_preservesState() public {
-    for (uint256 i; i < setup_.lTokens.length; i++) {
-      LToken lToken = LToken(setup_.lTokens[i]);
+    for (uint256 i; i < allLTokens.length; i++) {
+      LToken lToken = LToken(allLTokens[i]);
       Snapshot memory before = _snapshot(lToken);
 
       vm.prank(lToken.owner());
@@ -249,8 +262,8 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
   }
 
   function test_switchWithdrawalOnly_onlyOwner() public {
-    for (uint256 i; i < setup_.lTokens.length; i++) {
-      LToken lToken = LToken(setup_.lTokens[i]);
+    for (uint256 i; i < allLTokens.length; i++) {
+      LToken lToken = LToken(allLTokens[i]);
       vm.prank(lToken.owner());
       UUPSUpgradeable(address(lToken)).upgradeTo(newImplementation);
 
@@ -261,8 +274,8 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
   }
 
   function test_withdrawalOnly_blocksDeposit() public {
-    for (uint256 i; i < setup_.lTokens.length; i++) {
-      LToken lToken = LToken(setup_.lTokens[i]);
+    for (uint256 i; i < allLTokens.length; i++) {
+      LToken lToken = LToken(allLTokens[i]);
       _upgradeAndClose(lToken);
       assertEq(lToken.withdrawalOnly(), true);
 
@@ -332,8 +345,8 @@ contract Skip_LTokenWithdrawalOnlyUpgradeFork is Test {
   }
 
   function test_switchBack_reopensDeposit() public {
-    for (uint256 i; i < setup_.lTokens.length; i++) {
-      LToken lToken = LToken(setup_.lTokens[i]);
+    for (uint256 i; i < allLTokens.length; i++) {
+      LToken lToken = LToken(allLTokens[i]);
       _upgradeAndClose(lToken);
 
       vm.prank(lToken.owner());

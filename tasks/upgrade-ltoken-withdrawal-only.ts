@@ -34,6 +34,16 @@ const VAULTS_BY_CHAIN: Record<number, { symbol: string; address: string }[]> = {
   ],
 };
 
+/// @dev Legacy v1 LTokens that no v2 vault points to, closed all the same before the sunset
+const UNLINKED_LTOKENS_BY_CHAIN: Record<
+  number,
+  { symbol: string; address: string }[]
+> = {
+  146: [
+    { symbol: "LEURC", address: "0x88dC8674339731A12a08624f455Fd41Fe2d6DC82" },
+  ],
+};
+
 const IMPLEMENTATION_SLOT =
   "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc";
 
@@ -114,6 +124,7 @@ task(
   }[] = [];
   const owners = new Set<string>();
 
+  const lTokens: { label: string; address: string }[] = [];
   for (const vault of vaults) {
     const lTokenAddress: string = await (
       await ethers.getContractAt(VAULT_ABI, vault.address)
@@ -122,7 +133,13 @@ task(
       console.log(`==> ${vault.symbol}: no lToken set, skipped`.yellow);
       continue;
     }
+    lTokens.push({ label: vault.symbol, address: lTokenAddress });
+  }
+  for (const unlinked of UNLINKED_LTOKENS_BY_CHAIN[chainId] ?? []) {
+    lTokens.push({ label: "no vault", address: unlinked.address });
+  }
 
+  for (const { label: vaultLabel, address: lTokenAddress } of lTokens) {
     const lToken = await ethers.getContractAt(LTOKEN_ABI, lTokenAddress);
     const [symbol, owner, currentImplementation] = await Promise.all([
       lToken.symbol(),
@@ -132,7 +149,7 @@ task(
     owners.add(owner);
 
     console.log(
-      `==> ${vault.symbol} <- ${symbol}`.cyan,
+      `==> ${vaultLabel} <- ${symbol}`.cyan,
       lTokenAddress,
       `\n    owner ${owner}\n    implementation ${ethers.utils.getAddress("0x" + currentImplementation.slice(26))} -> ${implementation.address}`,
     );
