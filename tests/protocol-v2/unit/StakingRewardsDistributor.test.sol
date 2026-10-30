@@ -273,6 +273,115 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
     //////////////////////////////////////////////////////////////*/
 
 
+  /// @dev Claims until the token's week cursor reaches the current week, as a user would
+  function _claimAll(
+    address user,
+    uint256 tokenId
+  ) internal returns (uint256 total) {
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    for (uint256 i; i < 10; i++) {
+      vm.prank(user);
+      (uint256 base, ) = stakingRewardsDistributor.claim(tokenId);
+      total += base;
+      if (stakingRewardsDistributor.baseRewardCursor(tokenId) >= currentWeek)
+        break;
+    }
+  }
+
+  function test_BaseRewards_NoDoubleCountAfterFiftyWeeks() public {
+    // A sole staker locks, a period starts three weeks later and the staker does not
+    // claim for 60 weeks: each week of the period must be paid exactly once
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+
+    vm.warp(block.timestamp + 3 * WEEK);
+    uint256 periodStart = (block.timestamp / WEEK) * WEEK;
+    uint256 weekly = 10 * 1e18;
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(weekly * 100, 100);
+
+    vm.warp(block.timestamp + 60 * WEEK);
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    uint256 weeksElapsed = (currentWeek - periodStart) / WEEK;
+
+    uint256 paid = _claimAll(testAccount1, tokenId);
+
+    // Sole staker: the whole weekly amount of every elapsed week, and not one week more
+    assertLe(paid, weeksElapsed * weekly, "a week was paid twice");
+    assertApproxEqRel(paid, weeksElapsed * weekly, 1e12);
+
+    // Nothing left to claim this week
+    (uint256 claimableBase, ) = stakingRewardsDistributor.claimable(
+      tokenId
+    );
+    assertEq(claimableBase, 0);
+  }
+
+  function test_BaseRewards_OverlappingPeriodsBothPaidInFull() public {
+    vm.prank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+
+    // Period 1: 20 weeks. Period 2 starts 5 weeks later for 4 weeks.
+    uint256 amount1 = 20 * 1e18;
+    uint256 amount2 = 8 * 1e18;
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(amount1, 20);
+    vm.warp(block.timestamp + 5 * WEEK);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(amount2, 4);
+
+    // Claims while both run, after period 2 ends, and after period 1 ends
+    uint256 paid;
+    vm.warp(block.timestamp + 2 * WEEK);
+    paid += _claimAll(testAccount1, tokenId);
+    vm.warp(block.timestamp + 4 * WEEK);
+    paid += _claimAll(testAccount1, tokenId);
+    vm.warp(block.timestamp + 20 * WEEK);
+    paid += _claimAll(testAccount1, tokenId);
+
+    // Sole staker over both periods: everything distributed is paid, nothing twice
+    assertLe(paid, amount1 + amount2);
+    assertApproxEqRel(paid, amount1 + amount2, 1e12);
+    // Both periods ended: the cursor moved past them
+    assertEq(stakingRewardsDistributor.baseRewardPeriodCursor(tokenId), 3);
+  }
+
+  function test_BaseRewards_TwoStakersNeverOverpaid() public {
+    vm.prank(testAccount1);
+    uint256 tokenId1 = stakingPositions.createLock(
+      TEST_AMOUNT,
+      4 * 52 * WEEK
+    );
+    vm.prank(testAccount2);
+    uint256 tokenId2 = stakingPositions.createLock(
+      3 * TEST_AMOUNT,
+      2 * 52 * WEEK
+    );
+
+    vm.warp(block.timestamp + WEEK);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(60 * 1e18, 60);
+    vm.prank(globalOwner.owner());
+    stakingRewardsDistributor.depositBaseRewards(30 * 1e18, 30);
+
+    // One claims every 10 weeks, the other only once at the end (past 50 weeks)
+    uint256 paid;
+    for (uint256 i; i < 7; i++) {
+      vm.warp(block.timestamp + 10 * WEEK);
+      paid += _claimAll(testAccount1, tokenId1);
+    }
+    paid += _claimAll(testAccount2, tokenId2);
+
+    assertLe(paid, 90 * 1e18, "distributor over-paid");
+    assertApproxEqRel(paid, 90 * 1e18, 1e12);
+  }
+
   function test_EdgeCase_RewardRemainder() public {
     // Test that remainder is properly handled when amount doesn't divide evenly
     uint256 amount = 1000; // Amount that doesn't divide evenly by 3

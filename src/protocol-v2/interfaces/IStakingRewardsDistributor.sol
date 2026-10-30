@@ -108,7 +108,7 @@ interface IStakingRewardsDistributor {
     uint256 tokenId
   ) external view returns (uint256);
 
-  /// @notice Last processed period cursor for base rewards for each tokenId
+  /// @notice First base reward period that may still pay the tokenId (only moves past ended periods)
   function baseRewardPeriodCursor(
     uint256 tokenId
   ) external view returns (uint256);

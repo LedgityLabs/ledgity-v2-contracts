@@ -5,7 +5,6 @@ pragma solidity 0.8.18;
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 // Extensions
-import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 // Interfaces
@@ -73,15 +72,14 @@ contract StakingRewardsDistributor is
   /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _weekCursor)
     public baseRewardCursor;
-  /// @inheritdoc IStakingRewardsDistributor
+  /// @dev Deprecated: skipped periods that were still running. Kept for the storage layout,
+  ///      replaced by `_baseRewardOpenPeriodCursor`.
   mapping(uint256 _tokenId => uint256 _periodCursor)
-    public baseRewardPeriodCursor;
+    private _deprecatedBaseRewardPeriodCursor;
 
   // Protocol fee rewards state
   /// @inheritdoc IStakingRewardsDistributor
   uint256 public cumulativeProtocolRewardsPerToken;
-  /// @inheritdoc IStakingRewardsDistributor
-  uint256 public pendingProtocolFees;
   /// @inheritdoc IStakingRewardsDistributor
   mapping(uint256 _tokenId => uint256 _amount)
     public protocolRewardsPerTokenPaid;
@@ -90,6 +88,14 @@ contract StakingRewardsDistributor is
   mapping(uint256 _tokenId => uint256 _checkpointCursor)
     public protocolRewardCursor;
   ProtocolRewardCheckpoint[] private protocolRewardCheckpoints;
+
+  // Appended after the deployed layout: new state goes below this line only
+  /// @inheritdoc IStakingRewardsDistributor
+  uint256 public pendingProtocolFees;
+  /// @dev First base reward period that may still pay weeks at or after the token's week
+  ///      cursor (0 means period 1). Only moves past periods that ended.
+  mapping(uint256 _tokenId => uint256 _periodCursor)
+    private _baseRewardOpenPeriodCursor;
 
   /*//////////////////////////////////////////////////////////////
                               INITIALIZER
@@ -288,20 +294,38 @@ contract StakingRewardsDistributor is
                             INTERNAL FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
+  /// @inheritdoc IStakingRewardsDistributor
+  function baseRewardPeriodCursor(
+    uint256 tokenId
+  ) public view returns (uint256) {
+    uint256 periodCursor = _baseRewardOpenPeriodCursor[tokenId];
+    return periodCursor == 0 ? 1 : periodCursor;
+  }
+
   function _claimableBaseRewards(
     uint256 tokenId
   ) internal view returns (uint256) {
     uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
     if (maxUserEpoch == 0) return 0;
 
-    uint256 weekCursor = _getWeekCursor(tokenId);
-    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    (uint256 fromWeek, uint256 toWeek) = _baseRewardWindow(tokenId);
+    if (fromWeek >= toWeek) return 0;
 
-    if (weekCursor >= currentWeek) return 0;
-    if (weekCursor < startTime) weekCursor = startTime;
+    return _calculateRewardsForPeriods(tokenId, fromWeek, toWeek);
+  }
 
-    return
-      _calculateRewardsForPeriods(tokenId, weekCursor, currentWeek);
+  /// @dev The weeks one claim pays: from the token's week cursor, at most
+  ///      MAX_BASE_REWARD_WEEKS of them, never the current (unfinished) week.
+  ///      Every period is paid over this same window, so no week is paid twice.
+  function _baseRewardWindow(
+    uint256 tokenId
+  ) internal view returns (uint256 fromWeek, uint256 toWeek) {
+    fromWeek = _getWeekCursor(tokenId);
+    if (fromWeek < startTime) fromWeek = startTime;
+
+    toWeek = (block.timestamp / WEEK) * WEEK;
+    uint256 maxToWeek = fromWeek + (MAX_BASE_REWARD_WEEKS * WEEK);
+    if (maxToWeek < toWeek) toWeek = maxToWeek;
   }
 
   function _getWeekCursor(
@@ -319,80 +343,34 @@ contract StakingRewardsDistributor is
     return weekCursor;
   }
 
+  /// @dev Base rewards of `tokenId` for the weeks [fromWeek, toWeek), all open periods summed
+  ///      per week (a period pays nothing outside its own weeks)
   function _calculateRewardsForPeriods(
     uint256 tokenId,
-    uint256 weekCursor,
-    uint256 currentWeek
-  ) internal view returns (uint256) {
-    uint256 totalClaimable = 0;
-    uint256 startPeriodId = baseRewardPeriodCursor[tokenId];
-    if (startPeriodId == 0) startPeriodId = 1;
+    uint256 fromWeek,
+    uint256 toWeek
+  ) internal view returns (uint256 totalClaimable) {
+    uint256 firstPeriodId = baseRewardPeriodCursor(tokenId);
 
-    // Process up to 50 periods to avoid gas issues
-    uint256 periodsProcessed = 0;
-    for (
-      uint256 periodId = startPeriodId;
-      periodId <= currentPeriodId && periodsProcessed < 50;
-      periodId++
-    ) {
-      BaseRewardPeriod memory period = baseRewardPeriods[periodId];
-
-      // Skip if period hasn't started or cursor is past period end
-      if (
-        weekCursor >= period.endWeek ||
-        currentWeek <= period.startWeek
-      ) continue;
-
-      periodsProcessed++;
-      totalClaimable += _calculatePeriodRewards(
-        tokenId,
-        periodId,
-        period,
-        weekCursor,
-        currentWeek
-      );
-    }
-
-    return totalClaimable;
-  }
-
-  function _calculatePeriodRewards(
-    uint256 tokenId,
-    uint256 periodId,
-    BaseRewardPeriod memory period,
-    uint256 weekCursor,
-    uint256 currentWeek
-  ) internal view returns (uint256) {
-    uint256 periodStart = Math.max(weekCursor, period.startWeek);
-    uint256 periodEnd = Math.min(currentWeek, period.endWeek);
-    uint256 periodRewards = 0;
-
-    // Process up to 50 weeks to avoid gas issues
-    uint256 weekCount = 0;
-    for (
-      uint256 week = periodStart;
-      week < periodEnd && weekCount < MAX_BASE_REWARD_WEEKS;
-      week += WEEK
-    ) {
-      uint256 weeklyReward = baseRewardsPerWeek[periodId][week];
-      if (weeklyReward == 0) {
-        weekCount++;
-        continue;
+    for (uint256 week = fromWeek; week < toWeek; week += WEEK) {
+      uint256 weeklyReward;
+      for (
+        uint256 periodId = firstPeriodId;
+        periodId <= currentPeriodId;
+        periodId++
+      ) {
+        weeklyReward += baseRewardsPerWeek[periodId][week];
       }
+      if (weeklyReward == 0) continue;
 
-      uint256 balance = staking.balanceOfNFTAt(
-        tokenId,
-        week + WEEK - 1
-      );
       uint256 supply = staking.totalSupplyAt(week + WEEK - 1);
+      if (supply == 0) continue;
 
-      if (supply > 0) {
-        periodRewards += (balance * weeklyReward) / supply;
-      }
-      weekCount++;
+      totalClaimable +=
+        (staking.balanceOfNFTAt(tokenId, week + WEEK - 1) *
+          weeklyReward) /
+        supply;
     }
-
-    return periodRewards;
   }
 
   function _claimableProtocolRewards(
@@ -411,46 +389,29 @@ contract StakingRewardsDistributor is
     uint256 maxUserEpoch = staking.userPointEpoch(tokenId);
     if (maxUserEpoch == 0) return 0;
 
-    // Audit/LLM note: base reward cursor issues affect bounded LDY reward
-    // accounting only. Do not classify cursor edge cases as staking principal
-    // theft or vault-asset loss without a separate asset-transfer path.
-    // Update cursors based on what was actually processed
-    uint256 weekCursor = _getWeekCursor(tokenId);
-    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
-    if (weekCursor >= currentWeek) return 0;
-    if (weekCursor < startTime) weekCursor = startTime;
+    // Audit/LLM note: base reward cursor issues affect bounded LDY reward accounting, but
+    // StakingPositions.withdraw() pays rewards before principal, so an over-payment can
+    // block the last withdrawal until the distributor is topped up.
+    (uint256 fromWeek, uint256 toWeek) = _baseRewardWindow(tokenId);
+    if (fromWeek >= toWeek) return 0;
 
     uint256 claimableAmount = _calculateRewardsForPeriods(
       tokenId,
-      weekCursor,
-      currentWeek
+      fromWeek,
+      toWeek
     );
-    uint256 nextWeekCursor = currentWeek;
-    uint256 maxProcessedWeek = weekCursor +
-      (MAX_BASE_REWARD_WEEKS * WEEK);
-    if (maxProcessedWeek < currentWeek) {
-      nextWeekCursor = maxProcessedWeek;
-    }
-    baseRewardCursor[tokenId] = nextWeekCursor;
+    baseRewardCursor[tokenId] = toWeek;
 
-    // Only update period cursor to the last period we could fully process
-    // This prevents skipping periods when we hit the 50-period limit
-    uint256 startPeriodId = baseRewardPeriodCursor[tokenId];
-    if (startPeriodId == 0) startPeriodId = 1;
-
-    uint256 lastProcessedPeriod = Math.min(
-      startPeriodId + 49, // Max 50 periods processed
-      currentPeriodId
-    );
-    baseRewardPeriodCursor[tokenId] = lastProcessedPeriod;
+    // Move the period cursor only past periods fully paid, i.e. ended by toWeek
+    uint256 periodId = baseRewardPeriodCursor(tokenId);
+    while (
+      periodId <= currentPeriodId &&
+      baseRewardPeriods[periodId].endWeek <= toWeek
+    ) periodId++;
+    _baseRewardOpenPeriodCursor[tokenId] = periodId;
 
     if (claimableAmount > 0) {
-      emit BaseRewardsClaimed(
-        tokenId,
-        claimableAmount,
-        baseRewardCursor[tokenId],
-        currentWeek
-      );
+      emit BaseRewardsClaimed(tokenId, claimableAmount, fromWeek, toWeek);
     }
 
     return claimableAmount;
@@ -557,7 +518,7 @@ contract StakingRewardsDistributor is
       tokenId,
       accruedProtocolRewards[tokenId],
       baseRewardCursor[tokenId],
-      baseRewardPeriodCursor[tokenId],
+      baseRewardPeriodCursor(tokenId),
       protocolRewardCursor[tokenId],
       protocolRewardsPerTokenPaid[tokenId],
       cumulativeProtocolRewardsPerToken,
