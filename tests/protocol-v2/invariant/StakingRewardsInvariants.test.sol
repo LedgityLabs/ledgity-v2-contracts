@@ -234,26 +234,42 @@ contract StakingRewardsHandler is Test {
     }
   }
 
-  function withdraw(uint256 seed) external {
+  function withdraw(uint256 seed, bool claimFirst) external {
     (uint256 tokenId, bool found) = _live(seed);
     if (!found) return;
     IStakingPositions.LockedBalance memory locked = staking
       .getLockedBalance(tokenId);
     if (block.timestamp < locked.end) return;
 
-    // Claim up to date first: the withdrawal then returns the principal only
-    for (uint256 i; i < 10; i++) {
-      uint256 cursor = distributor.baseRewardCursor(tokenId);
-      _claimChecked(tokenId);
-      if (distributor.baseRewardCursor(tokenId) == cursor) break;
+    // Sometimes claim up to date first, sometimes let the withdrawal pay everything
+    if (claimFirst) {
+      for (uint256 i; i < 10; i++) {
+        uint256 cursor = distributor.baseRewardCursor(tokenId);
+        _claimChecked(tokenId);
+        if (distributor.baseRewardCursor(tokenId) == cursor) break;
+      }
     }
+
+    // The withdrawal must pay every week still owed, plus the protocol fees accrued
+    uint256 fromWeek = _firstUnpaidWeek(tokenId);
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    uint256 expectedBase = fromWeek < currentWeek
+      ? _model(tokenId, fromWeek, currentWeek)
+      : 0;
+    (, uint256 expectedProtocol) = distributor.claimable(tokenId);
+
     address holder = staking.ownerOf(tokenId);
     uint256 before = ldy.balanceOf(holder);
     vm.prank(holder);
     staking.withdraw(tokenId);
     uint256 received = ldy.balanceOf(holder) - before;
-    assertGe(received, uint256(int256(locked.amount)), "principal");
-    rewardsPaid += received - uint256(int256(locked.amount));
+    uint256 principal = uint256(int256(locked.amount));
+    assertEq(
+      received,
+      principal + expectedBase + expectedProtocol,
+      "withdrawal differs from principal plus the model"
+    );
+    rewardsPaid += received - principal;
   }
 }
 

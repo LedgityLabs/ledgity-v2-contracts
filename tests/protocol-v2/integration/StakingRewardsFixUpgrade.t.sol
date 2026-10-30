@@ -367,18 +367,28 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
   }
 
   /// @dev Claims everything first (recorded), so the withdrawal returns principal only
+  /// @dev `claimFirst`: claim up to date, then the withdrawal returns the principal only.
+  ///      Otherwise the withdrawal itself pays the rewards: base = received - principal -
+  ///      protocol fees accrued (read just before).
   function _tryWithdraw(
     uint256 tokenId,
-    RunResult memory r
+    RunResult memory r,
+    bool claimFirst
   ) internal {
     address owner = staking.ownerOf(tokenId);
     if (owner == address(0)) return;
-    for (uint256 i; i < 10; i++) {
-      uint256 cursorBefore = distributor.baseRewardCursor(tokenId);
-      _tryClaim(tokenId, r);
-      if (distributor.baseRewardCursor(tokenId) == cursorBefore)
-        break;
+    if (claimFirst) {
+      for (uint256 i; i < 10; i++) {
+        uint256 cursorBefore = distributor.baseRewardCursor(tokenId);
+        _tryClaim(tokenId, r);
+        if (distributor.baseRewardCursor(tokenId) == cursorBefore)
+          break;
+      }
     }
+    uint256 principal = uint256(
+      int256(staking.getLockedBalance(tokenId).amount)
+    );
+    (, uint256 protocolOwed) = distributor.claimable(tokenId);
     uint256 before = ldy.balanceOf(owner);
     vm.prank(owner);
     (bool ok, ) = address(staking).call(
@@ -388,7 +398,11 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
       r.reverts++;
       return;
     }
-    r.principalBack[tokenId] = ldy.balanceOf(owner) - before;
+    uint256 received = ldy.balanceOf(owner) - before;
+    require(received >= principal + protocolOwed, "withdrawal short");
+    r.principalBack[tokenId] = principal;
+    r.protocolPaid[tokenId] += protocolOwed;
+    r.basePaid[tokenId] += received - principal - protocolOwed;
   }
 
   /// @dev One seeded schedule: irregular weeks, random claims, fee deposits, withdrawals
@@ -432,10 +446,11 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
         // A sleeper never claims before its lock ends: gaps of more than 50 weeks
         bool sleeper = withSleepers &&
           uint256(keccak256(abi.encode(seed, id))) % 3 == 0;
+        // A sleeper withdraws without claiming: the withdrawal must pay the whole gap
         if (
           block.timestamp >= staking.getLockedBalance(id).end &&
           dice < 3
-        ) _tryWithdraw(id, r);
+        ) _tryWithdraw(id, r, !sleeper);
         else if (dice < 4 && !sleeper) _tryClaim(id, r);
       }
 
@@ -457,8 +472,12 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
       }
     }
 
-    // Everyone left claims and withdraws
-    for (uint256 id = 1; id <= lastId; id++) _tryWithdraw(id, r);
+    // Everyone left withdraws, sleepers without claiming first
+    for (uint256 id = 1; id <= lastId; id++) {
+      bool sleeper = withSleepers &&
+        uint256(keccak256(abi.encode(seed, id))) % 3 == 0;
+      _tryWithdraw(id, r, !sleeper);
+    }
   }
 
   function test_replay_newMatchesModel_oldDiffersOnlyWhereBuggy()
