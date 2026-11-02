@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1793613653037,
+  "meta": {
+    "name": "Staking: rewards cursor & maxTime fix (mainnet)",
+    "description": "Upgrade StakingPositions and StakingRewardsDistributor: base rewards no longer pay a week twice nor skip a running period, the distributor storage layout matches the deployed one (pendingProtocolFees appended), and changing maxTime no longer breaks the voting power of existing locks.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000007ffa9f6a9fdf98a8dadae79dd863464a13ba9a22",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000008ce2c4dadfda726a21b9f0f7064170ced31e9f5e",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
