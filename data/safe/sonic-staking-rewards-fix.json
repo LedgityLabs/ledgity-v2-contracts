@@ -3,8 +3,8 @@
   "chainId": "146",
   "createdAt": 1793613758034,
   "meta": {
-    "name": "Staking: rewards cursor & maxTime fix (sonic)",
-    "description": "Upgrade StakingPositions and StakingRewardsDistributor: base rewards no longer pay a week twice nor skip a running period, the distributor storage layout matches the deployed one (pendingProtocolFees appended), and changing maxTime no longer breaks the voting power of existing locks.",
+    "name": "Staking: maintenance upgrade (sonic)",
+    "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
     "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
     "createdFromOwnerAddress": "",

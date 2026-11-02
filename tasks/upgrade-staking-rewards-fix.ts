@@ -259,9 +259,9 @@ task(
     chainId: chainId.toString(),
     createdAt: Date.now(),
     meta: {
-      name: `Staking: rewards cursor & maxTime fix (${label})`,
+      name: `Staking: maintenance upgrade (${label})`,
       description:
-        "Upgrade StakingPositions and StakingRewardsDistributor: base rewards no longer pay a week twice nor skip a running period, the distributor storage layout matches the deployed one (pendingProtocolFees appended), and changing maxTime no longer breaks the voting power of existing locks.",
+        "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
       txBuilderVersion: "1.16.5",
       createdFromSafeAddress: safe,
       createdFromOwnerAddress: "",
