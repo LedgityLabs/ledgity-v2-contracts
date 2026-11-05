@@ -31,7 +31,8 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
     // Use mock WETH for consistent 18 decimals
     asset = mockWeth;
     lToken = _createLToken(asset);
-    vault = _createVault(asset, IERC20(address(lToken)));
+    // No Aave pool lists the mock token
+    vault = _createVaultWithConfig(asset, IERC20(address(lToken)), false);
 
     // Setup approvals
     _setupApprovalsForVault(vault, asset);
@@ -109,23 +110,23 @@ contract VaultComputations_FuzzTest is Test, Fixtures {
 
     /**
      * This represents the PPS before performance fee dilution
-     * @dev Add 1 to totalSupply to avoid division by zero
+     * @dev An empty vault holds 10 ** decimalsOffset virtual shares: one for the 18-decimal asset
      */
     if (totalSupply == 0) totalSupply = 1;
 
     uint256 pricePerShare = ((totalAssets + 1) - managementFeeAssets)
-      .mulDiv(1e18, totalSupply, Math.Rounding.Up);
+      .mulDiv(1e18, totalSupply);
 
     uint256 performanceFeeAssets;
     if (highWaterMark < pricePerShare) {
       performanceFeeAssets = (pricePerShare - highWaterMark)
-        .mulDiv(totalSupply, 1e18, Math.Rounding.Up)
+        .mulDiv(totalSupply, 1e18)
         .mulDiv(performanceFeeRate, RAY, Math.Rounding.Up);
 
-      pricePerShare = (totalAssets -
+      pricePerShare = ((totalAssets + 1) -
         (managementFeeAssets + performanceFeeAssets)).mulDiv(
           1e18,
-          totalSupply + 1,
+          totalSupply,
           Math.Rounding.Up
         );
     }

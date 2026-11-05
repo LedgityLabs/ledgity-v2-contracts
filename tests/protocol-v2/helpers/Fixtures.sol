@@ -26,6 +26,7 @@ import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
+import { LedgityDataProvider } from "src/protocol-v2/LedgityDataProvider.sol";
 import { ILedgityYieldVault } from "src/protocol-v2/interfaces/ILedgityYieldVault.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
@@ -98,6 +99,7 @@ contract Fixtures is Test {
   mapping(address => string) internal actorNames;
 
   IAaveLendingPoolV3 internal aaveLendingPool;
+  LedgityDataProvider internal dataProvider;
 
   // ======== SETUP FUNCTIONS ======== //
 
@@ -166,6 +168,7 @@ contract Fixtures is Test {
     mockUsdc = new MockERC20("Mock USDC", "mUSDC", 6);
     mockWeth = new MockERC20("Mock WETH", "mWETH", 18);
     ldyToken = new GenericERC20("Ledgity Token", "LDY", 18);
+    dataProvider = new LedgityDataProvider();
 
     aaveLendingPool = _getAaveV3LendingPool();
 

@@ -140,19 +140,20 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
 
       // Test getting all requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory requests = vault.getWithdrawalRequests(false, 0);
+        memory requests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
       assertEq(requests.length, 1);
       assertEq(requests[0].user, testAccount1);
       assertFalse(requests[0].processed);
 
       // Test getting only pending requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory pendingRequests = vault.getWithdrawalRequests(true, 0);
+        memory pendingRequests = dataProvider.getWithdrawalRequests(address(vault), true, 0);
       assertEq(pendingRequests.length, 1);
 
       // Test getting user-specific requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory userRequests = vault.getUserWithdrawalRequests(
+        memory userRequests = dataProvider.getUserWithdrawalRequests(
+          address(vault),
           testAccount1,
           false,
           0
@@ -196,7 +197,8 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
       requestIds[1] = 2;
 
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory selectedRequests = vault.getWithdrawalRequestsByIds(
+        memory selectedRequests = dataProvider.getWithdrawalRequestsByIds(
+          address(vault),
           requestIds
         );
 
@@ -231,7 +233,8 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
 
       // Get requests for testAccount1 only
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory user1Requests = vault.getUserWithdrawalRequests(
+        memory user1Requests = dataProvider.getUserWithdrawalRequests(
+          address(vault),
           testAccount1,
           false,
           0
@@ -242,7 +245,8 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
 
       // Get requests for testAccount2 only
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory user2Requests = vault.getUserWithdrawalRequests(
+        memory user2Requests = dataProvider.getUserWithdrawalRequests(
+          address(vault),
           testAccount2,
           false,
           0
@@ -287,12 +291,12 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
 
       // Get all requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory allRequests = vault.getWithdrawalRequests(false, 0);
+        memory allRequests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
       assertEq(allRequests.length, 2);
 
       // Get only pending requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory pendingRequests = vault.getWithdrawalRequests(true, 0);
+        memory pendingRequests = dataProvider.getWithdrawalRequests(address(vault), true, 0);
       assertEq(pendingRequests.length, 1);
       assertEq(pendingRequests[0].requestId, 1);
       assertFalse(pendingRequests[0].processed);
@@ -329,12 +333,12 @@ contract LedgityDataProvider_UnitTest is Test, Fixtures {
 
       // Test pagination - get first 3 requests
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory firstPage = vault.getWithdrawalRequests(false, 3);
+        memory firstPage = dataProvider.getWithdrawalRequests(address(vault), false, 3);
       assertEq(firstPage.length, 3);
 
       // Test getting all requests (no limit)
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory allRequests = vault.getWithdrawalRequests(false, 0);
+        memory allRequests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
       assertEq(allRequests.length, 5);
     }
   }

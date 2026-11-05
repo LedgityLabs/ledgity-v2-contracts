@@ -14,7 +14,7 @@ import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataPro
 import { MockLToken } from "src/protocol-v1/mock/MockLToken.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
+import { IAaveLendingPoolV3, DataTypes } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
 
 /**
  * @title VaultBufferStrategy_IntegrationTest
@@ -320,7 +320,7 @@ contract VaultBufferStrategy_IntegrationTest is Test, Fixtures {
 
     // Get withdrawal request details
     ILedgityDataProvider.WithdrawalRequestRead[]
-      memory requests = vault.getWithdrawalRequests(false, 0);
+      memory requests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
     uint256 requestAmount = requests[0].amount;
 
     // Deposit small amount to buffer (insufficient)
@@ -403,7 +403,7 @@ contract VaultBufferStrategy_IntegrationTest is Test, Fixtures {
 
     // Get total withdrawal amount needed
     ILedgityDataProvider.WithdrawalRequestRead[]
-      memory requests = vault.getWithdrawalRequests(false, 0);
+      memory requests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
     uint256 totalWithdrawalAmount = requests[0].amount +
       requests[1].amount +
       requests[2].amount;
@@ -427,7 +427,7 @@ contract VaultBufferStrategy_IntegrationTest is Test, Fixtures {
 
     // Verify all requests were processed
     ILedgityDataProvider.WithdrawalRequestRead[]
-      memory allRequests = vault.getWithdrawalRequests(false, 0);
+      memory allRequests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
 
     for (uint256 i = 0; i < 3; i++) {
       assertTrue(
@@ -442,5 +442,198 @@ contract VaultBufferStrategy_IntegrationTest is Test, Fixtures {
       initialBuffer,
       "Buffer should decrease after processing withdrawals"
     );
+  }
+
+  function test_processRequests_withoutStrategyCountsAddedLiquidityOnce()
+    public
+  {
+    LedgityYieldVault plainVault = _createVaultWithConfig(
+      asset,
+      IERC20(address(lToken)),
+      false
+    );
+    _setupApprovalsForVault(plainVault, asset);
+
+    vm.prank(testAccount1);
+    plainVault.deposit(BASE_AMOUNT, testAccount1);
+    uint256 shares = plainVault.balanceOf(testAccount1);
+    uint256 gasFee = plainVault.withdrawalGasFee();
+    vm.prank(testAccount1);
+    plainVault.requestWithdrawal{ value: gasFee }(shares);
+
+    uint256 requestAmount = dataProvider.getWithdrawalRequests(address(plainVault), false, 0)[0]
+      .amount;
+    uint256 missing = requestAmount - plainVault.getBufferAssets();
+    uint256[] memory requestIds = new uint256[](1);
+
+    // Half of what is missing: enough only if the added liquidity counted twice
+    vm.prank(liquidityManager);
+    vm.expectRevert(LedgityYieldVault.InsufficientLiquidity.selector);
+    plainVault.processRequests(requestIds, missing / 2 + 1);
+
+    uint256 userBalanceBefore = asset.balanceOf(testAccount1);
+    vm.prank(liquidityManager);
+    plainVault.processRequests(requestIds, missing);
+    assertEq(
+      asset.balanceOf(testAccount1) - userBalanceBefore,
+      requestAmount
+    );
+  }
+
+  // ============ BUFFER STRATEGY SWITCH TESTS ============ //
+
+  // Aave V3 Lido market on mainnet, a second pool listing WETH
+  IAaveLendingPoolV3 internal constant LIDO_MARKET_POOL =
+    IAaveLendingPoolV3(0x4e033931ad43597d96D6bcc25c280717730B58B1);
+
+  function _updateLendingPool(IAaveLendingPoolV3 newPool) internal {
+    _updateLendingPool(newPool, "");
+  }
+
+  /// @dev Reads the current params first, so an expected revert applies to the update itself
+  function _updateLendingPool(
+    IAaveLendingPoolV3 newPool,
+    bytes memory expectedRevert
+  ) internal {
+    IERC20 currentLToken = vault.lToken();
+    IERC20 currentStakeToken = vault.stakeToken();
+    uint256 stakeForFeeReduction = vault.stakeForFeeReduction();
+    uint256 stakeForInstantWithdrawal = vault.stakeForInstantWithdrawal();
+    address owner = globalOwner.owner();
+
+    if (0 < expectedRevert.length) vm.expectRevert(expectedRevert);
+    vm.prank(owner);
+    vault.updateVaultParams(
+      currentLToken,
+      currentStakeToken,
+      stakeForFeeReduction,
+      stakeForInstantWithdrawal,
+      newPool
+    );
+  }
+
+  function test_updateVaultParams_samePoolLeavesBufferInPlace() public {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    uint256 invested = aToken.balanceOf(address(vault));
+
+    _updateLendingPool(aaveLendingPool);
+
+    assertEq(aToken.balanceOf(address(vault)), invested);
+    assertEq(address(vault.aToken()), address(aToken));
+    assertEq(
+      asset.allowance(address(vault), address(aaveLendingPool)),
+      type(uint256).max
+    );
+  }
+
+  function test_updateVaultParams_noPoolBringsBufferBackAndRevokes()
+    public
+  {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    uint256 bufferBefore = vault.getBufferAssets();
+
+    _updateLendingPool(IAaveLendingPoolV3(address(0)));
+
+    assertFalse(vault.hasBufferStrategy());
+    assertEq(aToken.balanceOf(address(vault)), 0);
+    assertEq(asset.allowance(address(vault), address(aaveLendingPool)), 0);
+    assertGe(vault.getBufferAssets(), bufferBefore);
+    assertEq(vault.getBufferAssets(), asset.balanceOf(address(vault)));
+  }
+
+  function test_updateVaultParams_newPoolMovesBuffer() public {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    uint256 bufferBefore = vault.getBufferAssets();
+
+    _updateLendingPool(LIDO_MARKET_POOL);
+
+    IERC20 newAToken = IERC20(
+      LIDO_MARKET_POOL.getReserveData(address(asset)).aTokenAddress
+    );
+    assertTrue(vault.hasBufferStrategy());
+    assertEq(address(vault.aaveLendingPool()), address(LIDO_MARKET_POOL));
+    assertEq(address(vault.aToken()), address(newAToken));
+    assertEq(aToken.balanceOf(address(vault)), 0);
+    assertEq(asset.balanceOf(address(vault)), 0);
+    assertEq(asset.allowance(address(vault), address(aaveLendingPool)), 0);
+    assertEq(
+      asset.allowance(address(vault), address(LIDO_MARKET_POOL)),
+      type(uint256).max
+    );
+    assertApproxEqAbs(vault.getBufferAssets(), bufferBefore, 2);
+  }
+
+  function test_updateVaultParams_backFromNoPoolReinvestsBuffer() public {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    uint256 bufferBefore = vault.getBufferAssets();
+
+    _updateLendingPool(IAaveLendingPoolV3(address(0)));
+    _updateLendingPool(aaveLendingPool);
+
+    assertTrue(vault.hasBufferStrategy());
+    assertEq(asset.balanceOf(address(vault)), 0);
+    assertApproxEqAbs(vault.getBufferAssets(), bufferBefore, 2);
+  }
+
+  function test_updateVaultParams_unlistedPoolReverts() public {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    UnlistedAssetPool unlisted = new UnlistedAssetPool();
+
+    _updateLendingPool(
+      IAaveLendingPoolV3(address(unlisted)),
+      abi.encodeWithSelector(
+        LedgityYieldVault.IncompatibleLendingPool.selector
+      )
+    );
+
+    assertEq(address(vault.aaveLendingPool()), address(aaveLendingPool));
+    assertGt(aToken.balanceOf(address(vault)), 0);
+  }
+
+  function test_updateVaultParams_poolRefusingDepositsReverts() public {
+    vm.prank(liquidityManager);
+    vault.depositToBuffer(BASE_AMOUNT);
+    RejectingDepositPool rejecting = new RejectingDepositPool(
+      address(0xA70C)
+    );
+
+    _updateLendingPool(
+      IAaveLendingPoolV3(address(rejecting)),
+      bytes("deposits refused")
+    );
+
+    assertEq(address(vault.aaveLendingPool()), address(aaveLendingPool));
+    assertGt(aToken.balanceOf(address(vault)), 0);
+  }
+}
+
+/// @dev A pool that does not list the asset: its reserve data is empty
+contract UnlistedAssetPool {
+  function getReserveData(
+    address
+  ) external pure returns (DataTypes.ReserveData memory reserve) {}
+}
+
+/// @dev A pool that lists the asset but refuses every deposit
+contract RejectingDepositPool {
+  address private immutable _aToken;
+
+  constructor(address aToken_) {
+    _aToken = aToken_;
+  }
+
+  function getReserveData(
+    address
+  ) external view returns (DataTypes.ReserveData memory reserve) {
+    reserve.aTokenAddress = _aToken;
+  }
+
+  function deposit(address, uint256, address, uint16) external pure {
+    revert("deposits refused");
   }
 }

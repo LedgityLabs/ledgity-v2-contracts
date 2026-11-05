@@ -847,7 +847,7 @@ contract LedgityYieldVault_UnitTest is Test, Fixtures {
 
       // Get the request amount
       ILedgityDataProvider.WithdrawalRequestRead[]
-        memory requests = vault.getWithdrawalRequests(false, 0);
+        memory requests = dataProvider.getWithdrawalRequests(address(vault), false, 0);
       uint256 requestAmount = requests[0].amount;
 
       // Provide exact liquidity needed via addedLiquidity parameter

@@ -4,10 +4,9 @@ pragma solidity 0.8.18;
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IAaveLendingPoolV3 } from "src/protocol-v2/interfaces/IAaveLendingPoolV3.sol";
-import { ILedgityDataProvider } from "src/protocol-v2/interfaces/ILedgityDataProvider.sol";
 import { IVaultLiquidityModule } from "src/protocol-v2/interfaces/IVaultLiquidityModule.sol";
 
-interface ILedgityYieldVault is ILedgityDataProvider {
+interface ILedgityYieldVault {
   struct VaultParams {
     string name;
     string symbol;
@@ -65,36 +64,6 @@ interface ILedgityYieldVault is ILedgityDataProvider {
     );
 
   function getBufferAssets() external view returns (uint256);
-
-  function getWithdrawalRequests(
-    bool onlyPending,
-    uint256 maxRange
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    );
-
-  function getUserWithdrawalRequests(
-    address user,
-    bool onlyPending,
-    uint256 maxRange
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    );
-
-  function getWithdrawalRequestsByIds(
-    uint256[] calldata requestIds
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    );
 
   function getWithdrawalRequestCount()
     external

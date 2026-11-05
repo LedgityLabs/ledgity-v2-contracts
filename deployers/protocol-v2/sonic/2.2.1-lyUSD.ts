@@ -18,13 +18,12 @@ export default async function deploy({
   const chainId = await getChainId();
 
   // Retrieve global contracts
-  const [globalOwner, globalPause, globalAccessList, ledgityDataProviderLib] =
+  const [globalOwner, globalPause, globalAccessList] =
     await Promise.all(
       [
         "GlobalOwnerSonic",
         "GlobalPauseSonic",
         "GlobalAccessList",
-        "LedgityDataProvider",
       ].map((el) => deployments.get(el).then((el) => el.address as Address)),
     );
 
@@ -43,9 +42,6 @@ export default async function deploy({
     from: deployer,
     log: true,
     waitConfirmations: 3,
-    libraries: {
-      LedgityDataProvider: ledgityDataProviderLib,
-    },
     proxy: {
       proxyContract: "UUPS",
       implementationName: "LedgityYieldVaultSonic_Implementation",

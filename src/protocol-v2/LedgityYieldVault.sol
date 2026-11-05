@@ -12,7 +12,6 @@ import { ERC4626Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ER
 import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // Libraries
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import { LedgityDataProvider } from "src/protocol-v2/libraries/LedgityDataProvider.sol";
 // Interfaces
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IERC20Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -35,7 +34,6 @@ contract LedgityYieldVault is
 {
   // ======== LIBS ======== //
   using SafeERC20 for IERC20;
-  using LedgityDataProvider for ILedgityDataProvider.WithdrawalRequest[];
 
   // ======== ERRORS ======== //
 
@@ -48,6 +46,7 @@ contract LedgityYieldVault is
   error InsufficientLiquidity();
   error InsufficientStakeForInstantWithdrawal();
   error TransferFailed();
+  error IncompatibleLendingPool();
 
   // ======== STORAGE ======== //
 
@@ -290,81 +289,6 @@ contract LedgityYieldVault is
   }
 
   /**
-   * @notice Get withdrawal requests with optional filtering
-   * @param onlyPending If true, only return non-processed requests
-   * @param maxRange Maximum number of requests to return (0 = return all)
-   * @return requests Array of withdrawal requests with read structure
-   */
-  function getWithdrawalRequests(
-    bool onlyPending,
-    uint256 maxRange
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    )
-  {
-    return
-      withdrawalRequests.getWithdrawalRequests(
-        stakeToken,
-        stakeForFeeReduction,
-        onlyPending,
-        maxRange
-      );
-  }
-
-  /**
-   * @notice Get withdrawal requests for a specific user
-   * @param user The user address
-   * @param onlyPending If true, only return non-processed requests
-   * @param maxRange Maximum number of requests to return (0 = return all)
-   * @return requests Array of withdrawal requests for the user with read structure
-   */
-  function getUserWithdrawalRequests(
-    address user,
-    bool onlyPending,
-    uint256 maxRange
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    )
-  {
-    return
-      withdrawalRequests.getUserWithdrawalRequests(
-        stakeToken,
-        stakeForFeeReduction,
-        user,
-        onlyPending,
-        maxRange
-      );
-  }
-
-  /**
-   * @notice Get specific withdrawal requests by their IDs
-   * @param requestIds Array of request IDs to fetch
-   * @return requests Array of withdrawal requests corresponding to the IDs with read structure
-   */
-  function getWithdrawalRequestsByIds(
-    uint256[] calldata requestIds
-  )
-    external
-    view
-    returns (
-      ILedgityDataProvider.WithdrawalRequestRead[] memory requests
-    )
-  {
-    return
-      withdrawalRequests.getWithdrawalRequestsByIds(
-        stakeToken,
-        stakeForFeeReduction,
-        requestIds
-      );
-  }
-
-  /**
    * @notice Get total number of withdrawal requests
    * @return Total number of requests created
    */
@@ -381,26 +305,41 @@ contract LedgityYieldVault is
   /**
    * @notice Setup the buffer strategy
    * @param aaveLendingPool_ The Aave lending pool address
+   * @dev Does nothing if the pool is unchanged. On a change the buffer leaves the old pool,
+   *      whose allowance is revoked, and is reinvested in the new one, so getBufferAssets()
+   *      keeps counting it. Reverts if a pool cannot hold the asset or the old one cannot pay out.
    */
   function _setupBufferStrategy(
     IAaveLendingPoolV3 aaveLendingPool_
   ) private {
+    IAaveLendingPoolV3 oldPool = aaveLendingPool;
+    if (address(aaveLendingPool_) == address(oldPool)) return;
+
+    if (hasBufferStrategy) {
+      if (0 < getBufferAssets()) {
+        _withdrawBuffer(address(this), type(uint256).max);
+      }
+      IERC20(asset()).forceApprove(address(oldPool), 0);
+    }
+
     if (address(aaveLendingPool_) != address(0)) {
-      aaveLendingPool = aaveLendingPool_;
-      aToken = IERC20(
+      IERC20 newAToken = IERC20(
         aaveLendingPool_
           .getReserveData(address(asset()))
           .aTokenAddress
       );
+      if (address(newAToken) == address(0)) revert IncompatibleLendingPool();
 
-      // Validate that aToken was properly retrieved
-      if (address(aToken) != address(0)) {
-        hasBufferStrategy = true;
-        IERC20(asset()).forceApprove(
-          address(aaveLendingPool_),
-          type(uint256).max
-        );
-      }
+      aaveLendingPool = aaveLendingPool_;
+      aToken = newAToken;
+      hasBufferStrategy = true;
+      IERC20(asset()).forceApprove(
+        address(aaveLendingPool_),
+        type(uint256).max
+      );
+
+      uint256 idleAssets = IERC20(asset()).balanceOf(address(this));
+      if (0 < idleAssets) _investBuffer(idleAssets);
     } else {
       hasBufferStrategy = false;
       aaveLendingPool = IAaveLendingPoolV3(address(0));
@@ -491,7 +430,7 @@ contract LedgityYieldVault is
     if (
       stakeForInstantWithdrawal != 0 &&
       address(stakeToken) != address(0) &&
-      stakeToken.balanceOf(caller_) < stakeForInstantWithdrawal
+      stakeToken.balanceOf(owner_) < stakeForInstantWithdrawal
     ) revert InsufficientStakeForInstantWithdrawal();
 
     if (caller_ != owner_) {
@@ -849,9 +788,10 @@ contract LedgityYieldVault is
     }
 
     // Check available liquidity (buffer + added liquidity)
+    // Without a buffer strategy the added liquidity is already in the asset balance read here
     uint256 bufferBalance = getBufferAssets();
-    if ((bufferBalance + addAssets) < assetsTotal)
-      revert InsufficientLiquidity();
+    if (hasBufferStrategy) bufferBalance += addAssets;
+    if (bufferBalance < assetsTotal) revert InsufficientLiquidity();
 
     // Withdraw required assets from buffer if needed
     if (hasBufferStrategy && addAssets < assetsTotal) {

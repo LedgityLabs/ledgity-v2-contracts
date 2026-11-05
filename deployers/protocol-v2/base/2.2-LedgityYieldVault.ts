@@ -7,26 +7,20 @@ export default async function deploy({
   console.log("\n=> Deploy LedgityYieldVault".cyan);
   const { deployer } = await getNamedAccounts();
 
-  // Deploy the LedgityDataProvider library first
-  console.log("==> Deploy lib LedgityDataProvider".cyan);
-  const ledgityDataProviderLib = await deployments.deploy(
-    "LedgityDataProvider",
-    {
-      from: deployer,
-      log: true,
-      waitConfirmations: 3,
-    },
-  );
+  // Deploy LedgityDataProvider, the withdrawal request views read from the vaults
+  console.log("==> Deploy LedgityDataProvider".cyan);
+  await deployments.deploy("LedgityDataProvider", {
+    from: deployer,
+    log: true,
+    waitConfirmations: 3,
+  });
 
-  // Deploy the shared implementation with library linking
+  // Deploy the shared implementation
   await deployments.deploy("LedgityYieldVault_Implementation", {
     contract: "LedgityYieldVault",
     from: deployer,
     log: true,
     waitConfirmations: 3,
     // skipIfAlreadyDeployed: true,
-    libraries: {
-      LedgityDataProvider: ledgityDataProviderLib.address,
-    },
   });
 }

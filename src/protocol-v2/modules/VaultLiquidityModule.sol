@@ -272,22 +272,25 @@ abstract contract VaultLiquidityModule is
 
     /**
      * This represents the PPS before performance fee dilution
-     * @dev Add 1 to shares to avoid division by zero
+     * @dev An empty vault is priced like convertToShares(): one virtual share per asset unit,
+     *      so the price matches the high-water mark default and no performance fee is charged
      */
-    if (shares == 0) shares = 1;
+    if (shares == 0) shares = 10 ** decimalsOffset;
 
-    pricePerShare = ((currentAssets + 1) - managementFeeAssets)
-      .mulDiv(1e18, shares, Math.Rounding.Up);
+    /**
+     * @dev Rounded down, and the price after the fee below rounded up on the same basis: the
+     *      high-water mark can only be crossed by a real gain, never by rounding
+     */
+    pricePerShare = ((currentAssets + 1) - managementFeeAssets).mulDiv(
+      1e18,
+      shares
+    );
 
     uint256 performanceFeeAssets;
     if (highWaterMark < pricePerShare) {
       uint256 profitPerShare = pricePerShare - highWaterMark;
 
-      uint256 profit = profitPerShare.mulDiv(
-        shares,
-        1e18,
-        Math.Rounding.Up
-      );
+      uint256 profit = profitPerShare.mulDiv(shares, 1e18);
 
       performanceFeeAssets = profit.mulDiv(
         performanceFeeRate,
@@ -295,10 +298,10 @@ abstract contract VaultLiquidityModule is
         Math.Rounding.Up
       );
 
-      pricePerShare = (currentAssets -
+      pricePerShare = ((currentAssets + 1) -
         (managementFeeAssets + performanceFeeAssets)).mulDiv(
           1e18,
-          shares + 1,
+          shares,
           Math.Rounding.Up
         );
     }

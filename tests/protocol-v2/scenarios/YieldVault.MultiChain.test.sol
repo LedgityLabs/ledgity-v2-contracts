@@ -33,9 +33,11 @@ contract YieldVault_MultiChain_ScenarioTest is ScenarioEngine {
       usdc,
       IERC20(address(lTokenUsdc))
     );
-    LedgityYieldVault vaultUsdcMock = _createVault(
+    // No Aave pool lists the mock token
+    LedgityYieldVault vaultUsdcMock = _createVaultWithConfig(
       mockUsdc,
-      IERC20(address(lTokenUsdcMock))
+      IERC20(address(lTokenUsdcMock)),
+      false
     );
 
     // Register vaults for multi-chain simulation
