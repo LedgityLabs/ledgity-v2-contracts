@@ -42,6 +42,9 @@ const STAKING = "src/protocol-v2/staking/StakingPositions.sol:StakingPositions";
 const DISTRIBUTOR =
   "src/protocol-v2/staking/StakingRewardsDistributor.sol:StakingRewardsDistributor";
 const LTOKEN = "src/protocol-v1/LToken.sol:LToken";
+const VAULT = "src/protocol-v2/LedgityYieldVault.sol:LedgityYieldVault";
+const FIXED_TERM_VAULT =
+  "src/protocol-v2/FixedTermInvestmentVault.sol:FixedTermInvestmentVault";
 
 const TARGETS_BY_CHAIN: Record<number, Target[]> = {
   1: [
@@ -54,6 +57,16 @@ const TARGETS_BY_CHAIN: Record<number, Target[]> = {
       label: "StakingRewardsDistributor",
       proxy: "0xd8FefECC48D0B7a250314CD67D7F73fF3a35b6BF",
       candidate: DISTRIBUTOR,
+    },
+    {
+      label: "lyUSD",
+      proxy: "0x3C769d0e8D21d380228dFB7918c6933bb6ecB6D4",
+      candidate: VAULT,
+    },
+    {
+      label: "lyEUR",
+      proxy: "0x20968165B7d2cDF33aF632aAB3e0539848d44BC8",
+      candidate: VAULT,
     },
   ],
   8453: [
@@ -77,6 +90,21 @@ const TARGETS_BY_CHAIN: Record<number, Target[]> = {
       proxy: "0x77ce973744745310359B0d1a3415A34FF983708F",
       candidate: LTOKEN,
     },
+    {
+      label: "lyUSD",
+      proxy: "0x916f179D5D9B7d8Ad815AC2f8570aabF0C6a6e38",
+      candidate: VAULT,
+    },
+    {
+      label: "lyEUR",
+      proxy: "0xFaA1e3720e6Ef8cC76A800DB7B3dF8944833b134",
+      candidate: VAULT,
+    },
+    {
+      label: "lyREI",
+      proxy: "0x085b292A7c54767d5371fE939a4Ad4dC9828d98f",
+      candidate: FIXED_TERM_VAULT,
+    },
   ],
   42161: [
     {
@@ -94,12 +122,32 @@ const TARGETS_BY_CHAIN: Record<number, Target[]> = {
       proxy: "0xd54d564606611A3502FE8909bBD3075dbeb77813",
       candidate: LTOKEN,
     },
+    {
+      label: "lyUSD",
+      proxy: "0x283F35b6406a0e19a786ed119869eF2c0fE157Ee",
+      candidate: VAULT,
+    },
   ],
   59144: [
+    {
+      label: "StakingPositions",
+      proxy: "0xcc1beF907DCe6c073332A75086708F53BDe4f6f0",
+      candidate: STAKING,
+    },
+    {
+      label: "StakingRewardsDistributor",
+      proxy: "0x902982C0C405091894FF82b3b51F180f99f75144",
+      candidate: DISTRIBUTOR,
+    },
     {
       label: "LUSDC",
       proxy: "0x4AF215DbE27fc030F37f73109B85F421FAB45B7a",
       candidate: LTOKEN,
+    },
+    {
+      label: "lyUSD",
+      proxy: "0x43b3c64dbc95F9eD83795E051fc00014059e698F",
+      candidate: VAULT,
     },
   ],
   146: [
@@ -124,6 +172,12 @@ const TARGETS_BY_CHAIN: Record<number, Target[]> = {
       label: "LEURC",
       proxy: "0x88dC8674339731A12a08624f455Fd41Fe2d6DC82",
       candidate: "src/protocol-v1/sonic/LTokenSonic.sol:LTokenSonic",
+    },
+    {
+      label: "lyUSD",
+      proxy: "0x65f75c675Cc76474662DfBF7B6e8683764223001",
+      candidate: 
+        "src/protocol-v2/chainSonic/LedgityYieldVaultSonic.sol:LedgityYieldVaultSonic",
     },
   ],
 };

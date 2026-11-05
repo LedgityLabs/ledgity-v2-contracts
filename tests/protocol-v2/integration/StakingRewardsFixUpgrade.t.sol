@@ -49,6 +49,11 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
   address safe;
   bool isSonic;
   bool isBase;
+  /// @dev Linea has the staking contracts but no LDY token set and no position: only the
+  ///      upgrade itself can be rehearsed there
+  bool isLinea;
+  bytes32 constant IMPLEMENTATION_SLOT =
+    0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
 
   address newStakingImpl;
   address newDistributorImpl;
@@ -70,6 +75,11 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
     } else if (_eq(fork, "arbitrum")) {
       _fork("ARBITRUM");
       stakingProxy = 0x6E83612c73f124127d49eA642c392FF4d9eAFd5b;
+    } else if (_eq(fork, "linea")) {
+      _fork("LINEA");
+      // The proxy (deployers/deployments/linea/StakingPositions.json records the implementation)
+      stakingProxy = 0xcc1beF907DCe6c073332A75086708F53BDe4f6f0;
+      isLinea = true;
     } else if (_eq(fork, "sonic")) {
       _fork("SONIC");
       stakingProxy = 0x613904B9a1Af4450FD34655d123EEb0944888b21;
@@ -184,7 +194,9 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
     uint256 cumulative = distributor
       .cumulativeProtocolRewardsPerToken();
     uint256 startTime = distributor.startTime();
-    uint256 distributorBalance = ldy.balanceOf(address(distributor));
+    uint256 distributorBalance = isLinea
+      ? 0
+      : ldy.balanceOf(address(distributor));
 
     _upgrade();
 
@@ -215,7 +227,8 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
       0,
       "pendingProtocolFees"
     );
-    assertEq(ldy.balanceOf(address(distributor)), distributorBalance);
+    if (!isLinea)
+      assertEq(ldy.balanceOf(address(distributor)), distributorBalance);
 
     for (uint256 id = 1; id <= lastId; id++) {
       PositionSnapshot memory b = before[id];
@@ -237,20 +250,65 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
         b.claimableProtocol,
         "protocol claimable"
       );
-      // Base claimable can only grow: positions that skipped a running period get it back
-      assertGe(
-        a.claimableBase,
-        b.claimableBase,
-        "base claimable decreased"
-      );
+      // On Base the fix both returns the skipped running period and drops the week the live
+      // code counts twice (token 5 since 2026-11-05): the replay tests compare it to the model
       if (!isBase)
         assertEq(a.claimableBase, b.claimableBase, "base claimable");
+    }
+  }
+
+  /// @dev After the upgrade, upgradeTo(live implementations) by the Safe: every position reads
+  ///      the same, the appended slots are simply ignored by the live code
+  function test_rollback_restoresTheLiveImplementations() public {
+    address liveStaking = address(
+      uint160(uint256(vm.load(address(staking), IMPLEMENTATION_SLOT)))
+    );
+    address liveDistributor = address(
+      uint160(uint256(vm.load(address(distributor), IMPLEMENTATION_SLOT)))
+    );
+    _upgrade();
+    uint256 lastId = staking.tokenId();
+    PositionSnapshot[] memory upgraded = new PositionSnapshot[](lastId + 1);
+    for (uint256 id = 1; id <= lastId; id++) upgraded[id] = _snapshot(id);
+    uint256 supply = staking.supply();
+    uint256 epoch = staking.epoch();
+
+    vm.startPrank(safe);
+    UUPSUpgradeable(address(staking)).upgradeTo(liveStaking);
+    UUPSUpgradeable(address(distributor)).upgradeTo(liveDistributor);
+    vm.stopPrank();
+
+    assertEq(staking.supply(), supply, "supply");
+    assertEq(staking.epoch(), epoch, "epoch");
+    for (uint256 id = 1; id <= lastId; id++) {
+      PositionSnapshot memory s = _snapshot(id);
+      assertEq(s.owner, upgraded[id].owner, "owner");
+      assertEq(s.amount, upgraded[id].amount, "amount");
+      assertEq(s.end, upgraded[id].end, "end");
+      assertEq(s.userPointEpoch, upgraded[id].userPointEpoch, "userPointEpoch");
+      assertEq(s.votingPower, upgraded[id].votingPower, "votingPower");
+      assertEq(s.baseRewardCursor, upgraded[id].baseRewardCursor, "baseRewardCursor");
+      assertEq(s.protocolRewardCursor, upgraded[id].protocolRewardCursor, "protocolRewardCursor");
+      assertEq(
+        s.protocolRewardsPerTokenPaid,
+        upgraded[id].protocolRewardsPerTokenPaid,
+        "protocolRewardsPerTokenPaid"
+      );
+      assertEq(s.accruedProtocolRewards, upgraded[id].accruedProtocolRewards, "accruedProtocolRewards");
+    }
+    // Forward again, same positions
+    _upgrade();
+    for (uint256 id = 1; id <= lastId; id++) {
+      PositionSnapshot memory s = _snapshot(id);
+      assertEq(s.claimableBase, upgraded[id].claimableBase, "claimableBase");
+      assertEq(s.claimableProtocol, upgraded[id].claimableProtocol, "claimableProtocol");
     }
   }
 
   function test_upgrade_noDoubleClaimAndDistributorStaysSolvent()
     public
   {
+    if (isLinea) return;
     _upgrade();
     uint256 lastId = staking.tokenId();
     uint256 available = ldy.balanceOf(address(distributor));
@@ -483,10 +541,12 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
   function test_replay_newMatchesModel_oldDiffersOnlyWhereBuggy()
     public
   {
+    if (isLinea) return;
     _replayAndCompare(0xC0FFEE, false);
   }
 
   function test_replay_withSleepers_newMatchesModel() public {
+    if (isLinea) return;
     _replayAndCompare(0xBEEF, true);
   }
 
@@ -522,7 +582,18 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
       );
     }
 
+    // Protocol fees owed before the replay: what the new code may pay on top of the deposits
+    // (pendingProtocolFees only exists on the new implementation: read on a throwaway upgrade)
     uint256 snapshot = vm.snapshotState();
+    _upgrade();
+    uint256 protocolOwedAtStart = distributor.pendingProtocolFees();
+    for (uint256 id = 1; id <= lastId; id++) {
+      if (staking.ownerOf(id) == address(0)) continue;
+      (, uint256 protocolOwed) = distributor.claimable(id);
+      protocolOwedAtStart += protocolOwed;
+    }
+    vm.revertToState(snapshot);
+    snapshot = vm.snapshotState();
     RunResult memory oldRun = _replay(
       false,
       seed,
@@ -584,8 +655,10 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
             ")"
           )
         );
-      } else {
-        // Untouched by the bugs: the protocol fees paid must be identical too
+      } else if (oldRun.reverts == 0) {
+        // Untouched by the bugs: the protocol fees paid must be identical too. Only
+        // comparable when the old code let everyone leave: a position whose withdrawal
+        // reverted stays staked and keeps a share of the fees deposited afterwards
         assertEq(
           newRun.protocolPaid[id],
           oldRun.protocolPaid[id],
@@ -593,6 +666,15 @@ contract Skip_StakingRewardsFixUpgradeFork is Test {
         );
       }
     }
+    // The new code never pays more protocol fees than were owed and deposited
+    uint256 protocolPaidNew;
+    for (uint256 id = 1; id <= lastId; id++)
+      protocolPaidNew += newRun.protocolPaid[id];
+    assertLe(
+      protocolPaidNew,
+      protocolOwedAtStart + newRun.protocolDeposited,
+      "protocol rewards over-paid"
+    );
     emit log_named_uint(
       "positions the old code pays wrongly",
       affected

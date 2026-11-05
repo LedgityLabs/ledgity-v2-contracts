@@ -26,6 +26,8 @@ const STAKING_BY_CHAIN: Record<number, string> = {
   1: "0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483",
   8453: "0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88",
   42161: "0x6E83612c73f124127d49eA642c392FF4d9eAFd5b",
+  // The StakingPositions proxy (deployers/deployments/linea/StakingPositions.json records the implementation)
+  59144: "0xcc1beF907DCe6c073332A75086708F53BDe4f6f0",
   146: "0x613904B9a1Af4450FD34655d123EEb0944888b21",
 };
 
@@ -77,6 +79,25 @@ task(
   // A custom task does not compile by itself: without this the stale artifacts get deployed
   await hre.run("compile");
 
+  // Optional fee cap (gwei): the node refuses the transaction up front instead of overpaying,
+  // e.g. DEPLOY_MAX_FEE_GWEI=0.08 DEPLOY_PRIORITY_FEE_GWEI=0.04 on Linea, where the default
+  // maximum fee is priced at 1 gwei for a 0.04 gwei effective price
+  const feeCap = process.env.DEPLOY_MAX_FEE_GWEI
+    ? {
+        maxFeePerGas: ethers.utils
+          .parseUnits(process.env.DEPLOY_MAX_FEE_GWEI, "gwei")
+          .toString(),
+        maxPriorityFeePerGas: ethers.utils
+          .parseUnits(process.env.DEPLOY_PRIORITY_FEE_GWEI ?? "0.01", "gwei")
+          .toString(),
+      }
+    : {};
+  if (process.env.DEPLOY_MAX_FEE_GWEI)
+    console.log(
+      `==> Fee cap ${process.env.DEPLOY_MAX_FEE_GWEI} gwei (priority ${process.env.DEPLOY_PRIORITY_FEE_GWEI ?? "0.01"})`
+        .yellow,
+    );
+
   // A function selector pushed by the dispatcher (PUSH4 <selector>)
   const has = (code: string, signature: string) => {
     const selector = new ethers.utils.Interface([signature])
@@ -120,7 +141,10 @@ task(
         `${address} does not hold the compiled ${contractFqn}: nothing written`,
       );
     for (const [file, markers] of Object.entries(FIX_MARKERS)) {
-      const source = buildInfo?.input.sources[file]?.content ?? "";
+      const source = buildInfo?.input.sources[file]?.content;
+      // An incremental compile splits the build infos: a source absent from this one is
+      // checked with its own implementation
+      if (source === undefined) continue;
       for (const marker of markers)
         if (!source.includes(marker))
           throw Error(
@@ -183,6 +207,7 @@ task(
       log: true,
       waitConfirmations: isFork ? 1 : 3,
       libraries: { BalanceLogicLibrary: balanceLogicLibrary },
+      ...feeCap,
     },
   );
   const distributorImplementation = await deployments.deploy(
@@ -196,6 +221,7 @@ task(
       from: deployer,
       log: true,
       waitConfirmations: isFork ? 1 : 3,
+      ...feeCap,
     },
   );
 

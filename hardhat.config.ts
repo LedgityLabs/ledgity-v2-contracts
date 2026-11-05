@@ -9,6 +9,7 @@ import "./tasks/extract-abis";
 import "./tasks/deploy-mock-ccip-token";
 import "./tasks/upgrade-ltoken-withdrawal-only";
 import "./tasks/upgrade-staking-rewards-fix";
+import "./tasks/upgrade-vault-fixes";
 import "./tasks/check-storage-layout";
 
 import fs from "fs";
@@ -223,6 +224,15 @@ const config: HardhatUserConfig = {
   solidity: {
     overrides: {
       "src/protocol-v2/LedgityYieldVault.sol": {
+        version: "0.8.18",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1,
+          },
+        },
+      },
+      "src/protocol-v2/chainSonic/LedgityYieldVaultSonic.sol": {
         version: "0.8.18",
         settings: {
           optimizer: {
