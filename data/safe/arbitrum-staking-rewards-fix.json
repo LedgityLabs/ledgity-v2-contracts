@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "42161",
-  "createdAt": 1793613731517,
+  "createdAt": 1793893018778,
   "meta": {
     "name": "Staking: maintenance upgrade (arbitrum)",
     "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
@@ -14,7 +14,7 @@
     {
       "to": "0x6E83612c73f124127d49eA642c392FF4d9eAFd5b",
       "value": "0",
-      "data": "0x3659cfe60000000000000000000000008ce2c4dadfda726a21b9f0f7064170ced31e9f5e",
+      "data": "0x3659cfe60000000000000000000000008872b8c7533bf098bbf012b9f1c6318ae2ed4bea",
       "contractMethod": null,
       "contractInputsValues": null
     },

@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "chainId": "146",
+  "createdAt": 1793894421007,
+  "meta": {
+    "name": "Vaults and staking: maintenance upgrade (sonic)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x65f75c675Cc76474662DfBF7B6e8683764223001",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000e78d6c135c1d2865c6f539850f61d1cd5989529f",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x65f75c675Cc76474662DfBF7B6e8683764223001",
+      "value": "0",
+      "data": "0xdc988518000000000000000000000000000000000000000000000000000000000010c8a9",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x613904B9a1Af4450FD34655d123EEb0944888b21",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000f8364c60d403b44798fbccf3a2ec38f046a6e437",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x536E1C104F89351A2156135FA85B9B2dC26d9462",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000008b72ecfce5b8f09bc268f2438ad231c40abf5cb4",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}

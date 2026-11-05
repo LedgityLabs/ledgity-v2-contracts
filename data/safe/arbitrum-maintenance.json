@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1793894417959,
+  "meta": {
+    "name": "Vaults and staking: maintenance upgrade (arbitrum)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x283F35b6406a0e19a786ed119869eF2c0fE157Ee",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000cafa29a5b0bec43cdea826ec21d0134e14fcc37e",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x283F35b6406a0e19a786ed119869eF2c0fE157Ee",
+      "value": "0",
+      "data": "0xdc988518000000000000000000000000000000000000000000000000000000000010c8ae",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x6E83612c73f124127d49eA642c392FF4d9eAFd5b",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000008872b8c7533bf098bbf012b9f1c6318ae2ed4bea",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x841A13A5C4Aa89d7C013E6f49E95188ed3e6c300",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000bbb6f6e3ac59112d90dcc63dcc27567101450011",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "146",
-  "createdAt": 1793613758034,
+  "createdAt": 1793893975730,
   "meta": {
     "name": "Staking: maintenance upgrade (sonic)",
     "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
@@ -14,7 +14,7 @@
     {
       "to": "0x613904B9a1Af4450FD34655d123EEb0944888b21",
       "value": "0",
-      "data": "0x3659cfe6000000000000000000000000ab46555149f92822aa9821eacd36bef41daac126",
+      "data": "0x3659cfe6000000000000000000000000f8364c60d403b44798fbccf3a2ec38f046a6e437",
       "contractMethod": null,
       "contractInputsValues": null
     },

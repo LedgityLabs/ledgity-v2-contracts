@@ -3,6 +3,11 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
         "name": "user",
         "type": "address"
       },
@@ -63,6 +68,11 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
         "name": "onlyPending",
         "type": "bool"
@@ -118,6 +128,11 @@
   },
   {
     "inputs": [
+      {
+        "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      },
       {
         "internalType": "uint256[]",
         "name": "requestIds",

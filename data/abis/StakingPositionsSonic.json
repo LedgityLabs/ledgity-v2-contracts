@@ -11,6 +11,11 @@
   },
   {
     "inputs": [],
+    "name": "InvalidMaxTime",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "LockDurationNotInFuture",
     "type": "error"
   },

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "8453",
-  "createdAt": 1793613710470,
+  "createdAt": 1793890652434,
   "meta": {
     "name": "Staking: maintenance upgrade (base)",
     "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
@@ -14,7 +14,7 @@
     {
       "to": "0x0fCfdF9B6572116FA662A5CF8a074B51EB2D6d88",
       "value": "0",
-      "data": "0x3659cfe6000000000000000000000000a915f8bf487655ff870d3e00a6bb234aee88ae0b",
+      "data": "0x3659cfe6000000000000000000000000bf375015b44542a9dfca79b21ec30364f3c30221",
       "contractMethod": null,
       "contractInputsValues": null
     },

@@ -131,6 +131,11 @@
   },
   {
     "inputs": [],
+    "name": "WithdrawalOnlyMode",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "WithdrawerZeroAddress",
     "type": "error"
   },
@@ -1244,6 +1249,19 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "status_",
+        "type": "bool"
+      }
+    ],
+    "name": "switchWithdrawalOnly",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "symbol",
     "outputs": [
@@ -1501,6 +1519,19 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdrawalOnly",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",

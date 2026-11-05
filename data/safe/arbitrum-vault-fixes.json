@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1793893009882,
+  "meta": {
+    "name": "Vaults: maintenance upgrade (arbitrum)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x283F35b6406a0e19a786ed119869eF2c0fE157Ee",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000cafa29a5b0bec43cdea826ec21d0134e14fcc37e",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x283F35b6406a0e19a786ed119869eF2c0fE157Ee",
+      "value": "0",
+      "data": "0xdc988518000000000000000000000000000000000000000000000000000000000010c8ae",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}

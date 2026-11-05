@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1793890617169,
+  "meta": {
+    "name": "Vaults: maintenance upgrade (base)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x916f179D5D9B7d8Ad815AC2f8570aabF0C6a6e38",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000713f3350a870d85a86038fb45a9700cea0934ce9",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x916f179D5D9B7d8Ad815AC2f8570aabF0C6a6e38",
+      "value": "0",
+      "data": "0xdc988518000000000000000000000000000000000000000000000000000000000010c4d2",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xFaA1e3720e6Ef8cC76A800DB7B3dF8944833b134",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000713f3350a870d85a86038fb45a9700cea0934ce9",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xFaA1e3720e6Ef8cC76A800DB7B3dF8944833b134",
+      "value": "0",
+      "data": "0xdc98851800000000000000000000000000000000000000000000000000000000000fdb7e",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x085b292A7c54767d5371fE939a4Ad4dC9828d98f",
+      "value": "0",
+      "data": "0x3659cfe600000000000000000000000003096743ec90cf833b2debf35aca7ba49fc372f5",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x085b292A7c54767d5371fE939a4Ad4dC9828d98f",
+      "value": "0",
+      "data": "0xdc9885180000000000000000000000000000000000000000000000000000000000103777",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}

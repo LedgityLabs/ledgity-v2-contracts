@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "59144",
+  "createdAt": 1793893061087,
+  "meta": {
+    "name": "Vaults: maintenance upgrade (linea)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x43b3c64dbc95F9eD83795E051fc00014059e698F",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000f2663b722e0faccc6fb2743ab8cb30b1d8d93649",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x43b3c64dbc95F9eD83795E051fc00014059e698F",
+      "value": "0",
+      "data": "0xdc988518000000000000000000000000000000000000000000000000000000000010aa3b",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
