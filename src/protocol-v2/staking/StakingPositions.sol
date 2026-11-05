@@ -569,6 +569,8 @@ contract StakingPositions is
       revert NotApprovedOrOwner();
     // Clear approval. Throws if `_from` is not the current owner
     if (idToOwner[_tokenId] != _from) revert NotOwner();
+    // A position sent to the zero address could never be withdrawn
+    if (_to == address(0)) revert ZeroAddress();
     delete idToApprovals[_tokenId];
     // Remove NFT. Throws if `_tokenId` is not a valid NFT
     _removeTokenFrom(_from, _tokenId);

@@ -518,6 +518,23 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     assertEq(stakingPositions.getApproved(tokenId), address(0)); // Approval cleared
   }
 
+  function test_TransferFrom_RevertZeroAddress() public {
+    vm.startPrank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(
+      TEST_AMOUNT,
+      TEST_LOCK_DURATION
+    );
+
+    vm.expectRevert(IStakingPositions.ZeroAddress.selector);
+    stakingPositions.transferFrom(testAccount1, address(0), tokenId);
+
+    vm.expectRevert(IStakingPositions.ZeroAddress.selector);
+    stakingPositions.safeTransferFrom(testAccount1, address(0), tokenId);
+    vm.stopPrank();
+
+    assertEq(stakingPositions.ownerOf(tokenId), testAccount1);
+  }
+
   /*//////////////////////////////////////////////////////////////
                             VOTING POWER TESTS
     //////////////////////////////////////////////////////////////*/
