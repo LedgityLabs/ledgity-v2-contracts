@@ -60,6 +60,16 @@ contract Skip_StakingUpgradeSafeE2E is Test {
     );
   }
 
+  /// @dev Weeks between the first unpaid week of a position and the current week
+  function _weeksBehind(uint256 tokenId) internal view returns (uint256) {
+    uint256 week = distributor.baseRewardCursor(tokenId);
+    if (week == 0)
+      week = (staking.getUserPointHistory(tokenId, 1).timestamp / WEEK) * WEEK;
+    if (week < distributor.startTime()) week = distributor.startTime();
+    uint256 currentWeek = (block.timestamp / WEEK) * WEEK;
+    return week < currentWeek ? (currentWeek - week) / WEEK : 0;
+  }
+
   function _implementation(
     address proxy
   ) internal view returns (address) {
@@ -357,7 +367,17 @@ contract Skip_StakingUpgradeSafeE2E is Test {
       (uint256 baseAfter, uint256 protocolAfter) = distributor
         .claimable(id);
       assertEq(protocolAfter, protocolBefore, "protocol claimable");
-      assertGe(baseAfter, baseBefore, "base claimable decreased");
+      if (baseAfter < baseBefore) {
+        // Only a position more than 50 weeks behind on its claims can have had weeks counted
+        // twice by the old code: the fix drops them (the rehearsal compares the new value to
+        // an independent model)
+        uint256 behind = _weeksBehind(id);
+        emit log_named_uint(
+          string.concat("base claimable lowered, token ", vm.toString(id), ", weeks behind"),
+          behind
+        );
+        assertGt(behind, 50, "base claimable decreased");
+      }
     }
   }
 
@@ -437,6 +457,8 @@ contract Skip_StakingUpgradeSafeE2E is Test {
 
   function test_e2e_postUpgradeSmoke() public {
     vm.selectFork(postFork);
+    // Linea has the staking contracts but no LDY token set and no position: nothing to smoke
+    if (staking.token() == address(0)) return;
     IERC20 ldy = IERC20(staking.token());
     uint256 lastId = staking.tokenId();
 
