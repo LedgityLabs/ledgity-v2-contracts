@@ -3,8 +3,8 @@
   "chainId": "146",
   "createdAt": 1793963557860,
   "meta": {
-    "name": "Vaults, staking and legacy LEURC: maintenance upgrade (sonic)",
-    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance. Upgrade the Sonic LEURC (no v2 vault points to it, supply 0) to the withdrawal-only implementation already used by Sonic LUSDC, then close its deposits ahead of the December sunset. Execute after the Sonic LUSDC proposal (both use the next Safe nonce).",
+    "name": "Minor security fixes (sonic)",
+    "description": "Patch release bundling several minor security fixes.",
     "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
     "createdFromOwnerAddress": "",

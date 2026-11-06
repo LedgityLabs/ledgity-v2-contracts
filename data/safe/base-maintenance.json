@@ -3,8 +3,8 @@
   "chainId": "8453",
   "createdAt": 1793894414924,
   "meta": {
-    "name": "Vaults and staking: maintenance upgrade (base)",
-    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
+    "name": "Minor security fixes (base)",
+    "description": "Patch release bundling several minor security fixes.",
     "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
     "createdFromOwnerAddress": "",
