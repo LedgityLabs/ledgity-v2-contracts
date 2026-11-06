@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "59144",
+  "createdAt": 1793960734888,
+  "meta": {
+    "name": "Staking: maintenance upgrade (linea)",
+    "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xcc1beF907DCe6c073332A75086708F53BDe4f6f0",
+      "value": "0",
+      "data": "0x3659cfe6000000000000000000000000a87d32a42f208f428c186c4dbf6de9d3f93dba6f",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x902982C0C405091894FF82b3b51F180f99f75144",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000007f989877003be72f795c23889ab452ad58c59271",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}

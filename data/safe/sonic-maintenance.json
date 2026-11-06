@@ -1,10 +1,10 @@
 {
   "version": "1.0",
   "chainId": "146",
-  "createdAt": 1793894421007,
+  "createdAt": 1793963557860,
   "meta": {
-    "name": "Vaults and staking: maintenance upgrade (sonic)",
-    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
+    "name": "Vaults, staking and legacy LEURC: maintenance upgrade (sonic)",
+    "description": "Upgrade the vaults to their latest implementations and reset the high-water mark to the current price. Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance. Upgrade the Sonic LEURC (no v2 vault points to it, supply 0) to the withdrawal-only implementation already used by Sonic LUSDC, then close its deposits ahead of the December sunset. Execute after the Sonic LUSDC proposal (both use the next Safe nonce).",
     "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0x972c17D0adA071db4a0395505dD3Ad0a80809053",
     "createdFromOwnerAddress": "",
@@ -36,6 +36,20 @@
       "to": "0x536E1C104F89351A2156135FA85B9B2dC26d9462",
       "value": "0",
       "data": "0x3659cfe60000000000000000000000008b72ecfce5b8f09bc268f2438ad231c40abf5cb4",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x88dC8674339731A12a08624f455Fd41Fe2d6DC82",
+      "value": "0",
+      "data": "0x3659cfe60000000000000000000000009718c86eb1ace37d5a600b9dadc6914db7c97361",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x88dC8674339731A12a08624f455Fd41Fe2d6DC82",
+      "value": "0",
+      "data": "0x1a67c5900000000000000000000000000000000000000000000000000000000000000001",
       "contractMethod": null,
       "contractInputsValues": null
     }

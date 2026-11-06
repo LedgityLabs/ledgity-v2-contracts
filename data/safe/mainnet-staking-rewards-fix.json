@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1793613653037,
+  "createdAt": 1793960829536,
   "meta": {
     "name": "Staking: maintenance upgrade (mainnet)",
     "description": "Upgrade StakingPositions and StakingRewardsDistributor to their latest implementations: rewards accounting and lock parameter maintenance.",
@@ -14,7 +14,7 @@
     {
       "to": "0xEB4B058BF032E1eD61AA1fEcA332a8b8b96F7483",
       "value": "0",
-      "data": "0x3659cfe60000000000000000000000007ffa9f6a9fdf98a8dadae79dd863464a13ba9a22",
+      "data": "0x3659cfe60000000000000000000000008925a8cfdc8141cb9bf79eb95756fa982b4a4e1b",
       "contractMethod": null,
       "contractInputsValues": null
     },
