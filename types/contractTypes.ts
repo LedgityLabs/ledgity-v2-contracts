@@ -370,6 +370,7 @@ export const councilMerkleDistributorConfig = {
 
 export const fixedTermInvestmentVaultAbi = [
   { type: 'error', inputs: [], name: 'DepositCapacityExceeded' },
+  { type: 'error', inputs: [], name: 'IncompatibleLendingPool' },
   { type: 'error', inputs: [], name: 'InsufficientLiquidity' },
   { type: 'error', inputs: [], name: 'InsufficientStakeForInstantWithdrawal' },
   { type: 'error', inputs: [], name: 'MissingWithdrawalRequestFee' },
@@ -1223,81 +1224,9 @@ export const fixedTermInvestmentVaultAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'user', internalType: 'address', type: 'address' },
-      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
-      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'getUserWithdrawalRequests',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
     inputs: [],
     name: 'getWithdrawalRequestCount',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
-      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'getWithdrawalRequests',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'requestIds', internalType: 'uint256[]', type: 'uint256[]' },
-    ],
-    name: 'getWithdrawalRequestsByIds',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
     stateMutability: 'view',
   },
   {
@@ -1568,10 +1497,10 @@ export const fixedTermInvestmentVaultAbi = [
   },
   {
     type: 'function',
-    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     name: 'migrateLToken',
-    outputs: [{ name: 'shares', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'nonpayable',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
   },
   {
     type: 'function',
@@ -4544,6 +4473,8 @@ export const lTokenAbi = [
   { type: 'error', inputs: [], name: 'OnlyHighTierAllowed' },
   { type: 'error', inputs: [], name: 'OnlyWithdrawer' },
   { type: 'error', inputs: [], name: 'RequestorBlacklisted' },
+  { type: 'error', inputs: [], name: 'UseDeposit' },
+  { type: 'error', inputs: [], name: 'WithdrawalOnlyMode' },
   { type: 'error', inputs: [], name: 'WithdrawerZeroAddress' },
   {
     type: 'event',
@@ -5221,6 +5152,13 @@ export const lTokenAbi = [
   },
   {
     type: 'function',
+    inputs: [{ name: 'status_', internalType: 'bool', type: 'bool' }],
+    name: 'switchWithdrawalOnly',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
     inputs: [],
     name: 'symbol',
     outputs: [{ name: '', internalType: 'string', type: 'string' }],
@@ -5354,6 +5292,13 @@ export const lTokenAbi = [
     inputs: [],
     name: 'withdrawalFeeInEth',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'withdrawalOnly',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'view',
   },
   {
@@ -5603,10 +5548,127 @@ export const lTokenSignalerConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LedgityDataProvider
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const ledgityDataProviderAbi = [
+  {
+    type: 'function',
+    inputs: [
+      { name: 'vault', internalType: 'address', type: 'address' },
+      { name: 'user', internalType: 'address', type: 'address' },
+      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
+      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getUserWithdrawalRequests',
+    outputs: [
+      {
+        name: 'filteredRequests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'vault', internalType: 'address', type: 'address' },
+      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
+      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getWithdrawalRequests',
+    outputs: [
+      {
+        name: 'filteredRequests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'vault', internalType: 'address', type: 'address' },
+      { name: 'requestIds', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'getWithdrawalRequestsByIds',
+    outputs: [
+      {
+        name: 'selectedRequests',
+        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+          { name: 'user', internalType: 'address', type: 'address' },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+          { name: 'processed', internalType: 'bool', type: 'bool' },
+          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+] as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const ledgityDataProviderAddress = {
+  1: '0xBbb6f6E3AC59112D90Dcc63dcC27567101450011',
+  146: '0x833E364AE3580493c491530C78aaFe50db44eE12',
+  8453: '0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6',
+  42161: '0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0',
+  59144: '0x3308B533E065cBAbD6d3ec19F6707834c79C14c9',
+} as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const ledgityDataProviderConfig = {
+  address: ledgityDataProviderAddress,
+  abi: ledgityDataProviderAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LedgityYieldVault
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const ledgityYieldVaultAbi = [
+  { type: 'error', inputs: [], name: 'IncompatibleLendingPool' },
   { type: 'error', inputs: [], name: 'InsufficientLiquidity' },
   { type: 'error', inputs: [], name: 'InsufficientStakeForInstantWithdrawal' },
   { type: 'error', inputs: [], name: 'MissingWithdrawalRequestFee' },
@@ -6119,6 +6181,25 @@ export const ledgityYieldVaultAbi = [
     anonymous: false,
     inputs: [
       {
+        name: 'oldGasFee',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'newGasFee',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'WithdrawalGasFeeUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
         name: 'requestId',
         internalType: 'uint256',
         type: 'uint256',
@@ -6147,6 +6228,18 @@ export const ledgityYieldVaultAbi = [
       { name: 'user', internalType: 'address', type: 'address', indexed: true },
       {
         name: 'shares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'assets',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'feeShares',
         internalType: 'uint256',
         type: 'uint256',
         indexed: false,
@@ -6334,81 +6427,9 @@ export const ledgityYieldVaultAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'user', internalType: 'address', type: 'address' },
-      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
-      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'getUserWithdrawalRequests',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
     inputs: [],
     name: 'getWithdrawalRequestCount',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'onlyPending', internalType: 'bool', type: 'bool' },
-      { name: 'maxRange', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'getWithdrawalRequests',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'requestIds', internalType: 'uint256[]', type: 'uint256[]' },
-    ],
-    name: 'getWithdrawalRequestsByIds',
-    outputs: [
-      {
-        name: 'requests',
-        internalType: 'struct ILedgityDataProvider.WithdrawalRequestRead[]',
-        type: 'tuple[]',
-        components: [
-          { name: 'requestId', internalType: 'uint256', type: 'uint256' },
-          { name: 'user', internalType: 'address', type: 'address' },
-          { name: 'amount', internalType: 'uint256', type: 'uint256' },
-          { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-          { name: 'processed', internalType: 'bool', type: 'bool' },
-          { name: 'hasFeeReduction', internalType: 'bool', type: 'bool' },
-        ],
-      },
-    ],
     stateMutability: 'view',
   },
   {
@@ -7021,6 +7042,15 @@ export const ledgityYieldVaultAbi = [
       },
     ],
     name: 'updateVaultParams',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'newWithdrawalGasFee', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'updateWithdrawalGasFee',
     outputs: [],
     stateMutability: 'nonpayable',
   },
@@ -10344,39 +10374,12 @@ export const useReadFixedTermInvestmentVaultGetFeeData =
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
- */
-export const useReadFixedTermInvestmentVaultGetUserWithdrawalRequests =
-  /*#__PURE__*/ createUseReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getUserWithdrawalRequests',
-  })
-
-/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
  */
 export const useReadFixedTermInvestmentVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createUseReadContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'getWithdrawalRequestCount',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequests"`
- */
-export const useReadFixedTermInvestmentVaultGetWithdrawalRequests =
-  /*#__PURE__*/ createUseReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getWithdrawalRequests',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
- */
-export const useReadFixedTermInvestmentVaultGetWithdrawalRequestsByIds =
-  /*#__PURE__*/ createUseReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getWithdrawalRequestsByIds',
   })
 
 /**
@@ -10548,6 +10551,15 @@ export const useReadFixedTermInvestmentVaultMaxWithdraw =
   /*#__PURE__*/ createUseReadContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const useReadFixedTermInvestmentVaultMigrateLToken =
+  /*#__PURE__*/ createUseReadContract({
+    abi: fixedTermInvestmentVaultAbi,
+    functionName: 'migrateLToken',
   })
 
 /**
@@ -10869,15 +10881,6 @@ export const useWriteFixedTermInvestmentVaultInitialize =
   /*#__PURE__*/ createUseWriteContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'initialize',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
- */
-export const useWriteFixedTermInvestmentVaultMigrateLToken =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'migrateLToken',
   })
 
 /**
@@ -11271,15 +11274,6 @@ export const useSimulateFixedTermInvestmentVaultInitialize =
   /*#__PURE__*/ createUseSimulateContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'initialize',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
- */
-export const useSimulateFixedTermInvestmentVaultMigrateLToken =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'migrateLToken',
   })
 
 /**
@@ -16392,6 +16386,14 @@ export const useReadLTokenWithdrawalFeeInEth =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalOnly"`
+ */
+export const useReadLTokenWithdrawalOnly = /*#__PURE__*/ createUseReadContract({
+  abi: lTokenAbi,
+  functionName: 'withdrawalOnly',
+})
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalQueue"`
  */
 export const useReadLTokenWithdrawalQueue = /*#__PURE__*/ createUseReadContract(
@@ -16650,6 +16652,15 @@ export const useWriteLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createUseWriteContract({
     abi: lTokenAbi,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"switchWithdrawalOnly"`
+ */
+export const useWriteLTokenSwitchWithdrawalOnly =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: lTokenAbi,
+    functionName: 'switchWithdrawalOnly',
   })
 
 /**
@@ -16935,6 +16946,15 @@ export const useSimulateLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createUseSimulateContract({
     abi: lTokenAbi,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"switchWithdrawalOnly"`
+ */
+export const useSimulateLTokenSwitchWithdrawalOnly =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: lTokenAbi,
+    functionName: 'switchWithdrawalOnly',
   })
 
 /**
@@ -17505,6 +17525,68 @@ export const useWatchLTokenSignalerOwnershipTransferredEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const useReadLedgityDataProvider = /*#__PURE__*/ createUseReadContract({
+  abi: ledgityDataProviderAbi,
+  address: ledgityDataProviderAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const useReadLedgityDataProviderGetUserWithdrawalRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getUserWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getWithdrawalRequests"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const useReadLedgityDataProviderGetWithdrawalRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const useReadLedgityDataProviderGetWithdrawalRequestsByIds =
+  /*#__PURE__*/ createUseReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getWithdrawalRequestsByIds',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const useReadLedgityYieldVault = /*#__PURE__*/ createUseReadContract({
@@ -17655,39 +17737,12 @@ export const useReadLedgityYieldVaultGetFeeData =
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
- */
-export const useReadLedgityYieldVaultGetUserWithdrawalRequests =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getUserWithdrawalRequests',
-  })
-
-/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
  */
 export const useReadLedgityYieldVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createUseReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'getWithdrawalRequestCount',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequests"`
- */
-export const useReadLedgityYieldVaultGetWithdrawalRequests =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getWithdrawalRequests',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
- */
-export const useReadLedgityYieldVaultGetWithdrawalRequestsByIds =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getWithdrawalRequestsByIds',
   })
 
 /**
@@ -18353,6 +18408,15 @@ export const useWriteLedgityYieldVaultUpdateVaultParams =
   })
 
 /**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateWithdrawalGasFee"`
+ */
+export const useWriteLedgityYieldVaultUpdateWithdrawalGasFee =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateWithdrawalGasFee',
+  })
+
+/**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
  */
 export const useWriteLedgityYieldVaultUpgradeTo =
@@ -18710,6 +18774,15 @@ export const useSimulateLedgityYieldVaultUpdateVaultParams =
   })
 
 /**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateWithdrawalGasFee"`
+ */
+export const useSimulateLedgityYieldVaultUpdateWithdrawalGasFee =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateWithdrawalGasFee',
+  })
+
+/**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
  */
 export const useSimulateLedgityYieldVaultUpgradeTo =
@@ -18974,6 +19047,15 @@ export const useWatchLedgityYieldVaultWithdrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'Withdraw',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"WithdrawalGasFeeUpdated"`
+ */
+export const useWatchLedgityYieldVaultWithdrawalGasFeeUpdatedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'WithdrawalGasFeeUpdated',
   })
 
 /**
@@ -24396,39 +24478,12 @@ export const readFixedTermInvestmentVaultGetFeeData =
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
- */
-export const readFixedTermInvestmentVaultGetUserWithdrawalRequests =
-  /*#__PURE__*/ createReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getUserWithdrawalRequests',
-  })
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
  */
 export const readFixedTermInvestmentVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createReadContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'getWithdrawalRequestCount',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequests"`
- */
-export const readFixedTermInvestmentVaultGetWithdrawalRequests =
-  /*#__PURE__*/ createReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getWithdrawalRequests',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
- */
-export const readFixedTermInvestmentVaultGetWithdrawalRequestsByIds =
-  /*#__PURE__*/ createReadContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'getWithdrawalRequestsByIds',
   })
 
 /**
@@ -24600,6 +24655,15 @@ export const readFixedTermInvestmentVaultMaxWithdraw =
   /*#__PURE__*/ createReadContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'maxWithdraw',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
+ */
+export const readFixedTermInvestmentVaultMigrateLToken =
+  /*#__PURE__*/ createReadContract({
+    abi: fixedTermInvestmentVaultAbi,
+    functionName: 'migrateLToken',
   })
 
 /**
@@ -24922,15 +24986,6 @@ export const writeFixedTermInvestmentVaultInitialize =
   /*#__PURE__*/ createWriteContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'initialize',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
- */
-export const writeFixedTermInvestmentVaultMigrateLToken =
-  /*#__PURE__*/ createWriteContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'migrateLToken',
   })
 
 /**
@@ -25324,15 +25379,6 @@ export const simulateFixedTermInvestmentVaultInitialize =
   /*#__PURE__*/ createSimulateContract({
     abi: fixedTermInvestmentVaultAbi,
     functionName: 'initialize',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link fixedTermInvestmentVaultAbi}__ and `functionName` set to `"migrateLToken"`
- */
-export const simulateFixedTermInvestmentVaultMigrateLToken =
-  /*#__PURE__*/ createSimulateContract({
-    abi: fixedTermInvestmentVaultAbi,
-    functionName: 'migrateLToken',
   })
 
 /**
@@ -30375,6 +30421,14 @@ export const readLTokenWithdrawalFeeInEth = /*#__PURE__*/ createReadContract({
 })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalOnly"`
+ */
+export const readLTokenWithdrawalOnly = /*#__PURE__*/ createReadContract({
+  abi: lTokenAbi,
+  functionName: 'withdrawalOnly',
+})
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"withdrawalQueue"`
  */
 export const readLTokenWithdrawalQueue = /*#__PURE__*/ createReadContract({
@@ -30624,6 +30678,15 @@ export const writeLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createWriteContract({
     abi: lTokenAbi,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"switchWithdrawalOnly"`
+ */
+export const writeLTokenSwitchWithdrawalOnly =
+  /*#__PURE__*/ createWriteContract({
+    abi: lTokenAbi,
+    functionName: 'switchWithdrawalOnly',
   })
 
 /**
@@ -30900,6 +30963,15 @@ export const simulateLTokenSwitchOnlyHighTierInstantWithdrawal =
   /*#__PURE__*/ createSimulateContract({
     abi: lTokenAbi,
     functionName: 'switchOnlyHighTierInstantWithdrawal',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link lTokenAbi}__ and `functionName` set to `"switchWithdrawalOnly"`
+ */
+export const simulateLTokenSwitchWithdrawalOnly =
+  /*#__PURE__*/ createSimulateContract({
+    abi: lTokenAbi,
+    functionName: 'switchWithdrawalOnly',
   })
 
 /**
@@ -31458,6 +31530,68 @@ export const watchLTokenSignalerOwnershipTransferredEvent =
   })
 
 /**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const readLedgityDataProvider = /*#__PURE__*/ createReadContract({
+  abi: ledgityDataProviderAbi,
+  address: ledgityDataProviderAddress,
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const readLedgityDataProviderGetUserWithdrawalRequests =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getUserWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getWithdrawalRequests"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const readLedgityDataProviderGetWithdrawalRequests =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getWithdrawalRequests',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityDataProviderAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xBbb6f6E3AC59112D90Dcc63dcC27567101450011)
+ * - [__View Contract on Sonic Sonic Explorer__](https://sonicscan.org/address/0x833E364AE3580493c491530C78aaFe50db44eE12)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xB4B47f8959743d00E5B490d5A8498F53A7D10fa6)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x61097Ff065f498A2e4f6006C6A6C506BD17e39E0)
+ * - [__View Contract on Linea Mainnet Etherscan__](https://lineascan.build/address/0x3308B533E065cBAbD6d3ec19F6707834c79C14c9)
+ */
+export const readLedgityDataProviderGetWithdrawalRequestsByIds =
+  /*#__PURE__*/ createReadContract({
+    abi: ledgityDataProviderAbi,
+    address: ledgityDataProviderAddress,
+    functionName: 'getWithdrawalRequestsByIds',
+  })
+
+/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__
  */
 export const readLedgityYieldVault = /*#__PURE__*/ createReadContract({
@@ -31601,39 +31735,12 @@ export const readLedgityYieldVaultGetFeeData = /*#__PURE__*/ createReadContract(
 )
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getUserWithdrawalRequests"`
- */
-export const readLedgityYieldVaultGetUserWithdrawalRequests =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getUserWithdrawalRequests',
-  })
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequestCount"`
  */
 export const readLedgityYieldVaultGetWithdrawalRequestCount =
   /*#__PURE__*/ createReadContract({
     abi: ledgityYieldVaultAbi,
     functionName: 'getWithdrawalRequestCount',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequests"`
- */
-export const readLedgityYieldVaultGetWithdrawalRequests =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getWithdrawalRequests',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"getWithdrawalRequestsByIds"`
- */
-export const readLedgityYieldVaultGetWithdrawalRequestsByIds =
-  /*#__PURE__*/ createReadContract({
-    abi: ledgityYieldVaultAbi,
-    functionName: 'getWithdrawalRequestsByIds',
   })
 
 /**
@@ -32280,6 +32387,15 @@ export const writeLedgityYieldVaultUpdateVaultParams =
   })
 
 /**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateWithdrawalGasFee"`
+ */
+export const writeLedgityYieldVaultUpdateWithdrawalGasFee =
+  /*#__PURE__*/ createWriteContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateWithdrawalGasFee',
+  })
+
+/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
  */
 export const writeLedgityYieldVaultUpgradeTo =
@@ -32636,6 +32752,15 @@ export const simulateLedgityYieldVaultUpdateVaultParams =
   })
 
 /**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"updateWithdrawalGasFee"`
+ */
+export const simulateLedgityYieldVaultUpdateWithdrawalGasFee =
+  /*#__PURE__*/ createSimulateContract({
+    abi: ledgityYieldVaultAbi,
+    functionName: 'updateWithdrawalGasFee',
+  })
+
+/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `functionName` set to `"upgradeTo"`
  */
 export const simulateLedgityYieldVaultUpgradeTo =
@@ -32900,6 +33025,15 @@ export const watchLedgityYieldVaultWithdrawEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: ledgityYieldVaultAbi,
     eventName: 'Withdraw',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link ledgityYieldVaultAbi}__ and `eventName` set to `"WithdrawalGasFeeUpdated"`
+ */
+export const watchLedgityYieldVaultWithdrawalGasFeeUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: ledgityYieldVaultAbi,
+    eventName: 'WithdrawalGasFeeUpdated',
   })
 
 /**

@@ -22,6 +22,7 @@ const contractList = [
   "StakingRewardsDistributorSonic",
   "KrystalYieldVault",
   "LegacyStakingTransition",
+  "LedgityDataProvider",
   // implementations
   "LToken_Implementation",
   "LedgityYieldVault_Implementation",
@@ -54,6 +55,9 @@ for (const chainId in deployedContracts) {
   for (const [name, data] of Object.entries(contractsData)) {
     const baseContractName = name.replace("_Proxy", "").replace("Sonic", "");
     if (!contractList.includes(baseContractName)) continue;
+    // A record without ABI is useless, e.g. the Hedera LedgityDataProvider still describes the
+    // former linked library: its address must not land in the generated map
+    if (!(data as any).abi?.length) continue;
 
     // Normalize Sonic & implementation contracts
     const cleanName = name
