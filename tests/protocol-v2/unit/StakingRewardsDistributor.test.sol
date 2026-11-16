@@ -7,6 +7,7 @@ import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
 // Contracts
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 import { StakingPositions } from "src/protocol-v2/staking/StakingPositions.sol";
 import { StakingRewardsDistributor } from "src/protocol-v2/staking/StakingRewardsDistributor.sol";
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
@@ -214,6 +215,27 @@ contract StakingRewardsDistributor_UnitTest is Test, Fixtures {
   /*//////////////////////////////////////////////////////////////
                         UNIT TESTS FOR ACCESS CONTROL
     //////////////////////////////////////////////////////////////*/
+
+  // A restricted owner cannot route the rewards to an approved operator
+  function test_Claim_RevertRestrictedOwnerThroughOperator() public {
+    vm.startPrank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(1000e18, 52 * WEEK);
+    stakingPositions.approve(testAccount2, tokenId);
+    vm.stopPrank();
+
+    vm.prank(globalOwner.owner());
+    globalAccessList.restrictAccount(testAccount1);
+
+    uint256[] memory tokenIds = new uint256[](1);
+    tokenIds[0] = tokenId;
+
+    vm.startPrank(testAccount2);
+    vm.expectRevert(AdministeredUpgradable.UserIsRestricted.selector);
+    stakingRewardsDistributor.claim(tokenId);
+    vm.expectRevert(AdministeredUpgradable.UserIsRestricted.selector);
+    stakingRewardsDistributor.claimMany(tokenIds);
+    vm.stopPrank();
+  }
 
   function test_ClaimOnWithdrawal_RevertNotStakingPositions() public {
     // Test access control without creating staking positions

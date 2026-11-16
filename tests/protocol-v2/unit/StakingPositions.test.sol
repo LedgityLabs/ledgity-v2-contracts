@@ -7,6 +7,7 @@ import { Test, console } from "foundry/lib/forge-std/src/Test.sol";
 // Fixtures
 import { Fixtures } from "tests/protocol-v2/helpers/Fixtures.sol";
 // Contracts
+import { AdministeredUpgradable } from "src/protocol-v2/modules/AdministeredUpgradable.sol";
 import { StakingPositions } from "src/protocol-v2/staking/StakingPositions.sol";
 import { IStakingPositions } from "src/protocol-v2/interfaces/IStakingPositions.sol";
 import { MockERC20 } from "src/protocol-v1/mock/MockERC20.sol";
@@ -390,6 +391,22 @@ contract StakingPositions_UnitTest is Test, Fixtures {
     assertEq(stakingPositions.balanceOfAccountNFT(testAccount1), 0);
     assertEq(stakingPositions.supply(), 0);
     assertEq(ldyToken.balanceOf(testAccount1), initialBalance);
+  }
+
+  // A restricted owner cannot route the principal to an approved operator
+  function test_Withdraw_RevertRestrictedOwnerThroughOperator() public {
+    vm.startPrank(testAccount1);
+    uint256 tokenId = stakingPositions.createLock(TEST_AMOUNT, WEEK);
+    stakingPositions.approve(testAccount2, tokenId);
+    vm.stopPrank();
+    vm.warp(block.timestamp + WEEK + 1);
+
+    vm.prank(globalOwner.owner());
+    globalAccessList.restrictAccount(testAccount1);
+
+    vm.prank(testAccount2);
+    vm.expectRevert(AdministeredUpgradable.UserIsRestricted.selector);
+    stakingPositions.withdraw(tokenId);
   }
 
   function test_Withdraw_RevertLockNotExpired() public {

@@ -517,7 +517,13 @@ contract StakingPositions is
   /// @inheritdoc IStakingPositions
   function withdraw(
     uint256 _tokenId
-  ) external nonReentrant whenNotPaused notRestricted(msg.sender) {
+  )
+    external
+    nonReentrant
+    whenNotPaused
+    notRestricted(msg.sender)
+    notRestricted(idToOwner[_tokenId])
+  {
     if (!isApprovedOrOwner(msg.sender, _tokenId))
       revert NotApprovedOrOwner();
 

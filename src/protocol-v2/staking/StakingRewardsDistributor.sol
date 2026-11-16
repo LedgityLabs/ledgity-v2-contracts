@@ -191,6 +191,7 @@ contract StakingRewardsDistributor is
     nonReentrant
     whenNotPaused
     notRestricted(msg.sender)
+    notRestricted(staking.ownerOf(tokenId))
     returns (uint256 baseRewards, uint256 protocolRewards)
   {
     // Verify ownership or approval
@@ -275,6 +276,8 @@ contract StakingRewardsDistributor is
       // Verify ownership or approval
       if (!staking.isApprovedOrOwner(msg.sender, tokenId))
         revert NotApprovedOrOwner();
+      if (globalRestrict.isRestricted(staking.ownerOf(tokenId)))
+        revert UserIsRestricted();
 
       // Claim rewards
       uint256 baseRewards = _claimBaseRewards(tokenId);
