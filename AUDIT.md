@@ -78,6 +78,11 @@ These were reported, reviewed and accepted as is. Do not report them again.
   inherited `preview*` functions ignore the maturity impact, the pending fee shares and
   `decimalsOffset`. These are known ERC-4626 deviations: use `deposit()` / `redeem()` with
   `convertToShares()` / `convertToAssets()`.
+- `maxWithdraw()` and `maxRedeem()` return the holder's full claim, not the amount the liquidity
+  buffer can pay instantly: `withdraw()` / `redeem()` revert with `InsufficientLiquidity` above
+  the buffer and the rest goes through `requestWithdrawal()`. Known ERC-4626 deviation, nothing
+  consumes these views today. To be fixed before lyUSD or lyEUR shares are integrated by a
+  third party (collateral, aggregator).
 - `migrateLToken()` charges no maturity impact. The legacy LTokens are withdrawal-only, so the
   exposure is bounded by their remaining supply.
 - `setTotalAssets()` is a manual owner-only NAV correction hook.
