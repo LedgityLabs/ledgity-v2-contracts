@@ -139,7 +139,7 @@ and accepted as is are listed above and are not credited.
   enabling a management fee would have charged the whole zero-fee period at once and, at an
   extreme rate, reverted every entry point. Owner-triggered only. Fixed in the source the next
   day, deployed with the last maintenance release.
-- [KhomDev](https://khomdev.org): `migrateLToken()` skips the deposit maturity impact, so a
+- [Yuriy Khomenkov (KhomDev)](https://khomdev.org): `migrateLToken()` skips the deposit maturity impact, so a
   legacy LToken holder migrating just before a UTC day boundary captured one day of yield.
   Bounded by the legacy supply held outside Ledgity. The legacy LTokens were switched to
   withdrawal-only on every chain, which removes the only way to scale it; migration stays open
